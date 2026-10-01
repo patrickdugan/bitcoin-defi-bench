@@ -14,7 +14,16 @@ node --experimental-strip-types scripts/run_placement.ts --block development
 node --experimental-strip-types scripts/run_placement.ts --block confirmatory
 ```
 
-The first runs the tests, which assert on development fixtures only. The second writes `results/v0-placement-baselines-development.md`. The third is the preregistered baseline run; it is refused unless `prereg/v0.md` lists the family on its "Frozen families" line.
+The first runs the tests, which assert on development fixtures only and take a few minutes, most of it the family 3 simulations. The second writes `results/v0-placement-baselines-development.md`. The third is the preregistered baseline run; it is refused unless `prereg/v0.md` lists the family on its "Frozen families" line.
+
+Family 3 (settlement-object selection, pin-supported variant):
+
+```
+node --experimental-strip-types scripts/run_settlement_object.ts --block development
+node --experimental-strip-types scripts/run_settlement_object.ts --block exploratory
+```
+
+Its preregistration sections are not frozen, so its 32-seed block (2000 through 2031) is exploratory and a confirmatory block is refused. The exploratory run simulates 200-agent populations and takes ten minutes or more.
 
 Every run verifies the manifest first and recomputes the baselines in the same process.
 
@@ -25,7 +34,7 @@ python vendor/spiral/scripts/fetch_ln_snapshot.py --member 20230716.gml.geo --ou
 node --experimental-strip-types scripts/build_fixtures.ts
 ```
 
-The fetch extracts one 33 MB member from the Harvard Dataverse archive by byte range (3.8 MB transferred). The build checks the member's SHA-256 and the graph statistics Spiral recorded before it writes anything, and rewrites `fixtures/manifest.json`. Rebuilding on an unchanged tree reproduces every fixture byte for byte; a test checks this when the snapshot is present.
+The fetch extracts one 33 MB member from the Harvard Dataverse archive by byte range (3.8 MB transferred). The build checks the member's SHA-256 and the graph statistics Spiral recorded before it writes anything, builds the fixtures of both families, and rewrites `fixtures/manifest.json`. It writes only files whose bytes changed, and rebuilding on an unchanged tree changes nothing; tests check that committed fixtures regenerate byte for byte.
 
 ## Running an LLM agent
 

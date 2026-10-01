@@ -1,0 +1,7023 @@
+{
+ "bench": "bitcoin-defi-bench/v0",
+ "block": "exploratory",
+ "manifest_sha256": "ca00ed69319e16bc60ab589d548ef4e64b58ce373ae2b1bd536f76714f4b4dc8",
+ "prereg_sha256": "d9ad74117e03f41be9adc96525ba4267b06275820fa455e7283298965d1e9133",
+ "spiral_commit": "9824c30ad402cc9bca768eca27d176e0e8788db5",
+ "node": "v24.19.0",
+ "seeds": [
+  2000,
+  2001,
+  2002,
+  2003,
+  2004,
+  2005,
+  2006,
+  2007,
+  2008,
+  2009,
+  2010,
+  2011,
+  2012,
+  2013,
+  2014,
+  2015,
+  2016,
+  2017,
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026,
+  2027,
+  2028,
+  2029,
+  2030,
+  2031
+ ],
+ "agents": [
+  {
+   "id": "random",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "always_channel",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "always_vtxo",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "grid_search",
+   "privileged": true,
+   "baseline": true
+  }
+ ],
+ "tasks": [
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "unit": "−ln 𝒟, with 𝒟 the liquidity duration in blocks; an infeasible choice is scored at twice the largest feasible grid 𝒟",
+   "band": 0.05,
+   "floor": "random",
+   "ceiling": "grid_search",
+   "reference": "always_channel",
+   "metrics": [
+    "scored_duration",
+    "feasible",
+    "failure_rate",
+    "peak_locked"
+   ]
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "unit": "−ln 𝒟, with 𝒟 the liquidity duration in blocks; an infeasible choice is scored at twice the largest feasible grid 𝒟",
+   "band": 0.05,
+   "floor": "random",
+   "ceiling": "grid_search",
+   "reference": "always_vtxo",
+   "metrics": [
+    "scored_duration",
+    "feasible",
+    "failure_rate",
+    "peak_locked"
+   ]
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "unit": "−ln 𝒟, with 𝒟 the liquidity duration in blocks; an infeasible choice is scored at twice the largest feasible grid 𝒟",
+   "band": 0.05,
+   "floor": "random",
+   "ceiling": "grid_search",
+   "reference": "always_vtxo",
+   "metrics": [
+    "scored_duration",
+    "feasible",
+    "failure_rate",
+    "peak_locked"
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2000,
+   "cell": "single",
+   "agent": "random",
+   "value": -7.8600536307009135,
+   "metrics": {
+    "scored_duration": 2591.6593641937375,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 309793,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2000,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.2954197404479384,
+   "metrics": {
+    "scored_duration": 9.928602573878726,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00024806201550387597,
+    "peak_locked": 1037,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2000,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.8600536307009135,
+   "metrics": {
+    "scored_duration": 2591.6593641937375,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 309793,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2000,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -1.9726665435122157,
+   "metrics": {
+    "scored_duration": 7.189822925273409,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.005364341085271318,
+    "peak_locked": 747,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2001,
+   "cell": "single",
+   "agent": "random",
+   "value": -2.9398703784587905,
+   "metrics": {
+    "scored_duration": 18.913394570005504,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 1976,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2001,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.7578776483772476,
+   "metrics": {
+    "scored_duration": 15.766345684999134,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0001240271619484667,
+    "peak_locked": 1647,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2001,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.868662040701863,
+   "metrics": {
+    "scored_duration": 2614.065733823741,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 306507,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2001,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.43713852720988,
+   "metrics": {
+    "scored_duration": 11.44025787490053,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.007534650088369353,
+    "peak_locked": 1186,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2002,
+   "cell": "single",
+   "agent": "random",
+   "value": -7.885235163957541,
+   "metrics": {
+    "scored_duration": 2657.749959572504,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 309879,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2002,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.8895592388242837,
+   "metrics": {
+    "scored_duration": 17.985380596782402,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00009303479501333498,
+    "peak_locked": 1879,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2002,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.885235163957541,
+   "metrics": {
+    "scored_duration": 2657.749959572504,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 309879,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2002,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.563471833488425,
+   "metrics": {
+    "scored_duration": 12.980806371364526,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0016436147119022514,
+    "peak_locked": 1354,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2003,
+   "cell": "single",
+   "agent": "random",
+   "value": -8.544868958610426,
+   "metrics": {
+    "scored_duration": 5140.311494266855,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.04579560957460002,
+    "peak_locked": 911,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2003,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -3.0811289485924744,
+   "metrics": {
+    "scored_duration": 21.78298038498924,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00006201165819174004,
+    "peak_locked": 2276,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2003,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.851721778050481,
+   "metrics": {
+    "scored_duration": 2570.1557471334277,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 311400,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2003,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.5719999708716146,
+   "metrics": {
+    "scored_duration": 13.091981857546825,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0007131340692050106,
+    "peak_locked": 1367,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2004,
+   "cell": "single",
+   "agent": "random",
+   "value": -2.7778661698922775,
+   "metrics": {
+    "scored_duration": 16.084662366546326,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00021704080367109018,
+    "peak_locked": 1680,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2004,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -3.106007747342822,
+   "metrics": {
+    "scored_duration": 22.331712363341012,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 2333,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2004,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.852017947805323,
+   "metrics": {
+    "scored_duration": 2570.917062264655,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 304662,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2004,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.191092166859677,
+   "metrics": {
+    "scored_duration": 8.94497718937559,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0015502914547935011,
+    "peak_locked": 933,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2005,
+   "cell": "single",
+   "agent": "random",
+   "value": -2.681299431242595,
+   "metrics": {
+    "scored_duration": 14.604057940743123,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00006201358097423335,
+    "peak_locked": 1526,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2005,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.681299431242595,
+   "metrics": {
+    "scored_duration": 14.604057940743123,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00006201358097423335,
+    "peak_locked": 1526,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2005,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.851383067966371,
+   "metrics": {
+    "scored_duration": 2569.2853568774394,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 308593,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2005,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.1730163056852483,
+   "metrics": {
+    "scored_duration": 8.784741584646547,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.001054230876561967,
+    "peak_locked": 917,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2006,
+   "cell": "single",
+   "agent": "random",
+   "value": -7.86194078589383,
+   "metrics": {
+    "scored_duration": 2596.5548454346895,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 309353,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2006,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.766471726785331,
+   "metrics": {
+    "scored_duration": 15.902426804372178,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00003101256008683517,
+    "peak_locked": 1661,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2006,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.86194078589383,
+   "metrics": {
+    "scored_duration": 2596.5548454346895,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 309353,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2006,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.2580588343392187,
+   "metrics": {
+    "scored_duration": 9.564504846607376,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0019848038455574507,
+    "peak_locked": 997,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2007,
+   "cell": "single",
+   "agent": "random",
+   "value": -2.3980008847858016,
+   "metrics": {
+    "scored_duration": 11.001161793210308,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0002791216970599181,
+    "peak_locked": 1149,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2007,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.5251201927985285,
+   "metrics": {
+    "scored_duration": 12.492396669491947,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00009304056568663938,
+    "peak_locked": 1305,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2007,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.887488148475108,
+   "metrics": {
+    "scored_duration": 2663.7445794401674,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 317457,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2007,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.198210827673973,
+   "metrics": {
+    "scored_duration": 9.008880631582889,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0012405408758218582,
+    "peak_locked": 940,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2008,
+   "cell": "single",
+   "agent": "random",
+   "value": -2.507813460483427,
+   "metrics": {
+    "scored_duration": 12.278054237916185,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0005271644753162987,
+    "peak_locked": 1282,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2008,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.7314808761671467,
+   "metrics": {
+    "scored_duration": 15.355609947636987,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00012403870007442322,
+    "peak_locked": 1604,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2008,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.872997161675853,
+   "metrics": {
+    "scored_duration": 2625.422623974085,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 304849,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2008,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.403909400450779,
+   "metrics": {
+    "scored_duration": 11.066354737103499,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0009302902505581741,
+    "peak_locked": 1155,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2009,
+   "cell": "single",
+   "agent": "random",
+   "value": -3.026832354099631,
+   "metrics": {
+    "scored_duration": 20.631774813689656,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 2156,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2009,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.844696308854302,
+   "metrics": {
+    "scored_duration": 17.196335501020553,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 1797,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2009,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.87114020051668,
+   "metrics": {
+    "scored_duration": 2620.5518399629755,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 317208,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2009,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -1.9321260554411828,
+   "metrics": {
+    "scored_duration": 6.904173304036126,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.003348733372608601,
+    "peak_locked": 719,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2010,
+   "cell": "single",
+   "agent": "random",
+   "value": -2.816642992453722,
+   "metrics": {
+    "scored_duration": 16.720625085492898,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00006201550387596899,
+    "peak_locked": 1747,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2010,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.816642992453722,
+   "metrics": {
+    "scored_duration": 16.720625085492898,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00006201550387596899,
+    "peak_locked": 1747,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2010,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.863053003161305,
+   "metrics": {
+    "scored_duration": 2599.4443851698534,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 316687,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2010,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.3068693956387296,
+   "metrics": {
+    "scored_duration": 10.042934933898835,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0012713178294573644,
+    "peak_locked": 1048,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2011,
+   "cell": "single",
+   "agent": "random",
+   "value": -2.3575363004500787,
+   "metrics": {
+    "scored_duration": 10.56489064628739,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00040318828893093074,
+    "peak_locked": 1103,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2011,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.48414892356595,
+   "metrics": {
+    "scored_duration": 11.990910729359634,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0003101448376391775,
+    "peak_locked": 1252,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2011,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.8899247714676735,
+   "metrics": {
+    "scored_duration": 2670.2430346562674,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 321231,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2011,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.1576713038369046,
+   "metrics": {
+    "scored_duration": 8.650968706263713,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0016747821232515586,
+    "peak_locked": 902,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2012,
+   "cell": "single",
+   "agent": "random",
+   "value": -2.730867034534364,
+   "metrics": {
+    "scored_duration": 15.346186927371317,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 1603,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2012,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.5488610933617597,
+   "metrics": {
+    "scored_duration": 12.792525990096438,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00018605805011163483,
+    "peak_locked": 1336,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2012,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.85648426108868,
+   "metrics": {
+    "scored_duration": 2582.425263776478,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 308921,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2012,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.0394208418665394,
+   "metrics": {
+    "scored_duration": 7.686156409569237,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0010543289506325974,
+    "peak_locked": 802,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2013,
+   "cell": "single",
+   "agent": "random",
+   "value": -7.874005241909161,
+   "metrics": {
+    "scored_duration": 2628.0705950848137,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 305214,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2013,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -3.092189740034992,
+   "metrics": {
+    "scored_duration": 22.02525479135953,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.000031007751937984497,
+    "peak_locked": 2301,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2013,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.874005241909161,
+   "metrics": {
+    "scored_duration": 2628.0705950848137,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 305214,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2013,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.582258470226103,
+   "metrics": {
+    "scored_duration": 13.226977185854535,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00062015503875969,
+    "peak_locked": 1381,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2014,
+   "cell": "single",
+   "agent": "random",
+   "value": -3.0668685431315073,
+   "metrics": {
+    "scored_duration": 21.47455064593534,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 2244,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2014,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.8847048334457477,
+   "metrics": {
+    "scored_duration": 17.89828384099625,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0001550291454793501,
+    "peak_locked": 1870,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2014,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.872821887412328,
+   "metrics": {
+    "scored_duration": 2624.962495282761,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 312919,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2014,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.3754700090537786,
+   "metrics": {
+    "scored_duration": 10.756067447292327,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0008371573855884907,
+    "peak_locked": 1123,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2015,
+   "cell": "single",
+   "agent": "random",
+   "value": -2.581976424986552,
+   "metrics": {
+    "scored_duration": 13.223247105955986,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00027910438504000494,
+    "peak_locked": 1381,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2015,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.7087765399902364,
+   "metrics": {
+    "scored_duration": 15.010899041039906,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00009303479501333498,
+    "peak_locked": 1568,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2015,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.86085240738958,
+   "metrics": {
+    "scored_duration": 2593.730348295617,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 308487,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2015,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.1997953770192415,
+   "metrics": {
+    "scored_duration": 9.0231669631988,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0016746263102400299,
+    "peak_locked": 941,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2016,
+   "cell": "single",
+   "agent": "random",
+   "value": -2.248590988330446,
+   "metrics": {
+    "scored_duration": 9.474376919492466,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0005582433941198362,
+    "peak_locked": 989,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2016,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.7575219960900594,
+   "metrics": {
+    "scored_duration": 15.76073934510856,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00009304056568663938,
+    "peak_locked": 1646,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2016,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.87412515011291,
+   "metrics": {
+    "scored_duration": 2628.3857412031216,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 322192,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2016,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.248590988330446,
+   "metrics": {
+    "scored_duration": 9.474376919492466,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0005582433941198362,
+    "peak_locked": 989,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2017,
+   "cell": "single",
+   "agent": "random",
+   "value": -2.425484967917573,
+   "metrics": {
+    "scored_duration": 11.307711967267469,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0005270990946297904,
+    "peak_locked": 1181,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2017,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.75334217989691,
+   "metrics": {
+    "scored_duration": 15.69499983681898,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00006201165819174004,
+    "peak_locked": 1640,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2017,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.85545773076197,
+   "metrics": {
+    "scored_duration": 2579.7756860953423,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 298644,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2017,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.2432466868151892,
+   "metrics": {
+    "scored_duration": 9.423878053342754,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0007751457273967506,
+    "peak_locked": 984,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2018,
+   "cell": "single",
+   "agent": "random",
+   "value": -2.2158604876389827,
+   "metrics": {
+    "scored_duration": 9.16929578361026,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0018605228069087413,
+    "peak_locked": 956,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2018,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.5427850147866393,
+   "metrics": {
+    "scored_duration": 12.71503326137166,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00015504356724239512,
+    "peak_locked": 1328,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2018,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.884347896702944,
+   "metrics": {
+    "scored_duration": 2655.3928709008987,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 307761,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2018,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.2158604876389827,
+   "metrics": {
+    "scored_duration": 9.16929578361026,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0018605228069087413,
+    "peak_locked": 956,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2019,
+   "cell": "single",
+   "agent": "random",
+   "value": -2.7374944351020396,
+   "metrics": {
+    "scored_duration": 15.448230022059072,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00031009675018605807,
+    "peak_locked": 1614,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2019,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.8641194788515407,
+   "metrics": {
+    "scored_duration": 17.53360769315218,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00024807740014884643,
+    "peak_locked": 1832,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2019,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.859726801506584,
+   "metrics": {
+    "scored_duration": 2590.812472653739,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 326240,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2019,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.641429369442385,
+   "metrics": {
+    "scored_duration": 14.03324797475057,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.001085338625651203,
+    "peak_locked": 1465,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2020,
+   "cell": "single",
+   "agent": "random",
+   "value": -1.938126812327248,
+   "metrics": {
+    "scored_duration": 6.945728125026169,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.007784152581795627,
+    "peak_locked": 720,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2020,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.155159004865462,
+   "metrics": {
+    "scored_duration": 8.629262164559183,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0007753140021708792,
+    "peak_locked": 901,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2020,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.887284430952466,
+   "metrics": {
+    "scored_duration": 2663.2019832635438,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 319833,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2020,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -1.938126812327248,
+   "metrics": {
+    "scored_duration": 6.945728125026169,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.007784152581795627,
+    "peak_locked": 720,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2021,
+   "cell": "single",
+   "agent": "random",
+   "value": -2.6356732990128955,
+   "metrics": {
+    "scored_duration": 13.952703642862039,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0001550387596899225,
+    "peak_locked": 1458,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2021,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.7629524968766486,
+   "metrics": {
+    "scored_duration": 15.846560868535924,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00009302325581395348,
+    "peak_locked": 1656,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2021,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.879175197233174,
+   "metrics": {
+    "scored_duration": 2641.6927853656975,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 316277,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2021,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.2550735254648084,
+   "metrics": {
+    "scored_duration": 9.535994422793975,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.002573643410852713,
+    "peak_locked": 994,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2022,
+   "cell": "single",
+   "agent": "random",
+   "value": -3.4633970609063316,
+   "metrics": {
+    "scored_duration": 31.925244514119605,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 3336,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2022,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -3.281466304221831,
+   "metrics": {
+    "scored_duration": 26.614769451145644,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00003100582909587002,
+    "peak_locked": 2781,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2022,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.860497451072456,
+   "metrics": {
+    "scored_duration": 2592.8098507014556,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 298064,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2022,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.771293162513172,
+   "metrics": {
+    "scored_duration": 15.979284466377328,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00043408160734218035,
+    "peak_locked": 1669,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2023,
+   "cell": "single",
+   "agent": "random",
+   "value": -8.587281083732433,
+   "metrics": {
+    "scored_duration": 5363.012253125607,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.2951867014018112,
+    "peak_locked": 496,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2023,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.473774796123451,
+   "metrics": {
+    "scored_duration": 11.867158513804473,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0004962163503287433,
+    "peak_locked": 1239,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2023,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.894133903172487,
+   "metrics": {
+    "scored_duration": 2681.5061265628033,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 318211,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2023,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.2541611860635236,
+   "metrics": {
+    "scored_duration": 9.527298326850302,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0041247984121076785,
+    "peak_locked": 991,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2024,
+   "cell": "single",
+   "agent": "random",
+   "value": -2.4220759332180037,
+   "metrics": {
+    "scored_duration": 11.269229216583515,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0005270664103677064,
+    "peak_locked": 1177,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2024,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.9320530155591986,
+   "metrics": {
+    "scored_duration": 18.766118107783367,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00003100390649221802,
+    "peak_locked": 1961,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2024,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.861892436875588,
+   "metrics": {
+    "scored_duration": 2596.4293075919422,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 304759,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2024,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.4220759332180037,
+   "metrics": {
+    "scored_duration": 11.269229216583515,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0005270664103677064,
+    "peak_locked": 1177,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2025,
+   "cell": "single",
+   "agent": "random",
+   "value": -7.857957128022573,
+   "metrics": {
+    "scored_duration": 2586.231635007799,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 319235,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2025,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.6604404213579027,
+   "metrics": {
+    "scored_duration": 14.302586876471537,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00009302037146135003,
+    "peak_locked": 1494,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2025,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.857957128022573,
+   "metrics": {
+    "scored_duration": 2586.231635007799,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 319235,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2025,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.1511749900611505,
+   "metrics": {
+    "scored_duration": 8.594951448927503,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.000961210505100617,
+    "peak_locked": 897,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2026,
+   "cell": "single",
+   "agent": "random",
+   "value": -2.818365931824712,
+   "metrics": {
+    "scored_duration": 16.749458540775183,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00015506280043417584,
+    "peak_locked": 1749,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2026,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.818365931824712,
+   "metrics": {
+    "scored_duration": 16.749458540775183,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00015506280043417584,
+    "peak_locked": 1749,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2026,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.887575220520255,
+   "metrics": {
+    "scored_duration": 2663.976527226387,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 320837,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2026,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.311133192674903,
+   "metrics": {
+    "scored_duration": 10.085847390094019,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0031012560086835167,
+    "peak_locked": 1050,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2027,
+   "cell": "single",
+   "agent": "random",
+   "value": -8.562061774266981,
+   "metrics": {
+    "scored_duration": 5229.452014708122,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.027198858702394243,
+    "peak_locked": 938,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2027,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.7058011312407033,
+   "metrics": {
+    "scored_duration": 14.966301861016438,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.000031013521895546456,
+    "peak_locked": 1563,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2027,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.868914593707036,
+   "metrics": {
+    "scored_duration": 2614.726007354061,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 315158,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2027,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.3791381816398225,
+   "metrics": {
+    "scored_duration": 10.795595011678271,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.002139933010792706,
+    "peak_locked": 1125,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2028,
+   "cell": "single",
+   "agent": "random",
+   "value": -7.846894664419058,
+   "metrics": {
+    "scored_duration": 2557.779208802165,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 298624,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2028,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.9722709753141703,
+   "metrics": {
+    "scored_duration": 19.536235565449783,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00006201358097423335,
+    "peak_locked": 2041,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2028,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.846894664419058,
+   "metrics": {
+    "scored_duration": 2557.779208802165,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 298624,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2028,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.4621839061452713,
+   "metrics": {
+    "scored_duration": 11.730401682896549,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00046510185730675016,
+    "peak_locked": 1225,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2029,
+   "cell": "single",
+   "agent": "random",
+   "value": -1.95950985554277,
+   "metrics": {
+    "scored_duration": 7.095848221983079,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0016436147119022514,
+    "peak_locked": 740,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2029,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.467753687651149,
+   "metrics": {
+    "scored_duration": 11.795919748524003,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00018606959002666996,
+    "peak_locked": 1232,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2029,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.8887423232021145,
+   "metrics": {
+    "scored_duration": 2667.08747642117,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 323715,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2029,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -1.95950985554277,
+   "metrics": {
+    "scored_duration": 7.095848221983079,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0016436147119022514,
+    "peak_locked": 740,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2030,
+   "cell": "single",
+   "agent": "random",
+   "value": -8.580272734632953,
+   "metrics": {
+    "scored_duration": 5325.557791306763,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.064884312387569,
+    "peak_locked": 956,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2030,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.440009844120741,
+   "metrics": {
+    "scored_duration": 11.473153685349086,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0013336641647540475,
+    "peak_locked": 1197,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2030,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.887125554073006,
+   "metrics": {
+    "scored_duration": 2662.7788956533814,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 319272,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2030,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.440009844120741,
+   "metrics": {
+    "scored_duration": 11.473153685349086,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0013336641647540475,
+    "peak_locked": 1197,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2031,
+   "cell": "single",
+   "agent": "random",
+   "value": -7.873575025022081,
+   "metrics": {
+    "scored_duration": 2626.9401979097847,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 312366,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2031,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -2.665858057116977,
+   "metrics": {
+    "scored_duration": 14.380283358161973,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00009302325581395348,
+    "peak_locked": 1502,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2031,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -7.873575025022081,
+   "metrics": {
+    "scored_duration": 2626.9401979097847,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 312366,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/few_steady_recycling",
+   "seed": 2031,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -2.1560495652227982,
+   "metrics": {
+    "scored_duration": 8.636950466296238,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0013023255813953488,
+    "peak_locked": 901,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2000,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.643264580531534,
+   "metrics": {
+    "scored_duration": 41909.3646329726,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.04300073950316343,
+    "peak_locked": 66417300,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2000,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.767795843177634,
+   "metrics": {
+    "scored_duration": 17462.235263738585,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 92246250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2000,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.52716203417339,
+   "metrics": {
+    "scored_duration": 683.4558322965329,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 8878000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2000,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.209788738500131,
+   "metrics": {
+    "scored_duration": 497.59611727974834,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 7855000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2001,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.564570138946163,
+   "metrics": {
+    "scored_duration": 14250.825857733798,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 65364000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2001,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.787713690260372,
+   "metrics": {
+    "scored_duration": 17813.532322167248,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 81705000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2001,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.584309940447834,
+   "metrics": {
+    "scored_duration": 723.6515126936491,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 8226000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2001,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.213621725182768,
+   "metrics": {
+    "scored_duration": 499.5070565333766,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 7100000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2002,
+   "cell": "single",
+   "agent": "random",
+   "value": -7.25453750138025,
+   "metrics": {
+    "scored_duration": 1414.5086435247479,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 18449000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2002,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.868584134047437,
+   "metrics": {
+    "scored_duration": 19313.97360783438,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 99235000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2002,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.626801940227218,
+   "metrics": {
+    "scored_duration": 755.0635668643766,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 10313000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2002,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.1456946726625175,
+   "metrics": {
+    "scored_duration": 466.70374281214737,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 8965000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2003,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.964750418283293,
+   "metrics": {
+    "scored_duration": 21263.567012599182,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 106841250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2003,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.964750418283293,
+   "metrics": {
+    "scored_duration": 21263.567012599182,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 106841250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2003,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.710897854856823,
+   "metrics": {
+    "scored_duration": 821.3077236324149,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 10734000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2003,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.293974882563076,
+   "metrics": {
+    "scored_duration": 541.3006651282748,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 10734000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2004,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.677068123264297,
+   "metrics": {
+    "scored_duration": 43350.26621557808,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.21234306458932084,
+    "peak_locked": 34626500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2004,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.801599385910396,
+   "metrics": {
+    "scored_duration": 18062.610923157536,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 86566250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2004,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.593180723398041,
+   "metrics": {
+    "scored_duration": 730.0994249267412,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 10968000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2004,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.183114006684363,
+   "metrics": {
+    "scored_duration": 484.49834076163245,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 7131000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2005,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.7312577029398,
+   "metrics": {
+    "scored_duration": 16835.713336699173,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 78568750,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2005,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.7312577029398,
+   "metrics": {
+    "scored_duration": 16835.713336699173,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 78568750,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2005,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.528830988250437,
+   "metrics": {
+    "scored_duration": 684.5974410756517,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 9019000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2005,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.135565322452151,
+   "metrics": {
+    "scored_duration": 462.0001992931735,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6987000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2006,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.70690957098575,
+   "metrics": {
+    "scored_duration": 44663.39632525712,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.11063753151638853,
+    "peak_locked": 53920500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2006,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.831440833631852,
+   "metrics": {
+    "scored_duration": 18609.74846885713,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 89867500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2006,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.566773950952014,
+   "metrics": {
+    "scored_duration": 711.0721852008783,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 9311000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2006,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.115143737442523,
+   "metrics": {
+    "scored_duration": 452.66110704518314,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 7500000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2007,
+   "cell": "single",
+   "agent": "random",
+   "value": -7.143812727452453,
+   "metrics": {
+    "scored_duration": 1266.2470520335874,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 16275000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2007,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.806781509530785,
+   "metrics": {
+    "scored_duration": 18156.45655568884,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 99480000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2007,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.498168568296482,
+   "metrics": {
+    "scored_duration": 663.9245863793767,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 12305000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2007,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -5.980909210436596,
+   "metrics": {
+    "scored_duration": 395.80007016273225,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 9690000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2008,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.389352864969995,
+   "metrics": {
+    "scored_duration": 11960.356861409738,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00003220923116565207,
+    "peak_locked": 53357000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2008,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.612461670294756,
+   "metrics": {
+    "scored_duration": 14949.926617745163,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 66696250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2008,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.470660469546198,
+   "metrics": {
+    "scored_duration": 645.9101901267512,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 8082000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2008,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.076713345219501,
+   "metrics": {
+    "scored_duration": 435.59518845897264,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 8082000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2009,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.721441988791373,
+   "metrics": {
+    "scored_duration": 45317.202648128194,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.11248681361390261,
+    "peak_locked": 59313750,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2009,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.845973251437472,
+   "metrics": {
+    "scored_duration": 18882.167770053413,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 98856250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2009,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.552945784932735,
+   "metrics": {
+    "scored_duration": 701.3070336463874,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 10178000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2009,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.096717681087199,
+   "metrics": {
+    "scored_duration": 444.39672181626537,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 8269000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2010,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.928924182341095,
+   "metrics": {
+    "scored_duration": 20515.258028313216,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 96907500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2010,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.74660262554714,
+   "metrics": {
+    "scored_duration": 17096.04835692768,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 80756250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2010,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.541897571529906,
+   "metrics": {
+    "scored_duration": 693.6014885112918,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 9139000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2010,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.186056607687948,
+   "metrics": {
+    "scored_duration": 485.9261257358877,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 7231000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2011,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.279495520521799,
+   "metrics": {
+    "scored_duration": 29129.174775344258,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.07214964370546319,
+    "peak_locked": 31429500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2011,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.404026783167899,
+   "metrics": {
+    "scored_duration": 12137.156156393441,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 52382500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2011,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.558389592136182,
+   "metrics": {
+    "scored_duration": 705.1352244402462,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 9068000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2011,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.274245871896117,
+   "metrics": {
+    "scored_duration": 530.7259954170946,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 9068000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2012,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.28504499500561,
+   "metrics": {
+    "scored_duration": 29291.275759117147,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.14204391433992952,
+    "peak_locked": 20530500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2012,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.40957625765171,
+   "metrics": {
+    "scored_duration": 12204.698232965478,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 51326250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2012,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.681389943338593,
+   "metrics": {
+    "scored_duration": 797.4267200389233,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 11921000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2012,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.448404133474936,
+   "metrics": {
+    "scored_duration": 631.6933896543336,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 11921000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2013,
+   "cell": "single",
+   "agent": "random",
+   "value": -6.207832642445848,
+   "metrics": {
+    "scored_duration": 496.62372283663495,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 9107000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2013,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.709262639625091,
+   "metrics": {
+    "scored_duration": 16469.45347605545,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 77607500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2013,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.599321653584592,
+   "metrics": {
+    "scored_duration": 734.5967091455751,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 9107000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2013,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.207832642445848,
+   "metrics": {
+    "scored_duration": 496.62372283663495,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 9107000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2014,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.373742076403143,
+   "metrics": {
+    "scored_duration": 11775.096055172413,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 59549000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2014,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.596885627717352,
+   "metrics": {
+    "scored_duration": 14718.870068965518,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 74436250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2014,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.701650249859707,
+   "metrics": {
+    "scored_duration": 813.7476045977011,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 14081000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2014,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.397840994609494,
+   "metrics": {
+    "scored_duration": 600.5470528735632,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 14081000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2015,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.491397008704677,
+   "metrics": {
+    "scored_duration": 13245.286187787055,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 62316000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2015,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.714540560018888,
+   "metrics": {
+    "scored_duration": 16556.607734733818,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 77895000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2015,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.504867465810207,
+   "metrics": {
+    "scored_duration": 668.3870793439511,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 8311000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2015,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.136770980000591,
+   "metrics": {
+    "scored_duration": 462.55754923990327,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 8202000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2016,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.762739660734788,
+   "metrics": {
+    "scored_duration": 47227.87931881353,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.23181990984630424,
+    "peak_locked": 42229000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2016,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.887270923380887,
+   "metrics": {
+    "scored_duration": 19678.283049505637,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 105572500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2016,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.698107343616325,
+   "metrics": {
+    "scored_duration": 810.8696742578777,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 10417000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2016,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.2695161321921,
+   "metrics": {
+    "scored_duration": 528.2217265430423,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 9144000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2017,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.476831887315326,
+   "metrics": {
+    "scored_duration": 35483.81256246938,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.17265904000968466,
+    "peak_locked": 28065500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2017,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.601363149961426,
+   "metrics": {
+    "scored_duration": 14784.921901028907,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 70163750,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2017,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.447215569918977,
+   "metrics": {
+    "scored_duration": 630.9430279274866,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 7546000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2017,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.084232993362716,
+   "metrics": {
+    "scored_duration": 438.8830573248408,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 5877000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2018,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.466304518876182,
+   "metrics": {
+    "scored_duration": 12917.064154302007,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 57303454,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2018,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.59413694803405,
+   "metrics": {
+    "scored_duration": 14678.468161234416,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 65117500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2018,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.522875614660689,
+   "metrics": {
+    "scored_duration": 680.5325236205065,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 9565000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2018,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.092708779764808,
+   "metrics": {
+    "scored_duration": 442.6187454575949,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 5813000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2019,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.845163592583914,
+   "metrics": {
+    "scored_duration": 18866.885843152555,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 83951091,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2019,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.97299468895699,
+   "metrics": {
+    "scored_duration": 21439.594225516972,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 95398750,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2019,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.644299357896676,
+   "metrics": {
+    "scored_duration": 768.3914915556546,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 8592000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2019,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.132265286413054,
+   "metrics": {
+    "scored_duration": 460.47809486650686,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 7121000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2020,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.787415744976029,
+   "metrics": {
+    "scored_duration": 17808.22565480188,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 82206250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2020,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.787415744976029,
+   "metrics": {
+    "scored_duration": 17808.22565480188,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 82206250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2020,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.47037140242117,
+   "metrics": {
+    "scored_duration": 645.7235057085292,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 9097000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2020,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.019867348152018,
+   "metrics": {
+    "scored_duration": 411.5240026863667,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 5711000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2021,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.266242059927556,
+   "metrics": {
+    "scored_duration": 28745.659471622635,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 149704500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2021,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -10.083920503133601,
+   "metrics": {
+    "scored_duration": 23954.716226352197,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 124753750,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2021,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.638820801180207,
+   "metrics": {
+    "scored_duration": 764.1933256342791,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 14415000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2021,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.149461627587856,
+   "metrics": {
+    "scored_duration": 468.46511018775374,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 8228000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2022,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.66594587799132,
+   "metrics": {
+    "scored_duration": 15771.280544988056,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 77371000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2022,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.88908942930553,
+   "metrics": {
+    "scored_duration": 19714.10068123507,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 96713750,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2022,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.635503151535018,
+   "metrics": {
+    "scored_duration": 761.6622009327486,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 10567000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2022,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.165204563838611,
+   "metrics": {
+    "scored_duration": 475.8984845995374,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 8481000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2023,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.854651728411161,
+   "metrics": {
+    "scored_duration": 19046.749354035514,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 83667287,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2023,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.982482864875358,
+   "metrics": {
+    "scored_duration": 21643.984981509187,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 95076250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2023,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.573290959369188,
+   "metrics": {
+    "scored_duration": 715.7213815882336,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 10883000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2023,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.094483203394998,
+   "metrics": {
+    "scored_duration": 443.4048358411202,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 7558000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2024,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.545671710112599,
+   "metrics": {
+    "scored_duration": 38012.5523860879,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.0944058134435883,
+    "peak_locked": 43709250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2024,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.6702029727587,
+   "metrics": {
+    "scored_duration": 15838.563494203288,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 72848750,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2024,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.810948174545836,
+   "metrics": {
+    "scored_duration": 907.7310865462388,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 11693000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2024,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.610862027080233,
+   "metrics": {
+    "scored_duration": 743.123335130763,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 11693000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2025,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.79254221713887,
+   "metrics": {
+    "scored_duration": 17899.7534347476,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 88900000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2025,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.79254221713887,
+   "metrics": {
+    "scored_duration": 17899.7534347476,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 88900000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2025,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.546363389435891,
+   "metrics": {
+    "scored_duration": 696.7059131965468,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 9108000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2025,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.123660314785055,
+   "metrics": {
+    "scored_duration": 456.5326933040368,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6348000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2026,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.61140943836731,
+   "metrics": {
+    "scored_duration": 14934.204100962712,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 62568000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2026,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.83455298968152,
+   "metrics": {
+    "scored_duration": 18667.755126203392,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 78210000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2026,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.499127529901776,
+   "metrics": {
+    "scored_duration": 664.5615699390997,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 7755000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2026,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.04162463615214,
+   "metrics": {
+    "scored_duration": 420.57576273318585,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6232000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2027,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.685200417135986,
+   "metrics": {
+    "scored_duration": 43704.24068123186,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.10844904256284599,
+    "peak_locked": 52388250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2027,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.809731679782086,
+   "metrics": {
+    "scored_duration": 18210.100283846605,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 87313750,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2027,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.517715959156946,
+   "metrics": {
+    "scored_duration": 677.0302532635894,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 10320000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2027,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.010650645885217,
+   "metrics": {
+    "scored_duration": 407.7485338902503,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 5777000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2028,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.51231996584524,
+   "metrics": {
+    "scored_duration": 36765.67579157733,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.03849248495381546,
+    "peak_locked": 49277700,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2028,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.63685122849134,
+   "metrics": {
+    "scored_duration": 15319.031579823886,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 68441250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2028,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.514648509889167,
+   "metrics": {
+    "scored_duration": 674.9566792264295,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 7262000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2028,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.118147726830641,
+   "metrics": {
+    "scored_duration": 454.02294064991565,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 7042000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2029,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.705753135216211,
+   "metrics": {
+    "scored_duration": 44611.775829804,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.21880972780597113,
+    "peak_locked": 32765000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2029,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.830284397862311,
+   "metrics": {
+    "scored_duration": 18588.239929085,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 81912500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2029,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.5699190277132455,
+   "metrics": {
+    "scored_duration": 713.3120822839132,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 8645000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2029,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.160927565849474,
+   "metrics": {
+    "scored_duration": 473.867414275865,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 5795000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2030,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.55924999470821,
+   "metrics": {
+    "scored_duration": 38532.21773842358,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.04019648762320609,
+    "peak_locked": 51845400,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2030,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.68378125735431,
+   "metrics": {
+    "scored_duration": 16055.090724343156,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 72007500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2030,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.589394248292746,
+   "metrics": {
+    "scored_duration": 727.3401488916078,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 7831000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2030,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.207976865999336,
+   "metrics": {
+    "scored_duration": 496.69535283993116,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 7216000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2031,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.71174979032567,
+   "metrics": {
+    "scored_duration": 44880.10098590729,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.2201170157941007,
+    "peak_locked": 35822500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2031,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.83628105297177,
+   "metrics": {
+    "scored_duration": 18700.04207746137,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 89556250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2031,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.505230179565239,
+   "metrics": {
+    "scored_duration": 668.6295565035571,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 9643000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_correlated",
+   "seed": 2031,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.055062882952886,
+   "metrics": {
+    "scored_duration": 426.26570945836596,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6779000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2000,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.662508888283114,
+   "metrics": {
+    "scored_duration": 42723.691793317106,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.044131775498187004,
+    "peak_locked": 59898600,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2000,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.787040150929213,
+   "metrics": {
+    "scored_duration": 17801.53824721546,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 83192500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2000,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.556746769690783,
+   "metrics": {
+    "scored_duration": 703.9777634782378,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6141000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2000,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.1272197295159305,
+   "metrics": {
+    "scored_duration": 458.16057793728396,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6136000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2001,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.944334495679364,
+   "metrics": {
+    "scored_duration": 20833.853102795838,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 96265500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2001,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.762012938885409,
+   "metrics": {
+    "scored_duration": 17361.544252329866,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 80221250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2001,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.567471783175272,
+   "metrics": {
+    "scored_duration": 711.5685674603974,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6488000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2001,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.160823109327181,
+   "metrics": {
+    "scored_duration": 473.81791831887443,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6478000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2002,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.655220132415959,
+   "metrics": {
+    "scored_duration": 42413.42135046418,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.20744780891480158,
+    "peak_locked": 32647000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2002,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.779751395062059,
+   "metrics": {
+    "scored_duration": 17672.258896026742,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 81617500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2002,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.5713927167540644,
+   "metrics": {
+    "scored_duration": 714.3640574339972,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6282000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2002,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.151623968005152,
+   "metrics": {
+    "scored_duration": 469.4791872243591,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6277000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2003,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.975962433219147,
+   "metrics": {
+    "scored_duration": 21503.315966409064,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 99547500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2003,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.793640876425192,
+   "metrics": {
+    "scored_duration": 17919.429972007554,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 82956250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2003,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.575130253775804,
+   "metrics": {
+    "scored_duration": 717.0390153087875,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6592000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2003,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.157532535008684,
+   "metrics": {
+    "scored_duration": 472.2613476554652,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6587000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2004,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.666267817520662,
+   "metrics": {
+    "scored_duration": 42884.58933932923,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.044599609989306156,
+    "peak_locked": 59247900,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2004,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.790799080166764,
+   "metrics": {
+    "scored_duration": 17868.57889138718,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 82288750,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2004,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.570257716495436,
+   "metrics": {
+    "scored_duration": 713.5537140010501,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6176000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2004,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.145900831189556,
+   "metrics": {
+    "scored_duration": 466.79996768677717,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6166000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2005,
+   "cell": "single",
+   "agent": "random",
+   "value": -7.130505568322915,
+   "metrics": {
+    "scored_duration": 1249.508519179903,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 10327000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2005,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.768812311240046,
+   "metrics": {
+    "scored_duration": 17479.994092294473,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 80722500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2005,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.567664090293958,
+   "metrics": {
+    "scored_duration": 711.7054203198217,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6355000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2005,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.158085783183572,
+   "metrics": {
+    "scored_duration": 472.5226976731696,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6345000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2006,
+   "cell": "single",
+   "agent": "random",
+   "value": -7.136646703717819,
+   "metrics": {
+    "scored_duration": 1257.2055301764908,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 10645000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2006,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.787257635898788,
+   "metrics": {
+    "scored_duration": 17805.41023525387,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 82288750,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2006,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.554055633461047,
+   "metrics": {
+    "scored_duration": 702.0858103077016,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 5997000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2006,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.129078313631369,
+   "metrics": {
+    "scored_duration": 459.0128997202712,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 5976000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2007,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.578980916184616,
+   "metrics": {
+    "scored_duration": 14457.678206444349,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00012383517538156713,
+    "peak_locked": 67674000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2007,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.80199201278159,
+   "metrics": {
+    "scored_duration": 18069.704181980727,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 84592500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2007,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.572092330374665,
+   "metrics": {
+    "scored_duration": 714.8640111254596,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6451000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2007,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.148001739645546,
+   "metrics": {
+    "scored_duration": 467.78170259262936,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6446000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2008,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.658629066938223,
+   "metrics": {
+    "scored_duration": 42558.25264666083,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.10561045881223086,
+    "peak_locked": 49726500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2008,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.783160329584323,
+   "metrics": {
+    "scored_duration": 17732.60526944201,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 82877500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2008,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.564734992956856,
+   "metrics": {
+    "scored_duration": 709.6238159675237,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6046000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2008,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.138836953234069,
+   "metrics": {
+    "scored_duration": 463.51416859030485,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6035000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2009,
+   "cell": "single",
+   "agent": "random",
+   "value": -6.56829168372338,
+   "metrics": {
+    "scored_duration": 712.1522221555808,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6391000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2009,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.785512571391674,
+   "metrics": {
+    "scored_duration": 17774.365741018413,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 82687500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2009,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.56829168372338,
+   "metrics": {
+    "scored_duration": 712.1522221555808,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6391000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2009,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.141402391473887,
+   "metrics": {
+    "scored_duration": 464.7048121713749,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6384000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2010,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.641091782149841,
+   "metrics": {
+    "scored_duration": 41818.40288987068,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.20468074440754433,
+    "peak_locked": 32181000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2010,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.765623044795941,
+   "metrics": {
+    "scored_duration": 17424.334537446117,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 80452500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2010,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.561119117102623,
+   "metrics": {
+    "scored_duration": 707.0625377684075,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6427000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2010,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.151867479339817,
+   "metrics": {
+    "scored_duration": 469.593524648502,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6417000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2011,
+   "cell": "single",
+   "agent": "random",
+   "value": -6.146115037432853,
+   "metrics": {
+    "scored_duration": 466.89996986438973,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6400000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2011,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.779565611849744,
+   "metrics": {
+    "scored_duration": 17668.975991963838,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 81796250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2011,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.563984873183671,
+   "metrics": {
+    "scored_duration": 709.0917127071823,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6400000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2011,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.146115037432853,
+   "metrics": {
+    "scored_duration": 466.89996986438973,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6400000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2012,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.965750889002212,
+   "metrics": {
+    "scored_duration": 21284.851234119906,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 97287000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2012,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.783429332208257,
+   "metrics": {
+    "scored_duration": 17737.376028433253,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 81072500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2012,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.56858279337364,
+   "metrics": {
+    "scored_duration": 712.3595667184417,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6294000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2012,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.143189938583366,
+   "metrics": {
+    "scored_duration": 465.5362367990884,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6284000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2013,
+   "cell": "single",
+   "agent": "random",
+   "value": -6.558780583097954,
+   "metrics": {
+    "scored_duration": 705.4109798452523,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6145000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2013,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.777688674577744,
+   "metrics": {
+    "scored_duration": 17635.843535864187,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 81545000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2013,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.558780583097954,
+   "metrics": {
+    "scored_duration": 705.4109798452523,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6145000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2013,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.147891083363547,
+   "metrics": {
+    "scored_duration": 467.72994247247664,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6140000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2014,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.638348917173603,
+   "metrics": {
+    "scored_duration": 15341.99190946535,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 71364805,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2014,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.76618081736892,
+   "metrics": {
+    "scored_duration": 17434.056064301996,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 81096250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2014,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.5664331432742005,
+   "metrics": {
+    "scored_duration": 710.8298876314631,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6535000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2014,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.1524825206872,
+   "metrics": {
+    "scored_duration": 469.88243291878274,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6535000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2015,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.96228192261681,
+   "metrics": {
+    "scored_duration": 21211.142720763724,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 99190500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2015,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.779960365822856,
+   "metrics": {
+    "scored_duration": 17675.952267303102,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 82658750,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2015,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.56322141421576,
+   "metrics": {
+    "scored_duration": 708.5505568814638,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6353000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2015,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.146860445192027,
+   "metrics": {
+    "scored_duration": 467.2481304693715,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6353000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2016,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.964819457173961,
+   "metrics": {
+    "scored_duration": 21265.03507635354,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 99726000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2016,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.782497900380006,
+   "metrics": {
+    "scored_duration": 17720.86256362795,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 83105000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2016,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.564376749886694,
+   "metrics": {
+    "scored_duration": 709.3696436834799,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6408000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2016,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.135778900198245,
+   "metrics": {
+    "scored_duration": 462.09888279235804,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6403000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2017,
+   "cell": "single",
+   "agent": "random",
+   "value": -7.135723072444011,
+   "metrics": {
+    "scored_duration": 1256.0448719238586,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 10436000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2017,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.787880950278904,
+   "metrics": {
+    "scored_duration": 17816.5120631024,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 82350000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2017,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.560368073184125,
+   "metrics": {
+    "scored_duration": 706.5317021148156,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6475000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2017,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.141764532177826,
+   "metrics": {
+    "scored_duration": 464.87313117492,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6470000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2018,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.650279755533399,
+   "metrics": {
+    "scored_duration": 42204.3998118406,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.1048091100166264,
+    "peak_locked": 48676500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2018,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.774811018179498,
+   "metrics": {
+    "scored_duration": 17585.16658826692,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 81127500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2018,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.562783736616405,
+   "metrics": {
+    "scored_duration": 708.2405080303743,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6356000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2018,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.1449759142635845,
+   "metrics": {
+    "scored_duration": 466.3684161010685,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6351000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2019,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.57926834393991,
+   "metrics": {
+    "scored_duration": 14461.8343417037,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00009386439723412909,
+    "peak_locked": 66990000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2019,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.802311509437883,
+   "metrics": {
+    "scored_duration": 18075.47831440598,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 83737500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2019,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.57189351374712,
+   "metrics": {
+    "scored_duration": 714.7218984012688,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6432000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2019,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.1459106373864545,
+   "metrics": {
+    "scored_duration": 466.80454524161655,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6421000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2020,
+   "cell": "single",
+   "agent": "random",
+   "value": -7.1291618323859405,
+   "metrics": {
+    "scored_duration": 1247.8306372467202,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 10156000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2020,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.767448040073127,
+   "metrics": {
+    "scored_duration": 17456.16290015689,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 81060000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2020,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.565038911585396,
+   "metrics": {
+    "scored_duration": 709.8395166405181,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6415000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2020,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.1499716294361795,
+   "metrics": {
+    "scored_duration": 468.7040891945121,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6415000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2021,
+   "cell": "single",
+   "agent": "random",
+   "value": -6.5560231643771765,
+   "metrics": {
+    "scored_duration": 703.4685456864934,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6231000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2021,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.773990746416343,
+   "metrics": {
+    "scored_duration": 17570.747887099347,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 81983750,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2021,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.5560231643771765,
+   "metrics": {
+    "scored_duration": 703.4685456864934,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6231000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2021,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.138285883650706,
+   "metrics": {
+    "scored_duration": 463.2588103970659,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6221000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2022,
+   "cell": "single",
+   "agent": "random",
+   "value": -7.140911027950312,
+   "metrics": {
+    "scored_duration": 1262.578109252167,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 10308000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2022,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.78525192505806,
+   "metrics": {
+    "scored_duration": 17769.733521467446,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 81990000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2022,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.560207102315081,
+   "metrics": {
+    "scored_duration": 706.4179802459182,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6061000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2022,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.131845738039399,
+   "metrics": {
+    "scored_duration": 460.2849425519049,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6060000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2023,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.959634833050277,
+   "metrics": {
+    "scored_duration": 21155.069174765278,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 99541500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2023,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.777313276256322,
+   "metrics": {
+    "scored_duration": 17629.2243123044,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 82951250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2023,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.565665241622682,
+   "metrics": {
+    "scored_duration": 710.2842497117442,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6472000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2023,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.143684031895702,
+   "metrics": {
+    "scored_duration": 465.76631197496295,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6467000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2024,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.652018073032774,
+   "metrics": {
+    "scored_duration": 42277.82826107313,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.10511195078537301,
+    "peak_locked": 48989250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2024,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.776549335678874,
+   "metrics": {
+    "scored_duration": 17615.76177544714,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 81648750,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2024,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.572531518238755,
+   "metrics": {
+    "scored_duration": 715.1780396773373,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6453000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2024,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.155437073615363,
+   "metrics": {
+    "scored_duration": 471.27277835003275,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6452000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2025,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.964667287355164,
+   "metrics": {
+    "scored_duration": 21261.799426009693,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 98071500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2025,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.782345730561211,
+   "metrics": {
+    "scored_duration": 17718.16618834141,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 81726250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2025,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.5626027127773865,
+   "metrics": {
+    "scored_duration": 708.1123112183516,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6420000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2025,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.140686834057851,
+   "metrics": {
+    "scored_duration": 464.3724081380265,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6410000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2026,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.575236696449403,
+   "metrics": {
+    "scored_duration": 14403.646698420855,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.00003079291762894534,
+    "peak_locked": 67781000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2026,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.79834730827674,
+   "metrics": {
+    "scored_duration": 18003.965321879365,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 84726250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2026,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.558407861130712,
+   "metrics": {
+    "scored_duration": 705.1481066694774,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6359000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2026,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.134660329455094,
+   "metrics": {
+    "scored_duration": 461.582281483043,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6359000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2027,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.776730096842774,
+   "metrics": {
+    "scored_duration": 17618.946308859944,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 81397500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2027,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.776730096842774,
+   "metrics": {
+    "scored_duration": 17618.946308859944,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 81397500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2027,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.5708518339085815,
+   "metrics": {
+    "scored_duration": 713.977774646186,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6316000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2027,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.155821086182156,
+   "metrics": {
+    "scored_duration": 471.45378777202905,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6311000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2028,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.649713189862537,
+   "metrics": {
+    "scored_duration": 42180.4950202045,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.20628774972897632,
+    "peak_locked": 32846500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2028,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.774244452508638,
+   "metrics": {
+    "scored_duration": 17575.20625841854,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 82116250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2028,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.556088461346894,
+   "metrics": {
+    "scored_duration": 703.5144815505378,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6199000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2028,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.140727509629921,
+   "metrics": {
+    "scored_duration": 464.39129713553933,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6194000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2029,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.980722824131394,
+   "metrics": {
+    "scored_duration": 21605.924190176942,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 100620000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2029,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.79840126733744,
+   "metrics": {
+    "scored_duration": 18004.93682514745,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 83850000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2029,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.5615543690286104,
+   "metrics": {
+    "scored_duration": 707.3703550839447,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 5949000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2029,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.127203431330954,
+   "metrics": {
+    "scored_duration": 458.1531108122862,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 5944000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2030,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.675790575022457,
+   "metrics": {
+    "scored_duration": 43294.919520755175,
+    "feasible": 0,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0.04468887492143306,
+    "peak_locked": 59890500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2030,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.800321837668557,
+   "metrics": {
+    "scored_duration": 18039.549800314657,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 83181250,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2030,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.571136781312319,
+   "metrics": {
+    "scored_duration": 714.181249747872,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6424000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2030,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.1406631505548885,
+   "metrics": {
+    "scored_duration": 464.361410302957,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6424000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2031,
+   "cell": "single",
+   "agent": "random",
+   "value": -9.776978424406401,
+   "metrics": {
+    "scored_duration": 17623.322122165562,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 80572500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2031,
+   "cell": "single",
+   "agent": "always_channel",
+   "value": -9.776978424406401,
+   "metrics": {
+    "scored_duration": 17623.322122165562,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 0,
+    "failure_rate": 0,
+    "peak_locked": 80572500,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2031,
+   "cell": "single",
+   "agent": "always_vtxo",
+   "value": -6.560366737456102,
+   "metrics": {
+    "scored_duration": 706.530758381252,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6338000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "settlement_object/many_bursty_long",
+   "seed": 2031,
+   "cell": "single",
+   "agent": "grid_search",
+   "value": -6.14525392118488,
+   "metrics": {
+    "scored_duration": 466.49808777259415,
+    "feasible": 1,
+    "chose": 1,
+    "vtxo": 1,
+    "failure_rate": 0,
+    "peak_locked": 6337000,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  }
+ ],
+ "checks": []
+}

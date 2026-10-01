@@ -12,7 +12,8 @@
   },
   "config": {
     "config/placement.json": "8803d9872ba947334c0b29490f6d7a2b993fe7bdb35baabf80dfd6be1219d917",
-    "config/protocol.json": "7f0034406b80fecd66de7d42bbca1e646da30c8a36e44afb94e033c75f34dfc4"
+    "config/protocol.json": "7f0034406b80fecd66de7d42bbca1e646da30c8a36e44afb94e033c75f34dfc4",
+    "config/settlement_object.json": "78ce41a17b6e37a230271302cc689e55e31fdc4280f2776da1856c89a308952c"
   },
   "fixtures": [
     {
@@ -294,6 +295,846 @@
       "seed": 1031,
       "generator": "placement-fixture/v0",
       "sha256": "9235681249f291861601bd254805c35d4b528f6508e8487e45f1383a812427f0"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-0000.json",
+      "family": "settlement_object",
+      "seed": 0,
+      "generator": "settlement-fixture/v0",
+      "sha256": "024fae423ef1c51446195cf222abf549160be27aaee154c764d9ed34bed1018f"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-0001.json",
+      "family": "settlement_object",
+      "seed": 1,
+      "generator": "settlement-fixture/v0",
+      "sha256": "9f3a5717c03ce0f087d2899be6c2b406c175c5ddf3e15616fc65ae245860828b"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-0002.json",
+      "family": "settlement_object",
+      "seed": 2,
+      "generator": "settlement-fixture/v0",
+      "sha256": "23bec533dd9367db3c140c482eb03ffdb871e112e297a30a994e3dc94e888ba7"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-0003.json",
+      "family": "settlement_object",
+      "seed": 3,
+      "generator": "settlement-fixture/v0",
+      "sha256": "88655646ffd2a2250207819226511e90262443f56a74c9f1625313c14365a606"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-0004.json",
+      "family": "settlement_object",
+      "seed": 4,
+      "generator": "settlement-fixture/v0",
+      "sha256": "77b164018969b7fde2d6c6fcf20c18474300e4157f010023d8f7bd0115150cc6"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-0005.json",
+      "family": "settlement_object",
+      "seed": 5,
+      "generator": "settlement-fixture/v0",
+      "sha256": "e46fc53f27c4f2b07509bc79e948c8fe3c3de96bca07d750919beede6e7370d1"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-0006.json",
+      "family": "settlement_object",
+      "seed": 6,
+      "generator": "settlement-fixture/v0",
+      "sha256": "ecb549ade6f39f6bd099f3ab8cd03e0946fb0c1b7716971c69a5bf163d1ff81d"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-0007.json",
+      "family": "settlement_object",
+      "seed": 7,
+      "generator": "settlement-fixture/v0",
+      "sha256": "a5171997d13e9660727aaac2ce3b6a8bf3472216d5c3e155748d3cf4edc51eb5"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2000.json",
+      "family": "settlement_object",
+      "seed": 2000,
+      "generator": "settlement-fixture/v0",
+      "sha256": "25b15c12d552bc68c4d7b8bc916ae72a98b9a33a1be67caeffd544e807dd7f90"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2001.json",
+      "family": "settlement_object",
+      "seed": 2001,
+      "generator": "settlement-fixture/v0",
+      "sha256": "5d5a40ed109ac2a7109dac62854fda97d11b15d6f1ad0d766fe733717ab3f2ac"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2002.json",
+      "family": "settlement_object",
+      "seed": 2002,
+      "generator": "settlement-fixture/v0",
+      "sha256": "1d8bb86542c43a722e8efb5aca8ae207267a08d4703e2dbe546b9cb73e6ffc9e"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2003.json",
+      "family": "settlement_object",
+      "seed": 2003,
+      "generator": "settlement-fixture/v0",
+      "sha256": "43328408dc1715e0376a27a2c7be8f44db0712d702e78333ba16651cd6c34837"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2004.json",
+      "family": "settlement_object",
+      "seed": 2004,
+      "generator": "settlement-fixture/v0",
+      "sha256": "f2304f106664cf67e5ba7c97296015f5c95565b6bb2ddcd72fda159e69675625"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2005.json",
+      "family": "settlement_object",
+      "seed": 2005,
+      "generator": "settlement-fixture/v0",
+      "sha256": "d1177098f844a553cd80a175956376a5b333205076c4f88f69ca6eb42134929c"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2006.json",
+      "family": "settlement_object",
+      "seed": 2006,
+      "generator": "settlement-fixture/v0",
+      "sha256": "3a0fa40b688157bc8da03ae89cc1830a18fe7226bcc76bb98e85d887cc4aa2e7"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2007.json",
+      "family": "settlement_object",
+      "seed": 2007,
+      "generator": "settlement-fixture/v0",
+      "sha256": "f2fa5f6cbe4ad521ac6133307360941e773b652ab6482ea2ac69aaa31b2cc117"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2008.json",
+      "family": "settlement_object",
+      "seed": 2008,
+      "generator": "settlement-fixture/v0",
+      "sha256": "96b737e33f7236168c66f071700a4402491c19240a56a2733ca28f8b11ce2f0c"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2009.json",
+      "family": "settlement_object",
+      "seed": 2009,
+      "generator": "settlement-fixture/v0",
+      "sha256": "1550f24412639eea5fd2ad9b2ed8d15a0a79d3a72fcd206113a691749e5b0295"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2010.json",
+      "family": "settlement_object",
+      "seed": 2010,
+      "generator": "settlement-fixture/v0",
+      "sha256": "fd113526740d8713fedc51beae5ffa2d26432f5837582f653ac59b968b51263b"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2011.json",
+      "family": "settlement_object",
+      "seed": 2011,
+      "generator": "settlement-fixture/v0",
+      "sha256": "6ab70811151fa1852e03ad136fb4a71218210d805df7e185029fcceddb347894"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2012.json",
+      "family": "settlement_object",
+      "seed": 2012,
+      "generator": "settlement-fixture/v0",
+      "sha256": "673e6b25216a75863fa4d430f5fce13aa9a6bd157a6bc43700b363ffeced864d"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2013.json",
+      "family": "settlement_object",
+      "seed": 2013,
+      "generator": "settlement-fixture/v0",
+      "sha256": "c666996ed7629eb9a3f54bd50e71b6525f26b86e54d41fef3183e6819459dbc6"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2014.json",
+      "family": "settlement_object",
+      "seed": 2014,
+      "generator": "settlement-fixture/v0",
+      "sha256": "c1ee5d2a831eebf4fcda3aa1817091d4669fd1386513415f1af65181aad61d52"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2015.json",
+      "family": "settlement_object",
+      "seed": 2015,
+      "generator": "settlement-fixture/v0",
+      "sha256": "60e35b3871d241868fc4ad6c7f1b51adc86cd1900bb8f1460365e958bf08a58e"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2016.json",
+      "family": "settlement_object",
+      "seed": 2016,
+      "generator": "settlement-fixture/v0",
+      "sha256": "21760a8c2663ec27f8666fed8efa1f32ea41d951cb93c897d4193c50c87e8003"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2017.json",
+      "family": "settlement_object",
+      "seed": 2017,
+      "generator": "settlement-fixture/v0",
+      "sha256": "6fe33d3b280f2ef1307e6d4c0e3640459f768c9740595687566f722f1a518f72"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2018.json",
+      "family": "settlement_object",
+      "seed": 2018,
+      "generator": "settlement-fixture/v0",
+      "sha256": "d533a5a0ccb8f97fb045bcd4728eede81b313b97cf6580163026876fe059fcf6"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2019.json",
+      "family": "settlement_object",
+      "seed": 2019,
+      "generator": "settlement-fixture/v0",
+      "sha256": "3f452b126aba0b701df3d78e91f3849875e9b483b7409b9e545fe3d6881ec8e9"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2020.json",
+      "family": "settlement_object",
+      "seed": 2020,
+      "generator": "settlement-fixture/v0",
+      "sha256": "23db3ee37ebbeedf0817d8c9270bc8e1fc5d076c839445c98cb4de6748ccbdf8"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2021.json",
+      "family": "settlement_object",
+      "seed": 2021,
+      "generator": "settlement-fixture/v0",
+      "sha256": "6ab1aa7aed2760d9022fbafbbd7a72bd26c3164aab5c7909738b87dfa166bd2d"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2022.json",
+      "family": "settlement_object",
+      "seed": 2022,
+      "generator": "settlement-fixture/v0",
+      "sha256": "5d57d1d1af74818fdffa6d2a57872d802c3751405c9df9f1e7f28f3ea8820311"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2023.json",
+      "family": "settlement_object",
+      "seed": 2023,
+      "generator": "settlement-fixture/v0",
+      "sha256": "765d030f3eb16d1aeb2357c0ee73ae297a8e20101fd70715d901e886f9e5d870"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2024.json",
+      "family": "settlement_object",
+      "seed": 2024,
+      "generator": "settlement-fixture/v0",
+      "sha256": "6e4e728283a519cffd9131994ba6e58a9130ec631de38e667a2d28c282df3973"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2025.json",
+      "family": "settlement_object",
+      "seed": 2025,
+      "generator": "settlement-fixture/v0",
+      "sha256": "6fed87b70f22c36106111b603523d1640205bb49085062ba0a3ee8d6a12d6108"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2026.json",
+      "family": "settlement_object",
+      "seed": 2026,
+      "generator": "settlement-fixture/v0",
+      "sha256": "5ac700c5dc337fdf5ce0e62cd9f840865855d8a8ba800816c309401bf69d1828"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2027.json",
+      "family": "settlement_object",
+      "seed": 2027,
+      "generator": "settlement-fixture/v0",
+      "sha256": "4e12a6e6451fdd79231d0583d6e86b86c2f7c97917dc665fc0a490dbf04ed3fe"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2028.json",
+      "family": "settlement_object",
+      "seed": 2028,
+      "generator": "settlement-fixture/v0",
+      "sha256": "e2b871f12e653946987106be3864222ca3415c5140aa497d90267ca0c8d5f17f"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2029.json",
+      "family": "settlement_object",
+      "seed": 2029,
+      "generator": "settlement-fixture/v0",
+      "sha256": "4bc4b7750560a363f3322884dbce19a4917015a81b39c53f5affb5da4b6e7f3b"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2030.json",
+      "family": "settlement_object",
+      "seed": 2030,
+      "generator": "settlement-fixture/v0",
+      "sha256": "5a2840dc979f71b251e365f34ceff48174013d1f9fcec230a6f811e881be2dc9"
+    },
+    {
+      "path": "fixtures/settlement_object/few_steady_recycling/seed-2031.json",
+      "family": "settlement_object",
+      "seed": 2031,
+      "generator": "settlement-fixture/v0",
+      "sha256": "afd2603c5ba57d8ac25c05d1a3824ff869be74de684156a9ea1c325a931489fb"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-0000.json",
+      "family": "settlement_object",
+      "seed": 0,
+      "generator": "settlement-fixture/v0",
+      "sha256": "1b9fdbdbad3197733d13b8a826f802f88e8223472d658496d97b6ccdc9d59cee"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-0001.json",
+      "family": "settlement_object",
+      "seed": 1,
+      "generator": "settlement-fixture/v0",
+      "sha256": "a28e8e4d31ac36b7d1c0fa5d570d457e6a2c4b2bccb14fc2829815365adfc7e4"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-0002.json",
+      "family": "settlement_object",
+      "seed": 2,
+      "generator": "settlement-fixture/v0",
+      "sha256": "fae8a58ab7fd4aceb808fdf0771a943aba743ef24421cbcf1de7b7d831123de7"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-0003.json",
+      "family": "settlement_object",
+      "seed": 3,
+      "generator": "settlement-fixture/v0",
+      "sha256": "a49168ca3bbc0ee9a8d09063e3f42cd85039548be94f3b50e713ee94e590e621"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-0004.json",
+      "family": "settlement_object",
+      "seed": 4,
+      "generator": "settlement-fixture/v0",
+      "sha256": "e06c5774eac0c4c8fb0278ee53b35145637dbadb06b79f736c14aaa199bb9853"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-0005.json",
+      "family": "settlement_object",
+      "seed": 5,
+      "generator": "settlement-fixture/v0",
+      "sha256": "a85909602c3a80939f0674264afe1629da76b5b98323555cf31ad4fb77ec868a"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-0006.json",
+      "family": "settlement_object",
+      "seed": 6,
+      "generator": "settlement-fixture/v0",
+      "sha256": "6d2066ec29b12afd4545635afdc2a7ff53b750d2dc6940cd0e87c715057dd749"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-0007.json",
+      "family": "settlement_object",
+      "seed": 7,
+      "generator": "settlement-fixture/v0",
+      "sha256": "95fefcc34db1a23be91cf77c218a6f0ad438675ee0a9517fe94d43875f41e2ee"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2000.json",
+      "family": "settlement_object",
+      "seed": 2000,
+      "generator": "settlement-fixture/v0",
+      "sha256": "7d877cd56df76d432ec253303306704c9a3affec13060fc920fddfd19dfedebc"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2001.json",
+      "family": "settlement_object",
+      "seed": 2001,
+      "generator": "settlement-fixture/v0",
+      "sha256": "84df27c328db7fe1f87a3e896f67adfaf98aedbb9ecdb50bd561ee60482d4372"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2002.json",
+      "family": "settlement_object",
+      "seed": 2002,
+      "generator": "settlement-fixture/v0",
+      "sha256": "2fda5910d4706cfa5487212b10ef18231516b051d3bc323b213b6309437bcd0c"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2003.json",
+      "family": "settlement_object",
+      "seed": 2003,
+      "generator": "settlement-fixture/v0",
+      "sha256": "e2a4df574967d80c76be718760c22744ce7c43285aad610e1aa66e79e2bf4466"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2004.json",
+      "family": "settlement_object",
+      "seed": 2004,
+      "generator": "settlement-fixture/v0",
+      "sha256": "c77c3662cd3144f80ab7b7e2f532a4b1df6ede1e28195281fea309db750293f2"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2005.json",
+      "family": "settlement_object",
+      "seed": 2005,
+      "generator": "settlement-fixture/v0",
+      "sha256": "78a474372ffa402af0a874294bb486f8b3d99ae277661a4b3eb71fbf131edd16"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2006.json",
+      "family": "settlement_object",
+      "seed": 2006,
+      "generator": "settlement-fixture/v0",
+      "sha256": "8ea45c51541914f169070f770afc8f0644a214e080b54e679aa5551eb0eaed18"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2007.json",
+      "family": "settlement_object",
+      "seed": 2007,
+      "generator": "settlement-fixture/v0",
+      "sha256": "70c6774fd57394d84d8bb871e36004893c69917585f5fb631cd76255ed5d3528"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2008.json",
+      "family": "settlement_object",
+      "seed": 2008,
+      "generator": "settlement-fixture/v0",
+      "sha256": "c07591df71437efb56231776226e748158f511b6dcbbde7ddcdd428c8ab5b577"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2009.json",
+      "family": "settlement_object",
+      "seed": 2009,
+      "generator": "settlement-fixture/v0",
+      "sha256": "0e066fb7e1698dc4ad78642749258f7fc4885216c44dc8a943924b5dd5bdb3a2"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2010.json",
+      "family": "settlement_object",
+      "seed": 2010,
+      "generator": "settlement-fixture/v0",
+      "sha256": "b18d98078934b7eb76899ec44b9366771651c6b757fd7db2f085d0acce8a58c0"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2011.json",
+      "family": "settlement_object",
+      "seed": 2011,
+      "generator": "settlement-fixture/v0",
+      "sha256": "88655f76de6168c62225754d274e579d1a381757a0436cc68412d93cf3934d2c"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2012.json",
+      "family": "settlement_object",
+      "seed": 2012,
+      "generator": "settlement-fixture/v0",
+      "sha256": "147d23f5c5537bd6e71b2c3b42a8ab29936780270a10a609ad83d23a86db9f2f"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2013.json",
+      "family": "settlement_object",
+      "seed": 2013,
+      "generator": "settlement-fixture/v0",
+      "sha256": "01db8de456c1f7f9598d305fb2f664cef191c4500e9f05ed1ed2d6f9fdafc31f"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2014.json",
+      "family": "settlement_object",
+      "seed": 2014,
+      "generator": "settlement-fixture/v0",
+      "sha256": "a7cae69be045ddcceee6826028a948a57111880a294f3e725aba1bc32aa3fa0c"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2015.json",
+      "family": "settlement_object",
+      "seed": 2015,
+      "generator": "settlement-fixture/v0",
+      "sha256": "3f2798bc09e593e4f2b33991e4aa2d253c4afbc5973e68d34923477e660be2be"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2016.json",
+      "family": "settlement_object",
+      "seed": 2016,
+      "generator": "settlement-fixture/v0",
+      "sha256": "bbf5786f596a6db89bdecc04badfc771f9051a41ad9fa3113215a7e60492f9f7"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2017.json",
+      "family": "settlement_object",
+      "seed": 2017,
+      "generator": "settlement-fixture/v0",
+      "sha256": "a123785263ade02aefd77a937dbed4da1cdaf8bd0e81865e5cb41297f69d6dfe"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2018.json",
+      "family": "settlement_object",
+      "seed": 2018,
+      "generator": "settlement-fixture/v0",
+      "sha256": "551e57fe310d14be82c7ade7a377abdecc2c33e696c3ab27546dec66854dce73"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2019.json",
+      "family": "settlement_object",
+      "seed": 2019,
+      "generator": "settlement-fixture/v0",
+      "sha256": "7f825a7eccc53c64e0d89902ff9cc70047b2eea56632a9a1c9fec91e9a3f540e"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2020.json",
+      "family": "settlement_object",
+      "seed": 2020,
+      "generator": "settlement-fixture/v0",
+      "sha256": "36ee5ec7d087bba3bae2bbbf1bc53124f706f0b8b0ce8710beadbc06be3def94"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2021.json",
+      "family": "settlement_object",
+      "seed": 2021,
+      "generator": "settlement-fixture/v0",
+      "sha256": "1233e5f44c18bcdb51ed04f44781e7143927dd4d30b8aa836090eb562366b9a6"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2022.json",
+      "family": "settlement_object",
+      "seed": 2022,
+      "generator": "settlement-fixture/v0",
+      "sha256": "9b015048d6d25c3dd62cb1abf28efc35322937c073628d60d748557fbd600dbb"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2023.json",
+      "family": "settlement_object",
+      "seed": 2023,
+      "generator": "settlement-fixture/v0",
+      "sha256": "5b3da916c88b2d771eb64aa7f3a401d37a9d174f04ab2d67669d9ba8e8ce7c4d"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2024.json",
+      "family": "settlement_object",
+      "seed": 2024,
+      "generator": "settlement-fixture/v0",
+      "sha256": "42b8718d552e4ba51da889720445cf7fd16db86d7e63b9209335d329ee610498"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2025.json",
+      "family": "settlement_object",
+      "seed": 2025,
+      "generator": "settlement-fixture/v0",
+      "sha256": "f57e26dc7d88314cbecbac6e6350268775afc6470b243de3a1cecc8b948d1329"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2026.json",
+      "family": "settlement_object",
+      "seed": 2026,
+      "generator": "settlement-fixture/v0",
+      "sha256": "177e90e71196ae030beb838dd3c3747d0f59553aeb088c76cb6e8c202fc2905b"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2027.json",
+      "family": "settlement_object",
+      "seed": 2027,
+      "generator": "settlement-fixture/v0",
+      "sha256": "fd2d005379dfb5a8976cc339647d5b527da998e1886239b90adca08552631310"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2028.json",
+      "family": "settlement_object",
+      "seed": 2028,
+      "generator": "settlement-fixture/v0",
+      "sha256": "7bf94770962369925af814c0647454bb277e57bb9365dbe36e72475583184fc4"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2029.json",
+      "family": "settlement_object",
+      "seed": 2029,
+      "generator": "settlement-fixture/v0",
+      "sha256": "c2b9d83e40b2f1a92a349b920ce20fd7b55a30418f8cb8fd16e09ecaa0d57463"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2030.json",
+      "family": "settlement_object",
+      "seed": 2030,
+      "generator": "settlement-fixture/v0",
+      "sha256": "f428c109f6b3bf4459f1a7fa2c3cdaae67cbbdd208612c53d55fa834c660f73b"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_correlated/seed-2031.json",
+      "family": "settlement_object",
+      "seed": 2031,
+      "generator": "settlement-fixture/v0",
+      "sha256": "cecb4f11aa39fe256e2638cec747d4bb2d739d516391121d7b316fa08eb8b550"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-0000.json",
+      "family": "settlement_object",
+      "seed": 0,
+      "generator": "settlement-fixture/v0",
+      "sha256": "c6c0eafc85d34711c4ff7f6314db4cb095b9d391fe14ea72c026ba9c718512b8"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-0001.json",
+      "family": "settlement_object",
+      "seed": 1,
+      "generator": "settlement-fixture/v0",
+      "sha256": "8af7a292ff14a5df21bc56554de422288cd66e5031e318765a3835d77ff735ba"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-0002.json",
+      "family": "settlement_object",
+      "seed": 2,
+      "generator": "settlement-fixture/v0",
+      "sha256": "1d4951902b035c6a0cab44db014c98ab1ef73b3ab8b3d1e7c0fcf1f001c2815b"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-0003.json",
+      "family": "settlement_object",
+      "seed": 3,
+      "generator": "settlement-fixture/v0",
+      "sha256": "7f16afb63e3d76a5b800c95fd02a0f29b4d3b6e80cce2f6178eda03abe243a83"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-0004.json",
+      "family": "settlement_object",
+      "seed": 4,
+      "generator": "settlement-fixture/v0",
+      "sha256": "dc6442659a0e7c0f3ed5a14210ce13169b076da88c4c009bd55988c6fc43d259"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-0005.json",
+      "family": "settlement_object",
+      "seed": 5,
+      "generator": "settlement-fixture/v0",
+      "sha256": "bca106c86a2a7747b44373b2041ac7e332636548923bbd95a48af2d7ad9231ba"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-0006.json",
+      "family": "settlement_object",
+      "seed": 6,
+      "generator": "settlement-fixture/v0",
+      "sha256": "aa705030130b377ce719ae02c80c53bb66ecf910c13bf45a7baec58735a823f2"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-0007.json",
+      "family": "settlement_object",
+      "seed": 7,
+      "generator": "settlement-fixture/v0",
+      "sha256": "cae15168a3ea860eedba74b083cef5c37da6bf1f0b925ae6364aefc8da3da4a6"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2000.json",
+      "family": "settlement_object",
+      "seed": 2000,
+      "generator": "settlement-fixture/v0",
+      "sha256": "dcfe7b42758f52f0c65222219903ae9116c3b8fe0fe23e3da1684aea5c97ef75"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2001.json",
+      "family": "settlement_object",
+      "seed": 2001,
+      "generator": "settlement-fixture/v0",
+      "sha256": "7796740b774b625998ed6c1cdbe38866ac79566bde33dff069332fe8d96cd7c8"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2002.json",
+      "family": "settlement_object",
+      "seed": 2002,
+      "generator": "settlement-fixture/v0",
+      "sha256": "629d1d4da6a38863638d09edc915bfd5d1fa0cd43b0a98037bfdac0af8fb27eb"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2003.json",
+      "family": "settlement_object",
+      "seed": 2003,
+      "generator": "settlement-fixture/v0",
+      "sha256": "c0a071e4e78456372183e02d9b3c5923f7dedfb96265c18095531630a2b764c1"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2004.json",
+      "family": "settlement_object",
+      "seed": 2004,
+      "generator": "settlement-fixture/v0",
+      "sha256": "52b41b5dcc850087622237ed07913e0c478536a495a24fcd81852f2ecf114d2b"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2005.json",
+      "family": "settlement_object",
+      "seed": 2005,
+      "generator": "settlement-fixture/v0",
+      "sha256": "843b2620b93e5cf5865fcf5a858db323e58f028ea7d2e5b35ed03dd6e9b02646"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2006.json",
+      "family": "settlement_object",
+      "seed": 2006,
+      "generator": "settlement-fixture/v0",
+      "sha256": "d2cc6c7f7e8f2c76967c0f9a691d562eb82977cd00abe3b73bb6f87c49021bbf"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2007.json",
+      "family": "settlement_object",
+      "seed": 2007,
+      "generator": "settlement-fixture/v0",
+      "sha256": "e2d18c83ecbaf46bf1245aba3229dc7a2927a3ff6c565842f12ef118b2c3189e"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2008.json",
+      "family": "settlement_object",
+      "seed": 2008,
+      "generator": "settlement-fixture/v0",
+      "sha256": "24e612246f4266ea284215777c91efa0585f16025616f322f79b3020f9873085"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2009.json",
+      "family": "settlement_object",
+      "seed": 2009,
+      "generator": "settlement-fixture/v0",
+      "sha256": "0c3c09e6e98075adbeb1da4520f834b2ad10c982d25bc92dac23cca26f6061ed"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2010.json",
+      "family": "settlement_object",
+      "seed": 2010,
+      "generator": "settlement-fixture/v0",
+      "sha256": "cf76186d84fcfd9da595ca13e3b82e5318538bf8fd61039ace6a419ffa859cfb"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2011.json",
+      "family": "settlement_object",
+      "seed": 2011,
+      "generator": "settlement-fixture/v0",
+      "sha256": "a0e1f07560b544d9444c4acac70f92df631a745997d5148ad165692adf6184cb"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2012.json",
+      "family": "settlement_object",
+      "seed": 2012,
+      "generator": "settlement-fixture/v0",
+      "sha256": "cfa5839428158d426b34e646a872d66abd0c6473fdb8f822cba341fc0b31b49c"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2013.json",
+      "family": "settlement_object",
+      "seed": 2013,
+      "generator": "settlement-fixture/v0",
+      "sha256": "2163785a03dd38659d3b4db272d6ec0287642269e8520424bec022570fa248ba"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2014.json",
+      "family": "settlement_object",
+      "seed": 2014,
+      "generator": "settlement-fixture/v0",
+      "sha256": "0f172bd051521a4c0ba2429488cae2e25e7b2f5aedcf7559599816743112d47f"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2015.json",
+      "family": "settlement_object",
+      "seed": 2015,
+      "generator": "settlement-fixture/v0",
+      "sha256": "dd2f580b5a855ffa6b681358cd0c688bc64ebe6016e6a5fc9c76f46ad6b59b85"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2016.json",
+      "family": "settlement_object",
+      "seed": 2016,
+      "generator": "settlement-fixture/v0",
+      "sha256": "e9f924331c2aa8ff7ff9903b6476a46b73dea0a1617a19da71e980ae2288810f"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2017.json",
+      "family": "settlement_object",
+      "seed": 2017,
+      "generator": "settlement-fixture/v0",
+      "sha256": "05d33cd1b3d425afc403bcb3cc620e0e4db090a6d6bf41dd4957654846820664"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2018.json",
+      "family": "settlement_object",
+      "seed": 2018,
+      "generator": "settlement-fixture/v0",
+      "sha256": "39957136db81808787c91963e7aa487fa0251d5d8f2dc54ea04a934c1a4c1a25"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2019.json",
+      "family": "settlement_object",
+      "seed": 2019,
+      "generator": "settlement-fixture/v0",
+      "sha256": "a4dd07e6e3e5a404c1775ae819b02018f20a4b01936ea7ca0c4cee3de71c3f8a"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2020.json",
+      "family": "settlement_object",
+      "seed": 2020,
+      "generator": "settlement-fixture/v0",
+      "sha256": "1a1f3c91120fbadae735e7608722b32b6de86d936aa0816b68e88ce4df1e1a6a"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2021.json",
+      "family": "settlement_object",
+      "seed": 2021,
+      "generator": "settlement-fixture/v0",
+      "sha256": "0248407e421011c21653f43555cc6d7d4218b62e0279a5cd9b14ff183a1be099"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2022.json",
+      "family": "settlement_object",
+      "seed": 2022,
+      "generator": "settlement-fixture/v0",
+      "sha256": "8c34f7828bd35aa8da2c004a0d8a8a98f8cb0717e5436db71914839e5a0f96ba"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2023.json",
+      "family": "settlement_object",
+      "seed": 2023,
+      "generator": "settlement-fixture/v0",
+      "sha256": "f759f9817d540f252793608758636e6be394069411fc79bc7475af741e657853"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2024.json",
+      "family": "settlement_object",
+      "seed": 2024,
+      "generator": "settlement-fixture/v0",
+      "sha256": "4762ea8a48b1cccd0ded66ded0d27c37a671f608fbfd7b205141db94b0f349b7"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2025.json",
+      "family": "settlement_object",
+      "seed": 2025,
+      "generator": "settlement-fixture/v0",
+      "sha256": "2c2a6834ec8a5f32ccd56ef21e393301e409eaa12c0cad879d906782fac08170"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2026.json",
+      "family": "settlement_object",
+      "seed": 2026,
+      "generator": "settlement-fixture/v0",
+      "sha256": "1b11492b25100d039a132f011c3456e629d0ee35775b8d53b08daca2840155d3"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2027.json",
+      "family": "settlement_object",
+      "seed": 2027,
+      "generator": "settlement-fixture/v0",
+      "sha256": "e5bb4ef644fcc5a67e8526064ef30fa05347f006457bacb4e381952432dbf8f3"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2028.json",
+      "family": "settlement_object",
+      "seed": 2028,
+      "generator": "settlement-fixture/v0",
+      "sha256": "e7dd196749fe46afc5f3b12fc3cf4054199cf02412901ca2f11f9cdfdf089486"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2029.json",
+      "family": "settlement_object",
+      "seed": 2029,
+      "generator": "settlement-fixture/v0",
+      "sha256": "8c8e072f8698c55b73b5f68456d67f8211d6706708b8694c3b99a544767de688"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2030.json",
+      "family": "settlement_object",
+      "seed": 2030,
+      "generator": "settlement-fixture/v0",
+      "sha256": "412b397de544fcb7b0b9cfdd90cca469cd4b9365382d3114ae91ee16ae420f7b"
+    },
+    {
+      "path": "fixtures/settlement_object/many_bursty_long/seed-2031.json",
+      "family": "settlement_object",
+      "seed": 2031,
+      "generator": "settlement-fixture/v0",
+      "sha256": "eab83d3f497b7b8fa80b135ad6fb01094dc070d8390c622407eaa7bff90a66db"
     }
   ]
 }

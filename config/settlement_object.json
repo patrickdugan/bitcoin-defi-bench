@@ -1,0 +1,46 @@
+{
+  "description": "Family 3, pin-supported variant (docs/tasks.md section 4.6): the pinned lock rule, unbounded server capital, a common volume denominator, and no server-tier term. Corner parameters are those of the corner test in vendor/spiral/model/server.test.ts at the pinned commit; everything else is a bench decision.",
+  "variant": "pin-supported/v0",
+  "epsilon": 0.01,
+  "infeasible_penalty_factor": 2,
+  "budget": { "attempts": 3, "probes": 8 },
+  "grid": {
+    "margin": [-0.5, -0.25, -0.1, 0, 0.1, 0.25, 0.5],
+    "refresh_lead_blocks": [144, 288, 576]
+  },
+  "baselines": { "always_channel_margin": 0.25, "always_vtxo_refresh_lead_blocks": 288 },
+  "cells": {
+    "many_bursty_long": {
+      "agents": 200,
+      "base": { "in_sats": 0, "out_sats": 0, "jitter_sats": 0 },
+      "burst": { "p_in_ppm": 20000, "in_sats": 5000, "p_out_ppm": 10000, "out_sats": 4000 },
+      "common_shock_share_ppm": 0,
+      "horizon_lifetimes": 8
+    },
+    "few_steady_recycling": {
+      "agents": 3,
+      "base": { "in_sats": 100, "out_sats": 100, "jitter_sats": 10 },
+      "burst": { "p_in_ppm": 0, "in_sats": 0, "p_out_ppm": 0, "out_sats": 0 },
+      "common_shock_share_ppm": 0,
+      "horizon_lifetimes": 8
+    },
+    "many_bursty_correlated": {
+      "agents": 200,
+      "base": { "in_sats": 0, "out_sats": 0, "jitter_sats": 0 },
+      "burst": { "p_in_ppm": 20000, "in_sats": 5000, "p_out_ppm": 10000, "out_sats": 4000 },
+      "common_shock_share_ppm": 800000,
+      "horizon_lifetimes": 8
+    }
+  },
+  "provenance": {
+    "many_bursty_long": "given: corner('many-bursty') in model/server.test.ts (200 agents, 5000 sat in at p=0.02, 4000 sat out at p=0.01, horizon 8 lifetimes)",
+    "few_steady_recycling": "given: corner('few-steady') in model/server.test.ts (3 agents, 100 + floor(10u) sat in and out every step, horizon 8 lifetimes)",
+    "many_bursty_correlated": "invented: the first cell with 80% of burst indicators copied from a population-wide draw",
+    "always_channel_margin": "given: margin 0.25 in the pinned corner test",
+    "always_vtxo_refresh_lead_blocks": "given: refresh lead 288 in the pinned corner test and config/protocol.json (R5)",
+    "epsilon": "invented",
+    "infeasible_penalty_factor": "invented",
+    "budget": "invented",
+    "grid": "invented"
+  }
+}

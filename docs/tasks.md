@@ -1,6 +1,6 @@
 # Task families, v0
 
-Status: the harness and family 1 are implemented, their preregistration sections are frozen, and the baselines have been run on the confirmatory seeds (`results/v0-placement-baselines.md`). An LLM adapter exists (`docs/running.md`); no LLM has been run. Family 3 is specified and blocked on §0.1. Families 2, 4, and 5 are specified only.
+Status: the harness and family 1 are implemented, their preregistration sections are frozen, and the baselines have been run on the confirmatory seeds (`results/v0-placement-baselines.md`). An LLM adapter exists (`docs/running.md`); no LLM has been run. Family 3 is implemented as the pin-supported variant of §4 and run as exploratory; the full family is blocked on §0.1. Families 2, 4, and 5 are specified only.
 
 Every statement below carries one of four provenance tags.
 
@@ -19,7 +19,7 @@ The reference model is imported from the checkout and never modified. The manife
 
 | File | Blob id at pin | Used by |
 |---|---|---|
-| `model/server.ts` | `8863039977` | families 3, 4 |
+| `model/server.ts` | `8863039977` | family 3 (`ArkServer`, `channelLiquidityDuration`); family 4 |
 | `model/ledger.ts` | `4ebe1eefda` | capital accounting in 1, 4, 5; conservation check in all |
 | `model/escrow.ts` | `0df94f915b` | family 5 |
 | `model/registry.ts` | `2f283706e0` | family 5; duplicate-capital guard in 1, 4 |
@@ -45,7 +45,7 @@ Family 1 does not touch any of these and is unaffected. Family 3 cannot be imple
 - **A. Re-pin.** A revised `model/` is pushed to Spiral, the bench re-pins, and families 3 and 4 bind to the published API. This is the only option that keeps "use `runCorner` directly" and "do not modify the model" both true.
 - **B. Bench-side shim.** The bench composes the pinned `ArkServer` and `channelLiquidityDuration` in `src/tasks/settlement_object/corner.ts` and defines the missing terms itself. §4.6 states what can be done without invention and what cannot. Under B the server-tier term and the recovery choice would be my definitions, not the paper's.
 
-I recommend A. Sections 4 and 5 are written against the brief's interface so they survive either resolution, with each brief-only element marked.
+I recommended A. No revised model was found in the repository or on disk, so B was taken for the part of family 3 the pin defines (§4), and the server-tier term is put up for review in `docs/server_tier_proposal.md` before any of it is coded. Section 5 is written against the brief's interface, with each brief-only element marked.
 
 ## 1. Common contract
 
@@ -281,7 +281,9 @@ The candidate list is the public eight-path catalog in canonical order. Feedback
 
 Derives from the paper §3.3 and §7 item 2. Task ids: `settlement_object/<cell>`.
 
-An operator serving a population of payers chooses the settlement object for them, a pre-funded directional channel per agent or VTXOs on one Ark server, and sizes it. The score is capital-time locked per unit delivered, subject to a ceiling on failures.
+An operator serving a population of payers chooses the settlement object for them, a pre-funded directional channel per agent or VTXOs on one Ark server, and sets its parameters. The score is capital-time locked per unit delivered, subject to a ceiling on failures.
+
+What is implemented is the **pin-supported variant**: the part of the brief's family 3 that the pinned model defines. It charges no server-tier term, which the brief requires, so it is run as exploratory and its preregistration sections are not frozen. §4.6 lists what was left out and why.
 
 ### 4.1 Demand process [§7 item 1 given; generator invented]
 
@@ -292,93 +294,101 @@ Time advances in steps of one round interval. In each step each agent may receiv
 | `agents` | population size |
 | `base` | steady per-step inflow and outflow with jitter |
 | `burst` | probability and size of a burst inflow and a burst outflow per step |
-| `common_shock_share` ρ | with probability ρ an agent's burst indicators copy a population-wide draw for that step; pairwise correlation of indicators is ρ² |
+| `common_shock_share` ρ | with probability ρ an agent's burst indicators for a step copy a population-wide draw; pairwise correlation of indicators is ρ² |
 | `horizon_lifetimes` | horizon in units of the VTXO lifetime |
-| `arrival` | `lightning` or `boarding` [brief] |
 
-The observation reports the primitives and two derived descriptors: per-agent drift (mean inflow minus outflow per step) and burstiness (imbalance envelope over own volume, the §7 definition; omitted from the example below because it is computed from the fixture).
+Each agent has its own random stream and every draw is taken on every step, so changing the population size or a probability cannot shift another agent's draws.
 
-Spends an agent could not fund under any object are removed when the fixture is generated: a spend is kept only if it does not exceed the agent's running balance with every receipt delivered. Every remaining failure is then attributable to the object choice, and the failure rate has the same denominator for both objects. [invented]
+Spends an agent could not fund under any object are removed when the stream is generated: a spend is kept only if it does not exceed the agent's running balance with every receipt delivered. Every remaining failure is then attributable to the object choice, and the failure rate has the same denominator for both objects. [invented]
 
-Cells for v0:
+Cells:
 
 | Cell | Parameters | Tag |
 |---|---|---|
-| `many_bursty_long` | burst inflow 5000 sat at p = 0.02, burst outflow 4000 sat at p = 0.01, ρ = 0, horizon 8 lifetimes, arrival lightning | [given]: the pinned corner test, except agent count |
+| `many_bursty_long` | 200 agents, burst inflow 5000 sat at p = 0.02, burst outflow 4000 sat at p = 0.01, ρ = 0, horizon 8 lifetimes | [given]: the pinned corner test |
 | `few_steady_recycling` | 3 agents, inflow and outflow each 100 + U{0..9} sat every step, horizon 8 lifetimes | [given]: the pinned corner test |
-| `many_bursty_correlated` | as the first with ρ = 0.8 | [invented] |
-| `many_bursty_boarding` | as the first with arrival by boarding | [invented]; needs the [brief] arrival semantics |
+| `many_bursty_correlated` | the first cell with ρ = 0.8 | [invented] |
 
-The pinned corner uses 200 agents and takes about 8 seconds per run, because `ArkServer` scans every output on each balance query. A grid search repeats that per grid point, per seed, per cell. The agent count for the many-agent cells is therefore set by a timing measurement on development seeds before the prereg is frozen; the working figure is 64. [invented]
+The brief's Lightning-versus-boarding cell is not built: `receive` is liquidity-neutral for the server in both cases at the pin, so the two would be the same cell.
+
+A 200-agent stream is a few million integers, too large to commit. A fixture therefore stores the cell parameters and the SHA-256 of its evaluation and pilot streams; a stream is regenerated from the seed when it is loaded and refused if its hash differs. [invented]
 
 ### 4.2 Observation
 
 ```json
 {
   "process": {
-    "agents": 64,
+    "agents": 200,
     "base": { "in_sats": 0, "out_sats": 0, "jitter_sats": 0 },
     "burst": { "p_in": 0.02, "in_sats": 5000, "p_out": 0.01, "out_sats": 4000 },
-    "common_shock_share": 0.0,
+    "common_shock_share": 0,
     "horizon_lifetimes": 8,
-    "arrival": "lightning",
-    "derived": { "drift_sats_per_step": 60 }
+    "derived": { "inflow_sats_per_step": 100, "outflow_sats_per_step": 40, "drift_sats_per_step": 60 }
   },
-  "protocol": { "lifetime_blocks": 4032, "round_interval_blocks": 6, "exit_csv_blocks": 144 },
+  "protocol": { "lifetime_blocks": 4032, "round_interval_blocks": 6, "steps": 5376 },
   "epsilon": 0.01,
-  "grid": { "margin": [], "server_capital_sats": [], "refresh_lead_blocks": [144, 288, 576] }
+  "grid": { "margin": [-0.5, -0.25, -0.1, 0, 0.1, 0.25, 0.5], "refresh_lead_blocks": [144, 288, 576] },
+  "variant": "pin-supported/v0"
 }
 ```
 
-The agent sees the process, not the realized stream.
+The agent sees the process and never either realized stream. The derived rates are before the funded-spend rule.
 
 ### 4.3 Actions
 
 | Tool | Args | Cost |
 |---|---|---|
-| `probe` | a candidate choice | 1 probe. Runs the candidate on a pilot stream drawn from the same process with an independent seed and returns its liquidity duration and failure rate. |
-| `choose` | `{ object: "channel", forecast_rule, margin }` or `{ object: "vtxo", server_capital_sats, refresh_lead_blocks, spend_recovery }` | 1 attempt. Fixes the choice scored on the evaluation stream. |
+| `probe` | `{ choice }` | 1 probe, accepted or not. Runs the choice on the pilot stream, drawn from the same process with an independent stream, and returns its liquidity duration, failure rate, and feasibility. With no probes left it costs one attempt and is refused. |
+| `choose` | `{ choice }` | 1 attempt. Fixes the choice scored on the evaluation stream and ends the phase. |
+| `commit` | none | 0. Ends the phase without a choice, which is scored as infeasible. |
 
-Budget: 3 attempts, 8 probes, 0 blocks, and a sats cap on the capital any choice may lock. [invented] The grid has on the order of a hundred points, so eight probes cannot enumerate it. A choice off the declared grid is rejected (`out_of_grid`).
+A choice is `{ "object": "channel", "margin": m }` or `{ "object": "vtxo", "refresh_lead_blocks": n }`, and must be a point of the declared grid (`out_of_grid` otherwise). Budget: 3 attempts, 8 probes, 0 blocks, 0 sats. [invented] The grid has ten points, so eight probes cannot enumerate it.
 
 | Choice field | Values | Tag |
 |---|---|---|
-| `margin` | a declared grid including negative values; a negative margin under-provisions and trades failures for capital | [given] parameter of `channelLiquidityDuration`; grid [invented] |
-| `forecast_rule` | `realized_peak` only at the pin | [brief] for any other rule |
-| `server_capital_sats` (B_S) | a declared grid in multiples of the cell's expected spend volume per lifetime | [given] parameter of `ArkServer`; grid [invented] |
+| `margin` | {−0.5, −0.25, −0.1, 0, 0.1, 0.25, 0.5}. The channel pre-funds (1 + margin) × each agent's realized peak held balance; a negative margin under-provisions and trades failures for capital. | [given] parameter of `channelLiquidityDuration`; grid [invented] |
 | `refresh_lead_blocks` | {144, 288, 576}; 288 is the published two days | [given] default from R5; grid [invented] |
-| `spend_recovery` | `at_expiry` is the pinned lock rule | [brief] for any other value |
 
-Fixed and not agent choices, per the brief: the server-tier term is always charged, and Vol counts receipts and spends for both objects.
+Fixed and not an agent choice: Vol counts receipts and spends for both objects.
+
+The brief's remaining choices are not offered: `server_capital_sats`, `forecast_rule`, and `spend_recovery` (§4.6).
 
 ### 4.4 Scoring
 
 Liquidity duration 𝒟 = ∫ Locked dt / Vol in blocks, lower is better [given: §3.3]. Failure rate = failed receipts and spends over attempted ones. A choice is feasible when its failure rate is at most ε; ε = 0.01 [invented].
 
-Native value: −ln 𝒟 for a feasible choice. An infeasible choice is scored as twice the largest feasible 𝒟 on the grid for that episode [invented penalty]. Equivalence band: ±0.05 in ln 𝒟, about 5% of liquidity duration [invented].
+Native value: −ln 𝒟 for a feasible choice. An infeasible choice, or no choice, is scored as twice the largest feasible 𝒟 on the grid for that episode [invented penalty]. Equivalence band: ±0.05 in ln 𝒟, about 5% of liquidity duration [invented].
+
+The table also reports 𝒟_C / 𝒟_V at the pinned settings as a geometric mean over seeds with the interval of the mean log ratio. That is the quantity the paper's §7 item 2 asks for.
 
 ### 4.5 Baselines
 
 | Baseline | Rule |
 |---|---|
 | `random` | One point drawn uniformly from the declared grid. The floor. |
-| `always_channel` | Channel, `realized_peak`, margin 0.25 (the pinned corner's value). |
-| `always_vtxo` | VTXO, refresh lead 288, `at_expiry`, and the smallest grid B_S that is feasible on the pilot stream. |
-| `grid_search` | Evaluates every grid point on the evaluation stream and takes the feasible minimum of 𝒟. The oracle. |
+| `always_channel` | Channel at margin 0.25, the pinned corner's value. |
+| `always_vtxo` | VTXO at refresh lead 288, the pinned corner's value. |
+| `grid_search` | Given every grid point's result on the evaluation stream; takes the feasible minimum of 𝒟. The oracle. |
 
-Ordering test: `grid_search` ≥ each other baseline on every episode, which holds by construction because every baseline's choice is on the grid, and is therefore a check on the harness rather than on the model. Separately, on each corner the matching constant baseline beats `random` in the mean: `always_vtxo` on `many_bursty_long`, `always_channel` on `few_steady_recycling`. The mismatched constant is expected to fall below `random` and is reported, not asserted.
+Ordering test: `grid_search` ≥ every other baseline on every episode. That holds by construction, because every baseline's choice is on the grid, so it checks the harness and not the model. Separately, on each corner the matching constant baseline beats `random` in the mean: `always_vtxo` on `many_bursty_long`, `always_channel` on `few_steady_recycling`. The mismatched constant is expected to fall below `random` and is reported, not asserted.
 
-### 4.6 What the pin supports
+### 4.6 What the pin supports, and what was left out
 
-Without inventing simulator semantics, the pin supports this much: a choice between `channel(margin)` and `vtxo(B_S, refresh_lead)`; the pinned lock rule; and Vol counted in both directions for both objects, because `ArkServer.liquidityDuration() × volumeDelivered` recovers ∫ W_S dt through the public interface and the shim can divide by receipts plus spends.
+The corner runner, `src/tasks/settlement_object/corner.ts`, composes the pinned `ArkServer` and `channelLiquidityDuration` without modifying either. It is the non-exported `corner()` of the pinned test made into a function of a demand stream and a choice, and it stands in for the brief's `runCorner`.
 
-It does not support three things.
+Taken from the pin unchanged: the forfeit-to-sweep lock rule, lifetimes and holder refresh, and the channel's peak-balance forecast.
 
-1. **The server-tier term.** `channelLiquidityDuration` models pre-funded inbound toward a party that receives and then spends. A server's own Lightning position also needs pre-funded outbound for holders' spends, which that function does not represent: fed an outward-only aggregate it returns zero locked capital. Any server-tier term built from pinned primitives is a new model.
-2. **B_S as a real choice.** §3.3 charges W_S, not B_S. Uncommitted server capital is free in 𝒟, so a larger B_S only removes failures and the optimum is always the largest value allowed. For B_S to be a decision, something must charge it, presumably the server-tier term.
-3. **The spend-recovery choice.** If the agent may simply declare faster recovery, it always will. The choice needs a stated cost or risk, and the pin has neither. R4 notes that Lightning spends use HTLC policies and not forfeits, which suggests what the alternative is, but not how relying on it is scored.
+Added by the runner: a common volume denominator. `ArkServer.volumeDelivered` counts spends only, so ∫ W_S dt is recovered through the public interface as `liquidityDuration() × volumeDelivered` and divided by receipts plus spends, as the channel function already does.
 
-Under option B, I would implement the first paragraph, omit `spend_recovery` and `forecast_rule` as choices, and bring a written definition of the server-tier term for review before coding it.
+Left out, with the reason for each:
+
+1. **The server-tier term.** `channelLiquidityDuration` models pre-funded inbound toward a party that receives and then spends. A server's own Lightning position also needs pre-funded outbound for holders' spends, which that function does not represent: fed an outward-only aggregate it returns zero locked capital. Any server-tier term built from pinned primitives is a new model. `docs/server_tier_proposal.md` puts a definition up for review.
+2. **Server capital B_S as a choice.** Server capital is unbounded, as in the pinned corner test, for two reasons. The paper's §3.3 charges W_S and not B_S, so uncommitted capital is free and the best B_S is always the largest. And `ArkServer.advance` discards the result of a refresh the server cannot front, so a server short of capital defers refreshes without any failure being reported; a finite B_S would then lower 𝒟 by starving refreshes, unobserved. Peak W_S is reported instead: it is the capital a server would have needed.
+3. **The forecast-rule choice.** The pinned function fixes the forecast at (1 + margin) × the realized peak of the stream being scored. That is a hindsight forecast; a rule made before the demand is seen needs a different function.
+4. **The spend-recovery choice.** If the agent may simply declare faster recovery, it always will. The choice needs a stated cost or risk, and the pin has neither. R4 notes that Lightning spends use HTLC policies and not forfeits, which suggests what the alternative is, but not how relying on it is scored.
+5. **The ledger.** The variant commits no agent capital, so there is nothing for a `SettlementLedger` to hold. The runner asserts `ArkServer`'s own aggregate bound instead.
+
+Two consequences of the pinned model show in the results and are properties of the model, not of the bench. Refresh lead has no trade-off: an earlier refresh only locks more, so the shortest lead on the grid is never worse. And population correlation barely moves 𝒟, because W_S is a sum over outputs and not a peak; it moves peak W_S, which only a charge on server capital would price.
 
 ## 5. Family 4: server capital sizing (specified, not implemented)
 

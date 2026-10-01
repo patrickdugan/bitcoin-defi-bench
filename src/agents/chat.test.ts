@@ -39,7 +39,7 @@ async function mock(reply: (turn: number) => string): Promise<Mock> {
 const options = (baseUrl: string, extra: Partial<ChatOptions> = {}): ChatOptions => ({
   name: "mock", baseUrl, model: "mock-model",
   sampling: { temperature: 0.7, top_p: 0.8, top_k: 20, max_tokens: 256, seed: 1 },
-  thinking: false, identity: { model_sha256: "0".repeat(64), runtime: "mock" }, prompt: placementPrompt, ...extra,
+  thinking: false, identity: { model_sha256: "0".repeat(64), runtime: "mock" }, prompt: placementPrompt(256), ...extra,
 });
 
 test("the first JSON object in a reply is the action; a reply with none is passed through untouched", () => {
@@ -61,7 +61,7 @@ test("the agent id binds the prompt hash, the sampling parameters, and the model
   assert.equal(new ChatAgent(options("http://127.0.0.1:2/v1")).id, base, "the endpoint address is not part of the identity");
   assert.notEqual(new ChatAgent(options("http://127.0.0.1:1/v1", { sampling: { temperature: 0, top_p: 0.8, top_k: 20, max_tokens: 256, seed: 1 } })).id, base);
   assert.notEqual(new ChatAgent(options("http://127.0.0.1:1/v1", { identity: { model_sha256: "1".repeat(64), runtime: "mock" } })).id, base);
-  assert.notEqual(new ChatAgent(options("http://127.0.0.1:1/v1", { prompt: { ...placementPrompt, sha256: "changed" } })).id, base);
+  assert.notEqual(new ChatAgent(options("http://127.0.0.1:1/v1", { prompt: placementPrompt(512) })).id, base, "the reply limit is part of the prompt and so of the id");
 });
 
 test("an episode through the adapter: a valid placement is applied and scored by the same simulator", async () => {

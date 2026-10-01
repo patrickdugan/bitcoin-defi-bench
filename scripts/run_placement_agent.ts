@@ -41,17 +41,19 @@ if (subset !== "") {
 if (block === "confirmatory") requireFrozen(root, "placement");
 
 const transcript: Exchange[] = [];
+// A valid action needs a few dozen tokens per placement; 512 holds about twenty placements.
+const maxTokens = Number(arg("max-tokens", "512"));
 const agent = new ChatAgent({
   name: arg("name"),
   baseUrl: arg("base-url"),
   model: arg("model"),
   sampling: {
     temperature: Number(arg("temperature", "0.7")), top_p: Number(arg("top-p", "0.8")), top_k: Number(arg("top-k", "20")),
-    max_tokens: Number(arg("max-tokens", "1024")), seed: Number(arg("seed", "20261001")),
+    max_tokens: maxTokens, seed: Number(arg("seed", "20261001")),
   },
   thinking: arg("thinking", "false") === "true",
   identity: { model_sha256: arg("model-sha256"), runtime: arg("runtime") },
-  prompt: placementPrompt,
+  prompt: placementPrompt(maxTokens),
   onExchange: (exchange) => {
     transcript.push(exchange);
     console.error(`  ${exchange.episode.task} seed ${exchange.episode.seed} ${exchange.episode.cell} turn ${exchange.turn}${exchange.cached ? " (cached)" : ""}: ${exchange.reply.replace(/\s+/g, " ").slice(0, 160)}`);

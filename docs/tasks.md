@@ -1,6 +1,6 @@
 # Task families, v0
 
-Status: the harness and family 1 are implemented and their preregistration sections are frozen. Family 3 is specified and blocked on §0.1. Families 2, 4, and 5 are specified only.
+Status: the harness and family 1 are implemented, their preregistration sections are frozen, and the baselines have been run on the confirmatory seeds (`results/v0-placement-baselines.md`). An LLM adapter exists (`docs/running.md`); no LLM has been run. Family 3 is specified and blocked on §0.1. Families 2, 4, and 5 are specified only.
 
 Every statement below carries one of four provenance tags.
 

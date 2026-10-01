@@ -6,5 +6,8 @@ It is not a red-team benchmark: it contains no coalition, covert-channel, or Syb
 
 - Tasks: [docs/tasks.md](docs/tasks.md)
 - Preregistration: [prereg/v0.md](prereg/v0.md)
+- Running: [docs/running.md](docs/running.md)
+- Results: [results/v0-placement-baselines.md](results/v0-placement-baselines.md)
 - Vendored source: `git clone https://github.com/patrickdugan/Spiral vendor/spiral`, then `git -C vendor/spiral checkout 9824c30ad402cc9bca768eca27d176e0e8788db5`
-- Status: task doc and preregistration drafted for review. No task is implemented and no bench episode has been run.
+- Topology: samples of the July 16, 2023 public-gossip snapshot from Valko and Marx Gómez, *Geolocated Lightning Network topology snapshots: A dataset covering 2019–2023*, Harvard Dataverse, DOI 10.7910/DVN/2OAVO6, CC BY 4.0
+- Status: the harness and family 1 (directional placement) are implemented, preregistered, and run on 32 confirmatory seeds with baselines. An LLM adapter exists and no LLM has been run. Family 3 is specified and blocked on a gap between the brief and the pinned model (docs/tasks.md §0.1). Families 2, 4, and 5 are specified only.

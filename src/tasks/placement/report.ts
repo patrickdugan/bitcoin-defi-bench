@@ -99,6 +99,23 @@ export const placementReport: ReportSpec = {
 };
 
 /**
+ * Report for a run that includes an agent. Per prereg/v0.md §7 and §9.1 the primary contrasts are
+ * agent − `failure_aware` on each task; H1 and H2 were tested in the baseline run and appear here
+ * as secondary rows and as gates.
+ */
+export function placementAgentReport(agentId: string, title: string): ReportSpec {
+  return {
+    ...placementReport,
+    title,
+    contrasts: [
+      { id: "A1", label: `\`${agentId}\` − \`failure_aware\``, task: "placement/stationary", a: agentId, b: "failure_aware", primary: true },
+      { id: "A2", label: `\`${agentId}\` − \`failure_aware\``, task: "placement/shift", a: agentId, b: "failure_aware", primary: true },
+      ...PLACEMENT_CONTRASTS.map((c) => ({ ...c, primary: false })),
+    ],
+  };
+}
+
+/**
  * Each baseline's placement computed straight from the fixture, without the observation or the
  * action interface. The identity control compares the simulator's outcome on these placements with
  * what the same rule earned through the episode runner.

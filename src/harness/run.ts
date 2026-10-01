@@ -6,7 +6,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { BENCH, type Agent, type Environment } from "./agent.ts";
 import { runEpisode, type EpisodeRow } from "./episode.ts";
-import { sha256 } from "./json.ts";
+import { sha256, type Json } from "./json.ts";
 import { manifestHash, verifyManifest, type Manifest } from "./manifest.ts";
 
 export interface TaskSpec {
@@ -37,7 +37,7 @@ export interface RunRecord {
   spiral_commit: string;
   node: string;
   seeds: number[];
-  agents: Array<{ id: string; privileged: boolean; baseline: boolean }>;
+  agents: Array<{ id: string; privileged: boolean; baseline: boolean; details?: Json }>;
   tasks: Array<Omit<TaskSpec, "episodes">>;
   rows: EpisodeRow[];
   /** Family-specific checks computed at run time (for example the identity control). */
@@ -87,7 +87,7 @@ export async function executeRun(options: RunOptions): Promise<RunRecord> {
     spiral_commit: manifest.spiral.commit,
     node: process.version,
     seeds,
-    agents: agents.map((a) => ({ id: a.id, privileged: a.privileged === true, baseline: baselineIds.has(a.id) })),
+    agents: agents.map((a) => ({ id: a.id, privileged: a.privileged === true, baseline: baselineIds.has(a.id), ...(a.describe ? { details: a.describe() } : {}) })),
     tasks: options.tasks.map(({ episodes: _episodes, ...rest }) => rest),
     rows,
     checks: options.checks ? options.checks(rows) : [],

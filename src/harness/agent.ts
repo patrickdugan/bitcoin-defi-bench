@@ -24,6 +24,8 @@ export interface Agent {
   readonly id: string;
   /** Oracle baselines only. The runner passes Environment.privileged() to reset and records the flag. */
   readonly privileged?: boolean;
+  /** What the id stands for (model hash, sampling, prompt hash). Stored in the run record. */
+  describe?(): Json;
   reset?(episode: EpisodeInfo, privileged?: Json): void;
   act(observation: Json): Json | Promise<Json>;
 }

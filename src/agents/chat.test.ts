@@ -9,7 +9,7 @@ import { readManifest } from "../harness/manifest.ts";
 import { PlacementEnv, evaluatePlacements } from "../tasks/placement/env.ts";
 import { placementPrompt } from "../tasks/placement/prompt.ts";
 import { loadPlacementConfig, placementFixture } from "../tasks/placement/task.ts";
-import { ChatAgent, extractAction, type ChatOptions } from "./chat.ts";
+import { ChatAgent, extractAction, type ChatOptions, type Reply } from "./chat.ts";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const manifest = readManifest(root);
@@ -120,4 +120,25 @@ test("a transport failure is an infrastructure failure: it throws and does not b
     const url = `http://127.0.0.1:${(server.address() as AddressInfo).port}/v1`;
     await assert.rejects(runEpisode(new PlacementEnv(fixture, "uniform", "stationary", config), new ChatAgent(options(url))), /HTTP 503/);
   } finally { server.close(); }
+});
+
+test("a rerun after a failure replays logged replies for identical requests and asks the server only for the rest", async () => {
+  const m = await mock((turn) => (turn === 0 ? '{"tool":"place","args":{"placements":[{"from":"N000","to":"N000","sats":1}]}}' : '{"tool":"commit"}'));
+  try {
+    const log = new Map<string, Reply>();
+    const first = new ChatAgent(options(m.url, { onReply: (key, reply) => log.set(key, reply) }));
+    const original = await runEpisode(new PlacementEnv(fixture, "uniform", "stationary", config), first);
+    assert.equal(log.size, m.requests.length);
+    const served = m.requests.length;
+    // The rerun: a new process would start with an empty cache and the log of the failed attempt.
+    const rerun = new ChatAgent(options(m.url, { replay: new Map(log) }));
+    const replayed = await runEpisode(new PlacementEnv(fixture, "uniform", "stationary", config), rerun);
+    assert.equal(m.requests.length, served, "a replayed request reached the server");
+    assert.deepEqual(replayed, original);
+    assert.deepEqual(rerun.counts, { replayed: log.size, served: 0 });
+    // An episode the failed attempt never reached still goes to the server.
+    await runEpisode(new PlacementEnv(fixture, "polarized", "stationary", config), rerun);
+    assert.ok(m.requests.length > served && rerun.counts.served > 0);
+    assert.equal(rerun.id, first.id, "replay is not part of the agent's identity");
+  } finally { m.server.close(); }
 });

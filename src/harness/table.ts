@@ -122,6 +122,8 @@ export function renderTable(record: RunRecord, spec: ReportSpec): string {
   out.push(`| Node | ${record.node} |`, "");
   out.push(`Intervals are two-sided 95% Student-t intervals over seed clusters. The normalized gain is Σ(policy − floor) / Σ(ceiling − floor) over seeds with a delete-one-cluster jackknife interval, clipped to [${f1(CLIP[0])}, ${f1(CLIP[1])}]. Each task is reported on its own; there is no composite score.`, "");
 
+  if (record.notes && record.notes.length > 0) out.push("## Run notes", "", ...record.notes.map((n) => `- ${n}`), "");
+
   out.push("## Profile", "");
   for (const task of record.tasks) {
     const metricHeads = task.metrics.map((m) => ` ${m} |`).join("");

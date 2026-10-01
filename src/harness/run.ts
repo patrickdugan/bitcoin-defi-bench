@@ -42,6 +42,8 @@ export interface RunRecord {
   rows: EpisodeRow[];
   /** Family-specific checks computed at run time (for example the identity control). */
   checks: Check[];
+  /** Anything a reader of the table must know about how the run went (for example a rerun after an infrastructure failure). */
+  notes?: string[];
 }
 
 export interface RunOptions {
@@ -53,6 +55,8 @@ export interface RunOptions {
   baselines: Agent[];
   agents?: Agent[];
   checks?: (rows: EpisodeRow[]) => Check[];
+  /** Evaluated when the run ends, so a note can report what happened during it. */
+  notes?: () => string[];
   progress?: (message: string) => void;
 }
 
@@ -91,5 +95,6 @@ export async function executeRun(options: RunOptions): Promise<RunRecord> {
     tasks: options.tasks.map(({ episodes: _episodes, ...rest }) => rest),
     rows,
     checks: options.checks ? options.checks(rows) : [],
+    ...(options.notes && options.notes().length > 0 ? { notes: options.notes() } : {}),
   };
 }

@@ -43,13 +43,21 @@ export interface ChatOptions {
   prompt: PromptRenderer;
   timeoutMs?: number;
   onExchange?: (exchange: Exchange) => void;
+  /** Replies logged by an earlier attempt of the same run that ended in an infrastructure failure, keyed by request hash. */
+  replay?: Map<string, Reply>;
+  /** Called once for each reply that came from the server, so it can be logged as it arrives. */
+  onReply?: (requestSha256: string, reply: Reply) => void;
 }
+
+export interface Reply { content: string; reasoning: string; }
 
 export interface Exchange {
   episode: EpisodeInfo;
   turn: number;
   request_sha256: string;
   cached: boolean;
+  /** True when the reply came from the log of an earlier attempt rather than from the server in this process. */
+  replayed: boolean;
   user: string;
   reply: string;
   reasoning: string;
@@ -92,7 +100,10 @@ export class ChatAgent implements Agent {
   readonly id: string;
   private readonly options: ChatOptions;
   private readonly endpoint: string;
-  private readonly cache = new Map<string, { content: string; reasoning: string }>();
+  private readonly cache = new Map<string, Reply>();
+  private readonly fromReplay = new Set<string>();
+  /** Requests answered from the replay log, and requests sent to the server, in this process. */
+  readonly counts = { replayed: 0, served: 0 };
   private episode: EpisodeInfo = { task: "", seed: -1, cell: "" };
   private messages: Message[] = [];
 
@@ -104,6 +115,7 @@ export class ChatAgent implements Agent {
     this.options = options;
     this.endpoint = `${options.baseUrl.replace(/\/+$/, "")}/chat/completions`;
     this.id = `${options.name}@${sha256(canonical(this.describe())).slice(0, 12)}`;
+    for (const [key, reply] of options.replay ?? []) { this.cache.set(key, reply); this.fromReplay.add(key); }
   }
 
   /** Everything the agent id binds. Stored in the run record. */
@@ -139,17 +151,24 @@ export class ChatAgent implements Agent {
     const key = sha256(canonical(body));
     let reply = this.cache.get(key);
     const cached = reply !== undefined;
+    const replayed = this.fromReplay.has(key);
     if (!reply) {
       reply = await this.post(body);
       this.cache.set(key, reply);
+      this.counts.served += 1;
+      this.options.onReply?.(key, reply);
+    } else if (replayed) {
+      // Count a replayed request once; later uses of it are ordinary cache hits.
+      this.fromReplay.delete(key);
+      this.counts.replayed += 1;
     }
     this.messages.push({ role: "assistant", content: reply.content });
     const action = extractAction(reply.content);
-    this.options.onExchange?.({ episode: this.episode, turn, request_sha256: key, cached, user, reply: reply.content, reasoning: reply.reasoning, action });
+    this.options.onExchange?.({ episode: this.episode, turn, request_sha256: key, cached, replayed, user, reply: reply.content, reasoning: reply.reasoning, action });
     return action;
   }
 
-  private async post(body: object): Promise<{ content: string; reasoning: string }> {
+  private async post(body: object): Promise<Reply> {
     const response = await fetch(this.endpoint, {
       method: "POST",
       headers: { "content-type": "application/json" },

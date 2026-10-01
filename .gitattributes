@@ -1,0 +1,6 @@
+# Hashes are taken over exact bytes. Keep every text file LF on every platform.
+* text=auto eol=lf
+
+# Fixtures and results are hash-bound; never normalize them.
+fixtures/** -text
+results/** -text

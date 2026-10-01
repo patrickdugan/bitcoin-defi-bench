@@ -1,0 +1,46 @@
+{
+  "description": "Generator, routing, and budget parameters for families 1 and 2. Values marked given are Spiral's configs/public_topology_eval.json and src/spiral_ln/public_topology.py at the pinned commit; values marked invented are bench decisions (docs/tasks.md).",
+  "parameters": {
+    "node_count": 64,
+    "steps": 220,
+    "evaluation_start": 110,
+    "hotspot_probability": 0.35,
+    "hotspot_forward_probability": 0.72,
+    "amounts": [1000, 2000, 5000, 8000],
+    "capacity_median": 100000,
+    "capacity_log_sigma": 0.85,
+    "capacity_minimum": 20000,
+    "capacity_maximum": 1500000,
+    "candidate_path_limit": 8,
+    "max_route_attempts": 3,
+    "budget_sats": 120000,
+    "attempts": 4,
+    "min_pair_sats": 20000,
+    "new_channel_policy": { "base_fee_msat": 1000, "fee_ppm": 100, "cltv_delta": 40 }
+  },
+  "provenance": {
+    "node_count": "given: public_topology_eval.json",
+    "steps": "given: public_topology_eval.json",
+    "evaluation_start": "given: public_topology_eval.json",
+    "hotspot_probability": "given: public_topology_eval.json",
+    "hotspot_forward_probability": "given: public_demand_stream in public_topology.py",
+    "amounts": "given: public_topology_eval.json",
+    "capacity_median": "given: public_topology_eval.json",
+    "capacity_log_sigma": "given: public_topology_eval.json",
+    "capacity_minimum": "given: public_topology_eval.json",
+    "capacity_maximum": "given: public_topology_eval.json",
+    "candidate_path_limit": "given: public_topology_eval.json",
+    "max_route_attempts": "given: public_topology_eval.json",
+    "budget_sats": "given: connector_capital in public_topology_eval.json",
+    "attempts": "invented",
+    "min_pair_sats": "invented: set equal to capacity_minimum",
+    "new_channel_policy": "given: Channel defaults in algebra.py"
+  },
+  "topology": {
+    "dataset": "Valko and Marx Gomez, Geolocated Lightning Network topology snapshots: A dataset covering 2019-2023, Harvard Dataverse",
+    "doi": "10.7910/DVN/2OAVO6",
+    "license": "CC BY 4.0",
+    "member": "20230716.gml.geo",
+    "member_sha256": "ee1b054a6ba2cb0ea3184f9f68f5cca7d8e70d17ff2d9e44e5e8871be8a8b855"
+  }
+}

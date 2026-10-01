@@ -1,0 +1,17 @@
+{
+    "schema_version":  "1.0",
+    "retrieved_at":  "2026-10-01T03:13:38.676222+00:00",
+    "dataset_doi":  "10.7910/DVN/2OAVO6",
+    "dataverse_datafile_id":  12510549,
+    "archive_name":  "snapshots.geo.zip",
+    "archive_size":  562027011,
+    "archive_md5_from_dataverse":  "e6edd6fd7acae460abd0f70f71c9dbec",
+    "archive_etag":  "\"5b46ed305145e091f9547b1306d0f9b5-9\"",
+    "member":  "20230716.gml.geo",
+    "member_crc32":  "0a0bb8d5",
+    "member_compressed_size":  3761533,
+    "member_uncompressed_size":  32928305,
+    "member_sha256":  "ee1b054a6ba2cb0ea3184f9f68f5cca7d8e70d17ff2d9e44e5e8871be8a8b855",
+    "local_file":  "data/topology/20230716.gml.geo",
+    "byte_range_extraction":  true
+}

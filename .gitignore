@@ -1,0 +1,6 @@
+# Pinned checkout of https://github.com/patrickdugan/Spiral (commit recorded in README.md and fixtures/manifest.json)
+vendor/
+node_modules/
+
+# Raw snapshot (33 MB, CC BY 4.0). Provenance and SHA-256 are in data/topology/snapshot_provenance.json.
+data/topology/*.gml.geo

@@ -1,0 +1,299 @@
+{
+  "version": "bitcoin-defi-bench/v0",
+  "spiral": {
+    "url": "https://github.com/patrickdugan/Spiral",
+    "commit": "9824c30ad402cc9bca768eca27d176e0e8788db5",
+    "model_blobs": {
+      "model/escrow.ts": "0df94f915b3bf556b522c9bf7a5adf94f8d2e2d9",
+      "model/ledger.ts": "4ebe1eefda83d76dec862aa81df4d0584068bdb4",
+      "model/registry.ts": "2f283706e0fd590d750019b638c1ab1f73229ed2",
+      "model/server.ts": "88630399773353fed5123b97c8eedc13d87adc18"
+    }
+  },
+  "config": {
+    "config/placement.json": "8803d9872ba947334c0b29490f6d7a2b993fe7bdb35baabf80dfd6be1219d917",
+    "config/protocol.json": "7f0034406b80fecd66de7d42bbca1e646da30c8a36e44afb94e033c75f34dfc4"
+  },
+  "fixtures": [
+    {
+      "path": "fixtures/placement/seed-0000.json",
+      "family": "placement",
+      "seed": 0,
+      "generator": "placement-fixture/v0",
+      "sha256": "b6018820931c6252655fce8846593b86644ced4f676d7be3c9d94e773a478d50"
+    },
+    {
+      "path": "fixtures/placement/seed-0001.json",
+      "family": "placement",
+      "seed": 1,
+      "generator": "placement-fixture/v0",
+      "sha256": "e949bdc7f699b24776f09395cd7202de58700c62d7251c59c9b0218a1e4fefde"
+    },
+    {
+      "path": "fixtures/placement/seed-0002.json",
+      "family": "placement",
+      "seed": 2,
+      "generator": "placement-fixture/v0",
+      "sha256": "65322c840023b7ff6b7b1fe0b606d84a0b3168d05fae67fa3fcedfc63158d279"
+    },
+    {
+      "path": "fixtures/placement/seed-0003.json",
+      "family": "placement",
+      "seed": 3,
+      "generator": "placement-fixture/v0",
+      "sha256": "30c84d820fa9dda90537d6f68c13183cc4bb2d27c8035b7608d376bcc313c850"
+    },
+    {
+      "path": "fixtures/placement/seed-0004.json",
+      "family": "placement",
+      "seed": 4,
+      "generator": "placement-fixture/v0",
+      "sha256": "b712331dd1bf6320d543131103c1ff18c7e0f6fe7e688da2f606334165b318e2"
+    },
+    {
+      "path": "fixtures/placement/seed-0005.json",
+      "family": "placement",
+      "seed": 5,
+      "generator": "placement-fixture/v0",
+      "sha256": "a63e5ac80db0c52215f46b5662ca58c096535479ead30d05b48ebee5488b9950"
+    },
+    {
+      "path": "fixtures/placement/seed-0006.json",
+      "family": "placement",
+      "seed": 6,
+      "generator": "placement-fixture/v0",
+      "sha256": "0213282b48f9f1f3347cf94cd684fca2f66ac275db6f303fcd5b663e9f572f0e"
+    },
+    {
+      "path": "fixtures/placement/seed-0007.json",
+      "family": "placement",
+      "seed": 7,
+      "generator": "placement-fixture/v0",
+      "sha256": "a177281c1baa0dc38e260f836e12050388e7c543ff0a2f098c82df7a5594154d"
+    },
+    {
+      "path": "fixtures/placement/seed-1000.json",
+      "family": "placement",
+      "seed": 1000,
+      "generator": "placement-fixture/v0",
+      "sha256": "92af926e916f938df6d6b9b1c4abea15cdbc88a4a5caaf0184d1435cc796dee7"
+    },
+    {
+      "path": "fixtures/placement/seed-1001.json",
+      "family": "placement",
+      "seed": 1001,
+      "generator": "placement-fixture/v0",
+      "sha256": "aaae98de1cbb5c26131e3d0d579a1acec474c7b4682b022bed335cb00d934270"
+    },
+    {
+      "path": "fixtures/placement/seed-1002.json",
+      "family": "placement",
+      "seed": 1002,
+      "generator": "placement-fixture/v0",
+      "sha256": "61f053c94ad96846213169477032ae1d8c0474b3fcf65e10e3aac392c530a84a"
+    },
+    {
+      "path": "fixtures/placement/seed-1003.json",
+      "family": "placement",
+      "seed": 1003,
+      "generator": "placement-fixture/v0",
+      "sha256": "785be5d560dc8e9ce49e3e26e85b5aa5611088351c78f09f999cb19d94c0acc9"
+    },
+    {
+      "path": "fixtures/placement/seed-1004.json",
+      "family": "placement",
+      "seed": 1004,
+      "generator": "placement-fixture/v0",
+      "sha256": "87c1fa34822b3a3dbb63da2197a4109058a35e36e9ec0656011ce7e882482f97"
+    },
+    {
+      "path": "fixtures/placement/seed-1005.json",
+      "family": "placement",
+      "seed": 1005,
+      "generator": "placement-fixture/v0",
+      "sha256": "011d34c9d7a83c18ad98f927dffb5c8bf717b9f603048106f7d02b0b9d5d884e"
+    },
+    {
+      "path": "fixtures/placement/seed-1006.json",
+      "family": "placement",
+      "seed": 1006,
+      "generator": "placement-fixture/v0",
+      "sha256": "e84b1b5875b872d11d70862305f685cf3cc26a430998b107c6aacd2daa1c267f"
+    },
+    {
+      "path": "fixtures/placement/seed-1007.json",
+      "family": "placement",
+      "seed": 1007,
+      "generator": "placement-fixture/v0",
+      "sha256": "06cd6a7d025f365322a05b9473a615e4964e6218624f24e5218de28bd6405802"
+    },
+    {
+      "path": "fixtures/placement/seed-1008.json",
+      "family": "placement",
+      "seed": 1008,
+      "generator": "placement-fixture/v0",
+      "sha256": "8ad522267432c72a4648ea3ffc2019a2120772bcee09722ccd0aab2ca861ca0d"
+    },
+    {
+      "path": "fixtures/placement/seed-1009.json",
+      "family": "placement",
+      "seed": 1009,
+      "generator": "placement-fixture/v0",
+      "sha256": "28c6b63b5961d18c3b7454406ef7564f9ded5e3cfd1a8f3b3f4c17c573eb9c9f"
+    },
+    {
+      "path": "fixtures/placement/seed-1010.json",
+      "family": "placement",
+      "seed": 1010,
+      "generator": "placement-fixture/v0",
+      "sha256": "53ced849452301289e312e8c359fe546e8de8142eece4eb7001b63b0082fa75e"
+    },
+    {
+      "path": "fixtures/placement/seed-1011.json",
+      "family": "placement",
+      "seed": 1011,
+      "generator": "placement-fixture/v0",
+      "sha256": "7aa9d3e11f73d7124058f4b5b2cfbc502caac631b1403250740b129200d05913"
+    },
+    {
+      "path": "fixtures/placement/seed-1012.json",
+      "family": "placement",
+      "seed": 1012,
+      "generator": "placement-fixture/v0",
+      "sha256": "d712a8c768adf6115f96a872a2f6d4634018eca0cd99df34485943e8dbb45c85"
+    },
+    {
+      "path": "fixtures/placement/seed-1013.json",
+      "family": "placement",
+      "seed": 1013,
+      "generator": "placement-fixture/v0",
+      "sha256": "a2d8b7ada5776fb18c72a0101d3fa99de7665cf74cd8dc098322f98b505added"
+    },
+    {
+      "path": "fixtures/placement/seed-1014.json",
+      "family": "placement",
+      "seed": 1014,
+      "generator": "placement-fixture/v0",
+      "sha256": "3d3a2993e9ae49d79e989daa1d10b3eaf269181ee1c30cc33882ec0a7e403fa3"
+    },
+    {
+      "path": "fixtures/placement/seed-1015.json",
+      "family": "placement",
+      "seed": 1015,
+      "generator": "placement-fixture/v0",
+      "sha256": "cd699c4fb48d2dc44bb9e77e60a1e5cbb35d4c82337daadc5e9391e394456a32"
+    },
+    {
+      "path": "fixtures/placement/seed-1016.json",
+      "family": "placement",
+      "seed": 1016,
+      "generator": "placement-fixture/v0",
+      "sha256": "b454bfcd75d1402f06d5b5dc745b343cb892d5d38b8d02bf97e0393bf6bf363b"
+    },
+    {
+      "path": "fixtures/placement/seed-1017.json",
+      "family": "placement",
+      "seed": 1017,
+      "generator": "placement-fixture/v0",
+      "sha256": "c167b6dfa72cd3026a552a0d475d96bfe6ce246707cb439d27610c7c21bbf16a"
+    },
+    {
+      "path": "fixtures/placement/seed-1018.json",
+      "family": "placement",
+      "seed": 1018,
+      "generator": "placement-fixture/v0",
+      "sha256": "6d8df4467cf65f1f3ba54ba55194b857844d524fea63a3eeaa1d6ec9846615db"
+    },
+    {
+      "path": "fixtures/placement/seed-1019.json",
+      "family": "placement",
+      "seed": 1019,
+      "generator": "placement-fixture/v0",
+      "sha256": "416c8c67456a90a6450e03084e7e83562f6dbf581ec99c45ffb555c61a325a2c"
+    },
+    {
+      "path": "fixtures/placement/seed-1020.json",
+      "family": "placement",
+      "seed": 1020,
+      "generator": "placement-fixture/v0",
+      "sha256": "fe7b1136f1c10beb042f2060912fcd0022240315945c610e15f903f91b2a52c6"
+    },
+    {
+      "path": "fixtures/placement/seed-1021.json",
+      "family": "placement",
+      "seed": 1021,
+      "generator": "placement-fixture/v0",
+      "sha256": "6198334635eed3e1cb637852ed67efac92bec0b6ceda48e9414bc9f8ecf5aac4"
+    },
+    {
+      "path": "fixtures/placement/seed-1022.json",
+      "family": "placement",
+      "seed": 1022,
+      "generator": "placement-fixture/v0",
+      "sha256": "72d0b6fef19066c4ddfe22253f718829cf130b49e22bfcf65decb9260e53b6ff"
+    },
+    {
+      "path": "fixtures/placement/seed-1023.json",
+      "family": "placement",
+      "seed": 1023,
+      "generator": "placement-fixture/v0",
+      "sha256": "a73c29ec7a6493e9cbb068ef00ca93c39f093d2de0e9c0ec76afc90b87ce1d1b"
+    },
+    {
+      "path": "fixtures/placement/seed-1024.json",
+      "family": "placement",
+      "seed": 1024,
+      "generator": "placement-fixture/v0",
+      "sha256": "c1779a615161f44b0b31badc36b93875580e8e61414df592a2d6f2a3006c1b5a"
+    },
+    {
+      "path": "fixtures/placement/seed-1025.json",
+      "family": "placement",
+      "seed": 1025,
+      "generator": "placement-fixture/v0",
+      "sha256": "fdeee9999fa7a0dc3bcd4139a2c5f2bd364ebf5b63ca37ccbb4df3b3c0727304"
+    },
+    {
+      "path": "fixtures/placement/seed-1026.json",
+      "family": "placement",
+      "seed": 1026,
+      "generator": "placement-fixture/v0",
+      "sha256": "14dd2d764360c76e3555451e464469e9cfcdc7acfb5566951f25afa94030da4d"
+    },
+    {
+      "path": "fixtures/placement/seed-1027.json",
+      "family": "placement",
+      "seed": 1027,
+      "generator": "placement-fixture/v0",
+      "sha256": "df786d05bcf6de2f608ea09a9a4aa75ed0f93b6f68386521d415eb8009234f70"
+    },
+    {
+      "path": "fixtures/placement/seed-1028.json",
+      "family": "placement",
+      "seed": 1028,
+      "generator": "placement-fixture/v0",
+      "sha256": "6b66d803f3aafc15e4a2995e807d6c18a9b1dc642de9690cfc708c0f3c8f79f6"
+    },
+    {
+      "path": "fixtures/placement/seed-1029.json",
+      "family": "placement",
+      "seed": 1029,
+      "generator": "placement-fixture/v0",
+      "sha256": "03aaf9b3d03c1c1c1cfe38bb608474649d289df7d046ec78b68eb4411149c92d"
+    },
+    {
+      "path": "fixtures/placement/seed-1030.json",
+      "family": "placement",
+      "seed": 1030,
+      "generator": "placement-fixture/v0",
+      "sha256": "b5cc626cb65a9f42ba46120e9a711b2b766a366df4555d31fc9426f493435d66"
+    },
+    {
+      "path": "fixtures/placement/seed-1031.json",
+      "family": "placement",
+      "seed": 1031,
+      "generator": "placement-fixture/v0",
+      "sha256": "9235681249f291861601bd254805c35d4b528f6508e8487e45f1383a812427f0"
+    }
+  ]
+}

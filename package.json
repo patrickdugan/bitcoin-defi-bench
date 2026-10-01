@@ -1,0 +1,13 @@
+{
+  "name": "bitcoin-defi-bench",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.6" },
+  "scripts": {
+    "test": "node --experimental-strip-types --test \"src/**/*.test.ts\"",
+    "fixtures": "node --experimental-strip-types scripts/build_fixtures.ts",
+    "placement:dev": "node --experimental-strip-types scripts/run_placement.ts --block development",
+    "placement": "node --experimental-strip-types scripts/run_placement.ts --block confirmatory"
+  }
+}

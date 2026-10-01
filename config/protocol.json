@@ -1,0 +1,46 @@
+{
+  "description": "Protocol parameters. Every value is an input cited from its implementer's documentation or a published construction, as listed in the references of paper/where_the_capital_bound_moves.md in the Spiral repository. None is a measurement and none is a constant in code.",
+  "parameters": {
+    "vtxo_lifetime_blocks": {
+      "value": 4032, "unit": "blocks", "note": "28 days; server-configurable",
+      "source": "R3", "url": "https://second.tech/docs/learn/vtxo", "accessed": "2026-09-30"
+    },
+    "exit_csv_blocks": {
+      "value": 144, "unit": "blocks", "note": "unilateral exit relative timelock, about 24 hours",
+      "source": "R3", "url": "https://second.tech/docs/learn/vtxo", "accessed": "2026-09-30"
+    },
+    "round_interval_blocks": {
+      "value": 6, "unit": "blocks", "note": "hourly default refresh rounds",
+      "source": "R3", "url": "https://second.tech/docs/learn/vtxo", "accessed": "2026-09-30"
+    },
+    "refresh_lead_blocks": {
+      "value": 288, "unit": "blocks", "note": "refresh two days before expiry, the assumption of the cited simulation",
+      "source": "R5", "url": "https://second.tech/blog/ark-liquidity-research-01", "published": "2025-05-01"
+    },
+    "forfeit_policy": {
+      "value": "forfeits cover refreshes and on-chain payments; Lightning payments use HTLC-based policies", "unit": "text",
+      "source": "R4", "url": "https://second.tech/docs/learn/forfeits", "accessed": "2026-09-30"
+    },
+    "assert_vb": {
+      "value": 2400, "unit": "vB", "note": "BitVM3 Assert transaction, approximate, as published",
+      "source": "R7", "url": "https://eprint.iacr.org/2026/933", "published": "2026-05-11, revised 2026-06-08"
+    },
+    "disprove_vb": {
+      "value": 93, "unit": "vB", "note": "BitVM3 Disprove transaction, approximate, as published",
+      "source": "R7", "url": "https://eprint.iacr.org/2026/933", "published": "2026-05-11, revised 2026-06-08"
+    },
+    "garbled_verifier_gb": {
+      "value": 41, "unit": "GB", "note": "off-chain garbled Groth16 verifier; informational, no v0 task reads it",
+      "source": "R7", "url": "https://eprint.iacr.org/2026/933", "published": "2026-05-11, revised 2026-06-08"
+    },
+    "garbled_evaluation_minutes": {
+      "value": 6, "unit": "minutes", "note": "informational, no v0 task reads it",
+      "source": "R7", "url": "https://eprint.iacr.org/2026/933", "published": "2026-05-11, revised 2026-06-08"
+    }
+  },
+  "not_parameters": {
+    "R6": "Bitcoin Optech Ark topic page: timeline and collusion caveat. Cited in the paper; no v0 task reads a value from it.",
+    "R8": "Bitcoin Optech OP_CHECKTEMPLATEVERIFY topic page: no covenant opcode active. Cited in the paper; no v0 task reads a value from it.",
+    "R9": "BlockEden, Bitcoin's Covenant Renaissance: secondary source for proposed activation parameters. Cited in the paper; no v0 task reads a value from it."
+  }
+}

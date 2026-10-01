@@ -11,6 +11,8 @@ export const SEED_BLOCKS = {
   confirmatory: range(1000, 32),
   reserve_1: range(1100, 32),
   reserve_2: range(1200, 32),
+  // Family 3's pin-supported variant, whose preregistration sections are not frozen (prereg/v0.md §11).
+  exploratory_settlement: range(2000, 32),
 } as const;
 
 /** Families whose sections the preregistration declares frozen (the "Frozen families:" line). */

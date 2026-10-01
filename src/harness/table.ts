@@ -28,6 +28,8 @@ export interface ReportSpec {
   flags?(analysis: Analysis, task: string, agent: string): string[];
   /** Subgroup of a seed for the secondary breakdown (for example the sampling mode). */
   seedGroup?: { label: string; of(seed: number): string };
+  /** Family-specific sections, placed after the secondary table. */
+  extra?(analysis: Analysis, record: RunRecord): string[];
 }
 
 export interface PolicyResult {
@@ -185,6 +187,8 @@ export function renderTable(record: RunRecord, spec: ReportSpec): string {
     }
   }
   out.push("");
+
+  if (spec.extra) out.push(...spec.extra(analysis, record));
 
   const gateFailed = gates.some((g) => !g.pass);
   const flagged: string[] = [];

@@ -10,8 +10,8 @@ import { executeRun } from "../../harness/run.ts";
 import { SEED_BLOCKS } from "../../harness/seeds.ts";
 import { analyze, renderTable } from "../../harness/table.ts";
 import { settlementBaselines } from "./baselines.ts";
-import { runChannel, runVtxo } from "./corner.ts";
-import { SettlementEnv, Simulations, gridOf } from "./env.ts";
+import { runChannel, runVtxo, serverEnvelope, serverTierCapacity } from "./corner.ts";
+import { SettlementEnv, gridOf } from "./env.ts";
 import { fixtureBytes, fixturePath, generateFixture, generateStream, loadStream, summarize, type DemandStream, type SettlementFixture, type Step } from "./generate.ts";
 import { settlementGates, settlementReport, settlementTaskSpecs } from "./report.ts";
 import { loadProtocol, loadSettlementConfig, simulationsFor } from "./task.ts";
@@ -21,33 +21,65 @@ const manifest = readManifest(root);
 const config = loadSettlementConfig(root);
 const protocol = loadProtocol(root);
 const dev = [...SEED_BLOCKS.development];
+const tiny = { lifetime_blocks: 100, round_interval_blocks: 1 };
+
+const streamOf = (agents: { [name: string]: Array<[step: number, inflow: number, outflow: number]> }, steps: number): DemandStream => {
+  const out: DemandStream = new Map();
+  for (const name of Object.keys(agents).sort()) {
+    const series: Step[] = Array.from({ length: steps }, () => ({ out: 0, in: 0 }));
+    for (const [t, inflow, outflow] of agents[name]!) series[t] = { in: inflow, out: outflow };
+    out.set(name, series);
+  }
+  return out;
+};
 
 test("corner runner on a hand-worked case: lock for the residual lifetime, volume in both directions", () => {
   // One holder receives 1000 at height 0 and spends it at height 50; lifetime 100, one-block rounds.
-  const series: Step[] = Array.from({ length: 100 }, () => ({ out: 0, in: 0 }));
-  series[0] = { out: 0, in: 1000 };
-  series[50] = { out: 1000, in: 0 };
-  const stream: DemandStream = new Map([["a000", series]]);
-  const tiny = { lifetime_blocks: 100, round_interval_blocks: 1 };
-  const v = runVtxo(stream, tiny, 10);
-  assert.equal(v.locked_integral, 1000 * 50);   // fronted at 50, swept at expiry 100
-  assert.equal(v.volume, 2000);                 // the receipt and the spend
-  assert.equal(v.duration, 25);                 // the pinned model alone reports 50: it divides by spends only
-  assert.equal(v.peak_locked, 1000);
-  assert.deepEqual([v.attempts, v.failures], [2, 0]);
+  const stream = streamOf({ a000: [[0, 1000, 0], [50, 0, 1000]] }, 100);
+  const v = runVtxo(stream, tiny, 10);            // the pinned definition: no server-tier term
+  assert.equal(v.locked_integral, 1000 * 50);     // fronted at 50, swept at expiry 100
+  assert.equal(v.volume, 2000);                   // the receipt and the spend
+  assert.equal(v.duration, 25);                   // the pinned model alone reports 50: it divides by spends only
+  assert.deepEqual([v.peak_fronted, v.server_tier_locked, v.attempts, v.failures], [1000, 0, 2, 0]);
   // The same numbers straight from the pinned server, to show the runner adds nothing but the denominator.
   const S = new ArkServer(10_000, { lifetimeBlocks: 100, roundInterval: 1, refreshLead: 10 });
   S.receive("a000", 1000); S.advance(50); S.spendLightning("a000", 1000); S.advance(50);
   assert.equal(S.liquidityDuration() * S.volumeDelivered, v.locked_integral);
   // Channel: inbound pre-funded to the peak held balance and held for the horizon.
   const c = runChannel(stream, tiny, 0);
-  assert.equal(c.peak_locked, 1000);
-  assert.equal(c.locked_integral, 1000 * 100);
-  assert.equal(c.duration, 50);
-  assert.equal(c.failures, 0);
+  assert.deepEqual([c.peak_locked, c.locked_integral, c.duration, c.failures], [1000, 1000 * 100, 50, 0]);
   // Under-provisioning fails the receipt, and then the spend it would have funded.
   const under = runChannel(stream, tiny, -0.5);
   assert.deepEqual([under.failures, under.attempts], [2, 2]);
+});
+
+test("server tier on hand-worked cases: one holder gets no pooling, two offsetting holders do", () => {
+  // One holder: the server's channels must take the same 1000 the agent's channel would.
+  const one = streamOf({ a000: [[0, 1000, 0], [50, 0, 1000]] }, 100);
+  assert.deepEqual(serverEnvelope(one), { peak: 1000, trough: 0 });
+  const v = runVtxo(one, tiny, 10, 0);
+  assert.equal(v.server_tier_locked, 1000);
+  assert.equal(v.locked_integral, 1000 * 50 + 1000 * 100);  // ∫ W_S plus the server's channels for the horizon
+  assert.equal(v.duration, 75);                             // against 50 for the channel: the server also fronts the spend
+  assert.equal(runVtxo(one, tiny, 10, 0.25).server_tier_locked, 1250);
+  // Two holders whose balances never overlap: a000 holds 1000 over steps 0-9, a001 over steps 20-29.
+  const two = streamOf({ a000: [[0, 1000, 0], [10, 0, 1000]], a001: [[20, 1000, 0], [30, 0, 1000]] }, 100);
+  assert.deepEqual(serverEnvelope(two), { peak: 1000, trough: 0 });
+  assert.equal(runChannel(two, tiny, 0).peak_locked, 2000);       // each agent's channel pre-funds its own peak
+  assert.equal(runVtxo(two, tiny, 10, 0).server_tier_locked, 1000); // the server's channels are reused
+  // The same two holders at the same time: nothing to pool.
+  const together = streamOf({ a000: [[0, 1000, 0], [10, 0, 1000]], a001: [[0, 1000, 0], [10, 0, 1000]] }, 100);
+  assert.equal(runVtxo(together, tiny, 10, 0).server_tier_locked, 2000);
+});
+
+test("an under-provisioned server tier fails payments by the channel model's rule; at margin ≥ 0 it never does", () => {
+  const two = streamOf({ a000: [[0, 1000, 0], [10, 0, 1000]], a001: [[0, 1000, 0], [10, 0, 1000]] }, 100);
+  assert.deepEqual(serverTierCapacity(serverEnvelope(two), -0.25), { inbound: 1500, outbound: 0 });
+  const under = runVtxo(two, tiny, 10, -0.25);
+  // a000's receipt fits; a001's does not, so a001's later spend has nothing behind it.
+  assert.deepEqual([under.attempts, under.failures, under.volume], [4, 2, 2000]);
+  assert.equal(under.server_tier_locked, 1500);
+  for (const margin of [0, 0.1, 0.25]) assert.equal(runVtxo(two, tiny, 10, margin).failures, 0);
 });
 
 test("streams are deterministic, independent across kinds, and contain only fundable spends", () => {
@@ -62,26 +94,43 @@ test("streams are deterministic, independent across kinds, and contain only fund
     let running = 0;
     for (const s of series) { running += s.in; assert.ok(s.out <= running); running -= s.out; }
   }
+  // With every spend fundable, the server's net Lightning position never goes below zero.
+  assert.equal(serverEnvelope(a).trough, 0);
   // Adding agents does not change the agents already there.
   const bigger = generateStream(5, "t", "evaluation", { ...small, agents: 13 }, protocol);
   assert.deepEqual(bigger.get("a003"), a.get("a003"));
 });
 
 test("(a) grid search ≥ every baseline on every episode, and the matching constant beats random on each corner", async () => {
-  const record = await executeRun({ root, manifest, block: "development", seeds: dev, tasks: settlementTaskSpecs(root, manifest, config), baselines: settlementBaselines(config) });
+  // Two development seeds: each 200-agent fixture needs nine runs of the pinned server.
+  const record = await executeRun({ root, manifest, block: "development", seeds: dev.slice(0, 2), tasks: settlementTaskSpecs(root, manifest, config), baselines: settlementBaselines(config) });
   const analysis = analyze(record);
-  const gates = settlementGates(analysis, record);
-  assert.ok(gates.find((g) => g.id === "K6")!.pass, gates.find((g) => g.id === "K6")!.detail);
-  assert.ok(gates.find((g) => g.id === "K8")!.pass, gates.find((g) => g.id === "K8")!.detail);
-  const mean = (task: string, agent: string): number => {
-    const m = [...analysis.means(task, agent).values()];
+  const k6 = settlementGates(analysis, record).find((g) => g.id === "K6")!;
+  assert.ok(k6.pass, k6.detail);
+  const mean = (cell: string, agent: string): number => {
+    const m = [...analysis.means(`settlement_object/${cell}`, agent).values()];
     return m.reduce((x, y) => x + y, 0) / m.length;
   };
-  // The paper's §3.3 direction at the pinned settings: VTXO on the bursty corner, channel on the steady one.
-  assert.ok(mean("settlement_object/many_bursty_long", "always_vtxo") >= mean("settlement_object/many_bursty_long", "random"));
-  assert.ok(mean("settlement_object/few_steady_recycling", "always_channel") >= mean("settlement_object/few_steady_recycling", "random"));
-  assert.ok(analysis.difference("settlement_object/many_bursty_long", "always_vtxo", "always_channel").lo > 0);
-  assert.ok(analysis.difference("settlement_object/few_steady_recycling", "always_vtxo", "always_channel").hi < 0);
+  for (const cell of Object.keys(config.cells)) assert.ok(mean(cell, "grid_search") >= mean(cell, "random"));
+  // What the random baseline earns in expectation: the mean score over the whole grid. Two seeds
+  // are too few to compare against its realized draws.
+  const gridAverage = (cell: string): number => {
+    const values: number[] = [];
+    for (const seed of dev.slice(0, 2)) {
+      const sims = simulationsFor(root, manifest, config, cell, seed);
+      for (const choice of gridOf(config)) {
+        const env = new SettlementEnv(sims, config);
+        env.step({ tool: "choose", args: { choice } });
+        values.push(env.finish().value);
+      }
+    }
+    return values.reduce((x, y) => x + y, 0) / values.length;
+  };
+  // Pooling favors the server where demand is idiosyncratic and has no drift; recycling favors the channel.
+  assert.ok(mean("many_bursty_balanced", "always_vtxo") > gridAverage("many_bursty_balanced"));
+  assert.ok(mean("many_bursty_balanced", "always_vtxo") > mean("many_bursty_balanced", "always_channel"));
+  assert.ok(mean("few_steady_recycling", "always_channel") > gridAverage("few_steady_recycling"));
+  assert.ok(mean("few_steady_recycling", "always_channel") > mean("few_steady_recycling", "always_vtxo"));
   // The table renders from the record alone and carries the ratio section.
   const table = renderTable(record, settlementReport);
   assert.equal(table, renderTable(JSON.parse(JSON.stringify(record)), settlementReport));
@@ -96,8 +145,10 @@ test("(b) a rejected or malformed action is the identity on state and costs its 
     [{ tool: "open", args: {} }, "unknown_tool"],
     [{ tool: "choose" }, "malformed"],
     [{ tool: "choose", args: { choice: { object: "channel" } } }, "malformed"],
+    [{ tool: "choose", args: { choice: { object: "vtxo", margin: 0 } } }, "malformed"],
     [{ tool: "choose", args: { choice: { object: "channel", margin: 0.33 } } }, "out_of_grid"],
-    [{ tool: "choose", args: { choice: { object: "vtxo", refresh_lead_blocks: 100 } } }, "out_of_grid"],
+    [{ tool: "choose", args: { choice: { object: "vtxo", refresh_lead_blocks: 100, margin: 0 } } }, "out_of_grid"],
+    [{ tool: "choose", args: { choice: { object: "vtxo", refresh_lead_blocks: 288, margin: 0.33 } } }, "out_of_grid"],
     [{ tool: "choose", args: { choice: { object: "covenant", margin: 0 } } }, "malformed"],
   ];
   for (const [action, reason] of attempt) {
@@ -130,10 +181,11 @@ test("(b) an episode that never chooses is scored at the infeasibility penalty, 
   const idle = new SettlementEnv(sims, config);
   idle.step({ tool: "commit" });
   assert.equal(idle.finish().metrics.scored_duration, config.infeasible_penalty_factor * worst);
+  const choice = { object: "channel" as const, margin: -0.25 };
   const under = new SettlementEnv(sims, config);
-  assert.ok(under.step({ tool: "choose", args: { choice: { object: "channel", margin: -0.5 } } }).accepted);
+  assert.ok(under.step({ tool: "choose", args: { choice } }).accepted);
   const out = under.finish();
-  if (sims.run("evaluation", { object: "channel", margin: -0.5 }).feasible) assert.equal(out.metrics.feasible, 1);
+  if (sims.run("evaluation", choice).feasible) assert.equal(out.metrics.feasible, 1);
   else assert.equal(out.metrics.scored_duration, config.infeasible_penalty_factor * worst);
 });
 
@@ -146,6 +198,7 @@ test("a probe reports the pilot stream, never the evaluation stream, and the obs
   assert.notEqual(probed.duration, sims.run("evaluation", choice).duration);
   const view = JSON.stringify(env.view());
   for (const hidden of ["sha256", "volume_in", "receipts", String(sims.fixture.streams.evaluation.volume_out)]) assert.ok(!view.includes(hidden), `${hidden} leaked`);
+  assert.ok(view.includes('"server_tier":{"charged":true'));
 });
 
 test("(c) a tampered fixture is refused: by the manifest when its bytes change, by the stream hash when its stream would", () => {

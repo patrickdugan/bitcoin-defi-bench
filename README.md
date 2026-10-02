@@ -7,8 +7,8 @@ It is not a red-team benchmark: it contains no coalition, covert-channel, or Syb
 - Tasks: [docs/tasks.md](docs/tasks.md)
 - Preregistration: [prereg/v0.md](prereg/v0.md)
 - Running: [docs/running.md](docs/running.md)
-- Results: [family 1 baselines](results/v0-placement-baselines.md) (confirmatory), [family 3 baselines](results/v0-settlement-object-baselines.md) (exploratory)
-- Open question: [docs/server_tier_proposal.md](docs/server_tier_proposal.md)
+- Results: [family 1 baselines](results/v0-placement-baselines.md), [family 1, Bonsai 8B](results/v0-placement-bonsai-8b-nothink.md), [family 3 baselines](results/v0-settlement-object-baselines.md), all on the confirmatory seeds
+- Server-tier term: [docs/server_tier_proposal.md](docs/server_tier_proposal.md), the proposal as reviewed and what was adopted
 - Vendored source: `git clone https://github.com/patrickdugan/Spiral vendor/spiral`, then `git -C vendor/spiral checkout 9824c30ad402cc9bca768eca27d176e0e8788db5`
 - Topology: samples of the July 16, 2023 public-gossip snapshot from Valko and Marx Gómez, *Geolocated Lightning Network topology snapshots: A dataset covering 2019–2023*, Harvard Dataverse, DOI 10.7910/DVN/2OAVO6, CC BY 4.0
-- Status: the harness and family 1 (directional placement) are implemented, preregistered, and run on 32 confirmatory seeds with baselines. Family 3 (settlement-object selection) is implemented as the variant the pinned model supports, without the server-tier term the design calls for, and run on 32 exploratory seeds; its preregistration sections are not frozen (docs/tasks.md §0.1, §4.6). An LLM adapter exists and has been run on development seeds. Families 2, 4, and 5 are specified only.
+- Status: the harness and family 1 (directional placement) are implemented, preregistered, and run on 32 confirmatory seeds with baselines. Family 3 (settlement-object selection) is implemented on the pinned model with a server-tier term the bench supplies, preregistered by amendment, and run on the same 32 seeds with baselines; three of the choices the design calls for are not offered yet (docs/tasks.md §0.1, §4.6). One LLM, Bonsai 8B with thinking off, has been run on family 1. Families 2, 4, and 5 are specified only.

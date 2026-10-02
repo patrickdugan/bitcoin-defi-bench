@@ -1,5 +1,6 @@
 // Settlement-object baselines. `random` draws one point of the declared grid. `always_channel` and
-// `always_vtxo` are the two settings of the pinned corner test (margin 0.25; refresh lead 288).
+// `always_vtxo` are the two settings of the pinned corner test (margin 0.25; refresh lead 288),
+// with the same margin on the server's channels as on an agent's.
 // `grid_search` is the oracle: it is given every grid point's result on the evaluation stream and
 // takes the feasible minimum of liquidity duration.
 
@@ -15,7 +16,7 @@ function gridFrom(observation: Json): Choice[] {
   const grid = (observation as { view: { grid: { margin: number[]; refresh_lead_blocks: number[] } } }).view.grid;
   return [
     ...grid.margin.map((margin): Choice => ({ object: "channel", margin })),
-    ...grid.refresh_lead_blocks.map((lead): Choice => ({ object: "vtxo", refresh_lead_blocks: lead })),
+    ...grid.refresh_lead_blocks.flatMap((lead) => grid.margin.map((margin): Choice => ({ object: "vtxo", refresh_lead_blocks: lead, margin }))),
   ];
 }
 
@@ -38,8 +39,9 @@ export class AlwaysChannel implements Agent {
 export class AlwaysVtxo implements Agent {
   readonly id = "always_vtxo";
   private readonly lead: number;
-  constructor(config: SettlementConfig) { this.lead = config.baselines.always_vtxo_refresh_lead_blocks; }
-  act(): Json { return choose({ object: "vtxo", refresh_lead_blocks: this.lead }); }
+  private readonly margin: number;
+  constructor(config: SettlementConfig) { this.lead = config.baselines.always_vtxo_refresh_lead_blocks; this.margin = config.baselines.always_vtxo_margin; }
+  act(): Json { return choose({ object: "vtxo", refresh_lead_blocks: this.lead, margin: this.margin }); }
 }
 
 export class GridSearch implements Agent {

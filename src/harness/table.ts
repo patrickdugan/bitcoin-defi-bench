@@ -18,7 +18,8 @@ export interface ContrastSpec {
   primary: boolean;
 }
 
-export interface Gate { id: string; description: string; pass: boolean; detail: string; }
+/** A family-level gate blocks agent reporting for the family when it fails; a cell-level gate only marks its own cell. */
+export interface Gate { id: string; description: string; pass: boolean; detail: string; scope?: "family" | "cell"; }
 
 export interface ReportSpec {
   title: string;
@@ -157,14 +158,16 @@ export function renderTable(record: RunRecord, spec: ReportSpec): string {
 
   const gates = spec.gates(analysis, record);
   out.push("## Calibration gates", "");
-  out.push("Checks on the harness, read from unadjusted intervals. A failed gate blocks agent reporting for the family.", "");
+  const cellLevel = gates.some((g) => g.scope === "cell") ? " A cell-level gate that fails withholds only that cell's normalized gains." : "";
+  out.push(`Checks on the harness, read from unadjusted intervals. A failed gate blocks agent reporting for the family.${cellLevel}`, "");
   out.push("| Gate | Check | Result | Detail |", "|---|---|---|---|");
-  for (const g of gates) out.push(`| ${g.id} | ${g.description} | ${g.pass ? "pass" : "**FAIL**"} | ${g.detail} |`);
+  for (const g of gates) out.push(`| ${g.id} | ${g.description}${g.scope === "cell" ? " (cell-level)" : ""} | ${g.pass ? "pass" : "**FAIL**"} | ${g.detail} |`);
   out.push("");
 
   const secondary = spec.contrasts.filter((c) => !c.primary && record.tasks.some((t) => t.task === c.task));
   out.push("## Secondary, declared and descriptive", "");
   out.push("Unadjusted intervals.", "");
+  const secondaryStart = out.length;
   out.push("| Contrast | Task | Group | Clusters | Difference |", "|---|---|---|---:|---|");
   for (const c of [...primaries, ...secondary]) {
     if (!c.primary) {
@@ -188,11 +191,13 @@ export function renderTable(record: RunRecord, spec: ReportSpec): string {
       }
     }
   }
+  // No breakdowns and no secondary contrasts: say so instead of printing an empty table.
+  if (out.length === secondaryStart + 2) out.splice(secondaryStart - 2, 4, "No contrast of this kind in this run; see the family's own section below.");
   out.push("");
 
   if (spec.extra) out.push(...spec.extra(analysis, record));
 
-  const gateFailed = gates.some((g) => !g.pass);
+  const gateFailed = gates.some((g) => !g.pass && g.scope !== "cell");
   const flagged: string[] = [];
   for (const task of record.tasks) {
     for (const p of analysis.policies(task.task)) {

@@ -1,7 +1,6 @@
-// Family 3 report, pin-supported variant. Its preregistration sections are not frozen, so nothing
-// here is a primary contrast: the direction contrasts and the liquidity-duration ratio are reported
-// as exploratory. The ratio is the quantity the paper's §7 item 2 asks for, with a cluster-robust
-// interval over seeds.
+// Family 3 report: task specs, the contrasts and gates fixed in prereg/v0.md §11 (Amendment 2),
+// and the liquidity-duration ratio the paper's §7 item 2 asks for, with a cluster-robust interval
+// over seeds.
 
 import type { Manifest } from "../../harness/manifest.ts";
 import type { RunRecord, TaskSpec } from "../../harness/run.ts";
@@ -11,11 +10,12 @@ import { SETTLEMENT_BAND, settlementEpisodes } from "./task.ts";
 
 const taskOf = (cell: string): string => `settlement_object/${cell}`;
 
-/** The constant baseline expected to win in each cell (the paper's §3.3 direction). */
+/** The constant baseline expected to do better in each cell, at the baseline settings. */
 const REFERENCE: { [cell: string]: string } = {
-  many_bursty_long: "always_vtxo",
+  many_bursty_long: "always_channel",
+  many_bursty_balanced: "always_vtxo",
+  many_bursty_balanced_correlated: "always_channel",
   few_steady_recycling: "always_channel",
-  many_bursty_correlated: "always_vtxo",
 };
 
 export function settlementTaskSpecs(root: string, manifest: Manifest, config: SettlementConfig): TaskSpec[] {
@@ -25,15 +25,21 @@ export function settlementTaskSpecs(root: string, manifest: Manifest, config: Se
     band: SETTLEMENT_BAND,
     floor: "random",
     ceiling: "grid_search",
-    reference: REFERENCE[cell] ?? "always_vtxo",
-    metrics: ["scored_duration", "feasible", "failure_rate", "peak_locked"],
+    reference: REFERENCE[cell] ?? "always_channel",
+    metrics: ["scored_duration", "feasible", "vtxo", "server_tier_locked", "peak_locked"],
     episodes: (seed: number) => settlementEpisodes(root, manifest, config, cell, seed),
   }));
 }
 
-export const SETTLEMENT_CONTRASTS: ContrastSpec[] = Object.keys(REFERENCE).map((cell, i) => ({
-  id: `X${i + 1}`, label: "`always_vtxo` − `always_channel` (= ln 𝒟_C/𝒟_V)", task: taskOf(cell), a: "always_vtxo", b: "always_channel", primary: false,
-}));
+const RATIO = "`always_vtxo` − `always_channel` (= ln 𝒟_C/𝒟_V)";
+
+/** Every hypothesis is the same contrast on a different cell; the predicted sign is in the label. */
+export const SETTLEMENT_CONTRASTS: ContrastSpec[] = [
+  { id: "H3", label: `${RATIO}, predicted positive`, task: taskOf("many_bursty_balanced"), a: "always_vtxo", b: "always_channel", primary: true },
+  { id: "H4", label: `${RATIO}, predicted negative`, task: taskOf("few_steady_recycling"), a: "always_vtxo", b: "always_channel", primary: true },
+  { id: "H5", label: `${RATIO}, predicted not positive`, task: taskOf("many_bursty_long"), a: "always_vtxo", b: "always_channel", primary: true },
+  { id: "H6", label: `${RATIO}, predicted negative`, task: taskOf("many_bursty_balanced_correlated"), a: "always_vtxo", b: "always_channel", primary: true },
+];
 
 const fmt = (x: number): string => `${x >= 0 ? "+" : "−"}${Math.abs(x).toFixed(2)}`;
 
@@ -53,28 +59,30 @@ export function settlementGates(analysis: Analysis, record: RunRecord): Gate[] {
   const headroom = tasks.map((task) => ({ task, d: analysis.difference(task, "grid_search", "random") }));
   return [
     { id: "K6", description: "`grid_search` ≥ every other policy on every episode", pass: violations.length === 0, detail: violations.length === 0 ? `${episodes} comparisons, 0 violations` : `${violations.length} violations, first: ${violations[0]}` },
-    { id: "K8", description: "`grid_search` − `random` interval above zero in each cell", pass: headroom.every((h) => h.d.lo > 0), detail: headroom.map((h) => `${h.task.split("/")[1]} ${fmt(h.d.mean)} (${fmt(h.d.lo)} to ${fmt(h.d.hi)})`).join("; ") },
+    ...headroom.map((h): Gate => ({ id: "K8", description: `\`grid_search\` − \`random\` interval above zero on \`${h.task.split("/")[1]}\``, pass: h.d.lo > 0, detail: `${fmt(h.d.mean)} (${fmt(h.d.lo)} to ${fmt(h.d.hi)})`, scope: "cell" })),
+    { id: "K9", description: "the server tier fails no payment at a margin of zero or more", pass: true, detail: "enforced by the simulator, which throws otherwise" },
   ];
 }
 
-/** The liquidity-duration ratio at the pinned settings (margin 0.25, refresh lead 288), as a geometric mean over seeds. */
+/** The liquidity-duration ratio at the baseline settings, as a geometric mean over seeds, and what the oracle chose. */
 function ratioSection(analysis: Analysis, record: RunRecord): string[] {
   const out = ["## Liquidity-duration ratio", ""];
-  out.push("𝒟_C / 𝒟_V at the pinned corner settings (`always_channel` against `always_vtxo`): the geometric mean over seeds, with the 95% interval of the mean log ratio. The paper's §3.3 claim is falsified if the ratio does not exceed one on `many_bursty_long` or does not fall below one on `few_steady_recycling`. Exploratory here: the family's preregistration sections are not frozen, and no server-tier term is charged.", "");
-  out.push("| Cell | Clusters | 𝒟_C / 𝒟_V | 95% interval | Both policies feasible |", "|---|---:|---:|---|---:|");
+  out.push("𝒟_C / 𝒟_V at the baseline settings (`always_channel` at margin 0.25 against `always_vtxo` at refresh lead 288 and server margin 0.25): the geometric mean over seeds, with the 95% interval of the mean log ratio, unadjusted. A ratio above one favors the VTXO object. The server-tier term is charged. The last column is how often the grid optimum was a VTXO choice.", "");
+  out.push("| Cell | Clusters | 𝒟_C / 𝒟_V | 95% interval | Both feasible | Oracle chose VTXO |", "|---|---:|---:|---|---:|---:|");
   for (const task of record.tasks.map((t) => t.task).filter((t) => t.startsWith("settlement_object/"))) {
     const d = analysis.difference(task, "always_vtxo", "always_channel");
     const rows = record.rows.filter((r) => r.task === task && (r.agent === "always_vtxo" || r.agent === "always_channel"));
     const feasible = rows.filter((r) => r.metrics.feasible === 1).length;
+    const oracle = record.rows.filter((r) => r.task === task && r.agent === "grid_search");
     const g = (x: number): string => (Math.exp(x) >= 10 ? Math.exp(x).toFixed(1) : Math.exp(x).toPrecision(3));
-    out.push(`| \`${task.split("/")[1]}\` | ${d.n} | ${g(d.mean)} | ${g(d.lo)} to ${g(d.hi)} | ${feasible} of ${rows.length} |`);
+    out.push(`| \`${task.split("/")[1]}\` | ${d.n} | ${g(d.mean)} | ${g(d.lo)} to ${g(d.hi)} | ${feasible} of ${rows.length} | ${oracle.filter((r) => r.metrics.vtxo === 1).length} of ${oracle.length} |`);
   }
   out.push("");
   return out;
 }
 
 export const settlementReport: ReportSpec = {
-  title: "Bitcoin DeFi Bench v0: family 3 (settlement-object selection), pin-supported variant, baselines",
+  title: "Bitcoin DeFi Bench v0: family 3 (settlement-object selection), baselines",
   contrasts: SETTLEMENT_CONTRASTS,
   gates: settlementGates,
   extra: ratioSection,

@@ -1,6 +1,6 @@
 # The server-tier term: a definition for review
 
-Status: proposal. None of this is coded into a task. The numbers are from development seeds 0 through 7 and are arithmetic on the pin-supported run, not results.
+Status: decided on 2026-10-02. Definition B was adopted; see "Outcome" at the end. The rest of this document is the proposal as it was reviewed. Its numbers are from development seeds 0 through 7 and are arithmetic on the run without a server-tier term, not results.
 
 ## The decision
 
@@ -60,3 +60,15 @@ The paper defines B_S as the server's on-chain and channel capital together (§3
 - Is B, A, or both the term the brief means? If a revised paper defines it, that definition replaces all of this.
 - Under B, should the server's channels be static over the horizon in family 3, or rebalanced by a fixed rule?
 - Should the bursty corner keep the pinned parameters, with their net inflow, or be re-specified as zero-drift?
+
+## Outcome
+
+Recommendation 1 was accepted: B is the server-tier term, and the hypothesis is restated with a zero-drift bursty cell. What was built (docs/tasks.md §4.4) settles the two questions the answer left open, and differs from the proposal in three respects.
+
+- **Static channels.** Nothing rebalances the server's channels during the horizon. That is the fixed rule for family 3; rebalancing is family 4's decision.
+- **Both bursty cells are kept.** The pinned corner, with its net inflow, stays as `many_bursty_long`. A zero-drift cell, `many_bursty_balanced`, is added to test pooling, and a correlated version of it to test what correlation does to pooling.
+- **The margin is the agent's choice, not a fixed 0.25.** The proposal said the server's channels follow "the same margin rule the channel model uses". The channel's margin is a choice, so the server's has to be one too: with the server fixed at 0.25 the channel wins every cell just by shaving its own margin. An under-provisioned server tier fails payments by the channel model's rule.
+- **Row "B, receipts by boarding" is withdrawn.** It charged the server for boarded receipts' missing offset and left the channel side unchanged, which is not a like-for-like comparison. Boarding needs a definition on both sides and is left out of the family.
+- **A is deferred**, as recommended, until Spiral's model reports refreshes the server cannot front.
+
+Family 3's preregistration sections were frozen by amendment against this definition, with the hypotheses restated.

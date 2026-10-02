@@ -58,12 +58,12 @@ const settlement = loadSettlementConfig(root);
 const protocol = loadProtocol(root);
 for (const cell of Object.keys(settlement.cells).sort()) {
   mkdirSync(join(root, "fixtures/settlement_object", cell), { recursive: true });
-  for (const seed of [...SEED_BLOCKS.development, ...SEED_BLOCKS.exploratory_settlement]) {
+  for (const seed of [...SEED_BLOCKS.development, ...SEED_BLOCKS.confirmatory]) {
     const text = settlementBytes(generateSettlement(seed, cell, settlement.cells[cell]!, protocol));
     if (writeIfChanged(join(root, settlementPath(cell, seed)), text)) written += 1;
     entries.push({ path: settlementPath(cell, seed), family: "settlement_object", seed, generator: SETTLEMENT_VERSION, sha256: sha256(text) });
   }
-  console.log(`settlement_object/${cell}: ${SEED_BLOCKS.development.length + SEED_BLOCKS.exploratory_settlement.length} fixtures`);
+  console.log(`settlement_object/${cell}: ${SEED_BLOCKS.development.length + SEED_BLOCKS.confirmatory.length} fixtures`);
 }
 
 const manifest = buildManifest(root, BENCH, vendoredCommit(root), entries);

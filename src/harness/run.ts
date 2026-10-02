@@ -66,6 +66,9 @@ export async function executeRun(options: RunOptions): Promise<RunRecord> {
   const { root, manifest } = options;
   // Refuse to score against any fixture, model file, or config whose hash does not match.
   verifyManifest(root, manifest);
+  // The preregistration in force when the run starts is the one the run is bound to. A long run
+  // must not pick up an amendment appended while it was in progress.
+  const preregSha256 = sha256(readFileSync(join(root, PREREG_PATH)));
   const seeds = [...options.seeds].sort((a, b) => a - b);
   if (new Set(seeds).size !== seeds.length) throw new Error("seed set contains duplicates");
   const agents = [...options.baselines, ...(options.agents ?? [])];
@@ -87,7 +90,7 @@ export async function executeRun(options: RunOptions): Promise<RunRecord> {
     bench: BENCH,
     block: options.block,
     manifest_sha256: manifestHash(manifest),
-    prereg_sha256: sha256(readFileSync(join(root, PREREG_PATH))),
+    prereg_sha256: preregSha256,
     spiral_commit: manifest.spiral.commit,
     node: process.version,
     seeds,

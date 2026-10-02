@@ -18,9 +18,11 @@ export const SEED_BLOCKS = {
 /** Families whose sections the preregistration declares frozen (the "Frozen families:" line). */
 export function frozenFamilies(root: string): string[] {
   const text = readFileSync(join(root, "prereg/v0.md"), "utf8");
-  const line = text.split("\n").find((l) => l.startsWith("Frozen families:"));
-  if (!line) return [];
-  return line.slice("Frozen families:".length).split(",").map((s) => s.trim().replace(/[.*`]/g, "")).filter((s) => s !== "" && s !== "none");
+  // Every such line counts: the first is in the header, and an amendment that freezes another
+  // family adds its own line without editing earlier text.
+  return text.split("\n").filter((l) => l.startsWith("Frozen families:"))
+    .flatMap((line) => line.slice("Frozen families:".length).split(","))
+    .map((s) => s.trim().replace(/[.*`]/g, "")).filter((s) => s !== "" && s !== "none");
 }
 
 export function requireFrozen(root: string, family: string): void {

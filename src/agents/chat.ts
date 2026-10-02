@@ -13,6 +13,7 @@
 // Only loopback endpoints are accepted. A transport failure throws: it is an infrastructure
 // failure, the run aborts, and it is rerun whole.
 
+import { request } from "node:http";
 import type { Agent, EpisodeInfo } from "../harness/agent.ts";
 import { canonical, isObject, sha256, type Json } from "../harness/json.ts";
 
@@ -109,8 +110,8 @@ export class ChatAgent implements Agent {
 
   constructor(options: ChatOptions) {
     const url = new URL(options.baseUrl);
-    if (!["127.0.0.1", "localhost", "[::1]"].includes(url.hostname)) {
-      throw new Error(`chat adapter accepts loopback endpoints only, got ${url.hostname}`);
+    if (url.protocol !== "http:" || !["127.0.0.1", "localhost", "[::1]"].includes(url.hostname)) {
+      throw new Error(`chat adapter accepts http loopback endpoints only, got ${url.protocol}//${url.hostname}`);
     }
     this.options = options;
     this.endpoint = `${options.baseUrl.replace(/\/+$/, "")}/chat/completions`;
@@ -168,17 +169,34 @@ export class ChatAgent implements Agent {
     return action;
   }
 
-  private async post(body: object): Promise<Reply> {
-    const response = await fetch(this.endpoint, {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(body),
-      signal: AbortSignal.timeout(this.options.timeoutMs ?? 3_600_000),
+  /**
+   * One POST over node:http. Not fetch: Node's fetch abandons a request whose response headers have
+   * not arrived within five minutes, whatever timeout it is given, and a non-streaming completion
+   * sends its headers only when generation ends. On a GPU shared with other jobs a reply can take
+   * longer than that, and a slow server is not a failed one.
+   */
+  private post(body: object): Promise<Reply> {
+    const payload = JSON.stringify(body);
+    const timeoutMs = this.options.timeoutMs ?? 3_600_000;
+    return new Promise<Reply>((resolve, reject) => {
+      const req = request(this.endpoint, { method: "POST", headers: { "content-type": "application/json", "content-length": Buffer.byteLength(payload) } }, (res) => {
+        const chunks: Buffer[] = [];
+        res.on("data", (chunk: Buffer) => chunks.push(chunk));
+        res.on("error", reject);
+        res.on("end", () => {
+          const text = Buffer.concat(chunks).toString("utf8");
+          if (res.statusCode !== 200) { reject(new Error(`chat endpoint returned HTTP ${res.statusCode}: ${text.slice(0, 300)}`)); return; }
+          try {
+            const data = JSON.parse(text) as { choices?: Array<{ message?: { content?: string | null; reasoning_content?: string | null } }> };
+            const message = data.choices?.[0]?.message;
+            if (!message) { reject(new Error("chat endpoint returned no message")); return; }
+            resolve({ content: message.content ?? "", reasoning: message.reasoning_content ?? "" });
+          } catch (error) { reject(error as Error); }
+        });
+      });
+      req.setTimeout(timeoutMs, () => req.destroy(new Error(`chat endpoint did not answer within ${timeoutMs} ms`)));
+      req.on("error", reject);
+      req.end(payload);
     });
-    if (!response.ok) throw new Error(`chat endpoint returned HTTP ${response.status}: ${(await response.text()).slice(0, 300)}`);
-    const data = (await response.json()) as { choices?: Array<{ message?: { content?: string | null; reasoning_content?: string | null } }> };
-    const message = data.choices?.[0]?.message;
-    if (!message) throw new Error("chat endpoint returned no message");
-    return { content: message.content ?? "", reasoning: message.reasoning_content ?? "" };
   }
 }

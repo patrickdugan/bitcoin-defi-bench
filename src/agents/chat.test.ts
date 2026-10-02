@@ -53,6 +53,8 @@ test("the first JSON object in a reply is the action; a reply with none is passe
 
 test("only loopback endpoints are accepted", () => {
   assert.throws(() => new ChatAgent(options("https://api.example.com/v1")), /loopback/);
+  assert.throws(() => new ChatAgent(options("http://api.example.com/v1")), /loopback/);
+  assert.throws(() => new ChatAgent(options("https://localhost:1/v1")), /loopback/);
   assert.ok(new ChatAgent(options("http://localhost:1/v1")).id.startsWith("mock@"));
 });
 

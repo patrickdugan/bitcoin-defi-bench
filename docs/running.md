@@ -25,6 +25,15 @@ node --experimental-strip-types scripts/run_settlement_object.ts --block confirm
 
 Three of its four cells simulate 200-agent populations, and each fixture needs nine runs of the pinned server, so the development block takes about ten minutes and the confirmatory block the better part of an hour.
 
+Family 6 (position netting):
+
+```
+node --experimental-strip-types scripts/run_netting.ts --block development
+node --experimental-strip-types scripts/run_netting.ts --block confirmatory
+```
+
+Its instances are small; both blocks run in seconds.
+
 Every run verifies the manifest first and recomputes the baselines in the same process.
 
 ## Rebuilding fixtures

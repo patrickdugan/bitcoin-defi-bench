@@ -11,11 +11,852 @@
     }
   },
   "config": {
+    "config/netting.json": "26936a6c7a9a89762a2e28e0152de22b81afb7731de497af4de7a7f5de5014c5",
     "config/placement.json": "8803d9872ba947334c0b29490f6d7a2b993fe7bdb35baabf80dfd6be1219d917",
     "config/protocol.json": "7f0034406b80fecd66de7d42bbca1e646da30c8a36e44afb94e033c75f34dfc4",
     "config/settlement_object.json": "32814b2f968678cad1aabbff7b139df7e21065556eadd0ebc58e3ebd1f1011a5"
   },
   "fixtures": [
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-0000.json",
+      "family": "netting",
+      "seed": 0,
+      "generator": "netting-fixture/v0",
+      "sha256": "89ff7ada293d519a6e1253dd36bc31b7fd4bc06df846fc72e0dee20a96414e5a"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-0001.json",
+      "family": "netting",
+      "seed": 1,
+      "generator": "netting-fixture/v0",
+      "sha256": "6d42e6f8eb2346d9683f36c387d01e8e2f4549eebcadd9dd62108ff880108f8d"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-0002.json",
+      "family": "netting",
+      "seed": 2,
+      "generator": "netting-fixture/v0",
+      "sha256": "e64a68ce9ca44561393130dc2d92848a64b40370fcdf7d8d7fe91b6250a8a51f"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-0003.json",
+      "family": "netting",
+      "seed": 3,
+      "generator": "netting-fixture/v0",
+      "sha256": "02ee95bdc45cecf7fa276f345e69466b6dc415d49c036b871848eea9b02cdc35"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-0004.json",
+      "family": "netting",
+      "seed": 4,
+      "generator": "netting-fixture/v0",
+      "sha256": "e7a6cbc755893f5e7294bb42ba82784c59cec16236c939a86833719a4703a089"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-0005.json",
+      "family": "netting",
+      "seed": 5,
+      "generator": "netting-fixture/v0",
+      "sha256": "53c38bf001c35212fab63e6d8504d5c4b022a370ae446e28e6bfce9d1465f4c6"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-0006.json",
+      "family": "netting",
+      "seed": 6,
+      "generator": "netting-fixture/v0",
+      "sha256": "ff80c96632fdab7c6d8de09c8122b6a9fdcfa788790fc1aa2671391cd103e163"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-0007.json",
+      "family": "netting",
+      "seed": 7,
+      "generator": "netting-fixture/v0",
+      "sha256": "81822ab01bc37c126092112102c89d8472d235053e8e54ecf3c470d604543231"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1000.json",
+      "family": "netting",
+      "seed": 1000,
+      "generator": "netting-fixture/v0",
+      "sha256": "f74e5e50e7e550c20a40eacbe4c0b726846e64e1564205c272e1e9b8efbd1dc8"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1001.json",
+      "family": "netting",
+      "seed": 1001,
+      "generator": "netting-fixture/v0",
+      "sha256": "f3afafe730427bc91c8ad4119899429faf9e331ff6f1e1165ac1fb58f4f8fabd"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1002.json",
+      "family": "netting",
+      "seed": 1002,
+      "generator": "netting-fixture/v0",
+      "sha256": "87197f3e2757ae4611437b3cff1b08bedcf8cb3b7a669bfa9f669a1f5ca7175e"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1003.json",
+      "family": "netting",
+      "seed": 1003,
+      "generator": "netting-fixture/v0",
+      "sha256": "c6ecfaaab2b667b94bb0e95a3d6090b68167926b05c4804644442b332219b967"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1004.json",
+      "family": "netting",
+      "seed": 1004,
+      "generator": "netting-fixture/v0",
+      "sha256": "b1e6a61b257fd7c0763e22cf8a5bd020c8160aae9231364e0b76221b3bdeb321"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1005.json",
+      "family": "netting",
+      "seed": 1005,
+      "generator": "netting-fixture/v0",
+      "sha256": "d4e08b120195aeb122f52f5b9fe5b2e9cb8547bedbe8ed4cd4958218e6a61c8e"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1006.json",
+      "family": "netting",
+      "seed": 1006,
+      "generator": "netting-fixture/v0",
+      "sha256": "ef4c6ab739e5728c9b8fe817c2a7d2a46a8575b391c46fd11889e6649de35a9f"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1007.json",
+      "family": "netting",
+      "seed": 1007,
+      "generator": "netting-fixture/v0",
+      "sha256": "b189cd9862a9d40382c6195f364a9076e5ebbcea7299b5843b0cdd3d77301c74"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1008.json",
+      "family": "netting",
+      "seed": 1008,
+      "generator": "netting-fixture/v0",
+      "sha256": "b8f588aa913a7450543bbf4f16051407df36826f0ac755311d8f6c67199ac195"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1009.json",
+      "family": "netting",
+      "seed": 1009,
+      "generator": "netting-fixture/v0",
+      "sha256": "500e5d9848cea008dc17e2a64c972466583ec5183721505cb3f9d44cead026ac"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1010.json",
+      "family": "netting",
+      "seed": 1010,
+      "generator": "netting-fixture/v0",
+      "sha256": "bb1edbccd17616ea1973466e6ae38d6972b72c21e23184495fab637b42cacc23"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1011.json",
+      "family": "netting",
+      "seed": 1011,
+      "generator": "netting-fixture/v0",
+      "sha256": "86219737ef77590a7449be2dfc8b463da6712ee33238f19b03fcadd65de24fdb"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1012.json",
+      "family": "netting",
+      "seed": 1012,
+      "generator": "netting-fixture/v0",
+      "sha256": "005dfb718ab07367cedc3c9b8bfc848a810381fbbaa6b1c513f66e91175d2a4e"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1013.json",
+      "family": "netting",
+      "seed": 1013,
+      "generator": "netting-fixture/v0",
+      "sha256": "e84b066bde708355b432ad90ed952268628ff105176797b1d34b4cd80ea3b341"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1014.json",
+      "family": "netting",
+      "seed": 1014,
+      "generator": "netting-fixture/v0",
+      "sha256": "20927a2dd24738dc2ecbabddf704e0c9e64faba51133d41c0c1c5097256f3639"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1015.json",
+      "family": "netting",
+      "seed": 1015,
+      "generator": "netting-fixture/v0",
+      "sha256": "7d8fbafccdc15f6ab5d6a854d453445a79a8cb13fdf2384b31f8419d85fe6f30"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1016.json",
+      "family": "netting",
+      "seed": 1016,
+      "generator": "netting-fixture/v0",
+      "sha256": "317e1c932c8d728a83440f3a9a8672195c3a70e87e176074b4d40a36c01e43ac"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1017.json",
+      "family": "netting",
+      "seed": 1017,
+      "generator": "netting-fixture/v0",
+      "sha256": "bf9cf16bdea363b70699dd9053863824e4156541961f1b3bf18e5fe74e996dc5"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1018.json",
+      "family": "netting",
+      "seed": 1018,
+      "generator": "netting-fixture/v0",
+      "sha256": "947dc1246175f0c7b564dcd2dff9b7a3e6cd0a7c612946b9b5a6a7a300820e39"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1019.json",
+      "family": "netting",
+      "seed": 1019,
+      "generator": "netting-fixture/v0",
+      "sha256": "5d4a0a33362e0722cc40518c59c89f40bd545570c8ef857ef9c05e2482710466"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1020.json",
+      "family": "netting",
+      "seed": 1020,
+      "generator": "netting-fixture/v0",
+      "sha256": "50a3ca41d7f0d09e77bfe8301c78a385109811eebc6fa1debc06ba1ed0f16ff5"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1021.json",
+      "family": "netting",
+      "seed": 1021,
+      "generator": "netting-fixture/v0",
+      "sha256": "ff8ec96921cdf2d41e3dd62c5545c1b75109ad29a50c6b4219e133e16428e37d"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1022.json",
+      "family": "netting",
+      "seed": 1022,
+      "generator": "netting-fixture/v0",
+      "sha256": "33a2aaa3567841083fcd4d5a191fc5365028afd821b6f03b63caf7acfdd24116"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1023.json",
+      "family": "netting",
+      "seed": 1023,
+      "generator": "netting-fixture/v0",
+      "sha256": "065587baa74b8472a9ffb2127dc3316fbe08d8fd510ee9b7cee80043eb8901e2"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1024.json",
+      "family": "netting",
+      "seed": 1024,
+      "generator": "netting-fixture/v0",
+      "sha256": "ee92a1aab80edd552bfd358eb321b53c0dbea1ba7e5971076d2f5b2433825c67"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1025.json",
+      "family": "netting",
+      "seed": 1025,
+      "generator": "netting-fixture/v0",
+      "sha256": "e07b3c59c1d1711dcb0bc5dbe53475bb08dc1b58724afcf8190d2600e1d4710e"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1026.json",
+      "family": "netting",
+      "seed": 1026,
+      "generator": "netting-fixture/v0",
+      "sha256": "b01f48bee9461632315d1911459887227e913030b84c83f13c1fd156676fa06d"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1027.json",
+      "family": "netting",
+      "seed": 1027,
+      "generator": "netting-fixture/v0",
+      "sha256": "8d9a6c186683257ce839c281c3c7509d9ad639f7f0be36e4a0c5b5e701fcfa02"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1028.json",
+      "family": "netting",
+      "seed": 1028,
+      "generator": "netting-fixture/v0",
+      "sha256": "f40c7256c9431a9babb51cbcddb2e5331fc02f9adafa9bd5a9781ff97538040d"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1029.json",
+      "family": "netting",
+      "seed": 1029,
+      "generator": "netting-fixture/v0",
+      "sha256": "d5041d4c45cfc5579ef39ff0a80d1966d01bc5d1c08e50d345eeeb7f8b0764da"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1030.json",
+      "family": "netting",
+      "seed": 1030,
+      "generator": "netting-fixture/v0",
+      "sha256": "88cac364f1ea1d5049023b9b8770c2502e06743af7d74a3203e5a1de1ac233a0"
+    },
+    {
+      "path": "fixtures/netting/bilateral_dense/seed-1031.json",
+      "family": "netting",
+      "seed": 1031,
+      "generator": "netting-fixture/v0",
+      "sha256": "12d9726567a47a9f49e0ad59ebf59e632e17d5327a6549cc2a94f59666350460"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-0000.json",
+      "family": "netting",
+      "seed": 0,
+      "generator": "netting-fixture/v0",
+      "sha256": "46cd910979e330ceb762deb82830e2337aa019ab56ca19614a1470110064611a"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-0001.json",
+      "family": "netting",
+      "seed": 1,
+      "generator": "netting-fixture/v0",
+      "sha256": "4ffb34c7bee22a08deb3555476071c03dd4fdc4b331f238c09e0409f72a706ff"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-0002.json",
+      "family": "netting",
+      "seed": 2,
+      "generator": "netting-fixture/v0",
+      "sha256": "bb53c2f0f281e7dea2da031020e5103fef0b6540ffbfb32755983847858d59af"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-0003.json",
+      "family": "netting",
+      "seed": 3,
+      "generator": "netting-fixture/v0",
+      "sha256": "b390509befa664730f6f02fddf55df9572af0fb2d77fa62f40e1ce5424a2d9cc"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-0004.json",
+      "family": "netting",
+      "seed": 4,
+      "generator": "netting-fixture/v0",
+      "sha256": "83753eea7606ce96b0e7e68916b2d3b587069725732e237860c8fa2b21ab2d86"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-0005.json",
+      "family": "netting",
+      "seed": 5,
+      "generator": "netting-fixture/v0",
+      "sha256": "91136d5434005102396edad62cd43e16b1f4d3d5b2724d5a15c04f1238269519"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-0006.json",
+      "family": "netting",
+      "seed": 6,
+      "generator": "netting-fixture/v0",
+      "sha256": "f4a475f06e739e6b20fa35f0bad3b7ff5e8d643e6fb5662a700309558a01e9e2"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-0007.json",
+      "family": "netting",
+      "seed": 7,
+      "generator": "netting-fixture/v0",
+      "sha256": "ef2bb1786a96f4a70c74128c7d3273722b59f84f2984a5b92b7ec31ce5034e1c"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1000.json",
+      "family": "netting",
+      "seed": 1000,
+      "generator": "netting-fixture/v0",
+      "sha256": "1569f3791ebe8deecc3004ecc63f1498315e5e34411c3988e626c328c8b14f83"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1001.json",
+      "family": "netting",
+      "seed": 1001,
+      "generator": "netting-fixture/v0",
+      "sha256": "55b6add012a6fc32d76374b820fc48958fbcc4a02ac333c78324539ea6b7d1c4"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1002.json",
+      "family": "netting",
+      "seed": 1002,
+      "generator": "netting-fixture/v0",
+      "sha256": "2e1a2e7859c3fd4e079e10ab9987a31c4e66c8985939381dd0b3a75e22e231d5"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1003.json",
+      "family": "netting",
+      "seed": 1003,
+      "generator": "netting-fixture/v0",
+      "sha256": "57884850e6eb77139d4f30eff53397989bf8a2141c7a266cb5b5cf00deb30e75"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1004.json",
+      "family": "netting",
+      "seed": 1004,
+      "generator": "netting-fixture/v0",
+      "sha256": "2c423c55f41f090fd6a7e435c33369b358f9b1acc705ca701e0f070e725119d1"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1005.json",
+      "family": "netting",
+      "seed": 1005,
+      "generator": "netting-fixture/v0",
+      "sha256": "de6744997db8a05bdcf8022a35934a82b9814fa9b0d23a90027b81a0517ba29f"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1006.json",
+      "family": "netting",
+      "seed": 1006,
+      "generator": "netting-fixture/v0",
+      "sha256": "58fcb7348bd42cde7689b96fbd26edb8538455f6926c78b53eee10f16b50ceed"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1007.json",
+      "family": "netting",
+      "seed": 1007,
+      "generator": "netting-fixture/v0",
+      "sha256": "ad370b503f5c29c5db75799114f0d95e9c0cc44e8546c78ec74051d365855d3a"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1008.json",
+      "family": "netting",
+      "seed": 1008,
+      "generator": "netting-fixture/v0",
+      "sha256": "d1a48d0489c369804e348f990fc7b4198f594e5e13bd68cfc36137bbb68a6ee0"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1009.json",
+      "family": "netting",
+      "seed": 1009,
+      "generator": "netting-fixture/v0",
+      "sha256": "c0053f09b32b298f2899f30b25f181f903cee6e53874190f9085f571a46b1e0c"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1010.json",
+      "family": "netting",
+      "seed": 1010,
+      "generator": "netting-fixture/v0",
+      "sha256": "9470c919a08fbf44a2bf8bb7164c559e5533c880f8aaf2817a61abde89fc22c0"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1011.json",
+      "family": "netting",
+      "seed": 1011,
+      "generator": "netting-fixture/v0",
+      "sha256": "1adaddd4acee2b15cb1b5c0030e96dc5458601e98ec53c326ea86833429d5e4d"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1012.json",
+      "family": "netting",
+      "seed": 1012,
+      "generator": "netting-fixture/v0",
+      "sha256": "5a7dfadea9761cedc8656ff3be7e93e22caf5fc9a0925c74ac1038f1c6bde2a2"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1013.json",
+      "family": "netting",
+      "seed": 1013,
+      "generator": "netting-fixture/v0",
+      "sha256": "4293326956aa798d13d673987b79f3c3561f379d306f0a7d22053f8b1d1443a4"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1014.json",
+      "family": "netting",
+      "seed": 1014,
+      "generator": "netting-fixture/v0",
+      "sha256": "84bd8d5d1e290892cc3e48bf4a2a76e8e90773c39facdc009cce593b06078cb2"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1015.json",
+      "family": "netting",
+      "seed": 1015,
+      "generator": "netting-fixture/v0",
+      "sha256": "8f53415d8c02b49150d9965a5a3cee28571a9059df880d3e3157e94d277700b6"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1016.json",
+      "family": "netting",
+      "seed": 1016,
+      "generator": "netting-fixture/v0",
+      "sha256": "a0e4c4fa4efe572093915fbde9e0855b636b4e816d68c93cf772b8d38287af35"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1017.json",
+      "family": "netting",
+      "seed": 1017,
+      "generator": "netting-fixture/v0",
+      "sha256": "ebdd1f8b2d8a345bb2df5c4cc41f0c6ad48fada6e38d1dfb78fe9fcaccd9f338"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1018.json",
+      "family": "netting",
+      "seed": 1018,
+      "generator": "netting-fixture/v0",
+      "sha256": "07a793eeb3fa28937b66a63ee5a8b8bfd180d6c2e6e24d57f1c38f35c867f8e3"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1019.json",
+      "family": "netting",
+      "seed": 1019,
+      "generator": "netting-fixture/v0",
+      "sha256": "913065dedf1b9422352c3cf6661fd8dbacad41bdd588734844684b0b3ed3b886"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1020.json",
+      "family": "netting",
+      "seed": 1020,
+      "generator": "netting-fixture/v0",
+      "sha256": "01e3a76f2a67d348c51d35aecd1f094451f18546ce6e0b878e43751497572cf1"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1021.json",
+      "family": "netting",
+      "seed": 1021,
+      "generator": "netting-fixture/v0",
+      "sha256": "7c4e2bfa32ac8f1e8c17c843dd9245790b2ae2f3eb0036dd8fab63c68d11e02c"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1022.json",
+      "family": "netting",
+      "seed": 1022,
+      "generator": "netting-fixture/v0",
+      "sha256": "9c5cecfe96d50a11ed1664c3ae6facccefe4060e1bd25b410d8e9ae11d2bed8f"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1023.json",
+      "family": "netting",
+      "seed": 1023,
+      "generator": "netting-fixture/v0",
+      "sha256": "904d0212fe8082bd7454cd2024fbdfda4b9476c5106c2d67646b9622d93f1168"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1024.json",
+      "family": "netting",
+      "seed": 1024,
+      "generator": "netting-fixture/v0",
+      "sha256": "b43f7c0b491f7124073d3938158743638a28c335993047308df8d4b58726c9a3"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1025.json",
+      "family": "netting",
+      "seed": 1025,
+      "generator": "netting-fixture/v0",
+      "sha256": "aa04696d202bea3cb05acae666fcc720b11a8015ffcbf8940a16f33ced3736c7"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1026.json",
+      "family": "netting",
+      "seed": 1026,
+      "generator": "netting-fixture/v0",
+      "sha256": "a73b4e14f6cf7348f4cce938b2e5e7fb07290165d26cea47ae6076afbc53ae55"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1027.json",
+      "family": "netting",
+      "seed": 1027,
+      "generator": "netting-fixture/v0",
+      "sha256": "c883df7adf1beea57f53112ca17731ffdfe2491411dbee76c29132ee8bc746c0"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1028.json",
+      "family": "netting",
+      "seed": 1028,
+      "generator": "netting-fixture/v0",
+      "sha256": "cd1a1774b1369c5a98d346a3ad08df804f1343f99eb433f07c6101bf533207fd"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1029.json",
+      "family": "netting",
+      "seed": 1029,
+      "generator": "netting-fixture/v0",
+      "sha256": "5a07c2e0cb3fa5d0bb110dcdc3337f2e399a75f2254119e824356765027f2673"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1030.json",
+      "family": "netting",
+      "seed": 1030,
+      "generator": "netting-fixture/v0",
+      "sha256": "9b534ec1927b14bae687da73f71ff559a7a7d6f722eafe8df3f620dc78b346eb"
+    },
+    {
+      "path": "fixtures/netting/multilateral_sparse/seed-1031.json",
+      "family": "netting",
+      "seed": 1031,
+      "generator": "netting-fixture/v0",
+      "sha256": "c108a21fec794bc60a437682ac161e76009ae26324017d68249fa28032663449"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-0000.json",
+      "family": "netting",
+      "seed": 0,
+      "generator": "netting-fixture/v0",
+      "sha256": "709362d8b2ae7789add58a4dd1360687319862b6d97af39810ddc33f85a9068e"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-0001.json",
+      "family": "netting",
+      "seed": 1,
+      "generator": "netting-fixture/v0",
+      "sha256": "1167f9f9e96239fdc56cf9cdf695864a9e68796e9014b8a029a870d3e619bfb4"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-0002.json",
+      "family": "netting",
+      "seed": 2,
+      "generator": "netting-fixture/v0",
+      "sha256": "c4ca02499101bb793a64325eda4591d04f38fd5bcbea1608e6d6db722f3407e5"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-0003.json",
+      "family": "netting",
+      "seed": 3,
+      "generator": "netting-fixture/v0",
+      "sha256": "2f5b40e7dfe25c20baaf50a3a034f31b5c037c822999b98df60ff7970847f712"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-0004.json",
+      "family": "netting",
+      "seed": 4,
+      "generator": "netting-fixture/v0",
+      "sha256": "22f69e59432446fc134ce0a4636f2c047bc8155df0e750ccdf4607ba5aad1d07"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-0005.json",
+      "family": "netting",
+      "seed": 5,
+      "generator": "netting-fixture/v0",
+      "sha256": "f4a241ae00454aad31f5b8b23317a6ef5a7beafd0f63566b5d3ec6e0c42a2213"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-0006.json",
+      "family": "netting",
+      "seed": 6,
+      "generator": "netting-fixture/v0",
+      "sha256": "6df94cbfd40c1595e8e6aefd9d242bfe9e016ec045fe643c0ff31aff9b322682"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-0007.json",
+      "family": "netting",
+      "seed": 7,
+      "generator": "netting-fixture/v0",
+      "sha256": "c3505288c19b7cbc39131ca36c0643773f97bf1dcdbd020a3732d6fab65ec8ca"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1000.json",
+      "family": "netting",
+      "seed": 1000,
+      "generator": "netting-fixture/v0",
+      "sha256": "793794658ce7deac84b3cab95ad12807f8920566b8e6c1949a84d8118d13cb7e"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1001.json",
+      "family": "netting",
+      "seed": 1001,
+      "generator": "netting-fixture/v0",
+      "sha256": "772ce901a587fbed789d056c4a544506ce53deeac72a0fb45cfb90e2885d389a"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1002.json",
+      "family": "netting",
+      "seed": 1002,
+      "generator": "netting-fixture/v0",
+      "sha256": "71d53088408ba9fc0366d8ab0b17de44b9fb73fd967c8a34c9e5cc6bf78389c4"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1003.json",
+      "family": "netting",
+      "seed": 1003,
+      "generator": "netting-fixture/v0",
+      "sha256": "cfc23a70d97f2fb3315ca07e8e2c97ce4aa0817269afd87726155e05163f9d33"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1004.json",
+      "family": "netting",
+      "seed": 1004,
+      "generator": "netting-fixture/v0",
+      "sha256": "a214362346f032e37aa91c5023612c35aab1f036701a0ae9d731a44da1bce5bf"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1005.json",
+      "family": "netting",
+      "seed": 1005,
+      "generator": "netting-fixture/v0",
+      "sha256": "a3bee4796c1fec1f29d477be029dfb14e6435bf01b63d1fead4e8f0fde0d6720"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1006.json",
+      "family": "netting",
+      "seed": 1006,
+      "generator": "netting-fixture/v0",
+      "sha256": "129b31a6e4fd65f280f0d78598cd4048c0d4bdd0c64599ab1dd6d0489dfaaa0f"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1007.json",
+      "family": "netting",
+      "seed": 1007,
+      "generator": "netting-fixture/v0",
+      "sha256": "e67263db4326ecbe4cba3247d838721859e185160f38eebdd3d3349677186fe8"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1008.json",
+      "family": "netting",
+      "seed": 1008,
+      "generator": "netting-fixture/v0",
+      "sha256": "f47aedaa311406faff2985ec421a6e682f6ac91e94692c458e55f70f06e13c95"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1009.json",
+      "family": "netting",
+      "seed": 1009,
+      "generator": "netting-fixture/v0",
+      "sha256": "eb0212061766bcf27c8afbd4e6a8a89e495612d079b4119c929aa48c1cc7dfdd"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1010.json",
+      "family": "netting",
+      "seed": 1010,
+      "generator": "netting-fixture/v0",
+      "sha256": "13f2b8816665276032e23b1a601977c1562137479ad9014fef71a12c5ee97562"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1011.json",
+      "family": "netting",
+      "seed": 1011,
+      "generator": "netting-fixture/v0",
+      "sha256": "dbc3027af2f770cb01d50f4e7d4f7fddadead4b6f18bc6e8a92c755a0887743b"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1012.json",
+      "family": "netting",
+      "seed": 1012,
+      "generator": "netting-fixture/v0",
+      "sha256": "66cdbbafc2c43a679842d53aa5e5a3debee3ced3a5128210a09639862f9b6d3e"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1013.json",
+      "family": "netting",
+      "seed": 1013,
+      "generator": "netting-fixture/v0",
+      "sha256": "c4291df8316c57ac7c67f362f7252665aac2792b68250bd0d6eb70dec226afb3"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1014.json",
+      "family": "netting",
+      "seed": 1014,
+      "generator": "netting-fixture/v0",
+      "sha256": "5fe66001417f519e76569c332b01f7e77372633d6e8426fb4da30a8d5fef7b17"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1015.json",
+      "family": "netting",
+      "seed": 1015,
+      "generator": "netting-fixture/v0",
+      "sha256": "86780bff7defb9b2dbc37c2938fe23d15a8debaeeeef2bd6b773bc40859dbdfb"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1016.json",
+      "family": "netting",
+      "seed": 1016,
+      "generator": "netting-fixture/v0",
+      "sha256": "8ff13e81da94d8e0729850bb1d0dde4b28be41d967883cf701ec1fb253f2ebad"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1017.json",
+      "family": "netting",
+      "seed": 1017,
+      "generator": "netting-fixture/v0",
+      "sha256": "8c653ff0460b5d47b4c368fbf49883892b0b7b1790fd709f7a3e58cd4f5df469"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1018.json",
+      "family": "netting",
+      "seed": 1018,
+      "generator": "netting-fixture/v0",
+      "sha256": "c045d427cacf601e6c519133c4f224832d4ffb21068f71d53fe1388e088fddc6"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1019.json",
+      "family": "netting",
+      "seed": 1019,
+      "generator": "netting-fixture/v0",
+      "sha256": "45f7ac2a750b900ad29b4fa5121ec6f3ce198e852e36ab4667717f6c505351f4"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1020.json",
+      "family": "netting",
+      "seed": 1020,
+      "generator": "netting-fixture/v0",
+      "sha256": "ef29db7c58c16a3d7220689994a77184e2754e9a6fb9b7e856e5d1754b732b29"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1021.json",
+      "family": "netting",
+      "seed": 1021,
+      "generator": "netting-fixture/v0",
+      "sha256": "52c58cd5b69d874c347a85cf25505cb33f79f3e27fefb8a03698840ce44d02d3"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1022.json",
+      "family": "netting",
+      "seed": 1022,
+      "generator": "netting-fixture/v0",
+      "sha256": "29e5747cc6609d919a9c21960351a918e9b42bd08dfe1163b86e647a42db9474"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1023.json",
+      "family": "netting",
+      "seed": 1023,
+      "generator": "netting-fixture/v0",
+      "sha256": "8082784ebb04f4a77ee1d4d30cb437543c8c04f8cf771654a73ae01de7296240"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1024.json",
+      "family": "netting",
+      "seed": 1024,
+      "generator": "netting-fixture/v0",
+      "sha256": "64a2fff3a43c395bed101ba77b4443bb02fb4efdf78c14baea1120421d69c8e8"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1025.json",
+      "family": "netting",
+      "seed": 1025,
+      "generator": "netting-fixture/v0",
+      "sha256": "91727cde81ccf10071c9d96ce9fa4981b2f3c60d117ca67b3766feca49c1ab3e"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1026.json",
+      "family": "netting",
+      "seed": 1026,
+      "generator": "netting-fixture/v0",
+      "sha256": "d156e84de41278487f23c2136b67341ca1ea77b81aee0c2dbd88644ba2f2f2f9"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1027.json",
+      "family": "netting",
+      "seed": 1027,
+      "generator": "netting-fixture/v0",
+      "sha256": "b2dd84b407ededd91aa021735139c053fe7fb6ab1f48e5e46856f88a67b90eba"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1028.json",
+      "family": "netting",
+      "seed": 1028,
+      "generator": "netting-fixture/v0",
+      "sha256": "5412b522d9944d74a0ee48e6c3dbd3018b2c0eedb7f1c15c84899cc2c92e349e"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1029.json",
+      "family": "netting",
+      "seed": 1029,
+      "generator": "netting-fixture/v0",
+      "sha256": "442487859f18e788618026ed49854fa22d858dfce36742dcbbb4871657c05cfe"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1030.json",
+      "family": "netting",
+      "seed": 1030,
+      "generator": "netting-fixture/v0",
+      "sha256": "93f5e2a63c9737161c0ea4f3acd069945ea694f601c675639a621347338a7d1d"
+    },
+    {
+      "path": "fixtures/netting/tight_links/seed-1031.json",
+      "family": "netting",
+      "seed": 1031,
+      "generator": "netting-fixture/v0",
+      "sha256": "d1bc64fd2e0f88c25899b5b555e5a8d3b3d9a3239a354eebb094c92327811265"
+    },
     {
       "path": "fixtures/placement/seed-0000.json",
       "family": "placement",

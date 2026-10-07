@@ -19,6 +19,8 @@ import { graphStats, parseGml } from "../src/tasks/placement/gml.ts";
 import { loadPlacementConfig } from "../src/tasks/placement/task.ts";
 import { FIXTURE_VERSION as SETTLEMENT_VERSION, fixtureBytes as settlementBytes, fixturePath as settlementPath, generateFixture as generateSettlement } from "../src/tasks/settlement_object/generate.ts";
 import { loadProtocol, loadSettlementConfig } from "../src/tasks/settlement_object/task.ts";
+import { FIXTURE_VERSION as NETTING_VERSION, fixtureBytes as nettingBytes, fixturePath as nettingPath, generateFixture as generateNetting } from "../src/tasks/netting/generate.ts";
+import { loadNettingConfig } from "../src/tasks/netting/task.ts";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -64,6 +66,18 @@ for (const cell of Object.keys(settlement.cells).sort()) {
     entries.push({ path: settlementPath(cell, seed), family: "settlement_object", seed, generator: SETTLEMENT_VERSION, sha256: sha256(text) });
   }
   console.log(`settlement_object/${cell}: ${SEED_BLOCKS.development.length + SEED_BLOCKS.confirmatory.length} fixtures`);
+}
+
+// Family 6: clearing instances, small enough to commit whole.
+const netting = loadNettingConfig(root);
+for (const cell of Object.keys(netting.cells).sort()) {
+  mkdirSync(join(root, "fixtures/netting", cell), { recursive: true });
+  for (const seed of [...SEED_BLOCKS.development, ...SEED_BLOCKS.confirmatory]) {
+    const text = nettingBytes(generateNetting(seed, cell, netting.cells[cell]!, netting.market));
+    if (writeIfChanged(join(root, nettingPath(cell, seed)), text)) written += 1;
+    entries.push({ path: nettingPath(cell, seed), family: "netting", seed, generator: NETTING_VERSION, sha256: sha256(text) });
+  }
+  console.log(`netting/${cell}: ${SEED_BLOCKS.development.length + SEED_BLOCKS.confirmatory.length} fixtures`);
 }
 
 const manifest = buildManifest(root, BENCH, vendoredCommit(root), entries);

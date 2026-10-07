@@ -115,7 +115,7 @@ test("the manifest binds the pinned Spiral commit, the imported model files, the
 
 test("a tampered fixture is refused by name; an unlisted fixture is refused; a wrong pin is refused", () => {
   const manifest = readManifest(root);
-  const entry = manifest.fixtures[0]!;
+  const entry = manifest.fixtures.find((f) => f.family === "placement")!;
   const tmp = mkdtempSync(join(tmpdir(), "bdb-manifest-"));
   mkdirSync(dirname(join(tmp, entry.path)), { recursive: true });
   const original = readFileSync(join(root, entry.path), "utf8");

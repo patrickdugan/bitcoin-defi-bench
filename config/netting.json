@@ -1,0 +1,29 @@
+{
+  "description": "Family 6 (docs/tasks.md section 7): a clearing instance in the terms of US 2021/0004796 A1 (R14 of the paper). Every value here is a bench decision; the application supplies the construction, not parameters.",
+  "epsilon_unused": null,
+  "infeasible_penalty_factor": 2,
+  "budget": { "attempts": 3, "probes": 8 },
+  "market": {
+    "base_price": 100000,
+    "entry_spread_ppm": 50000,
+    "settlement_spread_ppm": 80000,
+    "max_quantity": 10,
+    "link_rate_ppm": 100,
+    "ghost_rate_ppm": 2000,
+    "base_fee_sats": 0,
+    "collateral_ppm_of_gross_payable": 1100000
+  },
+  "cells": {
+    "bilateral_dense": { "traders": 6, "trades": 60, "graph": "uniform", "link_capacity_ppm_of_notional": 200000 },
+    "multilateral_sparse": { "traders": 24, "trades": 48, "graph": "ring", "link_capacity_ppm_of_notional": 200000 },
+    "tight_links": { "traders": 16, "trades": 48, "graph": "ring", "link_capacity_ppm_of_notional": 20000 }
+  },
+  "provenance": {
+    "construction": "given: R14 (nodes are addresses with positions, edges weighted by trade amounts, an external settlement value, ghost links to connect subgraphs, zero-sum settlement)",
+    "market": "invented: prices in sats per unit of one instrument; a link costs 100 ppm, a ghost link 2000 ppm; the base fee is zero in v0 so that the ceiling is exact",
+    "collateral_ppm_of_gross_payable": "invented: collateral is set after the settlement value to 110% of each trader's gross payable, so every plan is fundable",
+    "cells": "invented: dense bilateral trading; a sparse ring with chords where multilateral netting matters; the ring with links at 2% of notional, where ghost links or longer paths are needed",
+    "budget": "invented",
+    "infeasible_penalty_factor": "invented"
+  }
+}

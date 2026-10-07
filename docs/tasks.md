@@ -132,7 +132,7 @@ An action whose own counter is exhausted costs one attempt instead, so every ste
 
 ### 1.3 Rejection [given: audit L3, ledger S1]
 
-A rejected or malformed action is the identity on simulator state and costs its budget. Validation is side-effect free and precedes every mutation; a multi-part action is accepted or rejected whole. An action the harness cannot parse, or that names no listed tool, costs one attempt. Each rejection carries one reason from a closed list (`malformed`, `unknown_tool`, `unknown_node`, `self_pair`, `not_integer`, `below_minimum`, `over_budget`, `out_of_grid`, `phase_closed`).
+A rejected or malformed action is the identity on simulator state and costs its budget. Validation is side-effect free and precedes every mutation; a multi-part action is accepted or rejected whole. An action the harness cannot parse, or that names no listed tool, costs one attempt. Each rejection carries one reason from a closed list (`malformed`, `unknown_tool`, `unknown_node`, `self_pair`, `not_integer`, `below_minimum`, `over_budget`, `out_of_grid`, `phase_closed`, and for plans `no_link` and `unbalanced`).
 
 The test for this property serializes the full episode state canonically before and after a rejected action and requires byte equality, with the budget counter reduced by exactly the tool's cost.
 
@@ -510,13 +510,13 @@ An operator bonds a connector service with an optimistic escrow E(B, κ, Δ) and
 
 **Baselines.** `random` on the (B, Δ) grid. `ghost_required_bond`: Spiral's `GhostPlan.required_bond` rule, amount × (0.10 + risk rate × horizon), with Δ = 144. `oracle`: the grid minimum of expected cost.
 
-## 7. Family 6: position netting toward a target settlement value (specified, not implemented)
+## 7. Family 6: position netting toward a target settlement value
 
 Derives from the paper §2.4 and §4.2, the errata E3, and the application the paper cites as R14 (US 2021/0004796 A1), whose subject is decentralized derivatives clearing: nodes are addresses, each with positions; edges are weighted with the amounts traded; a target value T is imposed from market data or inferred; ghost nodes connect subgraphs so that the rewrite nets to zero-sum as close to T as possible; the output is the transfers between the nodes holding open positions at expiration. Task ids: `netting/<cell>`.
 
 A clearing operator, or any party holding positions, must settle every open position at the settlement value with as little gross value moved, and as few transfers, as the settlement links allow. Netting is what makes that cheap; ghost links are what make it possible when the trade graph does not connect.
 
-Decided on review on 2026-10-06: this family is scored, and the expectation is that a skill passes it (see "Expectation" below).
+Decided on review on 2026-10-06: this family is scored, and the expectation is that a skill passes it (see "Expectation" below). Implemented; its preregistration is Amendment 3 of `prereg/v0.md`.
 
 ### 7.1 Simulator [invented, anchored to R14]
 
@@ -527,9 +527,9 @@ Decided on review on 2026-10-06: this family is scored, and the expectation is t
 | Settlement value | T, drawn by a seeded process around the entry prices; external to the agent, as the application's market-data case |
 | Obligation of a trade | v = q × (T − p₀): the short pays the long when v > 0, the long pays the short when v < 0 |
 | Net obligation of a node | n_i = Σ received − Σ paid over its trades; Σ_i n_i = 0 by construction |
-| Links | every traded pair has a bilateral link with a capacity (the most it can carry in total, either direction) and a per-unit cost in parts per million. Any other pair can be joined by a ghost link: unlimited, at a higher per-unit cost. |
+| Links | every traded pair has a bilateral link with a capacity (the most it can carry in total, either direction) and a per-unit cost in parts per million, sized against the pair's gross notional. Any pair can be joined by a ghost link: unlimited, at a higher per-unit cost. |
 | Collateral | the generator sets c_i at or above each node's gross payable at T, so every obligation can be met and every failure is the plan's |
-| Costs | per-unit rates for links and ghost links, and a base fee per transfer, all declared inputs |
+| Costs | per-unit rates for links and ghost links, and a base fee per transfer, all declared inputs. The base fee is zero in v0 so that the ceiling is exact; a fixed-charge cell is for later. |
 
 A plan is a list of transfers `{ from, to, sats, via }` with `via` either `link` or `ghost`. It is valid when every amount is a positive integer; every `link` transfer uses a pair that has traded, and the total on each link stays within its capacity; every node's net paid minus received equals its net obligation exactly; and no node pays more in total than its collateral. A plan that breaks any of these is rejected whole and places nothing.
 
@@ -552,15 +552,15 @@ The agent sees the whole position graph. Nothing is hidden in v0; the difficulty
 
 | Tool | Args | Cost |
 |---|---|---|
-| `probe` | `{ plan }` | 1 probe. Validates the plan and returns its violations and its cost without committing it. |
-| `settle` | `{ plan }` | 1 attempt. Commits a valid plan and ends the phase; an invalid one is rejected whole. |
+| `probe` | `{ plan }` | 1 probe, accepted or not. Validates the plan and returns every violation, with its cost, transfers, gross and ghost volume, without committing it. |
+| `settle` | `{ plan }` | 1 attempt. Commits a valid plan and ends the phase; an invalid one is rejected whole, with the first violation as the reason (`no_link`, `unbalanced`, `over_budget` for a link or a trader over its limit, or the common reasons) and the full list in the result. |
 | `commit` | none | 0. Ends the phase with no plan. |
 
 Budget: 3 attempts, 8 probes, 0 blocks, 0 sats. [invented]
 
 ### 7.4 Scoring
 
-Cost of a plan: Σ over transfers of sats × rate(via) / 10⁶ + base fee × number of transfers, in sats. Native value: −ln(cost). An episode that ends with no accepted plan is scored at twice the cost of the floor's plan. Band: ±0.05 in ln cost [invented].
+Cost of a plan: Σ over transfers of sats × rate(via) / 10⁶ + base fee × number of transfers, in sats. Native value: −ln(cost), with a floor of one sat so that a settlement that costs nothing scores zero. An episode that ends with no accepted plan is scored at twice the cost of the floor's plan. Band: ±0.05 in ln cost [invented].
 
 ### 7.5 Baselines
 
@@ -570,13 +570,13 @@ Cost of a plan: Σ over transfers of sats × rate(via) / 10⁶ + base fee × num
 | `bilateral_net` | net each pair's trades to one amount, settle it on the pair's link, spill to ghost | reference heuristic |
 | `min_cost_flow` | the exact minimum-cost flow with supplies n_i over the links (capacitated, at their rates) and ghost links (uncapacitated, at the ghost rate); transfers are the flow's edges | ceiling |
 
-The ceiling ignores the base fee, which would make the exact problem a fixed-charge design problem. It is therefore a reference and not a bound, as every ceiling in the bench is; the clip at 1.5 is for this.
+The ceiling ignores the base fee, which would make the exact problem a fixed-charge design problem. At the zero base fee of v0 it is exact, and the harness asserts that nothing beats it on any episode; with a base fee it would be a reference and not a bound, as every ceiling in the bench is.
 
-Cells: `netting/bilateral_dense` (few traders, many trades per pair: bilateral netting nearly suffices), `netting/multilateral_sparse` (many traders, a chain-like trade graph with cycles: multilateral netting matters), `netting/disconnected` (two trade subgraphs with obligations that cannot net within either: ghost links are needed, the application's own case).
+Cells: `netting/bilateral_dense` (six traders, sixty trades over every pair: bilateral netting removes about half the gross cost and multilateral netting about half of what remains), `netting/multilateral_sparse` (twenty-four traders on a ring with chords, about one trade per pair: only multilateral netting helps), `netting/tight_links` (sixteen traders on a ring with chords and links at 2% of notional: ghost links or longer paths are needed). A cell of disconnected subgraphs was specified first and withdrawn: every trade is bilateral, so each subgraph nets to zero on its own and nothing ever has to cross between them. What forces a ghost link is capacity, not connectivity.
 
 ### 7.6 Expectation, and what is flagged
 
-A skill that implements minimum-cost flow and emits the flow as a plan should reach the ceiling. The harness checks this directly: a scripted agent that runs the oracle's algorithm through `act` must reproduce `min_cost_flow` exactly, the identity control of this family. An LLM agent given such a skill is expected to score at least 0.9; one without a skill is expected to produce plans that fail conservation and be rejected. A result above the ceiling raises `exceeds_oracle` as elsewhere.
+A skill that implements minimum-cost flow and emits the flow as a plan should reach the ceiling. The harness checks this directly: the ceiling baseline computes its plan from the observation alone (nothing in this family is hidden, so it needs no privileged channel), and the identity control runs the exact solver on the fixture itself and requires the same score on every episode. An LLM agent given such a skill is expected to score at least 0.9; one without a skill is expected to produce plans that fail conservation and be rejected. A result above the ceiling raises `exceeds_oracle` as elsewhere.
 
 ### 7.7 Rail-specific cells, later
 

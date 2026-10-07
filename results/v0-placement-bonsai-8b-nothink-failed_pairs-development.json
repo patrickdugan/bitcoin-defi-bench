@@ -1,0 +1,4685 @@
+{
+ "bench": "bitcoin-defi-bench/v0",
+ "block": "development",
+ "manifest_sha256": "d7c0276a31ce350d5738ac734a256d293423e58293cb10d86c97db850b577101",
+ "prereg_sha256": "f430aefe0969d5e92cc43e9cb3a760b0431d49c6d85c60d210b4395cdc4844e5",
+ "spiral_commit": "9824c30ad402cc9bca768eca27d176e0e8788db5",
+ "node": "v24.19.0",
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7
+ ],
+ "agents": [
+  {
+   "id": "none",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "random",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "failure_aware",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "oracle",
+   "privileged": true,
+   "baseline": true
+  },
+  {
+   "id": "bonsai-8b-nothink@6126b58af965",
+   "privileged": false,
+   "baseline": false,
+   "details": {
+    "adapter": "chat-adapter/v0",
+    "model": "bonsai-8b",
+    "model_sha256": "284a335aa3fb2ced3b1b01fcb40b08aa783e3b70832767f0dd2e3fdfa134bd54",
+    "runtime": "llama-prism 0.2.0-dev (build 10743, commit adfffbe41), win-cuda-12.4",
+    "sampling": {
+     "temperature": 0.7,
+     "top_p": 0.8,
+     "top_k": 20,
+     "max_tokens": 512,
+     "seed": 20261001
+    },
+    "thinking": false,
+    "prompt_sha256": "ad86026384283b49c22a0398a66527daf785a8a84458a4bb1ec0a282613136f2",
+    "skills": [
+     {
+      "name": "failed_pairs",
+      "sha256": "70025058a9eb5e53055343d4867c35cd2de706b3d1444ba5ede575ece238704f",
+      "description_sha256": "c07e3ba2ed2260215dec1eddcbad40ca3b467d6c7b47ffacd46bec36c7cebf03"
+     }
+    ],
+    "max_skill_calls": 4,
+    "skill_protocol": "call by a skill field or a tool field naming a carried skill; result as compact json; {tool: send} or {send: name} sends a stored result that is an action"
+   }
+  }
+ ],
+ "tasks": [
+  {
+   "task": "placement/stationary",
+   "unit": "success rate over the evaluation demands, percentage points",
+   "band": 1,
+   "floor": "random",
+   "ceiling": "oracle",
+   "reference": "failure_aware",
+   "metrics": [
+    "volume_share"
+   ]
+  },
+  {
+   "task": "placement/shift",
+   "unit": "success rate over the evaluation demands, percentage points",
+   "band": 1,
+   "floor": "random",
+   "ceiling": "oracle",
+   "reference": "failure_aware",
+   "metrics": [
+    "volume_share"
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "task": "placement/stationary",
+   "seed": 0,
+   "cell": "balanced_band",
+   "agent": "none",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 40,
+    "volume_share": 79.38931297709924
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 0,
+   "cell": "uniform",
+   "agent": "none",
+   "value": 85.45454545454545,
+   "metrics": {
+    "delivered": 94,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 51,
+    "volume_share": 73.2824427480916
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 0,
+   "cell": "polarized",
+   "agent": "none",
+   "value": 75.45454545454545,
+   "metrics": {
+    "delivered": 83,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 80,
+    "volume_share": 57.76081424936387
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 0,
+   "cell": "balanced_band",
+   "agent": "random",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 40,
+    "volume_share": 79.38931297709924
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 0,
+   "cell": "uniform",
+   "agent": "random",
+   "value": 85.45454545454545,
+   "metrics": {
+    "delivered": 94,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 51,
+    "volume_share": 73.2824427480916
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 0,
+   "cell": "polarized",
+   "agent": "random",
+   "value": 78.18181818181819,
+   "metrics": {
+    "delivered": 86,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 89,
+    "volume_share": 58.778625954198475
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 0,
+   "cell": "balanced_band",
+   "agent": "failure_aware",
+   "value": 97.27272727272727,
+   "metrics": {
+    "delivered": 107,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 10,
+    "volume_share": 94.65648854961832
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 0,
+   "cell": "uniform",
+   "agent": "failure_aware",
+   "value": 94.54545454545455,
+   "metrics": {
+    "delivered": 104,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 17,
+    "volume_share": 88.54961832061069
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 0,
+   "cell": "polarized",
+   "agent": "failure_aware",
+   "value": 84.54545454545455,
+   "metrics": {
+    "delivered": 93,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 43,
+    "volume_share": 73.02798982188295
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 0,
+   "cell": "balanced_band",
+   "agent": "oracle",
+   "value": 100,
+   "metrics": {
+    "delivered": 110,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 1,
+    "volume_share": 100
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 0,
+   "cell": "uniform",
+   "agent": "oracle",
+   "value": 97.27272727272727,
+   "metrics": {
+    "delivered": 107,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 8,
+    "volume_share": 93.89312977099236
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 0,
+   "cell": "polarized",
+   "agent": "oracle",
+   "value": 87.27272727272727,
+   "metrics": {
+    "delivered": 96,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 34,
+    "volume_share": 78.37150127226464
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 0,
+   "cell": "balanced_band",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 40,
+    "volume_share": 79.38931297709924
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 0,
+   "cell": "uniform",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 85.45454545454545,
+   "metrics": {
+    "delivered": 94,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 51,
+    "volume_share": 73.2824427480916
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 0,
+   "cell": "polarized",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 75.45454545454545,
+   "metrics": {
+    "delivered": 83,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 80,
+    "volume_share": 57.76081424936387
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 1,
+   "cell": "balanced_band",
+   "agent": "none",
+   "value": 84.54545454545455,
+   "metrics": {
+    "delivered": 93,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 20,
+    "volume_share": 80.80168776371308
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 1,
+   "cell": "uniform",
+   "agent": "none",
+   "value": 87.27272727272727,
+   "metrics": {
+    "delivered": 96,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 18,
+    "volume_share": 82.0675105485232
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 1,
+   "cell": "polarized",
+   "agent": "none",
+   "value": 78.18181818181819,
+   "metrics": {
+    "delivered": 86,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 30,
+    "volume_share": 68.35443037974683
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 1,
+   "cell": "balanced_band",
+   "agent": "random",
+   "value": 85.45454545454545,
+   "metrics": {
+    "delivered": 94,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 20,
+    "volume_share": 82.48945147679325
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 1,
+   "cell": "uniform",
+   "agent": "random",
+   "value": 87.27272727272727,
+   "metrics": {
+    "delivered": 96,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 18,
+    "volume_share": 82.0675105485232
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 1,
+   "cell": "polarized",
+   "agent": "random",
+   "value": 78.18181818181819,
+   "metrics": {
+    "delivered": 86,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 30,
+    "volume_share": 68.35443037974683
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 1,
+   "cell": "balanced_band",
+   "agent": "failure_aware",
+   "value": 95.45454545454545,
+   "metrics": {
+    "delivered": 105,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 12,
+    "volume_share": 93.45991561181435
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 1,
+   "cell": "uniform",
+   "agent": "failure_aware",
+   "value": 96.36363636363636,
+   "metrics": {
+    "delivered": 106,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 13,
+    "volume_share": 94.72573839662448
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 1,
+   "cell": "polarized",
+   "agent": "failure_aware",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 25,
+    "volume_share": 80.59071729957806
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 1,
+   "cell": "balanced_band",
+   "agent": "oracle",
+   "value": 98.18181818181819,
+   "metrics": {
+    "delivered": 108,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 7,
+    "volume_share": 96.62447257383967
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 1,
+   "cell": "uniform",
+   "agent": "oracle",
+   "value": 99.0909090909091,
+   "metrics": {
+    "delivered": 109,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 7,
+    "volume_share": 98.31223628691983
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 1,
+   "cell": "polarized",
+   "agent": "oracle",
+   "value": 90.9090909090909,
+   "metrics": {
+    "delivered": 100,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 18,
+    "volume_share": 85.0210970464135
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 1,
+   "cell": "balanced_band",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 84.54545454545455,
+   "metrics": {
+    "delivered": 93,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 20,
+    "volume_share": 80.80168776371308
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 1,
+   "cell": "uniform",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 17,
+    "volume_share": 85.23206751054852
+   },
+   "turns": 4,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 1,
+   "cell": "polarized",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 78.18181818181819,
+   "metrics": {
+    "delivered": 86,
+    "demands": 110,
+    "placed_sats": 8000,
+    "failed_attempts": 30,
+    "volume_share": 68.35443037974683
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 2,
+   "cell": "balanced_band",
+   "agent": "none",
+   "value": 92.72727272727273,
+   "metrics": {
+    "delivered": 102,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 10,
+    "volume_share": 90.47619047619048
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 2,
+   "cell": "uniform",
+   "agent": "none",
+   "value": 91.81818181818181,
+   "metrics": {
+    "delivered": 101,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 11,
+    "volume_share": 89.44099378881988
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 2,
+   "cell": "polarized",
+   "agent": "none",
+   "value": 78.18181818181819,
+   "metrics": {
+    "delivered": 86,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 29,
+    "volume_share": 71.42857142857143
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 2,
+   "cell": "balanced_band",
+   "agent": "random",
+   "value": 92.72727272727273,
+   "metrics": {
+    "delivered": 102,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 10,
+    "volume_share": 90.47619047619048
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 2,
+   "cell": "uniform",
+   "agent": "random",
+   "value": 91.81818181818181,
+   "metrics": {
+    "delivered": 101,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 11,
+    "volume_share": 89.44099378881988
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 2,
+   "cell": "polarized",
+   "agent": "random",
+   "value": 79.0909090909091,
+   "metrics": {
+    "delivered": 87,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 29,
+    "volume_share": 72.46376811594203
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 2,
+   "cell": "balanced_band",
+   "agent": "failure_aware",
+   "value": 92.72727272727273,
+   "metrics": {
+    "delivered": 102,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 10,
+    "volume_share": 90.47619047619048
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 2,
+   "cell": "uniform",
+   "agent": "failure_aware",
+   "value": 97.27272727272727,
+   "metrics": {
+    "delivered": 107,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 5,
+    "volume_share": 96.27329192546584
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 2,
+   "cell": "polarized",
+   "agent": "failure_aware",
+   "value": 87.27272727272727,
+   "metrics": {
+    "delivered": 96,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 19,
+    "volume_share": 83.64389233954451
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 2,
+   "cell": "balanced_band",
+   "agent": "oracle",
+   "value": 99.0909090909091,
+   "metrics": {
+    "delivered": 109,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 4,
+    "volume_share": 98.34368530020704
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 2,
+   "cell": "uniform",
+   "agent": "oracle",
+   "value": 97.27272727272727,
+   "metrics": {
+    "delivered": 107,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 5,
+    "volume_share": 96.27329192546584
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 2,
+   "cell": "polarized",
+   "agent": "oracle",
+   "value": 87.27272727272727,
+   "metrics": {
+    "delivered": 96,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 19,
+    "volume_share": 83.64389233954451
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 2,
+   "cell": "balanced_band",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 92.72727272727273,
+   "metrics": {
+    "delivered": 102,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 10,
+    "volume_share": 90.47619047619048
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 1,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 2,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 3,
+     "reason": "over_budget"
+    }
+   ]
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 2,
+   "cell": "uniform",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 91.81818181818181,
+   "metrics": {
+    "delivered": 101,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 11,
+    "volume_share": 89.44099378881988
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 2,
+   "cell": "polarized",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 78.18181818181819,
+   "metrics": {
+    "delivered": 86,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 29,
+    "volume_share": 71.42857142857143
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 3,
+   "cell": "balanced_band",
+   "agent": "none",
+   "value": 91.81818181818181,
+   "metrics": {
+    "delivered": 101,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 11,
+    "volume_share": 86.72566371681415
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 3,
+   "cell": "uniform",
+   "agent": "none",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 19,
+    "volume_share": 80.97345132743362
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 3,
+   "cell": "polarized",
+   "agent": "none",
+   "value": 82.72727272727273,
+   "metrics": {
+    "delivered": 91,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 32,
+    "volume_share": 75
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 3,
+   "cell": "balanced_band",
+   "agent": "random",
+   "value": 91.81818181818181,
+   "metrics": {
+    "delivered": 101,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 11,
+    "volume_share": 86.72566371681415
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 3,
+   "cell": "uniform",
+   "agent": "random",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 19,
+    "volume_share": 80.97345132743362
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 3,
+   "cell": "polarized",
+   "agent": "random",
+   "value": 82.72727272727273,
+   "metrics": {
+    "delivered": 91,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 32,
+    "volume_share": 75
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 3,
+   "cell": "balanced_band",
+   "agent": "failure_aware",
+   "value": 98.18181818181819,
+   "metrics": {
+    "delivered": 108,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 7,
+    "volume_share": 97.12389380530973
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 3,
+   "cell": "uniform",
+   "agent": "failure_aware",
+   "value": 94.54545454545455,
+   "metrics": {
+    "delivered": 104,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 15,
+    "volume_share": 91.3716814159292
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 3,
+   "cell": "polarized",
+   "agent": "failure_aware",
+   "value": 89.0909090909091,
+   "metrics": {
+    "delivered": 98,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 28,
+    "volume_share": 85.39823008849558
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 3,
+   "cell": "balanced_band",
+   "agent": "oracle",
+   "value": 98.18181818181819,
+   "metrics": {
+    "delivered": 108,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 7,
+    "volume_share": 97.12389380530973
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 3,
+   "cell": "uniform",
+   "agent": "oracle",
+   "value": 94.54545454545455,
+   "metrics": {
+    "delivered": 104,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 15,
+    "volume_share": 91.3716814159292
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 3,
+   "cell": "polarized",
+   "agent": "oracle",
+   "value": 89.0909090909091,
+   "metrics": {
+    "delivered": 98,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 28,
+    "volume_share": 85.39823008849558
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 3,
+   "cell": "balanced_band",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 91.81818181818181,
+   "metrics": {
+    "delivered": 101,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 11,
+    "volume_share": 86.72566371681415
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 3,
+   "cell": "uniform",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 19,
+    "volume_share": 80.97345132743362
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 3,
+   "cell": "polarized",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 82.72727272727273,
+   "metrics": {
+    "delivered": 91,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 32,
+    "volume_share": 75
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 4,
+   "cell": "balanced_band",
+   "agent": "none",
+   "value": 90.9090909090909,
+   "metrics": {
+    "delivered": 100,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 39,
+    "volume_share": 85.4077253218884
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 4,
+   "cell": "uniform",
+   "agent": "none",
+   "value": 90.9090909090909,
+   "metrics": {
+    "delivered": 100,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 42,
+    "volume_share": 86.05150214592274
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 4,
+   "cell": "polarized",
+   "agent": "none",
+   "value": 90.9090909090909,
+   "metrics": {
+    "delivered": 100,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 48,
+    "volume_share": 86.05150214592274
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 4,
+   "cell": "balanced_band",
+   "agent": "random",
+   "value": 90.9090909090909,
+   "metrics": {
+    "delivered": 100,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 39,
+    "volume_share": 85.4077253218884
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 4,
+   "cell": "uniform",
+   "agent": "random",
+   "value": 90.9090909090909,
+   "metrics": {
+    "delivered": 100,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 42,
+    "volume_share": 86.05150214592274
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 4,
+   "cell": "polarized",
+   "agent": "random",
+   "value": 90.9090909090909,
+   "metrics": {
+    "delivered": 100,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 48,
+    "volume_share": 86.05150214592274
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 4,
+   "cell": "balanced_band",
+   "agent": "failure_aware",
+   "value": 97.27272727272727,
+   "metrics": {
+    "delivered": 107,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 32,
+    "volume_share": 94.84978540772532
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 4,
+   "cell": "uniform",
+   "agent": "failure_aware",
+   "value": 98.18181818181819,
+   "metrics": {
+    "delivered": 108,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 33,
+    "volume_share": 96.56652360515021
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 4,
+   "cell": "polarized",
+   "agent": "failure_aware",
+   "value": 98.18181818181819,
+   "metrics": {
+    "delivered": 108,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 40,
+    "volume_share": 97.21030042918454
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 4,
+   "cell": "balanced_band",
+   "agent": "oracle",
+   "value": 99.0909090909091,
+   "metrics": {
+    "delivered": 109,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 30,
+    "volume_share": 98.28326180257511
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 4,
+   "cell": "uniform",
+   "agent": "oracle",
+   "value": 99.0909090909091,
+   "metrics": {
+    "delivered": 109,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 32,
+    "volume_share": 98.28326180257511
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 4,
+   "cell": "polarized",
+   "agent": "oracle",
+   "value": 99.0909090909091,
+   "metrics": {
+    "delivered": 109,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 39,
+    "volume_share": 98.92703862660944
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 4,
+   "cell": "balanced_band",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 90.9090909090909,
+   "metrics": {
+    "delivered": 100,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 39,
+    "volume_share": 85.4077253218884
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 4,
+   "cell": "uniform",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 90.9090909090909,
+   "metrics": {
+    "delivered": 100,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 42,
+    "volume_share": 86.05150214592274
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 4,
+   "cell": "polarized",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 90.9090909090909,
+   "metrics": {
+    "delivered": 100,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 48,
+    "volume_share": 86.05150214592274
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 5,
+   "cell": "balanced_band",
+   "agent": "none",
+   "value": 82.72727272727273,
+   "metrics": {
+    "delivered": 91,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 22,
+    "volume_share": 72.22222222222223
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 5,
+   "cell": "uniform",
+   "agent": "none",
+   "value": 79.0909090909091,
+   "metrics": {
+    "delivered": 87,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 27,
+    "volume_share": 68.84057971014492
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 5,
+   "cell": "polarized",
+   "agent": "none",
+   "value": 73.63636363636364,
+   "metrics": {
+    "delivered": 81,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 35,
+    "volume_share": 59.42028985507246
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 5,
+   "cell": "balanced_band",
+   "agent": "random",
+   "value": 82.72727272727273,
+   "metrics": {
+    "delivered": 91,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 22,
+    "volume_share": 72.22222222222223
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 5,
+   "cell": "uniform",
+   "agent": "random",
+   "value": 79.0909090909091,
+   "metrics": {
+    "delivered": 87,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 27,
+    "volume_share": 68.84057971014492
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 5,
+   "cell": "polarized",
+   "agent": "random",
+   "value": 73.63636363636364,
+   "metrics": {
+    "delivered": 81,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 35,
+    "volume_share": 59.42028985507246
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 5,
+   "cell": "balanced_band",
+   "agent": "failure_aware",
+   "value": 90,
+   "metrics": {
+    "delivered": 99,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 23,
+    "volume_share": 86.47342995169082
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 5,
+   "cell": "uniform",
+   "agent": "failure_aware",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 26,
+    "volume_share": 83.09178743961353
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 5,
+   "cell": "polarized",
+   "agent": "failure_aware",
+   "value": 82.72727272727273,
+   "metrics": {
+    "delivered": 91,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 34,
+    "volume_share": 73.67149758454106
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 5,
+   "cell": "balanced_band",
+   "agent": "oracle",
+   "value": 93.63636363636364,
+   "metrics": {
+    "delivered": 103,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 15,
+    "volume_share": 92.7536231884058
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 5,
+   "cell": "uniform",
+   "agent": "oracle",
+   "value": 91.81818181818181,
+   "metrics": {
+    "delivered": 101,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 18,
+    "volume_share": 89.3719806763285
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 5,
+   "cell": "polarized",
+   "agent": "oracle",
+   "value": 86.36363636363636,
+   "metrics": {
+    "delivered": 95,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 26,
+    "volume_share": 79.95169082125604
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 5,
+   "cell": "balanced_band",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 82.72727272727273,
+   "metrics": {
+    "delivered": 91,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 22,
+    "volume_share": 72.22222222222223
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 5,
+   "cell": "uniform",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 79.0909090909091,
+   "metrics": {
+    "delivered": 87,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 27,
+    "volume_share": 68.84057971014492
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "over_budget"
+    }
+   ]
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 5,
+   "cell": "polarized",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 73.63636363636364,
+   "metrics": {
+    "delivered": 81,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 35,
+    "volume_share": 59.42028985507246
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "over_budget"
+    }
+   ]
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 6,
+   "cell": "balanced_band",
+   "agent": "none",
+   "value": 84.54545454545455,
+   "metrics": {
+    "delivered": 93,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 17,
+    "volume_share": 79.86725663716814
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 6,
+   "cell": "uniform",
+   "agent": "none",
+   "value": 80.9090909090909,
+   "metrics": {
+    "delivered": 89,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 21,
+    "volume_share": 73.45132743362832
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 6,
+   "cell": "polarized",
+   "agent": "none",
+   "value": 77.27272727272727,
+   "metrics": {
+    "delivered": 85,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 29,
+    "volume_share": 66.59292035398231
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 6,
+   "cell": "balanced_band",
+   "agent": "random",
+   "value": 84.54545454545455,
+   "metrics": {
+    "delivered": 93,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 17,
+    "volume_share": 79.86725663716814
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 6,
+   "cell": "uniform",
+   "agent": "random",
+   "value": 80.9090909090909,
+   "metrics": {
+    "delivered": 89,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 21,
+    "volume_share": 73.45132743362832
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 6,
+   "cell": "polarized",
+   "agent": "random",
+   "value": 77.27272727272727,
+   "metrics": {
+    "delivered": 85,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 29,
+    "volume_share": 66.59292035398231
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 6,
+   "cell": "balanced_band",
+   "agent": "failure_aware",
+   "value": 84.54545454545455,
+   "metrics": {
+    "delivered": 93,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 17,
+    "volume_share": 79.86725663716814
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 6,
+   "cell": "uniform",
+   "agent": "failure_aware",
+   "value": 81.81818181818181,
+   "metrics": {
+    "delivered": 90,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 21,
+    "volume_share": 75.22123893805309
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 6,
+   "cell": "polarized",
+   "agent": "failure_aware",
+   "value": 77.27272727272727,
+   "metrics": {
+    "delivered": 85,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 31,
+    "volume_share": 66.59292035398231
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 6,
+   "cell": "balanced_band",
+   "agent": "oracle",
+   "value": 99.0909090909091,
+   "metrics": {
+    "delivered": 109,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 3,
+    "volume_share": 98.23008849557522
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 6,
+   "cell": "uniform",
+   "agent": "oracle",
+   "value": 93.63636363636364,
+   "metrics": {
+    "delivered": 103,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 9,
+    "volume_share": 90.26548672566372
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 6,
+   "cell": "polarized",
+   "agent": "oracle",
+   "value": 85.45454545454545,
+   "metrics": {
+    "delivered": 94,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 22,
+    "volume_share": 77.87610619469027
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 6,
+   "cell": "balanced_band",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 84.54545454545455,
+   "metrics": {
+    "delivered": 93,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 17,
+    "volume_share": 79.86725663716814
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "below_minimum"
+    },
+    {
+     "turn": 1,
+     "reason": "below_minimum"
+    },
+    {
+     "turn": 2,
+     "reason": "below_minimum"
+    },
+    {
+     "turn": 3,
+     "reason": "below_minimum"
+    }
+   ]
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 6,
+   "cell": "uniform",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 93.63636363636364,
+   "metrics": {
+    "delivered": 103,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 17,
+    "volume_share": 90.26548672566372
+   },
+   "turns": 3,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 6,
+   "cell": "polarized",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 77.27272727272727,
+   "metrics": {
+    "delivered": 85,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 29,
+    "volume_share": 66.59292035398231
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 7,
+   "cell": "balanced_band",
+   "agent": "none",
+   "value": 90.9090909090909,
+   "metrics": {
+    "delivered": 100,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 32,
+    "volume_share": 87.98076923076923
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 7,
+   "cell": "uniform",
+   "agent": "none",
+   "value": 93.63636363636364,
+   "metrics": {
+    "delivered": 103,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 32,
+    "volume_share": 89.42307692307692
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 7,
+   "cell": "polarized",
+   "agent": "none",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 60,
+    "volume_share": 86.0576923076923
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 7,
+   "cell": "balanced_band",
+   "agent": "random",
+   "value": 98.18181818181819,
+   "metrics": {
+    "delivered": 108,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 11,
+    "volume_share": 96.15384615384616
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 7,
+   "cell": "uniform",
+   "agent": "random",
+   "value": 98.18181818181819,
+   "metrics": {
+    "delivered": 108,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 27,
+    "volume_share": 97.59615384615384
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 7,
+   "cell": "polarized",
+   "agent": "random",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 59,
+    "volume_share": 86.0576923076923
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 7,
+   "cell": "balanced_band",
+   "agent": "failure_aware",
+   "value": 99.0909090909091,
+   "metrics": {
+    "delivered": 109,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 5,
+    "volume_share": 98.07692307692308
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 7,
+   "cell": "uniform",
+   "agent": "failure_aware",
+   "value": 99.0909090909091,
+   "metrics": {
+    "delivered": 109,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 13,
+    "volume_share": 98.07692307692308
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 7,
+   "cell": "polarized",
+   "agent": "failure_aware",
+   "value": 96.36363636363636,
+   "metrics": {
+    "delivered": 106,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 33,
+    "volume_share": 96.15384615384616
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 7,
+   "cell": "balanced_band",
+   "agent": "oracle",
+   "value": 99.0909090909091,
+   "metrics": {
+    "delivered": 109,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 5,
+    "volume_share": 98.07692307692308
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 7,
+   "cell": "uniform",
+   "agent": "oracle",
+   "value": 99.0909090909091,
+   "metrics": {
+    "delivered": 109,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 13,
+    "volume_share": 98.07692307692308
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 7,
+   "cell": "polarized",
+   "agent": "oracle",
+   "value": 96.36363636363636,
+   "metrics": {
+    "delivered": 106,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 33,
+    "volume_share": 96.15384615384616
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 7,
+   "cell": "balanced_band",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 90.9090909090909,
+   "metrics": {
+    "delivered": 100,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 32,
+    "volume_share": 87.98076923076923
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 7,
+   "cell": "uniform",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 93.63636363636364,
+   "metrics": {
+    "delivered": 103,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 32,
+    "volume_share": 89.42307692307692
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/stationary",
+   "seed": 7,
+   "cell": "polarized",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 60,
+    "volume_share": 86.0576923076923
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/shift",
+   "seed": 0,
+   "cell": "balanced_band",
+   "agent": "none",
+   "value": 90,
+   "metrics": {
+    "delivered": 99,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 32,
+    "volume_share": 79.89821882951654
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 0,
+   "cell": "uniform",
+   "agent": "none",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 36,
+    "volume_share": 75.82697201017811
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 0,
+   "cell": "polarized",
+   "agent": "none",
+   "value": 77.27272727272727,
+   "metrics": {
+    "delivered": 85,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 67,
+    "volume_share": 58.26972010178117
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 0,
+   "cell": "balanced_band",
+   "agent": "random",
+   "value": 90,
+   "metrics": {
+    "delivered": 99,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 32,
+    "volume_share": 79.89821882951654
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 0,
+   "cell": "uniform",
+   "agent": "random",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 36,
+    "volume_share": 75.82697201017811
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 0,
+   "cell": "polarized",
+   "agent": "random",
+   "value": 77.27272727272727,
+   "metrics": {
+    "delivered": 85,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 67,
+    "volume_share": 58.26972010178117
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 0,
+   "cell": "balanced_band",
+   "agent": "failure_aware",
+   "value": 90,
+   "metrics": {
+    "delivered": 99,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 32,
+    "volume_share": 79.89821882951654
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 0,
+   "cell": "uniform",
+   "agent": "failure_aware",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 36,
+    "volume_share": 75.82697201017811
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 0,
+   "cell": "polarized",
+   "agent": "failure_aware",
+   "value": 77.27272727272727,
+   "metrics": {
+    "delivered": 85,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 67,
+    "volume_share": 58.26972010178117
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 0,
+   "cell": "balanced_band",
+   "agent": "oracle",
+   "value": 100,
+   "metrics": {
+    "delivered": 110,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 2,
+    "volume_share": 100
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 0,
+   "cell": "uniform",
+   "agent": "oracle",
+   "value": 97.27272727272727,
+   "metrics": {
+    "delivered": 107,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 8,
+    "volume_share": 93.89312977099236
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 0,
+   "cell": "polarized",
+   "agent": "oracle",
+   "value": 87.27272727272727,
+   "metrics": {
+    "delivered": 96,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 36,
+    "volume_share": 79.38931297709924
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 0,
+   "cell": "balanced_band",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 90,
+   "metrics": {
+    "delivered": 99,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 32,
+    "volume_share": 79.89821882951654
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/shift",
+   "seed": 0,
+   "cell": "uniform",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 36,
+    "volume_share": 75.82697201017811
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/shift",
+   "seed": 0,
+   "cell": "polarized",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 77.27272727272727,
+   "metrics": {
+    "delivered": 85,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 67,
+    "volume_share": 58.26972010178117
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/shift",
+   "seed": 1,
+   "cell": "balanced_band",
+   "agent": "none",
+   "value": 92.72727272727273,
+   "metrics": {
+    "delivered": 102,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 11,
+    "volume_share": 88.60759493670886
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 1,
+   "cell": "uniform",
+   "agent": "none",
+   "value": 90,
+   "metrics": {
+    "delivered": 99,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 15,
+    "volume_share": 86.07594936708861
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 1,
+   "cell": "polarized",
+   "agent": "none",
+   "value": 80,
+   "metrics": {
+    "delivered": 88,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 28,
+    "volume_share": 70.46413502109705
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 1,
+   "cell": "balanced_band",
+   "agent": "random",
+   "value": 93.63636363636364,
+   "metrics": {
+    "delivered": 103,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 11,
+    "volume_share": 90.29535864978902
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 1,
+   "cell": "uniform",
+   "agent": "random",
+   "value": 90,
+   "metrics": {
+    "delivered": 99,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 15,
+    "volume_share": 86.07594936708861
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 1,
+   "cell": "polarized",
+   "agent": "random",
+   "value": 80.9090909090909,
+   "metrics": {
+    "delivered": 89,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 37,
+    "volume_share": 70.88607594936708
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 1,
+   "cell": "balanced_band",
+   "agent": "failure_aware",
+   "value": 93.63636363636364,
+   "metrics": {
+    "delivered": 103,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 10,
+    "volume_share": 90.29535864978902
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 1,
+   "cell": "uniform",
+   "agent": "failure_aware",
+   "value": 91.81818181818181,
+   "metrics": {
+    "delivered": 101,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 14,
+    "volume_share": 88.81856540084388
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 1,
+   "cell": "polarized",
+   "agent": "failure_aware",
+   "value": 81.81818181818181,
+   "metrics": {
+    "delivered": 90,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 27,
+    "volume_share": 73.20675105485232
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 1,
+   "cell": "balanced_band",
+   "agent": "oracle",
+   "value": 97.27272727272727,
+   "metrics": {
+    "delivered": 107,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 6,
+    "volume_share": 94.9367088607595
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 1,
+   "cell": "uniform",
+   "agent": "oracle",
+   "value": 97.27272727272727,
+   "metrics": {
+    "delivered": 107,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 7,
+    "volume_share": 95.56962025316456
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 1,
+   "cell": "polarized",
+   "agent": "oracle",
+   "value": 89.0909090909091,
+   "metrics": {
+    "delivered": 98,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 19,
+    "volume_share": 82.27848101265823
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 1,
+   "cell": "balanced_band",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 92.72727272727273,
+   "metrics": {
+    "delivered": 102,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 11,
+    "volume_share": 88.60759493670886
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/shift",
+   "seed": 1,
+   "cell": "uniform",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 91.81818181818181,
+   "metrics": {
+    "delivered": 101,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 13,
+    "volume_share": 88.81856540084388
+   },
+   "turns": 4,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 1,
+   "cell": "polarized",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 80,
+   "metrics": {
+    "delivered": 88,
+    "demands": 110,
+    "placed_sats": 8000,
+    "failed_attempts": 28,
+    "volume_share": 70.46413502109705
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/shift",
+   "seed": 2,
+   "cell": "balanced_band",
+   "agent": "none",
+   "value": 94.54545454545455,
+   "metrics": {
+    "delivered": 104,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 8,
+    "volume_share": 91.92546583850931
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 2,
+   "cell": "uniform",
+   "agent": "none",
+   "value": 93.63636363636364,
+   "metrics": {
+    "delivered": 103,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 9,
+    "volume_share": 92.13250517598344
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 2,
+   "cell": "polarized",
+   "agent": "none",
+   "value": 80.9090909090909,
+   "metrics": {
+    "delivered": 89,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 26,
+    "volume_share": 75.15527950310559
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 2,
+   "cell": "balanced_band",
+   "agent": "random",
+   "value": 94.54545454545455,
+   "metrics": {
+    "delivered": 104,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 8,
+    "volume_share": 91.92546583850931
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 2,
+   "cell": "uniform",
+   "agent": "random",
+   "value": 93.63636363636364,
+   "metrics": {
+    "delivered": 103,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 9,
+    "volume_share": 92.13250517598344
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 2,
+   "cell": "polarized",
+   "agent": "random",
+   "value": 81.81818181818181,
+   "metrics": {
+    "delivered": 90,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 26,
+    "volume_share": 76.19047619047619
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 2,
+   "cell": "balanced_band",
+   "agent": "failure_aware",
+   "value": 94.54545454545455,
+   "metrics": {
+    "delivered": 104,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 8,
+    "volume_share": 91.92546583850931
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 2,
+   "cell": "uniform",
+   "agent": "failure_aware",
+   "value": 93.63636363636364,
+   "metrics": {
+    "delivered": 103,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 9,
+    "volume_share": 92.13250517598344
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 2,
+   "cell": "polarized",
+   "agent": "failure_aware",
+   "value": 80.9090909090909,
+   "metrics": {
+    "delivered": 89,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 26,
+    "volume_share": 75.15527950310559
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 2,
+   "cell": "balanced_band",
+   "agent": "oracle",
+   "value": 98.18181818181819,
+   "metrics": {
+    "delivered": 108,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 4,
+    "volume_share": 96.68737060041408
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 2,
+   "cell": "uniform",
+   "agent": "oracle",
+   "value": 97.27272727272727,
+   "metrics": {
+    "delivered": 107,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 5,
+    "volume_share": 96.27329192546584
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 2,
+   "cell": "polarized",
+   "agent": "oracle",
+   "value": 87.27272727272727,
+   "metrics": {
+    "delivered": 96,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 22,
+    "volume_share": 83.64389233954451
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 2,
+   "cell": "balanced_band",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 94.54545454545455,
+   "metrics": {
+    "delivered": 104,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 8,
+    "volume_share": 91.92546583850931
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 1,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 2,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 3,
+     "reason": "over_budget"
+    }
+   ]
+  },
+  {
+   "task": "placement/shift",
+   "seed": 2,
+   "cell": "uniform",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 93.63636363636364,
+   "metrics": {
+    "delivered": 103,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 9,
+    "volume_share": 92.13250517598344
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/shift",
+   "seed": 2,
+   "cell": "polarized",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 80.9090909090909,
+   "metrics": {
+    "delivered": 89,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 26,
+    "volume_share": 75.15527950310559
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/shift",
+   "seed": 3,
+   "cell": "balanced_band",
+   "agent": "none",
+   "value": 95.45454545454545,
+   "metrics": {
+    "delivered": 105,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 13,
+    "volume_share": 95.57522123893806
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 3,
+   "cell": "uniform",
+   "agent": "none",
+   "value": 89.0909090909091,
+   "metrics": {
+    "delivered": 98,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 28,
+    "volume_share": 84.51327433628319
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 3,
+   "cell": "polarized",
+   "agent": "none",
+   "value": 81.81818181818181,
+   "metrics": {
+    "delivered": 90,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 47,
+    "volume_share": 76.32743362831859
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 3,
+   "cell": "balanced_band",
+   "agent": "random",
+   "value": 95.45454545454545,
+   "metrics": {
+    "delivered": 105,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 13,
+    "volume_share": 95.57522123893806
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 3,
+   "cell": "uniform",
+   "agent": "random",
+   "value": 89.0909090909091,
+   "metrics": {
+    "delivered": 98,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 28,
+    "volume_share": 84.51327433628319
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 3,
+   "cell": "polarized",
+   "agent": "random",
+   "value": 81.81818181818181,
+   "metrics": {
+    "delivered": 90,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 47,
+    "volume_share": 76.32743362831859
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 3,
+   "cell": "balanced_band",
+   "agent": "failure_aware",
+   "value": 97.27272727272727,
+   "metrics": {
+    "delivered": 107,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 13,
+    "volume_share": 96.90265486725664
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 3,
+   "cell": "uniform",
+   "agent": "failure_aware",
+   "value": 90.9090909090909,
+   "metrics": {
+    "delivered": 100,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 28,
+    "volume_share": 85.84070796460178
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 3,
+   "cell": "polarized",
+   "agent": "failure_aware",
+   "value": 83.63636363636364,
+   "metrics": {
+    "delivered": 92,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 47,
+    "volume_share": 77.65486725663717
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 3,
+   "cell": "balanced_band",
+   "agent": "oracle",
+   "value": 95.45454545454545,
+   "metrics": {
+    "delivered": 105,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 9,
+    "volume_share": 95.57522123893806
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 3,
+   "cell": "uniform",
+   "agent": "oracle",
+   "value": 91.81818181818181,
+   "metrics": {
+    "delivered": 101,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 17,
+    "volume_share": 89.82300884955752
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 3,
+   "cell": "polarized",
+   "agent": "oracle",
+   "value": 86.36363636363636,
+   "metrics": {
+    "delivered": 95,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 30,
+    "volume_share": 83.84955752212389
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 3,
+   "cell": "balanced_band",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 95.45454545454545,
+   "metrics": {
+    "delivered": 105,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 13,
+    "volume_share": 95.57522123893806
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/shift",
+   "seed": 3,
+   "cell": "uniform",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 89.0909090909091,
+   "metrics": {
+    "delivered": 98,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 28,
+    "volume_share": 84.51327433628319
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/shift",
+   "seed": 3,
+   "cell": "polarized",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 81.81818181818181,
+   "metrics": {
+    "delivered": 90,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 47,
+    "volume_share": 76.32743362831859
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/shift",
+   "seed": 4,
+   "cell": "balanced_band",
+   "agent": "none",
+   "value": 98.18181818181819,
+   "metrics": {
+    "delivered": 108,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 20,
+    "volume_share": 96.56652360515021
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 4,
+   "cell": "uniform",
+   "agent": "none",
+   "value": 96.36363636363636,
+   "metrics": {
+    "delivered": 106,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 29,
+    "volume_share": 93.77682403433477
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 4,
+   "cell": "polarized",
+   "agent": "none",
+   "value": 95.45454545454545,
+   "metrics": {
+    "delivered": 105,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 35,
+    "volume_share": 92.06008583690988
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 4,
+   "cell": "balanced_band",
+   "agent": "random",
+   "value": 98.18181818181819,
+   "metrics": {
+    "delivered": 108,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 20,
+    "volume_share": 96.56652360515021
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 4,
+   "cell": "uniform",
+   "agent": "random",
+   "value": 96.36363636363636,
+   "metrics": {
+    "delivered": 106,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 29,
+    "volume_share": 93.77682403433477
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 4,
+   "cell": "polarized",
+   "agent": "random",
+   "value": 95.45454545454545,
+   "metrics": {
+    "delivered": 105,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 35,
+    "volume_share": 92.06008583690988
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 4,
+   "cell": "balanced_band",
+   "agent": "failure_aware",
+   "value": 98.18181818181819,
+   "metrics": {
+    "delivered": 108,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 20,
+    "volume_share": 96.56652360515021
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 4,
+   "cell": "uniform",
+   "agent": "failure_aware",
+   "value": 96.36363636363636,
+   "metrics": {
+    "delivered": 106,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 29,
+    "volume_share": 93.77682403433477
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 4,
+   "cell": "polarized",
+   "agent": "failure_aware",
+   "value": 95.45454545454545,
+   "metrics": {
+    "delivered": 105,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 35,
+    "volume_share": 92.06008583690988
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 4,
+   "cell": "balanced_band",
+   "agent": "oracle",
+   "value": 99.0909090909091,
+   "metrics": {
+    "delivered": 109,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 3,
+    "volume_share": 98.28326180257511
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 4,
+   "cell": "uniform",
+   "agent": "oracle",
+   "value": 99.0909090909091,
+   "metrics": {
+    "delivered": 109,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 10,
+    "volume_share": 98.28326180257511
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 4,
+   "cell": "polarized",
+   "agent": "oracle",
+   "value": 99.0909090909091,
+   "metrics": {
+    "delivered": 109,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 14,
+    "volume_share": 98.92703862660944
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 4,
+   "cell": "balanced_band",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 98.18181818181819,
+   "metrics": {
+    "delivered": 108,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 20,
+    "volume_share": 96.56652360515021
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/shift",
+   "seed": 4,
+   "cell": "uniform",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 96.36363636363636,
+   "metrics": {
+    "delivered": 106,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 29,
+    "volume_share": 93.77682403433477
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/shift",
+   "seed": 4,
+   "cell": "polarized",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 95.45454545454545,
+   "metrics": {
+    "delivered": 105,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 35,
+    "volume_share": 92.06008583690988
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/shift",
+   "seed": 5,
+   "cell": "balanced_band",
+   "agent": "none",
+   "value": 86.36363636363636,
+   "metrics": {
+    "delivered": 95,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 18,
+    "volume_share": 80.91787439613526
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 5,
+   "cell": "uniform",
+   "agent": "none",
+   "value": 80.9090909090909,
+   "metrics": {
+    "delivered": 89,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 25,
+    "volume_share": 73.67149758454106
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 5,
+   "cell": "polarized",
+   "agent": "none",
+   "value": 73.63636363636364,
+   "metrics": {
+    "delivered": 81,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 35,
+    "volume_share": 58.69565217391305
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 5,
+   "cell": "balanced_band",
+   "agent": "random",
+   "value": 86.36363636363636,
+   "metrics": {
+    "delivered": 95,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 18,
+    "volume_share": 80.91787439613526
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 5,
+   "cell": "uniform",
+   "agent": "random",
+   "value": 80.9090909090909,
+   "metrics": {
+    "delivered": 89,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 25,
+    "volume_share": 73.67149758454106
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 5,
+   "cell": "polarized",
+   "agent": "random",
+   "value": 74.54545454545455,
+   "metrics": {
+    "delivered": 82,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 51,
+    "volume_share": 59.17874396135266
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 5,
+   "cell": "balanced_band",
+   "agent": "failure_aware",
+   "value": 86.36363636363636,
+   "metrics": {
+    "delivered": 95,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 18,
+    "volume_share": 80.91787439613526
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 5,
+   "cell": "uniform",
+   "agent": "failure_aware",
+   "value": 80.9090909090909,
+   "metrics": {
+    "delivered": 89,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 25,
+    "volume_share": 73.67149758454106
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 5,
+   "cell": "polarized",
+   "agent": "failure_aware",
+   "value": 73.63636363636364,
+   "metrics": {
+    "delivered": 81,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 35,
+    "volume_share": 58.69565217391305
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 5,
+   "cell": "balanced_band",
+   "agent": "oracle",
+   "value": 97.27272727272727,
+   "metrics": {
+    "delivered": 107,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 9,
+    "volume_share": 96.61835748792271
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 5,
+   "cell": "uniform",
+   "agent": "oracle",
+   "value": 94.54545454545455,
+   "metrics": {
+    "delivered": 104,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 15,
+    "volume_share": 93.71980676328502
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 5,
+   "cell": "polarized",
+   "agent": "oracle",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 26,
+    "volume_share": 83.09178743961353
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 5,
+   "cell": "balanced_band",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 86.36363636363636,
+   "metrics": {
+    "delivered": 95,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 18,
+    "volume_share": 80.91787439613526
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/shift",
+   "seed": 5,
+   "cell": "uniform",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 80.9090909090909,
+   "metrics": {
+    "delivered": 89,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 25,
+    "volume_share": 73.67149758454106
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "over_budget"
+    }
+   ]
+  },
+  {
+   "task": "placement/shift",
+   "seed": 5,
+   "cell": "polarized",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 73.63636363636364,
+   "metrics": {
+    "delivered": 81,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 35,
+    "volume_share": 58.69565217391305
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "over_budget"
+    }
+   ]
+  },
+  {
+   "task": "placement/shift",
+   "seed": 6,
+   "cell": "balanced_band",
+   "agent": "none",
+   "value": 89.0909090909091,
+   "metrics": {
+    "delivered": 98,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 12,
+    "volume_share": 86.28318584070796
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 6,
+   "cell": "uniform",
+   "agent": "none",
+   "value": 85.45454545454545,
+   "metrics": {
+    "delivered": 94,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 16,
+    "volume_share": 81.19469026548673
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 6,
+   "cell": "polarized",
+   "agent": "none",
+   "value": 79.0909090909091,
+   "metrics": {
+    "delivered": 87,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 27,
+    "volume_share": 70.13274336283186
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 6,
+   "cell": "balanced_band",
+   "agent": "random",
+   "value": 89.0909090909091,
+   "metrics": {
+    "delivered": 98,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 12,
+    "volume_share": 86.28318584070796
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 6,
+   "cell": "uniform",
+   "agent": "random",
+   "value": 85.45454545454545,
+   "metrics": {
+    "delivered": 94,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 16,
+    "volume_share": 81.19469026548673
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 6,
+   "cell": "polarized",
+   "agent": "random",
+   "value": 79.0909090909091,
+   "metrics": {
+    "delivered": 87,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 27,
+    "volume_share": 70.13274336283186
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 6,
+   "cell": "balanced_band",
+   "agent": "failure_aware",
+   "value": 89.0909090909091,
+   "metrics": {
+    "delivered": 98,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 12,
+    "volume_share": 86.28318584070796
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 6,
+   "cell": "uniform",
+   "agent": "failure_aware",
+   "value": 85.45454545454545,
+   "metrics": {
+    "delivered": 94,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 36,
+    "volume_share": 81.19469026548673
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 6,
+   "cell": "polarized",
+   "agent": "failure_aware",
+   "value": 79.0909090909091,
+   "metrics": {
+    "delivered": 87,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 29,
+    "volume_share": 70.13274336283186
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 6,
+   "cell": "balanced_band",
+   "agent": "oracle",
+   "value": 99.0909090909091,
+   "metrics": {
+    "delivered": 109,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 4,
+    "volume_share": 98.23008849557522
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 6,
+   "cell": "uniform",
+   "agent": "oracle",
+   "value": 94.54545454545455,
+   "metrics": {
+    "delivered": 104,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 8,
+    "volume_share": 92.03539823008849
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 6,
+   "cell": "polarized",
+   "agent": "oracle",
+   "value": 86.36363636363636,
+   "metrics": {
+    "delivered": 95,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 22,
+    "volume_share": 79.64601769911505
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 6,
+   "cell": "balanced_band",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 89.0909090909091,
+   "metrics": {
+    "delivered": 98,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 12,
+    "volume_share": 86.28318584070796
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "below_minimum"
+    },
+    {
+     "turn": 1,
+     "reason": "below_minimum"
+    },
+    {
+     "turn": 2,
+     "reason": "below_minimum"
+    },
+    {
+     "turn": 3,
+     "reason": "below_minimum"
+    }
+   ]
+  },
+  {
+   "task": "placement/shift",
+   "seed": 6,
+   "cell": "uniform",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 85.45454545454545,
+   "metrics": {
+    "delivered": 94,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 16,
+    "volume_share": 81.19469026548673
+   },
+   "turns": 3,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 6,
+   "cell": "polarized",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 79.0909090909091,
+   "metrics": {
+    "delivered": 87,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 27,
+    "volume_share": 70.13274336283186
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/shift",
+   "seed": 7,
+   "cell": "balanced_band",
+   "agent": "none",
+   "value": 98.18181818181819,
+   "metrics": {
+    "delivered": 108,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 11,
+    "volume_share": 96.15384615384616
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 7,
+   "cell": "uniform",
+   "agent": "none",
+   "value": 97.27272727272727,
+   "metrics": {
+    "delivered": 107,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 24,
+    "volume_share": 94.23076923076923
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 7,
+   "cell": "polarized",
+   "agent": "none",
+   "value": 90.9090909090909,
+   "metrics": {
+    "delivered": 100,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 52,
+    "volume_share": 89.66346153846153
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 7,
+   "cell": "balanced_band",
+   "agent": "random",
+   "value": 98.18181818181819,
+   "metrics": {
+    "delivered": 108,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 11,
+    "volume_share": 96.15384615384616
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 7,
+   "cell": "uniform",
+   "agent": "random",
+   "value": 97.27272727272727,
+   "metrics": {
+    "delivered": 107,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 24,
+    "volume_share": 94.23076923076923
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 7,
+   "cell": "polarized",
+   "agent": "random",
+   "value": 90.9090909090909,
+   "metrics": {
+    "delivered": 100,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 51,
+    "volume_share": 89.66346153846153
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 7,
+   "cell": "balanced_band",
+   "agent": "failure_aware",
+   "value": 98.18181818181819,
+   "metrics": {
+    "delivered": 108,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 11,
+    "volume_share": 96.15384615384616
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 7,
+   "cell": "uniform",
+   "agent": "failure_aware",
+   "value": 97.27272727272727,
+   "metrics": {
+    "delivered": 107,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 23,
+    "volume_share": 94.23076923076923
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 7,
+   "cell": "polarized",
+   "agent": "failure_aware",
+   "value": 90,
+   "metrics": {
+    "delivered": 99,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 54,
+    "volume_share": 89.1826923076923
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 7,
+   "cell": "balanced_band",
+   "agent": "oracle",
+   "value": 99.0909090909091,
+   "metrics": {
+    "delivered": 109,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 5,
+    "volume_share": 98.07692307692308
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 7,
+   "cell": "uniform",
+   "agent": "oracle",
+   "value": 99.0909090909091,
+   "metrics": {
+    "delivered": 109,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 14,
+    "volume_share": 98.07692307692308
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 7,
+   "cell": "polarized",
+   "agent": "oracle",
+   "value": 97.27272727272727,
+   "metrics": {
+    "delivered": 107,
+    "demands": 110,
+    "placed_sats": 120000,
+    "failed_attempts": 33,
+    "volume_share": 96.63461538461539
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "placement/shift",
+   "seed": 7,
+   "cell": "balanced_band",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 98.18181818181819,
+   "metrics": {
+    "delivered": 108,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 11,
+    "volume_share": 96.15384615384616
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/shift",
+   "seed": 7,
+   "cell": "uniform",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 97.27272727272727,
+   "metrics": {
+    "delivered": 107,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 24,
+    "volume_share": 94.23076923076923
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "placement/shift",
+   "seed": 7,
+   "cell": "polarized",
+   "agent": "bonsai-8b-nothink@6126b58af965",
+   "value": 90.9090909090909,
+   "metrics": {
+    "delivered": 100,
+    "demands": 110,
+    "placed_sats": 0,
+    "failed_attempts": 52,
+    "volume_share": 89.66346153846153
+   },
+   "turns": 4,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    }
+   ]
+  }
+ ],
+ "checks": [
+  {
+   "id": "K5",
+   "pass": true,
+   "detail": "192 episodes compared, 0 mismatches"
+  }
+ ],
+ "notes": [
+  "The agent carried the skills failed_pairs, each bound into its identifier; skill calls are capped at 4 per episode and cost no harness budget."
+ ]
+}

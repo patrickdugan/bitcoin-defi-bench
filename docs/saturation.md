@@ -59,9 +59,13 @@ Variant 6 with `min_cost_flow`, `bonsai-8b-nothink@2e6ce1150a4a`, in [results/v0
 
 Every dense episode in which the model called the skill scored the ceiling, and the eight in which it did not score the no-plan penalty; 0.59 is the mean of the two. On the 48-trade cells the call rate is 16 and 25 percent and no copy of the long plan was accepted, so the agent sits at or below the floor there. No result was sent by reference in 96 episodes. The expectation Amendment 3 recorded for a skill-carrying agent, a normalized gain of 0.9 or more, is not met on any cell: it assumed the skill's result would reach the harness, and what bounds the result is the model's decision to call and its copy of the plan, not the skill. Gates K11 to K13 pass, so the plumbing is not the cause. The development call rate on the dense cell, 8 of 8 in four variants, overstated the confirmatory 24 of 32.
 
+## Development results, family 1 (seeds 0 to 7)
+
+Bonsai 8B with `failed_pairs`, `bonsai-8b-nothink@6126b58af965`, in [results/v0-placement-bonsai-8b-nothink-failed_pairs-development.md](../results/v0-placement-bonsai-8b-nothink-failed_pairs-development.md), 48 episodes: the model never called the skill, and its result is indistinguishable from the random floor on both regimes (normalized −0.01, intervals covering zero), as the bare agent's was; 154 of its replies were malformed. The first turn of a family 1 episode is about 10,000 characters of graph and payment history, against 1,900 for the dense netting cell where the skill was called every time on these seeds: the same length effect as in family 6, further along. Nothing of the skill reached the model, so this was not run on confirmatory seeds; what remains to try here is thinking mode, step 4 below.
+
 ## Order of work
 
 1. Done (2026-10-07): the skill loop in `src/agents/chat.ts`, the skills in `src/agents/skills.ts`, a netting prompt in `src/tasks/netting/prompt.ts`, and `scripts/run_netting_agent.ts` with `--skills`. Tests cover the loop, the cap, the identity binding, error returns, and that a model which echoes `min_cost_flow` scores the ceiling.
 2. `min_cost_flow` for family 6, run on development seeds (the six variants above), then one confirmatory run of variant 6 and of the bare agent (results in the README's results list).
-3. `failed_pairs` for family 1, the same way. The interesting number is the gap between the skill's result and the heuristic: what the model loses in choosing the split and committing.
+3. `failed_pairs` for family 1, the same way. Done on development seeds: never called (section above). The number this was meant to produce, the gap between the skill's result and the heuristic, needs a model that calls it.
 4. Thinking mode, as a separate agent identifier, only where the non-thinking result falls short of the skill's expected result.

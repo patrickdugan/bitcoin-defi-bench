@@ -47,6 +47,18 @@ Six variants of the skill-carrying agent were run on the development block on 20
 
 What held across variants. On `bilateral_dense` (6 traders, about 5 transfers) the model calls the skill and copies its 350-character result exactly whenever the description carries no JSON, and scores the ceiling in every episode. On the two 48-trade cells it calls the skill in 1 to 8 episodes of 8 depending on wording alone, and when it does, its copy of the 1,500-character plan survives the strict parser about half the time at best (variant 1: 2 of 3 and 4 of 8; variant 6: 0 of 1 and 0 of 4). It never sent a result by reference (0 of 19 calls where that was offered). A gain of −1.00 on `multilateral_sparse` is the clipped penalty for episodes with no accepted plan. The one number that moved with the change meant to move it, and stayed, is the dense cell; the rest is noise around a low rate, and the confirmatory block is the estimate of that rate. A variant was never run on confirmatory seeds before variant 6.
 
+## Confirmatory results, family 6 (seeds 1000 to 1031)
+
+Variant 6 with `min_cost_flow`, `bonsai-8b-nothink@2e6ce1150a4a`, in [results/v0-netting-bonsai-8b-nothink-min_cost_flow-confirmatory.md](../results/v0-netting-bonsai-8b-nothink-min_cost_flow-confirmatory.md):
+
+| Cell | Skill called | Copy accepted at once | Normalized gain | Agent − `bilateral_net`, adjusted |
+|---|---:|---:|---|---|
+| `bilateral_dense` | 24 of 32 | 24 of 24 | 0.59 (0.34 to 0.84) | +0.16 (−0.25 to +0.58), inconclusive |
+| `multilateral_sparse` | 5 of 32 | 0 of 5 | −1.00, clipped | −0.93 (−1.04 to −0.83), negative |
+| `tight_links` | 8 of 32 | 0 of 8 | −0.48 (−0.60 to −0.36) | −1.06 (−1.27 to −0.85), negative |
+
+Every dense episode in which the model called the skill scored the ceiling, and the eight in which it did not score the no-plan penalty; 0.59 is the mean of the two. On the 48-trade cells the call rate is 16 and 25 percent and no copy of the long plan was accepted, so the agent sits at or below the floor there. No result was sent by reference in 96 episodes. The expectation Amendment 3 recorded for a skill-carrying agent, a normalized gain of 0.9 or more, is not met on any cell: it assumed the skill's result would reach the harness, and what bounds the result is the model's decision to call and its copy of the plan, not the skill. Gates K11 to K13 pass, so the plumbing is not the cause. The development call rate on the dense cell, 8 of 8 in four variants, overstated the confirmatory 24 of 32.
+
 ## Order of work
 
 1. Done (2026-10-07): the skill loop in `src/agents/chat.ts`, the skills in `src/agents/skills.ts`, a netting prompt in `src/tasks/netting/prompt.ts`, and `scripts/run_netting_agent.ts` with `--skills`. Tests cover the loop, the cap, the identity binding, error returns, and that a model which echoes `min_cost_flow` scores the ceiling.

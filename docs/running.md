@@ -59,7 +59,7 @@ node --experimental-strip-types scripts/run_placement_agent.ts --block developme
   --model-sha256 <sha256 of the GGUF> --runtime "<output of llama-server --version>"
 ```
 
-Add `--seeds 0,1` to run a subset of the development block. The confirmatory block cannot be subset.
+Add `--seeds 0,1` to run a subset of the development block. The confirmatory block cannot be subset. `--skills failed_pairs` gives the agent that skill (see the family 6 section below for how skills work and are named).
 
 The run writes three files under `results/`: the table, the run record, and a transcript with every prompt turn, reply, and parsed action. The agent identifier printed in the table is the name followed by a hash of the model file hash, the runtime, the sampling parameters, and the prompt hash, so two runs with the same identifier used the same everything.
 

@@ -12,6 +12,7 @@ import { appendFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileS
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { ChatAgent, type ChatOptions, type Exchange, type Reply } from "../src/agents/chat.ts";
+import { skillsNamed } from "../src/agents/skills.ts";
 import { readManifest } from "../src/harness/manifest.ts";
 import { executeRun, type SeedBlock } from "../src/harness/run.ts";
 import { SEED_BLOCKS, requireFrozen } from "../src/harness/seeds.ts";
@@ -42,7 +43,8 @@ if (block === "confirmatory") requireFrozen(root, "placement");
 
 const out = join(root, "results");
 mkdirSync(out, { recursive: true });
-const name = arg("out", `v0-placement-${arg("name")}-${block}`);
+const skills = skillsNamed(arg("skills", ""));
+const name = arg("out", `v0-placement-${arg("name")}${skills.length ? `-${skills.map((s) => s.name).join("+")}` : ""}-${block}`);
 
 const transcript: Exchange[] = [];
 // A valid action needs a few dozen tokens per placement; 512 holds about twenty placements.
@@ -58,6 +60,8 @@ const options: ChatOptions = {
   thinking: arg("thinking", "false") === "true",
   identity: { model_sha256: arg("model-sha256"), runtime: arg("runtime") },
   prompt: placementPrompt(maxTokens),
+  skills,
+  maxSkillCalls: Number(arg("max-skill-calls", "4")),
 };
 const agentId = new ChatAgent(options).id;
 
@@ -85,7 +89,8 @@ const agent = new ChatAgent({
   onExchange: (exchange) => {
     transcript.push(exchange);
     const source = exchange.replayed ? " (replayed)" : exchange.cached ? " (cached)" : "";
-    console.error(`  ${exchange.episode.task} seed ${exchange.episode.seed} ${exchange.episode.cell} turn ${exchange.turn}${source}: ${exchange.reply.replace(/\s+/g, " ").slice(0, 160)}`);
+    const kind = exchange.skill ? ` skill ${exchange.skill.name}` : exchange.sent ? ` sent ${exchange.sent}` : "";
+    console.error(`  ${exchange.episode.task} seed ${exchange.episode.seed} ${exchange.episode.cell} turn ${exchange.turn}${source}${kind}: ${exchange.reply.replace(/\s+/g, " ").slice(0, 160)}`);
   },
 });
 
@@ -100,6 +105,7 @@ const record = await executeRun({
   checks: placementIdentityCheck(root, manifest, config),
   notes: () => [
     ...(note !== "" ? [note] : []),
+    ...(skills.length ? [`The agent carried the skills ${skills.map((s) => s.name).join(", ")}, each bound into its identifier; skill calls are capped at ${options.maxSkillCalls} per episode and cost no harness budget.`] : []),
     ...(agent.counts.replayed > 0 ? [`${agent.counts.replayed} model replies were replayed from the reply log of an earlier attempt of this run; ${agent.counts.served} came from the server in this invocation. Every episode and every baseline was executed again.`] : []),
   ],
   progress: (message) => console.error(message),

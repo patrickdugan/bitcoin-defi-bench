@@ -644,6 +644,21 @@ The family's only protocol-like inputs are prover costs, and they are measured o
 
 The program is `cairo/rcap/src/lib.cairo` (Scarb 2.19.6, `cairo_execute`, no other dependency), with `cairo/rcap/gen_args.ts` to write seeded argument files and `cairo/rcap/measure.sh` to prove each batch size with Stwo, verify it, and record wall seconds, peak resident memory, steps, and proof size. Its instantiation is a choice and is marked as one in the source: Poseidon for the commitment, the PRF, the leaf, and the Merkle hash; the authority as a key image, pk = Poseidon(k), which is the reference registry's single-signer reading. A secp256k1 authority, checked by Shinigami's script engine, is the expensive variant and is not measured in v0; the vtxo-exit-proof measurements on this machine put a single Taproot key-path check at about 0.8 million steps and 70 seconds, most of it SHA-256.
 
+First grid, 2026-10-07 (`cairo/rcap/measurements/20261007T032704Z.json`; program SHA-256 `80c38b73…026880e`, Scarb 2.19.6 with Stwo, WSL2 with 20 CPUs and 15 GB of visible RAM; every proof verified):
+
+| Claims | Steps | Prove (s) | Peak RSS (MiB) | Proof (bytes) |
+|---:|---:|---:|---:|---:|
+| 1 | 2,747 | 15.7 | 14,122 | 13,417,348 |
+| 2 | 5,407 | 16.6 | 14,295 | 13,388,573 |
+| 4 | 10,715 | 17.0 | 14,268 | 13,320,753 |
+| 8 | 21,357 | 26.1 | 14,340 | 13,445,846 |
+| 16 | 42,613 | 25.5 | 14,419 | 13,417,509 |
+| 32 | 85,111 | 34.8 | 14,877 | 13,290,821 |
+| 64 | 170,185 | 51.6 | 14,797 | 13,194,487 |
+| 128 | 340,269 | 108.0 | 14,808 | 13,524,512 |
+
+What the grid says. Steps are linear at about 2,660 per claim. Proving time has a floor near 16 s up to four claims, where the trace is padded to the prover's minimum, and then grows at under a second per claim (0.9 s per claim between 64 and 128). Peak memory is 14 to 15 GB at every size, the prover's own footprint, and the proof is 13.2 to 13.5 MB at every size. So the per-claim cost falls by a factor of about 18 between one claim and 128, and below about sixteen claims the fixed cost is most of the bill: the family's batching question has a real answer in these numbers. This grid was timed while an LLM server ran on the same machine's GPU, so the seconds are an upper bound; it is re-measured on a quiet machine before it is adopted as the hash-bound fixture.
+
 ## 9. Family 8: timing funding against fee and demand (specified, not implemented)
 
 Derives from the paper §2.2 (a U→C event is a funding transaction with a confirmation clock) and the audit §8.1 and §8.2 (three clocks must stay separate; useful demand can expire before usable capital arrives). Task ids: `funding_timing/<cell>`.

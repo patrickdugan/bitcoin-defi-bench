@@ -9,7 +9,7 @@ A skill is a function on the agent's side of the interface, run by the adapter w
 Three rules keep this honest:
 
 - **No privileged input.** A skill reads the observation and its own arguments. It cannot see hidden state, the regime, or the fixture; it is code the model carries, not a side channel.
-- **Identity.** The agent identifier binds the skill set (each skill's source hash) along with the model, prompt and sampling. "Bonsai with the netting skill" and "Bonsai bare" are different agents, reported as such.
+- **Identity.** The agent identifier binds the skill set (each skill's source hash), the call cap, and the call envelopes along with the model, prompt and sampling; an agent with no skills has the identifier it had before skills existed. "Bonsai with the netting skill" and "Bonsai bare" are different agents, reported as such.
 - **The ceiling check still applies.** A skill that is the oracle's algorithm should reach the ceiling exactly; the identity control for that family says whether the plumbing lets it. A result above the ceiling is flagged as elsewhere.
 
 ## Skills, in the order they pay
@@ -24,11 +24,11 @@ Each skill is a few lines on top of a baseline's own code, which is the point: t
 
 ## How the model sees a skill
 
-The system prompt ends with a list of the skills the agent carries, each with its description, and the cap: "Before acting you may call a skill by replying with exactly {"skill":"<name>","args":{}} and nothing else; its result comes back in the next message." The result arrives as a user turn, `Result of skill <name> (<n> skill calls left): <json>`, followed by the instruction to reply with one JSON object. A call past the cap, an unknown skill, or a skill that fails never reaches the harness as a skill: past the cap the reply goes to the harness as it is and is rejected as malformed, costing an attempt; an unknown or failing skill returns `{"error": ...}` to the model and counts against the cap.
+The system prompt ends with a list of the skills the agent carries, each with its description, and the cap: "Before acting you may call a skill by replying with exactly {"skill":"<name>","args":{}} and nothing else; its result comes back in the next message." The result arrives as a user turn, `Result of skill <name> (<n> skill calls left): <json>`, followed by the instruction to reply with one JSON object. A reply whose `tool` names a carried skill is a skill call too: on 2026-10-07 Bonsai 8B reached for `min_cost_flow` that way in 7 of 24 development episodes and never with the `skill` field, since the only envelope the prompt's examples show is the action's. The identity records the envelopes the adapter accepts. A call past the cap, an unknown skill, or a skill that fails never reaches the harness as a skill: past the cap the reply goes to the harness as it is and is rejected as malformed, costing an attempt; an unknown or failing skill returns `{"error": ...}` to the model and counts against the cap.
 
 What each skill returns:
 
-- `min_cost_flow` (no arguments): `{"cost_sats", "transfers", "action"}`, where `action` is the settle action to send unchanged.
+- `min_cost_flow` (no arguments): `{"cost_sats", "action"}`, where `action` is the settle action to send unchanged.
 - `failed_pairs` (`{"limit": n}`, 1 to 50, default 10): `{"failed_pairs": [{"pair", "failed", "has_channel"}, ...], "total_failed"}`, most-failed first, ties by pair.
 
 ## Order of work

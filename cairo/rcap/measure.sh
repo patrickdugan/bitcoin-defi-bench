@@ -52,7 +52,7 @@ for f in "${files[@]}"; do
   proof_bytes="0"; [ -n "$proof" ] && proof_bytes="$(stat -c %s "$proof")"
   # wall is h:mm:ss or m:ss
   secs="$(echo "$wall" | awk -F: '{ if (NF == 3) print $1*3600 + $2*60 + $3; else print $1*60 + $2 }')"
-  [ "$first" = "1" ] || echo "    ," >> "$out"
+  [ "$first" = "1" ] || sed -i '$ s/ }$/ },/' "$out"
   first=0
   echo "    { \"batch\": $size, \"steps\": ${steps:-null}, \"prove_seconds\": ${secs:-null}, \"peak_rss_mib\": $(( ${rss_kb:-0} / 1024 )), \"proof_bytes\": $proof_bytes, \"verified\": $verified, \"exit\": $status }" >> "$out"
   echo "   steps=${steps:-?} prove=${secs:-?}s rss=$(( ${rss_kb:-0} / 1024 ))MiB verified=$verified"

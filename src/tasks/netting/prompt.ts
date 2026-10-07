@@ -1,5 +1,7 @@
 // Prompt renderer for netting episodes. It states the task, the rules, and the instance in a
-// compact text form. It does not net, rank, or suggest; that is what a skill is for.
+// compact text form. It does not net, rank, or suggest; that is what a skill is for. The action
+// examples use the instance's own first trader ids with an amount of 1, because a small model
+// copies a placeholder such as [...] literally (seen with Bonsai 8B on 2026-10-07).
 
 import type { PromptRenderer } from "../../agents/chat.ts";
 import { sha256, type Json } from "../../harness/json.ts";
@@ -17,13 +19,13 @@ You pay by transfers. A transfer {"from": A, "to": B, "sats": n, "via": "link"} 
 
 A plan is valid only if every transfer names two different existing traders, every amount is a positive whole number, every link transfer stays within its link's capacity, every trader's net paid equals its net obligation exactly, and no trader pays more than its collateral. An invalid plan is rejected whole and still uses one attempt.
 
-Reply with exactly one JSON object and nothing else. Either
-{"tool":"probe","args":{"plan":{"transfers":[...]}}}
-to check a plan and see its violations and cost without committing it, or
-{"tool":"settle","args":{"plan":{"transfers":[...]}}}
-to commit it, or
+Reply with exactly one JSON object and nothing else, in one of three forms. To check a plan and see its violations and cost without committing it:
+{"tool":"probe","args":{"plan":{"transfers":[{"from":"{t0}","to":"{t1}","sats":1,"via":"link"},{"from":"{t1}","to":"{t2}","sats":1,"via":"ghost"}]}}}
+To commit a plan:
+{"tool":"settle","args":{"plan":{"transfers":[{"from":"{t0}","to":"{t1}","sats":1,"via":"link"}]}}}
+To stop without a plan, which scores at twice the cost of the worst plan:
 {"tool":"commit"}
-to stop without a plan, which scores at twice the cost of the worst plan. Your reply is cut off after {limit} tokens, and a reply that is cut off is rejected.`;
+The transfers shown are the format only; which pairs, which amounts, and how many transfers are yours to choose. Your reply is cut off after {limit} tokens, and a reply that is cut off is rejected.`;
 
 const FIRST = `Attempts left: {attempts}. Probes left: {probes}.
 
@@ -70,7 +72,8 @@ export function nettingPrompt(replyTokenLimit: number): PromptRenderer {
     system(observation: Json): string {
       const o = observation as unknown as Observation;
       const linkRate = o.view.links[0]?.rate_ppm ?? 0;
-      return fill(SYSTEM, { link_rate: linkRate, ghost_rate: o.view.ghost.rate_ppm, base_fee: o.view.base_fee_sats, limit: replyTokenLimit });
+      const ids = o.view.traders.map((t) => t.id);
+      return fill(SYSTEM, { link_rate: linkRate, ghost_rate: o.view.ghost.rate_ppm, base_fee: o.view.base_fee_sats, limit: replyTokenLimit, t0: ids[0] ?? "A", t1: ids[1] ?? "B", t2: ids[2] ?? "C" });
     },
     turn(observation: Json): string {
       const o = observation as unknown as Observation;

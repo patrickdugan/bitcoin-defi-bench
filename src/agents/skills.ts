@@ -18,11 +18,7 @@ export const minCostFlowSkill: Skill = bind({
     const instance = (observation as { view: Instance }).view;
     const plan = settleOptimal(instance);
     const e = evaluatePlan(instance, plan);
-    return {
-      cost_sats: e.cost,
-      transfers: e.transfers,
-      action: { tool: "settle", args: { plan: { transfers: plan.map((t) => ({ ...t })) } } },
-    };
+    return { cost_sats: e.cost, action: { tool: "settle", args: { plan: { transfers: plan.map((t) => ({ ...t })) } } } };
   },
 });
 

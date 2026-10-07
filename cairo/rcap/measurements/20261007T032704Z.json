@@ -1,0 +1,14 @@
+{
+  "program": "cairo/rcap/src/lib.cairo", "program_sha256": "80c38b73f3894b46ce3848a7d7e705ad359e5396ecb6ac16ce3baf1ff026880e",
+  "toolchain": "scarb 2.19.6 (71702bdd2 2026-09-28)", "machine": "Linux 6.18.40.1-microsoft-standard-WSL2 x86_64; 20 cpus; 15 GB RAM; swap 35 GB", "started": "20261007T032704Z",
+  "runs": [
+    { "batch": 1, "steps": 2747, "prove_seconds": 15.72, "peak_rss_mib": 14122, "proof_bytes": 13417348, "verified": true, "exit": 0 },
+    { "batch": 2, "steps": 5407, "prove_seconds": 16.57, "peak_rss_mib": 14295, "proof_bytes": 13388573, "verified": true, "exit": 0 },
+    { "batch": 4, "steps": 10715, "prove_seconds": 17.01, "peak_rss_mib": 14268, "proof_bytes": 13320753, "verified": true, "exit": 0 },
+    { "batch": 8, "steps": 21357, "prove_seconds": 26.07, "peak_rss_mib": 14340, "proof_bytes": 13445846, "verified": true, "exit": 0 },
+    { "batch": 16, "steps": 42613, "prove_seconds": 25.46, "peak_rss_mib": 14419, "proof_bytes": 13417509, "verified": true, "exit": 0 },
+    { "batch": 32, "steps": 85111, "prove_seconds": 34.82, "peak_rss_mib": 14877, "proof_bytes": 13290821, "verified": true, "exit": 0 },
+    { "batch": 64, "steps": 170185, "prove_seconds": 51.57, "peak_rss_mib": 14797, "proof_bytes": 13194487, "verified": true, "exit": 0 },
+    { "batch": 128, "steps": 340269, "prove_seconds": 108, "peak_rss_mib": 14808, "proof_bytes": 13524512, "verified": true, "exit": 0 }
+  ]
+}

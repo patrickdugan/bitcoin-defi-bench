@@ -145,7 +145,9 @@ export class ChatAgent implements Agent {
   describe(): Json {
     const { identity, sampling, thinking, prompt, model } = this.options;
     const skills = (this.options.skills ?? []).map((s) => ({ name: s.name, sha256: s.sha256, description_sha256: sha256(s.description) }));
-    return { adapter: ADAPTER_VERSION, model, model_sha256: identity.model_sha256, runtime: identity.runtime, sampling: { ...sampling }, thinking, prompt_sha256: prompt.sha256, skills, max_skill_calls: skills.length ? this.options.maxSkillCalls ?? 4 : 0 };
+    const base = { adapter: ADAPTER_VERSION, model, model_sha256: identity.model_sha256, runtime: identity.runtime, sampling: { ...sampling }, thinking, prompt_sha256: prompt.sha256 };
+    // Skills enter the identity only when carried, so a bare agent's identifier is unchanged by the skill loop.
+    return skills.length ? { ...base, skills, max_skill_calls: this.options.maxSkillCalls ?? 4, skill_call: "skill field, or tool field naming a carried skill" } : base;
   }
 
   reset(episode: EpisodeInfo): void {
@@ -167,6 +169,19 @@ export class ChatAgent implements Agent {
     return `\n\nSkills. Before acting you may call a skill by replying with exactly {"skill":"<name>","args":{}} and nothing else; its result comes back in the next message. You may call skills at most ${cap} times in this episode; a call beyond that is treated as an invalid action. The skills:\n${skills.map((s) => `- ${s.name}: ${s.description}`).join("\n")}`;
   }
 
+  /**
+   * The skill a reply calls, or null when the reply is an action: the skill field, or a tool field
+   * naming a carried skill, which is the envelope a model copying the action examples reaches for.
+   * The harness never sees a carried skill's name as a tool; without the skill it is an unknown tool.
+   */
+  private skillCalled(parsed: Json): string | null {
+    const skills = this.options.skills ?? [];
+    if (skills.length === 0 || !isObject(parsed)) return null;
+    if (typeof parsed.skill === "string") return parsed.skill;
+    if (typeof parsed.tool === "string" && skills.some((s) => s.name === parsed.tool)) return parsed.tool;
+    return null;
+  }
+
   /** Run a requested skill over the observation. Errors are returned to the model, never thrown. */
   private runSkill(name: string, args: Json, observation: Json): Json {
     const skill = (this.options.skills ?? []).find((s) => s.name === name);
@@ -184,14 +199,13 @@ export class ChatAgent implements Agent {
       const { reply, key, cached, replayed } = await this.complete(turn, call);
       this.messages.push({ role: "assistant", content: reply.content });
       const parsed = extractAction(reply.content);
-      const wantsSkill = isObject(parsed) && typeof parsed.skill === "string" && (this.options.skills?.length ?? 0) > 0;
-      if (!wantsSkill || this.skillCalls >= cap) {
+      const name = this.skillCalled(parsed);
+      if (name === null || this.skillCalls >= cap) {
         // An action, or a skill call past the cap, which the harness will reject as malformed.
         this.options.onExchange?.({ episode: this.episode, turn, request_sha256: key, cached, replayed, user, reply: reply.content, reasoning: reply.reasoning, action: parsed });
         return parsed;
       }
       this.skillCalls += 1;
-      const name = (parsed as { skill: string }).skill;
       const args = ((parsed as { args?: Json }).args ?? {}) as Json;
       const result = this.runSkill(name, args, observation);
       this.options.onExchange?.({ episode: this.episode, turn, request_sha256: key, cached, replayed, user, reply: reply.content, reasoning: reply.reasoning, action: parsed, skill: { name, args, result } });

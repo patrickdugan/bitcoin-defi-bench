@@ -217,3 +217,16 @@ test("the failed-pairs skill counts what the heuristic counts and chooses nothin
   assert.ok(!("placements" in result));
 });
 
+test("a reply naming a carried skill as its tool is a skill call; without the skill it is an unknown tool", async () => {
+  const echo: Skill = { name: "echo", description: "returns its arguments", sha256: "e".repeat(64), run: (_o, args) => ({ echoed: args }) };
+  const m = await mock((turn) => (turn === 0 ? '{"tool":"echo","args":{"x":2}}' : '{"tool":"commit"}'));
+  try {
+    const seen: string[] = [];
+    const row = await runEpisode(new PlacementEnv(fixture, "uniform", "stationary", config), new ChatAgent(options(m.url, { skills: [echo], onExchange: (e) => seen.push(e.skill ? "skill" : "action") })));
+    assert.deepEqual(seen, ["skill", "action"]);
+    assert.equal(row.rejections.length, 0);
+    assert.ok(m.requests[1]!.messages.at(-1)!.content.includes('"echoed":{"x":2}'));
+    const bare = await runEpisode(new PlacementEnv(fixture, "uniform", "stationary", config), new ChatAgent(options(m.url)));
+    assert.deepEqual(bare.rejections.map((r) => r.reason), ["unknown_tool"]);
+  } finally { m.server.close(); }
+});

@@ -4,3 +4,11 @@ node_modules/
 
 # Raw snapshot (33 MB, CC BY 4.0). Provenance and SHA-256 are in data/topology/snapshot_provenance.json.
 data/topology/*.gml.geo
+
+# Raw proving logs beside the measurement JSON the bench adopts; the Scarb target directory.
+cairo/rcap/measurements/*.txt
+cairo/rcap/measurements/*.log
+cairo/rcap/target/
+
+# Reply log of an LLM run in progress; it is removed when the run completes.
+results/*.replies.jsonl

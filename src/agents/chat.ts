@@ -12,6 +12,12 @@
 //
 // Only loopback endpoints are accepted. A transport failure throws: it is an infrastructure
 // failure, the run aborts, and it is rerun whole.
+//
+// Skills (docs/saturation.md): a skill is a function on the agent's side, run by this adapter
+// when the model asks for one by replying {"skill": name, "args": {...}} instead of an action.
+// It reads the observation and its arguments and nothing else; its result is appended as the
+// next user turn and the model is asked again. Calls are capped per episode. The agent id binds
+// every skill's name and source hash, so an agent with a skill is a different agent.
 
 import { request } from "node:http";
 import type { Agent, EpisodeInfo } from "../harness/agent.ts";
@@ -34,6 +40,16 @@ export interface Sampling {
   seed: number;
 }
 
+/** A procedure the model may call before it acts. Pure in the observation and its arguments. */
+export interface Skill {
+  name: string;
+  /** One or two sentences the model sees, saying what the skill returns and what to do with it. */
+  description: string;
+  /** SHA-256 binding the skill's source into the agent id. */
+  sha256: string;
+  run(observation: Json, args: Json): Json;
+}
+
 export interface ChatOptions {
   name: string;
   baseUrl: string;
@@ -48,6 +64,9 @@ export interface ChatOptions {
   replay?: Map<string, Reply>;
   /** Called once for each reply that came from the server, so it can be logged as it arrives. */
   onReply?: (requestSha256: string, reply: Reply) => void;
+  skills?: Skill[];
+  /** Skill calls allowed per episode; a request beyond the cap is passed to the harness as it is. Default 4. */
+  maxSkillCalls?: number;
 }
 
 export interface Reply { content: string; reasoning: string; }
@@ -63,6 +82,8 @@ export interface Exchange {
   reply: string;
   reasoning: string;
   action: Json;
+  /** Present when the reply was a skill call: what was called and what it returned. */
+  skill?: { name: string; args: Json; result: Json };
 }
 
 interface Message { role: "system" | "user" | "assistant"; content: string; }
@@ -107,6 +128,7 @@ export class ChatAgent implements Agent {
   readonly counts = { replayed: 0, served: 0 };
   private episode: EpisodeInfo = { task: "", seed: -1, cell: "" };
   private messages: Message[] = [];
+  private skillCalls = 0;
 
   constructor(options: ChatOptions) {
     const url = new URL(options.baseUrl);
@@ -122,30 +144,69 @@ export class ChatAgent implements Agent {
   /** Everything the agent id binds. Stored in the run record. */
   describe(): Json {
     const { identity, sampling, thinking, prompt, model } = this.options;
-    return { adapter: ADAPTER_VERSION, model, model_sha256: identity.model_sha256, runtime: identity.runtime, sampling: { ...sampling }, thinking, prompt_sha256: prompt.sha256 };
+    const skills = (this.options.skills ?? []).map((s) => ({ name: s.name, sha256: s.sha256, description_sha256: sha256(s.description) }));
+    return { adapter: ADAPTER_VERSION, model, model_sha256: identity.model_sha256, runtime: identity.runtime, sampling: { ...sampling }, thinking, prompt_sha256: prompt.sha256, skills, max_skill_calls: skills.length ? this.options.maxSkillCalls ?? 4 : 0 };
   }
 
   reset(episode: EpisodeInfo): void {
     this.episode = episode;
     this.messages = [];
+    this.skillCalls = 0;
   }
 
-  private requestSeed(turn: number): number {
-    const digest = sha256(`${this.options.sampling.seed}|${this.episode.seed}|${this.episode.cell}|${turn}`);
+  private requestSeed(turn: number, call: number): number {
+    const digest = sha256(`${this.options.sampling.seed}|${this.episode.seed}|${this.episode.cell}|${turn}|${call}`);
     return parseInt(digest.slice(0, 8), 16) >>> 1;
+  }
+
+  /** What the system prompt says about skills, when there are any. */
+  private skillsText(): string {
+    const skills = this.options.skills ?? [];
+    if (skills.length === 0) return "";
+    const cap = this.options.maxSkillCalls ?? 4;
+    return `\n\nSkills. Before acting you may call a skill by replying with exactly {"skill":"<name>","args":{}} and nothing else; its result comes back in the next message. You may call skills at most ${cap} times in this episode; a call beyond that is treated as an invalid action. The skills:\n${skills.map((s) => `- ${s.name}: ${s.description}`).join("\n")}`;
+  }
+
+  /** Run a requested skill over the observation. Errors are returned to the model, never thrown. */
+  private runSkill(name: string, args: Json, observation: Json): Json {
+    const skill = (this.options.skills ?? []).find((s) => s.name === name);
+    if (!skill) return { error: `unknown skill ${name}` };
+    try { return skill.run(observation, args); } catch (e) { return { error: String((e as Error).message ?? e) }; }
   }
 
   async act(observation: Json): Promise<Json> {
     const turn = (observation as { episode: { turn: number } }).episode.turn;
-    if (turn === 0) this.messages = [{ role: "system", content: this.options.prompt.system(observation) }];
-    const user = this.options.prompt.turn(observation);
-    this.messages.push({ role: "user", content: user });
+    if (turn === 0) this.messages = [{ role: "system", content: this.options.prompt.system(observation) + this.skillsText() }];
+    let user = this.options.prompt.turn(observation);
+    const cap = this.options.maxSkillCalls ?? 4;
+    for (let call = 0; ; call++) {
+      this.messages.push({ role: "user", content: user });
+      const { reply, key, cached, replayed } = await this.complete(turn, call);
+      this.messages.push({ role: "assistant", content: reply.content });
+      const parsed = extractAction(reply.content);
+      const wantsSkill = isObject(parsed) && typeof parsed.skill === "string" && (this.options.skills?.length ?? 0) > 0;
+      if (!wantsSkill || this.skillCalls >= cap) {
+        // An action, or a skill call past the cap, which the harness will reject as malformed.
+        this.options.onExchange?.({ episode: this.episode, turn, request_sha256: key, cached, replayed, user, reply: reply.content, reasoning: reply.reasoning, action: parsed });
+        return parsed;
+      }
+      this.skillCalls += 1;
+      const name = (parsed as { skill: string }).skill;
+      const args = ((parsed as { args?: Json }).args ?? {}) as Json;
+      const result = this.runSkill(name, args, observation);
+      this.options.onExchange?.({ episode: this.episode, turn, request_sha256: key, cached, replayed, user, reply: reply.content, reasoning: reply.reasoning, action: parsed, skill: { name, args, result } });
+      user = `Result of skill ${name} (${cap - this.skillCalls} skill calls left):\n${JSON.stringify(result)}\n\nReply with one JSON object.`;
+    }
+  }
+
+  /** One completion over the conversation so far, from the cache, the replay log, or the server. */
+  private async complete(turn: number, call: number): Promise<{ reply: Reply; key: string; cached: boolean; replayed: boolean }> {
     const { sampling } = this.options;
     const body = {
       model: this.options.model,
       messages: this.messages.map((m) => ({ ...m })),
       temperature: sampling.temperature, top_p: sampling.top_p, top_k: sampling.top_k,
-      max_tokens: sampling.max_tokens, seed: this.requestSeed(turn),
+      max_tokens: sampling.max_tokens, seed: this.requestSeed(turn, call),
       chat_template_kwargs: { enable_thinking: this.options.thinking },
       cache_prompt: true,
     };
@@ -163,10 +224,7 @@ export class ChatAgent implements Agent {
       this.fromReplay.delete(key);
       this.counts.replayed += 1;
     }
-    this.messages.push({ role: "assistant", content: reply.content });
-    const action = extractAction(reply.content);
-    this.options.onExchange?.({ episode: this.episode, turn, request_sha256: key, cached, replayed, user, reply: reply.content, reasoning: reply.reasoning, action });
-    return action;
+    return { reply, key, cached, replayed };
   }
 
   /**

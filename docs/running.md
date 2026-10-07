@@ -70,3 +70,13 @@ What the adapter will not do, per `prereg/v0.md` §9.1: retry or repair a reply 
 ### Bonsai 8B
 
 `Bonsai-8B-Q1_0.gguf` (SHA-256 `284a335a…134bd54`) is a 1-bit file and needs PrismML's llama.cpp fork. Sampling defaults in the run script are the non-thinking settings BitAgent-LatentBench uses for it: temperature 0.7, top-p 0.8, top-k 20, thinking off. The largest confirmatory prompt is about 10,000 characters, so a 16,384-token context is enough.
+
+### Family 6, and skills
+
+```
+node --experimental-strip-types scripts/run_netting_agent.ts --block development   --name <agent-name> --base-url http://127.0.0.1:8094/v1 --model <model>   --model-sha256 <sha256 of the GGUF> --runtime "<output of llama-server --version>"   --skills min_cost_flow
+```
+
+The same flags as the placement script, with a reply limit of 2,048 tokens by default (`--max-tokens`), since a settlement plan is long. `--skills` names the skills the agent carries, comma-separated, from `src/agents/skills.ts`, and `--max-skill-calls` caps calls per episode (default 4). The output name carries the skill set, `v0-netting-<name>-<skills>-<block>`, and the agent identifier binds each skill's name and source hash, so an agent with a skill never shares an identifier with one without. What a skill is and what it may read is in [saturation.md](saturation.md).
+
+A skill call appears in the transcript as an exchange with a `skill` field holding the call and its result; the model's next request carries the result as a user turn with the remaining call count. The harness sees none of it: a skill call costs no attempt or probe, and only the action the model finally sends reaches the environment.

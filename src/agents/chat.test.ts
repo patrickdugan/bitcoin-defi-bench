@@ -9,7 +9,12 @@ import { readManifest } from "../harness/manifest.ts";
 import { PlacementEnv, evaluatePlacements } from "../tasks/placement/env.ts";
 import { placementPrompt } from "../tasks/placement/prompt.ts";
 import { loadPlacementConfig, placementFixture } from "../tasks/placement/task.ts";
-import { ChatAgent, extractAction, type ChatOptions, type Reply } from "./chat.ts";
+import { ChatAgent, extractAction, type ChatOptions, type Reply, type Skill } from "./chat.ts";
+import { failedPairsSkill, minCostFlowSkill } from "./skills.ts";
+import { NettingEnv } from "../tasks/netting/env.ts";
+import { nettingPrompt } from "../tasks/netting/prompt.ts";
+import { instanceOf as nettingInstance, evaluatePlan, settleOptimal } from "../tasks/netting/plans.ts";
+import { loadNettingConfig, nettingFixture } from "../tasks/netting/task.ts";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const manifest = readManifest(root);
@@ -144,3 +149,71 @@ test("a rerun after a failure replays logged replies for identical requests and 
     assert.equal(rerun.id, first.id, "replay is not part of the agent's identity");
   } finally { m.server.close(); }
 });
+
+test("a skill call runs on the agent's side, its result comes back as the next turn, and the id binds the skill", async () => {
+  const seen: string[] = [];
+  const echo: Skill = { name: "echo", description: "returns its arguments", sha256: "e".repeat(64), run: (_o, args) => ({ echoed: args }) };
+  // Turn 0: the model calls the skill, then acts on it; the mock keys replies on how many assistant turns precede them.
+  const m = await mock((turn) => (turn === 0 ? '{"skill":"echo","args":{"x":1}}' : turn === 1 ? '{"tool":"commit"}' : '{"tool":"commit"}'));
+  try {
+    const withSkill = new ChatAgent(options(m.url, { skills: [echo], onExchange: (e) => seen.push(e.skill ? `skill:${e.skill.name}` : "action") }));
+    const row = await runEpisode(new PlacementEnv(fixture, "uniform", "stationary", config), withSkill);
+    assert.deepEqual(seen, ["skill:echo", "action"]);
+    assert.equal(row.rejections.length, 0);
+    assert.equal(m.requests.length, 2);
+    // The skill's result was the next user message, and the system prompt listed the skill.
+    const second = m.requests[1]!.messages;
+    assert.ok(second[0]!.content.includes("- echo: returns its arguments"));
+    assert.ok(second[second.length - 1]!.content.includes('"echoed":{"x":1}'));
+    assert.notEqual(withSkill.id, new ChatAgent(options(m.url)).id);
+    assert.notEqual(withSkill.id, new ChatAgent(options(m.url, { skills: [{ ...echo, sha256: "f".repeat(64) }] })).id);
+  } finally { m.server.close(); }
+});
+
+test("skill calls are capped per episode; a call past the cap reaches the harness and is rejected as malformed", async () => {
+  const echo: Skill = { name: "echo", description: "returns its arguments", sha256: "e".repeat(64), run: (_o, args) => ({ echoed: args }) };
+  const m = await mock(() => '{"skill":"echo","args":{}}');
+  try {
+    const agent = new ChatAgent(options(m.url, { skills: [echo], maxSkillCalls: 2 }));
+    const row = await runEpisode(new PlacementEnv(fixture, "uniform", "stationary", config), agent);
+    // Two skill calls, then every further reply is passed through and costs an attempt.
+    assert.deepEqual(row.rejections.map((r) => r.reason), Array(config.attempts).fill("malformed"));
+    assert.equal(m.requests.length, 2 + config.attempts);
+    assert.ok(m.requests[2]!.messages.at(-1)!.content.includes("0 skill calls left"));
+  } finally { m.server.close(); }
+});
+
+test("an unknown skill or a failing skill answers with an error, never throws", async () => {
+  const bad: Skill = { name: "bad", description: "fails", sha256: "b".repeat(64), run: () => { throw new Error("boom"); } };
+  const m = await mock((turn) => (turn === 0 ? '{"skill":"nope","args":{}}' : turn === 1 ? '{"skill":"bad","args":{}}' : '{"tool":"commit"}'));
+  try {
+    const row = await runEpisode(new PlacementEnv(fixture, "uniform", "stationary", config), new ChatAgent(options(m.url, { skills: [bad] })));
+    assert.equal(row.rejections.length, 0);
+    assert.ok(m.requests[1]!.messages.at(-1)!.content.includes("unknown skill nope"));
+    assert.ok(m.requests[2]!.messages.at(-1)!.content.includes("boom"));
+  } finally { m.server.close(); }
+});
+
+test("the netting skill returns the ceiling's plan, and a model that echoes it scores the ceiling", async () => {
+  const nconfig = loadNettingConfig(root);
+  const nfixture = nettingFixture(root, readManifest(root), "multilateral_sparse", 0);
+  let planned: unknown = null;
+  const m = await mock((turn) => (turn === 0 ? '{"skill":"min_cost_flow","args":{}}' : JSON.stringify(planned)));
+  try {
+    const agent = new ChatAgent(options(m.url, { prompt: nettingPrompt(2048), skills: [minCostFlowSkill], onExchange: (e) => { if (e.skill) planned = (e.skill.result as { action: unknown }).action; } }));
+    const row = await runEpisode(new NettingEnv(nfixture, nconfig), agent);
+    const instance = nettingInstance(nfixture);
+    assert.equal(row.rejections.length, 0);
+    assert.equal(row.metrics.cost_sats, evaluatePlan(instance, settleOptimal(instance)).cost);
+  } finally { m.server.close(); }
+});
+
+test("the failed-pairs skill counts what the heuristic counts and chooses nothing", () => {
+  const view = new PlacementEnv(fixture, "uniform", "stationary", config).view();
+  const result = failedPairsSkill.run({ view } as never, { limit: 3 }) as { failed_pairs: Array<{ pair: string[]; failed: number; has_channel: boolean }>; total_failed: number };
+  assert.ok(result.failed_pairs.length <= 3);
+  assert.ok(result.failed_pairs.every((p) => p.failed > 0 && p.pair.length === 2));
+  assert.ok(result.failed_pairs.every((p, i, a) => i === 0 || a[i - 1]!.failed >= p.failed));
+  assert.ok(!("placements" in result));
+});
+

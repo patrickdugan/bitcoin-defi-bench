@@ -5,20 +5,24 @@
 import { pairKey } from "../harness/order.ts";
 import { sha256, type Json } from "../harness/json.ts";
 import { nonEdges } from "../tasks/placement/baselines.ts";
-import { evaluatePlan, settleOptimal, type Instance } from "../tasks/netting/plans.ts";
+import { settleOptimal, type Instance } from "../tasks/netting/plans.ts";
 import type { Skill } from "./chat.ts";
 
 const bind = (skill: Omit<Skill, "sha256">): Skill => ({ ...skill, sha256: sha256(`${skill.name}\n${skill.run.toString()}`) });
 
-/** Family 6: the exact minimum-cost settlement plan for the observed instance, as the action to send. */
+/**
+ * Family 6: the exact minimum-cost settlement plan for the observed instance, returned as the settle
+ * action itself. Bonsai 8B copied a wrapper object whole when the action was a field of it
+ * (2026-10-07), so the result is the action and nothing else; the cost is the harness's to report.
+ */
 export const minCostFlowSkill: Skill = bind({
   name: "min_cost_flow",
+  // No JSON in the description: a snippet of the send form there cut Bonsai 8B's calls on the dense cell from 8 of 8 to 2 of 8.
   description: "Computes the cheapest valid settlement plan for the instance you were shown and returns it as the exact action to send. To use it, reply with that action unchanged.",
   run(observation: Json): Json {
     const instance = (observation as { view: Instance }).view;
     const plan = settleOptimal(instance);
-    const e = evaluatePlan(instance, plan);
-    return { cost_sats: e.cost, action: { tool: "settle", args: { plan: { transfers: plan.map((t) => ({ ...t })) } } } };
+    return { tool: "settle", args: { plan: { transfers: plan.map((t) => ({ ...t })) } } };
   },
 });
 

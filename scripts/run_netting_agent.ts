@@ -84,7 +84,7 @@ const agent = new ChatAgent({
   onExchange: (exchange) => {
     transcript.push(exchange);
     const source = exchange.replayed ? " (replayed)" : exchange.cached ? " (cached)" : "";
-    const kind = exchange.skill ? ` skill ${exchange.skill.name}` : "";
+    const kind = exchange.skill ? ` skill ${exchange.skill.name}` : exchange.sent ? ` sent ${exchange.sent}` : "";
     console.error(`  ${exchange.episode.task} seed ${exchange.episode.seed} turn ${exchange.turn}${source}${kind}: ${exchange.reply.replace(/\s+/g, " ").slice(0, 140)}`);
   },
 });

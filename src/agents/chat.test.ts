@@ -165,6 +165,7 @@ test("a skill call runs on the agent's side, its result comes back as the next t
     const second = m.requests[1]!.messages;
     assert.ok(second[0]!.content.includes("- echo: returns its arguments"));
     assert.ok(second[second.length - 1]!.content.includes('"echoed":{"x":1}'));
+    assert.ok(!second[second.length - 1]!.content.includes('"send"'), "a result that is not an action is not offered for sending");
     assert.notEqual(withSkill.id, new ChatAgent(options(m.url)).id);
     assert.notEqual(withSkill.id, new ChatAgent(options(m.url, { skills: [{ ...echo, sha256: "f".repeat(64) }] })).id);
   } finally { m.server.close(); }
@@ -200,7 +201,7 @@ test("the netting skill returns the ceiling's plan, and a model that echoes it s
   let planned: unknown = null;
   const m = await mock((turn) => (turn === 0 ? '{"skill":"min_cost_flow","args":{}}' : JSON.stringify(planned)));
   try {
-    const agent = new ChatAgent(options(m.url, { prompt: nettingPrompt(2048), skills: [minCostFlowSkill], onExchange: (e) => { if (e.skill) planned = (e.skill.result as { action: unknown }).action; } }));
+    const agent = new ChatAgent(options(m.url, { prompt: nettingPrompt(2048), skills: [minCostFlowSkill], onExchange: (e) => { if (e.skill) planned = e.skill.result; } }));
     const row = await runEpisode(new NettingEnv(nfixture, nconfig), agent);
     const instance = nettingInstance(nfixture);
     assert.equal(row.rejections.length, 0);
@@ -230,3 +231,21 @@ test("a reply naming a carried skill as its tool is a skill call; without the sk
     assert.deepEqual(bare.rejections.map((r) => r.reason), ["unknown_tool"]);
   } finally { m.server.close(); }
 });
+
+test("a reply {tool: send} sends the skill's stored result as the action; before any result it passes through", async () => {
+  const nconfig = loadNettingConfig(root);
+  const nfixture = nettingFixture(root, readManifest(root), "tight_links", 1);
+  const sent: string[] = [];
+  const m = await mock((turn) => (turn === 0 ? '{"tool":"send"}' : turn === 1 ? '{"tool":"min_cost_flow","args":{}}' : '{"tool":"send"}'));
+  try {
+    const agent = new ChatAgent(options(m.url, { prompt: nettingPrompt(2048), skills: [minCostFlowSkill], onExchange: (e) => { if (e.sent) sent.push(e.sent); } }));
+    const row = await runEpisode(new NettingEnv(nfixture, nconfig), agent);
+    // The first reply sent a result that did not exist yet: passed through and rejected, one attempt spent.
+    assert.deepEqual(row.rejections.map((r) => r.reason), ["unknown_tool"]);
+    assert.deepEqual(sent, ["min_cost_flow"]);
+    const instance = nettingInstance(nfixture);
+    assert.equal(row.metrics.cost_sats, evaluatePlan(instance, settleOptimal(instance)).cost);
+    assert.ok(m.requests[2]!.messages.at(-1)!.content.includes('{"tool":"send"}'), "the result turn offers to send it");
+  } finally { m.server.close(); }
+});
+

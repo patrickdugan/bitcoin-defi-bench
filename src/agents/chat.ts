@@ -16,8 +16,10 @@
 // Skills (docs/saturation.md): a skill is a function on the agent's side, run by this adapter
 // when the model asks for one by replying {"skill": name, "args": {...}} instead of an action.
 // It reads the observation and its arguments and nothing else; its result is appended as the
-// next user turn and the model is asked again. Calls are capped per episode. The agent id binds
-// every skill's name and source hash, so an agent with a skill is a different agent.
+// next user turn and the model is asked again. Calls are capped per episode. A reply {"send": name}
+// sends that skill's result, unchanged, as the action, so the model decides and the skill carries
+// the bytes. The agent id binds every skill's name and source hash and this protocol, so an agent
+// with a skill is a different agent.
 
 import { request } from "node:http";
 import type { Agent, EpisodeInfo } from "../harness/agent.ts";
@@ -84,6 +86,8 @@ export interface Exchange {
   action: Json;
   /** Present when the reply was a skill call: what was called and what it returned. */
   skill?: { name: string; args: Json; result: Json };
+  /** Present when the reply sent a skill's stored result as the action; `action` is that result. */
+  sent?: string;
 }
 
 interface Message { role: "system" | "user" | "assistant"; content: string; }
@@ -129,6 +133,8 @@ export class ChatAgent implements Agent {
   private episode: EpisodeInfo = { task: "", seed: -1, cell: "" };
   private messages: Message[] = [];
   private skillCalls = 0;
+  /** The latest result of each skill called in this episode, for a reply that sends one. */
+  private results = new Map<string, Json>();
 
   constructor(options: ChatOptions) {
     const url = new URL(options.baseUrl);
@@ -147,13 +153,14 @@ export class ChatAgent implements Agent {
     const skills = (this.options.skills ?? []).map((s) => ({ name: s.name, sha256: s.sha256, description_sha256: sha256(s.description) }));
     const base = { adapter: ADAPTER_VERSION, model, model_sha256: identity.model_sha256, runtime: identity.runtime, sampling: { ...sampling }, thinking, prompt_sha256: prompt.sha256 };
     // Skills enter the identity only when carried, so a bare agent's identifier is unchanged by the skill loop.
-    return skills.length ? { ...base, skills, max_skill_calls: this.options.maxSkillCalls ?? 4, skill_call: "skill field, or tool field naming a carried skill" } : base;
+    return skills.length ? { ...base, skills, max_skill_calls: this.options.maxSkillCalls ?? 4, skill_protocol: "call by a skill field or a tool field naming a carried skill; result as compact json; {tool: send} or {send: name} sends a stored result that is an action" } : base;
   }
 
   reset(episode: EpisodeInfo): void {
     this.episode = episode;
     this.messages = [];
     this.skillCalls = 0;
+    this.results.clear();
   }
 
   private requestSeed(turn: number, call: number): number {
@@ -166,7 +173,7 @@ export class ChatAgent implements Agent {
     const skills = this.options.skills ?? [];
     if (skills.length === 0) return "";
     const cap = this.options.maxSkillCalls ?? 4;
-    return `\n\nSkills. Before acting you may call a skill by replying with exactly {"skill":"<name>","args":{}} and nothing else; its result comes back in the next message. You may call skills at most ${cap} times in this episode; a call beyond that is treated as an invalid action. The skills:\n${skills.map((s) => `- ${s.name}: ${s.description}`).join("\n")}`;
+    return `\n\nSkills. Before acting you may call a skill by replying with exactly {"skill":"<name>","args":{}} and nothing else; its result comes back in the next message. When a result is itself an action you may send it unchanged by replying {"tool":"send"}. You may call skills at most ${cap} times in this episode; a call beyond that is treated as an invalid action. The skills:\n${skills.map((s) => `- ${s.name}: ${s.description}`).join("\n")}`;
   }
 
   /**
@@ -179,6 +186,18 @@ export class ChatAgent implements Agent {
     if (skills.length === 0 || !isObject(parsed)) return null;
     if (typeof parsed.skill === "string") return parsed.skill;
     if (typeof parsed.tool === "string" && skills.some((s) => s.name === parsed.tool)) return parsed.tool;
+    return null;
+  }
+
+  /**
+   * The skill whose stored result a reply sends as its action: {"tool": "send"} or {"send": name}. A
+   * name that matches a stored result is used; otherwise the latest stored result that is an action.
+   * The form takes no name because a small model wrote the action's name where the skill's went.
+   */
+  private sentResult(parsed: Json): string | null {
+    if (!isObject(parsed) || !("send" in parsed || parsed.tool === "send")) return null;
+    if (typeof parsed.send === "string" && this.results.has(parsed.send)) return parsed.send;
+    for (const [name, result] of [...this.results].reverse()) if (isObject(result) && typeof result.tool === "string") return name;
     return null;
   }
 
@@ -201,15 +220,20 @@ export class ChatAgent implements Agent {
       const parsed = extractAction(reply.content);
       const name = this.skillCalled(parsed);
       if (name === null || this.skillCalls >= cap) {
-        // An action, or a skill call past the cap, which the harness will reject as malformed.
-        this.options.onExchange?.({ episode: this.episode, turn, request_sha256: key, cached, replayed, user, reply: reply.content, reasoning: reply.reasoning, action: parsed });
-        return parsed;
+        // An action, a sent result, or a skill call past the cap, which the harness rejects as malformed.
+        const sent = this.sentResult(parsed);
+        const action = sent === null ? parsed : this.results.get(sent)!;
+        this.options.onExchange?.({ episode: this.episode, turn, request_sha256: key, cached, replayed, user, reply: reply.content, reasoning: reply.reasoning, action, ...(sent === null ? {} : { sent }) });
+        return action;
       }
       this.skillCalls += 1;
       const args = ((parsed as { args?: Json }).args ?? {}) as Json;
       const result = this.runSkill(name, args, observation);
+      this.results.set(name, result);
       this.options.onExchange?.({ episode: this.episode, turn, request_sha256: key, cached, replayed, user, reply: reply.content, reasoning: reply.reasoning, action: parsed, skill: { name, args, result } });
-      user = `Result of skill ${name} (${cap - this.skillCalls} skill calls left):\n${JSON.stringify(result)}\n\nReply with one JSON object.`;
+      // Compact: an indented result was re-compacted by a small model and lost more braces, not fewer.
+      const offer = isObject(result) && typeof result.tool === "string" ? `, or {"tool":"send"} to send this result unchanged as your action` : "";
+      user = `Result of skill ${name} (${cap - this.skillCalls} skill calls left):\n${JSON.stringify(result)}\n\nReply with one JSON object${offer}.`;
     }
   }
 

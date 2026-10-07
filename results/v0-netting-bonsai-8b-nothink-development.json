@@ -1,0 +1,2052 @@
+{
+ "bench": "bitcoin-defi-bench/v0",
+ "block": "development",
+ "manifest_sha256": "d7c0276a31ce350d5738ac734a256d293423e58293cb10d86c97db850b577101",
+ "prereg_sha256": "f430aefe0969d5e92cc43e9cb3a760b0431d49c6d85c60d210b4395cdc4844e5",
+ "spiral_commit": "9824c30ad402cc9bca768eca27d176e0e8788db5",
+ "node": "v24.19.0",
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7
+ ],
+ "agents": [
+  {
+   "id": "gross",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "bilateral_net",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "min_cost_flow",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "bonsai-8b-nothink@e6519a39e3ee",
+   "privileged": false,
+   "baseline": false,
+   "details": {
+    "adapter": "chat-adapter/v0",
+    "model": "bonsai-8b",
+    "model_sha256": "284a335aa3fb2ced3b1b01fcb40b08aa783e3b70832767f0dd2e3fdfa134bd54",
+    "runtime": "llama-prism 0.2.0-dev (build 10743, commit adfffbe41), win-cuda-12.4",
+    "sampling": {
+     "temperature": 0.7,
+     "top_p": 0.8,
+     "top_k": 20,
+     "max_tokens": 2048,
+     "seed": 20261001
+    },
+    "thinking": false,
+    "prompt_sha256": "2d5d05ac93be3234d91e6a3cfdeeaf783936a49bd6dcc6830c4388bd7c81c386"
+   }
+  }
+ ],
+ "tasks": [
+  {
+   "task": "netting/bilateral_dense",
+   "unit": "−ln of the plan's cost in sats; an episode with no accepted plan is scored at twice the floor's cost",
+   "band": 0.05,
+   "floor": "gross",
+   "ceiling": "min_cost_flow",
+   "reference": "bilateral_net",
+   "metrics": [
+    "cost_sats",
+    "transfers",
+    "gross_volume_sats",
+    "ghost_volume_sats"
+   ]
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "unit": "−ln of the plan's cost in sats; an episode with no accepted plan is scored at twice the floor's cost",
+   "band": 0.05,
+   "floor": "gross",
+   "ceiling": "min_cost_flow",
+   "reference": "bilateral_net",
+   "metrics": [
+    "cost_sats",
+    "transfers",
+    "gross_volume_sats",
+    "ghost_volume_sats"
+   ]
+  },
+  {
+   "task": "netting/tight_links",
+   "unit": "−ln of the plan's cost in sats; an episode with no accepted plan is scored at twice the floor's cost",
+   "band": 0.05,
+   "floor": "gross",
+   "ceiling": "min_cost_flow",
+   "reference": "bilateral_net",
+   "metrics": [
+    "cost_sats",
+    "transfers",
+    "gross_volume_sats",
+    "ghost_volume_sats"
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 0,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.547523518419677,
+   "metrics": {
+    "cost_sats": 256.6012999999999,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 2566013,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.7474203345569626,
+   "metrics": {
+    "cost_sats": 115.28649999999999,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 1152865,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 0,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.7757724907682917,
+   "metrics": {
+    "cost_sats": 43.6312,
+    "settled": 1,
+    "transfers": 6,
+    "gross_volume_sats": 436312,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6519a39e3ee",
+   "value": -6.240670698979622,
+   "metrics": {
+    "cost_sats": 513.2025999999998,
+    "settled": 0,
+    "transfers": 0,
+    "gross_volume_sats": 0,
+    "ghost_volume_sats": 0,
+    "probes_used": 8
+   },
+   "turns": 11,
+   "rejections": [
+    {
+     "turn": 8,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 9,
+     "reason": "unbalanced"
+    },
+    {
+     "turn": 10,
+     "reason": "unbalanced"
+    }
+   ]
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.899613598973172,
+   "metrics": {
+    "cost_sats": 134.2379,
+    "settled": 1,
+    "transfers": 25,
+    "gross_volume_sats": 1342379,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.361092792795677,
+   "metrics": {
+    "cost_sats": 78.3427,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 783427,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.359232373038986,
+   "metrics": {
+    "cost_sats": 28.7671,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 287671,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6519a39e3ee",
+   "value": -5.592760779533117,
+   "metrics": {
+    "cost_sats": 268.4758,
+    "settled": 0,
+    "transfers": 0,
+    "gross_volume_sats": 0,
+    "ghost_volume_sats": 0,
+    "probes_used": 8
+   },
+   "turns": 11,
+   "rejections": [
+    {
+     "turn": 8,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 9,
+     "reason": "unbalanced"
+    },
+    {
+     "turn": 10,
+     "reason": "unbalanced"
+    }
+   ]
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 2,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.406660878644768,
+   "metrics": {
+    "cost_sats": 222.88610000000003,
+    "settled": 1,
+    "transfers": 26,
+    "gross_volume_sats": 2228861,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 2,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.585480612301112,
+   "metrics": {
+    "cost_sats": 98.0503,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 980503,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 2,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.38805134999214,
+   "metrics": {
+    "cost_sats": 29.608200000000004,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 296082,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 2,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6519a39e3ee",
+   "value": -6.0998080592047135,
+   "metrics": {
+    "cost_sats": 445.77220000000005,
+    "settled": 0,
+    "transfers": 0,
+    "gross_volume_sats": 0,
+    "ghost_volume_sats": 0,
+    "probes_used": 8
+   },
+   "turns": 11,
+   "rejections": [
+    {
+     "turn": 8,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 9,
+     "reason": "unbalanced"
+    },
+    {
+     "turn": 10,
+     "reason": "unbalanced"
+    }
+   ]
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 3,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.476002970758602,
+   "metrics": {
+    "cost_sats": 87.88270000000001,
+    "settled": 1,
+    "transfers": 29,
+    "gross_volume_sats": 878827,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 3,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -3.9004300662322615,
+   "metrics": {
+    "cost_sats": 49.423700000000004,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 494237,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 3,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.2117222993064054,
+   "metrics": {
+    "cost_sats": 24.821800000000003,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 248218,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 3,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6519a39e3ee",
+   "value": -5.169150151318547,
+   "metrics": {
+    "cost_sats": 175.76540000000003,
+    "settled": 0,
+    "transfers": 0,
+    "gross_volume_sats": 0,
+    "ghost_volume_sats": 0,
+    "probes_used": 8
+   },
+   "turns": 11,
+   "rejections": [
+    {
+     "turn": 8,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 9,
+     "reason": "unbalanced"
+    },
+    {
+     "turn": 10,
+     "reason": "unbalanced"
+    }
+   ]
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 4,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.307491648285634,
+   "metrics": {
+    "cost_sats": 74.254,
+    "settled": 1,
+    "transfers": 25,
+    "gross_volume_sats": 742540,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 4,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -3.575229117082563,
+   "metrics": {
+    "cost_sats": 35.70279999999999,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 357028,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 4,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -2.990317640852492,
+   "metrics": {
+    "cost_sats": 19.892,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 198920,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 4,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6519a39e3ee",
+   "value": -5.000638828845579,
+   "metrics": {
+    "cost_sats": 148.508,
+    "settled": 0,
+    "transfers": 0,
+    "gross_volume_sats": 0,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 3,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 5,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.585558466785861,
+   "metrics": {
+    "cost_sats": 266.5491,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 2665491,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 5,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.810289064507878,
+   "metrics": {
+    "cost_sats": 122.76710000000001,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 1227671,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 5,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.91096444535107,
+   "metrics": {
+    "cost_sats": 49.94709999999999,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 499471,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 5,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6519a39e3ee",
+   "value": -6.278705647345807,
+   "metrics": {
+    "cost_sats": 533.0982,
+    "settled": 0,
+    "transfers": 0,
+    "gross_volume_sats": 0,
+    "ghost_volume_sats": 0,
+    "probes_used": 8
+   },
+   "turns": 11,
+   "rejections": [
+    {
+     "turn": 8,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 9,
+     "reason": "unbalanced"
+    },
+    {
+     "turn": 10,
+     "reason": "over_budget"
+    }
+   ]
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 6,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.36310929307575,
+   "metrics": {
+    "cost_sats": 213.38739999999999,
+    "settled": 1,
+    "transfers": 25,
+    "gross_volume_sats": 2133874,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 6,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.433724472222812,
+   "metrics": {
+    "cost_sats": 84.24459999999999,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 842446,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 6,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.070222620101691,
+   "metrics": {
+    "cost_sats": 58.57000000000001,
+    "settled": 1,
+    "transfers": 6,
+    "gross_volume_sats": 585700,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 6,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6519a39e3ee",
+   "value": -6.056256473635695,
+   "metrics": {
+    "cost_sats": 426.77479999999997,
+    "settled": 0,
+    "transfers": 0,
+    "gross_volume_sats": 0,
+    "ghost_volume_sats": 0,
+    "probes_used": 8
+   },
+   "turns": 11,
+   "rejections": [
+    {
+     "turn": 8,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 9,
+     "reason": "unbalanced"
+    },
+    {
+     "turn": 10,
+     "reason": "unbalanced"
+    }
+   ]
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 7,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.155176522107342,
+   "metrics": {
+    "cost_sats": 173.32639999999998,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 1733264,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 7,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.313281946672575,
+   "metrics": {
+    "cost_sats": 74.68519999999998,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 746852,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 7,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.5074804716174106,
+   "metrics": {
+    "cost_sats": 33.3641,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 333641,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 7,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6519a39e3ee",
+   "value": -5.848323702667287,
+   "metrics": {
+    "cost_sats": 346.65279999999996,
+    "settled": 0,
+    "transfers": 0,
+    "gross_volume_sats": 0,
+    "ghost_volume_sats": 0,
+    "probes_used": 8
+   },
+   "turns": 11,
+   "rejections": [
+    {
+     "turn": 8,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 9,
+     "reason": "unbalanced"
+    },
+    {
+     "turn": 10,
+     "reason": "unbalanced"
+    }
+   ]
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 0,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.9580091820771965,
+   "metrics": {
+    "cost_sats": 142.3102,
+    "settled": 1,
+    "transfers": 38,
+    "gross_volume_sats": 1423102,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.7852225033380025,
+   "metrics": {
+    "cost_sats": 119.72799999999995,
+    "settled": 1,
+    "transfers": 29,
+    "gross_volume_sats": 1197280,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 0,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.688496113376954,
+   "metrics": {
+    "cost_sats": 108.6896,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 1086896,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6519a39e3ee",
+   "value": -5.651156362637142,
+   "metrics": {
+    "cost_sats": 284.6204,
+    "settled": 0,
+    "transfers": 0,
+    "gross_volume_sats": 0,
+    "ghost_volume_sats": 0,
+    "probes_used": 8
+   },
+   "turns": 11,
+   "rejections": [
+    {
+     "turn": 8,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 9,
+     "reason": "unbalanced"
+    },
+    {
+     "turn": 10,
+     "reason": "unbalanced"
+    }
+   ]
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.181437741421394,
+   "metrics": {
+    "cost_sats": 65.4599,
+    "settled": 1,
+    "transfers": 32,
+    "gross_volume_sats": 654599,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -3.973864768580396,
+   "metrics": {
+    "cost_sats": 53.1897,
+    "settled": 1,
+    "transfers": 28,
+    "gross_volume_sats": 531897,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.7079587806755097,
+   "metrics": {
+    "cost_sats": 40.770500000000006,
+    "settled": 1,
+    "transfers": 24,
+    "gross_volume_sats": 407705,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6519a39e3ee",
+   "value": -4.87458492198134,
+   "metrics": {
+    "cost_sats": 130.9198,
+    "settled": 0,
+    "transfers": 0,
+    "gross_volume_sats": 0,
+    "ghost_volume_sats": 0,
+    "probes_used": 8
+   },
+   "turns": 11,
+   "rejections": [
+    {
+     "turn": 8,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 9,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 10,
+     "reason": "unbalanced"
+    }
+   ]
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 2,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.048346535236331,
+   "metrics": {
+    "cost_sats": 155.7647,
+    "settled": 1,
+    "transfers": 41,
+    "gross_volume_sats": 1557647,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 2,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.7526768430965465,
+   "metrics": {
+    "cost_sats": 115.89410000000004,
+    "settled": 1,
+    "transfers": 31,
+    "gross_volume_sats": 1158941,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 2,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.560567093785688,
+   "metrics": {
+    "cost_sats": 95.63770000000001,
+    "settled": 1,
+    "transfers": 26,
+    "gross_volume_sats": 956377,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 2,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6519a39e3ee",
+   "value": -5.741493715796277,
+   "metrics": {
+    "cost_sats": 311.5294,
+    "settled": 0,
+    "transfers": 0,
+    "gross_volume_sats": 0,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 3,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 3,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.988626875830908,
+   "metrics": {
+    "cost_sats": 146.7348,
+    "settled": 1,
+    "transfers": 37,
+    "gross_volume_sats": 1467348,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 3,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.562905484599911,
+   "metrics": {
+    "cost_sats": 95.8616,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 958616,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 3,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.489806471412939,
+   "metrics": {
+    "cost_sats": 89.1042,
+    "settled": 1,
+    "transfers": 23,
+    "gross_volume_sats": 891042,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 3,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6519a39e3ee",
+   "value": -5.681774056390854,
+   "metrics": {
+    "cost_sats": 293.4696,
+    "settled": 0,
+    "transfers": 0,
+    "gross_volume_sats": 0,
+    "ghost_volume_sats": 0,
+    "probes_used": 8
+   },
+   "turns": 11,
+   "rejections": [
+    {
+     "turn": 8,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 9,
+     "reason": "unbalanced"
+    },
+    {
+     "turn": 10,
+     "reason": "unbalanced"
+    }
+   ]
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 4,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.607762822200429,
+   "metrics": {
+    "cost_sats": 100.2596,
+    "settled": 1,
+    "transfers": 39,
+    "gross_volume_sats": 1002596,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 4,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.414016944423068,
+   "metrics": {
+    "cost_sats": 82.6006,
+    "settled": 1,
+    "transfers": 31,
+    "gross_volume_sats": 826006,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 4,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.224659119709331,
+   "metrics": {
+    "cost_sats": 68.35119999999999,
+    "settled": 1,
+    "transfers": 26,
+    "gross_volume_sats": 683512,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 4,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6519a39e3ee",
+   "value": -5.300910002760374,
+   "metrics": {
+    "cost_sats": 200.5192,
+    "settled": 0,
+    "transfers": 0,
+    "gross_volume_sats": 0,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 3,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 5,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.348947265937777,
+   "metrics": {
+    "cost_sats": 210.3867,
+    "settled": 1,
+    "transfers": 40,
+    "gross_volume_sats": 2103867,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 5,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -5.190231473754853,
+   "metrics": {
+    "cost_sats": 179.5101,
+    "settled": 1,
+    "transfers": 34,
+    "gross_volume_sats": 1795101,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 5,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.7719643137884775,
+   "metrics": {
+    "cost_sats": 118.15110000000003,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 1181511,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 5,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6519a39e3ee",
+   "value": -6.042094446497722,
+   "metrics": {
+    "cost_sats": 420.7734,
+    "settled": 0,
+    "transfers": 0,
+    "gross_volume_sats": 0,
+    "ghost_volume_sats": 0,
+    "probes_used": 8
+   },
+   "turns": 11,
+   "rejections": [
+    {
+     "turn": 8,
+     "reason": "unbalanced"
+    },
+    {
+     "turn": 9,
+     "reason": "unbalanced"
+    },
+    {
+     "turn": 10,
+     "reason": "unbalanced"
+    }
+   ]
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 6,
+   "cell": "single",
+   "agent": "gross",
+   "value": -3.9121070019003437,
+   "metrics": {
+    "cost_sats": 50.0042,
+    "settled": 1,
+    "transfers": 39,
+    "gross_volume_sats": 500042,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 6,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -3.7872078019361846,
+   "metrics": {
+    "cost_sats": 44.132999999999996,
+    "settled": 1,
+    "transfers": 31,
+    "gross_volume_sats": 441330,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 6,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.46165257736209,
+   "metrics": {
+    "cost_sats": 31.869599999999995,
+    "settled": 1,
+    "transfers": 23,
+    "gross_volume_sats": 318696,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 6,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6519a39e3ee",
+   "value": -4.605254182460289,
+   "metrics": {
+    "cost_sats": 100.0084,
+    "settled": 0,
+    "transfers": 0,
+    "gross_volume_sats": 0,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 3,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 7,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.214679893554629,
+   "metrics": {
+    "cost_sats": 67.6725,
+    "settled": 1,
+    "transfers": 37,
+    "gross_volume_sats": 676725,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 7,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.052485571874148,
+   "metrics": {
+    "cost_sats": 57.5403,
+    "settled": 1,
+    "transfers": 29,
+    "gross_volume_sats": 575403,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 7,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.9512417955026553,
+   "metrics": {
+    "cost_sats": 51.9999,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 519999,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 7,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6519a39e3ee",
+   "value": -4.907827074114573,
+   "metrics": {
+    "cost_sats": 135.345,
+    "settled": 0,
+    "transfers": 0,
+    "gross_volume_sats": 0,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 3,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 0,
+   "cell": "single",
+   "agent": "gross",
+   "value": -6.663179949025063,
+   "metrics": {
+    "cost_sats": 783.0370000000001,
+    "settled": 1,
+    "transfers": 53,
+    "gross_volume_sats": 944447,
+    "ghost_volume_sats": 362417,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -6.3777086087690344,
+   "metrics": {
+    "cost_sats": 588.5775,
+    "settled": 1,
+    "transfers": 42,
+    "gross_volume_sats": 813459,
+    "ghost_volume_sats": 266964,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 0,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -5.54861683548748,
+   "metrics": {
+    "cost_sats": 256.882,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 439509,
+    "ghost_volume_sats": 112069,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6519a39e3ee",
+   "value": -7.356327129585009,
+   "metrics": {
+    "cost_sats": 1566.0740000000003,
+    "settled": 0,
+    "transfers": 0,
+    "gross_volume_sats": 0,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 3,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.917058569016439,
+   "metrics": {
+    "cost_sats": 371.3178999999999,
+    "settled": 1,
+    "transfers": 45,
+    "gross_volume_sats": 584791,
+    "ghost_volume_sats": 164652,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -5.5815489251386134,
+   "metrics": {
+    "cost_sats": 265.4825,
+    "settled": 1,
+    "transfers": 33,
+    "gross_volume_sats": 404123,
+    "ghost_volume_sats": 118458,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.436983460128991,
+   "metrics": {
+    "cost_sats": 84.51960000000001,
+    "settled": 1,
+    "transfers": 22,
+    "gross_volume_sats": 295317,
+    "ghost_volume_sats": 28941,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6519a39e3ee",
+   "value": -6.610205749576385,
+   "metrics": {
+    "cost_sats": 742.6357999999998,
+    "settled": 0,
+    "transfers": 0,
+    "gross_volume_sats": 0,
+    "ghost_volume_sats": 0,
+    "probes_used": 8
+   },
+   "turns": 11,
+   "rejections": [
+    {
+     "turn": 8,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 9,
+     "reason": "no_link"
+    },
+    {
+     "turn": 10,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 2,
+   "cell": "single",
+   "agent": "gross",
+   "value": -6.9600945661284745,
+   "metrics": {
+    "cost_sats": 1053.7332,
+    "settled": 1,
+    "transfers": 57,
+    "gross_volume_sats": 1004975,
+    "ghost_volume_sats": 501703,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 2,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -6.338697959733105,
+   "metrics": {
+    "cost_sats": 566.0587999999999,
+    "settled": 1,
+    "transfers": 43,
+    "gross_volume_sats": 681049,
+    "ghost_volume_sats": 262081,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 2,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -5.647119702671415,
+   "metrics": {
+    "cost_sats": 283.4738000000001,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 422308,
+    "ghost_volume_sats": 126970,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 2,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6519a39e3ee",
+   "value": -7.65324174668842,
+   "metrics": {
+    "cost_sats": 2107.4664,
+    "settled": 0,
+    "transfers": 0,
+    "gross_volume_sats": 0,
+    "ghost_volume_sats": 0,
+    "probes_used": 8
+   },
+   "turns": 11,
+   "rejections": [
+    {
+     "turn": 8,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 9,
+     "reason": "no_link"
+    },
+    {
+     "turn": 10,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 3,
+   "cell": "single",
+   "agent": "gross",
+   "value": -8.058569365889834,
+   "metrics": {
+    "cost_sats": 3160.764999999999,
+    "settled": 1,
+    "transfers": 66,
+    "gross_volume_sats": 2110549,
+    "ghost_volume_sats": 1552479,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 3,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -7.422503160628081,
+   "metrics": {
+    "cost_sats": 1673.2165999999997,
+    "settled": 1,
+    "transfers": 52,
+    "gross_volume_sats": 1316839,
+    "ghost_volume_sats": 811333,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 3,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -6.053418637730174,
+   "metrics": {
+    "cost_sats": 425.5654000000001,
+    "settled": 1,
+    "transfers": 34,
+    "gross_volume_sats": 579401,
+    "ghost_volume_sats": 193487,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 3,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6519a39e3ee",
+   "value": -8.75171654644978,
+   "metrics": {
+    "cost_sats": 6321.529999999998,
+    "settled": 0,
+    "transfers": 0,
+    "gross_volume_sats": 0,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 3,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 4,
+   "cell": "single",
+   "agent": "gross",
+   "value": -7.756457937891968,
+   "metrics": {
+    "cost_sats": 2336.6135000000004,
+    "settled": 1,
+    "transfers": 57,
+    "gross_volume_sats": 1664145,
+    "ghost_volume_sats": 1142210,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 4,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -6.770395194834761,
+   "metrics": {
+    "cost_sats": 871.6562999999996,
+    "settled": 1,
+    "transfers": 39,
+    "gross_volume_sats": 827839,
+    "ghost_volume_sats": 415196,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 4,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -5.98757674940698,
+   "metrics": {
+    "cost_sats": 398.44789999999995,
+    "settled": 1,
+    "transfers": 26,
+    "gross_volume_sats": 519392,
+    "ghost_volume_sats": 182373,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 4,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6519a39e3ee",
+   "value": -8.449605118451913,
+   "metrics": {
+    "cost_sats": 4673.227000000001,
+    "settled": 0,
+    "transfers": 0,
+    "gross_volume_sats": 0,
+    "ghost_volume_sats": 0,
+    "probes_used": 8
+   },
+   "turns": 11,
+   "rejections": [
+    {
+     "turn": 8,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 9,
+     "reason": "no_link"
+    },
+    {
+     "turn": 10,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 5,
+   "cell": "single",
+   "agent": "gross",
+   "value": -7.490942605346025,
+   "metrics": {
+    "cost_sats": 1791.7402000000004,
+    "settled": 1,
+    "transfers": 50,
+    "gross_volume_sats": 1389587,
+    "ghost_volume_sats": 869885,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 5,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -7.384727012005611,
+   "metrics": {
+    "cost_sats": 1611.1879000000004,
+    "settled": 1,
+    "transfers": 43,
+    "gross_volume_sats": 1282873,
+    "ghost_volume_sats": 780474,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 5,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -6.665934896425495,
+   "metrics": {
+    "cost_sats": 785.1972000000001,
+    "settled": 1,
+    "transfers": 30,
+    "gross_volume_sats": 794612,
+    "ghost_volume_sats": 371440,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 5,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6519a39e3ee",
+   "value": -8.18408978590597,
+   "metrics": {
+    "cost_sats": 3583.480400000001,
+    "settled": 0,
+    "transfers": 0,
+    "gross_volume_sats": 0,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 3,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 6,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.943067580626207,
+   "metrics": {
+    "cost_sats": 381.10220000000004,
+    "settled": 1,
+    "transfers": 52,
+    "gross_volume_sats": 589458,
+    "ghost_volume_sats": 169556,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 6,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -5.665808157761623,
+   "metrics": {
+    "cost_sats": 288.8213,
+    "settled": 1,
+    "transfers": 38,
+    "gross_volume_sats": 482452,
+    "ghost_volume_sats": 126619,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 6,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -5.3523987456128275,
+   "metrics": {
+    "cost_sats": 211.1141,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 369791,
+    "ghost_volume_sats": 91650,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 6,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6519a39e3ee",
+   "value": -6.636214761186152,
+   "metrics": {
+    "cost_sats": 762.2044000000001,
+    "settled": 0,
+    "transfers": 0,
+    "gross_volume_sats": 0,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 3,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 7,
+   "cell": "single",
+   "agent": "gross",
+   "value": -6.052005400710076,
+   "metrics": {
+    "cost_sats": 424.9644000000002,
+    "settled": 1,
+    "transfers": 52,
+    "gross_volume_sats": 607667,
+    "ghost_volume_sats": 191683,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 7,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -5.727171799311293,
+   "metrics": {
+    "cost_sats": 307.0995,
+    "settled": 1,
+    "transfers": 45,
+    "gross_volume_sats": 450401,
+    "ghost_volume_sats": 137926,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 7,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.588458317372601,
+   "metrics": {
+    "cost_sats": 98.34269999999998,
+    "settled": 1,
+    "transfers": 23,
+    "gross_volume_sats": 219437,
+    "ghost_volume_sats": 40210,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 7,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6519a39e3ee",
+   "value": -6.7451525812700215,
+   "metrics": {
+    "cost_sats": 849.9288000000004,
+    "settled": 0,
+    "transfers": 0,
+    "gross_volume_sats": 0,
+    "ghost_volume_sats": 0,
+    "probes_used": 8
+   },
+   "turns": 11,
+   "rejections": [
+    {
+     "turn": 8,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 9,
+     "reason": "no_link"
+    },
+    {
+     "turn": 10,
+     "reason": "no_link"
+    }
+   ]
+  }
+ ],
+ "checks": [
+  {
+   "id": "K12",
+   "pass": true,
+   "detail": "24 episodes compared, 0 mismatches"
+  }
+ ]
+}

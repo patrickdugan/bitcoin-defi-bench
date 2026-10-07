@@ -1,0 +1,5008 @@
+{
+ "bench": "bitcoin-defi-bench/v0",
+ "block": "confirmatory",
+ "manifest_sha256": "d7c0276a31ce350d5738ac734a256d293423e58293cb10d86c97db850b577101",
+ "prereg_sha256": "f430aefe0969d5e92cc43e9cb3a760b0431d49c6d85c60d210b4395cdc4844e5",
+ "spiral_commit": "9824c30ad402cc9bca768eca27d176e0e8788db5",
+ "node": "v24.19.0",
+ "seeds": [
+  1000,
+  1001,
+  1002,
+  1003,
+  1004,
+  1005,
+  1006,
+  1007,
+  1008,
+  1009,
+  1010,
+  1011,
+  1012,
+  1013,
+  1014,
+  1015,
+  1016,
+  1017,
+  1018,
+  1019,
+  1020,
+  1021,
+  1022,
+  1023,
+  1024,
+  1025,
+  1026,
+  1027,
+  1028,
+  1029,
+  1030,
+  1031
+ ],
+ "agents": [
+  {
+   "id": "gross",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "bilateral_net",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "min_cost_flow",
+   "privileged": false,
+   "baseline": true
+  }
+ ],
+ "tasks": [
+  {
+   "task": "netting/bilateral_dense",
+   "unit": "−ln of the plan's cost in sats; an episode with no accepted plan is scored at twice the floor's cost",
+   "band": 0.05,
+   "floor": "gross",
+   "ceiling": "min_cost_flow",
+   "reference": "bilateral_net",
+   "metrics": [
+    "cost_sats",
+    "transfers",
+    "gross_volume_sats",
+    "ghost_volume_sats"
+   ]
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "unit": "−ln of the plan's cost in sats; an episode with no accepted plan is scored at twice the floor's cost",
+   "band": 0.05,
+   "floor": "gross",
+   "ceiling": "min_cost_flow",
+   "reference": "bilateral_net",
+   "metrics": [
+    "cost_sats",
+    "transfers",
+    "gross_volume_sats",
+    "ghost_volume_sats"
+   ]
+  },
+  {
+   "task": "netting/tight_links",
+   "unit": "−ln of the plan's cost in sats; an episode with no accepted plan is scored at twice the floor's cost",
+   "band": 0.05,
+   "floor": "gross",
+   "ceiling": "min_cost_flow",
+   "reference": "bilateral_net",
+   "metrics": [
+    "cost_sats",
+    "transfers",
+    "gross_volume_sats",
+    "ghost_volume_sats"
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.313967255918412,
+   "metrics": {
+    "cost_sats": 74.7364,
+    "settled": 1,
+    "transfers": 23,
+    "gross_volume_sats": 747364,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -3.56137557377042,
+   "metrics": {
+    "cost_sats": 35.2116,
+    "settled": 1,
+    "transfers": 14,
+    "gross_volume_sats": 352116,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -2.968838865989976,
+   "metrics": {
+    "cost_sats": 19.469300000000004,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 194693,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.694079926611388,
+   "metrics": {
+    "cost_sats": 109.29819999999998,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 1092982,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -3.9713969631372232,
+   "metrics": {
+    "cost_sats": 53.058600000000006,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 530586,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.589158561400961,
+   "metrics": {
+    "cost_sats": 36.203599999999994,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 362036,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.437908261545917,
+   "metrics": {
+    "cost_sats": 84.5978,
+    "settled": 1,
+    "transfers": 25,
+    "gross_volume_sats": 845978,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -3.8129626023187995,
+   "metrics": {
+    "cost_sats": 45.2844,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 452844,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -2.9091171816694095,
+   "metrics": {
+    "cost_sats": 18.340600000000002,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 183406,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.01669092171661,
+   "metrics": {
+    "cost_sats": 150.9111,
+    "settled": 1,
+    "transfers": 25,
+    "gross_volume_sats": 1509111,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.171097248320492,
+   "metrics": {
+    "cost_sats": 64.78649999999999,
+    "settled": 1,
+    "transfers": 13,
+    "gross_volume_sats": 647865,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.2910215874329554,
+   "metrics": {
+    "cost_sats": 26.8703,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 268703,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.744891257962849,
+   "metrics": {
+    "cost_sats": 114.99530000000001,
+    "settled": 1,
+    "transfers": 25,
+    "gross_volume_sats": 1149953,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.506823901879989,
+   "metrics": {
+    "cost_sats": 90.6335,
+    "settled": 1,
+    "transfers": 14,
+    "gross_volume_sats": 906335,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.378914280532803,
+   "metrics": {
+    "cost_sats": 29.3389,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 293389,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.945219588344728,
+   "metrics": {
+    "cost_sats": 140.50170000000003,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 1405017,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.039717647315522,
+   "metrics": {
+    "cost_sats": 56.81030000000001,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 568103,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.1147012723446696,
+   "metrics": {
+    "cost_sats": 22.5267,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 225267,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.1954210345165865,
+   "metrics": {
+    "cost_sats": 180.4441,
+    "settled": 1,
+    "transfers": 23,
+    "gross_volume_sats": 1804441,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.724219086765708,
+   "metrics": {
+    "cost_sats": 112.64249999999998,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 1126425,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.5992337011099664,
+   "metrics": {
+    "cost_sats": 36.5702,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 365702,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.488346228942646,
+   "metrics": {
+    "cost_sats": 241.85690000000002,
+    "settled": 1,
+    "transfers": 26,
+    "gross_volume_sats": 2418569,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.73373664872093,
+   "metrics": {
+    "cost_sats": 113.71969999999999,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 1137197,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.210680625592906,
+   "metrics": {
+    "cost_sats": 67.4024,
+    "settled": 1,
+    "transfers": 6,
+    "gross_volume_sats": 674024,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.355221824213313,
+   "metrics": {
+    "cost_sats": 77.8841,
+    "settled": 1,
+    "transfers": 23,
+    "gross_volume_sats": 778841,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -3.6876862425200376,
+   "metrics": {
+    "cost_sats": 39.952299999999994,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 399523,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -2.731610465511223,
+   "metrics": {
+    "cost_sats": 15.357600000000001,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 153576,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.91544217410683,
+   "metrics": {
+    "cost_sats": 136.37959999999998,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 1363796,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.0520318738363015,
+   "metrics": {
+    "cost_sats": 57.514199999999995,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 575142,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.5429544339306087,
+   "metrics": {
+    "cost_sats": 34.5689,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 345689,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.872107822781396,
+   "metrics": {
+    "cost_sats": 130.59590000000003,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 1305959,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.037073789128911,
+   "metrics": {
+    "cost_sats": 56.66030000000001,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 566603,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.336018655637161,
+   "metrics": {
+    "cost_sats": 28.107000000000003,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 281070,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.482836436522554,
+   "metrics": {
+    "cost_sats": 88.4853,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 884853,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.09152893539587,
+   "metrics": {
+    "cost_sats": 59.8313,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 598313,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.4632265068978185,
+   "metrics": {
+    "cost_sats": 31.919800000000002,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 319198,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.546347564593213,
+   "metrics": {
+    "cost_sats": 94.28739999999999,
+    "settled": 1,
+    "transfers": 25,
+    "gross_volume_sats": 942874,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -3.661934682315853,
+   "metrics": {
+    "cost_sats": 38.9366,
+    "settled": 1,
+    "transfers": 14,
+    "gross_volume_sats": 389366,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -2.3012642210266296,
+   "metrics": {
+    "cost_sats": 9.986799999999999,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 99868,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.748159090030428,
+   "metrics": {
+    "cost_sats": 115.37169999999999,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 1153717,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -3.8531918993004837,
+   "metrics": {
+    "cost_sats": 47.143299999999996,
+    "settled": 1,
+    "transfers": 14,
+    "gross_volume_sats": 471433,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.1342020771294328,
+   "metrics": {
+    "cost_sats": 22.9703,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 229703,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.107424984944759,
+   "metrics": {
+    "cost_sats": 165.2443,
+    "settled": 1,
+    "transfers": 25,
+    "gross_volume_sats": 1652443,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.3458565635767545,
+   "metrics": {
+    "cost_sats": 77.1581,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 771581,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.813693271354937,
+   "metrics": {
+    "cost_sats": 45.3175,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 453175,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.242577358060145,
+   "metrics": {
+    "cost_sats": 189.157,
+    "settled": 1,
+    "transfers": 26,
+    "gross_volume_sats": 1891570,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.583962892610271,
+   "metrics": {
+    "cost_sats": 97.90160000000002,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 979016,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.871977792468296,
+   "metrics": {
+    "cost_sats": 48.03730000000001,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 480373,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.185171064608176,
+   "metrics": {
+    "cost_sats": 178.60400000000004,
+    "settled": 1,
+    "transfers": 23,
+    "gross_volume_sats": 1786040,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.485201263019819,
+   "metrics": {
+    "cost_sats": 88.6948,
+    "settled": 1,
+    "transfers": 14,
+    "gross_volume_sats": 886948,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.052351743665917,
+   "metrics": {
+    "cost_sats": 57.5326,
+    "settled": 1,
+    "transfers": 6,
+    "gross_volume_sats": 575326,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.327183696075975,
+   "metrics": {
+    "cost_sats": 205.8574,
+    "settled": 1,
+    "transfers": 25,
+    "gross_volume_sats": 2058574,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.527465908720404,
+   "metrics": {
+    "cost_sats": 92.5238,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 925238,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.602430646125415,
+   "metrics": {
+    "cost_sats": 36.6873,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 366873,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.467253190651015,
+   "metrics": {
+    "cost_sats": 87.1171,
+    "settled": 1,
+    "transfers": 28,
+    "gross_volume_sats": 871171,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -3.5389311817900135,
+   "metrics": {
+    "cost_sats": 34.4301,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 344301,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.1899165228904574,
+   "metrics": {
+    "cost_sats": 24.286399999999997,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 242864,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.645521989986105,
+   "metrics": {
+    "cost_sats": 104.11769999999996,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 1041177,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.0758903254386984,
+   "metrics": {
+    "cost_sats": 58.9029,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 589029,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.044946157465342,
+   "metrics": {
+    "cost_sats": 21.008899999999997,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 210089,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.159219078905352,
+   "metrics": {
+    "cost_sats": 174.02849999999998,
+    "settled": 1,
+    "transfers": 28,
+    "gross_volume_sats": 1740285,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.589909329220037,
+   "metrics": {
+    "cost_sats": 98.4855,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 984855,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.184951273799114,
+   "metrics": {
+    "cost_sats": 65.6903,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 656903,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.167780343463837,
+   "metrics": {
+    "cost_sats": 175.5248,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 1755248,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.567511931560195,
+   "metrics": {
+    "cost_sats": 96.3042,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 963042,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.758710973837127,
+   "metrics": {
+    "cost_sats": 42.893100000000004,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 428931,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.189809681521668,
+   "metrics": {
+    "cost_sats": 179.43439999999998,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 1794344,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.333106837102403,
+   "metrics": {
+    "cost_sats": 76.1806,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 761806,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.986985755012671,
+   "metrics": {
+    "cost_sats": 53.892199999999995,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 538922,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.595998252105381,
+   "metrics": {
+    "cost_sats": 99.08700000000003,
+    "settled": 1,
+    "transfers": 26,
+    "gross_volume_sats": 990870,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -3.686225936648373,
+   "metrics": {
+    "cost_sats": 39.894,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 398940,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.177628740009849,
+   "metrics": {
+    "cost_sats": 23.9898,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 239898,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.815195265185239,
+   "metrics": {
+    "cost_sats": 123.37089999999999,
+    "settled": 1,
+    "transfers": 28,
+    "gross_volume_sats": 1233709,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.405277965213655,
+   "metrics": {
+    "cost_sats": 81.88190000000002,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 818819,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.8217962829328034,
+   "metrics": {
+    "cost_sats": 45.68620000000001,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 456862,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.97672339753948,
+   "metrics": {
+    "cost_sats": 144.99850000000004,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 1449985,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.3667340468430815,
+   "metrics": {
+    "cost_sats": 78.7859,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 787859,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.5030076024749603,
+   "metrics": {
+    "cost_sats": 33.2152,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 332152,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.5173220954148965,
+   "metrics": {
+    "cost_sats": 91.59,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 915900,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -3.9376985494172803,
+   "metrics": {
+    "cost_sats": 51.300399999999996,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 513004,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -2.785924405424811,
+   "metrics": {
+    "cost_sats": 16.2148,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 162148,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.435197665011316,
+   "metrics": {
+    "cost_sats": 84.3688,
+    "settled": 1,
+    "transfers": 25,
+    "gross_volume_sats": 843688,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -3.9545421190267946,
+   "metrics": {
+    "cost_sats": 52.1718,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 521718,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.278592740726555,
+   "metrics": {
+    "cost_sats": 26.538400000000003,
+    "settled": 1,
+    "transfers": 6,
+    "gross_volume_sats": 265384,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.081754614199051,
+   "metrics": {
+    "cost_sats": 161.0564,
+    "settled": 1,
+    "transfers": 28,
+    "gross_volume_sats": 1610564,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.486177168598969,
+   "metrics": {
+    "cost_sats": 88.78140000000002,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 887814,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.422874068804151,
+   "metrics": {
+    "cost_sats": 30.657400000000003,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 306574,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.7271267226828355,
+   "metrics": {
+    "cost_sats": 112.97049999999999,
+    "settled": 1,
+    "transfers": 26,
+    "gross_volume_sats": 1129705,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.024588899884166,
+   "metrics": {
+    "cost_sats": 55.957300000000004,
+    "settled": 1,
+    "transfers": 14,
+    "gross_volume_sats": 559573,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.3663194914541195,
+   "metrics": {
+    "cost_sats": 28.971700000000002,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 289717,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.492119062157338,
+   "metrics": {
+    "cost_sats": 89.3105,
+    "settled": 1,
+    "transfers": 28,
+    "gross_volume_sats": 893105,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.142787046910407,
+   "metrics": {
+    "cost_sats": 62.978100000000005,
+    "settled": 1,
+    "transfers": 15,
+    "gross_volume_sats": 629781,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.3703463448450397,
+   "metrics": {
+    "cost_sats": 29.0886,
+    "settled": 1,
+    "transfers": 5,
+    "gross_volume_sats": 290886,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.404917663359507,
+   "metrics": {
+    "cost_sats": 222.49789999999996,
+    "settled": 1,
+    "transfers": 26,
+    "gross_volume_sats": 2224979,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.6997828498574545,
+   "metrics": {
+    "cost_sats": 109.92330000000001,
+    "settled": 1,
+    "transfers": 14,
+    "gross_volume_sats": 1099233,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/bilateral_dense",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.180566599987698,
+   "metrics": {
+    "cost_sats": 65.4029,
+    "settled": 1,
+    "transfers": 6,
+    "gross_volume_sats": 654029,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.4894787114919,
+   "metrics": {
+    "cost_sats": 89.075,
+    "settled": 1,
+    "transfers": 38,
+    "gross_volume_sats": 890750,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.220092828075957,
+   "metrics": {
+    "cost_sats": 68.0398,
+    "settled": 1,
+    "transfers": 31,
+    "gross_volume_sats": 680398,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.008543361764282,
+   "metrics": {
+    "cost_sats": 55.0666,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 550666,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.299413751928254,
+   "metrics": {
+    "cost_sats": 73.65660000000001,
+    "settled": 1,
+    "transfers": 39,
+    "gross_volume_sats": 736566,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.015279709625746,
+   "metrics": {
+    "cost_sats": 55.43880000000001,
+    "settled": 1,
+    "transfers": 30,
+    "gross_volume_sats": 554388,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.662843439563095,
+   "metrics": {
+    "cost_sats": 38.97200000000001,
+    "settled": 1,
+    "transfers": 24,
+    "gross_volume_sats": 389720,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.313432061857526,
+   "metrics": {
+    "cost_sats": 203.0459,
+    "settled": 1,
+    "transfers": 40,
+    "gross_volume_sats": 2030459,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -5.0705939687288835,
+   "metrics": {
+    "cost_sats": 159.2689,
+    "settled": 1,
+    "transfers": 30,
+    "gross_volume_sats": 1592689,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -5.005248142751841,
+   "metrics": {
+    "cost_sats": 149.1941,
+    "settled": 1,
+    "transfers": 25,
+    "gross_volume_sats": 1491941,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.124700781070328,
+   "metrics": {
+    "cost_sats": 61.84930000000001,
+    "settled": 1,
+    "transfers": 39,
+    "gross_volume_sats": 618493,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -3.903988817599817,
+   "metrics": {
+    "cost_sats": 49.599900000000005,
+    "settled": 1,
+    "transfers": 30,
+    "gross_volume_sats": 495999,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.753789000163252,
+   "metrics": {
+    "cost_sats": 42.682500000000005,
+    "settled": 1,
+    "transfers": 25,
+    "gross_volume_sats": 426825,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.579069507538107,
+   "metrics": {
+    "cost_sats": 97.42369999999998,
+    "settled": 1,
+    "transfers": 37,
+    "gross_volume_sats": 974237,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.420955237859507,
+   "metrics": {
+    "cost_sats": 83.17569999999999,
+    "settled": 1,
+    "transfers": 30,
+    "gross_volume_sats": 831757,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.273069380723018,
+   "metrics": {
+    "cost_sats": 71.74149999999999,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 717415,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.034218348264854,
+   "metrics": {
+    "cost_sats": 153.57949999999997,
+    "settled": 1,
+    "transfers": 38,
+    "gross_volume_sats": 1535795,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.815522679401993,
+   "metrics": {
+    "cost_sats": 123.41129999999998,
+    "settled": 1,
+    "transfers": 29,
+    "gross_volume_sats": 1234113,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.636950790043678,
+   "metrics": {
+    "cost_sats": 103.22909999999999,
+    "settled": 1,
+    "transfers": 25,
+    "gross_volume_sats": 1032291,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.1224654379387555,
+   "metrics": {
+    "cost_sats": 61.711200000000005,
+    "settled": 1,
+    "transfers": 34,
+    "gross_volume_sats": 617112,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -3.8722213235452094,
+   "metrics": {
+    "cost_sats": 48.04899999999999,
+    "settled": 1,
+    "transfers": 28,
+    "gross_volume_sats": 480490,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.7550182566179817,
+   "metrics": {
+    "cost_sats": 42.73500000000001,
+    "settled": 1,
+    "transfers": 26,
+    "gross_volume_sats": 427350,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.927209481281677,
+   "metrics": {
+    "cost_sats": 137.99390000000002,
+    "settled": 1,
+    "transfers": 36,
+    "gross_volume_sats": 1379939,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.697629943559754,
+   "metrics": {
+    "cost_sats": 109.68690000000001,
+    "settled": 1,
+    "transfers": 30,
+    "gross_volume_sats": 1096869,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.611666042156775,
+   "metrics": {
+    "cost_sats": 100.65170000000002,
+    "settled": 1,
+    "transfers": 25,
+    "gross_volume_sats": 1006517,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.566171528178698,
+   "metrics": {
+    "cost_sats": 96.17520000000002,
+    "settled": 1,
+    "transfers": 35,
+    "gross_volume_sats": 961752,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.1757709275842965,
+   "metrics": {
+    "cost_sats": 65.09000000000002,
+    "settled": 1,
+    "transfers": 26,
+    "gross_volume_sats": 650900,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.155433390003763,
+   "metrics": {
+    "cost_sats": 63.779599999999995,
+    "settled": 1,
+    "transfers": 23,
+    "gross_volume_sats": 637796,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.160288446621614,
+   "metrics": {
+    "cost_sats": 174.2147,
+    "settled": 1,
+    "transfers": 40,
+    "gross_volume_sats": 1742147,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.939254573966561,
+   "metrics": {
+    "cost_sats": 139.6661,
+    "settled": 1,
+    "transfers": 33,
+    "gross_volume_sats": 1396661,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.6914992469197205,
+   "metrics": {
+    "cost_sats": 109.01650000000002,
+    "settled": 1,
+    "transfers": 28,
+    "gross_volume_sats": 1090165,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.274207543639385,
+   "metrics": {
+    "cost_sats": 71.8232,
+    "settled": 1,
+    "transfers": 41,
+    "gross_volume_sats": 718232,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.074084030103508,
+   "metrics": {
+    "cost_sats": 58.79660000000001,
+    "settled": 1,
+    "transfers": 32,
+    "gross_volume_sats": 587966,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.9386960946038476,
+   "metrics": {
+    "cost_sats": 51.35159999999999,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 513516,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.183019138661741,
+   "metrics": {
+    "cost_sats": 65.5635,
+    "settled": 1,
+    "transfers": 40,
+    "gross_volume_sats": 655635,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -3.953408681050355,
+   "metrics": {
+    "cost_sats": 52.11270000000002,
+    "settled": 1,
+    "transfers": 33,
+    "gross_volume_sats": 521127,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.3522627070515925,
+   "metrics": {
+    "cost_sats": 28.567299999999996,
+    "settled": 1,
+    "transfers": 24,
+    "gross_volume_sats": 285673,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.174406405953036,
+   "metrics": {
+    "cost_sats": 176.69169999999997,
+    "settled": 1,
+    "transfers": 38,
+    "gross_volume_sats": 1766917,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -5.063058849498108,
+   "metrics": {
+    "cost_sats": 158.07329999999996,
+    "settled": 1,
+    "transfers": 32,
+    "gross_volume_sats": 1580733,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.743888975773073,
+   "metrics": {
+    "cost_sats": 114.88010000000001,
+    "settled": 1,
+    "transfers": 25,
+    "gross_volume_sats": 1148801,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.105747878622344,
+   "metrics": {
+    "cost_sats": 164.96739999999997,
+    "settled": 1,
+    "transfers": 38,
+    "gross_volume_sats": 1649674,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.972159157010736,
+   "metrics": {
+    "cost_sats": 144.33819999999997,
+    "settled": 1,
+    "transfers": 32,
+    "gross_volume_sats": 1443382,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.900241391432058,
+   "metrics": {
+    "cost_sats": 134.32220000000004,
+    "settled": 1,
+    "transfers": 26,
+    "gross_volume_sats": 1343222,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.860701156591204,
+   "metrics": {
+    "cost_sats": 129.11469999999997,
+    "settled": 1,
+    "transfers": 42,
+    "gross_volume_sats": 1291147,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.588195935061766,
+   "metrics": {
+    "cost_sats": 98.31689999999999,
+    "settled": 1,
+    "transfers": 33,
+    "gross_volume_sats": 983169,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.306873308635819,
+   "metrics": {
+    "cost_sats": 74.2081,
+    "settled": 1,
+    "transfers": 26,
+    "gross_volume_sats": 742081,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.782064542135092,
+   "metrics": {
+    "cost_sats": 119.35049999999998,
+    "settled": 1,
+    "transfers": 37,
+    "gross_volume_sats": 1193505,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.267618366827301,
+   "metrics": {
+    "cost_sats": 71.3515,
+    "settled": 1,
+    "transfers": 29,
+    "gross_volume_sats": 713515,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.036826672013558,
+   "metrics": {
+    "cost_sats": 56.6463,
+    "settled": 1,
+    "transfers": 26,
+    "gross_volume_sats": 566463,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.174057715322432,
+   "metrics": {
+    "cost_sats": 176.63009999999997,
+    "settled": 1,
+    "transfers": 39,
+    "gross_volume_sats": 1766301,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.796480390243826,
+   "metrics": {
+    "cost_sats": 121.0835,
+    "settled": 1,
+    "transfers": 30,
+    "gross_volume_sats": 1210835,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.664995429563328,
+   "metrics": {
+    "cost_sats": 106.1651,
+    "settled": 1,
+    "transfers": 26,
+    "gross_volume_sats": 1061651,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.433450233071496,
+   "metrics": {
+    "cost_sats": 84.2215,
+    "settled": 1,
+    "transfers": 41,
+    "gross_volume_sats": 842215,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.0179151797304655,
+   "metrics": {
+    "cost_sats": 55.5851,
+    "settled": 1,
+    "transfers": 32,
+    "gross_volume_sats": 555851,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.8610728100701284,
+   "metrics": {
+    "cost_sats": 47.51630000000001,
+    "settled": 1,
+    "transfers": 26,
+    "gross_volume_sats": 475163,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.286582070840428,
+   "metrics": {
+    "cost_sats": 72.71750000000002,
+    "settled": 1,
+    "transfers": 37,
+    "gross_volume_sats": 727175,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.054350349995527,
+   "metrics": {
+    "cost_sats": 57.6477,
+    "settled": 1,
+    "transfers": 28,
+    "gross_volume_sats": 576477,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.8239805516069008,
+   "metrics": {
+    "cost_sats": 45.78610000000001,
+    "settled": 1,
+    "transfers": 23,
+    "gross_volume_sats": 457861,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.329144296414582,
+   "metrics": {
+    "cost_sats": 206.2614,
+    "settled": 1,
+    "transfers": 39,
+    "gross_volume_sats": 2062614,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -5.04315411245892,
+   "metrics": {
+    "cost_sats": 154.95800000000003,
+    "settled": 1,
+    "transfers": 30,
+    "gross_volume_sats": 1549580,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.780044077646888,
+   "metrics": {
+    "cost_sats": 119.10959999999996,
+    "settled": 1,
+    "transfers": 25,
+    "gross_volume_sats": 1191096,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.509637881515909,
+   "metrics": {
+    "cost_sats": 90.88889999999999,
+    "settled": 1,
+    "transfers": 37,
+    "gross_volume_sats": 908889,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.2841891388953055,
+   "metrics": {
+    "cost_sats": 72.54369999999999,
+    "settled": 1,
+    "transfers": 31,
+    "gross_volume_sats": 725437,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.022262997056649,
+   "metrics": {
+    "cost_sats": 55.82730000000001,
+    "settled": 1,
+    "transfers": 25,
+    "gross_volume_sats": 558273,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.1875411010444,
+   "metrics": {
+    "cost_sats": 179.02779999999996,
+    "settled": 1,
+    "transfers": 41,
+    "gross_volume_sats": 1790278,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -5.0820352218530385,
+   "metrics": {
+    "cost_sats": 161.10160000000002,
+    "settled": 1,
+    "transfers": 35,
+    "gross_volume_sats": 1611016,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.934964460284588,
+   "metrics": {
+    "cost_sats": 139.06820000000002,
+    "settled": 1,
+    "transfers": 32,
+    "gross_volume_sats": 1390682,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.102114508751719,
+   "metrics": {
+    "cost_sats": 164.3691,
+    "settled": 1,
+    "transfers": 37,
+    "gross_volume_sats": 1643691,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.5359326417140515,
+   "metrics": {
+    "cost_sats": 93.31050000000002,
+    "settled": 1,
+    "transfers": 26,
+    "gross_volume_sats": 933105,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.51335419439164,
+   "metrics": {
+    "cost_sats": 91.22730000000001,
+    "settled": 1,
+    "transfers": 24,
+    "gross_volume_sats": 912273,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.662600062978584,
+   "metrics": {
+    "cost_sats": 105.91109999999996,
+    "settled": 1,
+    "transfers": 40,
+    "gross_volume_sats": 1059111,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.547467977259676,
+   "metrics": {
+    "cost_sats": 94.39309999999995,
+    "settled": 1,
+    "transfers": 34,
+    "gross_volume_sats": 943931,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.282285025574451,
+   "metrics": {
+    "cost_sats": 72.4057,
+    "settled": 1,
+    "transfers": 28,
+    "gross_volume_sats": 724057,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.209444000249282,
+   "metrics": {
+    "cost_sats": 67.31909999999999,
+    "settled": 1,
+    "transfers": 39,
+    "gross_volume_sats": 673191,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -3.6818875677451124,
+   "metrics": {
+    "cost_sats": 39.7213,
+    "settled": 1,
+    "transfers": 30,
+    "gross_volume_sats": 397213,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.618760055476337,
+   "metrics": {
+    "cost_sats": 37.2913,
+    "settled": 1,
+    "transfers": 26,
+    "gross_volume_sats": 372913,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.300308044326457,
+   "metrics": {
+    "cost_sats": 73.72249999999998,
+    "settled": 1,
+    "transfers": 38,
+    "gross_volume_sats": 737225,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.18949260767124,
+   "metrics": {
+    "cost_sats": 65.98929999999999,
+    "settled": 1,
+    "transfers": 32,
+    "gross_volume_sats": 659893,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.028242152180842,
+   "metrics": {
+    "cost_sats": 56.16209999999998,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 561621,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.965230592774997,
+   "metrics": {
+    "cost_sats": 143.34159999999991,
+    "settled": 1,
+    "transfers": 34,
+    "gross_volume_sats": 1433416,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.7519906366388724,
+   "metrics": {
+    "cost_sats": 115.81459999999997,
+    "settled": 1,
+    "transfers": 29,
+    "gross_volume_sats": 1158146,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.566369064793791,
+   "metrics": {
+    "cost_sats": 96.19420000000001,
+    "settled": 1,
+    "transfers": 24,
+    "gross_volume_sats": 961942,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.231728745390749,
+   "metrics": {
+    "cost_sats": 187.116,
+    "settled": 1,
+    "transfers": 38,
+    "gross_volume_sats": 1871160,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.9034152728512606,
+   "metrics": {
+    "cost_sats": 134.7492,
+    "settled": 1,
+    "transfers": 31,
+    "gross_volume_sats": 1347492,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.744243195451286,
+   "metrics": {
+    "cost_sats": 114.92080000000001,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 1149208,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "gross",
+   "value": -5.449396333492053,
+   "metrics": {
+    "cost_sats": 232.6177,
+    "settled": 1,
+    "transfers": 40,
+    "gross_volume_sats": 2326177,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -5.224571251992879,
+   "metrics": {
+    "cost_sats": 185.7815,
+    "settled": 1,
+    "transfers": 32,
+    "gross_volume_sats": 1857815,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -5.03508917900645,
+   "metrics": {
+    "cost_sats": 153.7133,
+    "settled": 1,
+    "transfers": 24,
+    "gross_volume_sats": 1537133,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.28471971270609,
+   "metrics": {
+    "cost_sats": 72.5822,
+    "settled": 1,
+    "transfers": 39,
+    "gross_volume_sats": 725822,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -4.037707189087453,
+   "metrics": {
+    "cost_sats": 56.69620000000001,
+    "settled": 1,
+    "transfers": 32,
+    "gross_volume_sats": 566962,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.736049258590326,
+   "metrics": {
+    "cost_sats": 41.931999999999995,
+    "settled": 1,
+    "transfers": 23,
+    "gross_volume_sats": 419320,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.094034514162168,
+   "metrics": {
+    "cost_sats": 59.9814,
+    "settled": 1,
+    "transfers": 39,
+    "gross_volume_sats": 599814,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -3.9303932347830237,
+   "metrics": {
+    "cost_sats": 50.92700000000001,
+    "settled": 1,
+    "transfers": 29,
+    "gross_volume_sats": 509270,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.8099326923798396,
+   "metrics": {
+    "cost_sats": 45.147400000000005,
+    "settled": 1,
+    "transfers": 24,
+    "gross_volume_sats": 451474,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "gross",
+   "value": -4.371126190105591,
+   "metrics": {
+    "cost_sats": 79.13270000000001,
+    "settled": 1,
+    "transfers": 42,
+    "gross_volume_sats": 791327,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -3.8603949181616084,
+   "metrics": {
+    "cost_sats": 47.484100000000005,
+    "settled": 1,
+    "transfers": 30,
+    "gross_volume_sats": 474841,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/multilateral_sparse",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -3.6121630830436464,
+   "metrics": {
+    "cost_sats": 37.0461,
+    "settled": 1,
+    "transfers": 25,
+    "gross_volume_sats": 370461,
+    "ghost_volume_sats": 0,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "gross",
+   "value": -6.260923011206751,
+   "metrics": {
+    "cost_sats": 523.7021000000002,
+    "settled": 1,
+    "transfers": 55,
+    "gross_volume_sats": 698643,
+    "ghost_volume_sats": 238862,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -5.993636686304615,
+   "metrics": {
+    "cost_sats": 400.8698,
+    "settled": 1,
+    "transfers": 43,
+    "gross_volume_sats": 535517,
+    "ghost_volume_sats": 182799,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.7465247724755315,
+   "metrics": {
+    "cost_sats": 115.18329999999997,
+    "settled": 1,
+    "transfers": 25,
+    "gross_volume_sats": 330805,
+    "ghost_volume_sats": 43212,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "gross",
+   "value": -7.897107086633755,
+   "metrics": {
+    "cost_sats": 2689.4906,
+    "settled": 1,
+    "transfers": 59,
+    "gross_volume_sats": 1803715,
+    "ghost_volume_sats": 1320589,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -7.4135866120143135,
+   "metrics": {
+    "cost_sats": 1658.3636000000006,
+    "settled": 1,
+    "transfers": 50,
+    "gross_volume_sats": 1266919,
+    "ghost_volume_sats": 806143,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -6.566979696234832,
+   "metrics": {
+    "cost_sats": 711.2185,
+    "settled": 1,
+    "transfers": 31,
+    "gross_volume_sats": 676087,
+    "ghost_volume_sats": 338742,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "gross",
+   "value": -6.5728298055058065,
+   "metrics": {
+    "cost_sats": 715.3913999999997,
+    "settled": 1,
+    "transfers": 51,
+    "gross_volume_sats": 748482,
+    "ghost_volume_sats": 337128,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -6.285581061566439,
+   "metrics": {
+    "cost_sats": 536.7761,
+    "settled": 1,
+    "transfers": 35,
+    "gross_volume_sats": 575752,
+    "ghost_volume_sats": 252211,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -5.434461468074215,
+   "metrics": {
+    "cost_sats": 229.16939999999994,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 402467,
+    "ghost_volume_sats": 99433,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "gross",
+   "value": -7.802669022503862,
+   "metrics": {
+    "cost_sats": 2447.124700000002,
+    "settled": 1,
+    "transfers": 60,
+    "gross_volume_sats": 1768204,
+    "ghost_volume_sats": 1194897,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -7.269055171339794,
+   "metrics": {
+    "cost_sats": 1435.1938,
+    "settled": 1,
+    "transfers": 44,
+    "gross_volume_sats": 1254250,
+    "ghost_volume_sats": 689352,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -6.791993524160602,
+   "metrics": {
+    "cost_sats": 890.6874000000001,
+    "settled": 1,
+    "transfers": 28,
+    "gross_volume_sats": 840234,
+    "ghost_volume_sats": 424560,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "gross",
+   "value": -7.903984799284257,
+   "metrics": {
+    "cost_sats": 2708.051899999999,
+    "settled": 1,
+    "transfers": 63,
+    "gross_volume_sats": 1845631,
+    "ghost_volume_sats": 1328152,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -7.243528056753318,
+   "metrics": {
+    "cost_sats": 1399.0210999999997,
+    "settled": 1,
+    "transfers": 48,
+    "gross_volume_sats": 1168821,
+    "ghost_volume_sats": 674810,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -6.225518166599925,
+   "metrics": {
+    "cost_sats": 505.48489999999987,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 519511,
+    "ghost_volume_sats": 238702,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "gross",
+   "value": -7.628816900854189,
+   "metrics": {
+    "cost_sats": 2056.6154,
+    "settled": 1,
+    "transfers": 58,
+    "gross_volume_sats": 1503150,
+    "ghost_volume_sats": 1003316,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -6.902306260006751,
+   "metrics": {
+    "cost_sats": 994.5658,
+    "settled": 1,
+    "transfers": 41,
+    "gross_volume_sats": 903672,
+    "ghost_volume_sats": 475894,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -6.251165460309808,
+   "metrics": {
+    "cost_sats": 518.6169,
+    "settled": 1,
+    "transfers": 30,
+    "gross_volume_sats": 626777,
+    "ghost_volume_sats": 239968,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "gross",
+   "value": -6.44859678805073,
+   "metrics": {
+    "cost_sats": 631.8151,
+    "settled": 1,
+    "transfers": 53,
+    "gross_volume_sats": 746211,
+    "ghost_volume_sats": 293260,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -5.667747960176653,
+   "metrics": {
+    "cost_sats": 289.3820999999999,
+    "settled": 1,
+    "transfers": 29,
+    "gross_volume_sats": 415651,
+    "ghost_volume_sats": 130430,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.694276616819,
+   "metrics": {
+    "cost_sats": 109.3197,
+    "settled": 1,
+    "transfers": 24,
+    "gross_volume_sats": 305153,
+    "ghost_volume_sats": 41476,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "gross",
+   "value": -6.408047785773915,
+   "metrics": {
+    "cost_sats": 606.7081000000003,
+    "settled": 1,
+    "transfers": 55,
+    "gross_volume_sats": 678947,
+    "ghost_volume_sats": 283586,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -6.0991350676489295,
+   "metrics": {
+    "cost_sats": 445.4723000000001,
+    "settled": 1,
+    "transfers": 40,
+    "gross_volume_sats": 538177,
+    "ghost_volume_sats": 206134,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -5.370585933747518,
+   "metrics": {
+    "cost_sats": 214.98879999999994,
+    "settled": 1,
+    "transfers": 32,
+    "gross_volume_sats": 413839,
+    "ghost_volume_sats": 91371,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "gross",
+   "value": -7.715035062691954,
+   "metrics": {
+    "cost_sats": 2241.8015,
+    "settled": 1,
+    "transfers": 59,
+    "gross_volume_sats": 1639197,
+    "ghost_volume_sats": 1093622,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -6.983196091081373,
+   "metrics": {
+    "cost_sats": 1078.3594000000003,
+    "settled": 1,
+    "transfers": 39,
+    "gross_volume_sats": 933861,
+    "ghost_volume_sats": 518407,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -6.525466219428081,
+   "metrics": {
+    "cost_sats": 682.2977999999999,
+    "settled": 1,
+    "transfers": 29,
+    "gross_volume_sats": 718316,
+    "ghost_volume_sats": 321298,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "gross",
+   "value": -6.648847364449462,
+   "metrics": {
+    "cost_sats": 771.8940999999998,
+    "settled": 1,
+    "transfers": 51,
+    "gross_volume_sats": 891196,
+    "ghost_volume_sats": 359355,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -6.212599682905305,
+   "metrics": {
+    "cost_sats": 498.99679999999995,
+    "settled": 1,
+    "transfers": 36,
+    "gross_volume_sats": 682098,
+    "ghost_volume_sats": 226730,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -5.771293137102742,
+   "metrics": {
+    "cost_sats": 320.95249999999993,
+    "settled": 1,
+    "transfers": 24,
+    "gross_volume_sats": 482797,
+    "ghost_volume_sats": 143512,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "gross",
+   "value": -7.433622094734041,
+   "metrics": {
+    "cost_sats": 1691.9248,
+    "settled": 1,
+    "transfers": 64,
+    "gross_volume_sats": 1283426,
+    "ghost_volume_sats": 822938,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -6.625733689061642,
+   "metrics": {
+    "cost_sats": 754.2574,
+    "settled": 1,
+    "transfers": 43,
+    "gross_volume_sats": 669210,
+    "ghost_volume_sats": 361756,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -5.103104472377829,
+   "metrics": {
+    "cost_sats": 164.53189999999998,
+    "settled": 1,
+    "transfers": 28,
+    "gross_volume_sats": 360672,
+    "ghost_volume_sats": 67613,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "gross",
+   "value": -8.0974851830473,
+   "metrics": {
+    "cost_sats": 3286.1934999999994,
+    "settled": 1,
+    "transfers": 57,
+    "gross_volume_sats": 2187423,
+    "ghost_volume_sats": 1614448,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -7.573142338203741,
+   "metrics": {
+    "cost_sats": 1945.2432999999996,
+    "settled": 1,
+    "transfers": 42,
+    "gross_volume_sats": 1405739,
+    "ghost_volume_sats": 949826,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -6.871690596321196,
+   "metrics": {
+    "cost_sats": 964.5779,
+    "settled": 1,
+    "transfers": 25,
+    "gross_volume_sats": 775515,
+    "ghost_volume_sats": 466856,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "gross",
+   "value": -7.3172922856476506,
+   "metrics": {
+    "cost_sats": 1506.1202999999998,
+    "settled": 1,
+    "transfers": 50,
+    "gross_volume_sats": 1239273,
+    "ghost_volume_sats": 727470,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -6.992912730179523,
+   "metrics": {
+    "cost_sats": 1088.8885,
+    "settled": 1,
+    "transfers": 39,
+    "gross_volume_sats": 930947,
+    "ghost_volume_sats": 524102,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -5.694241100168978,
+   "metrics": {
+    "cost_sats": 297.1512,
+    "settled": 1,
+    "transfers": 27,
+    "gross_volume_sats": 400299,
+    "ghost_volume_sats": 135327,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "gross",
+   "value": -7.384798881859392,
+   "metrics": {
+    "cost_sats": 1611.3036999999997,
+    "settled": 1,
+    "transfers": 62,
+    "gross_volume_sats": 1233757,
+    "ghost_volume_sats": 783120,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -6.8297351412011,
+   "metrics": {
+    "cost_sats": 924.9458000000001,
+    "settled": 1,
+    "transfers": 45,
+    "gross_volume_sats": 861471,
+    "ghost_volume_sats": 441473,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -5.888036330024888,
+   "metrics": {
+    "cost_sats": 360.69630000000006,
+    "settled": 1,
+    "transfers": 29,
+    "gross_volume_sats": 505574,
+    "ghost_volume_sats": 163231,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "gross",
+   "value": -6.2046749274217925,
+   "metrics": {
+    "cost_sats": 495.05800000000005,
+    "settled": 1,
+    "transfers": 52,
+    "gross_volume_sats": 734727,
+    "ghost_volume_sats": 221887,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -5.552387716009401,
+   "metrics": {
+    "cost_sats": 257.8525,
+    "settled": 1,
+    "transfers": 39,
+    "gross_volume_sats": 495897,
+    "ghost_volume_sats": 109612,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -5.04108366818895,
+   "metrics": {
+    "cost_sats": 154.6375,
+    "settled": 1,
+    "transfers": 26,
+    "gross_volume_sats": 337785,
+    "ghost_volume_sats": 63610,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "gross",
+   "value": -7.886915001603266,
+   "metrics": {
+    "cost_sats": 2662.218299999999,
+    "settled": 1,
+    "transfers": 58,
+    "gross_volume_sats": 1855835,
+    "ghost_volume_sats": 1303492,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -7.592791403685157,
+   "metrics": {
+    "cost_sats": 1983.8434999999997,
+    "settled": 1,
+    "transfers": 47,
+    "gross_volume_sats": 1498419,
+    "ghost_volume_sats": 965264,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -7.15538810514183,
+   "metrics": {
+    "cost_sats": 1280.9895,
+    "settled": 1,
+    "transfers": 30,
+    "gross_volume_sats": 949639,
+    "ghost_volume_sats": 624224,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "gross",
+   "value": -6.720735824326372,
+   "metrics": {
+    "cost_sats": 829.4276000000002,
+    "settled": 1,
+    "transfers": 58,
+    "gross_volume_sats": 863756,
+    "ghost_volume_sats": 391080,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -6.46862841803046,
+   "metrics": {
+    "cost_sats": 644.5990000000002,
+    "settled": 1,
+    "transfers": 46,
+    "gross_volume_sats": 742342,
+    "ghost_volume_sats": 300192,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -5.409025657332444,
+   "metrics": {
+    "cost_sats": 223.41380000000004,
+    "settled": 1,
+    "transfers": 30,
+    "gross_volume_sats": 425832,
+    "ghost_volume_sats": 95174,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "gross",
+   "value": -6.396294119973066,
+   "metrics": {
+    "cost_sats": 599.6188,
+    "settled": 1,
+    "transfers": 51,
+    "gross_volume_sats": 748084,
+    "ghost_volume_sats": 276216,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -6.221891112771153,
+   "metrics": {
+    "cost_sats": 503.6548,
+    "settled": 1,
+    "transfers": 38,
+    "gross_volume_sats": 654616,
+    "ghost_volume_sats": 230628,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -5.722876354117934,
+   "metrics": {
+    "cost_sats": 305.78319999999997,
+    "settled": 1,
+    "transfers": 29,
+    "gross_volume_sats": 529920,
+    "ghost_volume_sats": 133048,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "gross",
+   "value": -6.841308591786465,
+   "metrics": {
+    "cost_sats": 935.7128000000004,
+    "settled": 1,
+    "transfers": 57,
+    "gross_volume_sats": 900133,
+    "ghost_volume_sats": 445105,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -6.410170605641234,
+   "metrics": {
+    "cost_sats": 607.9974000000002,
+    "settled": 1,
+    "transfers": 41,
+    "gross_volume_sats": 632655,
+    "ghost_volume_sats": 286701,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -5.985750251575203,
+   "metrics": {
+    "cost_sats": 397.7208,
+    "settled": 1,
+    "transfers": 31,
+    "gross_volume_sats": 497453,
+    "ghost_volume_sats": 183145,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "gross",
+   "value": -7.49324219036604,
+   "metrics": {
+    "cost_sats": 1795.8652000000004,
+    "settled": 1,
+    "transfers": 61,
+    "gross_volume_sats": 1440014,
+    "ghost_volume_sats": 869402,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -7.173277091604995,
+   "metrics": {
+    "cost_sats": 1304.1113000000007,
+    "settled": 1,
+    "transfers": 48,
+    "gross_volume_sats": 1131856,
+    "ghost_volume_sats": 626803,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -6.518902420204626,
+   "metrics": {
+    "cost_sats": 677.8340000000002,
+    "settled": 1,
+    "transfers": 26,
+    "gross_volume_sats": 596709,
+    "ghost_volume_sats": 325349,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "gross",
+   "value": -7.072726688690341,
+   "metrics": {
+    "cost_sats": 1179.3594,
+    "settled": 1,
+    "transfers": 59,
+    "gross_volume_sats": 1025819,
+    "ghost_volume_sats": 566725,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -6.539709069426137,
+   "metrics": {
+    "cost_sats": 692.0852,
+    "settled": 1,
+    "transfers": 45,
+    "gross_volume_sats": 687655,
+    "ghost_volume_sats": 328063,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.610617323361308,
+   "metrics": {
+    "cost_sats": 100.54619999999998,
+    "settled": 1,
+    "transfers": 26,
+    "gross_volume_sats": 311240,
+    "ghost_volume_sats": 36538,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "gross",
+   "value": -7.41785573988108,
+   "metrics": {
+    "cost_sats": 1665.4585000000004,
+    "settled": 1,
+    "transfers": 58,
+    "gross_volume_sats": 1332263,
+    "ghost_volume_sats": 806438,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -6.865648292546621,
+   "metrics": {
+    "cost_sats": 958.7672,
+    "settled": 1,
+    "transfers": 43,
+    "gross_volume_sats": 880257,
+    "ghost_volume_sats": 458285,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -6.3562954902770334,
+   "metrics": {
+    "cost_sats": 576.1082000000001,
+    "settled": 1,
+    "transfers": 29,
+    "gross_volume_sats": 562226,
+    "ghost_volume_sats": 273624,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "gross",
+   "value": -7.116542509710119,
+   "metrics": {
+    "cost_sats": 1232.1827999999998,
+    "settled": 1,
+    "transfers": 57,
+    "gross_volume_sats": 1112873,
+    "ghost_volume_sats": 589945,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -6.255066698922837,
+   "metrics": {
+    "cost_sats": 520.6441,
+    "settled": 1,
+    "transfers": 42,
+    "gross_volume_sats": 700515,
+    "ghost_volume_sats": 237154,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -5.239324506434046,
+   "metrics": {
+    "cost_sats": 188.54270000000002,
+    "settled": 1,
+    "transfers": 30,
+    "gross_volume_sats": 485716,
+    "ghost_volume_sats": 73669,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "gross",
+   "value": -7.371466087397808,
+   "metrics": {
+    "cost_sats": 1589.9631000000004,
+    "settled": 1,
+    "transfers": 54,
+    "gross_volume_sats": 1258174,
+    "ghost_volume_sats": 770603,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -7.15988185515942,
+   "metrics": {
+    "cost_sats": 1286.7588999999998,
+    "settled": 1,
+    "transfers": 39,
+    "gross_volume_sats": 1052382,
+    "ghost_volume_sats": 621853,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -6.64844748873473,
+   "metrics": {
+    "cost_sats": 771.5855,
+    "settled": 1,
+    "transfers": 29,
+    "gross_volume_sats": 715305,
+    "ghost_volume_sats": 368450,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "gross",
+   "value": -8.200076898029005,
+   "metrics": {
+    "cost_sats": 3641.2303,
+    "settled": 1,
+    "transfers": 61,
+    "gross_volume_sats": 2365272,
+    "ghost_volume_sats": 1791949,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -7.688405882124089,
+   "metrics": {
+    "cost_sats": 2182.8920000000003,
+    "settled": 1,
+    "transfers": 48,
+    "gross_volume_sats": 1573172,
+    "ghost_volume_sats": 1066092,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -6.9912501135109295,
+   "metrics": {
+    "cost_sats": 1087.0796,
+    "settled": 1,
+    "transfers": 28,
+    "gross_volume_sats": 908773,
+    "ghost_volume_sats": 524317,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "gross",
+   "value": -7.895041292181833,
+   "metrics": {
+    "cost_sats": 2683.9404,
+    "settled": 1,
+    "transfers": 63,
+    "gross_volume_sats": 1852751,
+    "ghost_volume_sats": 1315087,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -7.413647573867557,
+   "metrics": {
+    "cost_sats": 1658.4646999999993,
+    "settled": 1,
+    "transfers": 47,
+    "gross_volume_sats": 1244769,
+    "ghost_volume_sats": 807362,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -6.764876333797104,
+   "metrics": {
+    "cost_sats": 866.8590000000002,
+    "settled": 1,
+    "transfers": 30,
+    "gross_volume_sats": 746711,
+    "ghost_volume_sats": 416941,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "gross",
+   "value": -7.181112514114075,
+   "metrics": {
+    "cost_sats": 1314.3696999999997,
+    "settled": 1,
+    "transfers": 58,
+    "gross_volume_sats": 1077158,
+    "ghost_volume_sats": 635081,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -6.369577471600002,
+   "metrics": {
+    "cost_sats": 583.8110999999999,
+    "settled": 1,
+    "transfers": 37,
+    "gross_volume_sats": 667584,
+    "ghost_volume_sats": 272133,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -6.1075407936948976,
+   "metrics": {
+    "cost_sats": 449.23259999999993,
+    "settled": 1,
+    "transfers": 29,
+    "gross_volume_sats": 506240,
+    "ghost_volume_sats": 209794,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "gross",
+   "value": -7.703386166149995,
+   "metrics": {
+    "cost_sats": 2215.8385000000003,
+    "settled": 1,
+    "transfers": 60,
+    "gross_volume_sats": 1602627,
+    "ghost_volume_sats": 1081882,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -7.420084771370634,
+   "metrics": {
+    "cost_sats": 1669.175,
+    "settled": 1,
+    "transfers": 48,
+    "gross_volume_sats": 1288963,
+    "ghost_volume_sats": 810673,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -6.986161294158775,
+   "metrics": {
+    "cost_sats": 1081.5617000000002,
+    "settled": 1,
+    "transfers": 30,
+    "gross_volume_sats": 812402,
+    "ghost_volume_sats": 526485,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "gross",
+   "value": -7.641523489870387,
+   "metrics": {
+    "cost_sats": 2082.9147000000003,
+    "settled": 1,
+    "transfers": 64,
+    "gross_volume_sats": 1533678,
+    "ghost_volume_sats": 1015551,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -7.460757416293154,
+   "metrics": {
+    "cost_sats": 1738.4642999999992,
+    "settled": 1,
+    "transfers": 51,
+    "gross_volume_sats": 1300934,
+    "ghost_volume_sats": 846511,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -6.727115746791333,
+   "metrics": {
+    "cost_sats": 834.7361999999999,
+    "settled": 1,
+    "transfers": 30,
+    "gross_volume_sats": 749243,
+    "ghost_volume_sats": 399901,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "gross",
+   "value": -6.057006939198456,
+   "metrics": {
+    "cost_sats": 427.0952,
+    "settled": 1,
+    "transfers": 51,
+    "gross_volume_sats": 647785,
+    "ghost_volume_sats": 190693,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -5.748299713344297,
+   "metrics": {
+    "cost_sats": 313.65689999999995,
+    "settled": 1,
+    "transfers": 37,
+    "gross_volume_sats": 504195,
+    "ghost_volume_sats": 138546,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -4.974476714489615,
+   "metrics": {
+    "cost_sats": 144.67309999999998,
+    "settled": 1,
+    "transfers": 26,
+    "gross_volume_sats": 352863,
+    "ghost_volume_sats": 57572,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "gross",
+   "value": -8.141030969310705,
+   "metrics": {
+    "cost_sats": 3432.4548,
+    "settled": 1,
+    "transfers": 67,
+    "gross_volume_sats": 2248634,
+    "ghost_volume_sats": 1688206,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -7.820852196055194,
+   "metrics": {
+    "cost_sats": 2492.0282,
+    "settled": 1,
+    "transfers": 58,
+    "gross_volume_sats": 1755254,
+    "ghost_volume_sats": 1219212,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -7.163615514960937,
+   "metrics": {
+    "cost_sats": 1291.5722,
+    "settled": 1,
+    "transfers": 31,
+    "gross_volume_sats": 983893,
+    "ghost_volume_sats": 627991,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "gross",
+   "value": -7.688911551148916,
+   "metrics": {
+    "cost_sats": 2183.9961000000008,
+    "settled": 1,
+    "transfers": 56,
+    "gross_volume_sats": 1592820,
+    "ghost_volume_sats": 1065639,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "bilateral_net",
+   "value": -7.311723467264652,
+   "metrics": {
+    "cost_sats": 1497.7562999999996,
+    "settled": 1,
+    "transfers": 42,
+    "gross_volume_sats": 1188902,
+    "ghost_volume_sats": 725719,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "netting/tight_links",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "min_cost_flow",
+   "value": -6.684466217081775,
+   "metrics": {
+    "cost_sats": 799.8835999999999,
+    "settled": 1,
+    "transfers": 24,
+    "gross_volume_sats": 686458,
+    "ghost_volume_sats": 384862,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  }
+ ],
+ "checks": [
+  {
+   "id": "K12",
+   "pass": true,
+   "detail": "96 episodes compared, 0 mismatches"
+  }
+ ]
+}

@@ -1,1 +1,1 @@
-Placeholder: derivative-position netting toward a target settlement value (reference R14 of the paper). Not specified in v0. See docs/tasks.md section 7.
+Family 6: position netting toward a target settlement value. Specified in docs/tasks.md section 7 (R14 of the paper). Decided on review 2026-10-06: scored, with the expectation that a skill implementing minimum-cost flow reaches the ceiling. Not implemented.

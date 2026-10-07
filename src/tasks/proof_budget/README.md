@@ -1,0 +1,1 @@
+Family 7: proving claims within a budget (Shinigami and RAITO in Cairo, proven with Stwo). Specified in docs/tasks.md section 8. Runs only once the prover cost model is a measured, hash-bound fixture (section 8.5). Not implemented.

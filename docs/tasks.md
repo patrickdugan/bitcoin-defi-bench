@@ -1,6 +1,6 @@
 # Task families, v0
 
-Status: the harness and family 1 are implemented, their preregistration sections are frozen, and the baselines have been run on the confirmatory seeds (`results/v0-placement-baselines.md`). An LLM adapter exists (`docs/running.md`); no LLM has been run. Family 3 is implemented with the server-tier term of §4.4 and preregistered by amendment; three of the brief's choices are still not offered (§4.6). Families 2, 4, and 5 are specified only.
+Status: the harness and family 1 are implemented, their preregistration sections are frozen, and the baselines have been run on the confirmatory seeds (`results/v0-placement-baselines.md`). An LLM adapter exists (`docs/running.md`); no LLM has been run. Family 3 is implemented with the server-tier term of §4.4 and preregistered by amendment; three of the brief's choices are still not offered (§4.6). Families 2, 4, 5, 6, 7, and 8 are specified only; the scorecard they fill is §0.2.
 
 Every statement below carries one of four provenance tags.
 
@@ -46,6 +46,43 @@ Family 1 does not touch any of these and is unaffected. Family 3 cannot be imple
 - **B. Bench-side shim.** The bench composes the pinned `ArkServer` and `channelLiquidityDuration` in `src/tasks/settlement_object/corner.ts` and defines the missing terms itself. §4.6 states what can be done without invention and what cannot. Under B the server-tier term and the recovery choice would be my definitions, not the paper's.
 
 I recommended A. No revised model was found in the repository or on disk, so B was taken: family 3 is built on the pinned primitives, and the server-tier term was put up for review in `docs/server_tier_proposal.md` and adopted on 2026-10-02 (§4.4). Section 5 is written against the brief's interface, with each brief-only element marked.
+
+### 0.2 The scorecard
+
+The bench's output is a profile: one row per task, never a composite. This table is the plan for which rows exist. A cell becomes a family only when four things hold: the paper, or a reference model imported from the pinned checkout, defines the primitive; every protocol parameter has a cited source; the simulator is seeded and hash-bound; and the floor and ceiling baselines leave measurable headroom. A cell that fails any of these is a spec, not a row.
+
+Rails are the paper's object classes (§2.1), with two classes added on review on 2026-10-06. Rows are operators' problems.
+
+| Operator problem | Lightning (C) | Ark (V) | Ecash mint (M) | Statechain (S) | Escrow (E) | On-chain (U) | Proof layer |
+|---|---|---|---|---|---|---|---|
+| Place directional capital | **F1, run** | | | | | | |
+| Route under hidden state | F2, specced | | | | | | |
+| Choose the settlement object and size it | **F3, run** (channel column) | **F3, run** (VTXO column) | F3 column, specced §4.8 | F3 column, specced §4.8 | | | |
+| Size the server's own channels | | F4, specced | F4 applies to the mint's gateway | | | | |
+| Bond a service | | | | | F5, specced | | |
+| Net positions toward a target settlement value | links as channels, later cell | | | links as statechain transfers, later cell | | links as on-chain settlement | F6, specced §7 |
+| Prove claims within a budget | | | | | | RAITO gives root_n | F7, specced §8 |
+| Time funding against fee and demand | | | | | | F8, specced §9 | |
+
+Reading the table:
+
+- **F3 is where rails are compared.** Each object class is a column of the same family, scored on the same demand streams by the same liquidity duration. The ecash and statechain columns enter there, not as families of their own.
+- **F6 is rail-agnostic in v0.** Its settlement links carry abstract costs and capacities. Rail-specific cells come later and take their link costs from the object table: a Lightning link is a channel with a directional balance, a statechain link moves whole coins, an on-chain link is a ghost link at on-chain cost.
+- **The proof layer is not a rail.** Shinigami and RAITO (Bitcoin Script and Bitcoin consensus in Cairo, proven with Stwo) are the verifier the paper's §4.4 says Bitcoin lacks. F7 is the operator's problem that creates: what to prove and when, against a measured prover cost.
+- **Attributes are reported, never scored.** The tuple fields that liquidity duration cannot price, above all the counterparty set Γ (a channel peer, a co-signing server, a custodial mint or federation, a statechain entity, a BitVM committee) and the exit X, appear beside each column as attributes. A table that let a custodial object win on capital-time without saying it is custodial would be misleading.
+
+Kept off the scorecard: coalition, covert-channel, and Sybil tasks (by charter; the registry's nullifier property is asserted in tests, not posed as a task); prover throughput as a score (it is a measurement and an input to F7); and Liquid, which was reviewed and set aside.
+
+### 0.3 Two object classes added on review
+
+The paper's §2.1 table has U, C, V, E, and E′. On 2026-10-06 two classes were added for the scorecard. Their tuples are the bench's reading of the implementers' documentation and are marked [invented] until the paper carries them; the parameters each needs are listed with the family that uses them (§4.8).
+
+| Object | 𝒜 | F | X | Λ | Γ | τ |
+|---|---|---|---|---|---|---|
+| M: ecash note (Fedimint, Cashu) | the mint's blind signature; a federation threshold for Fedimint | instant on the mint's acceptance | none: a note is a claim on the mint, there is no unilateral exit | none on the holder; the mint keeps 100% reserve | the mint, or the federation's threshold of guardians | keyset rotation |
+| S: statechain coin (Mercury-style; TradeLayer transfers generalized here) | the holder's key share with the statechain entity's | the entity's co-signature of the transfer | a pre-signed backup transaction with a decrementing timelock | broadcast the backup before its timelock, or transfer before the lifetime ends | the statechain entity; a prior holder, if the entity colludes | the decrementing timelock: a bounded number of transfers |
+
+What the two classes change in the capital picture: a note's value is backed one for one by the mint's reserve, so a mint locks exactly its holders' balances and nothing against their spends; a statechain coin is the holder's own on-chain capital, locked by nobody else, moved whole. Neither has a direction. Neither fronts a spend. The first is custodial and the second is lumpy, and those are the attributes the scorecard must print beside their liquidity duration.
 
 ## 1. Common contract
 
@@ -408,6 +445,20 @@ Before the server-tier term was adopted, the family was run as the pin defines i
 
 That figure does not survive the server-tier term. The pinned bursty corner's agents accumulate, the server's channels must take the whole accumulation, and the server then locks about what the channel operator locked. The two results are for different definitions and are not comparable as replications; the earlier one is kept as the record of what the pinned definition gives.
 
+### 4.8 Further object columns: ecash and statechain (specified, not implemented)
+
+Added on review on 2026-10-06 (§0.3). Each is a column of family 3: the same demand streams, the same liquidity duration, the same ε, scored beside the channel and VTXO columns. The agent's choice gains `{ "object": "ecash", "margin": m }` and `{ "object": "statechain", "denomination_sats": d }`, and the grid grows accordingly. Attributes (Γ, X, Λ) print beside each column and are not scored.
+
+**Ecash mint (M).** The mint holds a reserve equal to its outstanding notes, so Locked_M(t) = Σ over agents of their held balance at t, plus the mint's Lightning gateway, which carries every receipt and spend exactly as the Ark server's channels do: the server-tier term of §4.4, with the agent's margin, static over the horizon. A receipt that does not fit the gateway's inbound room fails, and a spend the gateway cannot pay fails. Nothing is fronted and nothing is swept, so there is no W_S. Against the VTXO column the comparison is held balances against fronted spends held to expiry; against the channel column it is actual balances against forecast peaks. Fedimint and Cashu share this model; they differ in Γ, a threshold of guardians against one mint, which is printed and not scored.
+
+Parameters to be sourced before the column runs: the gateway's fee policy (Fedimint and Cashu gateway documentation), whether the mint charges a melt or mint fee, and keyset rotation periods. None enters the liquidity duration; they enter the attributes and the failure accounting.
+
+**Statechain coin (S).** A coin is the holder's own capital and moves whole. Locked_S(t) = Σ over agents of ceil(balance_a(t) / d) × d, the balances rounded up to the coin denomination d, since a holder keeps whole coins; a spend smaller than a coin needs a swap or a split through the entity, counted as a failure when the holder has no coin small enough and the entity's swap fails. No gateway term: transfers are between holders of the same entity. The denomination is the agent's choice from a declared grid; a small denomination wastes less capital and needs more transfers per payment, a large one the reverse. Each transfer decrements the coin's remaining lifetime; a coin at the end of its lifetime must be withdrawn and re-deposited, an on-chain cost charged at a declared fee rate.
+
+Parameters to be sourced: the lifetime rule (the decrement per transfer and the initial timelock) and the entity's fee, from the statechain implementation the column is to represent. TradeLayer's transfer semantics are to be mapped onto this class by the user; the column is specified against the Mercury-style construction and the mapping is not assumed.
+
+**Baselines for the two columns.** `always_ecash` at margin 0.25 and `always_statechain` at the median grid denomination join `always_channel` and `always_vtxo`; `grid_search` covers the enlarged grid. Hypotheses for the columns are written only when the parameters above have sources, as an amendment.
+
 ## 5. Family 4: server capital sizing (specified, not implemented)
 
 Derives from the paper §3.2 and §3.4. Task id: `server_sizing/<cell>`.
@@ -459,11 +510,150 @@ An operator bonds a connector service with an optimistic escrow E(B, κ, Δ) and
 
 **Baselines.** `random` on the (B, Δ) grid. `ghost_required_bond`: Spiral's `GhostPlan.required_bond` rule, amount × (0.10 + risk rate × horizon), with Δ = 144. `oracle`: the grid minimum of expected cost.
 
-## 7. Placeholder: derivative-position netting
+## 7. Family 6: position netting toward a target settlement value (specified, not implemented)
 
-`src/tasks/netting/` is reserved for netting derivative positions toward a target settlement value, the ghost-node application cited as R14 in the paper. Not specified in v0.
+Derives from the paper §2.4 and §4.2, the errata E3, and the application the paper cites as R14 (US 2021/0004796 A1), whose subject is decentralized derivatives clearing: nodes are addresses, each with positions; edges are weighted with the amounts traded; a target value T is imposed from market data or inferred; ghost nodes connect subgraphs so that the rewrite nets to zero-sum as close to T as possible; the output is the transfers between the nodes holding open positions at expiration. Task ids: `netting/<cell>`.
 
-## 8. Protocol parameters
+A clearing operator, or any party holding positions, must settle every open position at the settlement value with as little gross value moved, and as few transfers, as the settlement links allow. Netting is what makes that cheap; ghost links are what make it possible when the trade graph does not connect.
+
+Decided on review on 2026-10-06: this family is scored, and the expectation is that a skill passes it (see "Expectation" below).
+
+### 7.1 Simulator [invented, anchored to R14]
+
+| Element | Value |
+|---|---|
+| Traders | N addresses, each with collateral c_i in sats |
+| Trades | M bilateral contracts on one instrument: (long i, short j, quantity q, entry price p₀). The trade graph is the set of pairs that have traded. |
+| Settlement value | T, drawn by a seeded process around the entry prices; external to the agent, as the application's market-data case |
+| Obligation of a trade | v = q × (T − p₀): the short pays the long when v > 0, the long pays the short when v < 0 |
+| Net obligation of a node | n_i = Σ received − Σ paid over its trades; Σ_i n_i = 0 by construction |
+| Links | every traded pair has a bilateral link with a capacity (the most it can carry in total, either direction) and a per-unit cost in parts per million. Any other pair can be joined by a ghost link: unlimited, at a higher per-unit cost. |
+| Collateral | the generator sets c_i at or above each node's gross payable at T, so every obligation can be met and every failure is the plan's |
+| Costs | per-unit rates for links and ghost links, and a base fee per transfer, all declared inputs |
+
+A plan is a list of transfers `{ from, to, sats, via }` with `via` either `link` or `ghost`. It is valid when every amount is a positive integer; every `link` transfer uses a pair that has traded, and the total on each link stays within its capacity; every node's net paid minus received equals its net obligation exactly; and no node pays more in total than its collateral. A plan that breaks any of these is rejected whole and places nothing.
+
+### 7.2 Observation
+
+```json
+{
+  "traders": [{ "id": "t000", "collateral_sats": 2500000 }],
+  "trades": [{ "id": 0, "long": "t003", "short": "t011", "quantity": 4, "entry_price": 61250 }],
+  "settlement_value": 61900,
+  "links": [{ "a": "t003", "b": "t011", "capacity_sats": 180000, "rate_ppm": 100 }],
+  "ghost": { "rate_ppm": 2000 },
+  "base_fee_sats": 100
+}
+```
+
+The agent sees the whole position graph. Nothing is hidden in v0; the difficulty is combinatorial, not informational.
+
+### 7.3 Actions
+
+| Tool | Args | Cost |
+|---|---|---|
+| `probe` | `{ plan }` | 1 probe. Validates the plan and returns its violations and its cost without committing it. |
+| `settle` | `{ plan }` | 1 attempt. Commits a valid plan and ends the phase; an invalid one is rejected whole. |
+| `commit` | none | 0. Ends the phase with no plan. |
+
+Budget: 3 attempts, 8 probes, 0 blocks, 0 sats. [invented]
+
+### 7.4 Scoring
+
+Cost of a plan: Σ over transfers of sats × rate(via) / 10⁶ + base fee × number of transfers, in sats. Native value: −ln(cost). An episode that ends with no accepted plan is scored at twice the cost of the floor's plan. Band: ±0.05 in ln cost [invented].
+
+### 7.5 Baselines
+
+| Baseline | Rule | Role |
+|---|---|---|
+| `gross` | settle every trade on its own link for its full obligation, spilling to a ghost link when the link is full. No netting. | floor; a deterministic stand-in for `random`, declared as F2 declares one-shot |
+| `bilateral_net` | net each pair's trades to one amount, settle it on the pair's link, spill to ghost | reference heuristic |
+| `min_cost_flow` | the exact minimum-cost flow with supplies n_i over the links (capacitated, at their rates) and ghost links (uncapacitated, at the ghost rate); transfers are the flow's edges | ceiling |
+
+The ceiling ignores the base fee, which would make the exact problem a fixed-charge design problem. It is therefore a reference and not a bound, as every ceiling in the bench is; the clip at 1.5 is for this.
+
+Cells: `netting/bilateral_dense` (few traders, many trades per pair: bilateral netting nearly suffices), `netting/multilateral_sparse` (many traders, a chain-like trade graph with cycles: multilateral netting matters), `netting/disconnected` (two trade subgraphs with obligations that cannot net within either: ghost links are needed, the application's own case).
+
+### 7.6 Expectation, and what is flagged
+
+A skill that implements minimum-cost flow and emits the flow as a plan should reach the ceiling. The harness checks this directly: a scripted agent that runs the oracle's algorithm through `act` must reproduce `min_cost_flow` exactly, the identity control of this family. An LLM agent given such a skill is expected to score at least 0.9; one without a skill is expected to produce plans that fail conservation and be rejected. A result above the ceiling raises `exceeds_oracle` as elsewhere.
+
+### 7.7 Rail-specific cells, later
+
+Each later cell replaces the abstract links with an object class's own: a Lightning link is a channel with a directional balance and routing fees (class C); a statechain link moves whole coins, so a transfer is a number of coins and change needs a swap (class S); a ghost link is on-chain settlement at a fee rate (class U). The plan format does not change.
+
+## 8. Family 7: proving claims within a budget (specified, not implemented)
+
+Derives from the paper §4.2 to §4.4 and §7 item 3, and from the audit's §11.3 and the recovered project's out-of-memory failures. Task ids: `proof_budget/<cell>`.
+
+On Bitcoin nothing in consensus verifies a SNARK, so a claim on 𝓡_cap or 𝓡_svc is verified by a party you trust or by a game you pay for (§4.4). A Cairo verifier is the third way: Shinigami executes Bitcoin Script in Cairo, so "k_ρ satisfies 𝒜_ρ" can be proven rather than attested; RAITO proves Bitcoin consensus, so the verifier's view of 𝒮_n, the `root_n` of the relation, can be checked rather than assumed, which is the assumption Proposition S3 is conditional on. Both are proven with Stwo. The paper's §7 item 3 asks whether a claim can be produced within a stated budget. This family makes the budget the operator's decision.
+
+A registry operator publishes proofs over batches of claims. A proof has a cost that grows with its batch and a memory ceiling it must fit under; a claim earns nothing until a proof covering it is published, and waiting has a cost. The operator chooses when to prove and how much.
+
+### 8.1 Simulator [invented; cost model measured]
+
+| Element | Value |
+|---|---|
+| Claims | arrive by a seeded process over a horizon of blocks; each has a value v (what it would earn when accepted) |
+| Proof cost | c(b) = c₀ + c₁ × b prover-seconds for a batch of b claims, and peak memory m(b) = m₀ + m₁ × b, with a ceiling M. Measured, not modeled: see 8.5. |
+| Staleness | each claim pays s × v per block between arrival and the proof that covers it |
+| Prover rate | a declared price per prover-second, so cost and staleness share a unit |
+
+### 8.2 Observation
+
+```json
+{
+  "arrivals": { "rate_per_block": 0.8, "value_sats": { "min": 1000, "max": 50000 } },
+  "cost_model": { "c0_seconds": 0, "c1_seconds_per_claim": 0, "m0_mib": 0, "m1_mib_per_claim": 0, "ceiling_mib": 0, "source": "measurement fixture id" },
+  "prover_price_sats_per_second": 0,
+  "staleness_ppm_per_block": 0,
+  "horizon_blocks": 1008,
+  "pending": [{ "id": 17, "arrived_at": 240, "value_sats": 12000 }],
+  "block": 251
+}
+```
+
+The zeros are placeholders until the cost model is measured (8.5); the family does not run on invented costs.
+
+### 8.3 Actions
+
+| Tool | Args | Cost |
+|---|---|---|
+| `prove` | `{ claims: [ids] }` | 1 attempt. Publishes a proof over the named pending claims if their batch fits under the memory ceiling; rejected whole otherwise. |
+| `wait` | `{ blocks }` | 0. Advances time. |
+
+Budget: attempts are the number of proofs the operator may publish in the horizon, declared per cell; 0 probes; blocks is the horizon. [invented]
+
+### 8.4 Scoring, baselines, expectation
+
+Native value: −ln(prover cost + staleness cost) over the horizon. Baselines: `every_arrival` (prove each claim as it arrives: floor by cost), `fixed_interval` (prove every k blocks: reference), `random_interval`, and `optimal_batching` (the exact dynamic program over batch boundaries for the realized arrivals: ceiling). A skill that implements the dynamic program should reach the ceiling, and the identity control checks it as in F6.
+
+### 8.5 The cost model is a measurement fixture
+
+The family's only protocol-like inputs are prover costs, and they are measured on this machine with the Cairo toolchain already set up for Stwo: a Cairo program for one claim on 𝓡_cap (a Merkle path and a PRF, as §7 item 3 specifies; nothing more), proven for batch sizes on a declared grid, recording seconds and peak memory per size. The measurement is a fixture: program hash, toolchain commit, machine, grid, and results, hash-bound in the manifest like a BitVM3 size. Nothing in a bench run proves anything; the run reads the fixture. Until the fixture exists the family is a spec.
+
+## 9. Family 8: timing funding against fee and demand (specified, not implemented)
+
+Derives from the paper §2.2 (a U→C event is a funding transaction with a confirmation clock) and the audit §8.1 and §8.2 (three clocks must stay separate; useful demand can expire before usable capital arrives). Task ids: `funding_timing/<cell>`.
+
+Family 1 lets placement take effect instantly and free. This family prices that simplification. The placement is given; the operator chooses when to broadcast the funding transaction, at what fee rate, and at what confirmation depth to start using the channel, while the fee market and demand move.
+
+### 9.1 Simulator [invented, with inputs to be sourced]
+
+| Element | Value |
+|---|---|
+| Fee market | a seeded fee-rate process in sat/vB over the horizon; inclusion in the next block with a probability that rises with the offered rate against the prevailing one. The process family and its parameters are inputs with a source; a historical fee series from a public dataset, hash-bound, is the preferred source. |
+| Demand | the family 1 stream and topology for the seed, with the failure-aware pair already chosen |
+| Funding | one transaction of a declared size in vB; its fee is rate × size; confirmation depth k before the channel is usable |
+| Capital | charged at a declared rate per sat-block from broadcast to the end of the horizon |
+
+### 9.2 Observation, actions, scoring, baselines
+
+The observation carries the fee-rate history to date, the prevailing rate, the demand history, the funding size, and the depth menu. Actions: `broadcast { rate_sat_vb, depth }` (1 attempt), `wait { blocks }` (0). Budget: 2 attempts (one replace-by-fee), blocks the horizon.
+
+Native value: delivered volume minus fee minus capital charge, in sats. Baselines: `now_high` (broadcast at once at a rate that confirms next block), `wait_for_low` (broadcast when the rate falls below a declared threshold), `random`, and `oracle` (knows the fee path and the demand; the best broadcast and depth by search). Band and the sats weight on delivered volume are set with the fee source, by amendment.
+
+## 10. Protocol parameters
 
 Every protocol figure lives in `config/protocol.json` as `{ value, unit, source, url }` with the date the source was accessed or published, and is read from there. None is a constant in code.
 
@@ -480,10 +670,10 @@ Every protocol figure lives in `config/protocol.json` as `{ value, unit, source,
 
 R6, R8, and R9 are cited in the paper for Ark's timeline and for covenant activation status. No v0 task reads a parameter from them.
 
-## 9. Given and invented, in one place
+## 11. Given and invented, in one place
 
 **Taken as given.** The pinned model files and their behavior, confirmed by running the vendored suite (13 of 13 pass). The four calibration effects and their intervals. The public-topology campaign's generator parameters, warm-up and evaluation split, eight-path catalog, three-attempt budget, 120,000 sat connector, and the failure-aware and random placement rules. Cluster-level Student-t inference and the ±1 point band. The audit's requirements: canonical order, hash-bound fixtures, no fabricated weights, rejection as identity, equivalence on both sides, and the oracle as reference and not as bound. The paper's definition of liquidity duration, its two corners, and its falsifier.
 
-**Invented here.** The observation and action envelopes, the tool tables, and what each budget counter means. The ratio-of-sums normalized gain, its jackknife interval, and the headroom guard. Directional placements and placement on existing edges. The retry wallet as family 1's fixed router. The placement oracle's rule and its 72/28 split. Hiding the regime from the agent. One-shot as family 2's floor. All of family 3's generator beyond the two corner parameter sets, its funded-spend rule, its stream-hash fixtures, its probe tool, grids, ε, penalty, and band, the common volume denominator its corner runner adds, the server-tier term and its failure rule, and the zero-drift cells. The LLM adapter and its prompt. The audit-flag thresholds. The named-stream PRNG.
+**Invented here.** The observation and action envelopes, the tool tables, and what each budget counter means. The ratio-of-sums normalized gain, its jackknife interval, and the headroom guard. Directional placements and placement on existing edges. The retry wallet as family 1's fixed router. The placement oracle's rule and its 72/28 split. Hiding the regime from the agent. One-shot as family 2's floor. All of family 3's generator beyond the two corner parameter sets, its funded-spend rule, its stream-hash fixtures, its probe tool, grids, ε, penalty, and band, the common volume denominator its corner runner adds, the server-tier term and its failure rule, and the zero-drift cells. The LLM adapter and its prompt. The audit-flag thresholds. The named-stream PRNG. The scorecard (§0.2), the ecash and statechain tuples (§0.3), and families 6 through 8, all specified on review and not yet built.
 
 **Named in the brief and missing from the pin.** `runCorner`, `ArkServer.aggregateSteps`, the server-tier term, server capital as a choice, the spend-recovery choice, the forecast-rule choice, and the arrival-mode distinction (§0.1). Family 3 supplies the server-tier term itself (§4.4, adopted on review) and is built without the others (§4.6).

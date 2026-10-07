@@ -70,7 +70,7 @@ Checks on the harness, read from unadjusted intervals. A failed gate blocks agen
 
 ## Secondary, declared and descriptive
 
-No contrast of this kind in this run; see the family's own section below.
+No contrast of this kind in this run.
 
 ## Flagged, pending audit
 

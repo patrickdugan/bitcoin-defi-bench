@@ -192,7 +192,7 @@ export function renderTable(record: RunRecord, spec: ReportSpec): string {
     }
   }
   // No breakdowns and no secondary contrasts: say so instead of printing an empty table.
-  if (out.length === secondaryStart + 2) out.splice(secondaryStart - 2, 4, "No contrast of this kind in this run; see the family's own section below.");
+  if (out.length === secondaryStart + 2) out.splice(secondaryStart - 2, 4, spec.extra ? "No contrast of this kind in this run; see the family's own section below." : "No contrast of this kind in this run.");
   out.push("");
 
   if (spec.extra) out.push(...spec.extra(analysis, record));

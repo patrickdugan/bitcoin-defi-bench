@@ -68,6 +68,10 @@ Bonsai 8B with `failed_pairs`, `bonsai-8b-nothink@6126b58af965`, in [results/v0-
 
 Bonsai 8B with `dlc_design`, `bonsai-8b-nothink@a63ee64a14a3`, in [results/v0-dlc-bonsai-8b-nothink-dlc_design-development.md](../results/v0-dlc-bonsai-8b-nothink-dlc_design-development.md), and bare, `bonsai-8b-nothink@1a17091c09d8`, in [results/v0-dlc-bonsai-8b-nothink-development.md](../results/v0-dlc-bonsai-8b-nothink-development.md). The skill was called in none of 24 episodes. The bare model offered the prompt's example design verbatim in all 24; with the skill in its prompt it probed in every episode and still offered the example in 15. Both land near the floor, about 3 to 4 ln units below `uniform_tuned` on the two 30-day cells (docs/tasks.md §13.8). The first turn is about 3,300 characters, between family 6's dense cell (1,900, skill called 8 of 8) and family 1 (4,300 on development seeds, never called), and it carries three JSON examples. The example design was chosen to be valid and expensive, so copying it is scored as what it is rather than rewarded.
 
+## Confirmatory results, family 10 (seeds 1000 to 1031)
+
+With `dlc_design` the model called the skill in 18 of 96 episodes, and all 18 offered its result and scored the ceiling: an offer of a few hundred characters is copied without a slip. Its gains are 0.28, 0.25, and 0.23 on `mobile_signer`, `stable_30d`, and `stable_90d`, against 0.07, 0.08, and −0.04 bare. Both remain below `uniform_tuned` in every cell (docs/tasks.md §13.9). On this family the call rate is the whole gap: about one call in five, where development showed none in 24.
+
 ## Order of work
 
 1. Done (2026-10-07): the skill loop in `src/agents/chat.ts`, the skills in `src/agents/skills.ts`, a netting prompt in `src/tasks/netting/prompt.ts`, and `scripts/run_netting_agent.ts` with `--skills`. Tests cover the loop, the cap, the identity binding, error returns, and that a model which echoes `min_cost_flow` scores the ceiling.

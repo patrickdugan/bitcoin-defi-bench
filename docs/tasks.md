@@ -974,7 +974,7 @@ Family 10 reads its protocol rules from the DLC specification pinned in `config/
 
 **Named in the brief and missing from the pin.** `runCorner`, `ArkServer.aggregateSteps`, the server-tier term, server capital as a choice, the spend-recovery choice, the forecast-rule choice, and the arrival-mode distinction (§0.1). Family 3 supplies the server-tier term itself (§4.4, adopted on review) and is built without the others (§4.6).
 
-## 13. Family 10: designing a numeric DLC (built; development seeds only)
+## 13. Family 10: designing a numeric DLC (frozen by Amendment 4; run on the confirmatory seeds)
 
 Added on request on 2026-10-08, as a pure DLC component. Task ids: `dlc/<cell>`. The paper does not treat DLCs, so for this family the DLC specification, pinned by commit with its test vectors, stands where the paper stands in the first of §0.2's four conditions, as the NIPs do for family 9. The object is class D of §0.3.
 
@@ -1080,9 +1080,30 @@ Bonsai 8B with thinking off, on the same seeds, bare and with the `dlc_design` s
 
 The example is a valid design chosen to be expensive (the largest collateral level and modulus 10 everywhere), so a copy scores as what it is: a little above the floor where modulus 10 saves CETs over modulus 1, and below it on `stable_90d`, where the largest collateral's capital outweighs that. The skill was called in none of 24 episodes, against 8 of 8 on family 6's short dense cell with the same wording. That fits the pattern of docs/saturation.md: the longer and more example-laden the prompt, the less this model reaches for a skill.
 
-### 13.9 What remains before family 10 freezes
+### 13.9 Confirmatory results (seeds 1000 to 1031)
 
-1. Review of the invented parameters, above all the price per CET and the counterparty's rate, which set how much the encoding matters against the collateral.
-2. An amendment to `prereg/v0.md` with the band (0.05, as family 6), gates K14 to K16, and hypotheses. Development predicts `uniform_tuned` − `spec_default` positive in all three cells, `exact` − `uniform_tuned` positive on `stable_30d` and `mobile_signer`, and equivalence on `stable_90d`. Agent runs would get one primary contrast per cell, agent − `uniform_tuned`.
-3. The confirmatory baselines.
-4. Later DLC cells, specified only. **Multiple oracles** (MultiOracle.md): k-of-n with a tolerated difference between numeric attestations trades trust in one oracle against a CET count that grows with every combination. **Renewal**: in a DLC channel, rolling a contract off-chain against closing it and opening another, which is family 8's question for DLCs. **The refund locktime**: how long after maturity to wait for a silent oracle, against collateral locked that long. **Enumerated outcomes**: one CET per outcome, no compression, where the decision is which outcomes to merge.
+Frozen by Amendment 4 of `prereg/v0.md` and run once on the 32 confirmatory seeds. The baselines are in [results/v0-dlc-baselines.md](../results/v0-dlc-baselines.md). Gates K14 to K16 pass, and all six hypotheses hold:
+
+| Hypothesis | Cell | Adjusted interval, ln cost | Verdict |
+|---|---|---|---|
+| D1: `uniform_tuned` − `spec_default` positive | `mobile_signer` | +4.17 (+3.89 to +4.44) | positive |
+| D2: the same | `stable_30d` | +3.08 (+2.74 to +3.42) | positive |
+| D3: the same | `stable_90d` | +1.78 (+1.41 to +2.14) | positive |
+| D4: `exact` − `uniform_tuned` positive | `mobile_signer` | +0.21 (+0.15 to +0.28) | positive |
+| D5: the same | `stable_30d` | +0.16 (+0.15 to +0.17) | positive |
+| D6: `exact` − `uniform_tuned` equivalent | `stable_90d` | +0.02 (+0.01 to +0.02) | positive, and equivalent |
+
+The descriptive `two_band` − `uniform_tuned` is +0.14 on `mobile_signer`, +0.14 on `stable_30d`, and +0.01 on `stable_90d`. Flat tails close about two thirds of the encoding's headroom where signatures cost 4 sats, and nearly all of it where they cost 1.
+
+Bonsai 8B with thinking off, run once each with the prompt and skill fixed on development seeds:
+
+| Agent | Gain: `mobile_signer`, `stable_30d`, `stable_90d` | Agent − `uniform_tuned`, adjusted, same order | What it did |
+|---|---|---|---|
+| bare, [`1a17091c09d8`](../results/v0-dlc-bonsai-8b-nothink-confirmatory.md) | 0.07, 0.08, −0.04 | −3.87, −2.82, −1.85, all negative | offered the prompt's example in 93 of 96 episodes and nothing in 3 |
+| with `dlc_design`, [`a63ee64a14a3`](../results/v0-dlc-bonsai-8b-nothink-dlc_design-confirmatory.md) | 0.28, 0.25, 0.23 | −2.94, −2.28, −1.37, all negative | called the skill in 18 of 96 episodes (6, 4, and 8 by cell), and every one of those 18 offered its result and scored the ceiling; offered the example in 52 and another design in 25 |
+
+The skill-carrying agent's whole advantage over the bare one is those 18 episodes. When it calls the skill it copies an offer of a few hundred characters without a slip, unlike family 6's 1,500-character plans. So on this family the call rate alone bounds it. That rate was none of 24 on development seeds, so development understated it here, the reverse of family 6.
+
+### 13.10 What remains
+
+The later DLC cells, specified only: multiple oracles (MultiOracle.md), renewal in a DLC channel, the refund locktime as a choice, and enumerated-outcome contracts. Each needs its own amendment.

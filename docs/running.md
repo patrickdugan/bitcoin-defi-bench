@@ -50,6 +50,12 @@ node --experimental-strip-types scripts/run_proof_budget.ts --block development
 
 The development block takes a few seconds. To re-measure the prover, run `REPS=3 bash cairo/rcap/measure.sh` in WSL (docs/tasks.md §8.5), then point `config/proof_budget.json` at the new file and its SHA-256, and rebuild the fixtures.
 
+Family 5 (service bonding):
+
+```
+node --experimental-strip-types scripts/run_bonding.ts --block development
+```
+
 Family 10 (designing a numeric DLC):
 
 ```

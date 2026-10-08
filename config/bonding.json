@@ -1,0 +1,24 @@
+{
+  "description": "Family 5 (docs/tasks.md section 6): bonding a connector service with an optimistic escrow from the pinned model, at the BitVM3 sizes in config/protocol.json. Every number here is a bench decision.",
+  "capital_rate_per_block": 0.000001,
+  "min_delta_blocks": 6,
+  "bond_multipliers": [0.5, 0.75, 1, 1.25, 1.5, 2],
+  "delta_grid": [6, 12, 18, 24, 36, 48, 72, 96, 144, 216, 288, 432],
+  "infeasible_penalty_factor": 2,
+  "budget": { "attempts": 3 },
+  "cells": {
+    "fast": { "window_blocks": 1008, "requests": [100, 300], "p_honored": [0.985, 0.999], "threshold": 0.95, "value_at_risk_sats": [10000000, 1000000000], "fee_rate_sat_vb": [2, 30], "response_p": [0.3, 0.6], "catch_probability": 0.99, "sample_size": 8 },
+    "slow": { "window_blocks": 1008, "requests": [100, 300], "p_honored": [0.985, 0.999], "threshold": 0.95, "value_at_risk_sats": [10000000, 1000000000], "fee_rate_sat_vb": [2, 30], "response_p": [0.03, 0.08], "catch_probability": 0.99, "sample_size": 8 },
+    "strict": { "window_blocks": 1008, "requests": [100, 300], "p_honored": [0.985, 0.999], "threshold": 0.95, "value_at_risk_sats": [10000000, 1000000000], "fee_rate_sat_vb": [2, 30], "response_p": [0.1, 0.3], "catch_probability": 0.999, "sample_size": 8 }
+  },
+  "provenance": {
+    "bitvm3": "given: Assert 2400 vB and Disprove 93 vB, ePrint 2026/933 (R7), as config/protocol.json and the pinned model/escrow.ts carry them",
+    "capital_rate_per_block": "invented: about 5% a year on the bond",
+    "min_delta_blocks": "invented",
+    "bond_multipliers": "invented: the bond grid as multiples of the value at risk, rounded up to whole sats",
+    "delta_grid": "invented",
+    "infeasible_penalty_factor": "invented, as family 3: twice the worst admissible grid cost",
+    "budget": "invented: three attempts, for malformed offers only; a well-formed offer ends the episode",
+    "cells": "invented: one-week windows; services that rarely miss a 95% threshold; a value at risk from 0.1 to 10 BTC; fee rates from 2 to 30 sat/vB; challengers that respond fast, slowly, or under a stricter requirement; eight observed response times"
+  }
+}

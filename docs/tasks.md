@@ -60,7 +60,7 @@ Rails are the paper's object classes (§2.1), with two classes added on review o
 | Route under hidden state | **F2, built** §3 (development seeds) | | | | | | | | |
 | Choose the settlement object and size it | **F3, run** (channel column) | **F3, run** (VTXO column) | F3 column, specced §4.8 | F3 column, specced §4.8 | | | | | |
 | Size the server's own channels | | F4, specced | F4 applies to the mint's gateway | | | | | | |
-| Bond a service | | | | | F5, specced | | | | |
+| Bond a service | | | | | **F5, built** §6 (development seeds) | | | | |
 | Net positions toward a target settlement value | links as channels, later cell | | | links as statechain transfers, later cell | | links as on-chain settlement | D′ (UTXO-Ref) as `netting/utxoref_dlc`, specced §7.7 | **F6, run** §7 | |
 | Encode a contract's payouts and size its collateral | | | | | | | **F10, built** §13 (development seeds) | | |
 | Prove claims within a budget | | | | | | RAITO gives root_n | | **F7, built** §8 (development seeds) | |
@@ -525,7 +525,7 @@ The agent is the Ark server. Its VTXO holders present an aggregate flow; the ser
 
 Blocked on the same gap as family 3.
 
-## 6. Family 5: service bonding (specified, not implemented)
+## 6. Family 5: service bonding (built; development seeds only)
 
 Derives from the paper §5. Task id: `bonding/<cell>`.
 
@@ -550,6 +550,33 @@ An operator bonds a connector service with an optimistic escrow E(B, κ, Δ) and
 **Score.** Negative expected cost over the outcome distribution: the Assert fee, the bond locked for the window plus Δ at the capital rate, and the bond lost when the service falls below threshold, subject to the bond covering the declared value at risk and Δ being long enough for a challenger to respond with the declared probability. Each episode drives an `Escrow` through assert and either withdraw or disprove; the registry records the escrow's identifier, per Proposition S4.
 
 **Baselines.** `random` on the (B, Δ) grid. `ghost_required_bond`: Spiral's `GhostPlan.required_bond` rule, amount × (0.10 + risk rate × horizon), with Δ = 144. `oracle`: the grid minimum of expected cost.
+
+### 6.1 As built (2026-10-08), with one revision
+
+Code in `src/tasks/bonding/`, config in `config/bonding.json`. Three tasks, `bonding/<cell>`.
+
+**The revision.** Specified as above, the family has a corner for an answer. Every cost grows with B and with Δ, so the cheapest admissible bond is always the smallest grid bond covering the value at risk with the shortest grid Δ meeting the catch probability, and a policy that reads the constraints is exact. The specified reference, Spiral's `GhostPlan.required_bond`, also cannot serve. Read with risk rate × horizon as the share of requests not honored, it bonds about 0.11 of the value at risk, which is never admitted. The family keeps the specified actions, bond and Δ on a grid, and makes one thing unknown: **the challengers' response rate.** The operator sees eight past response times drawn from it, not the rate. Δ is then a decision under estimation risk: too short and the counterparty will not admit the escrow, too long and capital is locked for nothing.
+
+- **Cost**, exact over the service outcome (binomial honored requests against the threshold) and the challenger's response time (geometric). Each branch is driven through the pinned `Escrow`: honored means Assert true and withdraw after Δ; short and caught at R < Δ means Assert false, disprove at W + R, and the bond is lost; short and not caught means Assert false and withdraw after Δ. Cost is the Assert fee (2,400 vB at the episode's fee rate) plus bond × blocks locked × the capital rate plus the bond if slashed. The native value is −ln of it.
+- **Admission** is judged at scoring, under the true rate, as the counterparty's audit after funding would judge it: B at least the value at risk and P(R < Δ) at least the required catch probability. A bond not admitted, or no bond, is scored at twice the worst admissible grid cost. A well-formed offer ends the episode. Three attempts absorb malformed offers, which are rejected as `malformed`, `not_integer`, `below_minimum`, or `out_of_grid`.
+- **Baselines.** `random` (floor). `plug_in` (reference): the smallest covering bond, and Δ from the sample's maximum-likelihood rate, n / Σ R. `half_rate` (descriptive): the same with the estimated rate halved as a margin. `ghost_required_bond` (descriptive): Spiral's rule with Δ = 144. `oracle` (ceiling): knows the rate and takes the grid minimum.
+
+| Gate | Passes when |
+|---|---|
+| K51 | `oracle` ≥ every other policy on every episode |
+| K52 | the oracle through `act` equals the grid optimum computed directly from the fixture by driving the pinned `Escrow` |
+
+| Cell | Response rate per block | Required catch probability |
+|---|---|---|
+| `fast` | 0.3 to 0.6 | 0.99 |
+| `slow` | 0.03 to 0.08 | 0.99 |
+| `strict` | 0.1 to 0.3 | 0.999 |
+
+In every cell the window is 1,008 blocks, services honor 98.5% to 99.9% of 100 to 300 requests against a 95% threshold, the value at risk is 0.1 to 10 BTC, fee rates are 2 to 30 sat/vB, the bond's capital costs 10⁻⁶ a block (about 5% a year), bonds are 0.5 to 2 times the value at risk, and Δ runs from 6 to 432 blocks [all invented].
+
+**Development results (seeds 0 to 7).** In [results/v0-bonding-baselines-development.md](../results/v0-bonding-baselines-development.md). K51 and K52 pass. `plug_in` is admitted in 6, 5, and 6 of 8 seeds (`fast`, `slow`, `strict`) and `half_rate` in all 24; Spiral's rule is admitted in none. `oracle` − `plug_in` is +0.34, +0.50, and +0.41 in ln cost, almost all of it the plug-in's inadmissible offers, and `half_rate` closes all but 0.01 to 0.07 of it. Eight seeds leave every interval wide, because admission is all or nothing.
+
+**What remains.** An amendment freezing the family, and an LLM prompt. An episode is a single offer, so the adapter needs no change.
 
 ## 7. Family 6: position netting toward a target settlement value
 

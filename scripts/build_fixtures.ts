@@ -25,6 +25,8 @@ import { FIXTURE_VERSION as DLC_VERSION, fixtureBytes as dlcBytes, fixturePath a
 import { loadDlcConfig } from "../src/tasks/dlc/task.ts";
 import { FIXTURE_VERSION as PROOF_VERSION, fixtureBytes as proofBytes, fixturePath as proofPath, generateFixture as generateProof, loadCostTable } from "../src/tasks/proof_budget/generate.ts";
 import { loadProofConfig } from "../src/tasks/proof_budget/task.ts";
+import { FIXTURE_VERSION as BONDING_VERSION, fixtureBytes as bondingBytes, fixturePath as bondingPath, generateFixture as generateBonding } from "../src/tasks/bonding/generate.ts";
+import { loadBondingConfig } from "../src/tasks/bonding/task.ts";
 import { FIXTURE_VERSION as ROUTING_VERSION, fixtureBytes as routingBytes, fixturePath as routingPath, generateFixture as generateRouting } from "../src/tasks/routing/generate.ts";
 import { NOSTR_CELLS, buildNostrFixtures, loadNostrConfig } from "../src/tasks/nostr/task.ts";
 
@@ -114,6 +116,18 @@ for (const seed of seeds) {
   entries.push({ path: routingPath(seed), family: "routing", seed, generator: ROUTING_VERSION, sha256: sha256(text) });
 }
 console.log(`routing: ${seeds.length} fixtures`);
+
+// Family 5: one bonding decision per seed and cell, with the challengers' hidden rate and a sample of it.
+const bonding = loadBondingConfig(root);
+for (const cell of Object.keys(bonding.cells).sort()) {
+  mkdirSync(join(root, "fixtures/bonding", cell), { recursive: true });
+  for (const seed of seeds) {
+    const text = bondingBytes(generateBonding(seed, cell, bonding.cells[cell]!, bonding));
+    if (writeIfChanged(join(root, bondingPath(cell, seed)), text)) written += 1;
+    entries.push({ path: bondingPath(cell, seed), family: "bonding", seed, generator: BONDING_VERSION, sha256: sha256(text) });
+  }
+  console.log(`bonding/${cell}: ${seeds.length} fixtures`);
+}
 
 // Family 7: the claims of one horizon per seed and cell, with the adopted prover measurement.
 const proof = loadProofConfig(root);

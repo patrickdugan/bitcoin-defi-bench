@@ -11,6 +11,7 @@
     }
   },
   "config": {
+    "config/bonding.json": "92d1759da820c44d9ff091be20d8a8deb5b2c832dfbda0af124a032f008bdc40",
     "config/dlc.json": "ecdb43d159baf0c2b951384ecfabcf5f9cb59c612463c29ed271ab3f8b3f1cde",
     "config/netting.json": "26936a6c7a9a89762a2e28e0152de22b81afb7731de497af4de7a7f5de5014c5",
     "config/nostr.json": "3e1eb51f130f94d3edea8b16dde26d52bd824fd7f0340f9cb49b1820037eaeaa",
@@ -20,6 +21,846 @@
     "config/settlement_object.json": "32814b2f968678cad1aabbff7b139df7e21065556eadd0ebc58e3ebd1f1011a5"
   },
   "fixtures": [
+    {
+      "path": "fixtures/bonding/fast/seed-0000.json",
+      "family": "bonding",
+      "seed": 0,
+      "generator": "bonding-fixture/v0",
+      "sha256": "36036b4feaeb6b9803fb89ddf1345aea5c009f7d3e8bddb9c1f7f7a11a684134"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-0001.json",
+      "family": "bonding",
+      "seed": 1,
+      "generator": "bonding-fixture/v0",
+      "sha256": "3caeb58c9629791461d1cb4d087a7aafe1a01b946ad31e3d5abd7ff5772d2417"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-0002.json",
+      "family": "bonding",
+      "seed": 2,
+      "generator": "bonding-fixture/v0",
+      "sha256": "af5e4dfc8225b27c826fabc2f03067b6dd11e39bc21e5917ebfbff708d59de05"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-0003.json",
+      "family": "bonding",
+      "seed": 3,
+      "generator": "bonding-fixture/v0",
+      "sha256": "7f94c3e601e178ed31955c4398acd8bb3650652c95c955f315ca9e41be1c7e01"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-0004.json",
+      "family": "bonding",
+      "seed": 4,
+      "generator": "bonding-fixture/v0",
+      "sha256": "9c99109f19d54ed5c2b3675c7136324abd30f8f536d023ed386f28925416f0e3"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-0005.json",
+      "family": "bonding",
+      "seed": 5,
+      "generator": "bonding-fixture/v0",
+      "sha256": "e25cae4686274450d74d634d022f29ce0d7c327b162528cbc3760b5b8c4b3ccd"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-0006.json",
+      "family": "bonding",
+      "seed": 6,
+      "generator": "bonding-fixture/v0",
+      "sha256": "59575a479e75463bdb790b6947c6ec35be33671ffd54790ea11d8f9f42df4218"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-0007.json",
+      "family": "bonding",
+      "seed": 7,
+      "generator": "bonding-fixture/v0",
+      "sha256": "f52bfebbd746a254ac06cf44e8e981db18edd4b8fed67f2e66714f4e7872b5f8"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1000.json",
+      "family": "bonding",
+      "seed": 1000,
+      "generator": "bonding-fixture/v0",
+      "sha256": "fbd6189af37da437337d1b4f8332a8ebbac3eaa9fe435cb7d348c692ae43f7eb"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1001.json",
+      "family": "bonding",
+      "seed": 1001,
+      "generator": "bonding-fixture/v0",
+      "sha256": "9faee3af9225e61cf725dcca1476d950b1c69d3e493436eb557dd233c71c4de4"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1002.json",
+      "family": "bonding",
+      "seed": 1002,
+      "generator": "bonding-fixture/v0",
+      "sha256": "7e49e79c0d4db8be91129b1f27521e8af0d367f012c11a13c6ca9b9d8a257c42"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1003.json",
+      "family": "bonding",
+      "seed": 1003,
+      "generator": "bonding-fixture/v0",
+      "sha256": "238f6449996901dc0f9d780129ec6ea08e0f6204ca5c999edec741cd41e7d0db"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1004.json",
+      "family": "bonding",
+      "seed": 1004,
+      "generator": "bonding-fixture/v0",
+      "sha256": "25947ad0368ba47bcfe7844341767c6f3911571cdd4ef544c143efea1e7cbbd3"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1005.json",
+      "family": "bonding",
+      "seed": 1005,
+      "generator": "bonding-fixture/v0",
+      "sha256": "7373c955a005315ad985fbad4128f444d6b2e32b1c45cccbab80117d7b7672ea"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1006.json",
+      "family": "bonding",
+      "seed": 1006,
+      "generator": "bonding-fixture/v0",
+      "sha256": "07d554bcc3facc3ad4320ea50068f4335ab1dedb8f53c2ff564d62e4e21194d1"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1007.json",
+      "family": "bonding",
+      "seed": 1007,
+      "generator": "bonding-fixture/v0",
+      "sha256": "77f780d1e16c57b75d41884aa545aa45c8642e56a4e4319a927866f41e3d48ff"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1008.json",
+      "family": "bonding",
+      "seed": 1008,
+      "generator": "bonding-fixture/v0",
+      "sha256": "fe0b4293edc575e27bf3d22a458daa9a34706ae57049cb1c70d6aa5010e014ad"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1009.json",
+      "family": "bonding",
+      "seed": 1009,
+      "generator": "bonding-fixture/v0",
+      "sha256": "13ea4277a9b202d0133fc855dd2d5247d082c8ade3ec83cb54ca34d2d2877814"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1010.json",
+      "family": "bonding",
+      "seed": 1010,
+      "generator": "bonding-fixture/v0",
+      "sha256": "cf5145df57a714b0d7a20f78864befeeed60da1db2b983edcb1e38adbdd13361"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1011.json",
+      "family": "bonding",
+      "seed": 1011,
+      "generator": "bonding-fixture/v0",
+      "sha256": "0a4fbe809b105c50281bb14b7de333c760e7d236086020f6acf0cbda97ab18d0"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1012.json",
+      "family": "bonding",
+      "seed": 1012,
+      "generator": "bonding-fixture/v0",
+      "sha256": "d6463a1b68269cda0883cde13f060651d2606cdc2cb648bccd47891e11aba63b"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1013.json",
+      "family": "bonding",
+      "seed": 1013,
+      "generator": "bonding-fixture/v0",
+      "sha256": "a69c8fc9dd1de58a676e5672efba6f5c020f04ae88fbeb149bd96ab9ff1fac81"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1014.json",
+      "family": "bonding",
+      "seed": 1014,
+      "generator": "bonding-fixture/v0",
+      "sha256": "0736d3874d56fa5a2fb6f06df5603d695c705f22534c8a18e91cde20ac47c0a5"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1015.json",
+      "family": "bonding",
+      "seed": 1015,
+      "generator": "bonding-fixture/v0",
+      "sha256": "98a0a0d6edba3f77960af6ae736c95a242ecd74d0dd6113e0f09f062babb5857"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1016.json",
+      "family": "bonding",
+      "seed": 1016,
+      "generator": "bonding-fixture/v0",
+      "sha256": "f5cc2d132bd6df958ef9db1ae232f0a3056c539df49274c8e2ff780f14943fe9"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1017.json",
+      "family": "bonding",
+      "seed": 1017,
+      "generator": "bonding-fixture/v0",
+      "sha256": "7aec88392207428d1b69cb51aab48e9e623fedbdb780e7b1c7e78006c12f60fe"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1018.json",
+      "family": "bonding",
+      "seed": 1018,
+      "generator": "bonding-fixture/v0",
+      "sha256": "f0c5b888296c49c86e595ae8ec9af4ebc40f2cb02b34c8f7e041f27bbc5e4e2d"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1019.json",
+      "family": "bonding",
+      "seed": 1019,
+      "generator": "bonding-fixture/v0",
+      "sha256": "3cc861c67eb2ba04055a6ff7966bc61c863c5e3e0636795fb9370add59dc9615"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1020.json",
+      "family": "bonding",
+      "seed": 1020,
+      "generator": "bonding-fixture/v0",
+      "sha256": "3391c51c02236390083d6b752773f3f67e8274986179c26de3c094c6688a0192"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1021.json",
+      "family": "bonding",
+      "seed": 1021,
+      "generator": "bonding-fixture/v0",
+      "sha256": "ab9c43482f761b66e963d812dbcc80dd1e3998f998a7cd47489d26dce960fb51"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1022.json",
+      "family": "bonding",
+      "seed": 1022,
+      "generator": "bonding-fixture/v0",
+      "sha256": "e8dd8b4d7baa19c35a421aba5d8da1cb5063360d50cca94eeab967c5681984a8"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1023.json",
+      "family": "bonding",
+      "seed": 1023,
+      "generator": "bonding-fixture/v0",
+      "sha256": "db48d606c796bb3b9ed181900a21216034a8dda6d392b97e7a36f80b43ccc989"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1024.json",
+      "family": "bonding",
+      "seed": 1024,
+      "generator": "bonding-fixture/v0",
+      "sha256": "40905b5100e9ca6d3a5f753d58c02def2eacec50967b04cb560c7858bfc313d1"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1025.json",
+      "family": "bonding",
+      "seed": 1025,
+      "generator": "bonding-fixture/v0",
+      "sha256": "77d9dbe362cd84576514c23ddb9944a5fdacf90c1b2708b1c7f8eb02785e618e"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1026.json",
+      "family": "bonding",
+      "seed": 1026,
+      "generator": "bonding-fixture/v0",
+      "sha256": "8ca3a32e7024126e37e0811df6ee33df60c4227cf5da596465c822eefa17aa4a"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1027.json",
+      "family": "bonding",
+      "seed": 1027,
+      "generator": "bonding-fixture/v0",
+      "sha256": "910c82e49541201da74166b032c6b0f7f59f094190e1c40cd6ac8dc2c1c2323c"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1028.json",
+      "family": "bonding",
+      "seed": 1028,
+      "generator": "bonding-fixture/v0",
+      "sha256": "936133ad333ee2abb6381f4460f74c97bd23649b2d14df68ec9e478092130086"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1029.json",
+      "family": "bonding",
+      "seed": 1029,
+      "generator": "bonding-fixture/v0",
+      "sha256": "eb2cc561c36bc4dc5012dd724b59310f086e2abd207d9a1c6d1df0bbdf137c2f"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1030.json",
+      "family": "bonding",
+      "seed": 1030,
+      "generator": "bonding-fixture/v0",
+      "sha256": "804bcad0be0c8c1842e21b3e559eb1f6802cdbd39a4732ee0a829a280e1aa0f3"
+    },
+    {
+      "path": "fixtures/bonding/fast/seed-1031.json",
+      "family": "bonding",
+      "seed": 1031,
+      "generator": "bonding-fixture/v0",
+      "sha256": "4c3f6b85844cf915e5b52fbad00bd2f81d5ac9233f40dd22be4e4aee2e802bd7"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-0000.json",
+      "family": "bonding",
+      "seed": 0,
+      "generator": "bonding-fixture/v0",
+      "sha256": "0a66f08de88456587cd0850765f0bea90904f2d6f763a19fff77f46c26408eba"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-0001.json",
+      "family": "bonding",
+      "seed": 1,
+      "generator": "bonding-fixture/v0",
+      "sha256": "7664f0275bfb7c874f268a8926b81f4717919b6a859f50e13db63149709d52c4"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-0002.json",
+      "family": "bonding",
+      "seed": 2,
+      "generator": "bonding-fixture/v0",
+      "sha256": "e5a5beb3ee23500809a034a3407c8e01ec10736a0d1a53153369886a45a86a49"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-0003.json",
+      "family": "bonding",
+      "seed": 3,
+      "generator": "bonding-fixture/v0",
+      "sha256": "547a08f1cc90bb71d7cd8436c64488e0039cdc35e6d49c019b06cc6644c5f55c"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-0004.json",
+      "family": "bonding",
+      "seed": 4,
+      "generator": "bonding-fixture/v0",
+      "sha256": "23cfada6def68605d7b33753ba3fee2c2bb4e202ac06748551c958ac25b55c1d"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-0005.json",
+      "family": "bonding",
+      "seed": 5,
+      "generator": "bonding-fixture/v0",
+      "sha256": "c7dfc1235fad0fa9baea11b7d4e0b640b943fe0eaa74d0d1b11ada634e424a4e"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-0006.json",
+      "family": "bonding",
+      "seed": 6,
+      "generator": "bonding-fixture/v0",
+      "sha256": "9821db095ac50f96823aff19777b8371181fc41d027a8f41e05f3d6372a049ed"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-0007.json",
+      "family": "bonding",
+      "seed": 7,
+      "generator": "bonding-fixture/v0",
+      "sha256": "b1bf947d21397995b0d6a4720ebe973670c3068f555d99f5699d490b716ff89d"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1000.json",
+      "family": "bonding",
+      "seed": 1000,
+      "generator": "bonding-fixture/v0",
+      "sha256": "0a609c9150457057c0b32bb25b1316f17de11f752a00d536c6ab0377d2a1213e"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1001.json",
+      "family": "bonding",
+      "seed": 1001,
+      "generator": "bonding-fixture/v0",
+      "sha256": "7177f76b9182b829ffe13f888dfeca41f1b276afd3eb959345846aeccf2c749d"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1002.json",
+      "family": "bonding",
+      "seed": 1002,
+      "generator": "bonding-fixture/v0",
+      "sha256": "18bce7ada88a94dab5eaa17885791c11336560461d9d1035e05848fc58fbb30a"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1003.json",
+      "family": "bonding",
+      "seed": 1003,
+      "generator": "bonding-fixture/v0",
+      "sha256": "e25b27841182882d435ac285bdda9b2a8299de6adcf7edaf1306e38fe11c8f4c"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1004.json",
+      "family": "bonding",
+      "seed": 1004,
+      "generator": "bonding-fixture/v0",
+      "sha256": "f659c2c8bf1f5ffdcac09e989c89ff0da7733638a462b2b7d4c8e1dd7672ead8"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1005.json",
+      "family": "bonding",
+      "seed": 1005,
+      "generator": "bonding-fixture/v0",
+      "sha256": "13c1a44124b6676242024b6b449df60205b07649c6df9f5463fdbaee51fc6c97"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1006.json",
+      "family": "bonding",
+      "seed": 1006,
+      "generator": "bonding-fixture/v0",
+      "sha256": "563202e858e8cd478eeb1e5303e843d400e5f6ae2f183adb73e08384920075fd"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1007.json",
+      "family": "bonding",
+      "seed": 1007,
+      "generator": "bonding-fixture/v0",
+      "sha256": "b621cc966f5db3a72fc026316f00dd000aa1e802cf2a5d5b3b4fcf1d053e4a21"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1008.json",
+      "family": "bonding",
+      "seed": 1008,
+      "generator": "bonding-fixture/v0",
+      "sha256": "adc3efc10947cdee623dadc6ab8603e86bd6093f7e2dfff6c52259a90aa4fec4"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1009.json",
+      "family": "bonding",
+      "seed": 1009,
+      "generator": "bonding-fixture/v0",
+      "sha256": "fc8c7f0388fa86c0ba2d5c22fdca6749aba4a3bdd6df25ecc6107c0fe30cab86"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1010.json",
+      "family": "bonding",
+      "seed": 1010,
+      "generator": "bonding-fixture/v0",
+      "sha256": "c159283c8967532db0c69736bf89863342dbbe5386b0aba17d8d2e351cd96e28"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1011.json",
+      "family": "bonding",
+      "seed": 1011,
+      "generator": "bonding-fixture/v0",
+      "sha256": "877a886c79dcc7c71abf2b4180141b8c6b6a3deb033e4d644ba89435cdd65a2d"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1012.json",
+      "family": "bonding",
+      "seed": 1012,
+      "generator": "bonding-fixture/v0",
+      "sha256": "87f465db1e9458fafebf4d15afe0572c58ac16919eaf9159af22d9f9391b96c5"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1013.json",
+      "family": "bonding",
+      "seed": 1013,
+      "generator": "bonding-fixture/v0",
+      "sha256": "9ffbbbab444d53a1b184834641ea7b8c969b48126e0f96bd67ac6f5a807b8fd1"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1014.json",
+      "family": "bonding",
+      "seed": 1014,
+      "generator": "bonding-fixture/v0",
+      "sha256": "aec655ef228e3564c806383edf6775cbb2c98b503f69b67ef199b0528526c61c"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1015.json",
+      "family": "bonding",
+      "seed": 1015,
+      "generator": "bonding-fixture/v0",
+      "sha256": "06b465512ba1829a99fc878d5ae394064a8b1fe164cf3eddfeaf23000928fe7a"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1016.json",
+      "family": "bonding",
+      "seed": 1016,
+      "generator": "bonding-fixture/v0",
+      "sha256": "c78cd491249e6975718af773554c4aa1e1647f3aeb37cbffe80231d628313041"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1017.json",
+      "family": "bonding",
+      "seed": 1017,
+      "generator": "bonding-fixture/v0",
+      "sha256": "f24932fc9663a7ed4924fa2e30d5cfc4b818e1c7acf32319c396937e289c38a5"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1018.json",
+      "family": "bonding",
+      "seed": 1018,
+      "generator": "bonding-fixture/v0",
+      "sha256": "d811d273085efed00cd78b5bfcda9a4ed9a6fde1ca9cdc337d63fcc7eca08836"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1019.json",
+      "family": "bonding",
+      "seed": 1019,
+      "generator": "bonding-fixture/v0",
+      "sha256": "bee781b78660e6ede18a17ded56694c6f8340e2888115bee9874aa9977650f37"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1020.json",
+      "family": "bonding",
+      "seed": 1020,
+      "generator": "bonding-fixture/v0",
+      "sha256": "56d96e6336982803c9a08fa3843130bd16f7c7e600488b041752a81863d6274e"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1021.json",
+      "family": "bonding",
+      "seed": 1021,
+      "generator": "bonding-fixture/v0",
+      "sha256": "b67b1b0bbad37093cba9761b91821b29a05ba97d8d696297dafb893dad855371"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1022.json",
+      "family": "bonding",
+      "seed": 1022,
+      "generator": "bonding-fixture/v0",
+      "sha256": "d0e664400b407816ca8f808fac1e8f53b3879fc8a4f469dbc94d82aaedcc8e8f"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1023.json",
+      "family": "bonding",
+      "seed": 1023,
+      "generator": "bonding-fixture/v0",
+      "sha256": "8ad2edadc6bf1e61d83989f14e915a03efeb0651660ab1516093f7fe54ee18d0"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1024.json",
+      "family": "bonding",
+      "seed": 1024,
+      "generator": "bonding-fixture/v0",
+      "sha256": "20c257c5096bbb327633e4425d89afade995f11fd8a859788293112798bf7aa3"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1025.json",
+      "family": "bonding",
+      "seed": 1025,
+      "generator": "bonding-fixture/v0",
+      "sha256": "d1cbc36d51613a17861f7fce95542c7b1ca1a824599244495ed0a7a9cb78f027"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1026.json",
+      "family": "bonding",
+      "seed": 1026,
+      "generator": "bonding-fixture/v0",
+      "sha256": "a7037ad66549a9efb051fffcd75010a30962b5ae33fc965eae89d028a3c4de84"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1027.json",
+      "family": "bonding",
+      "seed": 1027,
+      "generator": "bonding-fixture/v0",
+      "sha256": "d9745ae01300f53d332dfc8a595f3633a241cc73ad92060049fd110c4fd031fc"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1028.json",
+      "family": "bonding",
+      "seed": 1028,
+      "generator": "bonding-fixture/v0",
+      "sha256": "ce421ac915cf2ef15565af780539e79ea74d75af125db2b4abd185435f3100d3"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1029.json",
+      "family": "bonding",
+      "seed": 1029,
+      "generator": "bonding-fixture/v0",
+      "sha256": "6c40d629947f1b55ad87dfb8b30c70b25ed39b58ed6ac119c3988523a06e97e5"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1030.json",
+      "family": "bonding",
+      "seed": 1030,
+      "generator": "bonding-fixture/v0",
+      "sha256": "78d225faaf933f24744f666d9be6b22d1260b8aac27a9d7eaab53f476f7f25a1"
+    },
+    {
+      "path": "fixtures/bonding/slow/seed-1031.json",
+      "family": "bonding",
+      "seed": 1031,
+      "generator": "bonding-fixture/v0",
+      "sha256": "39f09a5cf760009bd1ce0b989982cb15ad369f3054540c6c2b256a2d259d49fd"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-0000.json",
+      "family": "bonding",
+      "seed": 0,
+      "generator": "bonding-fixture/v0",
+      "sha256": "a72c12e7a0e03e20367402a77c572128fee23e94cb65669a32673e3140e8de9c"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-0001.json",
+      "family": "bonding",
+      "seed": 1,
+      "generator": "bonding-fixture/v0",
+      "sha256": "b0379fc81b6d60d7e29844e1e8c0120b8ba8e50aee6cca81ba0f72b4b265b7d6"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-0002.json",
+      "family": "bonding",
+      "seed": 2,
+      "generator": "bonding-fixture/v0",
+      "sha256": "5cd89af17d62004487af484f93a4d8c428ad7ce85fd9dbb04d35f5dfe560b668"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-0003.json",
+      "family": "bonding",
+      "seed": 3,
+      "generator": "bonding-fixture/v0",
+      "sha256": "923eeb18d7414a7499a10aeff382bd0b58982b1d89ebf669a33b9d547b6c829c"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-0004.json",
+      "family": "bonding",
+      "seed": 4,
+      "generator": "bonding-fixture/v0",
+      "sha256": "14ad86d28023da1e9cb416afc4e2d6281a85d8731a2d172ef5a51ee5b6bc30d1"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-0005.json",
+      "family": "bonding",
+      "seed": 5,
+      "generator": "bonding-fixture/v0",
+      "sha256": "b17be17d6601d0ee8303d31557a27562f0c9db21143d808cef0bca5ca19e412e"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-0006.json",
+      "family": "bonding",
+      "seed": 6,
+      "generator": "bonding-fixture/v0",
+      "sha256": "2c9e227e6507badf7fbae521c0165719c82f8896b628b85bde2b35f3f3949101"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-0007.json",
+      "family": "bonding",
+      "seed": 7,
+      "generator": "bonding-fixture/v0",
+      "sha256": "570c82a898968934e0d425d5848bd65035b006efc1cfbabb655d3cd86533529c"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1000.json",
+      "family": "bonding",
+      "seed": 1000,
+      "generator": "bonding-fixture/v0",
+      "sha256": "d449f18d53b5abcfa902c596b4a0367d86af5ed070458271e2aedda9837939dd"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1001.json",
+      "family": "bonding",
+      "seed": 1001,
+      "generator": "bonding-fixture/v0",
+      "sha256": "6e63d149525a4f0068f273cc9070b46811058c070ad166714998930606e4e72f"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1002.json",
+      "family": "bonding",
+      "seed": 1002,
+      "generator": "bonding-fixture/v0",
+      "sha256": "6289c307d446953e461393040806d3359879ff5561579257121309f75f879ecc"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1003.json",
+      "family": "bonding",
+      "seed": 1003,
+      "generator": "bonding-fixture/v0",
+      "sha256": "d7cc407e0dfacad089031fa43ebb0f033393931abd10e8d10f8738245a039809"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1004.json",
+      "family": "bonding",
+      "seed": 1004,
+      "generator": "bonding-fixture/v0",
+      "sha256": "2583615223ac03a9a8cc1fdb8057a859eac48145f10c8f501edf20a54968329a"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1005.json",
+      "family": "bonding",
+      "seed": 1005,
+      "generator": "bonding-fixture/v0",
+      "sha256": "b47dea049c8315ccc84d4015319d4e055f244764a42dc2e2c7f28f6475f370ea"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1006.json",
+      "family": "bonding",
+      "seed": 1006,
+      "generator": "bonding-fixture/v0",
+      "sha256": "e26ccdb5372491263ea19ebb15d35b71a3587554c812a480a918d3fa0557c8ad"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1007.json",
+      "family": "bonding",
+      "seed": 1007,
+      "generator": "bonding-fixture/v0",
+      "sha256": "ae26a87b2968be2d989c33597dd0cf10a5985d8739b632caf825265a2430691f"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1008.json",
+      "family": "bonding",
+      "seed": 1008,
+      "generator": "bonding-fixture/v0",
+      "sha256": "96368af46deeb0426a0b3aa13e6c3a5ebc85324118c52de35fcf8fb9040f845e"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1009.json",
+      "family": "bonding",
+      "seed": 1009,
+      "generator": "bonding-fixture/v0",
+      "sha256": "ffbd2963b5d5fad0eb4313d3a382237b174661828613d01609a3ab523c216339"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1010.json",
+      "family": "bonding",
+      "seed": 1010,
+      "generator": "bonding-fixture/v0",
+      "sha256": "25a2d3d52fe4b96f925be9a74d4c65ecabda3acbd4ed9fa6d31436c9a1811b62"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1011.json",
+      "family": "bonding",
+      "seed": 1011,
+      "generator": "bonding-fixture/v0",
+      "sha256": "c2ec97d7183e319c2017db8a4f9297f44c9c5fe3572bb71cec7924a12837744d"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1012.json",
+      "family": "bonding",
+      "seed": 1012,
+      "generator": "bonding-fixture/v0",
+      "sha256": "438c934a34dc5fa957fdd30baaded884f3a55490a5f4a39479247c6f0e48ec73"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1013.json",
+      "family": "bonding",
+      "seed": 1013,
+      "generator": "bonding-fixture/v0",
+      "sha256": "fe8aaf0566d539c6bb8a34d3f29b6477dcbca035589db09a45008603877b239c"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1014.json",
+      "family": "bonding",
+      "seed": 1014,
+      "generator": "bonding-fixture/v0",
+      "sha256": "efe972fb3cae454235c4c14c70f719cd01e636f1e4057a8198990645fa73f1b3"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1015.json",
+      "family": "bonding",
+      "seed": 1015,
+      "generator": "bonding-fixture/v0",
+      "sha256": "528e6672e48b94450abd34d9896c3871bec1f30dae5e8b628beec307c9c9a183"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1016.json",
+      "family": "bonding",
+      "seed": 1016,
+      "generator": "bonding-fixture/v0",
+      "sha256": "0b45a1c3c5703608f7e10ff29e51c40b52c1e35bb6389fcbf4fb0d06f5effad2"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1017.json",
+      "family": "bonding",
+      "seed": 1017,
+      "generator": "bonding-fixture/v0",
+      "sha256": "ce804ba5b58c7c61dac9065f15904c1817439075b29711b97ce72f5a5852a082"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1018.json",
+      "family": "bonding",
+      "seed": 1018,
+      "generator": "bonding-fixture/v0",
+      "sha256": "a689c688ed3075c4b4405fece5f73f65fcbe7a474d1464060e260fbd1df09374"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1019.json",
+      "family": "bonding",
+      "seed": 1019,
+      "generator": "bonding-fixture/v0",
+      "sha256": "70840624ca94e13efb485470feef154165cc7426339132b5478670703ae26ecd"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1020.json",
+      "family": "bonding",
+      "seed": 1020,
+      "generator": "bonding-fixture/v0",
+      "sha256": "9eed89eb069140887152a7a1377efe97f76c012dbcfc592c900b24693e3bb2c9"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1021.json",
+      "family": "bonding",
+      "seed": 1021,
+      "generator": "bonding-fixture/v0",
+      "sha256": "1ca1713c9e428b826b583df70171f4e1d5af4f83ad1bebb52508c65f16f3f7cd"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1022.json",
+      "family": "bonding",
+      "seed": 1022,
+      "generator": "bonding-fixture/v0",
+      "sha256": "d60e284b1471c74ce2444fcf0f5f5bbc39dcc0a98b3193ba62e080a0b23f4048"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1023.json",
+      "family": "bonding",
+      "seed": 1023,
+      "generator": "bonding-fixture/v0",
+      "sha256": "05efc685afc91e5032b5b44e75025f72b9c5d2dd13354b6ca6760b812e299a15"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1024.json",
+      "family": "bonding",
+      "seed": 1024,
+      "generator": "bonding-fixture/v0",
+      "sha256": "65f56a494e93eadd9a4d82bf1370f315de6afb2678aecd283df0b1c79ccf00cc"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1025.json",
+      "family": "bonding",
+      "seed": 1025,
+      "generator": "bonding-fixture/v0",
+      "sha256": "24d74d3c8dc5d122fab609dbaa7939cdf70e8487af7b801690a4897a1e2b6a54"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1026.json",
+      "family": "bonding",
+      "seed": 1026,
+      "generator": "bonding-fixture/v0",
+      "sha256": "1940bb2e42e35f8849a2ecca3f570a6bd1f19b92f123c91962f420ea2a4dc5cd"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1027.json",
+      "family": "bonding",
+      "seed": 1027,
+      "generator": "bonding-fixture/v0",
+      "sha256": "f69c2d59f18d8319302240f68b79998895bbf2482a1e76abf3da2f3ffb7c920b"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1028.json",
+      "family": "bonding",
+      "seed": 1028,
+      "generator": "bonding-fixture/v0",
+      "sha256": "da43d3f64985e58740c6adc7956f4b20c68c3a7f157016f23a625c96c52ab38a"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1029.json",
+      "family": "bonding",
+      "seed": 1029,
+      "generator": "bonding-fixture/v0",
+      "sha256": "468053e71ea931ada05a5b90d29db14b1bcedca5b29c92e453ab100cc0696add"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1030.json",
+      "family": "bonding",
+      "seed": 1030,
+      "generator": "bonding-fixture/v0",
+      "sha256": "1f844cfc550397a9a9701335d00e2d0d1111bbe7881e69bf240085aba05fbc78"
+    },
+    {
+      "path": "fixtures/bonding/strict/seed-1031.json",
+      "family": "bonding",
+      "seed": 1031,
+      "generator": "bonding-fixture/v0",
+      "sha256": "c947d1d0539dac856d93041639d257851fb1b784ad7b467566a71e1c1106756e"
+    },
     {
       "path": "fixtures/dlc/mobile_signer/seed-0000.json",
       "family": "dlc",

@@ -140,3 +140,17 @@ node --experimental-strip-types scripts/run_nostr_agent.ts --cell custody --bloc
 ```
 
 One cell per invocation (`--cell`), with the same flags as the placement script and a reply limit of 1,024 tokens. The prompts (`src/tasks/nostr/prompt.ts`) show the whole observation on the first turn and only the last result and a status line afterwards (about 100 to 250 characters), because a mesh episode can run to more than a hundred turns. No model has been run on the family yet, so the context a long episode needs has not been measured; start the server with 32,768 tokens. Events and ciphertexts come back as handles (`h3`) that the model passes on instead of copying. The first turn is longest in `custody`, about 8,800 characters. The agent's primary contrast is against the cell's reference and is descriptive until the family is frozen.
+
+### Families 2 and 7: long episodes
+
+```
+node --experimental-strip-types scripts/run_routing_agent.ts --block development --seeds 0 \
+  --name <agent-name> --base-url http://127.0.0.1:8094/v1 --model <model> \
+  --model-sha256 <sha256 of the GGUF> --runtime "<output of llama-server --version>"
+node --experimental-strip-types scripts/run_proof_budget_agent.ts --block development \
+  --name <agent-name> --base-url http://127.0.0.1:8094/v1 --model <model> \
+  --model-sha256 <sha256 of the GGUF> --runtime "<output of llama-server --version>"
+```
+
+An episode of family 2 is several hundred turns, one per attempt or skip, and one of family 7 can be a hundred or more. Both scripts therefore set the adapter's `contextTurns` to 0 (`--context-turns` changes it): each request carries the system prompt and the current turn, and the turn carries the whole state, the routing history included. The setting is bound into the agent identifier, and an agent run without it keeps the identifier it always had.
+

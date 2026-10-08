@@ -61,6 +61,8 @@ const options: ChatOptions = {
   prompt: proofPrompt(maxTokens),
   skills,
   maxSkillCalls: Number(arg("max-skill-calls", "4")),
+  // The turn carries the whole state; a long episode would overflow a whole-conversation context.
+  contextTurns: Number(arg("context-turns", "0")),
 };
 const agentId = new ChatAgent(options).id;
 

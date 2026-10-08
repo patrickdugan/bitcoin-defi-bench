@@ -69,6 +69,12 @@ export interface ChatOptions {
   skills?: Skill[];
   /** Skill calls allowed per episode; a request beyond the cap is passed to the harness as it is. Default 4. */
   maxSkillCalls?: number;
+  /**
+   * When set, each request carries the system prompt, the last `contextTurns` whole turns, and the
+   * current turn, instead of the whole conversation. For families whose observation carries the
+   * whole state and whose episodes run to hundreds of turns (families 2 and 7). Bound into the id.
+   */
+  contextTurns?: number;
 }
 
 export interface Reply { content: string; reasoning: string; }
@@ -132,6 +138,8 @@ export class ChatAgent implements Agent {
   readonly counts = { replayed: 0, served: 0 };
   private episode: EpisodeInfo = { task: "", seed: -1, cell: "" };
   private messages: Message[] = [];
+  /** Index in `messages` where each turn's first user message sits, for the context window. */
+  private turnStarts: number[] = [];
   private skillCalls = 0;
   /** The latest result of each skill called in this episode, for a reply that sends one. */
   private results = new Map<string, Json>();
@@ -153,7 +161,8 @@ export class ChatAgent implements Agent {
     const skills = (this.options.skills ?? []).map((s) => ({ name: s.name, sha256: s.sha256, description_sha256: sha256(s.description) }));
     const base = { adapter: ADAPTER_VERSION, model, model_sha256: identity.model_sha256, runtime: identity.runtime, sampling: { ...sampling }, thinking, prompt_sha256: prompt.sha256 };
     // Skills enter the identity only when carried, so a bare agent's identifier is unchanged by the skill loop.
-    return skills.length ? { ...base, skills, max_skill_calls: this.options.maxSkillCalls ?? 4, skill_protocol: "call by a skill field or a tool field naming a carried skill; result as compact json; {tool: send} or {send: name} sends a stored result that is an action" } : base;
+    const windowed = this.options.contextTurns === undefined ? base : { ...base, context_turns: this.options.contextTurns };
+    return skills.length ? { ...windowed, skills, max_skill_calls: this.options.maxSkillCalls ?? 4, skill_protocol: "call by a skill field or a tool field naming a carried skill; result as compact json; {tool: send} or {send: name} sends a stored result that is an action" } : windowed;
   }
 
   reset(episode: EpisodeInfo): void {
@@ -210,7 +219,8 @@ export class ChatAgent implements Agent {
 
   async act(observation: Json): Promise<Json> {
     const turn = (observation as { episode: { turn: number } }).episode.turn;
-    if (turn === 0) this.messages = [{ role: "system", content: this.options.prompt.system(observation) + this.skillsText() }];
+    if (turn === 0) { this.messages = [{ role: "system", content: this.options.prompt.system(observation) + this.skillsText() }]; this.turnStarts = []; }
+    this.turnStarts.push(this.messages.length);
     let user = this.options.prompt.turn(observation);
     const cap = this.options.maxSkillCalls ?? 4;
     for (let call = 0; ; call++) {
@@ -237,12 +247,20 @@ export class ChatAgent implements Agent {
     }
   }
 
+  /** The messages a request carries: everything, or the system prompt and a window of whole turns. */
+  private window(): Message[] {
+    const k = this.options.contextTurns;
+    if (k === undefined) return this.messages;
+    const from = this.turnStarts[Math.max(0, this.turnStarts.length - 1 - k)] ?? 1;
+    return [this.messages[0]!, ...this.messages.slice(from)];
+  }
+
   /** One completion over the conversation so far, from the cache, the replay log, or the server. */
   private async complete(turn: number, call: number): Promise<{ reply: Reply; key: string; cached: boolean; replayed: boolean }> {
     const { sampling } = this.options;
     const body = {
       model: this.options.model,
-      messages: this.messages.map((m) => ({ ...m })),
+      messages: this.window().map((m) => ({ ...m })),
       temperature: sampling.temperature, top_p: sampling.top_p, top_k: sampling.top_k,
       max_tokens: sampling.max_tokens, seed: this.requestSeed(turn, call),
       chat_template_kwargs: { enable_thinking: this.options.thinking },

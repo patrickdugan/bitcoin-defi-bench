@@ -353,7 +353,7 @@ In [results/v0-routing-baselines-development.md](../results/v0-routing-baselines
 ### 3.3 What remains
 
 1. An amendment freezing the family: the gates above, the band (§5's one point), and the agent contrast prereg/v0.md §9 already declares, agent − `retry_wallet` per task with `outside_calibration` beyond the band.
-2. An LLM path. An episode is several hundred turns, so the adapter's whole-conversation context would overflow. A prompt for this family needs a context window of the current observation alone, which the observation supports because it carries the full history.
+2. LLM runs. The path is built: `src/tasks/routing/prompt.ts` shows the current payment, its candidates, and the whole history raw, and `scripts/run_routing_agent.ts` runs it with the adapter's context window set to the current turn alone (`contextTurns: 0`), because an episode is several hundred turns. A confirmatory run is about 9 × 32 × 300 requests, roughly a day for Bonsai 8B on this machine; nothing has been run yet.
 
 ## 4. Family 3: settlement-object selection
 
@@ -761,7 +761,7 @@ In every cell the horizon is 144 blocks (one day), values are log-uniform from 2
 
 1. Adopt the re-measured grid, which repeats every size three times and extends it to 512 claims, then rebuild the fixtures and rerun development. The first grid was timed beside an LLM server.
 2. An amendment freezing the family.
-3. An LLM path that works at length. `scripts/run_proof_budget_agent.ts` and its prompt exist, but an episode can run to a hundred turns or more. The adapter's whole-conversation context then overflows, so this family needs the same observation-only context window as family 2.
+3. LLM runs. `scripts/run_proof_budget_agent.ts` sends the current turn alone (`contextTurns: 0`), which carries the whole state; nothing has been run yet.
 
 ## 9. Family 8: timing funding against fee and demand (specified, not implemented)
 

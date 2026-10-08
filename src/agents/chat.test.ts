@@ -249,3 +249,22 @@ test("a reply {tool: send} sends the skill's stored result as the action; before
   } finally { m.server.close(); }
 });
 
+test("a context window sends the system prompt, the last k turns, and the current turn; it is bound into the id", async () => {
+  const m = await mock((turn) => (turn === 0 ? '{"tool":"place","args":{"placements":[{"from":"N000","to":"N000","sats":1}]}}' : '{"tool":"place","args":{"placements":[{"from":"N001","to":"N001","sats":1}]}}'));
+  try {
+    const windowed = new ChatAgent(options(m.url, { contextTurns: 1 }));
+    await runEpisode(new PlacementEnv(fixture, "uniform", "stationary", config), windowed);
+    // Turn 0 carries system + user; turn 1 system + turn 0 + user; turn 2 drops turn 0.
+    assert.deepEqual(m.requests.map((r) => r.messages.length), [2, 4, 4, 4].slice(0, m.requests.length));
+    assert.equal(m.requests.at(-1)!.messages[0]!.role, "system");
+    assert.notEqual(windowed.id, new ChatAgent(options(m.url)).id);
+    assert.notEqual(windowed.id, new ChatAgent(options(m.url, { contextTurns: 0 })).id);
+    // Without the option nothing changes: the whole conversation is sent.
+    const whole = await mock(() => '{"tool":"place","args":{"placements":[{"from":"N000","to":"N000","sats":1}]}}');
+    try {
+      await runEpisode(new PlacementEnv(fixture, "uniform", "stationary", config), new ChatAgent(options(whole.url)));
+      assert.deepEqual(whole.requests.map((r) => r.messages.length), whole.requests.map((_, i) => 2 + 2 * i));
+    } finally { whole.server.close(); }
+  } finally { m.server.close(); }
+});
+

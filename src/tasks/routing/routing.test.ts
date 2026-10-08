@@ -94,3 +94,38 @@ test("the two scripted policies follow public-fee order and stop where they shou
   assert.equal((retry.act(obs(afterOne)) as { args: { candidate: number } }).args.candidate, order[1]);
   assert.deepEqual(one.act(obs(afterOne)), { tool: "skip" });
 });
+
+test("the LLM path: each request carries the system prompt and the current turn, which lists the whole history", async () => {
+  const { createServer } = await import("node:http");
+  const { ChatAgent } = await import("../../agents/chat.ts");
+  const { routingPrompt } = await import("./prompt.ts");
+  const requests: Array<{ messages: Array<{ role: string; content: string }> }> = [];
+  const server = createServer((req, res) => {
+    let raw = "";
+    req.on("data", (c) => { raw += c; });
+    req.on("end", () => {
+      requests.push(JSON.parse(raw));
+      res.setHeader("content-type", "application/json");
+      res.end(JSON.stringify({ choices: [{ message: { content: '{"tool":"attempt","args":{"candidate":0}}', reasoning_content: "" } }] }));
+    });
+  });
+  await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", resolve));
+  try {
+    const port = (server.address() as { port: number }).port;
+    const agent = new ChatAgent({
+      name: "mock", baseUrl: `http://127.0.0.1:${port}/v1`, model: "mock",
+      sampling: { temperature: 0.7, top_p: 0.8, top_k: 20, max_tokens: 128, seed: 1 }, thinking: false,
+      identity: { model_sha256: "0".repeat(64), runtime: "mock" }, prompt: routingPrompt(128), contextTurns: 0,
+    });
+    const p = placementFixture(root, manifest, 4);
+    const row = await runEpisode(new RoutingEnv(p, demandsFor(root, manifest, 4, "shift"), "uniform", "shift", config), agent);
+    assert.equal(row.metrics.demands, config.steps - config.evaluation_start);
+    assert.ok(requests.every((r) => r.messages.length === 2), "system prompt and current turn only");
+    const system = requests[0]!.messages[0]!.content;
+    assert.ok(!/\{\w+\}/.test(system.replace(/\{"[^}]*\}/g, "")), "no template placeholder is left unfilled");
+    const late = requests.at(-1)!.messages[1]!.content;
+    assert.ok(late.includes("Payment 219 of 220"));
+    assert.ok(late.includes("\n0 ") && late.includes("\n218 "), "the history runs from the first payment to the last one routed");
+    assert.ok(!/capacity|balance_uv|hotspot/.test(JSON.stringify(requests)), "no hidden state in any request");
+  } finally { server.close(); }
+});

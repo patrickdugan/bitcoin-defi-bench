@@ -83,3 +83,39 @@ test("fixtures regenerate byte for byte", () => {
     assert.equal(fixtureBytes(generateFixture(seed, cell, config.cells[cell]!, config)), readFileSync(join(root, fixturePath(cell, seed)), "utf8"), `${cell} seed ${seed}`);
   }
 });
+
+test("the LLM path: the prompt states the rules and the observed response times, never the rate", async () => {
+  const { createServer } = await import("node:http");
+  const { ChatAgent } = await import("../../agents/chat.ts");
+  const { bondingPrompt } = await import("./prompt.ts");
+  const f = bondingFixture(root, manifest, "strict", 2);
+  const requests: Array<{ messages: Array<{ role: string; content: string }> }> = [];
+  let example = "";
+  const server = createServer((req, res) => {
+    let raw = "";
+    req.on("data", (c) => { raw += c; });
+    req.on("end", () => {
+      const body = JSON.parse(raw);
+      requests.push(body);
+      example = body.messages[0].content.split("\n").find((l: string) => l.startsWith('{"tool":"bond"'));
+      res.setHeader("content-type", "application/json");
+      res.end(JSON.stringify({ choices: [{ message: { content: example, reasoning_content: "" } }] }));
+    });
+  });
+  await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", resolve));
+  try {
+    const port = (server.address() as { port: number }).port;
+    const agent = new ChatAgent({
+      name: "mock", baseUrl: `http://127.0.0.1:${port}/v1`, model: "mock",
+      sampling: { temperature: 0.7, top_p: 0.8, top_k: 20, max_tokens: 128, seed: 1 }, thinking: false,
+      identity: { model_sha256: "0".repeat(64), runtime: "mock" }, prompt: bondingPrompt(128),
+    });
+    const row = await runEpisode(new BondingEnv(f, config), agent);
+    assert.equal(row.rejections.length, 0, "the example is a valid offer");
+    const text = JSON.stringify(requests);
+    assert.ok(!text.includes(String(f.true_response_p)), "the true rate is never shown");
+    assert.ok(text.includes(f.challenge.observed_response_blocks.join(", ")));
+    const system = requests[0]!.messages[0]!.content;
+    assert.ok(!/\{\w+\}/.test(system.replace(/\{"[^}]*\}/g, "")), "no template placeholder is left unfilled");
+  } finally { server.close(); }
+});

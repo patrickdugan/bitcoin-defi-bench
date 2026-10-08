@@ -1,0 +1,2173 @@
+{
+ "bench": "bitcoin-defi-bench/v0",
+ "block": "development",
+ "manifest_sha256": "82b3aed4e46217b1a3c7c29f3144d3e2b7e33e7d5bf3a88d1666762b19e8a1b4",
+ "prereg_sha256": "8f9b0698b32ff85a53cb30bbc8f8ca18d198e9ba3db435a5f062ab56a270d8e0",
+ "spiral_commit": "9824c30ad402cc9bca768eca27d176e0e8788db5",
+ "node": "v24.19.0",
+ "seeds": [
+  0,
+  1
+ ],
+ "agents": [
+  {
+   "id": "one_shot",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "retry_wallet",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "prefix_oracle_3",
+   "privileged": true,
+   "baseline": true
+  },
+  {
+   "id": "hidden_state_oracle",
+   "privileged": true,
+   "baseline": true
+  },
+  {
+   "id": "bonsai-8b-nothink@e6b9a351f65d",
+   "privileged": false,
+   "baseline": false,
+   "details": {
+    "adapter": "chat-adapter/v0",
+    "model": "bonsai-8b",
+    "model_sha256": "284a335aa3fb2ced3b1b01fcb40b08aa783e3b70832767f0dd2e3fdfa134bd54",
+    "runtime": "llama-prism 0.2.0-dev (build 10743, commit adfffbe41), win-cuda-12.4",
+    "sampling": {
+     "temperature": 0.7,
+     "top_p": 0.8,
+     "top_k": 20,
+     "max_tokens": 128,
+     "seed": 20261001
+    },
+    "thinking": false,
+    "prompt_sha256": "903a6b76fdf92facb15a4c05b169863110b52aec4d684979babf8e46b38abc0d",
+    "context_turns": 0
+   }
+  }
+ ],
+ "tasks": [
+  {
+   "task": "routing/balanced_band/diffuse",
+   "unit": "success rate over the 110 evaluation demands, in percentage points",
+   "band": 1,
+   "floor": "one_shot",
+   "ceiling": "hidden_state_oracle",
+   "reference": "retry_wallet",
+   "metrics": [
+    "delivered",
+    "failed_attempts",
+    "skipped"
+   ]
+  },
+  {
+   "task": "routing/balanced_band/stationary",
+   "unit": "success rate over the 110 evaluation demands, in percentage points",
+   "band": 1,
+   "floor": "one_shot",
+   "ceiling": "hidden_state_oracle",
+   "reference": "retry_wallet",
+   "metrics": [
+    "delivered",
+    "failed_attempts",
+    "skipped"
+   ]
+  },
+  {
+   "task": "routing/balanced_band/shift",
+   "unit": "success rate over the 110 evaluation demands, in percentage points",
+   "band": 1,
+   "floor": "one_shot",
+   "ceiling": "hidden_state_oracle",
+   "reference": "retry_wallet",
+   "metrics": [
+    "delivered",
+    "failed_attempts",
+    "skipped"
+   ]
+  },
+  {
+   "task": "routing/uniform/diffuse",
+   "unit": "success rate over the 110 evaluation demands, in percentage points",
+   "band": 1,
+   "floor": "one_shot",
+   "ceiling": "hidden_state_oracle",
+   "reference": "retry_wallet",
+   "metrics": [
+    "delivered",
+    "failed_attempts",
+    "skipped"
+   ]
+  },
+  {
+   "task": "routing/uniform/stationary",
+   "unit": "success rate over the 110 evaluation demands, in percentage points",
+   "band": 1,
+   "floor": "one_shot",
+   "ceiling": "hidden_state_oracle",
+   "reference": "retry_wallet",
+   "metrics": [
+    "delivered",
+    "failed_attempts",
+    "skipped"
+   ]
+  },
+  {
+   "task": "routing/uniform/shift",
+   "unit": "success rate over the 110 evaluation demands, in percentage points",
+   "band": 1,
+   "floor": "one_shot",
+   "ceiling": "hidden_state_oracle",
+   "reference": "retry_wallet",
+   "metrics": [
+    "delivered",
+    "failed_attempts",
+    "skipped"
+   ]
+  },
+  {
+   "task": "routing/polarized/diffuse",
+   "unit": "success rate over the 110 evaluation demands, in percentage points",
+   "band": 1,
+   "floor": "one_shot",
+   "ceiling": "hidden_state_oracle",
+   "reference": "retry_wallet",
+   "metrics": [
+    "delivered",
+    "failed_attempts",
+    "skipped"
+   ]
+  },
+  {
+   "task": "routing/polarized/stationary",
+   "unit": "success rate over the 110 evaluation demands, in percentage points",
+   "band": 1,
+   "floor": "one_shot",
+   "ceiling": "hidden_state_oracle",
+   "reference": "retry_wallet",
+   "metrics": [
+    "delivered",
+    "failed_attempts",
+    "skipped"
+   ]
+  },
+  {
+   "task": "routing/polarized/shift",
+   "unit": "success rate over the 110 evaluation demands, in percentage points",
+   "band": 1,
+   "floor": "one_shot",
+   "ceiling": "hidden_state_oracle",
+   "reference": "retry_wallet",
+   "metrics": [
+    "delivered",
+    "failed_attempts",
+    "skipped"
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "task": "routing/balanced_band/diffuse",
+   "seed": 0,
+   "cell": "single",
+   "agent": "one_shot",
+   "value": 97.27272727272727,
+   "metrics": {
+    "delivered": 107,
+    "demands": 110,
+    "failed_attempts": 3,
+    "skipped": 3,
+    "delivered_total": 217,
+    "delivery_hash": 224756743567439
+   },
+   "turns": 223,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/diffuse",
+   "seed": 0,
+   "cell": "single",
+   "agent": "retry_wallet",
+   "value": 99.0909090909091,
+   "metrics": {
+    "delivered": 109,
+    "demands": 110,
+    "failed_attempts": 5,
+    "skipped": 0,
+    "delivered_total": 219,
+    "delivery_hash": 264325127219272
+   },
+   "turns": 224,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/diffuse",
+   "seed": 0,
+   "cell": "single",
+   "agent": "prefix_oracle_3",
+   "value": 99.0909090909091,
+   "metrics": {
+    "delivered": 109,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 1,
+    "delivered_total": 219,
+    "delivery_hash": 264325127219272
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/diffuse",
+   "seed": 0,
+   "cell": "single",
+   "agent": "hidden_state_oracle",
+   "value": 99.0909090909091,
+   "metrics": {
+    "delivered": 109,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 1,
+    "delivered_total": 219,
+    "delivery_hash": 264325127219272
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/diffuse",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6b9a351f65d",
+   "value": 99.0909090909091,
+   "metrics": {
+    "delivered": 109,
+    "demands": 110,
+    "failed_attempts": 7,
+    "skipped": 0,
+    "delivered_total": 219,
+    "delivery_hash": 264325127219272
+   },
+   "turns": 226,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/diffuse",
+   "seed": 1,
+   "cell": "single",
+   "agent": "one_shot",
+   "value": 93.63636363636364,
+   "metrics": {
+    "delivered": 103,
+    "demands": 110,
+    "failed_attempts": 7,
+    "skipped": 7,
+    "delivered_total": 210,
+    "delivery_hash": 110736665932495
+   },
+   "turns": 230,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/diffuse",
+   "seed": 1,
+   "cell": "single",
+   "agent": "retry_wallet",
+   "value": 96.36363636363636,
+   "metrics": {
+    "delivered": 106,
+    "demands": 110,
+    "failed_attempts": 7,
+    "skipped": 4,
+    "delivered_total": 214,
+    "delivery_hash": 261865364909206
+   },
+   "turns": 231,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/diffuse",
+   "seed": 1,
+   "cell": "single",
+   "agent": "prefix_oracle_3",
+   "value": 96.36363636363636,
+   "metrics": {
+    "delivered": 106,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 4,
+    "delivered_total": 214,
+    "delivery_hash": 261865364909206
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/diffuse",
+   "seed": 1,
+   "cell": "single",
+   "agent": "hidden_state_oracle",
+   "value": 96.36363636363636,
+   "metrics": {
+    "delivered": 106,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 4,
+    "delivered_total": 214,
+    "delivery_hash": 261865364909206
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/diffuse",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6b9a351f65d",
+   "value": 96.36363636363636,
+   "metrics": {
+    "delivered": 106,
+    "demands": 110,
+    "failed_attempts": 14,
+    "skipped": 0,
+    "delivered_total": 214,
+    "delivery_hash": 261865364909206
+   },
+   "turns": 234,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/stationary",
+   "seed": 0,
+   "cell": "single",
+   "agent": "one_shot",
+   "value": 87.27272727272727,
+   "metrics": {
+    "delivered": 96,
+    "demands": 110,
+    "failed_attempts": 14,
+    "skipped": 14,
+    "delivered_total": 204,
+    "delivery_hash": 238369998414706
+   },
+   "turns": 236,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/stationary",
+   "seed": 0,
+   "cell": "single",
+   "agent": "retry_wallet",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "failed_attempts": 40,
+    "skipped": 0,
+    "delivered_total": 205,
+    "delivery_hash": 64395784645090
+   },
+   "turns": 251,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/stationary",
+   "seed": 0,
+   "cell": "single",
+   "agent": "prefix_oracle_3",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 13,
+    "delivered_total": 205,
+    "delivery_hash": 64395784645090
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/stationary",
+   "seed": 0,
+   "cell": "single",
+   "agent": "hidden_state_oracle",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 13,
+    "delivered_total": 205,
+    "delivery_hash": 64395784645090
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/stationary",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6b9a351f65d",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "failed_attempts": 40,
+    "skipped": 0,
+    "delivered_total": 204,
+    "delivery_hash": 34985146876480
+   },
+   "turns": 254,
+   "rejections": [
+    {
+     "turn": 9,
+     "reason": "out_of_grid"
+    }
+   ]
+  },
+  {
+   "task": "routing/balanced_band/stationary",
+   "seed": 1,
+   "cell": "single",
+   "agent": "one_shot",
+   "value": 81.81818181818181,
+   "metrics": {
+    "delivered": 90,
+    "demands": 110,
+    "failed_attempts": 20,
+    "skipped": 20,
+    "delivered_total": 191,
+    "delivery_hash": 232110990698777
+   },
+   "turns": 249,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/stationary",
+   "seed": 1,
+   "cell": "single",
+   "agent": "retry_wallet",
+   "value": 84.54545454545455,
+   "metrics": {
+    "delivered": 93,
+    "demands": 110,
+    "failed_attempts": 20,
+    "skipped": 17,
+    "delivered_total": 195,
+    "delivery_hash": 83321783878704
+   },
+   "turns": 250,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/stationary",
+   "seed": 1,
+   "cell": "single",
+   "agent": "prefix_oracle_3",
+   "value": 84.54545454545455,
+   "metrics": {
+    "delivered": 93,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 17,
+    "delivered_total": 195,
+    "delivery_hash": 83321783878704
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/stationary",
+   "seed": 1,
+   "cell": "single",
+   "agent": "hidden_state_oracle",
+   "value": 84.54545454545455,
+   "metrics": {
+    "delivered": 93,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 17,
+    "delivered_total": 195,
+    "delivery_hash": 83321783878704
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/stationary",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6b9a351f65d",
+   "value": 83.63636363636364,
+   "metrics": {
+    "delivered": 92,
+    "demands": 110,
+    "failed_attempts": 55,
+    "skipped": 0,
+    "delivered_total": 194,
+    "delivery_hash": 42976715195097
+   },
+   "turns": 273,
+   "rejections": [
+    {
+     "turn": 81,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 86,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 89,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 108,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 113,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 117,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 266,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 269,
+     "reason": "out_of_grid"
+    }
+   ]
+  },
+  {
+   "task": "routing/balanced_band/shift",
+   "seed": 0,
+   "cell": "single",
+   "agent": "one_shot",
+   "value": 89.0909090909091,
+   "metrics": {
+    "delivered": 98,
+    "demands": 110,
+    "failed_attempts": 12,
+    "skipped": 12,
+    "delivered_total": 206,
+    "delivery_hash": 22591347583505
+   },
+   "turns": 234,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/shift",
+   "seed": 0,
+   "cell": "single",
+   "agent": "retry_wallet",
+   "value": 90,
+   "metrics": {
+    "delivered": 99,
+    "demands": 110,
+    "failed_attempts": 32,
+    "skipped": 1,
+    "delivered_total": 207,
+    "delivery_hash": 69082655453847
+   },
+   "turns": 246,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/shift",
+   "seed": 0,
+   "cell": "single",
+   "agent": "prefix_oracle_3",
+   "value": 90,
+   "metrics": {
+    "delivered": 99,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 11,
+    "delivered_total": 207,
+    "delivery_hash": 69082655453847
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/shift",
+   "seed": 0,
+   "cell": "single",
+   "agent": "hidden_state_oracle",
+   "value": 90,
+   "metrics": {
+    "delivered": 99,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 11,
+    "delivered_total": 207,
+    "delivery_hash": 69082655453847
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/shift",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6b9a351f65d",
+   "value": 86.36363636363636,
+   "metrics": {
+    "delivered": 95,
+    "demands": 110,
+    "failed_attempts": 46,
+    "skipped": 0,
+    "delivered_total": 202,
+    "delivery_hash": 164691909087885
+   },
+   "turns": 258,
+   "rejections": [
+    {
+     "turn": 9,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 162,
+     "reason": "out_of_grid"
+    }
+   ]
+  },
+  {
+   "task": "routing/balanced_band/shift",
+   "seed": 1,
+   "cell": "single",
+   "agent": "one_shot",
+   "value": 90,
+   "metrics": {
+    "delivered": 99,
+    "demands": 110,
+    "failed_attempts": 11,
+    "skipped": 11,
+    "delivered_total": 200,
+    "delivery_hash": 213318134017300
+   },
+   "turns": 240,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/shift",
+   "seed": 1,
+   "cell": "single",
+   "agent": "retry_wallet",
+   "value": 92.72727272727273,
+   "metrics": {
+    "delivered": 102,
+    "demands": 110,
+    "failed_attempts": 11,
+    "skipped": 8,
+    "delivered_total": 204,
+    "delivery_hash": 233291967755931
+   },
+   "turns": 241,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/shift",
+   "seed": 1,
+   "cell": "single",
+   "agent": "prefix_oracle_3",
+   "value": 92.72727272727273,
+   "metrics": {
+    "delivered": 102,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 8,
+    "delivered_total": 204,
+    "delivery_hash": 233291967755931
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/shift",
+   "seed": 1,
+   "cell": "single",
+   "agent": "hidden_state_oracle",
+   "value": 92.72727272727273,
+   "metrics": {
+    "delivered": 102,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 8,
+    "delivered_total": 204,
+    "delivery_hash": 233291967755931
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/balanced_band/shift",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6b9a351f65d",
+   "value": 91.81818181818181,
+   "metrics": {
+    "delivered": 101,
+    "demands": 110,
+    "failed_attempts": 28,
+    "skipped": 0,
+    "delivered_total": 203,
+    "delivery_hash": 142062890299513
+   },
+   "turns": 255,
+   "rejections": [
+    {
+     "turn": 81,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 86,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 89,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 108,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 113,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 117,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 196,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 220,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 242,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 251,
+     "reason": "out_of_grid"
+    }
+   ]
+  },
+  {
+   "task": "routing/uniform/diffuse",
+   "seed": 0,
+   "cell": "single",
+   "agent": "one_shot",
+   "value": 86.36363636363636,
+   "metrics": {
+    "delivered": 95,
+    "demands": 110,
+    "failed_attempts": 15,
+    "skipped": 15,
+    "delivered_total": 196,
+    "delivery_hash": 82196608782448
+   },
+   "turns": 244,
+   "rejections": []
+  },
+  {
+   "task": "routing/uniform/diffuse",
+   "seed": 0,
+   "cell": "single",
+   "agent": "retry_wallet",
+   "value": 94.54545454545455,
+   "metrics": {
+    "delivered": 104,
+    "demands": 110,
+    "failed_attempts": 22,
+    "skipped": 3,
+    "delivered_total": 210,
+    "delivery_hash": 82362970530238
+   },
+   "turns": 251,
+   "rejections": []
+  },
+  {
+   "task": "routing/uniform/diffuse",
+   "seed": 0,
+   "cell": "single",
+   "agent": "prefix_oracle_3",
+   "value": 94.54545454545455,
+   "metrics": {
+    "delivered": 104,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 6,
+    "delivered_total": 210,
+    "delivery_hash": 82362970530238
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/uniform/diffuse",
+   "seed": 0,
+   "cell": "single",
+   "agent": "hidden_state_oracle",
+   "value": 94.54545454545455,
+   "metrics": {
+    "delivered": 104,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 6,
+    "delivered_total": 210,
+    "delivery_hash": 82362970530238
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/uniform/diffuse",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6b9a351f65d",
+   "value": 92.72727272727273,
+   "metrics": {
+    "delivered": 102,
+    "demands": 110,
+    "failed_attempts": 26,
+    "skipped": 0,
+    "delivered_total": 205,
+    "delivery_hash": 229958614258690
+   },
+   "turns": 253,
+   "rejections": [
+    {
+     "turn": 161,
+     "reason": "out_of_grid"
+    }
+   ]
+  },
+  {
+   "task": "routing/uniform/diffuse",
+   "seed": 1,
+   "cell": "single",
+   "agent": "one_shot",
+   "value": 93.63636363636364,
+   "metrics": {
+    "delivered": 103,
+    "demands": 110,
+    "failed_attempts": 7,
+    "skipped": 7,
+    "delivered_total": 203,
+    "delivery_hash": 250446682227449
+   },
+   "turns": 237,
+   "rejections": []
+  },
+  {
+   "task": "routing/uniform/diffuse",
+   "seed": 1,
+   "cell": "single",
+   "agent": "retry_wallet",
+   "value": 95.45454545454545,
+   "metrics": {
+    "delivered": 105,
+    "demands": 110,
+    "failed_attempts": 11,
+    "skipped": 4,
+    "delivered_total": 205,
+    "delivery_hash": 257566030882195
+   },
+   "turns": 241,
+   "rejections": []
+  },
+  {
+   "task": "routing/uniform/diffuse",
+   "seed": 1,
+   "cell": "single",
+   "agent": "prefix_oracle_3",
+   "value": 95.45454545454545,
+   "metrics": {
+    "delivered": 105,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 5,
+    "delivered_total": 205,
+    "delivery_hash": 257566030882195
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/uniform/diffuse",
+   "seed": 1,
+   "cell": "single",
+   "agent": "hidden_state_oracle",
+   "value": 95.45454545454545,
+   "metrics": {
+    "delivered": 105,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 5,
+    "delivered_total": 205,
+    "delivery_hash": 257566030882195
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/uniform/diffuse",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6b9a351f65d",
+   "value": 95.45454545454545,
+   "metrics": {
+    "delivered": 105,
+    "demands": 110,
+    "failed_attempts": 19,
+    "skipped": 0,
+    "delivered_total": 205,
+    "delivery_hash": 225515285795055
+   },
+   "turns": 254,
+   "rejections": [
+    {
+     "turn": 21,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 32,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 41,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 60,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 67,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 71,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 92,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 115,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 160,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 250,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 251,
+     "reason": "out_of_grid"
+    }
+   ]
+  },
+  {
+   "task": "routing/uniform/stationary",
+   "seed": 0,
+   "cell": "single",
+   "agent": "one_shot",
+   "value": 87.27272727272727,
+   "metrics": {
+    "delivered": 96,
+    "demands": 110,
+    "failed_attempts": 14,
+    "skipped": 14,
+    "delivered_total": 194,
+    "delivery_hash": 210815142540460
+   },
+   "turns": 246,
+   "rejections": []
+  },
+  {
+   "task": "routing/uniform/stationary",
+   "seed": 0,
+   "cell": "single",
+   "agent": "retry_wallet",
+   "value": 85.45454545454545,
+   "metrics": {
+    "delivered": 94,
+    "demands": 110,
+    "failed_attempts": 51,
+    "skipped": 1,
+    "delivered_total": 199,
+    "delivery_hash": 80974228055359
+   },
+   "turns": 272,
+   "rejections": []
+  },
+  {
+   "task": "routing/uniform/stationary",
+   "seed": 0,
+   "cell": "single",
+   "agent": "prefix_oracle_3",
+   "value": 85.45454545454545,
+   "metrics": {
+    "delivered": 94,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 16,
+    "delivered_total": 199,
+    "delivery_hash": 80974228055359
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/uniform/stationary",
+   "seed": 0,
+   "cell": "single",
+   "agent": "hidden_state_oracle",
+   "value": 85.45454545454545,
+   "metrics": {
+    "delivered": 94,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 16,
+    "delivered_total": 200,
+    "delivery_hash": 186392245040256
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/uniform/stationary",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6b9a351f65d",
+   "value": 87.27272727272727,
+   "metrics": {
+    "delivered": 96,
+    "demands": 110,
+    "failed_attempts": 46,
+    "skipped": 0,
+    "delivered_total": 197,
+    "delivery_hash": 104244346246240
+   },
+   "turns": 275,
+   "rejections": [
+    {
+     "turn": 129,
+     "reason": "out_of_grid"
+    }
+   ]
+  },
+  {
+   "task": "routing/uniform/stationary",
+   "seed": 1,
+   "cell": "single",
+   "agent": "one_shot",
+   "value": 85.45454545454545,
+   "metrics": {
+    "delivered": 94,
+    "demands": 110,
+    "failed_attempts": 16,
+    "skipped": 16,
+    "delivered_total": 186,
+    "delivery_hash": 91506131049435
+   },
+   "turns": 254,
+   "rejections": []
+  },
+  {
+   "task": "routing/uniform/stationary",
+   "seed": 1,
+   "cell": "single",
+   "agent": "retry_wallet",
+   "value": 87.27272727272727,
+   "metrics": {
+    "delivered": 96,
+    "demands": 110,
+    "failed_attempts": 18,
+    "skipped": 14,
+    "delivered_total": 188,
+    "delivery_hash": 67068525892687
+   },
+   "turns": 257,
+   "rejections": []
+  },
+  {
+   "task": "routing/uniform/stationary",
+   "seed": 1,
+   "cell": "single",
+   "agent": "prefix_oracle_3",
+   "value": 87.27272727272727,
+   "metrics": {
+    "delivered": 96,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 14,
+    "delivered_total": 188,
+    "delivery_hash": 67068525892687
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/uniform/stationary",
+   "seed": 1,
+   "cell": "single",
+   "agent": "hidden_state_oracle",
+   "value": 87.27272727272727,
+   "metrics": {
+    "delivered": 96,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 14,
+    "delivered_total": 188,
+    "delivery_hash": 67068525892687
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/uniform/stationary",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6b9a351f65d",
+   "value": 83.63636363636364,
+   "metrics": {
+    "delivered": 92,
+    "demands": 110,
+    "failed_attempts": 54,
+    "skipped": 0,
+    "delivered_total": 184,
+    "delivery_hash": 85152993767800
+   },
+   "turns": 292,
+   "rejections": [
+    {
+     "turn": 21,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 32,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 54,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 71,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 94,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 97,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 105,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 123,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 139,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 144,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 148,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 158,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 196,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 288,
+     "reason": "out_of_grid"
+    }
+   ]
+  },
+  {
+   "task": "routing/uniform/shift",
+   "seed": 0,
+   "cell": "single",
+   "agent": "one_shot",
+   "value": 86.36363636363636,
+   "metrics": {
+    "delivered": 95,
+    "demands": 110,
+    "failed_attempts": 15,
+    "skipped": 15,
+    "delivered_total": 193,
+    "delivery_hash": 232441041514232
+   },
+   "turns": 247,
+   "rejections": []
+  },
+  {
+   "task": "routing/uniform/shift",
+   "seed": 0,
+   "cell": "single",
+   "agent": "retry_wallet",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "failed_attempts": 36,
+    "skipped": 2,
+    "delivered_total": 202,
+    "delivery_hash": 214113867485389
+   },
+   "turns": 261,
+   "rejections": []
+  },
+  {
+   "task": "routing/uniform/shift",
+   "seed": 0,
+   "cell": "single",
+   "agent": "prefix_oracle_3",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 13,
+    "delivered_total": 202,
+    "delivery_hash": 214113867485389
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/uniform/shift",
+   "seed": 0,
+   "cell": "single",
+   "agent": "hidden_state_oracle",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 13,
+    "delivered_total": 203,
+    "delivery_hash": 50396741025157
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/uniform/shift",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6b9a351f65d",
+   "value": 86.36363636363636,
+   "metrics": {
+    "delivered": 95,
+    "demands": 110,
+    "failed_attempts": 45,
+    "skipped": 0,
+    "delivered_total": 196,
+    "delivery_hash": 208661615834614
+   },
+   "turns": 273,
+   "rejections": [
+    {
+     "turn": 129,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 180,
+     "reason": "out_of_grid"
+    }
+   ]
+  },
+  {
+   "task": "routing/uniform/shift",
+   "seed": 1,
+   "cell": "single",
+   "agent": "one_shot",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "failed_attempts": 13,
+    "skipped": 13,
+    "delivered_total": 189,
+    "delivery_hash": 279995622493625
+   },
+   "turns": 251,
+   "rejections": []
+  },
+  {
+   "task": "routing/uniform/shift",
+   "seed": 1,
+   "cell": "single",
+   "agent": "retry_wallet",
+   "value": 90,
+   "metrics": {
+    "delivered": 99,
+    "demands": 110,
+    "failed_attempts": 15,
+    "skipped": 11,
+    "delivered_total": 191,
+    "delivery_hash": 202498688804401
+   },
+   "turns": 254,
+   "rejections": []
+  },
+  {
+   "task": "routing/uniform/shift",
+   "seed": 1,
+   "cell": "single",
+   "agent": "prefix_oracle_3",
+   "value": 90,
+   "metrics": {
+    "delivered": 99,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 11,
+    "delivered_total": 191,
+    "delivery_hash": 202498688804401
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/uniform/shift",
+   "seed": 1,
+   "cell": "single",
+   "agent": "hidden_state_oracle",
+   "value": 90,
+   "metrics": {
+    "delivered": 99,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 11,
+    "delivered_total": 191,
+    "delivery_hash": 202498688804401
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/uniform/shift",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6b9a351f65d",
+   "value": 88.18181818181819,
+   "metrics": {
+    "delivered": 97,
+    "demands": 110,
+    "failed_attempts": 40,
+    "skipped": 0,
+    "delivered_total": 189,
+    "delivery_hash": 279995622493625
+   },
+   "turns": 283,
+   "rejections": [
+    {
+     "turn": 21,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 32,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 54,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 71,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 94,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 97,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 105,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 123,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 139,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 144,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 187,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 196,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 219,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 256,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 279,
+     "reason": "out_of_grid"
+    }
+   ]
+  },
+  {
+   "task": "routing/polarized/diffuse",
+   "seed": 0,
+   "cell": "single",
+   "agent": "one_shot",
+   "value": 69.0909090909091,
+   "metrics": {
+    "delivered": 76,
+    "demands": 110,
+    "failed_attempts": 34,
+    "skipped": 34,
+    "delivered_total": 158,
+    "delivery_hash": 18522613932213
+   },
+   "turns": 282,
+   "rejections": []
+  },
+  {
+   "task": "routing/polarized/diffuse",
+   "seed": 0,
+   "cell": "single",
+   "agent": "retry_wallet",
+   "value": 87.27272727272727,
+   "metrics": {
+    "delivered": 96,
+    "demands": 110,
+    "failed_attempts": 48,
+    "skipped": 4,
+    "delivered_total": 193,
+    "delivery_hash": 256750484927955
+   },
+   "turns": 301,
+   "rejections": []
+  },
+  {
+   "task": "routing/polarized/diffuse",
+   "seed": 0,
+   "cell": "single",
+   "agent": "prefix_oracle_3",
+   "value": 87.27272727272727,
+   "metrics": {
+    "delivered": 96,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 14,
+    "delivered_total": 193,
+    "delivery_hash": 256750484927955
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/polarized/diffuse",
+   "seed": 0,
+   "cell": "single",
+   "agent": "hidden_state_oracle",
+   "value": 87.27272727272727,
+   "metrics": {
+    "delivered": 96,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 14,
+    "delivered_total": 196,
+    "delivery_hash": 173964204656265
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/polarized/diffuse",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6b9a351f65d",
+   "value": 83.63636363636364,
+   "metrics": {
+    "delivered": 92,
+    "demands": 110,
+    "failed_attempts": 55,
+    "skipped": 0,
+    "delivered_total": 182,
+    "delivery_hash": 267839016157321
+   },
+   "turns": 300,
+   "rejections": [
+    {
+     "turn": 166,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 194,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 195,
+     "reason": "out_of_grid"
+    }
+   ]
+  },
+  {
+   "task": "routing/polarized/diffuse",
+   "seed": 1,
+   "cell": "single",
+   "agent": "one_shot",
+   "value": 81.81818181818181,
+   "metrics": {
+    "delivered": 90,
+    "demands": 110,
+    "failed_attempts": 20,
+    "skipped": 20,
+    "delivered_total": 178,
+    "delivery_hash": 25468891559348
+   },
+   "turns": 262,
+   "rejections": []
+  },
+  {
+   "task": "routing/polarized/diffuse",
+   "seed": 1,
+   "cell": "single",
+   "agent": "retry_wallet",
+   "value": 82.72727272727273,
+   "metrics": {
+    "delivered": 91,
+    "demands": 110,
+    "failed_attempts": 29,
+    "skipped": 15,
+    "delivered_total": 179,
+    "delivery_hash": 201158164997995
+   },
+   "turns": 268,
+   "rejections": []
+  },
+  {
+   "task": "routing/polarized/diffuse",
+   "seed": 1,
+   "cell": "single",
+   "agent": "prefix_oracle_3",
+   "value": 82.72727272727273,
+   "metrics": {
+    "delivered": 91,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 19,
+    "delivered_total": 179,
+    "delivery_hash": 201158164997995
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/polarized/diffuse",
+   "seed": 1,
+   "cell": "single",
+   "agent": "hidden_state_oracle",
+   "value": 82.72727272727273,
+   "metrics": {
+    "delivered": 91,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 19,
+    "delivered_total": 179,
+    "delivery_hash": 201158164997995
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/polarized/diffuse",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6b9a351f65d",
+   "value": 81.81818181818181,
+   "metrics": {
+    "delivered": 90,
+    "demands": 110,
+    "failed_attempts": 60,
+    "skipped": 0,
+    "delivered_total": 178,
+    "delivery_hash": 25468891559348
+   },
+   "turns": 304,
+   "rejections": [
+    {
+     "turn": 27,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 38,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 78,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 106,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 147,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 193,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 196,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 207,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 275,
+     "reason": "out_of_grid"
+    }
+   ]
+  },
+  {
+   "task": "routing/polarized/stationary",
+   "seed": 0,
+   "cell": "single",
+   "agent": "one_shot",
+   "value": 75.45454545454545,
+   "metrics": {
+    "delivered": 83,
+    "demands": 110,
+    "failed_attempts": 27,
+    "skipped": 27,
+    "delivered_total": 156,
+    "delivery_hash": 248804168112004
+   },
+   "turns": 284,
+   "rejections": []
+  },
+  {
+   "task": "routing/polarized/stationary",
+   "seed": 0,
+   "cell": "single",
+   "agent": "retry_wallet",
+   "value": 75.45454545454545,
+   "metrics": {
+    "delivered": 83,
+    "demands": 110,
+    "failed_attempts": 80,
+    "skipped": 6,
+    "delivered_total": 180,
+    "delivery_hash": 209710047732461
+   },
+   "turns": 322,
+   "rejections": []
+  },
+  {
+   "task": "routing/polarized/stationary",
+   "seed": 0,
+   "cell": "single",
+   "agent": "prefix_oracle_3",
+   "value": 75.45454545454545,
+   "metrics": {
+    "delivered": 83,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 27,
+    "delivered_total": 180,
+    "delivery_hash": 209710047732461
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/polarized/stationary",
+   "seed": 0,
+   "cell": "single",
+   "agent": "hidden_state_oracle",
+   "value": 77.27272727272727,
+   "metrics": {
+    "delivered": 85,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 25,
+    "delivered_total": 183,
+    "delivery_hash": 264727908431010
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/polarized/stationary",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6b9a351f65d",
+   "value": 79.0909090909091,
+   "metrics": {
+    "delivered": 87,
+    "demands": 110,
+    "failed_attempts": 73,
+    "skipped": 0,
+    "delivered_total": 175,
+    "delivery_hash": 15564686873083
+   },
+   "turns": 320,
+   "rejections": [
+    {
+     "turn": 73,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 156,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 228,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 297,
+     "reason": "out_of_grid"
+    }
+   ]
+  },
+  {
+   "task": "routing/polarized/stationary",
+   "seed": 1,
+   "cell": "single",
+   "agent": "one_shot",
+   "value": 77.27272727272727,
+   "metrics": {
+    "delivered": 85,
+    "demands": 110,
+    "failed_attempts": 25,
+    "skipped": 25,
+    "delivered_total": 167,
+    "delivery_hash": 268047570256579
+   },
+   "turns": 273,
+   "rejections": []
+  },
+  {
+   "task": "routing/polarized/stationary",
+   "seed": 1,
+   "cell": "single",
+   "agent": "retry_wallet",
+   "value": 78.18181818181819,
+   "metrics": {
+    "delivered": 86,
+    "demands": 110,
+    "failed_attempts": 30,
+    "skipped": 22,
+    "delivered_total": 168,
+    "delivery_hash": 234763348899114
+   },
+   "turns": 277,
+   "rejections": []
+  },
+  {
+   "task": "routing/polarized/stationary",
+   "seed": 1,
+   "cell": "single",
+   "agent": "prefix_oracle_3",
+   "value": 78.18181818181819,
+   "metrics": {
+    "delivered": 86,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 24,
+    "delivered_total": 168,
+    "delivery_hash": 234763348899114
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/polarized/stationary",
+   "seed": 1,
+   "cell": "single",
+   "agent": "hidden_state_oracle",
+   "value": 78.18181818181819,
+   "metrics": {
+    "delivered": 86,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 24,
+    "delivered_total": 168,
+    "delivery_hash": 234763348899114
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/polarized/stationary",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6b9a351f65d",
+   "value": 77.27272727272727,
+   "metrics": {
+    "delivered": 85,
+    "demands": 110,
+    "failed_attempts": 75,
+    "skipped": 0,
+    "delivered_total": 167,
+    "delivery_hash": 268047570256579
+   },
+   "turns": 326,
+   "rejections": [
+    {
+     "turn": 29,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 69,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 111,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 144,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 152,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 155,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 164,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 175,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 182,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 217,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 318,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 322,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 323,
+     "reason": "out_of_grid"
+    }
+   ]
+  },
+  {
+   "task": "routing/polarized/shift",
+   "seed": 0,
+   "cell": "single",
+   "agent": "one_shot",
+   "value": 74.54545454545455,
+   "metrics": {
+    "delivered": 82,
+    "demands": 110,
+    "failed_attempts": 28,
+    "skipped": 28,
+    "delivered_total": 155,
+    "delivery_hash": 18756330928118
+   },
+   "turns": 285,
+   "rejections": []
+  },
+  {
+   "task": "routing/polarized/shift",
+   "seed": 0,
+   "cell": "single",
+   "agent": "retry_wallet",
+   "value": 77.27272727272727,
+   "metrics": {
+    "delivered": 85,
+    "demands": 110,
+    "failed_attempts": 67,
+    "skipped": 6,
+    "delivered_total": 182,
+    "delivery_hash": 171824682719011
+   },
+   "turns": 311,
+   "rejections": []
+  },
+  {
+   "task": "routing/polarized/shift",
+   "seed": 0,
+   "cell": "single",
+   "agent": "prefix_oracle_3",
+   "value": 77.27272727272727,
+   "metrics": {
+    "delivered": 85,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 25,
+    "delivered_total": 182,
+    "delivery_hash": 171824682719011
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/polarized/shift",
+   "seed": 0,
+   "cell": "single",
+   "agent": "hidden_state_oracle",
+   "value": 79.0909090909091,
+   "metrics": {
+    "delivered": 87,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 23,
+    "delivered_total": 185,
+    "delivery_hash": 247400888552827
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/polarized/shift",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6b9a351f65d",
+   "value": 75.45454545454545,
+   "metrics": {
+    "delivered": 83,
+    "demands": 110,
+    "failed_attempts": 82,
+    "skipped": 0,
+    "delivered_total": 171,
+    "delivery_hash": 184559495339285
+   },
+   "turns": 325,
+   "rejections": [
+    {
+     "turn": 73,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 156,
+     "reason": "out_of_grid"
+    }
+   ]
+  },
+  {
+   "task": "routing/polarized/shift",
+   "seed": 1,
+   "cell": "single",
+   "agent": "one_shot",
+   "value": 79.0909090909091,
+   "metrics": {
+    "delivered": 87,
+    "demands": 110,
+    "failed_attempts": 23,
+    "skipped": 23,
+    "delivered_total": 169,
+    "delivery_hash": 138558976138022
+   },
+   "turns": 271,
+   "rejections": []
+  },
+  {
+   "task": "routing/polarized/shift",
+   "seed": 1,
+   "cell": "single",
+   "agent": "retry_wallet",
+   "value": 80,
+   "metrics": {
+    "delivered": 88,
+    "demands": 110,
+    "failed_attempts": 28,
+    "skipped": 20,
+    "delivered_total": 170,
+    "delivery_hash": 40230231156769
+   },
+   "turns": 275,
+   "rejections": []
+  },
+  {
+   "task": "routing/polarized/shift",
+   "seed": 1,
+   "cell": "single",
+   "agent": "prefix_oracle_3",
+   "value": 80,
+   "metrics": {
+    "delivered": 88,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 22,
+    "delivered_total": 170,
+    "delivery_hash": 40230231156769
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/polarized/shift",
+   "seed": 1,
+   "cell": "single",
+   "agent": "hidden_state_oracle",
+   "value": 80,
+   "metrics": {
+    "delivered": 88,
+    "demands": 110,
+    "failed_attempts": 0,
+    "skipped": 22,
+    "delivered_total": 170,
+    "delivery_hash": 40230231156769
+   },
+   "turns": 220,
+   "rejections": []
+  },
+  {
+   "task": "routing/polarized/shift",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e6b9a351f65d",
+   "value": 80,
+   "metrics": {
+    "delivered": 88,
+    "demands": 110,
+    "failed_attempts": 67,
+    "skipped": 0,
+    "delivered_total": 170,
+    "delivery_hash": 40230231156769
+   },
+   "turns": 321,
+   "rejections": [
+    {
+     "turn": 29,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 69,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 111,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 144,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 152,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 155,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 164,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 175,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 219,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 260,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 284,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 314,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 317,
+     "reason": "out_of_grid"
+    },
+    {
+     "turn": 318,
+     "reason": "out_of_grid"
+    }
+   ]
+  }
+ ],
+ "checks": [
+  {
+   "id": "K23",
+   "pass": true,
+   "detail": "18 episodes compared demand by demand, 0 mismatches"
+  }
+ ],
+ "notes": [
+  "Attempt 5 of this run; the 4 earlier attempts ended when the model server was lost on a GPU shared with other jobs. No score was computed in any of them.",
+  "2667 model replies were replayed from the reply log of an earlier attempt of this run; 1449 came from the server in this invocation. Every episode and every baseline was executed again."
+ ]
+}

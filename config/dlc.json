@@ -1,0 +1,35 @@
+{
+  "description": "Family 10 (docs/tasks.md section 11): designing a single-oracle numeric DLC in which the offerer holds a fixed number of dollars. The protocol rules are dlcspecs' at the commit in provenance; every number below is a bench decision unless provenance says otherwise.",
+  "num_digits": 20,
+  "rounding_mods": [1, 10, 100, 1000, 10000, 100000, 1000000],
+  "breakpoint_z": [-5, -4, -3.5, -3, -2.5, -2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 5],
+  "collateral_max_z": -1,
+  "default_floor_ratio": 0.5,
+  "infeasible_penalty_factor": 2,
+  "budget": { "attempts": 3, "probes": 8 },
+  "market": {
+    "spot_usd_min": 60000,
+    "spot_usd_max": 140000,
+    "notional_usd_min": 2000,
+    "notional_usd_max": 50000,
+    "notional_step_usd": 100
+  },
+  "cells": {
+    "stable_30d": { "annual_volatility": 0.5, "days": 30, "capital_rate_annual": 0.05, "sats_per_cet": 1 },
+    "stable_90d": { "annual_volatility": 0.7, "days": 90, "capital_rate_annual": 0.05, "sats_per_cet": 1 },
+    "mobile_signer": { "annual_volatility": 0.5, "days": 30, "capital_rate_annual": 0.05, "sats_per_cet": 4 }
+  },
+  "provenance": {
+    "specification": "dlcspecs at commit 9cd9148938c616690c79d99ec6f330e213c246c5 (2023-02-13), https://github.com/discreetlogcontracts/dlcspecs, vendored at vendor/dlcspecs: NumericOutcomeCompression.md (digit prefixes), NumericOutcome.md (rounding intervals, rounding to the nearest multiple with ties up, clamping to [0, total_collateral], CET calculation), PayoutCurve.md (the hyperbola piece for constant/outcome contracts), Oracle.md (an outcome above the maximum is attested as the maximum)",
+    "test_vectors": "dlcspecs test/test_vectors/single_oracle_numerical_test.json (14 adaptor signatures) and single_oracle_numerical_hyperbola_test.json (56), reproduced in src/tasks/dlc/dlc.test.ts",
+    "num_digits": "invented: 2^20 - 1 = $1,048,575 is at least 5.5 standard deviations of log price above every fixture's spot; Oracle.md's rule covers the rest; base 2 is the specification's recommendation (NumericOutcomeCompression.md)",
+    "rounding_mods": "invented: powers of ten from 1 sat to 0.01 BTC",
+    "breakpoint_z": "invented: interval beginnings at fixed quantiles of the forecast, so that the menu means the same thing on every seed",
+    "collateral_max_z": "invented",
+    "default_floor_ratio": "invented: total collateral of twice the notional at spot, the floor policy's choice",
+    "market": "invented: spot and notional ranges",
+    "cells": "invented: volatility, tenor, the counterparty's annual cost of capital, and a price per CET in sats standing for the signing, verification, storage, and transmission each adaptor signature costs both parties; 1 sat for a server signer, 4 for a phone",
+    "budget": "invented, as family 6",
+    "infeasible_penalty_factor": "invented, as family 6"
+  }
+}

@@ -21,6 +21,8 @@ import { FIXTURE_VERSION as SETTLEMENT_VERSION, fixtureBytes as settlementBytes,
 import { loadProtocol, loadSettlementConfig } from "../src/tasks/settlement_object/task.ts";
 import { FIXTURE_VERSION as NETTING_VERSION, fixtureBytes as nettingBytes, fixturePath as nettingPath, generateFixture as generateNetting } from "../src/tasks/netting/generate.ts";
 import { loadNettingConfig } from "../src/tasks/netting/task.ts";
+import { FIXTURE_VERSION as DLC_VERSION, fixtureBytes as dlcBytes, fixturePath as dlcPath, generateFixture as generateDlc } from "../src/tasks/dlc/generate.ts";
+import { loadDlcConfig } from "../src/tasks/dlc/task.ts";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -78,6 +80,18 @@ for (const cell of Object.keys(netting.cells).sort()) {
     entries.push({ path: nettingPath(cell, seed), family: "netting", seed, generator: NETTING_VERSION, sha256: sha256(text) });
   }
   console.log(`netting/${cell}: ${SEED_BLOCKS.development.length + SEED_BLOCKS.confirmatory.length} fixtures`);
+}
+
+// Family 10: one contract per seed and cell, with its menus.
+const dlc = loadDlcConfig(root);
+for (const cell of Object.keys(dlc.cells).sort()) {
+  mkdirSync(join(root, "fixtures/dlc", cell), { recursive: true });
+  for (const seed of [...SEED_BLOCKS.development, ...SEED_BLOCKS.confirmatory]) {
+    const text = dlcBytes(generateDlc(seed, cell, dlc.cells[cell]!, dlc));
+    if (writeIfChanged(join(root, dlcPath(cell, seed)), text)) written += 1;
+    entries.push({ path: dlcPath(cell, seed), family: "dlc", seed, generator: DLC_VERSION, sha256: sha256(text) });
+  }
+  console.log(`dlc/${cell}: ${SEED_BLOCKS.development.length + SEED_BLOCKS.confirmatory.length} fixtures`);
 }
 
 const manifest = buildManifest(root, BENCH, vendoredCommit(root), entries);

@@ -11,12 +11,853 @@
     }
   },
   "config": {
+    "config/dlc.json": "ecdb43d159baf0c2b951384ecfabcf5f9cb59c612463c29ed271ab3f8b3f1cde",
     "config/netting.json": "26936a6c7a9a89762a2e28e0152de22b81afb7731de497af4de7a7f5de5014c5",
     "config/placement.json": "8803d9872ba947334c0b29490f6d7a2b993fe7bdb35baabf80dfd6be1219d917",
     "config/protocol.json": "7f0034406b80fecd66de7d42bbca1e646da30c8a36e44afb94e033c75f34dfc4",
     "config/settlement_object.json": "32814b2f968678cad1aabbff7b139df7e21065556eadd0ebc58e3ebd1f1011a5"
   },
   "fixtures": [
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-0000.json",
+      "family": "dlc",
+      "seed": 0,
+      "generator": "dlc-fixture/v0",
+      "sha256": "ec29ca6cf98603fad535e1629cc60b1624ca96ef2140436b651cb84d8219d1a1"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-0001.json",
+      "family": "dlc",
+      "seed": 1,
+      "generator": "dlc-fixture/v0",
+      "sha256": "e82f6964ac8cd45eab5c4c71094cea6a9921fefa9391afc39c1dbd706a5b2dbb"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-0002.json",
+      "family": "dlc",
+      "seed": 2,
+      "generator": "dlc-fixture/v0",
+      "sha256": "b0efc15df8bf140eafa87fee2369802c598fe0eac709abef2df0898090c612f2"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-0003.json",
+      "family": "dlc",
+      "seed": 3,
+      "generator": "dlc-fixture/v0",
+      "sha256": "997a6b2d03aa5e1289451e17e5e6d3a0e1e657e35deb45457e74336d937cfd0c"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-0004.json",
+      "family": "dlc",
+      "seed": 4,
+      "generator": "dlc-fixture/v0",
+      "sha256": "140cffbd9d72c3910a490ad8fd6648e6bc7d3923a64bcfadede09c114b67e892"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-0005.json",
+      "family": "dlc",
+      "seed": 5,
+      "generator": "dlc-fixture/v0",
+      "sha256": "3c40c52f10de1efd16d38205704b901f46ee669e7b0d23db232f33364291c19d"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-0006.json",
+      "family": "dlc",
+      "seed": 6,
+      "generator": "dlc-fixture/v0",
+      "sha256": "ef6178f8a2d52f7cac89c5c75f755c6c2b67179df97de18f69fc2974409b826e"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-0007.json",
+      "family": "dlc",
+      "seed": 7,
+      "generator": "dlc-fixture/v0",
+      "sha256": "85c72b01fa21f1889c88c2a6a0bd018e71caf6e700f9fbcdd68a59a31ea5b013"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1000.json",
+      "family": "dlc",
+      "seed": 1000,
+      "generator": "dlc-fixture/v0",
+      "sha256": "e62061a432756580f817f08b537d9caf5f053ae0174601092f64947577ec3313"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1001.json",
+      "family": "dlc",
+      "seed": 1001,
+      "generator": "dlc-fixture/v0",
+      "sha256": "d687918fd149209416de472e747812e0981b922116c7ff81618d85615334ad55"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1002.json",
+      "family": "dlc",
+      "seed": 1002,
+      "generator": "dlc-fixture/v0",
+      "sha256": "b71243062cbb6e65e24f9c989f1e3a16377f95f2ac6dfcf70e1232df09490a1d"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1003.json",
+      "family": "dlc",
+      "seed": 1003,
+      "generator": "dlc-fixture/v0",
+      "sha256": "001a2e9ed7ed13f34584f5d0d9769c12583861dcd460ef23ac681df49a4e4672"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1004.json",
+      "family": "dlc",
+      "seed": 1004,
+      "generator": "dlc-fixture/v0",
+      "sha256": "a43a969c875ff239f5aef209e6726e286eaa3071af09832f5be2c5ff575024cf"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1005.json",
+      "family": "dlc",
+      "seed": 1005,
+      "generator": "dlc-fixture/v0",
+      "sha256": "4acc38f1e71dd0e1586715a0a8212009b8c74b54781fecb06f52132230a0b3ca"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1006.json",
+      "family": "dlc",
+      "seed": 1006,
+      "generator": "dlc-fixture/v0",
+      "sha256": "fa2c68970c97b4fa7a4e7218d6d26e47fbf881800a5da7bf86386b77879be456"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1007.json",
+      "family": "dlc",
+      "seed": 1007,
+      "generator": "dlc-fixture/v0",
+      "sha256": "258466dfffd9320433e1811a2376ae1b4127833dbe876c09bc1d8e0cd2caeeed"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1008.json",
+      "family": "dlc",
+      "seed": 1008,
+      "generator": "dlc-fixture/v0",
+      "sha256": "f41f974be543eeabf9521a503d52c4da681654d41bfbd4e0523b80745024f77f"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1009.json",
+      "family": "dlc",
+      "seed": 1009,
+      "generator": "dlc-fixture/v0",
+      "sha256": "0fabbd69b61e772f0408b99aecbd3d5414281717cea6934de7c556e35daa8a3f"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1010.json",
+      "family": "dlc",
+      "seed": 1010,
+      "generator": "dlc-fixture/v0",
+      "sha256": "62612ed46215139b50f235478135f26699ad3aa417649046e219ff695cf3eddc"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1011.json",
+      "family": "dlc",
+      "seed": 1011,
+      "generator": "dlc-fixture/v0",
+      "sha256": "1efd93a333fd0de5e3b1c6732223a6f9ba98fa2d88113e63ae57730e7959020e"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1012.json",
+      "family": "dlc",
+      "seed": 1012,
+      "generator": "dlc-fixture/v0",
+      "sha256": "660c4eaf5c937a0226dfc8d72d0ffa0b2443bf26d92a6b15c4cc92a8164bdb3b"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1013.json",
+      "family": "dlc",
+      "seed": 1013,
+      "generator": "dlc-fixture/v0",
+      "sha256": "9115d9e04c8e9d68478582d96ea4bcf11e3529d86807e29c0a52f176c11fa2f9"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1014.json",
+      "family": "dlc",
+      "seed": 1014,
+      "generator": "dlc-fixture/v0",
+      "sha256": "20c2364120d46a657bfdd95edb8b9c160ba5e22137e7b4a78989928faab6ee5c"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1015.json",
+      "family": "dlc",
+      "seed": 1015,
+      "generator": "dlc-fixture/v0",
+      "sha256": "f29d621ae670a4d38846e76086895f6c477cca966aa21e9aa3831573197d0fde"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1016.json",
+      "family": "dlc",
+      "seed": 1016,
+      "generator": "dlc-fixture/v0",
+      "sha256": "de558859305febf0c8eb60acf0b2618d0a6860cf837810b4be04cb4aac139c60"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1017.json",
+      "family": "dlc",
+      "seed": 1017,
+      "generator": "dlc-fixture/v0",
+      "sha256": "a9ac03e31e621c40b58f209eb340fb1653febcde2b857efd8a16344c5621b9a1"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1018.json",
+      "family": "dlc",
+      "seed": 1018,
+      "generator": "dlc-fixture/v0",
+      "sha256": "6c6ea66fe7f8f2deb1c69f8775a30ef7526f41c025f9612c840e4ee49a1f91ad"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1019.json",
+      "family": "dlc",
+      "seed": 1019,
+      "generator": "dlc-fixture/v0",
+      "sha256": "13dec06b5ea56647850e5648e5f99197c61648c97fe9c6459eba670337cd6a64"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1020.json",
+      "family": "dlc",
+      "seed": 1020,
+      "generator": "dlc-fixture/v0",
+      "sha256": "0e83ca9db9893f3a53d2d0d0ffdeb49fe16ad11979929932986578912fbc9a0a"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1021.json",
+      "family": "dlc",
+      "seed": 1021,
+      "generator": "dlc-fixture/v0",
+      "sha256": "71a9b16f5469ef88c339473bf7c78044e30cbdb866cfad9b847d62f24fd6e0dd"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1022.json",
+      "family": "dlc",
+      "seed": 1022,
+      "generator": "dlc-fixture/v0",
+      "sha256": "1f914fe70b94cf161620cf44b1ed884b9825daeff5effbf22523882d2f9b0e38"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1023.json",
+      "family": "dlc",
+      "seed": 1023,
+      "generator": "dlc-fixture/v0",
+      "sha256": "b97b02b152601c3e1d9402e4326f322f2866410a48be2ef928b201b459250fd1"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1024.json",
+      "family": "dlc",
+      "seed": 1024,
+      "generator": "dlc-fixture/v0",
+      "sha256": "fd4f465c36f8bd064cd1043dfc6f8c0b151ada6fa98b5818bcfcce6be4310ba8"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1025.json",
+      "family": "dlc",
+      "seed": 1025,
+      "generator": "dlc-fixture/v0",
+      "sha256": "95b047277bdc0429d94b06876ca9a0011e9227b89e19dfcd2336f03271cfa121"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1026.json",
+      "family": "dlc",
+      "seed": 1026,
+      "generator": "dlc-fixture/v0",
+      "sha256": "1992fadcd24df2ba9d5cc097161cf724b45310a25afd4ffd55e043a6f9e4de7e"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1027.json",
+      "family": "dlc",
+      "seed": 1027,
+      "generator": "dlc-fixture/v0",
+      "sha256": "64f684b8555bd5556d945dcad4d579bba9cc7a094bb01bb1550a202afb9b5af2"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1028.json",
+      "family": "dlc",
+      "seed": 1028,
+      "generator": "dlc-fixture/v0",
+      "sha256": "df8fe0457e87da3b60c96a588b51afcd2edf8916d4bdacbbeab7c5d382783d7f"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1029.json",
+      "family": "dlc",
+      "seed": 1029,
+      "generator": "dlc-fixture/v0",
+      "sha256": "e0a035bb10df267733ec377ecd9ceb716b140671c66ee720fd893f2a21099d12"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1030.json",
+      "family": "dlc",
+      "seed": 1030,
+      "generator": "dlc-fixture/v0",
+      "sha256": "4d5f2474cb27d54a440551ceb292a3135c6ab56a9f661c08ab36e20fcf7b63a1"
+    },
+    {
+      "path": "fixtures/dlc/mobile_signer/seed-1031.json",
+      "family": "dlc",
+      "seed": 1031,
+      "generator": "dlc-fixture/v0",
+      "sha256": "5789dd88d139df287175606040ca4b33926b9589b6d3297508aaf098bca27332"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-0000.json",
+      "family": "dlc",
+      "seed": 0,
+      "generator": "dlc-fixture/v0",
+      "sha256": "42090eb53b686f807162049ba188c6026312a154e05a5c390304a37ae3ff9b0b"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-0001.json",
+      "family": "dlc",
+      "seed": 1,
+      "generator": "dlc-fixture/v0",
+      "sha256": "659e1f5ad88ecc7402c67ef8532da298233f07bb2e740a1d2b9820c6b1b1f01d"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-0002.json",
+      "family": "dlc",
+      "seed": 2,
+      "generator": "dlc-fixture/v0",
+      "sha256": "bb44307b714c12ee4ec7b8db805da276d471aa2f215dbb7297e3cc3a8279aa6a"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-0003.json",
+      "family": "dlc",
+      "seed": 3,
+      "generator": "dlc-fixture/v0",
+      "sha256": "980c76ee1dee5076a3f148171749bd50332b97529d645ee037026f96ad17385a"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-0004.json",
+      "family": "dlc",
+      "seed": 4,
+      "generator": "dlc-fixture/v0",
+      "sha256": "501a1de7198a0d5190c57bc9bebf8234de1efc8109f1492503ab3c1905bffb33"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-0005.json",
+      "family": "dlc",
+      "seed": 5,
+      "generator": "dlc-fixture/v0",
+      "sha256": "52335472533add7d251a8e737a9ccc69d79eaa38b0567619cd036be087ef4db9"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-0006.json",
+      "family": "dlc",
+      "seed": 6,
+      "generator": "dlc-fixture/v0",
+      "sha256": "ffa1e6632035a709c1aad6834213549a83bc07f0a5c5b8ff739ef5c606d3c50d"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-0007.json",
+      "family": "dlc",
+      "seed": 7,
+      "generator": "dlc-fixture/v0",
+      "sha256": "db576f614c71b5301910a0fd8af9b3e3a50c7bdbf2a0b5c829d2671dc9a7edf5"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1000.json",
+      "family": "dlc",
+      "seed": 1000,
+      "generator": "dlc-fixture/v0",
+      "sha256": "3a4c083d39cf7f0f92db4a306bdf4d32e733adb47be234b4d49a7b82a19eb775"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1001.json",
+      "family": "dlc",
+      "seed": 1001,
+      "generator": "dlc-fixture/v0",
+      "sha256": "eaebf2f214e44ea21af8e9d7b31ef20d395763aa4f1fed892682fb1ab0ee1238"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1002.json",
+      "family": "dlc",
+      "seed": 1002,
+      "generator": "dlc-fixture/v0",
+      "sha256": "b815671d41fec62fbc171438b70fe14992570888096ce7e8c0e0cfd983955da9"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1003.json",
+      "family": "dlc",
+      "seed": 1003,
+      "generator": "dlc-fixture/v0",
+      "sha256": "6804b791fda3fb61097c4c711ca1e2657f82c7399a328b5ae2431d9115e32140"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1004.json",
+      "family": "dlc",
+      "seed": 1004,
+      "generator": "dlc-fixture/v0",
+      "sha256": "7e86b812b95102732441272d46d32fa6d41b78878c64d49a73cb0f25399bf748"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1005.json",
+      "family": "dlc",
+      "seed": 1005,
+      "generator": "dlc-fixture/v0",
+      "sha256": "6f4d307a2096f110414e85d6939e12af02f5b1961b44a24d16e8cad69214ecfe"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1006.json",
+      "family": "dlc",
+      "seed": 1006,
+      "generator": "dlc-fixture/v0",
+      "sha256": "99f021c0fa76183001b9cb7872cadc8486c84073626943cac4f9e92a7788ec87"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1007.json",
+      "family": "dlc",
+      "seed": 1007,
+      "generator": "dlc-fixture/v0",
+      "sha256": "9c150480886727daf52d7c1ab7a03bbb332d2d2bf96a2f48d1f89ac145fa8ab4"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1008.json",
+      "family": "dlc",
+      "seed": 1008,
+      "generator": "dlc-fixture/v0",
+      "sha256": "f1d6a483f83fca5ab391388933fb1b975bbf84c4b85dcc71b54037f27342697c"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1009.json",
+      "family": "dlc",
+      "seed": 1009,
+      "generator": "dlc-fixture/v0",
+      "sha256": "2830a09d3a2f288ea2c32c91a00fb575bb1408236c3e3b155d897af356ea5a28"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1010.json",
+      "family": "dlc",
+      "seed": 1010,
+      "generator": "dlc-fixture/v0",
+      "sha256": "3a740fdad2dd64ec6b6cf0ddf4f267852d05c5e625ca1ef62e1136521019c14b"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1011.json",
+      "family": "dlc",
+      "seed": 1011,
+      "generator": "dlc-fixture/v0",
+      "sha256": "da9175ccd88115f9f8204ead84c1408c437267e664a1e62fc2bef0a82428141e"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1012.json",
+      "family": "dlc",
+      "seed": 1012,
+      "generator": "dlc-fixture/v0",
+      "sha256": "bdc092e05b1ec90e95ae3c220658eee5483749a6cc17a57e928645bef4ba088e"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1013.json",
+      "family": "dlc",
+      "seed": 1013,
+      "generator": "dlc-fixture/v0",
+      "sha256": "a88a4c38531f4888994de4b5c73b299f3dfc03ced97a9f022be761039a98bb9d"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1014.json",
+      "family": "dlc",
+      "seed": 1014,
+      "generator": "dlc-fixture/v0",
+      "sha256": "8f718a03bc1841d4f0324d7da0ee7078bb9a2c3826681d1c44a611f790a26e16"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1015.json",
+      "family": "dlc",
+      "seed": 1015,
+      "generator": "dlc-fixture/v0",
+      "sha256": "15168d9a128f3ab9e0173bde195b344b3060d5a5eb11152a21caf9103f5c5877"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1016.json",
+      "family": "dlc",
+      "seed": 1016,
+      "generator": "dlc-fixture/v0",
+      "sha256": "2d8facd9883f19b14865d9358bf12cd3b624f857e4af34f7ce1f41f651e3758b"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1017.json",
+      "family": "dlc",
+      "seed": 1017,
+      "generator": "dlc-fixture/v0",
+      "sha256": "ac1bc110d716e440a74956d3fc8d9ad351f62491f03046f27d7e7f01c20f0754"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1018.json",
+      "family": "dlc",
+      "seed": 1018,
+      "generator": "dlc-fixture/v0",
+      "sha256": "2f435b2a50effbb83bbd90c21271d5319c4badef1a257f1fe99bc72a14b09954"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1019.json",
+      "family": "dlc",
+      "seed": 1019,
+      "generator": "dlc-fixture/v0",
+      "sha256": "ab83e9bf1328356372229f70a226b877716b786c15c63709af63c7491f67fb25"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1020.json",
+      "family": "dlc",
+      "seed": 1020,
+      "generator": "dlc-fixture/v0",
+      "sha256": "bc6f2dd9ef0efa193a495265ec0e0e0ae6cf4e47642605c036b783c15feb2e80"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1021.json",
+      "family": "dlc",
+      "seed": 1021,
+      "generator": "dlc-fixture/v0",
+      "sha256": "002ffce0a1e41beefeb717e5aaa653bb1c861f76033fc3711ab50417ca2ca6b5"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1022.json",
+      "family": "dlc",
+      "seed": 1022,
+      "generator": "dlc-fixture/v0",
+      "sha256": "37724c65c6cdfa06dd5592e5c7d2534ffb28ae58a2e6a2421af4478f1956cd48"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1023.json",
+      "family": "dlc",
+      "seed": 1023,
+      "generator": "dlc-fixture/v0",
+      "sha256": "92fb1243cd4e30ad57f9d5caa33b40a2ced4e126dcfcaded83d9ef7f3b27fdeb"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1024.json",
+      "family": "dlc",
+      "seed": 1024,
+      "generator": "dlc-fixture/v0",
+      "sha256": "d874bab551f1518bb9efebed39f52ef2160fb7b9df1dc7073906efa4730d34b8"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1025.json",
+      "family": "dlc",
+      "seed": 1025,
+      "generator": "dlc-fixture/v0",
+      "sha256": "9ba1aae44560790ee9b97608078f68284dad2b1f98b6af36e041268d7058827a"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1026.json",
+      "family": "dlc",
+      "seed": 1026,
+      "generator": "dlc-fixture/v0",
+      "sha256": "e07dd9fef774df596ffda3c87233c06de843c62f848045858c4528e3634c5487"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1027.json",
+      "family": "dlc",
+      "seed": 1027,
+      "generator": "dlc-fixture/v0",
+      "sha256": "1c8df77be5a5d778c0cadcc48352f1b15fef9a3df8d16e028ca007529a45bfa4"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1028.json",
+      "family": "dlc",
+      "seed": 1028,
+      "generator": "dlc-fixture/v0",
+      "sha256": "22cc0ef32e14391a52eaa2f1291042b7b90f16529b9cc6c4555a3c017f2e8a86"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1029.json",
+      "family": "dlc",
+      "seed": 1029,
+      "generator": "dlc-fixture/v0",
+      "sha256": "6ffee5bb366829e0e3976016e7dbdf3ffb1361e07e92fa2cf40b05e0b4807afd"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1030.json",
+      "family": "dlc",
+      "seed": 1030,
+      "generator": "dlc-fixture/v0",
+      "sha256": "d155c009ec93cea07c70226c41a601e58de46d4ab26001031d593220b98507a1"
+    },
+    {
+      "path": "fixtures/dlc/stable_30d/seed-1031.json",
+      "family": "dlc",
+      "seed": 1031,
+      "generator": "dlc-fixture/v0",
+      "sha256": "939b4011cc8e25ee0b32e35770386152070dda877034c21232dce6e2850b2069"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-0000.json",
+      "family": "dlc",
+      "seed": 0,
+      "generator": "dlc-fixture/v0",
+      "sha256": "e1e780033cfc7b12bbd60326d5bf13d909f64a2eaa673c1b54396ba6a42d5fc4"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-0001.json",
+      "family": "dlc",
+      "seed": 1,
+      "generator": "dlc-fixture/v0",
+      "sha256": "e791bf64ee875526e87dcd37a5f3d56c2636923eb6e6ba2a503a27caf0f64d20"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-0002.json",
+      "family": "dlc",
+      "seed": 2,
+      "generator": "dlc-fixture/v0",
+      "sha256": "67068dd297755a92f5e4bdc3a484572c6ed36feb7fb08df3becba2e3fb15fb89"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-0003.json",
+      "family": "dlc",
+      "seed": 3,
+      "generator": "dlc-fixture/v0",
+      "sha256": "435298015e332de52b14e0535a84b8205ec02a3ff685a7c7d900e12023f3ff12"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-0004.json",
+      "family": "dlc",
+      "seed": 4,
+      "generator": "dlc-fixture/v0",
+      "sha256": "78449cc63d96ef6aabaf64411219dffcc40281994e6b3c64d8534e88e12ee8a8"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-0005.json",
+      "family": "dlc",
+      "seed": 5,
+      "generator": "dlc-fixture/v0",
+      "sha256": "3430fb218c6fdc82707560925c19cc81249b4fa2b99ab4ee1b8621a134fcab0f"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-0006.json",
+      "family": "dlc",
+      "seed": 6,
+      "generator": "dlc-fixture/v0",
+      "sha256": "0f28243b087f238056b8c63b4fdc57aa03d55fbd47304988291b63bca440a045"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-0007.json",
+      "family": "dlc",
+      "seed": 7,
+      "generator": "dlc-fixture/v0",
+      "sha256": "8be5950f64109b35c3490ef6074c41fb1e7505030019ffb301032084bcbf875c"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1000.json",
+      "family": "dlc",
+      "seed": 1000,
+      "generator": "dlc-fixture/v0",
+      "sha256": "dc135125b2a572eef4accaa476f29a0a0ed372867de045c5b48d68c35474554e"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1001.json",
+      "family": "dlc",
+      "seed": 1001,
+      "generator": "dlc-fixture/v0",
+      "sha256": "52fc4fb2cf8580f27313cb54d691474f51e15d1fc8f3f9208468f746f7270edc"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1002.json",
+      "family": "dlc",
+      "seed": 1002,
+      "generator": "dlc-fixture/v0",
+      "sha256": "44ba029802e9cf9e873a04bee0b0016d7f1a98d82f2a6c4c1749abf63c124975"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1003.json",
+      "family": "dlc",
+      "seed": 1003,
+      "generator": "dlc-fixture/v0",
+      "sha256": "930890faa34c67229295742e781a32c9a2cbe384b908e67e78b5baf00e538153"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1004.json",
+      "family": "dlc",
+      "seed": 1004,
+      "generator": "dlc-fixture/v0",
+      "sha256": "c74f96ca5711ab60c05303304fed98987c2827e544625cd210bda8ac6d54046e"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1005.json",
+      "family": "dlc",
+      "seed": 1005,
+      "generator": "dlc-fixture/v0",
+      "sha256": "edc20dbeaa0b6d5c1fb9a02e23bab250fd40feeca5d1581c0addfef467ea7478"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1006.json",
+      "family": "dlc",
+      "seed": 1006,
+      "generator": "dlc-fixture/v0",
+      "sha256": "0d2ef34f3c07d127800d1b85613b6b74322480878ba10ac1a3c6288da3169b89"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1007.json",
+      "family": "dlc",
+      "seed": 1007,
+      "generator": "dlc-fixture/v0",
+      "sha256": "e04fd6f0819845d901cbf011d4c33570aeca08ab418a6b5b7135015cc28b1005"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1008.json",
+      "family": "dlc",
+      "seed": 1008,
+      "generator": "dlc-fixture/v0",
+      "sha256": "25663e4d932f9b8941319042fb225dc954d53439d428149ea7d8a7ca0e35a7ff"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1009.json",
+      "family": "dlc",
+      "seed": 1009,
+      "generator": "dlc-fixture/v0",
+      "sha256": "02bde2850d05de138a7b1b0f74a036e833a3dc601506c6b4339662252c5994f8"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1010.json",
+      "family": "dlc",
+      "seed": 1010,
+      "generator": "dlc-fixture/v0",
+      "sha256": "8792f74c50a5fee724b688502f42a1c0e4294e42aa1700811fb57445ae790ba0"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1011.json",
+      "family": "dlc",
+      "seed": 1011,
+      "generator": "dlc-fixture/v0",
+      "sha256": "b0da09bc069e60c038d3d82be506f4697440b36c1fd37383323dfc1360460cea"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1012.json",
+      "family": "dlc",
+      "seed": 1012,
+      "generator": "dlc-fixture/v0",
+      "sha256": "525ed00437c129748acbe4dcecfbc9fe75e3dc5bade0a47243694777a0368f83"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1013.json",
+      "family": "dlc",
+      "seed": 1013,
+      "generator": "dlc-fixture/v0",
+      "sha256": "10d9c1daa15a6ad2cd9b106480d679249fff6eeb468138e003b0a6345096170e"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1014.json",
+      "family": "dlc",
+      "seed": 1014,
+      "generator": "dlc-fixture/v0",
+      "sha256": "b08230bf2e32789a71e480b5516d2223daef874bbd1b29a1b148b6a18e3c129e"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1015.json",
+      "family": "dlc",
+      "seed": 1015,
+      "generator": "dlc-fixture/v0",
+      "sha256": "9b5d6023bb916faa8a1c1dea59e89d62c63d05e3b95aabf33925a9bab09de331"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1016.json",
+      "family": "dlc",
+      "seed": 1016,
+      "generator": "dlc-fixture/v0",
+      "sha256": "ae99fc3a04557e843c14e8ddb48b0851317184fba8b5de683318a8ef6e1273ce"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1017.json",
+      "family": "dlc",
+      "seed": 1017,
+      "generator": "dlc-fixture/v0",
+      "sha256": "714c3e61c2e1a34f18be67ca13a799e9f61b5f5ac93e15043250158a6b87767f"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1018.json",
+      "family": "dlc",
+      "seed": 1018,
+      "generator": "dlc-fixture/v0",
+      "sha256": "b0c37967d2b44b3a4c450932e66ab19b76f066d3e720aa32b7a4cc232f221ca5"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1019.json",
+      "family": "dlc",
+      "seed": 1019,
+      "generator": "dlc-fixture/v0",
+      "sha256": "9063c6f7f20aa2327ced958ccb4537769c447164e59902790dada63ceace77b5"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1020.json",
+      "family": "dlc",
+      "seed": 1020,
+      "generator": "dlc-fixture/v0",
+      "sha256": "7bc9f69d9d49c574c5f4451c85c67747b504758c799200e0a6560c615008b69e"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1021.json",
+      "family": "dlc",
+      "seed": 1021,
+      "generator": "dlc-fixture/v0",
+      "sha256": "9d3eae38f3306c65bfb272323439a2074f09c5c8f7683a14c300a8a2a71caf7c"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1022.json",
+      "family": "dlc",
+      "seed": 1022,
+      "generator": "dlc-fixture/v0",
+      "sha256": "b667204901bd31bc829764ea28f4fa42f99292a1d2bd6ad0bcf407b83acef0ce"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1023.json",
+      "family": "dlc",
+      "seed": 1023,
+      "generator": "dlc-fixture/v0",
+      "sha256": "9e054b36a7d241de04bd3e9f97deb8c912aea972de71a78bb811fb684c0376b5"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1024.json",
+      "family": "dlc",
+      "seed": 1024,
+      "generator": "dlc-fixture/v0",
+      "sha256": "3ea411edf1a1b69b94988facb75622719d8a28d316246ea36128b8c01ebee922"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1025.json",
+      "family": "dlc",
+      "seed": 1025,
+      "generator": "dlc-fixture/v0",
+      "sha256": "d2986798116ec235b572716f41bceb7acb3146eadd698ba687d777f8ad90e874"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1026.json",
+      "family": "dlc",
+      "seed": 1026,
+      "generator": "dlc-fixture/v0",
+      "sha256": "106c4b0d111a00f3ec29116b4f2e01a8603e13f3790323bd0f18eb3325f99ca0"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1027.json",
+      "family": "dlc",
+      "seed": 1027,
+      "generator": "dlc-fixture/v0",
+      "sha256": "f2865f084386c4d213d7a39d6719a920f42880b0edf8639e59255aac7620e7c9"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1028.json",
+      "family": "dlc",
+      "seed": 1028,
+      "generator": "dlc-fixture/v0",
+      "sha256": "c75508e54bb5c2b00b4ed08ea52967ea5fe2cceb214df380d89b3737f31c1b2d"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1029.json",
+      "family": "dlc",
+      "seed": 1029,
+      "generator": "dlc-fixture/v0",
+      "sha256": "546ed13bf042a6cd3d627061b6a0580dafa5127458c7d311a8d0c597a09d8879"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1030.json",
+      "family": "dlc",
+      "seed": 1030,
+      "generator": "dlc-fixture/v0",
+      "sha256": "5bc1071e682d279c4b118d97a16c4bf1dc302025b37e1e971bd463c4f83e88fb"
+    },
+    {
+      "path": "fixtures/dlc/stable_90d/seed-1031.json",
+      "family": "dlc",
+      "seed": 1031,
+      "generator": "dlc-fixture/v0",
+      "sha256": "f4b3e852718cbe4e4996c7039ee915dc2c81d1cfc6cc077ff9554412dde8b5a9"
+    },
     {
       "path": "fixtures/netting/bilateral_dense/seed-0000.json",
       "family": "netting",

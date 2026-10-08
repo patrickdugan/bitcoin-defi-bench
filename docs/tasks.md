@@ -1038,6 +1038,15 @@ What the table says:
 - **Flattening the tails is most of the headroom, and the rest is per-region tuning.** On `stable_30d`, flat tails close 0.13 of the 0.16 gap. On `mobile_signer`, where signatures cost four times as much, they close 0.19 of 0.28.
 - **`stable_90d` is a collateral cell.** Capital is about 282,000 of 327,000 sats, and the exact design's advantage over the reference is inside the 0.05 band. The collateral choice interacts with the encoding. On one of the eight seeds the exact design takes a lower level than the newsvendor rule: about 9,000 sats less capital against 9,300 more expected shortfall, nearly even, while clamping more of the curve into one run saves 1,200 CETs.
 
+Bonsai 8B with thinking off, on the same seeds, bare and with the `dlc_design` skill. Both tables pass K14 to K16. Gains are normalized; differences are in ln cost against `uniform_tuned`:
+
+| Agent | Gain: `mobile_signer`, `stable_30d`, `stable_90d` | Agent − `uniform_tuned`, same order | What it offered |
+|---|---|---|---|
+| bare, [`1a17091c09d8`](../results/v0-dlc-bonsai-8b-nothink-development.md) | 0.09, 0.10, −0.08 | −3.96, −2.95, −1.77 | the prompt's example design, verbatim, in 24 of 24 episodes (probing first in 3) |
+| with `dlc_design`, [`a63ee64a14a3`](../results/v0-dlc-bonsai-8b-nothink-dlc_design-development.md) | 0.10, 0.13, −0.09 | −3.92, −2.86, −1.79 | never called the skill; probed in all 24, then offered the example in 15, another design in 7, and nothing in 2 |
+
+The example is a valid design chosen to be expensive (the largest collateral level and modulus 10 everywhere), so a copy scores as what it is: a little above the floor where modulus 10 saves CETs over modulus 1, and below it on `stable_90d`, where the largest collateral's capital outweighs that. The skill was called in none of 24 episodes, against 8 of 8 on family 6's short dense cell with the same wording. That fits the pattern of docs/saturation.md: the longer and more example-laden the prompt, the less this model reaches for a skill.
+
 ### 13.9 What remains before family 10 freezes
 
 1. Review of the invented parameters, above all the price per CET and the counterparty's rate, which set how much the encoding matters against the collateral.

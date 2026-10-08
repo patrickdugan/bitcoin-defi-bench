@@ -1,0 +1,2534 @@
+{
+ "bench": "bitcoin-defi-bench/v0",
+ "block": "development",
+ "manifest_sha256": "6886a9a134d3936ae6822a14da0eb971fdea23d4a2d5d0031d55612ae279fdbf",
+ "prereg_sha256": "f430aefe0969d5e92cc43e9cb3a760b0431d49c6d85c60d210b4395cdc4844e5",
+ "spiral_commit": "9824c30ad402cc9bca768eca27d176e0e8788db5",
+ "node": "v24.19.0",
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7
+ ],
+ "agents": [
+  {
+   "id": "spec_default",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "uniform_tuned",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "two_band",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "exact",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "bonsai-8b-nothink@1a17091c09d8",
+   "privileged": false,
+   "baseline": false,
+   "details": {
+    "adapter": "chat-adapter/v0",
+    "model": "bonsai-8b",
+    "model_sha256": "284a335aa3fb2ced3b1b01fcb40b08aa783e3b70832767f0dd2e3fdfa134bd54",
+    "runtime": "llama-prism 0.2.0-dev (build 10743, commit adfffbe41), win-cuda-12.4",
+    "sampling": {
+     "temperature": 0.7,
+     "top_p": 0.8,
+     "top_k": 20,
+     "max_tokens": 1024,
+     "seed": 20261001
+    },
+    "thinking": false,
+    "prompt_sha256": "0b3d810b60078ffdff9ff6969b2ba7b4ab8718bdd498cabfaf17138ef7078735"
+   }
+  }
+ ],
+ "tasks": [
+  {
+   "task": "dlc/mobile_signer",
+   "unit": "−ln of the design's expected cost in sats (counterparty capital, shortfall, tracking error, signing); an episode with no design offered is scored at twice the floor's cost",
+   "band": 0.05,
+   "floor": "spec_default",
+   "ceiling": "exact",
+   "reference": "uniform_tuned",
+   "metrics": [
+    "cost_sats",
+    "cets",
+    "capital_sats",
+    "shortfall_sats",
+    "tracking_sats",
+    "signing_sats"
+   ]
+  },
+  {
+   "task": "dlc/stable_30d",
+   "unit": "−ln of the design's expected cost in sats (counterparty capital, shortfall, tracking error, signing); an episode with no design offered is scored at twice the floor's cost",
+   "band": 0.05,
+   "floor": "spec_default",
+   "ceiling": "exact",
+   "reference": "uniform_tuned",
+   "metrics": [
+    "cost_sats",
+    "cets",
+    "capital_sats",
+    "shortfall_sats",
+    "tracking_sats",
+    "signing_sats"
+   ]
+  },
+  {
+   "task": "dlc/stable_90d",
+   "unit": "−ln of the design's expected cost in sats (counterparty capital, shortfall, tracking error, signing); an episode with no design offered is scored at twice the floor's cost",
+   "band": 0.05,
+   "floor": "spec_default",
+   "ceiling": "exact",
+   "reference": "uniform_tuned",
+   "metrics": [
+    "cost_sats",
+    "cets",
+    "capital_sats",
+    "shortfall_sats",
+    "tracking_sats",
+    "signing_sats"
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 0,
+   "cell": "single",
+   "agent": "spec_default",
+   "value": -15.20452946709403,
+   "metrics": {
+    "cost_sats": 4010913.0518555436,
+    "offered": 1,
+    "cets": 985089,
+    "collateral_sats": 33231487,
+    "capital_sats": 70556.5397260274,
+    "shortfall_sats": 0.2614973597819361,
+    "tracking_sats": 0.2506321565651688,
+    "signing_sats": 3940356,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 0,
+   "cell": "single",
+   "agent": "uniform_tuned",
+   "value": -11.162938053990203,
+   "metrics": {
+    "cost_sats": 70469.69611069915,
+    "offered": 1,
+    "cets": 2307,
+    "collateral_sats": 23222796,
+    "capital_sats": 29424.932876712333,
+    "shortfall_sats": 6970.417286099924,
+    "tracking_sats": 24846.34594788689,
+    "signing_sats": 9228,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 0,
+   "cell": "single",
+   "agent": "two_band",
+   "value": -11.112844684382656,
+   "metrics": {
+    "cost_sats": 67026.58993754881,
+    "offered": 1,
+    "cets": 1430,
+    "collateral_sats": 23222796,
+    "capital_sats": 29424.932876712333,
+    "shortfall_sats": 6970.417286099924,
+    "tracking_sats": 24911.239774736543,
+    "signing_sats": 5720,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 0,
+   "cell": "single",
+   "agent": "exact",
+   "value": -11.030409798754333,
+   "metrics": {
+    "cost_sats": 61722.86957005689,
+    "offered": 1,
+    "cets": 3857,
+    "collateral_sats": 23222796,
+    "capital_sats": 29424.932876712333,
+    "shortfall_sats": 6970.417286099924,
+    "tracking_sats": 9899.519407244628,
+    "signing_sats": 15428,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@1a17091c09d8",
+   "value": -15.005052321687433,
+   "metrics": {
+    "cost_sats": 3285575.292587716,
+    "offered": 1,
+    "cets": 803754,
+    "collateral_sats": 33231487,
+    "capital_sats": 70556.5397260274,
+    "shortfall_sats": 0.2614973597819361,
+    "tracking_sats": 2.491364328734125,
+    "signing_sats": 3215016,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 1,
+   "cell": "single",
+   "agent": "spec_default",
+   "value": -15.289917669174596,
+   "metrics": {
+    "cost_sats": 4368445.002915849,
+    "offered": 1,
+    "cets": 1015473,
+    "collateral_sats": 144380343,
+    "capital_sats": 306551.61780821916,
+    "shortfall_sats": 1.135283310357373,
+    "tracking_sats": 0.24982431971359567,
+    "signing_sats": 4061892,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 1,
+   "cell": "single",
+   "agent": "uniform_tuned",
+   "value": -12.271978650591224,
+   "metrics": {
+    "cost_sats": 213625.26279593987,
+    "offered": 1,
+    "cets": 7665,
+    "collateral_sats": 100894968,
+    "capital_sats": 127844.59726027398,
+    "shortfall_sats": 30276.039150386234,
+    "tracking_sats": 24844.62638527964,
+    "signing_sats": 30660,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 1,
+   "cell": "single",
+   "agent": "two_band",
+   "value": -12.208599017057772,
+   "metrics": {
+    "cost_sats": 200505.91309865893,
+    "offered": 1,
+    "cets": 4371,
+    "collateral_sats": 100894968,
+    "capital_sats": 127844.59726027398,
+    "shortfall_sats": 30276.039150386234,
+    "tracking_sats": 24901.276687998714,
+    "signing_sats": 17484,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 1,
+   "cell": "single",
+   "agent": "exact",
+   "value": -12.205775201500263,
+   "metrics": {
+    "cost_sats": 199940.52004043572,
+    "offered": 1,
+    "cets": 4164,
+    "collateral_sats": 100894968,
+    "capital_sats": 127844.59726027398,
+    "shortfall_sats": 30276.039150386234,
+    "tracking_sats": 25163.883629775482,
+    "signing_sats": 16656,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@1a17091c09d8",
+   "value": -15.232982617732217,
+   "metrics": {
+    "cost_sats": 4126675.255010096,
+    "offered": 1,
+    "cets": 955030,
+    "collateral_sats": 144380343,
+    "capital_sats": 306551.61780821916,
+    "shortfall_sats": 1.135283310357373,
+    "tracking_sats": 2.501918566367952,
+    "signing_sats": 3820120,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 2,
+   "cell": "single",
+   "agent": "spec_default",
+   "value": -15.194429722647836,
+   "metrics": {
+    "cost_sats": 3970607.7343500773,
+    "offered": 1,
+    "cets": 984586,
+    "collateral_sats": 15195773,
+    "capital_sats": 32263.36438356165,
+    "shortfall_sats": 0.11958167658560281,
+    "tracking_sats": 0.25038483914814946,
+    "signing_sats": 3938344,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 2,
+   "cell": "single",
+   "agent": "uniform_tuned",
+   "value": -10.742429209811089,
+   "metrics": {
+    "cost_sats": 46278.33526908248,
+    "offered": 1,
+    "cets": 1197,
+    "collateral_sats": 10619219,
+    "capital_sats": 13455.608219178084,
+    "shortfall_sats": 3186.7019187294354,
+    "tracking_sats": 24848.02513117496,
+    "signing_sats": 4788,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 2,
+   "cell": "single",
+   "agent": "two_band",
+   "value": -10.528528309749623,
+   "metrics": {
+    "cost_sats": 37366.442069666184,
+    "offered": 1,
+    "cets": 4540,
+    "collateral_sats": 10619219,
+    "capital_sats": 13455.608219178084,
+    "shortfall_sats": 3186.7019187294354,
+    "tracking_sats": 2564.131931758662,
+    "signing_sats": 18160,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 2,
+   "cell": "single",
+   "agent": "exact",
+   "value": -10.407548929805612,
+   "metrics": {
+    "cost_sats": 33108.61931742958,
+    "offered": 1,
+    "cets": 2751,
+    "collateral_sats": 10619219,
+    "capital_sats": 13455.608219178084,
+    "shortfall_sats": 3186.7019187294354,
+    "tracking_sats": 5462.309179522062,
+    "signing_sats": 11004,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 2,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@1a17091c09d8",
+   "value": -14.779875758776777,
+   "metrics": {
+    "cost_sats": 2623121.9721463565,
+    "offered": 1,
+    "cets": 647714,
+    "collateral_sats": 15195773,
+    "capital_sats": 32263.36438356165,
+    "shortfall_sats": 0.11958167658560281,
+    "tracking_sats": 2.4881811181422275,
+    "signing_sats": 2590856,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 3,
+   "cell": "single",
+   "agent": "spec_default",
+   "value": -15.228020183699936,
+   "metrics": {
+    "cost_sats": 4106247.6285792165,
+    "offered": 1,
+    "cets": 1011746,
+    "collateral_sats": 27912485,
+    "capital_sats": 59263.1589041096,
+    "shortfall_sats": 0.21966656700802556,
+    "tracking_sats": 0.2500085398036319,
+    "signing_sats": 4046984,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 3,
+   "cell": "single",
+   "agent": "uniform_tuned",
+   "value": -11.056833155719083,
+   "metrics": {
+    "cost_sats": 63375.53329181613,
+    "offered": 1,
+    "cets": 1990,
+    "collateral_sats": 19505852,
+    "capital_sats": 24715.35205479452,
+    "shortfall_sats": 5854.641718597777,
+    "tracking_sats": 24845.53951842383,
+    "signing_sats": 7960,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 3,
+   "cell": "single",
+   "agent": "two_band",
+   "value": -10.993010072000676,
+   "metrics": {
+    "cost_sats": 59457.08507162508,
+    "offered": 1,
+    "cets": 6591,
+    "collateral_sats": 19505852,
+    "capital_sats": 24715.35205479452,
+    "shortfall_sats": 5854.641718597777,
+    "tracking_sats": 2523.091298232786,
+    "signing_sats": 26364,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 3,
+   "cell": "single",
+   "agent": "exact",
+   "value": -10.85559199672535,
+   "metrics": {
+    "cost_sats": 51823.13741298389,
+    "offered": 1,
+    "cets": 3964,
+    "collateral_sats": 19505852,
+    "capital_sats": 24715.35205479452,
+    "shortfall_sats": 5854.641718597777,
+    "tracking_sats": 5397.1436395915935,
+    "signing_sats": 15856,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 3,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@1a17091c09d8",
+   "value": -14.852571463517782,
+   "metrics": {
+    "cost_sats": 2820913.886152806,
+    "offered": 1,
+    "cets": 690412,
+    "collateral_sats": 27912485,
+    "capital_sats": 59263.1589041096,
+    "shortfall_sats": 0.21966656700802556,
+    "tracking_sats": 2.5075821296448826,
+    "signing_sats": 2761648,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 4,
+   "cell": "single",
+   "agent": "spec_default",
+   "value": -14.999660988665832,
+   "metrics": {
+    "cost_sats": 3267909.326361959,
+    "offered": 1,
+    "cets": 815039,
+    "collateral_sats": 3651574,
+    "capital_sats": 7753.04794520548,
+    "shortfall_sats": 0.02872094855770535,
+    "tracking_sats": 0.2496958050419161,
+    "signing_sats": 3260156,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 4,
+   "cell": "single",
+   "agent": "uniform_tuned",
+   "value": -9.711587134648092,
+   "metrics": {
+    "cost_sats": 16507.78116769838,
+    "offered": 1,
+    "cets": 2506,
+    "collateral_sats": 2551761,
+    "capital_sats": 3233.2684931506856,
+    "shortfall_sats": 765.903558266762,
+    "tracking_sats": 2484.6091162809316,
+    "signing_sats": 10024,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 4,
+   "cell": "single",
+   "agent": "two_band",
+   "value": -9.411376897684931,
+   "metrics": {
+    "cost_sats": 12226.6942987523,
+    "offered": 1,
+    "cets": 1433,
+    "collateral_sats": 2551761,
+    "capital_sats": 3233.2684931506856,
+    "shortfall_sats": 765.903558266762,
+    "tracking_sats": 2495.5222473348517,
+    "signing_sats": 5732,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 4,
+   "cell": "single",
+   "agent": "exact",
+   "value": -9.353969135994523,
+   "metrics": {
+    "cost_sats": 11544.55453560179,
+    "offered": 1,
+    "cets": 1151,
+    "collateral_sats": 2551761,
+    "capital_sats": 3233.2684931506856,
+    "shortfall_sats": 765.903558266762,
+    "tracking_sats": 2941.3824841843434,
+    "signing_sats": 4604,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 4,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@1a17091c09d8",
+   "value": -14.25523510182445,
+   "metrics": {
+    "cost_sats": 1552279.5746759132,
+    "offered": 1,
+    "cets": 386131,
+    "collateral_sats": 3651574,
+    "capital_sats": 7753.04794520548,
+    "shortfall_sats": 0.02872094855770535,
+    "tracking_sats": 2.498009759268366,
+    "signing_sats": 1544524,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 5,
+   "cell": "single",
+   "agent": "spec_default",
+   "value": -15.195627663157039,
+   "metrics": {
+    "cost_sats": 3975367.136372276,
+    "offered": 1,
+    "cets": 984843,
+    "collateral_sats": 16953144,
+    "capital_sats": 35994.752054794524,
+    "shortfall_sats": 0.13338572507261137,
+    "tracking_sats": 0.25093175644955773,
+    "signing_sats": 3939372,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 5,
+   "cell": "single",
+   "agent": "uniform_tuned",
+   "value": -10.79204516528339,
+   "metrics": {
+    "cost_sats": 48632.39566450176,
+    "offered": 1,
+    "cets": 1305,
+    "collateral_sats": 11847172,
+    "capital_sats": 15011.305479452058,
+    "shortfall_sats": 3555.751378572546,
+    "tracking_sats": 24845.338806477153,
+    "signing_sats": 5220,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 5,
+   "cell": "single",
+   "agent": "two_band",
+   "value": -10.629633061796186,
+   "metrics": {
+    "cost_sats": 41341.95247479394,
+    "offered": 1,
+    "cets": 5064,
+    "collateral_sats": 11847172,
+    "capital_sats": 15011.305479452058,
+    "shortfall_sats": 3555.751378572546,
+    "tracking_sats": 2518.8956167693354,
+    "signing_sats": 20256,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 5,
+   "cell": "single",
+   "agent": "exact",
+   "value": -10.49489529084421,
+   "metrics": {
+    "cost_sats": 36130.5949468606,
+    "offered": 1,
+    "cets": 3041,
+    "collateral_sats": 11847172,
+    "capital_sats": 15011.305479452058,
+    "shortfall_sats": 3555.751378572546,
+    "tracking_sats": 5399.538088835991,
+    "signing_sats": 12164,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 5,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@1a17091c09d8",
+   "value": -14.828617744734887,
+   "metrics": {
+    "cost_sats": 2754145.3777592243,
+    "offered": 1,
+    "cets": 679537,
+    "collateral_sats": 16953144,
+    "capital_sats": 35994.752054794524,
+    "shortfall_sats": 0.13338572507261137,
+    "tracking_sats": 2.4923187047250934,
+    "signing_sats": 2718148,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 6,
+   "cell": "single",
+   "agent": "spec_default",
+   "value": -15.101513089490227,
+   "metrics": {
+    "cost_sats": 3618293.5929037845,
+    "offered": 1,
+    "cets": 900481,
+    "collateral_sats": 7709751,
+    "capital_sats": 16369.282191780821,
+    "shortfall_sats": 0.06065743562997472,
+    "tracking_sats": 0.25005456807433546,
+    "signing_sats": 3601924,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 6,
+   "cell": "single",
+   "agent": "uniform_tuned",
+   "value": -10.298767705386362,
+   "metrics": {
+    "cost_sats": 29696.002072793817,
+    "offered": 1,
+    "cets": 4692,
+    "collateral_sats": 5387761,
+    "capital_sats": 6826.857534246576,
+    "shortfall_sats": 1616.7377489392238,
+    "tracking_sats": 2484.406789608018,
+    "signing_sats": 18768,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 6,
+   "cell": "single",
+   "agent": "two_band",
+   "value": -9.95525431379298,
+   "metrics": {
+    "cost_sats": 21062.60166257748,
+    "offered": 1,
+    "cets": 2522,
+    "collateral_sats": 5387761,
+    "capital_sats": 6826.857534246576,
+    "shortfall_sats": 1616.7377489392238,
+    "tracking_sats": 2531.006379391681,
+    "signing_sats": 10088,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 6,
+   "cell": "single",
+   "agent": "exact",
+   "value": -9.868933889785911,
+   "metrics": {
+    "cost_sats": 19320.729962404468,
+    "offered": 1,
+    "cets": 1874,
+    "collateral_sats": 5387761,
+    "capital_sats": 6826.857534246576,
+    "shortfall_sats": 1616.7377489392238,
+    "tracking_sats": 3381.1346792186696,
+    "signing_sats": 7496,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 6,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@1a17091c09d8",
+   "value": -14.471161376378559,
+   "metrics": {
+    "cost_sats": 1926395.8433763755,
+    "offered": 1,
+    "cets": 477506,
+    "collateral_sats": 7709751,
+    "capital_sats": 16369.282191780821,
+    "shortfall_sats": 0.06065743562997472,
+    "tracking_sats": 2.500527158949981,
+    "signing_sats": 1910024,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 7,
+   "cell": "single",
+   "agent": "spec_default",
+   "value": -15.111067375015631,
+   "metrics": {
+    "cost_sats": 3653029.4770461163,
+    "offered": 1,
+    "cets": 909620,
+    "collateral_sats": 6852521,
+    "capital_sats": 14549.173972602739,
+    "shortfall_sats": 0.053919581530509575,
+    "tracking_sats": 0.2491539321548746,
+    "signing_sats": 3638480,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 7,
+   "cell": "single",
+   "agent": "uniform_tuned",
+   "value": -10.204674206139456,
+   "metrics": {
+    "cost_sats": 27029.23146339409,
+    "offered": 1,
+    "cets": 4260,
+    "collateral_sats": 4788713,
+    "capital_sats": 6067.771232876712,
+    "shortfall_sats": 1437.0450507810128,
+    "tracking_sats": 2484.4151797363643,
+    "signing_sats": 17040,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 7,
+   "cell": "single",
+   "agent": "two_band",
+   "value": -9.88251072880479,
+   "metrics": {
+    "cost_sats": 19584.83318948505,
+    "offered": 1,
+    "cets": 2396,
+    "collateral_sats": 4788713,
+    "capital_sats": 6067.771232876712,
+    "shortfall_sats": 1437.0450507810128,
+    "tracking_sats": 2496.016905827324,
+    "signing_sats": 9584,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 7,
+   "cell": "single",
+   "agent": "exact",
+   "value": -9.794208478728232,
+   "metrics": {
+    "cost_sats": 17929.603968847678,
+    "offered": 1,
+    "cets": 1776,
+    "collateral_sats": 4788713,
+    "capital_sats": 6067.771232876712,
+    "shortfall_sats": 1437.0450507810128,
+    "tracking_sats": 3320.7876851899528,
+    "signing_sats": 7104,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/mobile_signer",
+   "seed": 7,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@1a17091c09d8",
+   "value": -14.507474902709088,
+   "metrics": {
+    "cost_sats": 1997635.726918832,
+    "offered": 1,
+    "cets": 495771,
+    "collateral_sats": 6852521,
+    "capital_sats": 14549.173972602739,
+    "shortfall_sats": 0.053919581530509575,
+    "tracking_sats": 2.4990266477360463,
+    "signing_sats": 1983084,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 0,
+   "cell": "single",
+   "agent": "spec_default",
+   "value": -13.696318992740146,
+   "metrics": {
+    "cost_sats": 887637.7439506197,
+    "offered": 1,
+    "cets": 875238,
+    "collateral_sats": 5839985,
+    "capital_sats": 12399.44794520548,
+    "shortfall_sats": 0.04594120001183977,
+    "tracking_sats": 0.25006421427372083,
+    "signing_sats": 875238,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 0,
+   "cell": "single",
+   "agent": "uniform_tuned",
+   "value": -9.439501135619262,
+   "metrics": {
+    "cost_sats": 12575.44190145468,
+    "offered": 1,
+    "cets": 3695,
+    "collateral_sats": 4081078,
+    "capital_sats": 5171.063013698631,
+    "shortfall_sats": 1224.8408018978444,
+    "tracking_sats": 2484.5380858582043,
+    "signing_sats": 3695,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 0,
+   "cell": "single",
+   "agent": "two_band",
+   "value": -9.304656996296613,
+   "metrics": {
+    "cost_sats": 10989.076317218229,
+    "offered": 1,
+    "cets": 2032,
+    "collateral_sats": 4081078,
+    "capital_sats": 5171.063013698631,
+    "shortfall_sats": 1224.8408018978444,
+    "tracking_sats": 2561.1725016217533,
+    "signing_sats": 2032,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 0,
+   "cell": "single",
+   "agent": "exact",
+   "value": -9.295342453332259,
+   "metrics": {
+    "cost_sats": 10887.193327086394,
+    "offered": 1,
+    "cets": 1847,
+    "collateral_sats": 4081078,
+    "capital_sats": 5171.063013698631,
+    "shortfall_sats": 1224.8408018978444,
+    "tracking_sats": 2644.289511489919,
+    "signing_sats": 1847,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@1a17091c09d8",
+   "value": -13.040185361819113,
+   "metrics": {
+    "cost_sats": 460553.9862629789,
+    "offered": 1,
+    "cets": 448152,
+    "collateral_sats": 5839985,
+    "capital_sats": 12399.44794520548,
+    "shortfall_sats": 0.04594120001183977,
+    "tracking_sats": 2.4923765734377272,
+    "signing_sats": 448152,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 1,
+   "cell": "single",
+   "agent": "spec_default",
+   "value": -13.761180344778449,
+   "metrics": {
+    "cost_sats": 947119.3035762247,
+    "offered": 1,
+    "cets": 929064,
+    "collateral_sats": 8503716,
+    "capital_sats": 18054.986301369863,
+    "shortfall_sats": 0.0669096959347737,
+    "tracking_sats": 0.25036515891082556,
+    "signing_sats": 929064,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 1,
+   "cell": "single",
+   "agent": "uniform_tuned",
+   "value": -9.734586960784311,
+   "metrics": {
+    "cost_sats": 16891.85717419102,
+    "offered": 1,
+    "cets": 5094,
+    "collateral_sats": 5942539,
+    "capital_sats": 7529.601369863015,
+    "shortfall_sats": 1783.7170354193659,
+    "tracking_sats": 2484.5387689086365,
+    "signing_sats": 5094,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 1,
+   "cell": "single",
+   "agent": "two_band",
+   "value": -9.59690260925768,
+   "metrics": {
+    "cost_sats": 14719.120020173434,
+    "offered": 1,
+    "cets": 2823,
+    "collateral_sats": 5942539,
+    "capital_sats": 7529.601369863015,
+    "shortfall_sats": 1783.7170354193659,
+    "tracking_sats": 2582.8016148910524,
+    "signing_sats": 2823,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 1,
+   "cell": "single",
+   "agent": "exact",
+   "value": -9.58046595632213,
+   "metrics": {
+    "cost_sats": 14479.164388849102,
+    "offered": 1,
+    "cets": 2537,
+    "collateral_sats": 5942539,
+    "capital_sats": 7529.601369863015,
+    "shortfall_sats": 1783.7170354193659,
+    "tracking_sats": 2628.8459835667204,
+    "signing_sats": 2537,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@1a17091c09d8",
+   "value": -13.201127526238883,
+   "metrics": {
+    "cost_sats": 540974.5565082819,
+    "offered": 1,
+    "cets": 522917,
+    "collateral_sats": 8503716,
+    "capital_sats": 18054.986301369863,
+    "shortfall_sats": 0.0669096959347737,
+    "tracking_sats": 2.503297216102582,
+    "signing_sats": 522917,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 2,
+   "cell": "single",
+   "agent": "spec_default",
+   "value": -13.746772694649948,
+   "metrics": {
+    "cost_sats": 933571.3713106413,
+    "offered": 1,
+    "cets": 913785,
+    "collateral_sats": 9318941,
+    "capital_sats": 19786.04794520548,
+    "shortfall_sats": 0.07329640979011831,
+    "tracking_sats": 0.25006902604019077,
+    "signing_sats": 913785,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 2,
+   "cell": "single",
+   "agent": "uniform_tuned",
+   "value": -9.807006672950711,
+   "metrics": {
+    "cost_sats": 18160.54518582837,
+    "offered": 1,
+    "cets": 5470,
+    "collateral_sats": 6512184,
+    "capital_sats": 8251.430136986302,
+    "shortfall_sats": 1954.5856727832797,
+    "tracking_sats": 2484.5293760587865,
+    "signing_sats": 5470,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 2,
+   "cell": "single",
+   "agent": "two_band",
+   "value": -9.658031751303836,
+   "metrics": {
+    "cost_sats": 15646.95723683528,
+    "offered": 1,
+    "cets": 2880,
+    "collateral_sats": 6512184,
+    "capital_sats": 8251.430136986302,
+    "shortfall_sats": 1954.5856727832797,
+    "tracking_sats": 2560.9414270656985,
+    "signing_sats": 2880,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 2,
+   "cell": "single",
+   "agent": "exact",
+   "value": -9.644950968232818,
+   "metrics": {
+    "cost_sats": 15443.615616730685,
+    "offered": 1,
+    "cets": 2589,
+    "collateral_sats": 6512184,
+    "capital_sats": 8251.430136986302,
+    "shortfall_sats": 1954.5856727832797,
+    "tracking_sats": 2648.5998069611037,
+    "signing_sats": 2589,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 2,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@1a17091c09d8",
+   "value": -13.14895781373819,
+   "metrics": {
+    "cost_sats": 513475.6120956029,
+    "offered": 1,
+    "cets": 493687,
+    "collateral_sats": 9318941,
+    "capital_sats": 19786.04794520548,
+    "shortfall_sats": 0.07329640979011831,
+    "tracking_sats": 2.490853987629493,
+    "signing_sats": 493687,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 3,
+   "cell": "single",
+   "agent": "spec_default",
+   "value": -13.985252814335496,
+   "metrics": {
+    "cost_sats": 1184999.38591435,
+    "offered": 1,
+    "cets": 998763,
+    "collateral_sats": 87714017,
+    "capital_sats": 186235.44657534247,
+    "shortfall_sats": 0.689847573892802,
+    "tracking_sats": 0.24949143364531695,
+    "signing_sats": 998763,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 3,
+   "cell": "single",
+   "agent": "uniform_tuned",
+   "value": -11.744797625815616,
+   "metrics": {
+    "cost_sats": 126095.85186530379,
+    "offered": 1,
+    "cets": 5188,
+    "collateral_sats": 61295481,
+    "capital_sats": 77666.1205479452,
+    "shortfall_sats": 18397.20843164058,
+    "tracking_sats": 24844.522885718,
+    "signing_sats": 5188,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 3,
+   "cell": "single",
+   "agent": "two_band",
+   "value": -11.655567185285866,
+   "metrics": {
+    "cost_sats": 115331.65177568654,
+    "offered": 1,
+    "cets": 16724,
+    "collateral_sats": 61295481,
+    "capital_sats": 77666.1205479452,
+    "shortfall_sats": 18397.20843164058,
+    "tracking_sats": 2544.3227961007574,
+    "signing_sats": 16724,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 3,
+   "cell": "single",
+   "agent": "exact",
+   "value": -11.6228596327152,
+   "metrics": {
+    "cost_sats": 111620.45857751106,
+    "offered": 1,
+    "cets": 10150,
+    "collateral_sats": 61295481,
+    "capital_sats": 77666.1205479452,
+    "shortfall_sats": 18397.20843164058,
+    "tracking_sats": 5407.129597925269,
+    "signing_sats": 10150,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 3,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@1a17091c09d8",
+   "value": -13.923221386454355,
+   "metrics": {
+    "cost_sats": 1113725.6410917481,
+    "offered": 1,
+    "cets": 927487,
+    "collateral_sats": 87714017,
+    "capital_sats": 186235.44657534247,
+    "shortfall_sats": 0.689847573892802,
+    "tracking_sats": 2.5046688317032944,
+    "signing_sats": 927487,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 4,
+   "cell": "single",
+   "agent": "spec_default",
+   "value": -13.904688493345619,
+   "metrics": {
+    "cost_sats": 1093275.1713547932,
+    "offered": 1,
+    "cets": 996271,
+    "collateral_sats": 45687414,
+    "capital_sats": 97003.56164383562,
+    "shortfall_sats": 0.3593937163926899,
+    "tracking_sats": 0.2503172412503082,
+    "signing_sats": 996271,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 4,
+   "cell": "single",
+   "agent": "uniform_tuned",
+   "value": -11.195359198998423,
+   "metrics": {
+    "cost_sats": 72791.84429530488,
+    "offered": 1,
+    "cets": 20271,
+    "collateral_sats": 31927116,
+    "capital_sats": 40454.39178082192,
+    "shortfall_sats": 9581.993141912943,
+    "tracking_sats": 2484.4593725700165,
+    "signing_sats": 20271,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 4,
+   "cell": "single",
+   "agent": "two_band",
+   "value": -11.053478496933353,
+   "metrics": {
+    "cost_sats": 63163.28620957567,
+    "offered": 1,
+    "cets": 10580,
+    "collateral_sats": 31927116,
+    "capital_sats": 40454.39178082192,
+    "shortfall_sats": 9581.993141912943,
+    "tracking_sats": 2546.9012868408063,
+    "signing_sats": 10580,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 4,
+   "cell": "single",
+   "agent": "exact",
+   "value": -11.023452068504138,
+   "metrics": {
+    "cost_sats": 61294.90903675784,
+    "offered": 1,
+    "cets": 7830,
+    "collateral_sats": 31927116,
+    "capital_sats": 40454.39178082192,
+    "shortfall_sats": 9581.993141912943,
+    "tracking_sats": 3428.5241140229746,
+    "signing_sats": 7830,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 4,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@1a17091c09d8",
+   "value": -13.747225744286675,
+   "metrics": {
+    "cost_sats": 933994.4213053598,
+    "offered": 1,
+    "cets": 836988,
+    "collateral_sats": 45687414,
+    "capital_sats": 97003.56164383562,
+    "shortfall_sats": 0.3593937163926899,
+    "tracking_sats": 2.5002678077874907,
+    "signing_sats": 836988,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 5,
+   "cell": "single",
+   "agent": "spec_default",
+   "value": -13.935634135643802,
+   "metrics": {
+    "cost_sats": 1127636.193633575,
+    "offered": 1,
+    "cets": 986261,
+    "collateral_sats": 66585374,
+    "capital_sats": 141374.42054794522,
+    "shortfall_sats": 0.5237414157132072,
+    "tracking_sats": 0.2493442139387561,
+    "signing_sats": 986261,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 5,
+   "cell": "single",
+   "agent": "uniform_tuned",
+   "value": -11.531627711644163,
+   "metrics": {
+    "cost_sats": 101887.8229065998,
+    "offered": 1,
+    "cets": 4119,
+    "collateral_sats": 46530924,
+    "capital_sats": 58958.872602739735,
+    "shortfall_sats": 13964.428151212749,
+    "tracking_sats": 24845.522152647318,
+    "signing_sats": 4119,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 5,
+   "cell": "single",
+   "agent": "two_band",
+   "value": -11.407907791673775,
+   "metrics": {
+    "cost_sats": 90030.86110246794,
+    "offered": 1,
+    "cets": 14556,
+    "collateral_sats": 46530924,
+    "capital_sats": 58958.872602739735,
+    "shortfall_sats": 13964.428151212749,
+    "tracking_sats": 2551.5603485154556,
+    "signing_sats": 14556,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 5,
+   "cell": "single",
+   "agent": "exact",
+   "value": -11.37480666985173,
+   "metrics": {
+    "cost_sats": 87099.52156198391,
+    "offered": 1,
+    "cets": 9751,
+    "collateral_sats": 46530924,
+    "capital_sats": 58958.872602739735,
+    "shortfall_sats": 13964.428151212749,
+    "tracking_sats": 4425.2208080314285,
+    "signing_sats": 9751,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 5,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@1a17091c09d8",
+   "value": -13.863926792541628,
+   "metrics": {
+    "cost_sats": 1049607.4473264227,
+    "offered": 1,
+    "cets": 908230,
+    "collateral_sats": 66585374,
+    "capital_sats": 141374.42054794522,
+    "shortfall_sats": 0.5237414157132072,
+    "tracking_sats": 2.5030370617186644,
+    "signing_sats": 908230,
+    "probes_used": 8
+   },
+   "turns": 10,
+   "rejections": [
+    {
+     "turn": 8,
+     "reason": "over_budget"
+    }
+   ]
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 6,
+   "cell": "single",
+   "agent": "spec_default",
+   "value": -13.855484687120816,
+   "metrics": {
+    "cost_sats": 1040783.847888085,
+    "offered": 1,
+    "cets": 988115,
+    "collateral_sats": 24806099,
+    "capital_sats": 52668.40273972603,
+    "shortfall_sats": 0.19512294969051158,
+    "tracking_sats": 0.2500254092387711,
+    "signing_sats": 988115,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 6,
+   "cell": "single",
+   "agent": "uniform_tuned",
+   "value": -10.651097696830382,
+   "metrics": {
+    "cost_sats": 42238.934655173,
+    "offered": 1,
+    "cets": 12587,
+    "collateral_sats": 17334828,
+    "capital_sats": 21964.549315068496,
+    "shortfall_sats": 5202.9089766073885,
+    "tracking_sats": 2484.47636349711,
+    "signing_sats": 12587,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 6,
+   "cell": "single",
+   "agent": "two_band",
+   "value": -10.505256956750749,
+   "metrics": {
+    "cost_sats": 36506.91438190676,
+    "offered": 1,
+    "cets": 6810,
+    "collateral_sats": 17334828,
+    "capital_sats": 21964.549315068496,
+    "shortfall_sats": 5202.9089766073885,
+    "tracking_sats": 2529.4560902308776,
+    "signing_sats": 6810,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 6,
+   "cell": "single",
+   "agent": "exact",
+   "value": -10.482340808294092,
+   "metrics": {
+    "cost_sats": 35679.82950710054,
+    "offered": 1,
+    "cets": 5095,
+    "collateral_sats": 17334828,
+    "capital_sats": 21964.549315068496,
+    "shortfall_sats": 5202.9089766073885,
+    "tracking_sats": 3417.371215424656,
+    "signing_sats": 5095,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 6,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@1a17091c09d8",
+   "value": -13.589783793483107,
+   "metrics": {
+    "cost_sats": 797936.096365657,
+    "offered": 1,
+    "cets": 745265,
+    "collateral_sats": 24806099,
+    "capital_sats": 52668.40273972603,
+    "shortfall_sats": 0.19512294969051158,
+    "tracking_sats": 2.498502981279873,
+    "signing_sats": 745265,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 7,
+   "cell": "single",
+   "agent": "spec_default",
+   "value": -13.838988698467448,
+   "metrics": {
+    "cost_sats": 1023755.921712711,
+    "offered": 1,
+    "cets": 987249,
+    "collateral_sats": 17194230,
+    "capital_sats": 36506.53561643836,
+    "shortfall_sats": 0.1352960065516351,
+    "tracking_sats": 0.2508002660339181,
+    "signing_sats": 987249,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 7,
+   "cell": "single",
+   "agent": "uniform_tuned",
+   "value": -10.32615912162775,
+   "metrics": {
+    "cost_sats": 30520.660344863623,
+    "offered": 1,
+    "cets": 9205,
+    "collateral_sats": 12015655,
+    "capital_sats": 15224.720547945206,
+    "shortfall_sats": 3606.476979342784,
+    "tracking_sats": 2484.4628175756343,
+    "signing_sats": 9205,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 7,
+   "cell": "single",
+   "agent": "two_band",
+   "value": -10.180263727936202,
+   "metrics": {
+    "cost_sats": 26377.422843813936,
+    "offered": 1,
+    "cets": 5035,
+    "collateral_sats": 12015655,
+    "capital_sats": 15224.720547945206,
+    "shortfall_sats": 3606.476979342784,
+    "tracking_sats": 2511.2253165259453,
+    "signing_sats": 5035,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 7,
+   "cell": "single",
+   "agent": "exact",
+   "value": -10.162616209925,
+   "metrics": {
+    "cost_sats": 25916.010168278135,
+    "offered": 1,
+    "cets": 4073,
+    "collateral_sats": 12015655,
+    "capital_sats": 15224.720547945206,
+    "shortfall_sats": 3606.476979342784,
+    "tracking_sats": 3011.812640990145,
+    "signing_sats": 4073,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_30d",
+   "seed": 7,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@1a17091c09d8",
+   "value": -13.477562267825991,
+   "metrics": {
+    "cost_sats": 713232.1680815227,
+    "offered": 1,
+    "cets": 676723,
+    "collateral_sats": 17194230,
+    "capital_sats": 36506.53561643836,
+    "shortfall_sats": 0.1352960065516351,
+    "tracking_sats": 2.4971690778205065,
+    "signing_sats": 676723,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 0,
+   "cell": "single",
+   "agent": "spec_default",
+   "value": -13.943010435127842,
+   "metrics": {
+    "cost_sats": 1135984.7287008427,
+    "offered": 1,
+    "cets": 979571,
+    "collateral_sats": 15831264,
+    "capital_sats": 103497.38630136986,
+    "shortfall_sats": 52916.098335874616,
+    "tracking_sats": 0.2440635981473437,
+    "signing_sats": 979571,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 0,
+   "cell": "single",
+   "agent": "uniform_tuned",
+   "value": -12.04318331174395,
+   "metrics": {
+    "cost_sats": 169937.04293146761,
+    "offered": 1,
+    "cets": 12273,
+    "collateral_sats": 18836212,
+    "capital_sats": 140544.69041095892,
+    "shortfall_sats": 14634.875470080704,
+    "tracking_sats": 2484.477050427996,
+    "signing_sats": 12273,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 0,
+   "cell": "single",
+   "agent": "two_band",
+   "value": -12.031885516566286,
+   "metrics": {
+    "cost_sats": 168027.9336964279,
+    "offered": 1,
+    "cets": 10318,
+    "collateral_sats": 18836212,
+    "capital_sats": 140544.69041095892,
+    "shortfall_sats": 14634.875470080704,
+    "tracking_sats": 2530.3678153882674,
+    "signing_sats": 10318,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 0,
+   "cell": "single",
+   "agent": "exact",
+   "value": -12.022236444324086,
+   "metrics": {
+    "cost_sats": 166414.4170137997,
+    "offered": 1,
+    "cets": 6874,
+    "collateral_sats": 18836212,
+    "capital_sats": 140544.69041095892,
+    "shortfall_sats": 14634.875470080704,
+    "tracking_sats": 4360.851132760074,
+    "signing_sats": 6874,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@1a17091c09d8",
+   "value": -13.902714311636151,
+   "metrics": {
+    "cost_sats": 1091118.9765685396,
+    "offered": 1,
+    "cets": 629060,
+    "collateral_sats": 44914318,
+    "capital_sats": 462055.5863013699,
+    "shortfall_sats": 0.8908639120098734,
+    "tracking_sats": 2.4994032578748118,
+    "signing_sats": 629060,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 1,
+   "cell": "single",
+   "agent": "spec_default",
+   "value": -13.86052519650976,
+   "metrics": {
+    "cost_sats": 1046043.1723471999,
+    "offered": 1,
+    "cets": 936410,
+    "collateral_sats": 11096488,
+    "capital_sats": 72543.87123287671,
+    "shortfall_sats": 37089.05704279331,
+    "tracking_sats": 0.24407152983995326,
+    "signing_sats": 936410,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 1,
+   "cell": "single",
+   "agent": "uniform_tuned",
+   "value": -11.69836990724006,
+   "metrics": {
+    "cost_sats": 120375.3320115162,
+    "offered": 1,
+    "cets": 9122,
+    "collateral_sats": 13202739,
+    "capital_sats": 98511.3493150685,
+    "shortfall_sats": 10257.489915943195,
+    "tracking_sats": 2484.4927805045177,
+    "signing_sats": 9122,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 1,
+   "cell": "single",
+   "agent": "two_band",
+   "value": -11.686925383363906,
+   "metrics": {
+    "cost_sats": 119005.54687043083,
+    "offered": 1,
+    "cets": 7658,
+    "collateral_sats": 13202739,
+    "capital_sats": 98511.3493150685,
+    "shortfall_sats": 10257.489915943195,
+    "tracking_sats": 2578.7076394191336,
+    "signing_sats": 7658,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 1,
+   "cell": "single",
+   "agent": "exact",
+   "value": -11.678526084069567,
+   "metrics": {
+    "cost_sats": 118010.16975157977,
+    "offered": 1,
+    "cets": 6245,
+    "collateral_sats": 13202739,
+    "capital_sats": 98511.3493150685,
+    "shortfall_sats": 10257.489915943195,
+    "tracking_sats": 2996.330520568075,
+    "signing_sats": 6245,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@1a17091c09d8",
+   "value": -13.681761792959175,
+   "metrics": {
+    "cost_sats": 874809.8198377014,
+    "offered": 1,
+    "cets": 550946,
+    "collateral_sats": 31481075,
+    "capital_sats": 323860.69726027397,
+    "shortfall_sats": 0.6245007330054957,
+    "tracking_sats": 2.4980766944623762,
+    "signing_sats": 550946,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 2,
+   "cell": "single",
+   "agent": "spec_default",
+   "value": -14.178880016587044,
+   "metrics": {
+    "cost_sats": 1438167.1043363083,
+    "offered": 1,
+    "cets": 1006891,
+    "collateral_sats": 43652412,
+    "capital_sats": 285382.3561643836,
+    "shortfall_sats": 145893.50390954688,
+    "tracking_sats": 0.24426237786091237,
+    "signing_sats": 1006891,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 2,
+   "cell": "single",
+   "agent": "uniform_tuned",
+   "value": -13.03242001405915,
+   "metrics": {
+    "cost_sats": 456991.47437107045,
+    "offered": 1,
+    "cets": 26626,
+    "collateral_sats": 51937675,
+    "capital_sats": 387529.43424657534,
+    "shortfall_sats": 40351.542251399485,
+    "tracking_sats": 2484.4978730956354,
+    "signing_sats": 26626,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 2,
+   "cell": "single",
+   "agent": "two_band",
+   "value": -13.022133399105144,
+   "metrics": {
+    "cost_sats": 452314.67449606006,
+    "offered": 1,
+    "cets": 21893,
+    "collateral_sats": 51937675,
+    "capital_sats": 387529.43424657534,
+    "shortfall_sats": 40351.542251399485,
+    "tracking_sats": 2540.697998085254,
+    "signing_sats": 21893,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 2,
+   "cell": "single",
+   "agent": "exact",
+   "value": -13.010278713128992,
+   "metrics": {
+    "cost_sats": 446984.283547679,
+    "offered": 1,
+    "cets": 13712,
+    "collateral_sats": 51937675,
+    "capital_sats": 387529.43424657534,
+    "shortfall_sats": 40351.542251399485,
+    "tracking_sats": 5391.307049704205,
+    "signing_sats": 13712,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 2,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@1a17091c09d8",
+   "value": -14.557707938601924,
+   "metrics": {
+    "cost_sats": 2100546.146413135,
+    "offered": 1,
+    "cets": 826505,
+    "collateral_sats": 123843223,
+    "capital_sats": 1274036.190410959,
+    "shortfall_sats": 2.4563560701951346,
+    "tracking_sats": 2.499646105514001,
+    "signing_sats": 826505,
+    "probes_used": 8
+   },
+   "turns": 10,
+   "rejections": [
+    {
+     "turn": 8,
+     "reason": "over_budget"
+    }
+   ]
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 3,
+   "cell": "single",
+   "agent": "spec_default",
+   "value": -14.249876760155443,
+   "metrics": {
+    "cost_sats": 1543984.1749898733,
+    "offered": 1,
+    "cets": 992835,
+    "collateral_sats": 55784754,
+    "capital_sats": 364696.48356164386,
+    "shortfall_sats": 186452.4467410345,
+    "tracking_sats": 0.24468719492187913,
+    "signing_sats": 992835,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 3,
+   "cell": "single",
+   "agent": "uniform_tuned",
+   "value": -13.26583808594462,
+   "metrics": {
+    "cost_sats": 577138.8085360447,
+    "offered": 1,
+    "cets": 5486,
+    "collateral_sats": 66373571,
+    "capital_sats": 495243.5424657535,
+    "shortfall_sats": 51564.7435581708,
+    "tracking_sats": 24844.522512120333,
+    "signing_sats": 5486,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 3,
+   "cell": "single",
+   "agent": "two_band",
+   "value": -13.2648483209889,
+   "metrics": {
+    "cost_sats": 576567.8593681181,
+    "offered": 1,
+    "cets": 4872,
+    "collateral_sats": 66373571,
+    "capital_sats": 495243.5424657535,
+    "shortfall_sats": 51564.7435581708,
+    "tracking_sats": 24887.57334419372,
+    "signing_sats": 4872,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 3,
+   "cell": "single",
+   "agent": "exact",
+   "value": -13.252366493523457,
+   "metrics": {
+    "cost_sats": 569415.9660275305,
+    "offered": 1,
+    "cets": 15152,
+    "collateral_sats": 66373571,
+    "capital_sats": 495243.5424657535,
+    "shortfall_sats": 51564.7435581708,
+    "tracking_sats": 7455.6800036061,
+    "signing_sats": 15152,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 3,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@1a17091c09d8",
+   "value": -14.747944057667594,
+   "metrics": {
+    "cost_sats": 2540684.415622134,
+    "offered": 1,
+    "cets": 912469,
+    "collateral_sats": 158269721,
+    "capital_sats": 1628209.7753424658,
+    "shortfall_sats": 3.1374950887202786,
+    "tracking_sats": 2.5027845798091297,
+    "signing_sats": 912469,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 4,
+   "cell": "single",
+   "agent": "spec_default",
+   "value": -14.321983870251175,
+   "metrics": {
+    "cost_sats": 1659428.5768379355,
+    "offered": 1,
+    "cets": 988238,
+    "collateral_sats": 67935909,
+    "capital_sats": 444138.59589041094,
+    "shortfall_sats": 227051.73660269054,
+    "tracking_sats": 0.2443448340376224,
+    "signing_sats": 988238,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 4,
+   "cell": "single",
+   "agent": "uniform_tuned",
+   "value": -13.454914589866465,
+   "metrics": {
+    "cost_sats": 697260.6571131182,
+    "offered": 1,
+    "cets": 6502,
+    "collateral_sats": 80831182,
+    "capital_sats": 603121.4136986302,
+    "shortfall_sats": 62792.310455609,
+    "tracking_sats": 24844.932958879017,
+    "signing_sats": 6502,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 4,
+   "cell": "single",
+   "agent": "two_band",
+   "value": -13.453990383951934,
+   "metrics": {
+    "cost_sats": 696616.5423830148,
+    "offered": 1,
+    "cets": 5809,
+    "collateral_sats": 80831182,
+    "capital_sats": 603121.4136986302,
+    "shortfall_sats": 62792.310455609,
+    "tracking_sats": 24893.818228775603,
+    "signing_sats": 5809,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 4,
+   "cell": "single",
+   "agent": "exact",
+   "value": -13.446280737019523,
+   "metrics": {
+    "cost_sats": 691266.5246675933,
+    "offered": 1,
+    "cets": 17895,
+    "collateral_sats": 80831182,
+    "capital_sats": 603121.4136986302,
+    "shortfall_sats": 62792.310455609,
+    "tracking_sats": 7457.800513354101,
+    "signing_sats": 17895,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 4,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@1a17091c09d8",
+   "value": -14.890861938136021,
+   "metrics": {
+    "cost_sats": 2931022.6228437144,
+    "offered": 1,
+    "cets": 948177,
+    "collateral_sats": 192741633,
+    "capital_sats": 1982839.302739726,
+    "shortfall_sats": 3.821223425795175,
+    "tracking_sats": 2.498880563134364,
+    "signing_sats": 948177,
+    "probes_used": 8
+   },
+   "turns": 10,
+   "rejections": [
+    {
+     "turn": 8,
+     "reason": "over_budget"
+    }
+   ]
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 5,
+   "cell": "single",
+   "agent": "spec_default",
+   "value": -13.676989910555173,
+   "metrics": {
+    "cost_sats": 870645.2745143664,
+    "offered": 1,
+    "cets": 832543,
+    "collateral_sats": 3856537,
+    "capital_sats": 25212.427397260275,
+    "shortfall_sats": 12889.603129647352,
+    "tracking_sats": 0.24398745878808578,
+    "signing_sats": 832543,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 5,
+   "cell": "single",
+   "agent": "uniform_tuned",
+   "value": -10.699681621439119,
+   "metrics": {
+    "cost_sats": 44341.73542479987,
+    "offered": 1,
+    "cets": 4055,
+    "collateral_sats": 4588588,
+    "capital_sats": 34237.71369863014,
+    "shortfall_sats": 3564.573118829019,
+    "tracking_sats": 2484.44860734071,
+    "signing_sats": 4055,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 5,
+   "cell": "single",
+   "agent": "two_band",
+   "value": -10.69214766853971,
+   "metrics": {
+    "cost_sats": 44008.922152607505,
+    "offered": 1,
+    "cets": 3616,
+    "collateral_sats": 4588588,
+    "capital_sats": 34237.71369863014,
+    "shortfall_sats": 3564.573118829019,
+    "tracking_sats": 2590.6353351483476,
+    "signing_sats": 3616,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 5,
+   "cell": "single",
+   "agent": "exact",
+   "value": -10.681345288875871,
+   "metrics": {
+    "cost_sats": 43536.079577474164,
+    "offered": 1,
+    "cets": 2850,
+    "collateral_sats": 3856537,
+    "capital_sats": 25212.427397260275,
+    "shortfall_sats": 12889.603129647352,
+    "tracking_sats": 2584.04905056654,
+    "signing_sats": 2850,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 5,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@1a17091c09d8",
+   "value": -13.229831608995678,
+   "metrics": {
+    "cost_sats": 556727.7437378612,
+    "offered": 1,
+    "cets": 444165,
+    "collateral_sats": 10941398,
+    "capital_sats": 112560.0287671233,
+    "shortfall_sats": 0.21694288993312538,
+    "tracking_sats": 2.498027847929649,
+    "signing_sats": 444165,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 6,
+   "cell": "single",
+   "agent": "spec_default",
+   "value": -13.99031021506541,
+   "metrics": {
+    "cost_sats": 1191007.5827971548,
+    "offered": 1,
+    "cets": 996620,
+    "collateral_sats": 19675357,
+    "capital_sats": 128629.9602739726,
+    "shortfall_sats": 65757.37834362366,
+    "tracking_sats": 0.24417955848694103,
+    "signing_sats": 996620,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 6,
+   "cell": "single",
+   "agent": "uniform_tuned",
+   "value": -12.254478632772022,
+   "metrics": {
+    "cost_sats": 209919.33834037383,
+    "offered": 1,
+    "cets": 14578,
+    "collateral_sats": 23409610,
+    "capital_sats": 174668.69589041098,
+    "shortfall_sats": 18188.185742533155,
+    "tracking_sats": 2484.4567074297015,
+    "signing_sats": 14578,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 6,
+   "cell": "single",
+   "agent": "two_band",
+   "value": -12.243324662215475,
+   "metrics": {
+    "cost_sats": 207590.913949918,
+    "offered": 1,
+    "cets": 12189,
+    "collateral_sats": 23409610,
+    "capital_sats": 174668.69589041098,
+    "shortfall_sats": 18188.185742533155,
+    "tracking_sats": 2545.032316973884,
+    "signing_sats": 12189,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 6,
+   "cell": "single",
+   "agent": "exact",
+   "value": -12.233126093569574,
+   "metrics": {
+    "cost_sats": 205484.5430051507,
+    "offered": 1,
+    "cets": 8253,
+    "collateral_sats": 23409610,
+    "capital_sats": 174668.69589041098,
+    "shortfall_sats": 18188.185742533155,
+    "tracking_sats": 4374.661372206582,
+    "signing_sats": 8253,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 6,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@1a17091c09d8",
+   "value": -14.033573963911484,
+   "metrics": {
+    "cost_sats": 1243665.9209348806,
+    "offered": 1,
+    "cets": 669424,
+    "collateral_sats": 55819146,
+    "capital_sats": 574238.3178082192,
+    "shortfall_sats": 1.107245121663242,
+    "tracking_sats": 2.4958815396396345,
+    "signing_sats": 669424,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 7,
+   "cell": "single",
+   "agent": "spec_default",
+   "value": -14.128771522056695,
+   "metrics": {
+    "cost_sats": 1367878.4516125186,
+    "offered": 1,
+    "cets": 1010436,
+    "collateral_sats": 36178692,
+    "capital_sats": 236520.6780821918,
+    "shortfall_sats": 120921.52861006907,
+    "tracking_sats": 0.24492025765956163,
+    "signing_sats": 1010436,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 7,
+   "cell": "single",
+   "agent": "uniform_tuned",
+   "value": -12.847802499762384,
+   "metrics": {
+    "cost_sats": 379952.8707855542,
+    "offered": 1,
+    "cets": 22843,
+    "collateral_sats": 43045635,
+    "capital_sats": 321181.6191780822,
+    "shortfall_sats": 33443.77873430023,
+    "tracking_sats": 2484.4728731717178,
+    "signing_sats": 22843,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 7,
+   "cell": "single",
+   "agent": "two_band",
+   "value": -12.837041104376045,
+   "metrics": {
+    "cost_sats": 375885.96972810006,
+    "offered": 1,
+    "cets": 18728,
+    "collateral_sats": 43045635,
+    "capital_sats": 321181.6191780822,
+    "shortfall_sats": 33443.77873430023,
+    "tracking_sats": 2532.5718157176266,
+    "signing_sats": 18728,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 7,
+   "cell": "single",
+   "agent": "exact",
+   "value": -12.82590787231608,
+   "metrics": {
+    "cost_sats": 371724.3531063752,
+    "offered": 1,
+    "cets": 11713,
+    "collateral_sats": 43045635,
+    "capital_sats": 321181.6191780822,
+    "shortfall_sats": 33443.77873430023,
+    "tracking_sats": 5385.955193992766,
+    "signing_sats": 11713,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "dlc/stable_90d",
+   "seed": 7,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@1a17091c09d8",
+   "value": -14.421251723993196,
+   "metrics": {
+    "cost_sats": 1832609.9739158903,
+    "offered": 1,
+    "cets": 776694,
+    "collateral_sats": 102640387,
+    "capital_sats": 1055911.4383561644,
+    "shortfall_sats": 2.035921688636318,
+    "tracking_sats": 2.4996380372444613,
+    "signing_sats": 776694,
+    "probes_used": 0
+   },
+   "turns": 1,
+   "rejections": []
+  }
+ ],
+ "checks": [
+  {
+   "id": "K15",
+   "pass": true,
+   "detail": "24 episodes compared, 0 mismatches"
+  }
+ ]
+}

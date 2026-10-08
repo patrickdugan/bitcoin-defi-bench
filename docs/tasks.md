@@ -59,7 +59,7 @@ Rails are the paper's object classes (§2.1), with two classes added on review o
 | Place directional capital | **F1, run** | | | | | | | | |
 | Route under hidden state | **F2, built** §3 (development seeds) | | | | | | | | |
 | Choose the settlement object and size it | **F3, run** (channel column) | **F3, run** (VTXO column) | F3 column, specced §4.8 | F3 column, specced §4.8 | | | | | |
-| Size the server's own channels | | F4, specced | F4 applies to the mint's gateway | | | | | | |
+| Size the server's own channels | | F4, specced; as specified it repeats F3's server-tier margin, redesign pending §5.1 | F4 applies to the mint's gateway | | | | | | |
 | Bond a service | | | | | **F5, built** §6 (development seeds) | | | | |
 | Net positions toward a target settlement value | links as channels, later cell | | | links as statechain transfers, later cell | | links as on-chain settlement | D′ (UTXO-Ref) as `netting/utxoref_dlc`, specced §7.7 | **F6, run** §7 | |
 | Encode a contract's payouts and size its collateral | | | | | | | **F10, built** §13 (development seeds) | | |
@@ -500,7 +500,7 @@ Parameters to be sourced: the lifetime rule (the decrement per transfer and the 
 
 **Baselines for the two columns.** `always_ecash` at margin 0.25 and `always_statechain` at the median grid denomination join `always_channel` and `always_vtxo`; `grid_search` covers the enlarged grid. Hypotheses for the columns are written only when the parameters above have sources, as an amendment.
 
-## 5. Family 4: server capital sizing (specified, not implemented)
+## 5. Family 4: server capital sizing (specified, not implemented; redesign pending)
 
 Derives from the paper §3.2 and §3.4. Task id: `server_sizing/<cell>`.
 
@@ -524,6 +524,15 @@ The agent is the Ark server. Its VTXO holders present an aggregate flow; the ser
 **Baselines.** `random`: a random feasible sizing. `peak_envelope`: every channel sized to (1 + margin) × the warm-up peak of aggregate imbalance, the failure-aware rule one tier up. `oracle`: the minimal envelope under the realized flow.
 
 Blocked on the same gap as family 3.
+
+### 5.1 Why it is not built: as specified it duplicates family 3 (2026-10-08)
+
+The missing `ArkServer.aggregateSteps` is no longer the obstacle. Family 3's per-holder demand streams, a pilot and an evaluation realization per seed, give the aggregate flow directly. Its server envelope and capacity gating are the channel rule one tier up. A prototype on family 3's streams, with the server's Lightning position gated by its channels and each holder's spends by that holder's delivered receipts, found two things:
+
+- **Outbound never binds.** The streams' funded-spend rule keeps every holder's spends within its delivered receipts, so the server's net Lightning position never goes below zero. Its trough is 0 on every seed of every cell tried. Outbound capacity is therefore free to set to zero, and the decision has one dimension.
+- **Inbound is family 3's server-tier margin.** The remaining choice is inbound capacity as a multiple of the pilot's peak. Failures fall from thousands at half the peak to none at 1.25 times it on every cell tried. That is the static margin family 3 already scores for the server tier (§4.4), isolated.
+
+So the family as specified would score again what family 3 scores. The operator problem its specification gestures at, and family 3 does not pose, is **resizing during the horizon**: the server watches its aggregate flow, and at decision points it may lease more inbound, or release some, with a confirmation delay and a cost per resize, against failures and capital-time. That is the first family where the `blocks` budget would not be zero, as the specification anticipated. It needs decisions before it is built: the decision interval, the resize cost and delay, whether capacity can be released, and how to make the clairvoyant ceiling exact when failures change the position path, for instance by restricting it to plans that never fail. These are left for review.
 
 ## 6. Family 5: service bonding (built; development seeds only)
 

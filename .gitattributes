@@ -4,3 +4,6 @@
 # Fixtures and results are hash-bound; never normalize them.
 fixtures/** -text
 results/** -text
+
+# Published test vectors are hash-bound to their upstream bytes (data/nostr/provenance.json).
+data/nostr/** -text

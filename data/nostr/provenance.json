@@ -1,0 +1,58 @@
+{
+  "purpose": "Published test vectors for family 9's protocol core (src/tasks/nostr), and the specifications family 9 cites, each pinned by commit and SHA-256. The vector files are copied byte for byte; the specifications are cited, not copied.",
+  "accessed": "2026-10-08",
+  "vectors": [
+    {
+      "file": "data/nostr/bip340-test-vectors.csv",
+      "source": "https://github.com/bitcoin/bips/blob/927b6de9915c9262615a6399de51b200f81e5aa4/bip-0340/test-vectors.csv",
+      "commit": "927b6de9915c9262615a6399de51b200f81e5aa4",
+      "sha256": "34c9d1d9c3a88d524bc80778540dc43f8306ec249a7485293063c376db851c2d",
+      "license": "BIP-340 is licensed BSD-2-Clause; its code BSD-2-Clause OR MIT OR CC0-1.0"
+    },
+    {
+      "file": "data/nostr/nip44.vectors.json",
+      "source": "https://github.com/paulmillr/nip44/blob/671a1f04bcfacaf125b0db68adc45bc9ce0e763b/nip44.vectors.json",
+      "commit": "671a1f04bcfacaf125b0db68adc45bc9ce0e763b",
+      "sha256": "269ed0f69e4c192512cc779e78c555090cebc7c785b609e338a62afc3ce25040",
+      "license": "public domain (the repository's README, for the TypeScript implementation and vectors copied from nostr-protocol/nips)",
+      "note": "This SHA-256 is the checksum NIP-44 publishes for the file. The file predates the NIP-44 amendment of 2026-06-28 (nips #1907) that admits plaintexts of 65,536 bytes or more, and still lists 65536, 100000, and 10000000 under invalid.encrypt_msg_lengths. The bench follows the amended text; see docs/tasks.md §10.8."
+    },
+    {
+      "file": "data/nostr/nip59-example.json",
+      "source": "https://github.com/nostr-protocol/nips/blob/a79e21d90fce5465b50ef385dd368bba99ec4a0b/59.md",
+      "commit": "a79e21d90fce5465b50ef385dd368bba99ec4a0b",
+      "sha256": "2bf062f8dc482ac67ae3db64cfa7d05e17da95f7b824322c44ece61695f8e8be",
+      "derived": "The three keys and three JSON blocks of the section 'An Example', extracted by script; one trailing comma in the wrap block was removed so that the block parses. Source file SHA-256 b46b078ff5b219fd4ab33a53b479b49d4cbd604b88be46d6b978d53d8f8b43a0."
+    }
+  ],
+  "specifications": {
+    "nips": {
+      "repository": "https://github.com/nostr-protocol/nips",
+      "commit": "a79e21d90fce5465b50ef385dd368bba99ec4a0b",
+      "sha256": {
+        "01.md": "6cd76682e7ec2d635f1f46b3660f621cdad1193d9174d316674b91f8d683af26",
+        "17.md": "7aa9c3a9c0458a9552c4be2f3bf17f7ec60a4afe88bce7977f03500a7873a64c",
+        "19.md": "5b53c98637ae0cb8e6d99e1570e32da2c5842154ba898393439f334f1fd90aad",
+        "42.md": "176458314bb0cd3b9c673b43b6bf05e4cb2354f5d56880d8d6627713d6fd4f87",
+        "44.md": "b5f89374e4e1dbdee7881e8573b4313b6a89430a9c8d518471599ae0660cf0e2",
+        "46.md": "e5a3c818eb3bc410541104198d4ebdce6b1720a2da00cb8e71d38ec0b72f01c1",
+        "47.md": "6f0e0bb315a0b0213b75180d191cb38d4ec0c734cbb8d66d6219f8c9f236ea6a",
+        "49.md": "877c17c9b2d5083d4301c9f284c9dce51190d4a4ab648aee1af4a42db864d34a",
+        "51.md": "e53459e886299ba513d362666ac60cee9d2424ec32df9a2dee9672008bd29ecc",
+        "59.md": "b46b078ff5b219fd4ab33a53b479b49d4cbd604b88be46d6b978d53d8f8b43a0",
+        "60.md": "be16fb7450c8e1c5d106efee49991a2f0ea99576dce0298473ab21607e54d79d",
+        "61.md": "cb39e202e5816bb08a01f5c0b4662b4190cbabc675f725d4b7715f07fa06de65",
+        "65.md": "ca9cceac7b113bd98d543026c793f87d56478c624f93c799fa4d536e0e7de04a",
+        "90.md": "a82714bac7563cecf7cdb17e83dc60ebea25d06159e826b3bde9c361c28414bb"
+      }
+    },
+    "bitchat": {
+      "repository": "https://github.com/permissionlesstech/bitchat",
+      "commit": "5e9287fae1e5fea80ca741d4ea669829dc16f144",
+      "file": "WHITEPAPER.md",
+      "version": "2.0, dated 2026-07-06",
+      "sha256": "c81e1cb55ce33ec8daa0cabec4db6623b10f5d2eb7cbe2d7d47e565fa209b6e0",
+      "license": "public domain (the repository's LICENSE)"
+    }
+  }
+}

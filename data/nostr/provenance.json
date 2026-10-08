@@ -18,6 +18,14 @@
       "note": "This SHA-256 is the checksum NIP-44 publishes for the file. The file predates the NIP-44 amendment of 2026-06-28 (nips #1907) that admits plaintexts of 65,536 bytes or more, and still lists 65536, 100000, and 10000000 under invalid.encrypt_msg_lengths. The bench follows the amended text; see docs/tasks.md §10.8."
     },
     {
+      "file": "data/nostr/nip04-vectors.json",
+      "source": "https://github.com/nbd-wtf/nostr-tools/blob/cb8d22d4c906d99d8996693b37e4d85aa3d5f26e/nip04.test.ts",
+      "commit": "cb8d22d4c906d99d8996693b37e4d85aa3d5f26e",
+      "sha256": "69b902a5a73fabf44313afab04b2d0ae0c670c4065b4c80a54d8249cc3c8327d",
+      "license": "public domain (the repository's LICENSE)",
+      "derived": "The keys and the two go-nostr payloads of the tests 'decrypt message from go-nostr' and 'decrypt big payload from go-nostr', transcribed and checked against the source file by script (source SHA-256 fc4965cb46fb5f2168aa47cb49172604fef2e9432351216d79e58c05e377ac64). NIP-04 publishes no vectors of its own; these are a second implementation's output."
+    },
+    {
       "file": "data/nostr/nip59-example.json",
       "source": "https://github.com/nostr-protocol/nips/blob/a79e21d90fce5465b50ef385dd368bba99ec4a0b/59.md",
       "commit": "a79e21d90fce5465b50ef385dd368bba99ec4a0b",

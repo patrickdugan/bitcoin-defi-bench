@@ -23,6 +23,7 @@ import { FIXTURE_VERSION as NETTING_VERSION, fixtureBytes as nettingBytes, fixtu
 import { loadNettingConfig } from "../src/tasks/netting/task.ts";
 import { FIXTURE_VERSION as DLC_VERSION, fixtureBytes as dlcBytes, fixturePath as dlcPath, generateFixture as generateDlc } from "../src/tasks/dlc/generate.ts";
 import { loadDlcConfig } from "../src/tasks/dlc/task.ts";
+import { NOSTR_CELLS, buildNostrFixtures, loadNostrConfig } from "../src/tasks/nostr/task.ts";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -93,6 +94,12 @@ for (const cell of Object.keys(dlc.cells).sort()) {
   }
   console.log(`dlc/${cell}: ${SEED_BLOCKS.development.length + SEED_BLOCKS.confirmatory.length} fixtures`);
 }
+
+// Family 9: seven cells, each fixture a whole episode's world (keys, relays, requests, walks).
+const nostr = buildNostrFixtures(root, loadNostrConfig(root), [...SEED_BLOCKS.development, ...SEED_BLOCKS.confirmatory]);
+entries.push(...nostr.entries);
+written += nostr.written;
+console.log(`nostr: ${nostr.entries.length} fixtures over ${NOSTR_CELLS.length} cells`);
 
 const manifest = buildManifest(root, BENCH, vendoredCommit(root), entries);
 writeIfChanged(join(root, "fixtures/manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`);

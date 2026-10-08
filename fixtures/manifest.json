@@ -13,6 +13,7 @@
   "config": {
     "config/dlc.json": "ecdb43d159baf0c2b951384ecfabcf5f9cb59c612463c29ed271ab3f8b3f1cde",
     "config/netting.json": "26936a6c7a9a89762a2e28e0152de22b81afb7731de497af4de7a7f5de5014c5",
+    "config/nostr.json": "3e1eb51f130f94d3edea8b16dde26d52bd824fd7f0340f9cb49b1820037eaeaa",
     "config/placement.json": "8803d9872ba947334c0b29490f6d7a2b993fe7bdb35baabf80dfd6be1219d917",
     "config/protocol.json": "7f0034406b80fecd66de7d42bbca1e646da30c8a36e44afb94e033c75f34dfc4",
     "config/settlement_object.json": "32814b2f968678cad1aabbff7b139df7e21065556eadd0ebc58e3ebd1f1011a5"
@@ -1697,6 +1698,1966 @@
       "seed": 1031,
       "generator": "netting-fixture/v0",
       "sha256": "d1bc64fd2e0f88c25899b5b555e5a8d3b3d9a3239a354eebb094c92327811265"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-0000.json",
+      "family": "nostr",
+      "seed": 0,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "a7e5aaa766c7188513d061d0941866b040d2ed34fc6b3f817869ece1c15240d9"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-0001.json",
+      "family": "nostr",
+      "seed": 1,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "9fcf466c80c910cc5f6e58e11829bca4c4354463ef9c2ff702af358b2658b102"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-0002.json",
+      "family": "nostr",
+      "seed": 2,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "371f56d19d243f901af4a634ed3f06ef046d5c68c1e1714d342fa46272dd0e4b"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-0003.json",
+      "family": "nostr",
+      "seed": 3,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "a19b9af8cd1f567b798660fb289070308518b1b2ced67b2cbe6d3b6b18db3c9b"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-0004.json",
+      "family": "nostr",
+      "seed": 4,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "7098444ffd9a9f58b4d8ae870e582b8c1041a81467dbcfa6f8da7eee593a8bab"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-0005.json",
+      "family": "nostr",
+      "seed": 5,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "a5a782f7f318d19266b1e075d40f02bfaed45debabdeffca7a079c5ca6494e0e"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-0006.json",
+      "family": "nostr",
+      "seed": 6,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "c166fea2a37ca6dbe5020fe3e6827d3636bf54a32dec62dcc9e7a06feb353a4c"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-0007.json",
+      "family": "nostr",
+      "seed": 7,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "96185be3b2f8b05cf90a112bfefc2351fd3ad8aec9648628f556e477998f4b73"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1000.json",
+      "family": "nostr",
+      "seed": 1000,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "241c5282e7265174674f8adc5e0a109f74f85aafe0a2393862665e8b4fd31fd6"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1001.json",
+      "family": "nostr",
+      "seed": 1001,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "47fa9036ef75120038110974f6ddd988caec205f902773e6cd17ced95002fa2e"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1002.json",
+      "family": "nostr",
+      "seed": 1002,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "c236ce3b767427fe6257aca048c50ed6755f2215a447c3f72aff6bc074f68a12"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1003.json",
+      "family": "nostr",
+      "seed": 1003,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "d8c9637afe430e909b4e48405305075ffbc410dec5a59292e9928ce26d98f7d8"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1004.json",
+      "family": "nostr",
+      "seed": 1004,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "b14b0f044a7c91cb882921e188ce274c827fac2fea5c29f5a54217656b33e4cb"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1005.json",
+      "family": "nostr",
+      "seed": 1005,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "60ff93d8443fc4fcd0be5ef7e9ccbf787ce59a47d0014d68fba940b3b1d431be"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1006.json",
+      "family": "nostr",
+      "seed": 1006,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "320f95bc25a0f4fee6822e69213f0807568b33c37df138f2180edd9192663e3e"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1007.json",
+      "family": "nostr",
+      "seed": 1007,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "03a1942ea13d3ea3c56ba1f7f8919a0a925a9a35f264a49be9619b71ad388c02"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1008.json",
+      "family": "nostr",
+      "seed": 1008,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "77219d28600cf4aceb8cbcfa1e2a7cc530ba2f2bad01bcfd5c34213d5d0412bf"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1009.json",
+      "family": "nostr",
+      "seed": 1009,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "5c44195b5ebba0a1b9f9624100e804b80f29d492cae586b6dc18081d47c9ad6f"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1010.json",
+      "family": "nostr",
+      "seed": 1010,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "c162d237dd666fc69ada70f4d85a89c9ddece275e6ec20f56fb9610196075621"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1011.json",
+      "family": "nostr",
+      "seed": 1011,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "e1c95e3a2ad864b69921298f1081d34b3df1a453b0665b9605634dbf82e4e933"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1012.json",
+      "family": "nostr",
+      "seed": 1012,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "d56e1061b3321ac12d36139c4c9f382bb5285e2b2282ec8d4373a58315d66f7b"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1013.json",
+      "family": "nostr",
+      "seed": 1013,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "deff8afeb9256250fdf407830f85aa4c6feb5a2f50da761132b679844be69a9d"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1014.json",
+      "family": "nostr",
+      "seed": 1014,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "6d2d24de679a969f17ed8c34c6a9857167ec39fbb26a1277a3d0526ab1606b86"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1015.json",
+      "family": "nostr",
+      "seed": 1015,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "4d8599211179c834f7254f433ae2f54389e3872eb8d88512a0e561e8f7454290"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1016.json",
+      "family": "nostr",
+      "seed": 1016,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "e64daf1dbead884edacbe5f79ddd9b73f5264f61ec2328447a578cb9c33aad1e"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1017.json",
+      "family": "nostr",
+      "seed": 1017,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "247140d8e253c05c6e0cc802e87a2b8a714fb22f6d7eedaba016fae7b6eb05be"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1018.json",
+      "family": "nostr",
+      "seed": 1018,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "a0332f60bac661088017684c42c247401561dda59da793046fd6d247134209f0"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1019.json",
+      "family": "nostr",
+      "seed": 1019,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "f3de33d68fab3e8d4d053e589e7ddf0ce69e77d14e9704a29186c56067ed7c9d"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1020.json",
+      "family": "nostr",
+      "seed": 1020,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "b5667c77c80e9cb0cbb18878b1c403143848b373ab7f8027cb19688c5602d5df"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1021.json",
+      "family": "nostr",
+      "seed": 1021,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "b0313ae4a0d9750a68eef43c22003737b85ba69e40e07a7c83f3b918393ff5a2"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1022.json",
+      "family": "nostr",
+      "seed": 1022,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "09146b0f035c881d77dcc0cf806106c1dd7a77b7d945fe16c833bae8ec1f1490"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1023.json",
+      "family": "nostr",
+      "seed": 1023,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "ba38e4a77c95413c75dab60dee8573a2ac5b6b262f0562186e6d53f0f04009a2"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1024.json",
+      "family": "nostr",
+      "seed": 1024,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "e1f7a4a7b0514599e5d8f336571472f811c00b2ac8b45b896392b65d6044c2db"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1025.json",
+      "family": "nostr",
+      "seed": 1025,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "9b14950de0374de7d93b7a5a2e782a5973e92227a6b1230ac393e347f933694b"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1026.json",
+      "family": "nostr",
+      "seed": 1026,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "963ef01880ce171e89e5ebba2c998f3bdd3841dfda1b7d19fb2c4f4ae7ab364c"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1027.json",
+      "family": "nostr",
+      "seed": 1027,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "c22650091d31e2ed15846fa8473c8ebc59fda6cd06d0860414a9690a05e73c9f"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1028.json",
+      "family": "nostr",
+      "seed": 1028,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "7db7ccc88a0657e80c599b6f9b6f67c29c78c374a38fbbd8a24bfa6735bb35e0"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1029.json",
+      "family": "nostr",
+      "seed": 1029,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "389466c2082b4c6ac0dfdafb2273efe3fd0ef09771ede9113a3d49ebe90dd49b"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1030.json",
+      "family": "nostr",
+      "seed": 1030,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "345cd00bff2bd97f4bf30831d09268f51343d90de108afdbe4932498e3c1309d"
+    },
+    {
+      "path": "fixtures/nostr/counterparty/seed-1031.json",
+      "family": "nostr",
+      "seed": 1031,
+      "generator": "nostr-counterparty-fixture/v0",
+      "sha256": "fe25e26d2cd4e9cfc9cf821190030e86cbf5b329bd5dbcaee129781d626959f2"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-0000.json",
+      "family": "nostr",
+      "seed": 0,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "aecc0ee3a8ae4d2a70361cc1241ea39313ebc4967e9062bfa2746f5eccab8ed0"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-0001.json",
+      "family": "nostr",
+      "seed": 1,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "ab5544928c927d1cf2ec271cd08303f59bf112fc982fa9bec8d2ad5d753753cc"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-0002.json",
+      "family": "nostr",
+      "seed": 2,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "307c8175fe6c217b65f253c44b7096f33834c0a80c19ab7efad7f8c4ae97739d"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-0003.json",
+      "family": "nostr",
+      "seed": 3,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "659d93bb3af938a0be26644f6dc2a8adee05f0493c3fa22398f8a44c130c5ffd"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-0004.json",
+      "family": "nostr",
+      "seed": 4,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "2c784d62c01c998436a75bf91d154aab2190ca5f4d7ce046edb38229f3fa08da"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-0005.json",
+      "family": "nostr",
+      "seed": 5,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "2367edd873ac48bcecf07753ce03bf3e4e1813c71d347ac0e32eef1e70261fd8"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-0006.json",
+      "family": "nostr",
+      "seed": 6,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "d9a3493a47d912bf0e05f4bccc3c0400bdaedfee812581ce38423b917c4b90e8"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-0007.json",
+      "family": "nostr",
+      "seed": 7,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "4f09bd284c41af5156124bc8fafdd9de9b2a311289d5bf5cdf0817b2ec63c1e4"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1000.json",
+      "family": "nostr",
+      "seed": 1000,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "03af63a1991c5595a0b6fe8277850ea5f252a0a3c830399be573b2bc39d17ed5"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1001.json",
+      "family": "nostr",
+      "seed": 1001,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "60ac33a075d145b5c58d8c4ea8aada2901757897ada756707d11e2a219bfabf2"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1002.json",
+      "family": "nostr",
+      "seed": 1002,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "c37e7f145018a612336f190659e1e7b38c9f580503cfa4e627a8bcad3f087064"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1003.json",
+      "family": "nostr",
+      "seed": 1003,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "e44f21d358d4fd37ec541942a9e25f3576e9fe6e8bcf70097e1601ae88f39771"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1004.json",
+      "family": "nostr",
+      "seed": 1004,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "e5c4c8efca18c685513caa73268fd4e8081255703e6453c459278074fea65265"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1005.json",
+      "family": "nostr",
+      "seed": 1005,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "1a35034c5635ea17c41a62f58393cbcd9751fbc050389701eddb6d267cdd310a"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1006.json",
+      "family": "nostr",
+      "seed": 1006,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "1f54b7820927296cd1cab018b073f5b305a1bf904437472dbcc45749bd13fb59"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1007.json",
+      "family": "nostr",
+      "seed": 1007,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "3ba1415c9d88220dc591e44430959d17a545a14791b39473c6d90f99c5aaee91"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1008.json",
+      "family": "nostr",
+      "seed": 1008,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "e868a95f2a18e7e8e2f85f57ac138cac9cad7a34f954e2c66785115d0b62b87d"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1009.json",
+      "family": "nostr",
+      "seed": 1009,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "bc22ec94d76fd3e5f0a0d3701cec7c816a1815395c8bc169995c4ca1c415278c"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1010.json",
+      "family": "nostr",
+      "seed": 1010,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "18d5f1fdb4a29433305673a196cb3ab97fcbcc5a12a6a693e3e22bc2e06f6cb1"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1011.json",
+      "family": "nostr",
+      "seed": 1011,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "d69c90414292e7599101f925f75931fa13985cde905fea99f3d36e96227fba64"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1012.json",
+      "family": "nostr",
+      "seed": 1012,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "692ee7750ddbe1b2e8c33b3fe469998e157ee33582a38665664b67541273a65c"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1013.json",
+      "family": "nostr",
+      "seed": 1013,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "7db7ac7ce7dd9b6817e9b877eb16f11a5d195183d35a2ada200a937f137a24ef"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1014.json",
+      "family": "nostr",
+      "seed": 1014,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "22c94135b284fae93f96b1231bd69194244d4cec72f92b491fd8ab42a70d8d67"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1015.json",
+      "family": "nostr",
+      "seed": 1015,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "145cba1afbe1030f822b13e52a33c15b80f06cf896e083676ac91d15a111ae6c"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1016.json",
+      "family": "nostr",
+      "seed": 1016,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "f6ebcdfdaf12bb278ca781a6f4ca5f4266eb40445b5e31d273f08690574aa463"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1017.json",
+      "family": "nostr",
+      "seed": 1017,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "114023825c90877939b42753c93962364d8287db36e89d7c10924ca575d5e1ba"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1018.json",
+      "family": "nostr",
+      "seed": 1018,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "c009fdc45918315237c7e9bdb66bbb75f7ef999f82ec06c77c826b37a07c3005"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1019.json",
+      "family": "nostr",
+      "seed": 1019,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "b1f23e96e538c1e6e6c30fc175b2d54c195559218fec9262d93d22fccbaddff5"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1020.json",
+      "family": "nostr",
+      "seed": 1020,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "5b9f8ede031fd06fd5a59fbd6713d2714c783566672411c5fb3797de33d35bf4"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1021.json",
+      "family": "nostr",
+      "seed": 1021,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "bb582cd72c4e58c2c9845fce13a2f0ee20611f83d52918172ffc28795b6cfefa"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1022.json",
+      "family": "nostr",
+      "seed": 1022,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "3b6598d54d8bcb5d3b94c7081c880979046bcbf892dd42c0c6462f2b7ec0ba21"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1023.json",
+      "family": "nostr",
+      "seed": 1023,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "69f6fbdc0e62ad6f07451d774ae9283aea02ee106e9a3651d11baf96ba612927"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1024.json",
+      "family": "nostr",
+      "seed": 1024,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "a2708d4b7ba9c56d5205e30b4df94a4e3e48745ebdc7bc725963f1c6e0900ae6"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1025.json",
+      "family": "nostr",
+      "seed": 1025,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "617d60500345b8263c0dc3095fec4a493e30d308a43cf4a72d051ca2cb16151d"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1026.json",
+      "family": "nostr",
+      "seed": 1026,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "990439e301182c18972e410ee0fe7ea8f2d9f7855277d5b560e9ba340009e689"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1027.json",
+      "family": "nostr",
+      "seed": 1027,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "2fb499079b95527526a4a1e945771c6e64f2dc3b324c5cf8f062d39e3388eb4c"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1028.json",
+      "family": "nostr",
+      "seed": 1028,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "be4a0da1980e6045f967c2ec32871ab737426be7637365bd7d9d173c263dc8e8"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1029.json",
+      "family": "nostr",
+      "seed": 1029,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "ad63b81e27da741aa4b820b4c43f9d08055069e1b933482d154ba58eb280fe5e"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1030.json",
+      "family": "nostr",
+      "seed": 1030,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "7a837892e21d65466899635b22217a39046e86653b6497639ed0c45c20f64f7d"
+    },
+    {
+      "path": "fixtures/nostr/custody/seed-1031.json",
+      "family": "nostr",
+      "seed": 1031,
+      "generator": "nostr-custody-fixture/v0",
+      "sha256": "b290f1e5ebc34bd97c1d2ea801662e249f2a1a8167e4390136512cb95c48dd6a"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-0000.json",
+      "family": "nostr",
+      "seed": 0,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "984534f90b645d1d79755363d4d2d38a2658699f5fdba6c94ee8c57477a8850a"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-0001.json",
+      "family": "nostr",
+      "seed": 1,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "9afe1f748c36a64907c0f5203184b2907b9c5487221c0aaa26b0be04e9efd48b"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-0002.json",
+      "family": "nostr",
+      "seed": 2,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "5803dfaf8040a5c2d79cd0d4169cbbcf0f05480e926b34f2976e32370ee7c51a"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-0003.json",
+      "family": "nostr",
+      "seed": 3,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "0f953060d30f409a8c234d41b055d62cbbc6d558f36325d18d38050990a2eba2"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-0004.json",
+      "family": "nostr",
+      "seed": 4,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "a938629feed54efa0c8a8b1c776f53040337c549bdc0f5566bae826ec2e5f580"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-0005.json",
+      "family": "nostr",
+      "seed": 5,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "a2c533c0251489f681f21121966aa2f34845604fdb0e7393259e99912f27f15d"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-0006.json",
+      "family": "nostr",
+      "seed": 6,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "8697d1914b25d2191c4f28e9358789fe92d6979ce64ec41c8bba421fe97d5b52"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-0007.json",
+      "family": "nostr",
+      "seed": 7,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "2b57e8bd2d2bc29cffd56b017af7de056a9ecf5b4f9e29b07bc9cd5a5026eabd"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1000.json",
+      "family": "nostr",
+      "seed": 1000,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "5d39c9fcf1e7bca13fc6fd669c2a229d056131821ba27ed4591727947096032a"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1001.json",
+      "family": "nostr",
+      "seed": 1001,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "b59ba69986fde3be3d0358c02dba418b9c64759cb9924ac0391c7d1358d2da61"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1002.json",
+      "family": "nostr",
+      "seed": 1002,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "4fe32f2ec20b5bf8a2e8c11fe14a5216c0753dacddafde53ce8e145e5a90ce6a"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1003.json",
+      "family": "nostr",
+      "seed": 1003,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "1459c21dcace3f6fde99685592845f124f70b9419c09506e6b0cafe6f49e8bc6"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1004.json",
+      "family": "nostr",
+      "seed": 1004,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "f0aecfb40fca3fb9a9a7882ff0bb36a7b5e7de7011a13ec16539e8a9ad65454e"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1005.json",
+      "family": "nostr",
+      "seed": 1005,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "d141554b4e66ba6679ec0da7a7f8eb445528fb6a8c3f13997a313c4c083598e6"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1006.json",
+      "family": "nostr",
+      "seed": 1006,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "ab9d563b6b1e68c29f6254abfa2c8b03d2385c10bec1f57634676384663985e6"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1007.json",
+      "family": "nostr",
+      "seed": 1007,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "0fe474fc775e1d6a43d8e554ee3ec35dd297eac2c77ab17afbc925da06115a92"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1008.json",
+      "family": "nostr",
+      "seed": 1008,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "2be4dbd88f4becb724a5b327ef1281bdc69022d556de56ef288b4be1b24cd2e5"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1009.json",
+      "family": "nostr",
+      "seed": 1009,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "9075aa3eae54d809a4b9fd18b601d08a405a1904140d4a7acbfce31bf93ee56f"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1010.json",
+      "family": "nostr",
+      "seed": 1010,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "c14f02cee3ee041b8b0d12e81f89a61176c9a327b990d51647b6e622db739c8d"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1011.json",
+      "family": "nostr",
+      "seed": 1011,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "5ae954b3a6cbb846eb8db000ce665298465dccf31bd8bb5ed3ae2ab0aac73f7e"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1012.json",
+      "family": "nostr",
+      "seed": 1012,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "fdb38d0d6cb030e57c333d93f0c313f06150cecd093a8a9a038aa429b832b353"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1013.json",
+      "family": "nostr",
+      "seed": 1013,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "89cf5045fe91b21d32c407bb48c81002c888aa6259f62ecd70dde7502d9cfa08"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1014.json",
+      "family": "nostr",
+      "seed": 1014,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "6a3aa5731c26aa8b8826bb009f2706bc025dfb749d81d08272c95f3dd5ba2834"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1015.json",
+      "family": "nostr",
+      "seed": 1015,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "8b4b9f509fb17ccf1a380fca5f4c65f3b7a12182dd83f5cbedd4e7717fa2bb5a"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1016.json",
+      "family": "nostr",
+      "seed": 1016,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "093ee5acf9ec1abd021b9c0bcabfffc9c35d4c216d3ce2243f2ec1b75526b106"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1017.json",
+      "family": "nostr",
+      "seed": 1017,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "bb5bd5dada8ea8aa06fbde644df2a77cc3fbdf1e8e9bc7954f7faa1a5f8f003b"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1018.json",
+      "family": "nostr",
+      "seed": 1018,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "b8317d7d8febdc33a28d4c5d7afc2e982984cc2b5630af8aa3f886fed4ed4a81"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1019.json",
+      "family": "nostr",
+      "seed": 1019,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "b2343e07f5819b19ffbbb65d77a0dc618f6b51a914365eeb85d1b69ca51b5748"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1020.json",
+      "family": "nostr",
+      "seed": 1020,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "58b7e3b3d1443adf9ea115795475d149a65f5d22c2726ad744baedd6df75504a"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1021.json",
+      "family": "nostr",
+      "seed": 1021,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "f71255ca612f8a6938fec91357f84ffd6bcad4276e60cf92e337e50bf2acf085"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1022.json",
+      "family": "nostr",
+      "seed": 1022,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "cdba6847136e601c07603c3e1c8f72d7e261a72f272718b2ff4adf62e5d7e2b2"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1023.json",
+      "family": "nostr",
+      "seed": 1023,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "843ba3508068fad703d5b320a7b74a41024a41632d71bb3c43e5451bf5fa8c32"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1024.json",
+      "family": "nostr",
+      "seed": 1024,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "7d62139d8798336d760d822f0e56fb41e19a9a17c212df42811dbb9f1c2f5641"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1025.json",
+      "family": "nostr",
+      "seed": 1025,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "128488e21225355304299a01f98580bae0db93e46a0aa9e52e54c3899adc119e"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1026.json",
+      "family": "nostr",
+      "seed": 1026,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "e0eee41f88df49eef77318532840e36893be7ce5e931b9f30001a442bce1b236"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1027.json",
+      "family": "nostr",
+      "seed": 1027,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "8034a398f4f54207343befa755e622b9d2d81db1667cf8442153392d40a516de"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1028.json",
+      "family": "nostr",
+      "seed": 1028,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "4e17a62827210272bd7ed0b2a97a5a0ab242a5e8fdf8348e24f024f884831f66"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1029.json",
+      "family": "nostr",
+      "seed": 1029,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "6fd5b80264baf692ae7aeec0b0bbc3d356a17aeb6e8ff5d3eb9c9613ac0c875d"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1030.json",
+      "family": "nostr",
+      "seed": 1030,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "1254936c4bc227d17fd051b03ce67698ed2b6e2c9557d4124aec64562815e6d4"
+    },
+    {
+      "path": "fixtures/nostr/custody_hot/seed-1031.json",
+      "family": "nostr",
+      "seed": 1031,
+      "generator": "nostr-custody-hot-fixture/v0",
+      "sha256": "7c465c75ed01aaedefe7698399f0ae3a1011ce69096b616eacc800f9659ee501"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-0000.json",
+      "family": "nostr",
+      "seed": 0,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "aab54e9f773c69c2be944464c309e9cd0306425532c18e3df56be4128c120423"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-0001.json",
+      "family": "nostr",
+      "seed": 1,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "4a13886f76c5fdac36c89dbaf04abd5cfa424509778d3f454846b8ff9c420e09"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-0002.json",
+      "family": "nostr",
+      "seed": 2,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "5f589f311c9b76bbdcbac43dd9a85937a479e725d5cb001e13f22d5c590dab30"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-0003.json",
+      "family": "nostr",
+      "seed": 3,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "ada265620d9dffaa3523730636525083587d0184a085e878cafe0ff10df4b6e5"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-0004.json",
+      "family": "nostr",
+      "seed": 4,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "d7b24cd722b2e826be14e60e10feaa27cfa1c0d19d7af2301aa3fc8f60e8d3fb"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-0005.json",
+      "family": "nostr",
+      "seed": 5,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "0d9acff0cf85d4ee99810eec751b9eb71ebd986cf9345554d6c7870c4aeb9531"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-0006.json",
+      "family": "nostr",
+      "seed": 6,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "0b6710313749ae1fac6e6213862e9eb3234f567d2ff4c5960985aed88ec3e85a"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-0007.json",
+      "family": "nostr",
+      "seed": 7,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "c41fb4546cad7005e1c23835e0fa6fae842adbca22e45b28301fb0023f290be9"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1000.json",
+      "family": "nostr",
+      "seed": 1000,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "292c54afdb41827c8b4705f5ff6fae7c53c98089f2fbcde85762050ed10ca9ad"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1001.json",
+      "family": "nostr",
+      "seed": 1001,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "cd419901b78cd753ab24e426da6f994eb4faa3dd42b5ad165c9f88cbdcdd1fb3"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1002.json",
+      "family": "nostr",
+      "seed": 1002,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "25db8623feaf3b6a39916498694f7db5c2d5f1cfe0ae98d42af01509ce23786b"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1003.json",
+      "family": "nostr",
+      "seed": 1003,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "48f3dce493004ca99071538eff058e03639287a78d26157ae4299bb4fe94c9ea"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1004.json",
+      "family": "nostr",
+      "seed": 1004,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "43e7d042aa518c549ea95756ecb775b35a048c2482197fb1c0d71dd2911971fd"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1005.json",
+      "family": "nostr",
+      "seed": 1005,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "1ba04db611115532aedf1dd7446390bd222acae5343e87470f6606c437d64098"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1006.json",
+      "family": "nostr",
+      "seed": 1006,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "b60dc85246826f3a2f7ea8ad0d0e51400e802d29e78a7b46f2018dc1eb8af663"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1007.json",
+      "family": "nostr",
+      "seed": 1007,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "4f792cb7965f6012ec2098d100be9817ec3af0fba1244ba55af576c96ec78760"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1008.json",
+      "family": "nostr",
+      "seed": 1008,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "978c42192d3b546851de0f6c3c4e52eecb3478fca0f16dcb8a02325f17080514"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1009.json",
+      "family": "nostr",
+      "seed": 1009,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "a95c5b72c329d9dfa2c004a49536e942132f93d0b1fb96bf3c1f6d57be6c36d7"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1010.json",
+      "family": "nostr",
+      "seed": 1010,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "a2db4c601fe3a7cf50d4b2bd89807e325028296b91bd220c757ea8f64c07b8b5"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1011.json",
+      "family": "nostr",
+      "seed": 1011,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "48414bfdd57990b20e17c64c2bf4f6c3199e1a754d04dc6cecf7e3788e8a4556"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1012.json",
+      "family": "nostr",
+      "seed": 1012,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "64b4a7d8cbb22270019eaa845c488dedb9463d25b22c03251aff0a658ddc812c"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1013.json",
+      "family": "nostr",
+      "seed": 1013,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "30c8594b9b287c6fd10aa9a43da5fdf8384d6d7de7eb9fb10b00b49d56e2c10d"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1014.json",
+      "family": "nostr",
+      "seed": 1014,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "0afaeaeeee7d87516f7dfdec448d5f706af57d3c70a5e154675aff72bc0c7ecb"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1015.json",
+      "family": "nostr",
+      "seed": 1015,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "e0d676fa669932371e3b2973c1808386236e5fe1310472307915efed454c1e26"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1016.json",
+      "family": "nostr",
+      "seed": 1016,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "18c11397f1ba1857a486a9be73a1c665057c1a2e2f76e8222b7b03fef9348e99"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1017.json",
+      "family": "nostr",
+      "seed": 1017,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "78fa325c1991c098c5c9b0b919a9135f244b8d7d02d28674b81d6977439cb389"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1018.json",
+      "family": "nostr",
+      "seed": 1018,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "c632fc32da2a913994052bc8cbe743e08693cb3cfa09313932356299ca81ba9e"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1019.json",
+      "family": "nostr",
+      "seed": 1019,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "81d3579529081e531b162160cea7a05d8b768bd9cb985240634c4df567ea38f4"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1020.json",
+      "family": "nostr",
+      "seed": 1020,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "84967902f7f76b6804066d2770094a59c06b0911a97bfb5c784e4d56f8cc3364"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1021.json",
+      "family": "nostr",
+      "seed": 1021,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "3b66ff58dff38aa162ddbc5fba7d1922373613e76af015a07472d6c568382318"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1022.json",
+      "family": "nostr",
+      "seed": 1022,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "b3c41a425415b02c29fafe92e9286b7de2edd92218c41fdc40f14b927f5f306a"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1023.json",
+      "family": "nostr",
+      "seed": 1023,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "a843392357c74ddad19bf3be007e70e76c71a355fffd7b61e8e3aade7a62ed0f"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1024.json",
+      "family": "nostr",
+      "seed": 1024,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "abb0c2dd4b40edc5b80bc3042ad139d22351f8ed325d7f10cad4d49cba1b2ecf"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1025.json",
+      "family": "nostr",
+      "seed": 1025,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "df48b25670db93eba6adca08a97587d137ccc87eeae63a53a975c12c5c8846dc"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1026.json",
+      "family": "nostr",
+      "seed": 1026,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "1780e2a2123027e4f90a54c0dbc3c0df36f95abd88f7e12adc4f82407624b369"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1027.json",
+      "family": "nostr",
+      "seed": 1027,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "9b571482f9c814bdddeb911cfec91e506c4de4a5642b057266a284e52a1af368"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1028.json",
+      "family": "nostr",
+      "seed": 1028,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "a3187a19cd49fdd51e2a6aa31e7a57cc9072ced3d415bc66464978155015f5e1"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1029.json",
+      "family": "nostr",
+      "seed": 1029,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "2a4e2ef1c14cdc31db809babd84c5a4e362f367b10bd1207a16549981ccc5903"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1030.json",
+      "family": "nostr",
+      "seed": 1030,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "4d7a49ba33b6859c2208a66adbb4f869d249aa712f52f1ae5671efc68ec39ecc"
+    },
+    {
+      "path": "fixtures/nostr/mesh_outage/seed-1031.json",
+      "family": "nostr",
+      "seed": 1031,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "fb9d0f849e6898ff8be4287532aa5d30d9e68ccd20fd18a513437ee66f1a7a61"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-0000.json",
+      "family": "nostr",
+      "seed": 0,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "7d5d4ae29a8b8b60bf6191eefa52717fae562d3f755fbf67e298c82a4f1850ec"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-0001.json",
+      "family": "nostr",
+      "seed": 1,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "72dac7542171f98673079057c2ca8c689e6a750c63a3eea0a7bfc9964e86ff76"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-0002.json",
+      "family": "nostr",
+      "seed": 2,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "9da757d327cb9514ee8381ff1eb505e1e23bc968041881c332bac511412bfaa8"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-0003.json",
+      "family": "nostr",
+      "seed": 3,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "ef50fb373241775406626b25315560883006dd8fd3dfdaefcf6d8d35903d1b08"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-0004.json",
+      "family": "nostr",
+      "seed": 4,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "35dba89d04b22eb88b9f4d81350d44923e5bc43cd871073e6b3e23484ebe5ce8"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-0005.json",
+      "family": "nostr",
+      "seed": 5,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "2809137368d7f9a80c0502e570b473881a72c5f3c3956c8978679cbc6dcff6eb"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-0006.json",
+      "family": "nostr",
+      "seed": 6,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "841517c41e38c28949d664013dd922791138d2400a10fae9b6fc0bbdff95c0b8"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-0007.json",
+      "family": "nostr",
+      "seed": 7,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "888e92fe453600da79eb173e0ad786650778a05543a6719c14452c6cec2b02f0"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1000.json",
+      "family": "nostr",
+      "seed": 1000,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "526045b132b9f104e1358555fba39c4be998b98b0c92914806b133b714c5f0aa"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1001.json",
+      "family": "nostr",
+      "seed": 1001,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "e522be69794d18c14a4002d92c25f7a59000d875e9f615faa7e93eb4c64650c5"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1002.json",
+      "family": "nostr",
+      "seed": 1002,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "b4c8dee96c0ca445a6e8eef56aef461fd4e49a5d3990d24ac4eef18ca397cb0a"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1003.json",
+      "family": "nostr",
+      "seed": 1003,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "1ddc094783d827fbf5ed1959b61f5c167ed2edd5d24e7f3c8f63945bccf1675b"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1004.json",
+      "family": "nostr",
+      "seed": 1004,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "d23045343f84af8f356b14e501851ac270efb20b91fbe9741f41f6a75ede5dcc"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1005.json",
+      "family": "nostr",
+      "seed": 1005,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "a8b59cea600ebfbaca4f73c1718c3ec41b632978b5b5aa9d0d5a95078c884444"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1006.json",
+      "family": "nostr",
+      "seed": 1006,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "ac251e35bf329292156a94d38d71d2105f88585ed02b5710b0dc1025ef23335b"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1007.json",
+      "family": "nostr",
+      "seed": 1007,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "412c06f54a158e5473f3483fc4ff6a4a9701ecfbfc0a46ab257eb7143a004622"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1008.json",
+      "family": "nostr",
+      "seed": 1008,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "7cce667f23e7c15d92b194937993d2b059ef89a394bf0b0af18d2a712cf3091d"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1009.json",
+      "family": "nostr",
+      "seed": 1009,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "1121855db64a9217a5de1e720caef4eeb92054b2ce02af4224fd87de49406c8e"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1010.json",
+      "family": "nostr",
+      "seed": 1010,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "4a9049c86a98a5784652c9c5ce7727922dd62bdd3225cdeb1885f22548b1e3c9"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1011.json",
+      "family": "nostr",
+      "seed": 1011,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "2700a317730916e4a03009568984bfa454de3f533c7705301cdf23327e9edaf2"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1012.json",
+      "family": "nostr",
+      "seed": 1012,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "760c0477cfdc166f3d705dcb64c1615ed2f213aa1dbb8fa0dc5be2edea671de7"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1013.json",
+      "family": "nostr",
+      "seed": 1013,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "1cda84d17122a9c533275f5235eea78b3fbb57a68b943cb369fc1b9f59faf44f"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1014.json",
+      "family": "nostr",
+      "seed": 1014,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "884e07f31b07efc7d4451ba86eb74ef7e57878088d8266637a8053501932acb1"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1015.json",
+      "family": "nostr",
+      "seed": 1015,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "d8c69ec00869a105bfca2e70c884d4f72dca4b689ba106a81483f73cd4ed9fac"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1016.json",
+      "family": "nostr",
+      "seed": 1016,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "7173d282d97c626a8737702cd380e470142991b031c2835ad303baff9c9e32b0"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1017.json",
+      "family": "nostr",
+      "seed": 1017,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "df871be968c8766e00263a0a70a3230d2dc23526468e790e32b0062d28cceed4"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1018.json",
+      "family": "nostr",
+      "seed": 1018,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "0fd60121584ce169d258dd6641a0f047be677eeb8adbf18343c2f25073d6b771"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1019.json",
+      "family": "nostr",
+      "seed": 1019,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "0c6ab23621cfe49c7d943a8eb29163f4deed825edf2eca2422207729ed68768a"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1020.json",
+      "family": "nostr",
+      "seed": 1020,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "f16aecd31d0812f5c8d3341c1225c2a774402e18769d7a7daedc8e89fc543345"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1021.json",
+      "family": "nostr",
+      "seed": 1021,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "cbce667e53523920a06de71fa7048900e8be66b10ea84520c540744e30db277c"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1022.json",
+      "family": "nostr",
+      "seed": 1022,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "89d8f8e818dc66587b6c3157171c55f0527816f461b5892778fb0f2f4487279d"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1023.json",
+      "family": "nostr",
+      "seed": 1023,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "f72407e65cfb63970f71c2dc7bb254711825bc749d622f0f9fb588dd73978bec"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1024.json",
+      "family": "nostr",
+      "seed": 1024,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "85173022140fa1ff9688a7d8752d15e8be1f31e99133f512699967a8f2c76a85"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1025.json",
+      "family": "nostr",
+      "seed": 1025,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "650655fbc1a5b242cdba096f8031461d5ea7e8a7ad50b18da1a0fdb785d85212"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1026.json",
+      "family": "nostr",
+      "seed": 1026,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "741e894c2f2f3db48a1851f0a7ca44f2d63776a8a9e5308881f5a2d41ac7900c"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1027.json",
+      "family": "nostr",
+      "seed": 1027,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "e158e3e64ea441895459f5311b5bebb20180324d065a78cd20a64e06baa909c8"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1028.json",
+      "family": "nostr",
+      "seed": 1028,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "5351247dac89bbceb756a6b08400ac01f8fed7418bab95dea5a6f631f0e95db1"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1029.json",
+      "family": "nostr",
+      "seed": 1029,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "d64e0232cd6acc9cb1736a8718809f0783f3e9c716ad80bb67801a48416f8371"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1030.json",
+      "family": "nostr",
+      "seed": 1030,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "b51df80ddab0af8e97a812016f1b1bcd5a160711434ef9e0855e11b129d7264a"
+    },
+    {
+      "path": "fixtures/nostr/mesh_partial/seed-1031.json",
+      "family": "nostr",
+      "seed": 1031,
+      "generator": "nostr-mesh-fixture/v0",
+      "sha256": "09c43d0ae4112930cf9fd01c1f56e708452296769b07d84b227f735ceb9d3952"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-0000.json",
+      "family": "nostr",
+      "seed": 0,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "a76f80fe9130df4940795a8696ee9961aad070ad6e366ff3effb8ec74be9c5b0"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-0001.json",
+      "family": "nostr",
+      "seed": 1,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "551f75bba1fc473e76a27d4e2ed31be715b26b762464011f8544050e061ba920"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-0002.json",
+      "family": "nostr",
+      "seed": 2,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "66d4a9dfde765f4df1cf9747a491d1b945f18932c2cc67e2c3cbf616e1d7024d"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-0003.json",
+      "family": "nostr",
+      "seed": 3,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "c579cc2ab9035415c1a051d858eb00f2e6b0aa3b4f00d28a42ea61d594cb27a9"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-0004.json",
+      "family": "nostr",
+      "seed": 4,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "cf3bb2d3c44d52c34b435a067a9d9bea770ccc4dd6fd4034dd9291a6a1a6ed2e"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-0005.json",
+      "family": "nostr",
+      "seed": 5,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "ae7f0e8fb8cb7516609bbe239fd0c6303269cdf5e17543a43954f51e6c2484fa"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-0006.json",
+      "family": "nostr",
+      "seed": 6,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "586f1244d48178b42129f0ff24bae30e98d320575cc6c5e57aa84de3b0b8db30"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-0007.json",
+      "family": "nostr",
+      "seed": 7,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "68a7f0f9999aad28c0ba398fd4d52a7c41470f675cb15a332a1fdbb7babfac26"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1000.json",
+      "family": "nostr",
+      "seed": 1000,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "2217d280eca1c32e447c99bb1b79d270962bd2464fe53d335fec880495641713"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1001.json",
+      "family": "nostr",
+      "seed": 1001,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "aedc6f3b99bd01e26d475aa589242fed9309447f4c0be2b4e81fa9a2b445f0cd"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1002.json",
+      "family": "nostr",
+      "seed": 1002,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "a67e0a7d101c2bd78569004081ed4371f89e3402fb94720e9076a700101c16ad"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1003.json",
+      "family": "nostr",
+      "seed": 1003,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "151e31fb8ddb3b31d2957636aaf87922ae1ab8c59d7978d2ad02156a5d799749"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1004.json",
+      "family": "nostr",
+      "seed": 1004,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "2d7ce513385927c3ea3f517f8a9d4b4768c9c49509093622774ffedb0f778694"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1005.json",
+      "family": "nostr",
+      "seed": 1005,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "6b02e8b8fe7de194d8055a91bfcf1f748ed755acbfe140dae493442f087e2440"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1006.json",
+      "family": "nostr",
+      "seed": 1006,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "9a147537cd1f679ed3f1dbf784b6c4b23e4564df4a64b34ec263c3b997f5d2af"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1007.json",
+      "family": "nostr",
+      "seed": 1007,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "1cbca7182214b1e39c5590e395e0ef6bc6090fead3874f8250c6fbf4ad6bc2b1"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1008.json",
+      "family": "nostr",
+      "seed": 1008,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "9788e030eca492b7d2abdac24c18817814fbebca82afceae0bcbc8a5f2775b33"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1009.json",
+      "family": "nostr",
+      "seed": 1009,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "ff5066c4639a1628f537493e2b91f50ccd21a7b166fd2d97d874e5daf9136a73"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1010.json",
+      "family": "nostr",
+      "seed": 1010,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "0292ee17ccfae4e147f430dfe3202d8bbb7529c01dea73799a84b40c017774ad"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1011.json",
+      "family": "nostr",
+      "seed": 1011,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "c04911ee43db1c385d317ea8c7786fcacc662179a169ae105e6c5aa551984360"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1012.json",
+      "family": "nostr",
+      "seed": 1012,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "88250810857408a97452ef8da78a817e3e18da01946cb4d5a8fa894ed7d37bef"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1013.json",
+      "family": "nostr",
+      "seed": 1013,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "f48e9e656463cc7a0c0094fc5c07155854ad8a1ba26d4954e195a645149adf6c"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1014.json",
+      "family": "nostr",
+      "seed": 1014,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "597b14dbc25a424360c363af5a7482ccd6fee00ade2c2e3e5c79d3260b8a32d8"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1015.json",
+      "family": "nostr",
+      "seed": 1015,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "b68bf30e7d0636795061959bc3f60d55d5891e7c9b2fb62a57b44017acd4ffff"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1016.json",
+      "family": "nostr",
+      "seed": 1016,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "094008a6b2d1b2fd3723fe3148216389f1a998bba1c8c6f96015419392d13331"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1017.json",
+      "family": "nostr",
+      "seed": 1017,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "335928f4d8d0593efabecb68ced40f8c90f93b384bdc2bc70f137675772568f0"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1018.json",
+      "family": "nostr",
+      "seed": 1018,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "6a5ec8c7b7dc8889163e75e3ebfa184289f70f13ed324f6f893bd9deefe4de10"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1019.json",
+      "family": "nostr",
+      "seed": 1019,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "36e28406faba2034affed8e363be8e65b0939044b328cc6a7a2ab67e09aba03d"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1020.json",
+      "family": "nostr",
+      "seed": 1020,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "95dd8f5e5487b46c3d0471ea9fa54124d72304433c1cb750e99485375ba371b2"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1021.json",
+      "family": "nostr",
+      "seed": 1021,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "c1534184278303acbeddc782b1f00d1955935f90a7be8ddcaae163dacc9b64be"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1022.json",
+      "family": "nostr",
+      "seed": 1022,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "d61b1f23b917103f1ded233531f46f03ebb4076a2dcadd6453e6828f7c361668"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1023.json",
+      "family": "nostr",
+      "seed": 1023,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "e9ca84ed48cf524d60068cab4eb9a63e8287ca99584e10661639c72a848bb468"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1024.json",
+      "family": "nostr",
+      "seed": 1024,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "51c4e65daada9755fa2de251b6d8c528035521602cc48b69dfc7754ef0f5d899"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1025.json",
+      "family": "nostr",
+      "seed": 1025,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "61a9e0f524986e8d6ce5babe50215e4582f00420a299b8953d7eefb3b61c0e13"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1026.json",
+      "family": "nostr",
+      "seed": 1026,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "64f91b25bbb9d8ac6e45b2645ef9a496721ffc6ca889d8827e7b5c6fe8c25743"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1027.json",
+      "family": "nostr",
+      "seed": 1027,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "605a751cac070ee2b1f20cb2856a88123a4bf13bbb9f3a1da8eb03d059b14c37"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1028.json",
+      "family": "nostr",
+      "seed": 1028,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "9a048d6951750eb9c8e852a4ecdc77440df6745ae8ee3c5b5149024e38057293"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1029.json",
+      "family": "nostr",
+      "seed": 1029,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "9c3f4181ea4659f04d2206c3255a3209a02424f04169b9fc35e1b76d4b0fb362"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1030.json",
+      "family": "nostr",
+      "seed": 1030,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "08455c4fb45a457e87cf04fbd584f7d104a12e3ce1246b25fceef37b9c0421f8"
+    },
+    {
+      "path": "fixtures/nostr/private/seed-1031.json",
+      "family": "nostr",
+      "seed": 1031,
+      "generator": "nostr-private-fixture/v0",
+      "sha256": "39c224c376da60bec9821709f96277b857ada971ac0711a3d1caebfb30c5304b"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-0000.json",
+      "family": "nostr",
+      "seed": 0,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "35f7784744ecc5eeb8357705f5888735e49d9f4f90701a6292a58ee87a930321"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-0001.json",
+      "family": "nostr",
+      "seed": 1,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "545c7da38fcc6ef165a09aa0902b9502db430a887e092926f7efc6778a870bdb"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-0002.json",
+      "family": "nostr",
+      "seed": 2,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "46b7c057860080a5a5245b5fb62c8ef2b628b63f3ea05583c7a13e57a7cfa782"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-0003.json",
+      "family": "nostr",
+      "seed": 3,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "378caffc890196163442ec6529feeb906af853b536c5d0ced80d75c0faaf2826"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-0004.json",
+      "family": "nostr",
+      "seed": 4,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "9cb6b383bf6d75838c04890dbfbe2b27bd99d95c77598c4012de2c65f736d041"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-0005.json",
+      "family": "nostr",
+      "seed": 5,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "a164365be5e1934e37bbda5fb83d99e497ae1eaaa356afa156df583862c012b8"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-0006.json",
+      "family": "nostr",
+      "seed": 6,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "9950f6056ae62134131ad9c762a50bf0683f5265d2e759049ee95879d10cee5a"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-0007.json",
+      "family": "nostr",
+      "seed": 7,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "186f454a47f330ed220d93bcd322076867c4622f41f50831eebcd0bdfafefcce"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1000.json",
+      "family": "nostr",
+      "seed": 1000,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "b7934d7aa6d736f3fb52406d93bc6d580b37e126a936f6baedcbfc807d9a5fc0"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1001.json",
+      "family": "nostr",
+      "seed": 1001,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "9e062ed302c1a368636f3d4ebfe4d745d62265d147552c6661ff560b762ef474"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1002.json",
+      "family": "nostr",
+      "seed": 1002,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "b7a790197a13b34f1125376c4ad328179f2abb253cdd58973c71b3c288759a96"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1003.json",
+      "family": "nostr",
+      "seed": 1003,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "a4444271b346635621de24735f890def36b1750f80fa8334c5c406fc2197f2e9"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1004.json",
+      "family": "nostr",
+      "seed": 1004,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "233e5398bd0371075e0d8aafe77b6ca9747e8d7efd4b4ff2dc679668602378bc"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1005.json",
+      "family": "nostr",
+      "seed": 1005,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "1a3e8a4305fffe710c54e050393ad67aaad689209705cd7f671601426a48c19f"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1006.json",
+      "family": "nostr",
+      "seed": 1006,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "f490992c98e3dbf3dffbeff66d8145508e2b30bf57968daafa6ea83eb39363f0"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1007.json",
+      "family": "nostr",
+      "seed": 1007,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "f1e3fdeed4dc95fb5a8c6225930525f95a87a5a148d63efd4d6e72a1eb1a4006"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1008.json",
+      "family": "nostr",
+      "seed": 1008,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "c4f46a9a3b08c76c2d80ab277c8fcc1be31d779665d312f7626cf207565d4599"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1009.json",
+      "family": "nostr",
+      "seed": 1009,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "fa63748d814b6af61612d1bb37a70e1e157fbff5e06e0870e8adf5cb866f630f"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1010.json",
+      "family": "nostr",
+      "seed": 1010,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "f1dd12aa22dd6b4b9489da87276be2d46de93af49a03683e300f29acf43d065b"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1011.json",
+      "family": "nostr",
+      "seed": 1011,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "65bc0b9fdf7d935ae989e8eb4ffc7bb3b700767dd9e5e4adf8e7e9bdee8481df"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1012.json",
+      "family": "nostr",
+      "seed": 1012,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "3d84226c8125af328000814ec1c546913d334c6320cae5554cc87a26d7b62f59"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1013.json",
+      "family": "nostr",
+      "seed": 1013,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "ff84bdb1051ec27a917c8b8550222c404d1326244ef689aadfabc53d6848b0ea"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1014.json",
+      "family": "nostr",
+      "seed": 1014,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "24f8916ba7dba7c3c95df4bcb7490bde3c4fddbc6f603c70a7f22be0e771a7e7"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1015.json",
+      "family": "nostr",
+      "seed": 1015,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "c3367cb0e083cd52d7a46e08a22478f0f86a60827f7d3b9a12706a5869079539"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1016.json",
+      "family": "nostr",
+      "seed": 1016,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "44a8edc0fb0e98a5076751fed5b18235e690f4a9ade89a483c59f5d830f39796"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1017.json",
+      "family": "nostr",
+      "seed": 1017,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "4339a557d925e80cdaebd8b116408029dff065b00054650149027a31cf6a2d7f"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1018.json",
+      "family": "nostr",
+      "seed": 1018,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "41884da6d62426dd7138b96007312ddfc1b5817d742e155a5a6d59ff25250d6d"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1019.json",
+      "family": "nostr",
+      "seed": 1019,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "2f39c0fea24a801b3290f9d10f185003b242cfae4caf155ea5287e93022c488c"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1020.json",
+      "family": "nostr",
+      "seed": 1020,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "8faa4d359cabbb0516f55ce640cda429d68686dda144f26593f22d764e111c12"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1021.json",
+      "family": "nostr",
+      "seed": 1021,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "8892b09b71ff9f35ee10787b97f23f6b52c6a6bcccb31bc6ac1019068567ffe3"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1022.json",
+      "family": "nostr",
+      "seed": 1022,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "717a2a8015ced131374932b04efcf860b11de5e8cfb15cd864205bd9f1895c2b"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1023.json",
+      "family": "nostr",
+      "seed": 1023,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "e5e1062a3ba1e617e66429b42e0a7498b506b579872f74043bc10d0b130a46f9"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1024.json",
+      "family": "nostr",
+      "seed": 1024,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "414ed7f7db9e03c15e74e58db844e5e250c34feaeba7d2d69f347423f6e45771"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1025.json",
+      "family": "nostr",
+      "seed": 1025,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "271ea8e48b9955ead62a7b1d1246976b6b3c1683a78397e46c0d0cb451f3c5a2"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1026.json",
+      "family": "nostr",
+      "seed": 1026,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "8df47bb0bd8277778092cb13bbe7e29b458243622a4cf84f6a5db08a77766676"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1027.json",
+      "family": "nostr",
+      "seed": 1027,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "78b189da2167e91dc19b1ae59056c610a3998384ceba03211ec947c62691b791"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1028.json",
+      "family": "nostr",
+      "seed": 1028,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "bf9fd5cba08e1a2b2b888c42d3f43735253765abe0979681f4ef1c8e0a72cd54"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1029.json",
+      "family": "nostr",
+      "seed": 1029,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "f5ded4acda07e47b195817404242ef787641680e710527c9b616603a9b017279"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1030.json",
+      "family": "nostr",
+      "seed": 1030,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "a05a62c9c62d251ccd77102613305d73e5cbbcdea1ba2d6e630abe0b67a83747"
+    },
+    {
+      "path": "fixtures/nostr/publish/seed-1031.json",
+      "family": "nostr",
+      "seed": 1031,
+      "generator": "nostr-publish-fixture/v0",
+      "sha256": "0114e37eefb2e387725bb0cb08380fe00d159cf70c0c51a272b59455ee247990"
     },
     {
       "path": "fixtures/placement/seed-0000.json",

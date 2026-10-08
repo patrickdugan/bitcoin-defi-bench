@@ -19,9 +19,9 @@ export interface EpisodeRow {
 export async function runEpisode(env: Environment, agent: Agent): Promise<EpisodeRow> {
   agent.reset?.({ task: env.task, seed: env.seed, cell: env.cell }, agent.privileged ? env.privileged() : undefined);
   const initial = env.budget();
-  // Every step either debits attempts or probes, or ends the phase, so this bound cannot bind
-  // unless an environment breaks the budget contract.
-  const limit = initial.attempts + initial.probes + 1;
+  // Every step either debits attempts, probes, or blocks (a wait of at least one block), or ends
+  // the phase, so this bound cannot bind unless an environment breaks the budget contract.
+  const limit = initial.attempts + initial.probes + initial.blocks + 1;
   const rejections: EpisodeRow["rejections"] = [];
   let last: Json = null;
   let turn = 0;

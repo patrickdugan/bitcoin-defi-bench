@@ -33,6 +33,8 @@ export interface Agent {
 export const REJECT_REASONS = [
   "malformed", "unknown_tool", "unknown_node", "self_pair", "not_integer",
   "below_minimum", "over_budget", "out_of_grid", "phase_closed", "no_link", "unbalanced",
+  // Family 9 (docs/tasks.md §10.1).
+  "bad_event", "unknown_handle", "unknown_id", "duplicate", "relay_refused",
 ] as const;
 export type RejectReason = (typeof REJECT_REASONS)[number];
 

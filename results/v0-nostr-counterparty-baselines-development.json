@@ -1,0 +1,891 @@
+{
+ "bench": "bitcoin-defi-bench/v0",
+ "block": "development",
+ "manifest_sha256": "6886a9a134d3936ae6822a14da0eb971fdea23d4a2d5d0031d55612ae279fdbf",
+ "prereg_sha256": "f430aefe0969d5e92cc43e9cb3a760b0431d49c6d85c60d210b4395cdc4844e5",
+ "spiral_commit": "9824c30ad402cc9bca768eca27d176e0e8788db5",
+ "node": "v24.19.0",
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7
+ ],
+ "agents": [
+  {
+   "id": "idle",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "first_offer",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "random",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "cheapest",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "reputation",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "oracle",
+   "privileged": true,
+   "baseline": true
+  }
+ ],
+ "tasks": [
+  {
+   "task": "nostr/counterparty",
+   "unit": "sats: the job's value if a result arrives by the deadline, minus everything paid",
+   "band": 1000,
+   "floor": "idle",
+   "ceiling": "oracle",
+   "reference": "cheapest",
+   "metrics": [
+    "delivered",
+    "paid_sats",
+    "paid_impostor",
+    "lost_nutzaps"
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "task": "nostr/counterparty",
+   "seed": 0,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 0,
+    "payments": 0,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 0,
+   "cell": "single",
+   "agent": "first_offer",
+   "value": -11467,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 11467,
+    "payments": 1,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 32,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 0,
+   "cell": "single",
+   "agent": "random",
+   "value": -10521,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 10521,
+    "payments": 1,
+    "paid_impostor": 1,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 32,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 0,
+   "cell": "single",
+   "agent": "cheapest",
+   "value": 28575,
+   "metrics": {
+    "delivered": 1,
+    "paid_sats": 21425,
+    "payments": 3,
+    "paid_impostor": 0,
+    "lost_nutzaps": 1,
+    "fetched": 0
+   },
+   "turns": 34,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 0,
+   "cell": "single",
+   "agent": "reputation",
+   "value": 43981,
+   "metrics": {
+    "delivered": 1,
+    "paid_sats": 6019,
+    "payments": 1,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 8
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 0,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 43981,
+   "metrics": {
+    "delivered": 1,
+    "paid_sats": 6019,
+    "payments": 1,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 8
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 1,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 0,
+    "payments": 0,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 1,
+   "cell": "single",
+   "agent": "first_offer",
+   "value": -4872,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 4872,
+    "payments": 1,
+    "paid_impostor": 1,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 32,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 1,
+   "cell": "single",
+   "agent": "random",
+   "value": 39041,
+   "metrics": {
+    "delivered": 1,
+    "paid_sats": 10959,
+    "payments": 1,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 9,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 1,
+   "cell": "single",
+   "agent": "cheapest",
+   "value": -17629,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 17629,
+    "payments": 3,
+    "paid_impostor": 1,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 34,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 1,
+   "cell": "single",
+   "agent": "reputation",
+   "value": 42943,
+   "metrics": {
+    "delivered": 1,
+    "paid_sats": 7057,
+    "payments": 1,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 8
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 1,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 42943,
+   "metrics": {
+    "delivered": 1,
+    "paid_sats": 7057,
+    "payments": 1,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 8
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 2,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 0,
+    "payments": 0,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 2,
+   "cell": "single",
+   "agent": "first_offer",
+   "value": -8221,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 8221,
+    "payments": 1,
+    "paid_impostor": 1,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 32,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 2,
+   "cell": "single",
+   "agent": "random",
+   "value": -7083,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 7083,
+    "payments": 1,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 32,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 2,
+   "cell": "single",
+   "agent": "cheapest",
+   "value": -22444,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 22444,
+    "payments": 3,
+    "paid_impostor": 1,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 34,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 2,
+   "cell": "single",
+   "agent": "reputation",
+   "value": 30234,
+   "metrics": {
+    "delivered": 1,
+    "paid_sats": 19766,
+    "payments": 2,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 8
+   },
+   "turns": 27,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 2,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 37317,
+   "metrics": {
+    "delivered": 1,
+    "paid_sats": 12683,
+    "payments": 1,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 8
+   },
+   "turns": 15,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 3,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 0,
+    "payments": 0,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 3,
+   "cell": "single",
+   "agent": "first_offer",
+   "value": -9692,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 9692,
+    "payments": 1,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 32,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 3,
+   "cell": "single",
+   "agent": "random",
+   "value": -11674,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 11674,
+    "payments": 1,
+    "paid_impostor": 1,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 32,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 3,
+   "cell": "single",
+   "agent": "cheapest",
+   "value": -17327,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 17327,
+    "payments": 3,
+    "paid_impostor": 0,
+    "lost_nutzaps": 2,
+    "fetched": 0
+   },
+   "turns": 34,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 3,
+   "cell": "single",
+   "agent": "reputation",
+   "value": 30767,
+   "metrics": {
+    "delivered": 1,
+    "paid_sats": 19233,
+    "payments": 1,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 3,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 30767,
+   "metrics": {
+    "delivered": 1,
+    "paid_sats": 19233,
+    "payments": 1,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 4,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 0,
+    "payments": 0,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 4,
+   "cell": "single",
+   "agent": "first_offer",
+   "value": -13922,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 13922,
+    "payments": 1,
+    "paid_impostor": 0,
+    "lost_nutzaps": 1,
+    "fetched": 0
+   },
+   "turns": 32,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 4,
+   "cell": "single",
+   "agent": "random",
+   "value": 40923,
+   "metrics": {
+    "delivered": 1,
+    "paid_sats": 9077,
+    "payments": 1,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 9,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 4,
+   "cell": "single",
+   "agent": "cheapest",
+   "value": -16073,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 16073,
+    "payments": 3,
+    "paid_impostor": 1,
+    "lost_nutzaps": 1,
+    "fetched": 0
+   },
+   "turns": 34,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 4,
+   "cell": "single",
+   "agent": "reputation",
+   "value": 43545,
+   "metrics": {
+    "delivered": 1,
+    "paid_sats": 6455,
+    "payments": 1,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 8
+   },
+   "turns": 23,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 4,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 43545,
+   "metrics": {
+    "delivered": 1,
+    "paid_sats": 6455,
+    "payments": 1,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 8
+   },
+   "turns": 23,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 5,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 0,
+    "payments": 0,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 5,
+   "cell": "single",
+   "agent": "first_offer",
+   "value": -10258,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 10258,
+    "payments": 1,
+    "paid_impostor": 1,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 32,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 5,
+   "cell": "single",
+   "agent": "random",
+   "value": 39817,
+   "metrics": {
+    "delivered": 1,
+    "paid_sats": 10183,
+    "payments": 1,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 8,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 5,
+   "cell": "single",
+   "agent": "cheapest",
+   "value": 36879,
+   "metrics": {
+    "delivered": 1,
+    "paid_sats": 13121,
+    "payments": 2,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 5,
+   "cell": "single",
+   "agent": "reputation",
+   "value": 41866,
+   "metrics": {
+    "delivered": 1,
+    "paid_sats": 8134,
+    "payments": 1,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 8
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 5,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 41961,
+   "metrics": {
+    "delivered": 1,
+    "paid_sats": 8039,
+    "payments": 1,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 8
+   },
+   "turns": 15,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 6,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 0,
+    "payments": 0,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 6,
+   "cell": "single",
+   "agent": "first_offer",
+   "value": -10784,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 10784,
+    "payments": 1,
+    "paid_impostor": 1,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 32,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 6,
+   "cell": "single",
+   "agent": "random",
+   "value": -15036,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 15036,
+    "payments": 1,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 32,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 6,
+   "cell": "single",
+   "agent": "cheapest",
+   "value": -31661,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 31661,
+    "payments": 3,
+    "paid_impostor": 2,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 34,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 6,
+   "cell": "single",
+   "agent": "reputation",
+   "value": 35900,
+   "metrics": {
+    "delivered": 1,
+    "paid_sats": 14100,
+    "payments": 1,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 8
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 6,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 36696,
+   "metrics": {
+    "delivered": 1,
+    "paid_sats": 13304,
+    "payments": 1,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 8
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 7,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 0,
+    "payments": 0,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 7,
+   "cell": "single",
+   "agent": "first_offer",
+   "value": 42636,
+   "metrics": {
+    "delivered": 1,
+    "paid_sats": 7364,
+    "payments": 1,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 7,
+   "cell": "single",
+   "agent": "random",
+   "value": 42636,
+   "metrics": {
+    "delivered": 1,
+    "paid_sats": 7364,
+    "payments": 1,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 15,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 7,
+   "cell": "single",
+   "agent": "cheapest",
+   "value": -14857,
+   "metrics": {
+    "delivered": 0,
+    "paid_sats": 14857,
+    "payments": 3,
+    "paid_impostor": 1,
+    "lost_nutzaps": 0,
+    "fetched": 0
+   },
+   "turns": 34,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 7,
+   "cell": "single",
+   "agent": "reputation",
+   "value": 35627,
+   "metrics": {
+    "delivered": 1,
+    "paid_sats": 14373,
+    "payments": 2,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 8
+   },
+   "turns": 34,
+   "rejections": []
+  },
+  {
+   "task": "nostr/counterparty",
+   "seed": 7,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 42636,
+   "metrics": {
+    "delivered": 1,
+    "paid_sats": 7364,
+    "payments": 1,
+    "paid_impostor": 0,
+    "lost_nutzaps": 0,
+    "fetched": 8
+   },
+   "turns": 22,
+   "rejections": []
+  }
+ ],
+ "checks": [
+  {
+   "id": "K92",
+   "pass": true,
+   "detail": "8 episodes compared, 0 mismatches"
+  }
+ ]
+}

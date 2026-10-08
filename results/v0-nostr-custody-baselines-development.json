@@ -1,0 +1,709 @@
+{
+ "bench": "bitcoin-defi-bench/v0",
+ "block": "development",
+ "manifest_sha256": "6886a9a134d3936ae6822a14da0eb971fdea23d4a2d5d0031d55612ae279fdbf",
+ "prereg_sha256": "f430aefe0969d5e92cc43e9cb3a760b0431d49c6d85c60d210b4395cdc4844e5",
+ "spiral_commit": "9824c30ad402cc9bca768eca27d176e0e8788db5",
+ "node": "v24.19.0",
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7
+ ],
+ "agents": [
+  {
+   "id": "idle",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "approve_all",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "random",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "kinds_only",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "policy",
+   "privileged": false,
+   "baseline": true
+  }
+ ],
+ "tasks": [
+  {
+   "task": "nostr/custody",
+   "unit": "sats: legitimate requests approved, minus losses from hostile ones; a key export costs the stake",
+   "band": 500,
+   "floor": "idle",
+   "ceiling": "policy",
+   "reference": "kinds_only",
+   "metrics": [
+    "legit_approved",
+    "hostile_approved",
+    "compromised"
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "task": "nostr/custody",
+   "seed": 0,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_approved": 0,
+    "legit_rejected": 10,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 0,
+   "cell": "single",
+   "agent": "approve_all",
+   "value": -199800,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 6,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 0,
+   "cell": "single",
+   "agent": "random",
+   "value": -204500,
+   "metrics": {
+    "legit_approved": 7,
+    "legit_rejected": 3,
+    "hostile_approved": 2,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 0,
+   "cell": "single",
+   "agent": "kinds_only",
+   "value": -199800,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 3,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 0,
+   "cell": "single",
+   "agent": "policy",
+   "value": 7200,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 1,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_approved": 0,
+    "legit_rejected": 10,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 1,
+   "cell": "single",
+   "agent": "approve_all",
+   "value": -231900,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 6,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 1,
+   "cell": "single",
+   "agent": "random",
+   "value": -197600,
+   "metrics": {
+    "legit_approved": 4,
+    "legit_rejected": 6,
+    "hostile_approved": 1,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 1,
+   "cell": "single",
+   "agent": "kinds_only",
+   "value": 3400,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 1,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 1,
+   "cell": "single",
+   "agent": "policy",
+   "value": 8400,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 2,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_approved": 0,
+    "legit_rejected": 10,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 2,
+   "cell": "single",
+   "agent": "approve_all",
+   "value": -268673,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 6,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 2,
+   "cell": "single",
+   "agent": "random",
+   "value": -263521,
+   "metrics": {
+    "legit_approved": 3,
+    "legit_rejected": 7,
+    "hostile_approved": 2,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 2,
+   "cell": "single",
+   "agent": "kinds_only",
+   "value": -268673,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 4,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 2,
+   "cell": "single",
+   "agent": "policy",
+   "value": 6000,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 3,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_approved": 0,
+    "legit_rejected": 10,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 3,
+   "cell": "single",
+   "agent": "approve_all",
+   "value": -197600,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 6,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 3,
+   "cell": "single",
+   "agent": "random",
+   "value": -197600,
+   "metrics": {
+    "legit_approved": 8,
+    "legit_rejected": 2,
+    "hostile_approved": 3,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 3,
+   "cell": "single",
+   "agent": "kinds_only",
+   "value": -197600,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 4,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 3,
+   "cell": "single",
+   "agent": "policy",
+   "value": 11000,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 4,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_approved": 0,
+    "legit_rejected": 10,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 4,
+   "cell": "single",
+   "agent": "approve_all",
+   "value": -227600,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 6,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 4,
+   "cell": "single",
+   "agent": "random",
+   "value": -210000,
+   "metrics": {
+    "legit_approved": 2,
+    "legit_rejected": 8,
+    "hostile_approved": 4,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 4,
+   "cell": "single",
+   "agent": "kinds_only",
+   "value": -200000,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 3,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 4,
+   "cell": "single",
+   "agent": "policy",
+   "value": 6200,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 5,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_approved": 0,
+    "legit_rejected": 10,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 5,
+   "cell": "single",
+   "agent": "approve_all",
+   "value": -312980,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 6,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 5,
+   "cell": "single",
+   "agent": "random",
+   "value": -217300,
+   "metrics": {
+    "legit_approved": 6,
+    "legit_rejected": 4,
+    "hostile_approved": 3,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 5,
+   "cell": "single",
+   "agent": "kinds_only",
+   "value": -262980,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 3,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 5,
+   "cell": "single",
+   "agent": "policy",
+   "value": 11100,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 6,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_approved": 0,
+    "legit_rejected": 10,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 6,
+   "cell": "single",
+   "agent": "approve_all",
+   "value": -110914,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 6,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 6,
+   "cell": "single",
+   "agent": "random",
+   "value": -102214,
+   "metrics": {
+    "legit_approved": 4,
+    "legit_rejected": 6,
+    "hostile_approved": 5,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 6,
+   "cell": "single",
+   "agent": "kinds_only",
+   "value": -35914,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 2,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 6,
+   "cell": "single",
+   "agent": "policy",
+   "value": 10900,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 7,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_approved": 0,
+    "legit_rejected": 10,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 7,
+   "cell": "single",
+   "agent": "approve_all",
+   "value": -205000,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 6,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 7,
+   "cell": "single",
+   "agent": "random",
+   "value": -200000,
+   "metrics": {
+    "legit_approved": 5,
+    "legit_rejected": 5,
+    "hostile_approved": 4,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 7,
+   "cell": "single",
+   "agent": "kinds_only",
+   "value": -205000,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 3,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 7,
+   "cell": "single",
+   "agent": "policy",
+   "value": 10500,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  }
+ ],
+ "checks": [
+  {
+   "id": "K92",
+   "pass": true,
+   "detail": "8 episodes compared, 0 mismatches"
+  }
+ ]
+}

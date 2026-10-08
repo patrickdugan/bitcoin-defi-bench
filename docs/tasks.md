@@ -585,7 +585,9 @@ In every cell the window is 1,008 blocks, services honor 98.5% to 99.9% of 100 t
 
 **Development results (seeds 0 to 7).** In [results/v0-bonding-baselines-development.md](../results/v0-bonding-baselines-development.md). K51 and K52 pass. `plug_in` is admitted in 6, 5, and 6 of 8 seeds (`fast`, `slow`, `strict`) and `half_rate` in all 24; Spiral's rule is admitted in none. `oracle` − `plug_in` is +0.34, +0.50, and +0.41 in ln cost, almost all of it the plug-in's inadmissible offers, and `half_rate` closes all but 0.01 to 0.07 of it. Eight seeds leave every interval wide, because admission is all or nothing.
 
-**What remains.** An amendment freezing the family, and an LLM prompt. An episode is a single offer, so the adapter needs no change.
+**Bonsai 8B, thinking off, on the development seeds** ([results/v0-bonding-bonsai-8b-nothink-development.md](../results/v0-bonding-bonsai-8b-nothink-development.md)). It offered the prompt's example, the largest bond with the longest period, in all 24 episodes. That example is admitted every time: it is the safe, expensive end of the grid. Agent − `plug_in` is −0.52 (−1.15 to +0.11), −0.24 (−0.90 to +0.41), and −0.35 (−0.93 to +0.23) on `fast`, `slow`, and `strict`. A copy here is never penalized as inadmissible, unlike family 10's example, so it lands nearer the reference than a copy does elsewhere.
+
+**What remains.** An amendment freezing the family, drafted in [amendment_drafts.md](amendment_drafts.md).
 
 ## 7. Family 6: position netting toward a target settlement value
 
@@ -773,7 +775,7 @@ In every cell the horizon is 144 blocks (one day), values are log-uniform from 2
 
 1. Done: the re-measured grid is adopted (§8.5), and the fixtures were rebuilt and development rerun on it. The results did not change, because the adopted seconds equal the first grid's up to 128 claims and no policy in these cells forms larger batches.
 2. An amendment freezing the family, drafted in [amendment_drafts.md](amendment_drafts.md).
-3. LLM runs. `scripts/run_proof_budget_agent.ts` sends the current turn alone (`contextTurns: 0`), which carries the whole state; nothing has been run yet.
+3. LLM runs. `scripts/run_proof_budget_agent.ts` sends the current turn alone (`contextTurns: 0`), which carries the whole state. Bonsai 8B with thinking off, on the development seeds ([results/v0-proof-budget-bonsai-8b-nothink-development.md](../results/v0-proof-budget-bonsai-8b-nothink-development.md)), forfeited 98% of all claims. Its agent − `fixed_interval` is −7.7 to −7.9 in ln cost, at the floor. Eighteen of 24 episodes ended with `commit` after a few small proofs, and most of the rest with a wait to the horizon, though the prompt states that both lose every unproven claim. The tool name may be a trap for a model: across the bench `commit` means "end the decision phase", but it reads like "commit the proof". Whether to rename this family's tool before freezing is a decision for review.
 
 ## 9. Family 8: timing funding against fee and demand (specified, not implemented)
 

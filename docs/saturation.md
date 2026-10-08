@@ -72,6 +72,15 @@ Bonsai 8B with `dlc_design`, `bonsai-8b-nothink@a63ee64a14a3`, in [results/v0-dl
 
 With `dlc_design` the model called the skill in 18 of 96 episodes, and all 18 offered its result and scored the ceiling: an offer of a few hundred characters is copied without a slip. Its gains are 0.28, 0.25, and 0.23 on `mobile_signer`, `stable_30d`, and `stable_90d`, against 0.07, 0.08, and −0.04 bare. Both remain below `uniform_tuned` in every cell (docs/tasks.md §13.9). On this family the call rate is the whole gap: about one call in five, where development showed none in 24.
 
+## Development results, families 5 and 7 (seeds 0 to 7)
+
+Bare Bonsai 8B, no skills, thinking off.
+
+- **Family 5, service bonding.** It offered the prompt's example, the largest bond with the longest period, in 24 of 24 episodes. That offer is always admitted, so it costs a lot but is never penalized. Agent − `plug_in` is −0.24 to −0.52 in ln cost, with every interval crossing zero at eight seeds (docs/tasks.md §6.1).
+- **Family 7, proving within a budget.** It forfeited 98% of the claims and sits at the floor, about 7.8 ln units below `fixed_interval`. Eighteen of 24 episodes ended with `commit` after a few proofs of one to four claims (docs/tasks.md §8.6).
+
+In both families, as in families 1, 6, and 10, the model either copies what the prompt shows or ends early. A skill for family 7 would carry the economic-order interval; for family 5, a confidence bound on the response rate.
+
 ## Order of work
 
 1. Done (2026-10-07): the skill loop in `src/agents/chat.ts`, the skills in `src/agents/skills.ts`, a netting prompt in `src/tasks/netting/prompt.ts`, and `scripts/run_netting_agent.ts` with `--skills`. Tests cover the loop, the cap, the identity binding, error returns, and that a model which echoes `min_cost_flow` scores the ceiling.

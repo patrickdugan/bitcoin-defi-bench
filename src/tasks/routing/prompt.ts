@@ -18,12 +18,15 @@ To give up on the payment:
 {"tool":"skip"}
 The index shown is the format only; which candidate is yours to choose. Your reply is cut off after {limit} tokens.`;
 
-const TURN = `{last}Payment {i} of {demands} ({phase}): {sats} sats from {source} to {target}. Attempts left for this payment: {left}.
+// The history comes first and only grows, so consecutive requests share almost their whole prefix and
+// a server with prompt caching reprocesses only the end; the current payment comes last.
+const TURN = `Earlier payments (i source>target sats: candidate and outcome of each attempt):
+{history}
+
+{last}Payment {i} of {demands} ({phase}): {sats} sats from {source} to {target}. Attempts left for this payment: {left}.
 Candidates (index hops fee_msat path):
 {candidates}
 Already tried for this payment: {tried}
-Earlier payments (i source>target sats: candidate and outcome of each attempt):
-{history}
 
 Reply with one JSON object.`;
 

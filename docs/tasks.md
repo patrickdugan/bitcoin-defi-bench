@@ -1,6 +1,6 @@
 # Task families, v0
 
-Status: the harness and family 1 are implemented, their preregistration sections are frozen, and the baselines have been run on the confirmatory seeds (`results/v0-placement-baselines.md`). Family 3 is implemented with the server-tier term of §4.4 and preregistered by amendment; three of the brief's choices are still not offered (§4.6). Family 6 is implemented and preregistered by amendment. An LLM adapter exists (`docs/running.md`) and one LLM has been run on families 1 and 6 (`docs/saturation.md`). Families 2, 4, 5, 7, and 8 are specified only. Family 9 (Nostr coordination and the bitchat mesh, §10) is built, its protocol core checked against the published vectors, and its baselines run on the development seeds; its preregistration amendment is drafted and not frozen. The scorecard they fill is §0.2.
+Status: the harness and family 1 are implemented, their preregistration sections are frozen, and the baselines have been run on the confirmatory seeds (`results/v0-placement-baselines.md`). Family 3 is implemented with the server-tier term of §4.4 and preregistered by amendment; three of the brief's choices are still not offered (§4.6). Family 6 is implemented and preregistered by amendment. An LLM adapter exists (`docs/running.md`) and one LLM has been run on families 1 and 6 (`docs/saturation.md`). Families 2, 4, 5, 7, and 8 are specified only. Family 9 (Nostr coordination and the bitchat mesh, §10) is built, its protocol core checked against the published vectors, preregistered by Amendment 5, and its baselines run on the confirmatory seeds. The scorecard they fill is §0.2.
 
 Every statement below carries one of five provenance tags.
 
@@ -65,11 +65,11 @@ Rails are the paper's object classes (§2.1), with two classes added on review o
 | Encode a contract's payouts and size its collateral | | | | | | | **F10, built** §13 (development seeds) | | |
 | Prove claims within a budget | | | | | | RAITO gives root_n | | F7, specced §8 | |
 | Time funding against fee and demand | | | | | | F8, specced §9 | | | |
-| Protect the key that controls the capital | NWC budget at stake (NIP-47) | | NIP-60 wallet at stake | | | | | | **F9 `custody`, `custody_hot`, built** §10.2 |
-| Post where the audience reads | | | | | | | | | **F9 `publish`, built** §10.3 |
-| Deliver private messages | | | | | | | | | **F9 `private`, built** §10.4 |
-| Buy a service from a counterparty | pays over NWC (NIP-47) | | pays by nutzap (NIP-61) | | | | | | **F9 `counterparty`, built** §10.5 |
-| Deliver when the internet is down | | | | | | | | | **F9 `mesh_outage`, `mesh_partial`, built** §10.6 |
+| Protect the key that controls the capital | NWC budget at stake (NIP-47) | | NIP-60 wallet at stake | | | | | | **F9 `custody`, `custody_hot`, run** §10.2 |
+| Post where the audience reads | | | | | | | | | **F9 `publish`, run** §10.3 |
+| Deliver private messages | | | | | | | | | **F9 `private`, run** §10.4 |
+| Buy a service from a counterparty | pays over NWC (NIP-47) | | pays by nutzap (NIP-61) | | | | | | **F9 `counterparty`, run** §10.5 |
+| Deliver when the internet is down | | | | | | | | | **F9 `mesh_outage`, `mesh_partial`, run** §10.6 |
 
 Reading the table:
 
@@ -692,11 +692,11 @@ The observation carries the fee-rate history to date, the prevailing rate, the d
 
 Native value: delivered volume minus fee minus capital charge, in sats. Baselines: `now_high` (broadcast at once at a rate that confirms next block), `wait_for_low` (broadcast when the rate falls below a declared threshold), `random`, and `oracle` (knows the fee path and the demand; the best broadcast and depth by search). Band and the sats weight on delivered volume are set with the fee source, by amendment.
 
-## 10. Family 9: Nostr coordination under a protected key, and the bitchat mesh (built; development seeds only)
+## 10. Family 9: Nostr coordination under a protected key, and the bitchat mesh (built; frozen by Amendment 5; confirmatory baselines run)
 
 Added on request on 2026-10-08 and built the same day. An agent that moves capital on these rails also has to hold the key that signs for it, reach its counterparties, publish where they read, keep private what is private, and keep working when the internet does not. Nostr is where Bitcoin agents do that: wallet connections (NIP-47), paid services (NIP-90), nutzaps (NIP-61), private messages (NIP-17). bitchat, the Bluetooth mesh messenger Jack Dorsey released in July 2025, carries the same traffic between phones when there is no network, and falls back to Nostr when there is. Task ids: `nostr/<cell>`. Each cell is one row of the profile (§0.2); none is combined with another.
 
-Sources, pinned in `data/nostr/provenance.json`: the NIPs at `a79e21d` (nostr-protocol/nips), BIP-340 at `927b6de` (bitcoin/bips), and the bitchat protocol whitepaper version 2.0 of 2026-07-06 at `5e9287f` (permissionlesstech/bitchat), cited below as "the whitepaper". The cells are in `src/tasks/nostr/`, their invented values in `config/nostr.json`, the runners in `scripts/run_nostr.ts` and `scripts/run_nostr_agent.ts`. The preregistration amendment is drafted in `docs/nostr_amendment_draft.md` and not yet frozen.
+Sources, pinned in `data/nostr/provenance.json`: the NIPs at `a79e21d` (nostr-protocol/nips), BIP-340 at `927b6de` (bitcoin/bips), and the bitchat protocol whitepaper version 2.0 of 2026-07-06 at `5e9287f` (permissionlesstech/bitchat), cited below as "the whitepaper". The cells are in `src/tasks/nostr/`, their invented values in `config/nostr.json`, the runners in `scripts/run_nostr.ts` and `scripts/run_nostr_agent.ts`. The family is preregistered and frozen by Amendment 5 of `prereg/v0.md`, appended unchanged from the draft in `docs/nostr_amendment_draft.md`.
 
 ### 10.1 Common simulator
 
@@ -867,29 +867,49 @@ Three decisions were made in building it.
 2. **Characters NIP-01 does not escape.** NIP-01 says that characters other than the seven it lists are written verbatim, where `JSON.stringify` writes the remaining control characters as `\u00XX`. Implementations differ on this, and an id that two implementations compute differently is not an id. The core therefore refuses strings with such characters or with lone surrogates. No generator produces them.
 3. **Randomness.** All randomness is drawn from the bench's named streams, so episodes reproduce. The code is variable-time and holds secrets in BigInts: it is a simulator's cryptography, never a wallet's, and its header says so.
 
-### 10.9 Development results
+### 10.9 Results
 
-Baselines on development seeds 0 through 7 (`results/v0-nostr-*-baselines-development.md`), normalized gain against `idle` and the cell's ceiling. Every gate passed in every cell: `idle` earned 0 on every episode (K91); where the ceiling is exact, it matched the direct computation on every episode (K92) and nothing beat it (K93). The draft amendment's fourteen hypotheses all held in their predicted direction after adjustment.
+**Confirmatory.** The family was frozen by Amendment 5 of `prereg/v0.md` on 2026-10-08 and its baselines were run on the confirmatory seeds 1000 through 1031 the same day (`results/v0-nostr-<cell>-baselines-confirmatory.md`; manifest `6886a9a1…`, preregistration `8f9b0698…`). Every gate passed in every cell. `idle` earned 0 on all 224 episodes (K91). Where the ceiling is exact, it matched the direct computation on every episode (K92) and no policy beat it (K93). All fourteen hypotheses held in their predicted direction on the adjusted interval, each cell adjusted for its two.
 
-| Cell | Baselines, normalized gain | Ceiling − reference, sats |
+| Hypothesis | Cell | Contrast | Adjusted 95% interval, sats | Verdict |
+|---|---|---|---|---|
+| H1 | `custody` | `policy` − `idle` | +9,675 (+8,638 to +10,712) | positive |
+| H2 | `custody` | `kinds_only` − `idle` | −145,752 (−185,833 to −105,671) | negative |
+| H3 | `custody_hot` | `policy` − `idle` | +4,141 (+3,476 to +4,805) | positive |
+| H4 | `custody_hot` | `no_key_paste` − `idle` | −50,547 (−55,014 to −46,080) | negative |
+| H5 | `publish` | `outbox` − `random` | +9,797 (+8,829 to +10,765) | positive |
+| H6 | `publish` | `max_reach` − `outbox` | +2,300 (+1,836 to +2,764) | positive |
+| H7 | `private` | `nip17` − `legacy_everywhere` | +5,635 (+4,726 to +6,545) | positive |
+| H8 | `private` | `plaintext_mention` − `idle` | −43,714 (−47,051 to −40,377) | negative |
+| H9 | `counterparty` | `reputation` − `cheapest` | +25,007 (+10,139 to +39,874) | positive |
+| H10 | `counterparty` | `oracle` − `cheapest` | +37,628 (+26,089 to +49,167) | positive |
+| H11 | `mesh_outage` | `bitchat_router` − `flood_now` | +11,303 (+9,716 to +12,889) | positive |
+| H12 | `mesh_outage` | `oracle` − `bitchat_router` | +3,524 (+2,822 to +4,226) | positive |
+| H13 | `mesh_partial` | `bitchat_router` − `nostr_only` | +13,098 (+11,915 to +14,281) | positive |
+| H14 | `mesh_partial` | `oracle` − `bitchat_router` | +3,567 (+2,943 to +4,190) | positive |
+
+Normalized gains, against `idle` (0) and each cell's ceiling (1), descriptive:
+
+| Cell | Baselines | Ceiling |
 |---|---|---|
-| `custody` | `approve_all` −1, `random` −1, `kinds_only` −1 | +179,733 |
-| `custody_hot` | `answer_all` −1, `random` −1, `no_key_paste` −1 | +49,375 |
-| `publish` | `random` 0.21, `popular` 0.84, `outbox` 0.83 | +2,600 |
-| `private` | `plaintext_mention` −1, `random` −0.11, `legacy_everywhere` 0.83 | +5,597 |
-| `counterparty` | `first_offer` −0.08, `random` 0.37, `cheapest` −0.17, `reputation` 0.95 | +46,798 |
-| `mesh_outage` | `nostr_only` 0.00, `flood_now` 0.13, `random` 0.27, `bitchat_router` 0.85 | +2,515 |
-| `mesh_partial` | `nostr_only` 0.03, `flood_now` 0.18, `random` 0.39, `bitchat_router` 0.86 | +2,533 |
+| `custody` | `approve_all` −1, `random` −1, `kinds_only` −1 | `policy` |
+| `custody_hot` | `answer_all` −1, `random` −1, `no_key_paste` −1 | `policy` |
+| `publish` | `random` 0.26, `popular` 0.83, `outbox` 0.86 | `max_reach` |
+| `private` | `plaintext_mention` −1, `random` −0.15, `legacy_everywhere` 0.82 | `nip17` |
+| `counterparty` | `first_offer` −0.01, `random` 0.06, `cheapest` 0.00, `reputation` 0.67 (0.46 to 0.87) | `oracle` |
+| `mesh_outage` | `nostr_only` 0.00, `flood_now` 0.13, `random` 0.41, `bitchat_router` 0.79 | `oracle` |
+| `mesh_partial` | `nostr_only` 0.01, `flood_now` 0.15, `random` 0.35, `bitchat_router` 0.79 | `oracle` |
 
-What the table says. In the two custody cells every heuristic short of the full policy loses the stake or more, so a gain of −1 is the common outcome of partial hygiene: checking what is asked but not who asks, or refusing to paste the key while signing whatever is handed over. Chasing the lowest price buys from impostors; reading the public record nearly reaches the ceiling. The bitchat router is a strong reference with no internet at all, and the gap above it is its flooding cost.
+What the tables say. In the two custody cells every heuristic short of the full policy loses the stake or more, so −1 is what partial hygiene earns: checking what a request asks for but not who asks or how much, or refusing to paste the key while signing whatever is handed over. In `private`, sending everything over NIP-04 gets 82% of the attainable value, and NIP-17 the rest. Chasing the lowest price in `counterparty` breaks even on average, because the impostors are cheap; reading each provider's public record gets two thirds of the way to an oracle that knows who will deliver. With no internet at all, the bitchat router gets four fifths of the oracle. The gap is mostly radio cost: the router transmits about 160 times an episode against the oracle's 25, and it delivers 5.7 to 5.8 of its 6 messages in time against 6.
 
-Three choices were changed after smoke and development runs and before the amendment was drafted: the `idle` floor (§10.1); the price per transmission in the mesh cells, raised from 2 to 20 sats, at which the router had come within a few hundred sats of the ceiling on every seed; and the mesh oracle's planning with quotas, without which it lost a message to its own quota collision on one seed.
+Two baselines did worse than on the development seeds, which is descriptive and not a hypothesis. `reputation` fell from 0.95 to 0.67. It never paid an impostor, but it got a result in 84% of episodes against the oracle's 94%, and it paid about 17,000 sats an episode against 9,100, because it buys from pricier providers and pays a second one after a silence. `bitchat_router` fell from 0.85 to 0.79 in both mesh cells.
+
+**Development.** On seeds 0 through 7 (`results/v0-nostr-*-baselines-development.md`) every gate passed and the fourteen hypotheses, written after that table, held in their predicted direction. Three choices were changed after smoke and development runs and before the amendment was drafted: the `idle` floor (§10.1); the price per transmission in the mesh cells, raised from 2 to 20 sats, at which the router had come within a few hundred sats of the ceiling on every seed; and the mesh oracle's planning with quotas, without which it lost a message to its own quota collision on one seed.
 
 ### 10.10 What remains
 
-1. Review and freeze the amendment drafted in `docs/nostr_amendment_draft.md`, then run the confirmatory block (`scripts/run_nostr.ts --block confirmatory`).
-2. Agent runs: `scripts/run_nostr_agent.ts --cell <cell>` with the prompts of `src/tasks/nostr/prompt.ts`. No LLM has been run on the family.
-3. Not built, each for a later amendment: NIP-49 exports computed rather than classified (they need scrypt and XChaCha20-Poly1305; Node's crypto has no XChaCha20, so HChaCha20 would be written); signed feedback and result events in `counterparty`; bitchat's public broadcast and gossip sync; source routing on the mesh.
+1. Agent runs: `scripts/run_nostr_agent.ts --cell <cell>` with the prompts of `src/tasks/nostr/prompt.ts`, reported against each cell's reference as Amendment 5 provides. No LLM has been run on the family.
+2. Not built, each for a later amendment: NIP-49 exports computed rather than classified (they need scrypt and XChaCha20-Poly1305; Node's crypto has no XChaCha20, so HChaCha20 would be written); signed feedback and result events in `counterparty`; bitchat's public broadcast and gossip sync; source routing on the mesh.
 
 ## 11. Protocol parameters
 

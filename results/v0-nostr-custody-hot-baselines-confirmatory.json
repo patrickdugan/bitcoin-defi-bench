@@ -1,0 +1,2493 @@
+{
+ "bench": "bitcoin-defi-bench/v0",
+ "block": "confirmatory",
+ "manifest_sha256": "6886a9a134d3936ae6822a14da0eb971fdea23d4a2d5d0031d55612ae279fdbf",
+ "prereg_sha256": "8f9b0698b32ff85a53cb30bbc8f8ca18d198e9ba3db435a5f062ab56a270d8e0",
+ "spiral_commit": "9824c30ad402cc9bca768eca27d176e0e8788db5",
+ "node": "v24.19.0",
+ "seeds": [
+  1000,
+  1001,
+  1002,
+  1003,
+  1004,
+  1005,
+  1006,
+  1007,
+  1008,
+  1009,
+  1010,
+  1011,
+  1012,
+  1013,
+  1014,
+  1015,
+  1016,
+  1017,
+  1018,
+  1019,
+  1020,
+  1021,
+  1022,
+  1023,
+  1024,
+  1025,
+  1026,
+  1027,
+  1028,
+  1029,
+  1030,
+  1031
+ ],
+ "agents": [
+  {
+   "id": "idle",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "answer_all",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "random",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "no_key_paste",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "policy",
+   "privileged": false,
+   "baseline": true
+  }
+ ],
+ "tasks": [
+  {
+   "task": "nostr/custody_hot",
+   "unit": "sats: legitimate requests answered, minus losses from hostile ones; a leaked key costs the stake",
+   "band": 300,
+   "floor": "idle",
+   "ceiling": "policy",
+   "reference": "no_key_paste",
+   "metrics": [
+    "legit_answered",
+    "hostile_answered",
+    "leaks"
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -219400,
+   "metrics": {
+    "legit_answered": 2,
+    "hostile_answered": 1,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "random",
+   "value": -248000,
+   "metrics": {
+    "legit_answered": 1,
+    "hostile_answered": 2,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -41100,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 2,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "policy",
+   "value": 8900,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -200000,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "random",
+   "value": 800,
+   "metrics": {
+    "legit_answered": 3,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -61400,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 3,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "policy",
+   "value": 3600,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -199400,
+   "metrics": {
+    "legit_answered": 2,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "random",
+   "value": -197400,
+   "metrics": {
+    "legit_answered": 3,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 15,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -29600,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 2,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "policy",
+   "value": 5400,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -229800,
+   "metrics": {
+    "legit_answered": 1,
+    "hostile_answered": 1,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "random",
+   "value": -42300,
+   "metrics": {
+    "legit_answered": 4,
+    "hostile_answered": 2,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -41500,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 2,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "policy",
+   "value": 3500,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -249400,
+   "metrics": {
+    "legit_answered": 2,
+    "hostile_answered": 2,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "random",
+   "value": -48200,
+   "metrics": {
+    "legit_answered": 6,
+    "hostile_answered": 2,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -63000,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 3,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "policy",
+   "value": 2000,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -200000,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "random",
+   "value": -230000,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 1,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 15,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -46400,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 2,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "policy",
+   "value": 3600,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -199100,
+   "metrics": {
+    "legit_answered": 3,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "random",
+   "value": -199700,
+   "metrics": {
+    "legit_answered": 1,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 14,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -48000,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 2,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "policy",
+   "value": 2000,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -199400,
+   "metrics": {
+    "legit_answered": 2,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "random",
+   "value": -199400,
+   "metrics": {
+    "legit_answered": 2,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 14,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -31300,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 2,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "policy",
+   "value": 3700,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 15,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -264100,
+   "metrics": {
+    "legit_answered": 3,
+    "hostile_answered": 3,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "random",
+   "value": 1400,
+   "metrics": {
+    "legit_answered": 5,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 14,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -63000,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 3,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "policy",
+   "value": 2000,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 14,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -217700,
+   "metrics": {
+    "legit_answered": 2,
+    "hostile_answered": 1,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "random",
+   "value": 3200,
+   "metrics": {
+    "legit_answered": 5,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 15,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -57800,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 3,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "policy",
+   "value": 7200,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -229200,
+   "metrics": {
+    "legit_answered": 3,
+    "hostile_answered": 1,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "random",
+   "value": -44600,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 2,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -59600,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 3,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "policy",
+   "value": 5400,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -199800,
+   "metrics": {
+    "legit_answered": 1,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 21,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "random",
+   "value": -200000,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -59700,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 3,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 21,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "policy",
+   "value": 5300,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -219100,
+   "metrics": {
+    "legit_answered": 3,
+    "hostile_answered": 1,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "random",
+   "value": -219400,
+   "metrics": {
+    "legit_answered": 2,
+    "hostile_answered": 1,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -46300,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 2,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "policy",
+   "value": 3700,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -217400,
+   "metrics": {
+    "legit_answered": 3,
+    "hostile_answered": 1,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "random",
+   "value": -17700,
+   "metrics": {
+    "legit_answered": 2,
+    "hostile_answered": 1,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 14,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -61400,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 3,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "policy",
+   "value": 3600,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -199800,
+   "metrics": {
+    "legit_answered": 1,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "random",
+   "value": -200000,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 15,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -48100,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 2,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "policy",
+   "value": 1900,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -217500,
+   "metrics": {
+    "legit_answered": 3,
+    "hostile_answered": 1,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "random",
+   "value": -44200,
+   "metrics": {
+    "legit_answered": 3,
+    "hostile_answered": 2,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -61300,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 3,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "policy",
+   "value": 3700,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -215000,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 1,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "random",
+   "value": -219400,
+   "metrics": {
+    "legit_answered": 2,
+    "hostile_answered": 1,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 14,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -63000,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 3,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "policy",
+   "value": 2000,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -200000,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "random",
+   "value": -199000,
+   "metrics": {
+    "legit_answered": 4,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 14,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -41500,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 2,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "policy",
+   "value": 3500,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -227400,
+   "metrics": {
+    "legit_answered": 3,
+    "hostile_answered": 1,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "random",
+   "value": -16800,
+   "metrics": {
+    "legit_answered": 5,
+    "hostile_answered": 1,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 14,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -59600,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 3,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "policy",
+   "value": 5400,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 15,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -232400,
+   "metrics": {
+    "legit_answered": 3,
+    "hostile_answered": 2,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "random",
+   "value": -232400,
+   "metrics": {
+    "legit_answered": 3,
+    "hostile_answered": 2,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -59500,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 3,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "policy",
+   "value": 5500,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -199800,
+   "metrics": {
+    "legit_answered": 1,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "random",
+   "value": -16600,
+   "metrics": {
+    "legit_answered": 6,
+    "hostile_answered": 1,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -46300,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 2,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "policy",
+   "value": 3700,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 15,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -200000,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "random",
+   "value": -200000,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -41300,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 2,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "policy",
+   "value": 3700,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 14,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -261600,
+   "metrics": {
+    "legit_answered": 6,
+    "hostile_answered": 3,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "random",
+   "value": -244100,
+   "metrics": {
+    "legit_answered": 3,
+    "hostile_answered": 2,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -61300,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 3,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "policy",
+   "value": 3700,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -199700,
+   "metrics": {
+    "legit_answered": 1,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "random",
+   "value": -199700,
+   "metrics": {
+    "legit_answered": 1,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -59600,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 3,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "policy",
+   "value": 5400,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -214700,
+   "metrics": {
+    "legit_answered": 1,
+    "hostile_answered": 1,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "random",
+   "value": -230200,
+   "metrics": {
+    "legit_answered": 5,
+    "hostile_answered": 2,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -29700,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 2,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "policy",
+   "value": 5300,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -249100,
+   "metrics": {
+    "legit_answered": 3,
+    "hostile_answered": 2,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "random",
+   "value": -200000,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 14,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -61300,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 3,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "policy",
+   "value": 3700,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -229000,
+   "metrics": {
+    "legit_answered": 4,
+    "hostile_answered": 1,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "random",
+   "value": -47300,
+   "metrics": {
+    "legit_answered": 4,
+    "hostile_answered": 2,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -59700,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 3,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "policy",
+   "value": 5300,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -200000,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "random",
+   "value": -200000,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -44700,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 2,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "policy",
+   "value": 5300,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -244600,
+   "metrics": {
+    "legit_answered": 2,
+    "hostile_answered": 2,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "random",
+   "value": -199800,
+   "metrics": {
+    "legit_answered": 1,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 14,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -41500,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 2,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "policy",
+   "value": 3500,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -199700,
+   "metrics": {
+    "legit_answered": 1,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "random",
+   "value": -28900,
+   "metrics": {
+    "legit_answered": 4,
+    "hostile_answered": 1,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 15,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -48000,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 2,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "policy",
+   "value": 2000,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -199400,
+   "metrics": {
+    "legit_answered": 2,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "random",
+   "value": -200000,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -41400,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 2,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "policy",
+   "value": 3600,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_answered": 0,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "answer_all",
+   "value": -214700,
+   "metrics": {
+    "legit_answered": 1,
+    "hostile_answered": 1,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "random",
+   "value": -214700,
+   "metrics": {
+    "legit_answered": 1,
+    "hostile_answered": 1,
+    "leaks": 1,
+    "compromised": 1
+   },
+   "turns": 15,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "no_key_paste",
+   "value": -39600,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 2,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody_hot",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "policy",
+   "value": 5400,
+   "metrics": {
+    "legit_answered": 7,
+    "hostile_answered": 0,
+    "leaks": 0,
+    "compromised": 0
+   },
+   "turns": 17,
+   "rejections": []
+  }
+ ],
+ "checks": [
+  {
+   "id": "K92",
+   "pass": true,
+   "detail": "32 episodes compared, 0 mismatches"
+  }
+ ]
+}

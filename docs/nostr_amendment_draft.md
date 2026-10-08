@@ -1,6 +1,6 @@
 # Draft amendment: family 9 (Nostr coordination and the bitchat mesh)
 
-Status: **draft, not frozen.** This text is meant to be appended to `prereg/v0.md` under §11 as the next amendment, unchanged except for its number and date, once it has been reviewed. Until then the harness refuses confirmatory seeds for the family, because no "Frozen families:" line names it. It is kept outside `prereg/v0.md` because amendments there are never edited after they are written, and this one may still change at review.
+Status: **appended and frozen.** On 2026-10-08 the text below the line was appended to `prereg/v0.md` as Amendment 5 (commit `f54de1a`), unchanged except for its heading's number and date. `prereg/v0.md` is the binding copy; this file is the draft as it was reviewed. The confirmatory results are in `docs/tasks.md` §10.9.
 
 ---
 

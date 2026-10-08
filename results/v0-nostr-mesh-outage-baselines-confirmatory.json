@@ -1,0 +1,4267 @@
+{
+ "bench": "bitcoin-defi-bench/v0",
+ "block": "confirmatory",
+ "manifest_sha256": "6886a9a134d3936ae6822a14da0eb971fdea23d4a2d5d0031d55612ae279fdbf",
+ "prereg_sha256": "8f9b0698b32ff85a53cb30bbc8f8ca18d198e9ba3db435a5f062ab56a270d8e0",
+ "spiral_commit": "9824c30ad402cc9bca768eca27d176e0e8788db5",
+ "node": "v24.19.0",
+ "seeds": [
+  1000,
+  1001,
+  1002,
+  1003,
+  1004,
+  1005,
+  1006,
+  1007,
+  1008,
+  1009,
+  1010,
+  1011,
+  1012,
+  1013,
+  1014,
+  1015,
+  1016,
+  1017,
+  1018,
+  1019,
+  1020,
+  1021,
+  1022,
+  1023,
+  1024,
+  1025,
+  1026,
+  1027,
+  1028,
+  1029,
+  1030,
+  1031
+ ],
+ "agents": [
+  {
+   "id": "idle",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "nostr_only",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "flood_now",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "random",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "bitchat_router",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "oracle",
+   "privileged": true,
+   "baseline": true
+  }
+ ],
+ "tasks": [
+  {
+   "task": "nostr/mesh_outage",
+   "unit": "sats: messages delivered by their deadlines, minus a price per radio transmission",
+   "band": 500,
+   "floor": "idle",
+   "ceiling": "oracle",
+   "reference": "bitchat_router",
+   "metrics": [
+    "delivered",
+    "transmissions",
+    "by_courier"
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": -120,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 6,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "random",
+   "value": 4697,
+   "metrics": {
+    "delivered": 3,
+    "late": 3,
+    "transmissions": 222,
+    "sends": 6,
+    "by_courier": 3,
+    "by_nostr": 0
+   },
+   "turns": 32,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "no_link"
+    },
+    {
+     "turn": 3,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 7,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 11,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 12,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 14,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 19,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 20,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 24,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 11747,
+   "metrics": {
+    "delivered": 4,
+    "late": 0,
+    "transmissions": 97,
+    "sends": 4,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 18,
+   "rejections": [
+    {
+     "turn": 1,
+     "reason": "no_link"
+    },
+    {
+     "turn": 2,
+     "reason": "no_link"
+    },
+    {
+     "turn": 3,
+     "reason": "no_link"
+    },
+    {
+     "turn": 4,
+     "reason": "no_link"
+    },
+    {
+     "turn": 5,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 19143,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 31,
+    "sends": 6,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 6206,
+   "metrics": {
+    "delivered": 2,
+    "late": 0,
+    "transmissions": 102,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "random",
+   "value": 7821,
+   "metrics": {
+    "delivered": 4,
+    "late": 2,
+    "transmissions": 222,
+    "sends": 8,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 20,
+   "rejections": [
+    {
+     "turn": 6,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 9,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 12,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 14757,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 138,
+    "sends": 6,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 16,
+   "rejections": [
+    {
+     "turn": 4,
+     "reason": "no_link"
+    },
+    {
+     "turn": 5,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 17177,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 17,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 11,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 3590,
+   "metrics": {
+    "delivered": 2,
+    "late": 0,
+    "transmissions": 138,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "random",
+   "value": -2700,
+   "metrics": {
+    "delivered": 0,
+    "late": 3,
+    "transmissions": 135,
+    "sends": 8,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 37,
+   "rejections": [
+    {
+     "turn": 1,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 7,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 9,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 22,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 29,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 31,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 11379,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 222,
+    "sends": 6,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 15259,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 28,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": -600,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 30,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "random",
+   "value": 9151,
+   "metrics": {
+    "delivered": 3,
+    "late": 3,
+    "transmissions": 167,
+    "sends": 9,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 32,
+   "rejections": [
+    {
+     "turn": 2,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 21,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 17878,
+   "metrics": {
+    "delivered": 5,
+    "late": 0,
+    "transmissions": 145,
+    "sends": 5,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 19,
+   "rejections": [
+    {
+     "turn": 3,
+     "reason": "no_link"
+    },
+    {
+     "turn": 4,
+     "reason": "no_link"
+    },
+    {
+     "turn": 5,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 24812,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 29,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 1384,
+   "metrics": {
+    "delivered": 2,
+    "late": 0,
+    "transmissions": 126,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "random",
+   "value": 5178,
+   "metrics": {
+    "delivered": 5,
+    "late": 1,
+    "transmissions": 455,
+    "sends": 12,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 27,
+   "rejections": [
+    {
+     "turn": 3,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 4,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 14504,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 161,
+    "sends": 6,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 17284,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 22,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": -1080,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 54,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "random",
+   "value": -56,
+   "metrics": {
+    "delivered": 1,
+    "late": 0,
+    "transmissions": 64,
+    "sends": 5,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 32,
+   "rejections": [
+    {
+     "turn": 5,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 26,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 28,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 9553,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 224,
+    "sends": 6,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 14,
+   "rejections": [
+    {
+     "turn": 5,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 13513,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 26,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 7143,
+   "metrics": {
+    "delivered": 3,
+    "late": 0,
+    "transmissions": 156,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "random",
+   "value": 15542,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 183,
+    "sends": 8,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 29,
+   "rejections": [
+    {
+     "turn": 6,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 8,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 11,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 15,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 15242,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 198,
+    "sends": 6,
+    "by_courier": 3,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 18662,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 27,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": -840,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 42,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "random",
+   "value": 8124,
+   "metrics": {
+    "delivered": 4,
+    "late": 0,
+    "transmissions": 209,
+    "sends": 9,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 28,
+   "rejections": [
+    {
+     "turn": 2,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 3,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 5,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 7,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 12,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 14,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 20,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 25,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 27,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 8801,
+   "metrics": {
+    "delivered": 5,
+    "late": 0,
+    "transmissions": 170,
+    "sends": 5,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 19,
+   "rejections": [
+    {
+     "turn": 3,
+     "reason": "no_link"
+    },
+    {
+     "turn": 4,
+     "reason": "no_link"
+    },
+    {
+     "turn": 5,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 15969,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 29,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 543,
+   "metrics": {
+    "delivered": 1,
+    "late": 0,
+    "transmissions": 96,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "random",
+   "value": 8300,
+   "metrics": {
+    "delivered": 5,
+    "late": 0,
+    "transmissions": 183,
+    "sends": 8,
+    "by_courier": 3,
+    "by_nostr": 0
+   },
+   "turns": 40,
+   "rejections": [
+    {
+     "turn": 14,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 21,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 29,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 38,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 10931,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 171,
+    "sends": 6,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 15,
+   "rejections": [
+    {
+     "turn": 3,
+     "reason": "no_link"
+    },
+    {
+     "turn": 4,
+     "reason": "no_link"
+    },
+    {
+     "turn": 5,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 13891,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 23,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": -720,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 36,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "random",
+   "value": 1583,
+   "metrics": {
+    "delivered": 2,
+    "late": 2,
+    "transmissions": 148,
+    "sends": 13,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 30,
+   "rejections": [
+    {
+     "turn": 7,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 12,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 16,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 20,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 25,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 11398,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 189,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 14778,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 20,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 6775,
+   "metrics": {
+    "delivered": 3,
+    "late": 0,
+    "transmissions": 138,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "random",
+   "value": 7458,
+   "metrics": {
+    "delivered": 4,
+    "late": 1,
+    "transmissions": 141,
+    "sends": 6,
+    "by_courier": 3,
+    "by_nostr": 0
+   },
+   "turns": 37,
+   "rejections": [
+    {
+     "turn": 9,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 10,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 17,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 18,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 19,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 20,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 25,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 35,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 14550,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 172,
+    "sends": 6,
+    "by_courier": 3,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 17590,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 20,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 11,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": -3,
+   "metrics": {
+    "delivered": 1,
+    "late": 0,
+    "transmissions": 150,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "random",
+   "value": 4781,
+   "metrics": {
+    "delivered": 3,
+    "late": 3,
+    "transmissions": 300,
+    "sends": 12,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 35,
+   "rejections": [
+    {
+     "turn": 4,
+     "reason": "no_link"
+    },
+    {
+     "turn": 7,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 10,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 15,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 20,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 32,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 14198,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 130,
+    "sends": 6,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 21,
+   "rejections": [
+    {
+     "turn": 4,
+     "reason": "no_link"
+    },
+    {
+     "turn": 5,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 16138,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 33,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 11,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 5769,
+   "metrics": {
+    "delivered": 2,
+    "late": 0,
+    "transmissions": 156,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "random",
+   "value": 17490,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 218,
+    "sends": 8,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 19,
+   "rejections": [
+    {
+     "turn": 4,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 7,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 9,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 13,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 18270,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 179,
+    "sends": 6,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 21510,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 17,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 5780,
+   "metrics": {
+    "delivered": 2,
+    "late": 0,
+    "transmissions": 42,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "random",
+   "value": 9037,
+   "metrics": {
+    "delivered": 5,
+    "late": 1,
+    "transmissions": 245,
+    "sends": 7,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 21,
+   "rejections": [
+    {
+     "turn": 8,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 12,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 14,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 14224,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 182,
+    "sends": 6,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 16604,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 63,
+    "sends": 6,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": -2040,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 102,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "random",
+   "value": 15334,
+   "metrics": {
+    "delivered": 5,
+    "late": 0,
+    "transmissions": 244,
+    "sends": 12,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 36,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 19,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 29,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 31,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 32,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 33,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 20084,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 214,
+    "sends": 6,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": [
+    {
+     "turn": 5,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 23924,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 22,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": -840,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 42,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "random",
+   "value": 845,
+   "metrics": {
+    "delivered": 2,
+    "late": 4,
+    "transmissions": 214,
+    "sends": 8,
+    "by_courier": 7,
+    "by_nostr": 0
+   },
+   "turns": 35,
+   "rejections": [
+    {
+     "turn": 1,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 3,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 14,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 18,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 20,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 26,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 28,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 30,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 9536,
+   "metrics": {
+    "delivered": 5,
+    "late": 0,
+    "transmissions": 148,
+    "sends": 5,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 17,
+   "rejections": [
+    {
+     "turn": 5,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 13273,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 16,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 1762,
+   "metrics": {
+    "delivered": 1,
+    "late": 0,
+    "transmissions": 96,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "random",
+   "value": 4135,
+   "metrics": {
+    "delivered": 3,
+    "late": 3,
+    "transmissions": 151,
+    "sends": 8,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 34,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 5,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 7,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 12,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 13,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 16114,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 124,
+    "sends": 6,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 19,
+   "rejections": [
+    {
+     "turn": 4,
+     "reason": "no_link"
+    },
+    {
+     "turn": 5,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 17774,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 41,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 11,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 2595,
+   "metrics": {
+    "delivered": 2,
+    "late": 0,
+    "transmissions": 114,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "random",
+   "value": 10748,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 207,
+    "sends": 9,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 18,
+   "rejections": [
+    {
+     "turn": 4,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 5,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 11488,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 170,
+    "sends": 6,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 14088,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 40,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 4096,
+   "metrics": {
+    "delivered": 3,
+    "late": 0,
+    "transmissions": 90,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "random",
+   "value": 7861,
+   "metrics": {
+    "delivered": 5,
+    "late": 1,
+    "transmissions": 248,
+    "sends": 11,
+    "by_courier": 3,
+    "by_nostr": 0
+   },
+   "turns": 29,
+   "rejections": [
+    {
+     "turn": 14,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 23,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 25,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 11668,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 122,
+    "sends": 6,
+    "by_courier": 3,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 13768,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 17,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 682,
+   "metrics": {
+    "delivered": 1,
+    "late": 0,
+    "transmissions": 42,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "random",
+   "value": -383,
+   "metrics": {
+    "delivered": 3,
+    "late": 3,
+    "transmissions": 401,
+    "sends": 13,
+    "by_courier": 10,
+    "by_nostr": 0
+   },
+   "turns": 38,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 5,
+     "reason": "no_link"
+    },
+    {
+     "turn": 13,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 31,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 12257,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 157,
+    "sends": 6,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 19,
+   "rejections": [
+    {
+     "turn": 4,
+     "reason": "no_link"
+    },
+    {
+     "turn": 5,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 14997,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 20,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": -120,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 6,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "random",
+   "value": 10334,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 280,
+    "sends": 7,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 15,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 8,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 12494,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 172,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 20,
+   "rejections": [
+    {
+     "turn": 1,
+     "reason": "no_link"
+    },
+    {
+     "turn": 2,
+     "reason": "no_link"
+    },
+    {
+     "turn": 3,
+     "reason": "no_link"
+    },
+    {
+     "turn": 4,
+     "reason": "no_link"
+    },
+    {
+     "turn": 5,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 15114,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 41,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 2272,
+   "metrics": {
+    "delivered": 1,
+    "late": 0,
+    "transmissions": 126,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "random",
+   "value": 288,
+   "metrics": {
+    "delivered": 2,
+    "late": 1,
+    "transmissions": 169,
+    "sends": 8,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 37,
+   "rejections": [
+    {
+     "turn": 7,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 9,
+     "reason": "no_link"
+    },
+    {
+     "turn": 17,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 18,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 21,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 23,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 24,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 33,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 14698,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 196,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 17958,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 33,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 1289,
+   "metrics": {
+    "delivered": 1,
+    "late": 0,
+    "transmissions": 102,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "random",
+   "value": 12281,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 323,
+    "sends": 9,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 20,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 5,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 11,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 12,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 17,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 14641,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 205,
+    "sends": 6,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 17,
+   "rejections": [
+    {
+     "turn": 3,
+     "reason": "no_link"
+    },
+    {
+     "turn": 5,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 18301,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 22,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": -240,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 12,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "random",
+   "value": 6234,
+   "metrics": {
+    "delivered": 4,
+    "late": 2,
+    "transmissions": 312,
+    "sends": 14,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 35,
+   "rejections": [
+    {
+     "turn": 1,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 9,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 16,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 27,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 8477,
+   "metrics": {
+    "delivered": 4,
+    "late": 0,
+    "transmissions": 124,
+    "sends": 4,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 24,
+   "rejections": [
+    {
+     "turn": 3,
+     "reason": "no_link"
+    },
+    {
+     "turn": 4,
+     "reason": "no_link"
+    },
+    {
+     "turn": 5,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 17099,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 19,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 11,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 13756,
+   "metrics": {
+    "delivered": 4,
+    "late": 0,
+    "transmissions": 96,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "random",
+   "value": 18238,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 180,
+    "sends": 6,
+    "by_courier": 3,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": [
+    {
+     "turn": 7,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 18858,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 149,
+    "sends": 6,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 21538,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 15,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 11,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 2733,
+   "metrics": {
+    "delivered": 4,
+    "late": 0,
+    "transmissions": 186,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "random",
+   "value": -383,
+   "metrics": {
+    "delivered": 3,
+    "late": 3,
+    "transmissions": 228,
+    "sends": 8,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 28,
+   "rejections": [
+    {
+     "turn": 4,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 5,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 6,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 14,
+     "reason": "no_link"
+    },
+    {
+     "turn": 17,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 20,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 6891,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 214,
+    "sends": 6,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 10691,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 24,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 2890,
+   "metrics": {
+    "delivered": 1,
+    "late": 0,
+    "transmissions": 18,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "random",
+   "value": 236,
+   "metrics": {
+    "delivered": 2,
+    "late": 4,
+    "transmissions": 167,
+    "sends": 8,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 39,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 1,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 5,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 7,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 18,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 21,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 23,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 24,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 27,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 36,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 9621,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 139,
+    "sends": 6,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 13,
+   "rejections": [
+    {
+     "turn": 3,
+     "reason": "no_link"
+    },
+    {
+     "turn": 5,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 12121,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 14,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 3319,
+   "metrics": {
+    "delivered": 2,
+    "late": 0,
+    "transmissions": 96,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "random",
+   "value": 3593,
+   "metrics": {
+    "delivered": 2,
+    "late": 4,
+    "transmissions": 209,
+    "sends": 8,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 38,
+   "rejections": [
+    {
+     "turn": 4,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 8,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 9,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 10,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 12,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 21,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 28,
+     "reason": "no_link"
+    },
+    {
+     "turn": 34,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 35,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 17749,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 120,
+    "sends": 6,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 19769,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 19,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 1212,
+   "metrics": {
+    "delivered": 1,
+    "late": 0,
+    "transmissions": 78,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "random",
+   "value": 9752,
+   "metrics": {
+    "delivered": 3,
+    "late": 2,
+    "transmissions": 120,
+    "sends": 6,
+    "by_courier": 3,
+    "by_nostr": 0
+   },
+   "turns": 30,
+   "rejections": [
+    {
+     "turn": 8,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 9,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 11,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 13,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 15,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 18,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 21,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 15401,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 191,
+    "sends": 6,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 15,
+   "rejections": [
+    {
+     "turn": 4,
+     "reason": "no_link"
+    },
+    {
+     "turn": 5,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 18921,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 15,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 3142,
+   "metrics": {
+    "delivered": 2,
+    "late": 0,
+    "transmissions": 162,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "random",
+   "value": 17791,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 160,
+    "sends": 6,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 14,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 16611,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 219,
+    "sends": 6,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 20611,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 19,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 1478,
+   "metrics": {
+    "delivered": 1,
+    "late": 0,
+    "transmissions": 36,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "random",
+   "value": 4118,
+   "metrics": {
+    "delivered": 4,
+    "late": 2,
+    "transmissions": 350,
+    "sends": 10,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 34,
+   "rejections": [
+    {
+     "turn": 6,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 8,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 12,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 13,
+     "reason": "no_link"
+    },
+    {
+     "turn": 16,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 21,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 30,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 32,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 12256,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 132,
+    "sends": 6,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 19,
+   "rejections": [
+    {
+     "turn": 3,
+     "reason": "no_link"
+    },
+    {
+     "turn": 5,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 14356,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 27,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": -360,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 18,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "random",
+   "value": 8846,
+   "metrics": {
+    "delivered": 5,
+    "late": 1,
+    "transmissions": 326,
+    "sends": 12,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 21,
+   "rejections": [
+    {
+     "turn": 11,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 16866,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 148,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 13,
+   "rejections": [
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_outage",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 19266,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 28,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  }
+ ],
+ "checks": [
+  {
+   "id": "K92",
+   "pass": true,
+   "detail": "not applicable: this cell's ceiling is a reference, not an exact optimum"
+  }
+ ]
+}

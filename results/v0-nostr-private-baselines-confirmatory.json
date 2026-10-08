@@ -1,0 +1,2493 @@
+{
+ "bench": "bitcoin-defi-bench/v0",
+ "block": "confirmatory",
+ "manifest_sha256": "6886a9a134d3936ae6822a14da0eb971fdea23d4a2d5d0031d55612ae279fdbf",
+ "prereg_sha256": "8f9b0698b32ff85a53cb30bbc8f8ca18d198e9ba3db435a5f062ab56a270d8e0",
+ "spiral_commit": "9824c30ad402cc9bca768eca27d176e0e8788db5",
+ "node": "v24.19.0",
+ "seeds": [
+  1000,
+  1001,
+  1002,
+  1003,
+  1004,
+  1005,
+  1006,
+  1007,
+  1008,
+  1009,
+  1010,
+  1011,
+  1012,
+  1013,
+  1014,
+  1015,
+  1016,
+  1017,
+  1018,
+  1019,
+  1020,
+  1021,
+  1022,
+  1023,
+  1024,
+  1025,
+  1026,
+  1027,
+  1028,
+  1029,
+  1030,
+  1031
+ ],
+ "agents": [
+  {
+   "id": "idle",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "plaintext_mention",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "random",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "legacy_everywhere",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "nip17",
+   "privileged": false,
+   "baseline": true
+  }
+ ],
+ "tasks": [
+  {
+   "task": "nostr/private",
+   "unit": "sats: messages each recipient's client opened, NIP-04 discounted, minus messages exposed in the clear",
+   "band": 500,
+   "floor": "idle",
+   "ceiling": "nip17",
+   "reference": "legacy_everywhere",
+   "metrics": [
+    "nip17_delivered",
+    "nip04_delivered",
+    "exposed"
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "task": "nostr/private",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -43623,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 22,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "random",
+   "value": -3370,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 2,
+    "exposed": 2,
+    "relay_writes": 8
+   },
+   "turns": 23,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 21549,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 5,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 22,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 28174,
+   "metrics": {
+    "nip17_delivered": 4,
+    "nip04_delivered": 1,
+    "exposed": 0,
+    "relay_writes": 5
+   },
+   "turns": 27,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -40703,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "random",
+   "value": -11762,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 2,
+    "relay_writes": 8
+   },
+   "turns": 31,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 27149,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 7,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 31965,
+   "metrics": {
+    "nip17_delivered": 4,
+    "nip04_delivered": 3,
+    "exposed": 0,
+    "relay_writes": 7
+   },
+   "turns": 29,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -40728,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "random",
+   "value": 6872,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 3,
+    "exposed": 2,
+    "relay_writes": 8
+   },
+   "turns": 22,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 30544,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 8,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 40125,
+   "metrics": {
+    "nip17_delivered": 7,
+    "nip04_delivered": 1,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 34,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -45082,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "random",
+   "value": -8855,
+   "metrics": {
+    "nip17_delivered": 1,
+    "nip04_delivered": 1,
+    "exposed": 4,
+    "relay_writes": 8
+   },
+   "turns": 25,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 27214,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 7,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 34265,
+   "metrics": {
+    "nip17_delivered": 5,
+    "nip04_delivered": 2,
+    "exposed": 0,
+    "relay_writes": 7
+   },
+   "turns": 29,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -41921,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 21,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "random",
+   "value": -14660,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 4,
+    "relay_writes": 8
+   },
+   "turns": 27,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 24072,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 6,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 21,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 26034,
+   "metrics": {
+    "nip17_delivered": 2,
+    "nip04_delivered": 4,
+    "exposed": 0,
+    "relay_writes": 6
+   },
+   "turns": 27,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -51511,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "random",
+   "value": 15085,
+   "metrics": {
+    "nip17_delivered": 1,
+    "nip04_delivered": 3,
+    "exposed": 1,
+    "relay_writes": 8
+   },
+   "turns": 23,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 28376,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 6,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 33649,
+   "metrics": {
+    "nip17_delivered": 4,
+    "nip04_delivered": 2,
+    "exposed": 0,
+    "relay_writes": 6
+   },
+   "turns": 28,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -38866,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "random",
+   "value": -12392,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 2,
+    "exposed": 3,
+    "relay_writes": 8
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 13792,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 5,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 15991,
+   "metrics": {
+    "nip17_delivered": 3,
+    "nip04_delivered": 2,
+    "exposed": 0,
+    "relay_writes": 5
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -60615,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "random",
+   "value": 9764,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 4,
+    "exposed": 1,
+    "relay_writes": 8
+   },
+   "turns": 22,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 32394,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 6,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 40709,
+   "metrics": {
+    "nip17_delivered": 5,
+    "nip04_delivered": 1,
+    "exposed": 0,
+    "relay_writes": 6
+   },
+   "turns": 29,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -32964,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 22,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "random",
+   "value": -3001,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 2,
+    "exposed": 4,
+    "relay_writes": 8
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 12322,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 5,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 22,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 16170,
+   "metrics": {
+    "nip17_delivered": 4,
+    "nip04_delivered": 1,
+    "exposed": 0,
+    "relay_writes": 5
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -40612,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "random",
+   "value": -18174,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 4,
+    "relay_writes": 8
+   },
+   "turns": 27,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 25036,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 6,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 31968,
+   "metrics": {
+    "nip17_delivered": 4,
+    "nip04_delivered": 2,
+    "exposed": 0,
+    "relay_writes": 6
+   },
+   "turns": 28,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -51421,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "random",
+   "value": 7637,
+   "metrics": {
+    "nip17_delivered": 2,
+    "nip04_delivered": 0,
+    "exposed": 3,
+    "relay_writes": 8
+   },
+   "turns": 30,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 33656,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 7,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 38207,
+   "metrics": {
+    "nip17_delivered": 2,
+    "nip04_delivered": 5,
+    "exposed": 0,
+    "relay_writes": 7
+   },
+   "turns": 28,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -52344,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "random",
+   "value": -13476,
+   "metrics": {
+    "nip17_delivered": 2,
+    "nip04_delivered": 1,
+    "exposed": 5,
+    "relay_writes": 8
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 32917,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 7,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 43260,
+   "metrics": {
+    "nip17_delivered": 6,
+    "nip04_delivered": 1,
+    "exposed": 0,
+    "relay_writes": 7
+   },
+   "turns": 33,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -43086,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "random",
+   "value": 412,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 3,
+    "exposed": 3,
+    "relay_writes": 8
+   },
+   "turns": 23,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 23641,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 6,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 27710,
+   "metrics": {
+    "nip17_delivered": 4,
+    "nip04_delivered": 2,
+    "exposed": 0,
+    "relay_writes": 6
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -46657,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "random",
+   "value": 13640,
+   "metrics": {
+    "nip17_delivered": 2,
+    "nip04_delivered": 3,
+    "exposed": 3,
+    "relay_writes": 8
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 33337,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 7,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 43388,
+   "metrics": {
+    "nip17_delivered": 6,
+    "nip04_delivered": 1,
+    "exposed": 0,
+    "relay_writes": 7
+   },
+   "turns": 31,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -26421,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "random",
+   "value": 8268,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 4,
+    "exposed": 2,
+    "relay_writes": 8
+   },
+   "turns": 22,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 16290,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 7,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 21282,
+   "metrics": {
+    "nip17_delivered": 6,
+    "nip04_delivered": 1,
+    "exposed": 0,
+    "relay_writes": 7
+   },
+   "turns": 30,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -33658,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "random",
+   "value": 1791,
+   "metrics": {
+    "nip17_delivered": 1,
+    "nip04_delivered": 2,
+    "exposed": 3,
+    "relay_writes": 8
+   },
+   "turns": 25,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 20195,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 6,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 24945,
+   "metrics": {
+    "nip17_delivered": 4,
+    "nip04_delivered": 2,
+    "exposed": 0,
+    "relay_writes": 6
+   },
+   "turns": 27,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -43996,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "random",
+   "value": -5880,
+   "metrics": {
+    "nip17_delivered": 2,
+    "nip04_delivered": 1,
+    "exposed": 4,
+    "relay_writes": 8
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 21798,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 5,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 27622,
+   "metrics": {
+    "nip17_delivered": 4,
+    "nip04_delivered": 1,
+    "exposed": 0,
+    "relay_writes": 5
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -43629,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "random",
+   "value": -36027,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 7,
+    "relay_writes": 8
+   },
+   "turns": 22,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 28805,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 7,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 34155,
+   "metrics": {
+    "nip17_delivered": 4,
+    "nip04_delivered": 3,
+    "exposed": 0,
+    "relay_writes": 7
+   },
+   "turns": 30,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -39977,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "random",
+   "value": -18272,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 1,
+    "exposed": 4,
+    "relay_writes": 8
+   },
+   "turns": 25,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 25667,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 7,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 29787,
+   "metrics": {
+    "nip17_delivered": 3,
+    "nip04_delivered": 4,
+    "exposed": 0,
+    "relay_writes": 7
+   },
+   "turns": 28,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -37042,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "random",
+   "value": 23902,
+   "metrics": {
+    "nip17_delivered": 1,
+    "nip04_delivered": 5,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 23,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 27780,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 8,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 33032,
+   "metrics": {
+    "nip17_delivered": 5,
+    "nip04_delivered": 3,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 32,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -56698,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "random",
+   "value": -2207,
+   "metrics": {
+    "nip17_delivered": 1,
+    "nip04_delivered": 0,
+    "exposed": 1,
+    "relay_writes": 8
+   },
+   "turns": 29,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 27291,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 5,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 34645,
+   "metrics": {
+    "nip17_delivered": 4,
+    "nip04_delivered": 1,
+    "exposed": 0,
+    "relay_writes": 5
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -41391,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "random",
+   "value": -15066,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 2,
+    "exposed": 5,
+    "relay_writes": 8
+   },
+   "turns": 22,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 25326,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 6,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 28865,
+   "metrics": {
+    "nip17_delivered": 2,
+    "nip04_delivered": 4,
+    "exposed": 0,
+    "relay_writes": 6
+   },
+   "turns": 25,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -45382,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "random",
+   "value": -23382,
+   "metrics": {
+    "nip17_delivered": 1,
+    "nip04_delivered": 1,
+    "exposed": 4,
+    "relay_writes": 8
+   },
+   "turns": 25,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 27827,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 7,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 35270,
+   "metrics": {
+    "nip17_delivered": 6,
+    "nip04_delivered": 1,
+    "exposed": 0,
+    "relay_writes": 7
+   },
+   "turns": 30,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -39823,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "random",
+   "value": -8397,
+   "metrics": {
+    "nip17_delivered": 1,
+    "nip04_delivered": 2,
+    "exposed": 3,
+    "relay_writes": 8
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 28189,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 7,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 33032,
+   "metrics": {
+    "nip17_delivered": 3,
+    "nip04_delivered": 4,
+    "exposed": 0,
+    "relay_writes": 7
+   },
+   "turns": 27,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -30460,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "random",
+   "value": -5798,
+   "metrics": {
+    "nip17_delivered": 1,
+    "nip04_delivered": 2,
+    "exposed": 3,
+    "relay_writes": 8
+   },
+   "turns": 25,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 20254,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 7,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 21531,
+   "metrics": {
+    "nip17_delivered": 2,
+    "nip04_delivered": 5,
+    "exposed": 0,
+    "relay_writes": 7
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -47267,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "random",
+   "value": -40065,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 6,
+    "relay_writes": 8
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 35449,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 8,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 39981,
+   "metrics": {
+    "nip17_delivered": 3,
+    "nip04_delivered": 5,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 30,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -54498,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "random",
+   "value": 35419,
+   "metrics": {
+    "nip17_delivered": 1,
+    "nip04_delivered": 5,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 36317,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 7,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 43760,
+   "metrics": {
+    "nip17_delivered": 4,
+    "nip04_delivered": 3,
+    "exposed": 0,
+    "relay_writes": 7
+   },
+   "turns": 29,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -42788,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "random",
+   "value": 1663,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 3,
+    "exposed": 1,
+    "relay_writes": 8
+   },
+   "turns": 28,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 26686,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 7,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 30779,
+   "metrics": {
+    "nip17_delivered": 3,
+    "nip04_delivered": 4,
+    "exposed": 0,
+    "relay_writes": 7
+   },
+   "turns": 29,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -61804,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "random",
+   "value": -5085,
+   "metrics": {
+    "nip17_delivered": 1,
+    "nip04_delivered": 2,
+    "exposed": 3,
+    "relay_writes": 8
+   },
+   "turns": 23,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 27764,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 5,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 35404,
+   "metrics": {
+    "nip17_delivered": 4,
+    "nip04_delivered": 1,
+    "exposed": 0,
+    "relay_writes": 5
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -42097,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "random",
+   "value": -19451,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 4,
+    "relay_writes": 8
+   },
+   "turns": 22,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 29811,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 7,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 35401,
+   "metrics": {
+    "nip17_delivered": 4,
+    "nip04_delivered": 3,
+    "exposed": 0,
+    "relay_writes": 7
+   },
+   "turns": 28,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -37164,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "random",
+   "value": 3390,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 3,
+    "exposed": 2,
+    "relay_writes": 8
+   },
+   "turns": 25,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 20403,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 6,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 25128,
+   "metrics": {
+    "nip17_delivered": 4,
+    "nip04_delivered": 2,
+    "exposed": 0,
+    "relay_writes": 6
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -44631,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "random",
+   "value": -17353,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 2,
+    "exposed": 4,
+    "relay_writes": 8
+   },
+   "turns": 22,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 23824,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 6,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 29776,
+   "metrics": {
+    "nip17_delivered": 4,
+    "nip04_delivered": 2,
+    "exposed": 0,
+    "relay_writes": 6
+   },
+   "turns": 27,
+   "rejections": []
+  }
+ ],
+ "checks": [
+  {
+   "id": "K92",
+   "pass": true,
+   "detail": "32 episodes compared, 0 mismatches"
+  }
+ ]
+}

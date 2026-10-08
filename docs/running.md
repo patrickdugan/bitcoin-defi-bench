@@ -49,7 +49,7 @@ node --experimental-strip-types scripts/run_nostr.ts --block development
 node --experimental-strip-types scripts/run_nostr.ts --block development --cells custody,private
 ```
 
-Each of the seven cells is its own run record and table, `results/v0-nostr-<cell>-baselines-<block>.md`, because each has its own baselines. The development block takes about fifteen seconds, most of it real NIP-44 and NIP-59 work in `private`. The confirmatory block is refused until the amendment drafted in `docs/nostr_amendment_draft.md` is appended to `prereg/v0.md` and freezes the family.
+Each of the seven cells is its own run record and table, `results/v0-nostr-<cell>-baselines-<block>.md`, because each has its own baselines. The development block takes about fifteen seconds, most of it real NIP-44 and NIP-59 work in `private`. The confirmatory block runs the frozen family (Amendment 5) in about twenty-five seconds.
 
 Every run verifies the manifest first and recomputes the baselines in the same process.
 

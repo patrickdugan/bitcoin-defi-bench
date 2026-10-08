@@ -1,0 +1,4190 @@
+{
+ "bench": "bitcoin-defi-bench/v0",
+ "block": "confirmatory",
+ "manifest_sha256": "6886a9a134d3936ae6822a14da0eb971fdea23d4a2d5d0031d55612ae279fdbf",
+ "prereg_sha256": "8f9b0698b32ff85a53cb30bbc8f8ca18d198e9ba3db435a5f062ab56a270d8e0",
+ "spiral_commit": "9824c30ad402cc9bca768eca27d176e0e8788db5",
+ "node": "v24.19.0",
+ "seeds": [
+  1000,
+  1001,
+  1002,
+  1003,
+  1004,
+  1005,
+  1006,
+  1007,
+  1008,
+  1009,
+  1010,
+  1011,
+  1012,
+  1013,
+  1014,
+  1015,
+  1016,
+  1017,
+  1018,
+  1019,
+  1020,
+  1021,
+  1022,
+  1023,
+  1024,
+  1025,
+  1026,
+  1027,
+  1028,
+  1029,
+  1030,
+  1031
+ ],
+ "agents": [
+  {
+   "id": "idle",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "nostr_only",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "flood_now",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "random",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "bitchat_router",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "oracle",
+   "privileged": true,
+   "baseline": true
+  }
+ ],
+ "tasks": [
+  {
+   "task": "nostr/mesh_partial",
+   "unit": "sats: messages delivered by their deadlines, minus a price per radio transmission",
+   "band": 500,
+   "floor": "idle",
+   "ceiling": "oracle",
+   "reference": "bitchat_router",
+   "metrics": [
+    "delivered",
+    "transmissions",
+    "by_courier",
+    "by_nostr"
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": -270,
+   "metrics": {
+    "delivered": 1,
+    "late": 0,
+    "transmissions": 72,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "random",
+   "value": 700,
+   "metrics": {
+    "delivered": 3,
+    "late": 2,
+    "transmissions": 257,
+    "sends": 9,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 35,
+   "rejections": [
+    {
+     "turn": 3,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 7,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 11,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 12,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 14,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 19,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 20,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 24,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 34,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 14594,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 152,
+    "sends": 6,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 15,
+   "rejections": [
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 17094,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 27,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": -240,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 12,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "random",
+   "value": 10858,
+   "metrics": {
+    "delivered": 4,
+    "late": 2,
+    "transmissions": 181,
+    "sends": 10,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 25,
+   "rejections": [
+    {
+     "turn": 6,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 9,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 12,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 19,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 14591,
+   "metrics": {
+    "delivered": 5,
+    "late": 0,
+    "transmissions": 133,
+    "sends": 5,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 23,
+   "rejections": [
+    {
+     "turn": 3,
+     "reason": "no_link"
+    },
+    {
+     "turn": 4,
+     "reason": "no_link"
+    },
+    {
+     "turn": 5,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 20878,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 34,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 2,
+    "by_courier": 0,
+    "by_nostr": 2
+   },
+   "turns": 45,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 1970,
+   "metrics": {
+    "delivered": 1,
+    "late": 0,
+    "transmissions": 60,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "random",
+   "value": -2260,
+   "metrics": {
+    "delivered": 0,
+    "late": 2,
+    "transmissions": 113,
+    "sends": 8,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 37,
+   "rejections": [
+    {
+     "turn": 1,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 7,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 9,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 22,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 29,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 31,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 9901,
+   "metrics": {
+    "delivered": 4,
+    "late": 0,
+    "transmissions": 82,
+    "sends": 4,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 19,
+   "rejections": [
+    {
+     "turn": 4,
+     "reason": "no_link"
+    },
+    {
+     "turn": 5,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 15874,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 23,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 5764,
+   "metrics": {
+    "delivered": 2,
+    "late": 0,
+    "transmissions": 114,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "random",
+   "value": 8793,
+   "metrics": {
+    "delivered": 5,
+    "late": 1,
+    "transmissions": 228,
+    "sends": 8,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 22,
+   "rejections": [
+    {
+     "turn": 2,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 13460,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 205,
+    "sends": 6,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 16860,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 35,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 2840,
+   "metrics": {
+    "delivered": 1,
+    "late": 0,
+    "transmissions": 72,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "random",
+   "value": 4168,
+   "metrics": {
+    "delivered": 3,
+    "late": 3,
+    "transmissions": 233,
+    "sends": 14,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 30,
+   "rejections": [
+    {
+     "turn": 3,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 4,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 24,
+     "reason": "no_link"
+    },
+    {
+     "turn": 27,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 12467,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 173,
+    "sends": 6,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 17,
+   "rejections": [
+    {
+     "turn": 4,
+     "reason": "no_link"
+    },
+    {
+     "turn": 5,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 15527,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 20,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 561,
+   "metrics": {
+    "delivered": 1,
+    "late": 0,
+    "transmissions": 54,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "random",
+   "value": -860,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 43,
+    "sends": 5,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 32,
+   "rejections": [
+    {
+     "turn": 5,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 26,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 28,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 13708,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 178,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 16888,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 19,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 11,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 658,
+   "metrics": {
+    "delivered": 1,
+    "late": 0,
+    "transmissions": 36,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "random",
+   "value": -3918,
+   "metrics": {
+    "delivered": 1,
+    "late": 4,
+    "transmissions": 262,
+    "sends": 12,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 44,
+   "rejections": [
+    {
+     "turn": 2,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 8,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 11,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 15,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 41,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 12578,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 179,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 15578,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 29,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 11,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 1,
+    "transmissions": 0,
+    "sends": 2,
+    "by_courier": 0,
+    "by_nostr": 2
+   },
+   "turns": 62,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 6193,
+   "metrics": {
+    "delivered": 4,
+    "late": 0,
+    "transmissions": 156,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "random",
+   "value": 9610,
+   "metrics": {
+    "delivered": 5,
+    "late": 1,
+    "transmissions": 257,
+    "sends": 10,
+    "by_courier": 4,
+    "by_nostr": 1
+   },
+   "turns": 28,
+   "rejections": [
+    {
+     "turn": 2,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 3,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 5,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 7,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 12,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 14,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 20,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 25,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 12265,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 175,
+    "sends": 6,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 15305,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 23,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 11,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": -240,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 12,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "random",
+   "value": 2840,
+   "metrics": {
+    "delivered": 3,
+    "late": 2,
+    "transmissions": 215,
+    "sends": 9,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 40,
+   "rejections": [
+    {
+     "turn": 14,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 21,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 29,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 10659,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 135,
+    "sends": 6,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 22,
+   "rejections": [
+    {
+     "turn": 3,
+     "reason": "no_link"
+    },
+    {
+     "turn": 4,
+     "reason": "no_link"
+    },
+    {
+     "turn": 5,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 12799,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 28,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 1675,
+   "metrics": {
+    "delivered": 1,
+    "late": 2,
+    "transmissions": 0,
+    "sends": 4,
+    "by_courier": 0,
+    "by_nostr": 4
+   },
+   "turns": 62,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": -1080,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 54,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "random",
+   "value": 1203,
+   "metrics": {
+    "delivered": 4,
+    "late": 2,
+    "transmissions": 289,
+    "sends": 15,
+    "by_courier": 4,
+    "by_nostr": 3
+   },
+   "turns": 30,
+   "rejections": [
+    {
+     "turn": 7,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 11,
+     "reason": "no_link"
+    },
+    {
+     "turn": 12,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 7867,
+   "metrics": {
+    "delivered": 5,
+    "late": 0,
+    "transmissions": 148,
+    "sends": 5,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 17,
+   "rejections": [
+    {
+     "turn": 3,
+     "reason": "no_link"
+    },
+    {
+     "turn": 4,
+     "reason": "no_link"
+    },
+    {
+     "turn": 5,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 13040,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 20,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 1
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 7754,
+   "metrics": {
+    "delivered": 5,
+    "late": 0,
+    "transmissions": 192,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "random",
+   "value": 2852,
+   "metrics": {
+    "delivered": 2,
+    "late": 2,
+    "transmissions": 98,
+    "sends": 6,
+    "by_courier": 3,
+    "by_nostr": 0
+   },
+   "turns": 37,
+   "rejections": [
+    {
+     "turn": 9,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 10,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 17,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 18,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 19,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 20,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 25,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 35,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 10469,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 190,
+    "sends": 6,
+    "by_courier": 1,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 13909,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 18,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 3205,
+   "metrics": {
+    "delivered": 2,
+    "late": 0,
+    "transmissions": 114,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "random",
+   "value": 8367,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 272,
+    "sends": 9,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 28,
+   "rejections": [
+    {
+     "turn": 7,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 10,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 15,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 20,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 11307,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 125,
+    "sends": 6,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 13427,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 19,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 11,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": -120,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 6,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "random",
+   "value": 6249,
+   "metrics": {
+    "delivered": 5,
+    "late": 1,
+    "transmissions": 245,
+    "sends": 8,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 24,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "no_link"
+    },
+    {
+     "turn": 4,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 7,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 9,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 13,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 21,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 8129,
+   "metrics": {
+    "delivered": 5,
+    "late": 0,
+    "transmissions": 151,
+    "sends": 5,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 19,
+   "rejections": [
+    {
+     "turn": 1,
+     "reason": "no_link"
+    },
+    {
+     "turn": 2,
+     "reason": "no_link"
+    },
+    {
+     "turn": 3,
+     "reason": "no_link"
+    },
+    {
+     "turn": 4,
+     "reason": "no_link"
+    },
+    {
+     "turn": 5,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 14553,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 16,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 2,
+    "by_courier": 0,
+    "by_nostr": 2
+   },
+   "turns": 90,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 3759,
+   "metrics": {
+    "delivered": 1,
+    "late": 0,
+    "transmissions": 30,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "random",
+   "value": 10554,
+   "metrics": {
+    "delivered": 5,
+    "late": 1,
+    "transmissions": 298,
+    "sends": 11,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 30,
+   "rejections": [
+    {
+     "turn": 8,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 12,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 14,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 17033,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 192,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 19553,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 66,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 4827,
+   "metrics": {
+    "delivered": 3,
+    "late": 0,
+    "transmissions": 120,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "random",
+   "value": 3860,
+   "metrics": {
+    "delivered": 4,
+    "late": 0,
+    "transmissions": 394,
+    "sends": 12,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 36,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 19,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 29,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 31,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 32,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 33,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 12437,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 195,
+    "sends": 6,
+    "by_courier": 3,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 15937,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 20,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 3979,
+   "metrics": {
+    "delivered": 1,
+    "late": 0,
+    "transmissions": 42,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "random",
+   "value": 1484,
+   "metrics": {
+    "delivered": 2,
+    "late": 4,
+    "transmissions": 253,
+    "sends": 8,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 39,
+   "rejections": [
+    {
+     "turn": 1,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 3,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 14,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 18,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 20,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 22,
+     "reason": "no_link"
+    },
+    {
+     "turn": 26,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 28,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 30,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 36,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 10811,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 132,
+    "sends": 6,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 15,
+   "rejections": [
+    {
+     "turn": 3,
+     "reason": "no_link"
+    },
+    {
+     "turn": 4,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 12891,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 28,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 11,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": -240,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 12,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "random",
+   "value": 6216,
+   "metrics": {
+    "delivered": 2,
+    "late": 2,
+    "transmissions": 127,
+    "sends": 8,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 34,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 5,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 7,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 12,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 13,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 16049,
+   "metrics": {
+    "delivered": 5,
+    "late": 0,
+    "transmissions": 157,
+    "sends": 5,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 21,
+   "rejections": [
+    {
+     "turn": 3,
+     "reason": "no_link"
+    },
+    {
+     "turn": 4,
+     "reason": "no_link"
+    },
+    {
+     "turn": 5,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 20297,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 31,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 2076,
+   "metrics": {
+    "delivered": 1,
+    "late": 0,
+    "transmissions": 66,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "random",
+   "value": 1436,
+   "metrics": {
+    "delivered": 3,
+    "late": 3,
+    "transmissions": 306,
+    "sends": 12,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 24,
+   "rejections": [
+    {
+     "turn": 4,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 5,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 21,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 14505,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 178,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 17645,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 21,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 11,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": -840,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 42,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "random",
+   "value": 9404,
+   "metrics": {
+    "delivered": 4,
+    "late": 2,
+    "transmissions": 303,
+    "sends": 11,
+    "by_courier": 3,
+    "by_nostr": 0
+   },
+   "turns": 28,
+   "rejections": [
+    {
+     "turn": 14,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 23,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 25,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 14005,
+   "metrics": {
+    "delivered": 5,
+    "late": 0,
+    "transmissions": 147,
+    "sends": 5,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 14,
+   "rejections": [
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 21421,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 26,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": -1680,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 84,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "random",
+   "value": 9289,
+   "metrics": {
+    "delivered": 4,
+    "late": 2,
+    "transmissions": 179,
+    "sends": 8,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 29,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 13,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 25,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 11393,
+   "metrics": {
+    "delivered": 5,
+    "late": 0,
+    "transmissions": 141,
+    "sends": 5,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 19,
+   "rejections": [
+    {
+     "turn": 3,
+     "reason": "no_link"
+    },
+    {
+     "turn": 4,
+     "reason": "no_link"
+    },
+    {
+     "turn": 5,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 18148,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 25,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": -360,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 18,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "random",
+   "value": 14453,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 239,
+    "sends": 7,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 16,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 8,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 15433,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 190,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 17,
+   "rejections": [
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 18913,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 16,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 12861,
+   "metrics": {
+    "delivered": 4,
+    "late": 0,
+    "transmissions": 78,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "random",
+   "value": 11444,
+   "metrics": {
+    "delivered": 5,
+    "late": 1,
+    "transmissions": 257,
+    "sends": 8,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 34,
+   "rejections": [
+    {
+     "turn": 7,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 17,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 18,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 21,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 23,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 24,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 15539,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 151,
+    "sends": 6,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 17979,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 29,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 630,
+   "metrics": {
+    "delivered": 1,
+    "late": 0,
+    "transmissions": 48,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "random",
+   "value": 11764,
+   "metrics": {
+    "delivered": 5,
+    "late": 1,
+    "transmissions": 372,
+    "sends": 13,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 26,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 5,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 11,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 12,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 17,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 18726,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 127,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 20926,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 17,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 3574,
+   "metrics": {
+    "delivered": 1,
+    "late": 0,
+    "transmissions": 36,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "random",
+   "value": 17811,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 190,
+    "sends": 7,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 19,
+   "rejections": [
+    {
+     "turn": 1,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 9,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 16,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 17971,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 182,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 20931,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 34,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 386,
+   "metrics": {
+    "delivered": 2,
+    "late": 0,
+    "transmissions": 156,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "random",
+   "value": 5565,
+   "metrics": {
+    "delivered": 5,
+    "late": 1,
+    "transmissions": 273,
+    "sends": 11,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 29,
+   "rejections": [
+    {
+     "turn": 7,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 14,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 15,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 19,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 21,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 10243,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 154,
+    "sends": 6,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 12943,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 19,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 11,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 4744,
+   "metrics": {
+    "delivered": 3,
+    "late": 0,
+    "transmissions": 132,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "random",
+   "value": 6490,
+   "metrics": {
+    "delivered": 4,
+    "late": 2,
+    "transmissions": 209,
+    "sends": 7,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 24,
+   "rejections": [
+    {
+     "turn": 4,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 5,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 6,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 17,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 20,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 13857,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 152,
+    "sends": 6,
+    "by_courier": 3,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 16577,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 16,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 11,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 2134,
+   "metrics": {
+    "delivered": 1,
+    "late": 0,
+    "transmissions": 42,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "random",
+   "value": 2193,
+   "metrics": {
+    "delivered": 2,
+    "late": 2,
+    "transmissions": 174,
+    "sends": 8,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 39,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 1,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 5,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 7,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 18,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 21,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 23,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 24,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 27,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 36,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 17541,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 194,
+    "sends": 6,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 17,
+   "rejections": [
+    {
+     "turn": 3,
+     "reason": "no_link"
+    },
+    {
+     "turn": 4,
+     "reason": "no_link"
+    },
+    {
+     "turn": 6,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 20941,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 24,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 1239,
+   "metrics": {
+    "delivered": 1,
+    "late": 0,
+    "transmissions": 42,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "random",
+   "value": 1284,
+   "metrics": {
+    "delivered": 2,
+    "late": 4,
+    "transmissions": 269,
+    "sends": 8,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 35,
+   "rejections": [
+    {
+     "turn": 4,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 8,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 9,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 10,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 12,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 21,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 12186,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 107,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 14006,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 16,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 431,
+   "metrics": {
+    "delivered": 1,
+    "late": 0,
+    "transmissions": 162,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "random",
+   "value": 1070,
+   "metrics": {
+    "delivered": 1,
+    "late": 2,
+    "transmissions": 173,
+    "sends": 6,
+    "by_courier": 3,
+    "by_nostr": 0
+   },
+   "turns": 30,
+   "rejections": [
+    {
+     "turn": 8,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 9,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 11,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 13,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 15,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 18,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 21,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 14714,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 219,
+    "sends": 6,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 18714,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 19,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 4436,
+   "metrics": {
+    "delivered": 2,
+    "late": 0,
+    "transmissions": 72,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "random",
+   "value": 1303,
+   "metrics": {
+    "delivered": 4,
+    "late": 2,
+    "transmissions": 209,
+    "sends": 8,
+    "by_courier": 5,
+    "by_nostr": 0
+   },
+   "turns": 24,
+   "rejections": [
+    {
+     "turn": 16,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 9891,
+   "metrics": {
+    "delivered": 5,
+    "late": 0,
+    "transmissions": 104,
+    "sends": 5,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 23,
+   "rejections": [
+    {
+     "turn": 3,
+     "reason": "no_link"
+    },
+    {
+     "turn": 4,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 12647,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 20,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 2730,
+   "metrics": {
+    "delivered": 1,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 2,
+    "by_courier": 0,
+    "by_nostr": 2
+   },
+   "turns": 11,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 6862,
+   "metrics": {
+    "delivered": 2,
+    "late": 0,
+    "transmissions": 138,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "random",
+   "value": 13944,
+   "metrics": {
+    "delivered": 5,
+    "late": 1,
+    "transmissions": 181,
+    "sends": 9,
+    "by_courier": 5,
+    "by_nostr": 3
+   },
+   "turns": 25,
+   "rejections": [
+    {
+     "turn": 6,
+     "reason": "relay_refused"
+    },
+    {
+     "turn": 21,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 16512,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 206,
+    "sends": 6,
+    "by_courier": 4,
+    "by_nostr": 0
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 20372,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 13,
+    "sends": 6,
+    "by_courier": 4,
+    "by_nostr": 1
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "nostr_only",
+   "value": 0,
+   "metrics": {
+    "delivered": 0,
+    "late": 0,
+    "transmissions": 0,
+    "sends": 0,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 120,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "flood_now",
+   "value": 5659,
+   "metrics": {
+    "delivered": 3,
+    "late": 0,
+    "transmissions": 126,
+    "sends": 6,
+    "by_courier": 0,
+    "by_nostr": 0
+   },
+   "turns": 7,
+   "rejections": []
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "random",
+   "value": 12292,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 156,
+    "sends": 8,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 15,
+   "rejections": [
+    {
+     "turn": 11,
+     "reason": "relay_refused"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "bitchat_router",
+   "value": 12692,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 136,
+    "sends": 6,
+    "by_courier": 2,
+    "by_nostr": 0
+   },
+   "turns": 11,
+   "rejections": [
+    {
+     "turn": 5,
+     "reason": "no_link"
+    }
+   ]
+  },
+  {
+   "task": "nostr/mesh_partial",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 15092,
+   "metrics": {
+    "delivered": 6,
+    "late": 0,
+    "transmissions": 16,
+    "sends": 6,
+    "by_courier": 6,
+    "by_nostr": 0
+   },
+   "turns": 12,
+   "rejections": []
+  }
+ ],
+ "checks": [
+  {
+   "id": "K92",
+   "pass": true,
+   "detail": "not applicable: this cell's ceiling is a reference, not an exact optimum"
+  }
+ ]
+}

@@ -1,8 +1,8 @@
 {
   "description": "Family 7 (docs/tasks.md section 8): proving claims within a budget. The prover's seconds and memory are the adopted measurement of the R_cap program proven with Stwo, named here by path and by the SHA-256 of its LF-normalized text; every other number is a bench decision.",
   "cost_model": {
-    "file": "cairo/rcap/measurements/20261007T032704Z.json",
-    "sha256": "668d584a1099db0dfb0e219855f0103e6b31fc3d443e6fcc2f7eca63cfc0b818"
+    "file": "cairo/rcap/measurements/adopted-20261008.json",
+    "sha256": "8e72d92835ef2bcac7ebf8ff59b1cc2b3916da031b341cccbfd4d6db1157f83d"
   },
   "cells": {
     "steady": {
@@ -31,7 +31,7 @@
     }
   },
   "provenance": {
-    "cost_model": "measured: cairo/rcap/measure.sh on this machine (docs/tasks.md section 8.5); to be replaced by the quiet re-measurement before the family is frozen",
+    "cost_model": "measured: cairo/rcap/measure.sh on this machine, one run per size on 2026-10-07 and three on 2026-10-08, merged by cairo/rcap/adopt.ts as the minimum wall seconds per size over all four (docs/tasks.md section 8.5)",
     "horizon_blocks": "invented: one day of blocks",
     "arrivals": "invented: a steady Poisson process at 2 per block, or a two-state Markov-modulated one with the same order of mean (1.6 per block); log-uniform values from 2,000 to 200,000 sats",
     "max_proofs": "invented: 48 a day where proofs are plentiful, 12 where they are scarce",

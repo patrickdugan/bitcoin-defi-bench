@@ -729,13 +729,25 @@ First grid, 2026-10-07 (`cairo/rcap/measurements/20261007T032704Z.json`; program
 | 64 | 170,185 | 51.6 | 14,797 | 13,194,487 |
 | 128 | 340,269 | 108.0 | 14,808 | 13,524,512 |
 
-What the grid says. Steps are linear at about 2,660 per claim. Proving time has a floor near 16 s up to four claims, where the trace is padded to the prover's minimum, and then grows at under a second per claim (0.9 s per claim between 64 and 128). Peak memory is 14 to 15 GB at every size, the prover's own footprint, and the proof is 13.2 to 13.5 MB at every size. So the per-claim cost falls by a factor of about 18 between one claim and 128, and below about sixteen claims the fixed cost is most of the bill: the family's batching question has a real answer in these numbers. This grid was timed while an LLM server ran on the same machine's GPU, so the seconds are an upper bound; it is re-measured on a quiet machine before it is adopted as the hash-bound fixture.
+What the grid says. Steps are linear at about 2,660 per claim. Proving time has a floor near 16 s up to four claims, where the trace is padded to the prover's minimum, and then grows at under a second per claim (0.9 s per claim between 64 and 128). Peak memory is 14 to 15 GB at every size, the prover's own footprint, and the proof is 13.2 to 13.5 MB at every size. So the per-claim cost falls by a factor of about 18 between one claim and 128, and below about sixteen claims the fixed cost is most of the bill: the family's batching question has a real answer in these numbers. This grid was timed while an LLM server ran on the same machine's GPU, so the seconds are an upper bound.
+
+**Re-measurement and adoption, 2026-10-08.** The grid was repeated with three runs per size and extended to 256 and 512 claims (`cairo/rcap/measurements/20261008T132232Z.json`; all 30 proofs verified). The machine was not quiet: two other sessions' Python jobs and OneDrive synchronization ran throughout, which the load average inside WSL (0.24 at the start) does not show. Small batches took two to three times as long as on 2026-10-07: 43 s at one claim against 16. Two findings follow.
+
+- **Timings on a shared machine move by a factor of two or more.** The adopted cost table, `cairo/rcap/measurements/adopted-20261008.json` (merged by `cairo/rcap/adopt.ts`), takes for each size the least wall time over all four runs. That is the statistic least disturbed by other work. Up to 128 claims it is the first grid's.
+- **512 claims meet the memory wall.** Peak resident memory caps at about 15 GB, which is WSL's own RAM. At 256 claims proving took 228 s, and at 512 it took 916 s, four times as long for twice the claims, while swapping. So the cost table carries the machine's memory ceiling as a time penalty above 256 claims rather than as a refusal.
+
+| Claims | 256 | 512 |
+|---:|---:|---:|
+| Steps | 680,531 | 1,361,137 |
+| Prove (s), least of three | 227.6 | 915.6 |
+| Peak RSS (MiB) | 15,031 | 15,021 |
+| Proof (bytes) | 14,626,013 | 15,685,984 |
 
 ### 8.6 As built (2026-10-08)
 
 Code in `src/tasks/proof_budget/`, config in `config/proof_budget.json`. Three tasks, `proof_budget/<cell>`.
 
-- **Cost model.** Read from the measurement file the config names, checked against the SHA-256 of its text with line endings normalized, and copied into every fixture. Seconds and peak memory are interpolated linearly between measured batch sizes. A batch can always be padded with dummy claims to a larger measured size, so b claims are charged the least seconds over sizes from b up to the largest that fits. Batches beyond the largest measured size, or past the memory ceiling, are not offered.
+- **Cost model.** Read from the adopted measurement the config names (§8.5), checked against the SHA-256 of its text with line endings normalized, and copied into every fixture. Seconds and peak memory are interpolated linearly between measured batch sizes. A batch can always be padded with dummy claims to a larger measured size, so b claims are charged the least seconds over sizes from b up to the largest that fits. Batches beyond the largest measured size, or past the memory ceiling, are not offered.
 - **Order.** A proof covers the oldest pending claims. Fixing the order is what makes the ceiling exact over the agent's action space: a proof covering claims i to j is best published when claim j arrives, and the claims never proven are a suffix. So f(i, k) = min(forfeit everything from i, min over j of cost(j − i + 1) + staleness(i, j) + f(j + 1, k − 1)) is exact, and a test holds it equal to enumeration and checks that delaying any proof never helps.
 - **Costs.** The prover's price times each proof's seconds; staleness, s × value for each block a claim waits; and forfeiture, the whole value of every claim not proven by the horizon. The native value is −ln of the total.
 - **Episode.** The view holds the block, the pending claims (id, arrival block, value), the arrival process's parameters but not its state or its future, the cost table, the largest batch, and the prices. `budget.attempts` is the proofs left, and `budget.blocks` the blocks left. The ceiling, `optimal_batching`, is handed every claim of the horizon.
@@ -755,12 +767,12 @@ Code in `src/tasks/proof_budget/`, config in `config/proof_budget.json`. Three t
 
 In every cell the horizon is 144 blocks (one day), values are log-uniform from 2,000 to 200,000 sats, the prover costs 5 sats a second, staleness is 50 ppm of value a block, and the memory ceiling is 64 GiB [all invented].
 
-**Development results (seeds 0 to 7), on the first grid.** In [results/v0-proof-budget-baselines-development.md](../results/v0-proof-budget-baselines-development.md). K71 to K73 pass. The floor exhausts its proofs and forfeits most claims, so normalized gains near 1 say little, and the informative contrast is against `fixed_interval`. `optimal_batching` − `fixed_interval` is +0.17 (+0.15 to +0.19) on `steady`, +0.38 (+0.34 to +0.41) on `bursty`, and +0.18 (+0.14 to +0.21) on `few_proofs`. The adaptive `threshold` closes about half the bursty gap (+0.18) but forfeits badly when proofs are scarce, because it ignores the proof budget.
+**Development results (seeds 0 to 7).** In [results/v0-proof-budget-baselines-development.md](../results/v0-proof-budget-baselines-development.md). K71 to K73 pass. The floor exhausts its proofs and forfeits most claims, so normalized gains near 1 say little, and the informative contrast is against `fixed_interval`. `optimal_batching` − `fixed_interval` is +0.17 (+0.15 to +0.19) on `steady`, +0.38 (+0.34 to +0.41) on `bursty`, and +0.18 (+0.14 to +0.21) on `few_proofs`. The adaptive `threshold` closes about half the bursty gap (+0.18) but forfeits badly when proofs are scarce, because it ignores the proof budget.
 
 **What remains.**
 
-1. Adopt the re-measured grid, which repeats every size three times and extends it to 512 claims, then rebuild the fixtures and rerun development. The first grid was timed beside an LLM server.
-2. An amendment freezing the family.
+1. Done: the re-measured grid is adopted (§8.5), and the fixtures were rebuilt and development rerun on it. The results did not change, because the adopted seconds equal the first grid's up to 128 claims and no policy in these cells forms larger batches.
+2. An amendment freezing the family, drafted in [amendment_drafts.md](amendment_drafts.md).
 3. LLM runs. `scripts/run_proof_budget_agent.ts` sends the current turn alone (`contextTurns: 0`), which carries the whole state; nothing has been run yet.
 
 ## 9. Family 8: timing funding against fee and demand (specified, not implemented)

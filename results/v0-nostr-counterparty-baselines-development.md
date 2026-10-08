@@ -36,8 +36,8 @@ Native value: sats: the job's value if a result arrives by the deadline, minus e
 
 | Id | Contrast | Task | Unadjusted 95% | Adjusted | Verdict |
 |---|---|---|---|---|---|
-| R | `cheapest` − `idle`, predicted positive | `nostr/counterparty` | −6817.13 (−27779.75 to +14145.50) | −6817.13 (−32005.03 to +18370.78) | inconclusive |
-| C | `oracle` − `cheapest`, predicted positive | `nostr/counterparty` | +46797.88 (+27245.88 to +66349.87) | +46797.88 (+23304.93 to +70290.82) | positive |
+| H9 | `reputation` − `cheapest`, predicted positive | `nostr/counterparty` | +44925.00 (+26122.97 to +63727.03) | +44925.00 (+22333.18 to +67516.82) | positive |
+| H10 | `oracle` − `cheapest`, predicted positive | `nostr/counterparty` | +46797.88 (+27245.88 to +66349.87) | +46797.88 (+23304.93 to +70290.82) | positive |
 
 ## Calibration gates
 

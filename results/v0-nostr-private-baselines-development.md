@@ -35,8 +35,8 @@ Native value: sats: messages each recipient's client opened, NIP-04 discounted, 
 
 | Id | Contrast | Task | Unadjusted 95% | Adjusted | Verdict |
 |---|---|---|---|---|---|
-| R | `legacy_everywhere` − `idle`, predicted positive | `nostr/private` | +27101.38 (+22403.82 to +31798.93) | +27101.38 (+21456.97 to +32745.78) | positive |
-| C | `nip17` − `legacy_everywhere`, predicted positive | `nostr/private` | +5597.00 (+3461.85 to +7732.15) | +5597.00 (+3031.48 to +8162.52) | positive |
+| H7 | `nip17` − `legacy_everywhere`, predicted positive | `nostr/private` | +5597.00 (+3461.85 to +7732.15) | +5597.00 (+3031.48 to +8162.52) | positive |
+| H8 | `plaintext_mention` − `idle`, predicted negative | `nostr/private` | −44728.00 (−51385.52 to −38070.48) | −44728.00 (−52727.43 to −36728.57) | negative |
 
 ## Calibration gates
 

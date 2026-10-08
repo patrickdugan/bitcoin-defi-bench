@@ -36,8 +36,8 @@ Native value: sats: messages delivered by their deadlines, minus a price per rad
 
 | Id | Contrast | Task | Unadjusted 95% | Adjusted | Verdict |
 |---|---|---|---|---|---|
-| R | `bitchat_router` − `idle`, predicted positive | `nostr/mesh_partial` | +15228.63 (+12663.68 to +17793.57) | +15228.63 (+12146.68 to +18310.57) | positive |
-| C | `oracle` − `bitchat_router`, predicted positive | `nostr/mesh_partial` | +2532.50 (+1854.26 to +3210.74) | +2532.50 (+1717.55 to +3347.45) | positive |
+| H13 | `bitchat_router` − `nostr_only`, predicted positive | `nostr/mesh_partial` | +14643.00 (+12414.97 to +16871.03) | +14643.00 (+11965.89 to +17320.11) | positive |
+| H14 | `oracle` − `bitchat_router`, predicted positive | `nostr/mesh_partial` | +2532.50 (+1854.26 to +3210.74) | +2532.50 (+1717.55 to +3347.45) | positive |
 
 ## Calibration gates
 

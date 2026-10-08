@@ -46,14 +46,23 @@ export function nostrTaskSpec(root: string, manifest: Manifest, config: NostrCon
   };
 }
 
-/** Two contrasts per cell, as the draft amendment proposes them: the reference beats doing nothing, and the ceiling beats the reference. */
+/**
+ * The draft amendment's hypotheses (docs/nostr_amendment_draft.md), two per cell, each a design
+ * claim of the cell: H1 to H14. Each cell is its own primary family, adjusted for its two.
+ */
+export const NOSTR_HYPOTHESES: { [cell in NostrCell]: Array<{ id: string; a: string; b: string; sign: "positive" | "negative" }> } = {
+  custody: [{ id: "H1", a: "policy", b: "idle", sign: "positive" }, { id: "H2", a: "kinds_only", b: "idle", sign: "negative" }],
+  custody_hot: [{ id: "H3", a: "policy", b: "idle", sign: "positive" }, { id: "H4", a: "no_key_paste", b: "idle", sign: "negative" }],
+  publish: [{ id: "H5", a: "outbox", b: "random", sign: "positive" }, { id: "H6", a: "max_reach", b: "outbox", sign: "positive" }],
+  private: [{ id: "H7", a: "nip17", b: "legacy_everywhere", sign: "positive" }, { id: "H8", a: "plaintext_mention", b: "idle", sign: "negative" }],
+  counterparty: [{ id: "H9", a: "reputation", b: "cheapest", sign: "positive" }, { id: "H10", a: "oracle", b: "cheapest", sign: "positive" }],
+  mesh_outage: [{ id: "H11", a: "bitchat_router", b: "flood_now", sign: "positive" }, { id: "H12", a: "oracle", b: "bitchat_router", sign: "positive" }],
+  mesh_partial: [{ id: "H13", a: "bitchat_router", b: "nostr_only", sign: "positive" }, { id: "H14", a: "oracle", b: "bitchat_router", sign: "positive" }],
+};
+
 export function nostrContrasts(cell: NostrCell): ContrastSpec[] {
-  const s = NOSTR_CELL_SPECS[cell];
   const task = nostrTask(cell);
-  return [
-    { id: "R", label: `\`${s.reference}\` − \`idle\`, predicted positive`, task, a: s.reference, b: "idle", primary: true },
-    { id: "C", label: `\`${s.ceiling}\` − \`${s.reference}\`, predicted positive`, task, a: s.ceiling, b: s.reference, primary: true },
-  ];
+  return NOSTR_HYPOTHESES[cell].map((h) => ({ id: h.id, label: `\`${h.a}\` − \`${h.b}\`, predicted ${h.sign}`, task, a: h.a, b: h.b, primary: true }));
 }
 
 /** The ceiling computed directly from the fixture, for the cells where it is exact. */

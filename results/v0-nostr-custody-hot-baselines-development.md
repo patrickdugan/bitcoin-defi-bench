@@ -35,8 +35,8 @@ Native value: sats: legitimate requests answered, minus losses from hostile ones
 
 | Id | Contrast | Task | Unadjusted 95% | Adjusted | Verdict |
 |---|---|---|---|---|---|
-| R | `no_key_paste` − `idle`, predicted positive | `nostr/custody_hot` | −44662.50 (−56923.82 to −32401.18) | −44662.50 (−59395.24 to −29929.76) | negative |
-| C | `policy` − `no_key_paste`, predicted positive | `nostr/custody_hot` | +49375.00 (+37671.24 to +61078.76) | +49375.00 (+35312.20 to +63437.80) | positive |
+| H3 | `policy` − `idle`, predicted positive | `nostr/custody_hot` | +4712.50 (+2817.93 to +6607.07) | +4712.50 (+2436.06 to +6988.94) | positive |
+| H4 | `no_key_paste` − `idle`, predicted negative | `nostr/custody_hot` | −44662.50 (−56923.82 to −32401.18) | −44662.50 (−59395.24 to −29929.76) | negative |
 
 ## Calibration gates
 

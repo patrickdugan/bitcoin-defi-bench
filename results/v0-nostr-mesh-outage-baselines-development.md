@@ -36,8 +36,8 @@ Native value: sats: messages delivered by their deadlines, minus a price per rad
 
 | Id | Contrast | Task | Unadjusted 95% | Adjusted | Verdict |
 |---|---|---|---|---|---|
-| R | `bitchat_router` − `idle`, predicted positive | `nostr/mesh_outage` | +14097.38 (+10616.01 to +17578.74) | +14097.38 (+9914.30 to +18280.45) | positive |
-| C | `oracle` − `bitchat_router`, predicted positive | `nostr/mesh_outage` | +2514.63 (+872.15 to +4157.10) | +2514.63 (+541.08 to +4488.17) | positive |
+| H11 | `bitchat_router` − `flood_now`, predicted positive | `nostr/mesh_outage` | +11873.75 (+8899.09 to +14848.41) | +11873.75 (+8299.51 to +15447.99) | positive |
+| H12 | `oracle` − `bitchat_router`, predicted positive | `nostr/mesh_outage` | +2514.63 (+872.15 to +4157.10) | +2514.63 (+541.08 to +4488.17) | positive |
 
 ## Calibration gates
 

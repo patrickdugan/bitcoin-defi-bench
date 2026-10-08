@@ -42,6 +42,15 @@ node --experimental-strip-types scripts/run_dlc.ts --block development
 
 The development block takes about half a minute, most of it the exact optimizer. The confirmatory block is refused until an amendment freezes the family. Its tests read the DLC specification's test vectors from `vendor/dlcspecs` (see the README) and are skipped, with a message saying so, when that checkout is absent.
 
+Family 9 (Nostr coordination and the bitchat mesh):
+
+```
+node --experimental-strip-types scripts/run_nostr.ts --block development
+node --experimental-strip-types scripts/run_nostr.ts --block development --cells custody,private
+```
+
+Each of the seven cells is its own run record and table, `results/v0-nostr-<cell>-baselines-<block>.md`, because each has its own baselines. The development block takes about fifteen seconds, most of it real NIP-44 and NIP-59 work in `private`. The confirmatory block is refused until the amendment drafted in `docs/nostr_amendment_draft.md` is appended to `prereg/v0.md` and freezes the family.
+
 Every run verifies the manifest first and recomputes the baselines in the same process.
 
 ## Rebuilding fixtures
@@ -99,3 +108,13 @@ node --experimental-strip-types scripts/run_dlc_agent.ts --block development \
 ```
 
 The same flags as the family 6 script, with a reply limit of 1,024 tokens by default, since a design of twenty intervals is about three hundred. `dlc_design` returns the exact optimum on the menus as the offer to send. Until the family is frozen the agent's contrasts against `uniform_tuned` are descriptive.
+
+### Family 9
+
+```
+node --experimental-strip-types scripts/run_nostr_agent.ts --cell custody --block development \
+  --name <agent-name> --base-url http://127.0.0.1:8094/v1 --model <model> \
+  --model-sha256 <sha256 of the GGUF> --runtime "<output of llama-server --version>"
+```
+
+One cell per invocation (`--cell`), with the same flags as the placement script and a reply limit of 1,024 tokens. The prompts (`src/tasks/nostr/prompt.ts`) show the whole observation on the first turn and only the last result and a status line afterwards (about 100 to 250 characters), because a mesh episode can run to more than a hundred turns. No model has been run on the family yet, so the context a long episode needs has not been measured; start the server with 32,768 tokens. Events and ciphertexts come back as handles (`h3`) that the model passes on instead of copying. The first turn is longest in `custody`, about 8,800 characters. The agent's primary contrast is against the cell's reference and is descriptive until the family is frozen.

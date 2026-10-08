@@ -11,7 +11,9 @@ import { nip19Encode } from "./bech32.ts";
 import { counterpartyCeiling, type CounterpartyFixture } from "./counterparty.ts";
 import { custodyCeiling, type CustodyFixture } from "./custody.ts";
 import { custodyHotCeiling, type CustodyHotFixture } from "./custody_hot.ts";
+import type { Json } from "../../harness/json.ts";
 import { nip04Decrypt, nip04Encrypt } from "./nip04.ts";
+import { nostrPrompt } from "./prompt.ts";
 import { privateCeiling, type PrivateFixture } from "./private.ts";
 import { hexToBytes, publicKey } from "./secp256k1.ts";
 import { leaksSecret } from "./sim.ts";
@@ -135,6 +137,18 @@ test("every cell: idle earns 0, and where the ceiling is exact it earns the dire
       assert.equal(best, direct[cell]!(), `${cell}: ceiling`);
       for (const [id, v] of values) assert.ok(v <= best, `${cell}: ${id} beat the exact ceiling`);
     }
+  }
+});
+
+test("prompts: every cell renders its system text, first turn, and a later turn with no placeholder left unfilled", () => {
+  for (const cell of NOSTR_CELLS) {
+    const e = env(cell);
+    const obs = { bench: "bitcoin-defi-bench/v0", task: e.task, episode: { seed, cell: "single", turn: 0 }, budget: { ...e.budget() }, tools: e.tools(), view: e.view(), last: null } as const;
+    const p = nostrPrompt(cell, 1024);
+    const r = e.step({ tool: "nope" });
+    const text = p.system(obs as unknown as Json) + p.turn(obs as unknown as Json) + p.turn({ ...obs, budget: { ...e.budget() }, view: e.view(), last: r } as unknown as Json);
+    assert.deepEqual([...text.matchAll(/\{[a-z_0-9]+\}/g)].map((m) => m[0]), [], cell);
+    assert.ok(text.includes("Rejected (unknown_tool)"), cell);
   }
 });
 

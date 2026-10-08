@@ -35,8 +35,8 @@ Native value: sats: readers reached, at a value per follower and per mention, mi
 
 | Id | Contrast | Task | Unadjusted 95% | Adjusted | Verdict |
 |---|---|---|---|---|---|
-| R | `outbox` − `idle`, predicted positive | `nostr/publish` | +12987.50 (+11341.68 to +14633.32) | +12987.50 (+11009.94 to +14965.06) | positive |
-| C | `max_reach` − `outbox`, predicted positive | `nostr/publish` | +2600.00 (+1075.39 to +4124.61) | +2600.00 (+768.08 to +4431.92) | positive |
+| H5 | `outbox` − `random`, predicted positive | `nostr/publish` | +9700.00 (+7068.38 to +12331.62) | +9700.00 (+6537.95 to +12862.05) | positive |
+| H6 | `max_reach` − `outbox`, predicted positive | `nostr/publish` | +2600.00 (+1075.39 to +4124.61) | +2600.00 (+768.08 to +4431.92) | positive |
 
 ## Calibration gates
 

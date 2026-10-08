@@ -1,6 +1,5 @@
-// Family 10 report: task specs, contrasts, gates, and the identity control. The family is not yet
-// preregistered, so every contrast is declared and descriptive; none is primary until an amendment
-// freezes the family (docs/tasks.md §11.7).
+// Family 10 report: task specs, contrasts, gates, and the identity control. The primary contrasts
+// are D1 to D6 of prereg/v0.md Amendment 4.
 
 import type { EpisodeRow } from "../../harness/episode.ts";
 import type { Manifest } from "../../harness/manifest.ts";
@@ -27,14 +26,19 @@ export function dlcTaskSpecs(root: string, manifest: Manifest, config: DlcConfig
   }));
 }
 
-/** Declared before any run, descriptive until the family is frozen. */
+/** The six primary contrasts of prereg/v0.md Amendment 4, and its declared secondary ones. */
 export function dlcContrasts(config: DlcConfig): ContrastSpec[] {
   const cells = Object.keys(config.cells).sort();
-  return [
-    ...cells.map((cell, i) => ({ id: `X${i + 1}`, label: "`uniform_tuned` − `spec_default`, predicted positive", task: taskOf(cell), a: "uniform_tuned", b: "spec_default", primary: false })),
-    ...cells.map((cell, i) => ({ id: `X${cells.length + i + 1}`, label: "`exact` − `uniform_tuned`, predicted positive", task: taskOf(cell), a: "exact", b: "uniform_tuned", primary: false })),
-    ...cells.map((cell, i) => ({ id: `X${2 * cells.length + i + 1}`, label: "`two_band` − `uniform_tuned`, descriptive: how much of the gap flat tails close", task: taskOf(cell), a: "two_band", b: "uniform_tuned", primary: false })),
+  const primary: ContrastSpec[] = [
+    { id: "D1", label: "`uniform_tuned` − `spec_default`, predicted positive", task: taskOf("mobile_signer"), a: "uniform_tuned", b: "spec_default", primary: true },
+    { id: "D2", label: "`uniform_tuned` − `spec_default`, predicted positive", task: taskOf("stable_30d"), a: "uniform_tuned", b: "spec_default", primary: true },
+    { id: "D3", label: "`uniform_tuned` − `spec_default`, predicted positive", task: taskOf("stable_90d"), a: "uniform_tuned", b: "spec_default", primary: true },
+    { id: "D4", label: "`exact` − `uniform_tuned`, predicted positive", task: taskOf("mobile_signer"), a: "exact", b: "uniform_tuned", primary: true },
+    { id: "D5", label: "`exact` − `uniform_tuned`, predicted positive", task: taskOf("stable_30d"), a: "exact", b: "uniform_tuned", primary: true },
+    { id: "D6", label: "`exact` − `uniform_tuned`, predicted equivalent", task: taskOf("stable_90d"), a: "exact", b: "uniform_tuned", primary: true },
   ];
+  const secondary = cells.map((cell, i) => ({ id: `S${i + 1}`, label: "`two_band` − `uniform_tuned`, descriptive: how much of the gap flat tails close", task: taskOf(cell), a: "two_band", b: "uniform_tuned", primary: false }));
+  return [...primary, ...secondary];
 }
 
 export function dlcGates(_analysis: Analysis, record: RunRecord): Gate[] {

@@ -6,7 +6,7 @@
 //
 // Same discipline as the family 6 agent script: a reply log for reruns after an infrastructure
 // failure, every reply and skill call in the transcript, and a confirmatory block refused unless
-// the family is frozen (family 10 is not yet).
+// the family is frozen (family 10 was, by Amendment 4).
 
 import { appendFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -106,13 +106,13 @@ const record = await executeRun({
   progress: (message) => console.error(message),
 });
 
-/** Agent report: one contrast per cell, agent − `uniform_tuned`. Descriptive until an amendment freezes family 10. */
+/** Agent report: one primary contrast per cell, agent − `uniform_tuned`, as Amendment 4 provides. */
 const report: ReportSpec = {
   ...dlcReport(config),
   title: `Bitcoin DeFi Bench v0: family 10 (designing a numeric DLC), ${agent.id}`,
   contrasts: [
-    ...Object.keys(config.cells).sort().map((cell, i) => ({ id: `A${i + 1}`, label: `\`${agent.id}\` − \`uniform_tuned\``, task: `dlc/${cell}`, a: agent.id, b: "uniform_tuned", primary: false })),
-    ...dlcContrasts(config),
+    ...Object.keys(config.cells).sort().map((cell, i) => ({ id: `A${i + 1}`, label: `\`${agent.id}\` − \`uniform_tuned\``, task: `dlc/${cell}`, a: agent.id, b: "uniform_tuned", primary: true })),
+    ...dlcContrasts(config).map((c) => ({ ...c, primary: false })),
   ],
 };
 

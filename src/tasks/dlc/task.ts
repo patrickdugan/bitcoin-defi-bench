@@ -7,7 +7,7 @@ import { ManifestError, loadFixture, type Manifest } from "../../harness/manifes
 import { DlcEnv } from "./env.ts";
 import { fixturePath, type DlcConfig, type DlcFixture } from "./generate.ts";
 
-/** Practical-equivalence band in ln cost, about 5% of the contract's expected cost, as family 6. Not yet preregistered. */
+/** Practical-equivalence band in ln cost, about 5% of the contract's expected cost, as family 6. Chosen in prereg/v0.md Amendment 4. */
 export const DLC_BAND = 0.05;
 
 export function loadDlcConfig(root: string): DlcConfig {

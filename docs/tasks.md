@@ -52,28 +52,30 @@ I recommended A. No revised model was found in the repository or on disk, so B w
 
 The bench's output is a profile: one row per task, never a composite. This table is the plan for which rows exist. A cell becomes a family only when four things hold: the paper, or a reference model imported from the pinned checkout, defines the primitive; every protocol parameter has a cited source; the simulator is seeded and hash-bound; and the floor and ceiling baselines leave measurable headroom. A cell that fails any of these is a spec, not a row.
 
-Rails are the paper's object classes (§2.1), with two classes added on review on 2026-10-06. Rows are operators' problems. The last column, the coordination layer, was added on request on 2026-10-08 (§10). For its rows a published protocol specification pinned by commit, the NIPs and the bitchat whitepaper, stands where the paper stands in the first of the four conditions; the other three apply unchanged.
+Rails are the paper's object classes (§2.1), with two classes added on review on 2026-10-06. Rows are operators' problems. The last column, the coordination layer, was added on request on 2026-10-08 (§10). For its rows a published protocol specification pinned by commit, the NIPs and the bitchat whitepaper, stands where the paper stands in the first of the four conditions; the other three apply unchanged. The DLC column was added on request the same day (§13). Its object, class D in §0.3, is the contract as the DLC specification defines it, and that specification, pinned by commit with its test vectors, stands where the paper stands.
 
-| Operator problem | Lightning (C) | Ark (V) | Ecash mint (M) | Statechain (S) | Escrow (E) | On-chain (U) | Proof layer | Coordination layer (Nostr relays, bitchat mesh) |
-|---|---|---|---|---|---|---|---|---|
-| Place directional capital | **F1, run** | | | | | | | |
-| Route under hidden state | F2, specced | | | | | | | |
-| Choose the settlement object and size it | **F3, run** (channel column) | **F3, run** (VTXO column) | F3 column, specced §4.8 | F3 column, specced §4.8 | | | | |
-| Size the server's own channels | | F4, specced | F4 applies to the mint's gateway | | | | | |
-| Bond a service | | | | | F5, specced | | | |
-| Net positions toward a target settlement value | links as channels, later cell | | | links as statechain transfers, later cell | | links as on-chain settlement | **F6, run** §7 | |
-| Prove claims within a budget | | | | | | RAITO gives root_n | F7, specced §8 | |
-| Time funding against fee and demand | | | | | | F8, specced §9 | | |
-| Protect the key that controls the capital | NWC budget at stake (NIP-47) | | NIP-60 wallet at stake | | | | | F9 `custody`, `custody_hot`, specced §10.2 |
-| Post where the audience reads | | | | | | | | F9 `publish`, specced §10.3 |
-| Deliver private messages | | | | | | | | F9 `private`, specced §10.4 |
-| Buy a service from a counterparty | pays over NWC (NIP-47) | | pays by nutzap (NIP-61) | | | | | F9 `counterparty`, specced §10.5 |
-| Deliver when the internet is down | | | | | | | | F9 `mesh_outage`, `mesh_partial`, specced §10.6 |
+| Operator problem | Lightning (C) | Ark (V) | Ecash mint (M) | Statechain (S) | Escrow (E) | On-chain (U) | DLC (D) | Proof layer | Coordination layer (Nostr relays, bitchat mesh) |
+|---|---|---|---|---|---|---|---|---|---|
+| Place directional capital | **F1, run** | | | | | | | | |
+| Route under hidden state | F2, specced | | | | | | | | |
+| Choose the settlement object and size it | **F3, run** (channel column) | **F3, run** (VTXO column) | F3 column, specced §4.8 | F3 column, specced §4.8 | | | | | |
+| Size the server's own channels | | F4, specced | F4 applies to the mint's gateway | | | | | | |
+| Bond a service | | | | | F5, specced | | | | |
+| Net positions toward a target settlement value | links as channels, later cell | | | links as statechain transfers, later cell | | links as on-chain settlement | D′ (UTXO-Ref) as `netting/utxoref_dlc`, specced §7.7 | **F6, run** §7 | |
+| Encode a contract's payouts and size its collateral | | | | | | | **F10, built** §13 (development seeds) | | |
+| Prove claims within a budget | | | | | | RAITO gives root_n | | F7, specced §8 | |
+| Time funding against fee and demand | | | | | | F8, specced §9 | | | |
+| Protect the key that controls the capital | NWC budget at stake (NIP-47) | | NIP-60 wallet at stake | | | | | | F9 `custody`, `custody_hot`, specced §10.2 |
+| Post where the audience reads | | | | | | | | | F9 `publish`, specced §10.3 |
+| Deliver private messages | | | | | | | | | F9 `private`, specced §10.4 |
+| Buy a service from a counterparty | pays over NWC (NIP-47) | | pays by nutzap (NIP-61) | | | | | | F9 `counterparty`, specced §10.5 |
+| Deliver when the internet is down | | | | | | | | | F9 `mesh_outage`, `mesh_partial`, specced §10.6 |
 
 Reading the table:
 
 - **F3 is where rails are compared.** Each object class is a column of the same family, scored on the same demand streams by the same liquidity duration. The ecash and statechain columns enter there, not as families of their own.
 - **F6 is rail-agnostic in v0.** Its settlement links carry abstract costs and capacities. Rail-specific cells come later and take their link costs from the object table: a Lightning link is a channel with a directional balance, a statechain link moves whole coins, an on-chain link is a ghost link at on-chain cost.
+- **F10 is the DLC as specified, not a settlement link.** Its operator problem is the one every numeric DLC poses at setup: how coarsely to round the payout curve, which sets how many adaptor signatures both parties make and exchange, and how much collateral to lock, which sets how much of the curve the contract can pay. UTXO-Ref's variant, class D′, enters F6 as a cell instead, because there the decision is whether to settle or roll.
 - **The proof layer is not a rail.** Shinigami and RAITO (Bitcoin Script and Bitcoin consensus in Cairo, proven with Stwo) are the verifier the paper's §4.4 says Bitcoin lacks. F7 is the operator's problem that creates: what to prove and when, against a measured prover cost.
 - **Attributes are reported, never scored.** The tuple fields that liquidity duration cannot price, above all the counterparty set Γ (a channel peer, a co-signing server, a custodial mint or federation, a statechain entity, a BitVM committee) and the exit X, appear beside each column as attributes. A table that let a custodial object win on capital-time without saying it is custodial would be misleading.
 - **The coordination layer is not a rail either.** Nostr relays and the bitchat Bluetooth mesh carry no value. They carry what moves it: the signed request, the invoice, the quote, the payment confirmation, and the key that signs them. F9 poses the operator problems that layer creates. Its native unit is still sats: the stake a key controls, the value of a message delivered before its deadline, and the price of a service. Its five rows are five tasks, reported separately like every other row.
@@ -89,13 +91,16 @@ The paper's §2.1 table has U, C, V, E, and E′. On 2026-10-06 two classes were
 | M: ecash note (Fedimint, Cashu) | the mint's blind signature; a federation threshold for Fedimint | instant on the mint's acceptance | none: a note is a claim on the mint, there is no unilateral exit | none on the holder; the mint keeps 100% reserve | the mint, or the federation's threshold of guardians | keyset rotation |
 | S: statechain coin (Mercury-style; TradeLayer transfers generalized here) | the holder's key share with the statechain entity's | the entity's co-signature of the transfer | a pre-signed backup transaction with a decrementing timelock | broadcast the backup before its timelock, or transfer before the lifetime ends | the statechain entity; a prior holder, if the entity colludes | the decrementing timelock: a bounded number of transfers |
 
-**TradeLayer's place, as clarified on 2026-10-07.** TradeLayer enters as a *state oracle*, not as the S class itself: a hash-checkable commitment to tokenized-UTXO state (in UTXO-Ref's current modules, a VWAP state-oracle summary that commits a valid-trade root and a TradeLayer state-snapshot root, published by a designated address under a maximum-move band) that settles a DLC. The DLC is the settlement object, and it has a tuple of its own, class D below. The S class stays as the Mercury-style statechain for transferable coins; nothing in TradeLayer is mapped onto it.
+**TradeLayer's place, as clarified on 2026-10-07.** TradeLayer enters as a *state oracle*, not as the S class itself: a hash-checkable commitment to tokenized-UTXO state (in UTXO-Ref's current modules, a VWAP state-oracle summary that commits a valid-trade root and a TradeLayer state-snapshot root, published by a designated address under a maximum-move band) that settles a DLC. The DLC is the settlement object, and it has a tuple of its own, class D′ below: a variant of the DLC the specification defines, class D, added on 2026-10-08 for family 10. The S class stays as the Mercury-style statechain for transferable coins; nothing in TradeLayer is mapped onto it.
 
 | Object | 𝒜 | F | X | Λ | Γ | τ |
 |---|---|---|---|---|---|---|
-| D: oracle-settled DLC (UTXO-Ref) | 2-of-2 MuSig2 funding; CETs with adaptor signatures keyed to the oracle's attestation | the oracle's Ed25519 attestation of an outcome id, which unlocks one CET | the refund CET after a CSV timeout (576 blocks in the current modules) when the oracle is silent | watch for the attestation and broadcast the right CET before the refund path | the oracle (its designated publisher and the state it commits), the counterparty, and the BitVM vault that admits payouts | the contract's maturity |
+| D: DLC as specified (dlcspecs) | a 2-of-2 P2WSH funding output; each CET carries both parties' ECDSA adaptor signatures, encrypted to a point the oracle's per-digit Schnorr attestations complete | the oracle's attestation of the outcome's digits, which completes the signatures of the one CET whose digit prefix matches | the refund transaction at `refund_locktime`, returning each party's collateral, if the oracle never attests | broadcast the matching CET once the attestation is out and before `refund_locktime`; nothing to watch before maturity | the oracle, which can attest falsely (a fraud proof exposes it but restores nothing); the counterparty, at setup only | `cet_locktime` (the event's maturity), then `refund_locktime` |
+| D′: oracle-settled DLC (UTXO-Ref) | 2-of-2 MuSig2 funding; CETs with adaptor signatures keyed to the oracle's attestation | the oracle's Ed25519 attestation of an outcome id, which unlocks one CET | the refund CET after a CSV timeout (576 blocks in the current modules) when the oracle is silent | watch for the attestation and broadcast the right CET before the refund path | the oracle (its designated publisher and the state it commits), the counterparty, and the BitVM vault that admits payouts | the contract's maturity |
 
 What the two classes change in the capital picture: a note's value is backed one for one by the mint's reserve, so a mint locks exactly its holders' balances and nothing against their spends; a statechain coin is the holder's own on-chain capital, locked by nobody else, moved whole. Neither has a direction. Neither fronts a spend. The first is custodial and the second is lumpy, and those are the attributes the scorecard must print beside their liquidity duration.
+
+D and D′ differ where UTXO-Ref substitutes its own parts: a MuSig2 funding output for the 2-of-2 multisig, an Ed25519 attestation of one of three outcome ids for per-digit Schnorr attestations of a number, a CSV refund after 576 blocks for an absolute `refund_locktime`, and a BitVM vault that admits payouts. A D contract locks both parties' collateral for its life and nothing else; its operating cost is the adaptor signatures, one per CET.
 
 ## 1. Common contract
 
@@ -595,7 +600,7 @@ A skill that implements minimum-cost flow and emits the flow as a plan should re
 
 Each later cell replaces the abstract links with an object class's own: a Lightning link is a channel with a directional balance and routing fees (class C); a statechain link moves whole coins, so a transfer is a number of coins and change needs a swap (class S); a ghost link is on-chain settlement at a fee rate (class U). The plan format does not change.
 
-**`netting/utxoref_dlc` (specified 2026-10-07, not implemented).** Positions are UTXO-Ref DLCs settled by a TradeLayer state oracle (§0.3, class D), on the current modules under `bitvm3/utxo_referee/`: each contract has bilateral collateral in a MuSig2 funding output; the oracle attests one of three outcome ids, `settle-gain`, `settle-loss`, or `roll`; a settlement pays min(bucket cap, realized PnL) in basis points of the collateral, less a fee in basis points and a miner fee per CET, and refunds the rest; a roll carries the refunded collateral forward; silence ends in a refund CET after 576 blocks. The settlement value is the oracle's VWAP mark, accepted only inside a maximum-move band (500 bps in the demo artifacts) from the previous mark.
+**`netting/utxoref_dlc` (specified 2026-10-07, not implemented).** Positions are UTXO-Ref DLCs settled by a TradeLayer state oracle (§0.3, class D′), on the current modules under `bitvm3/utxo_referee/`: each contract has bilateral collateral in a MuSig2 funding output; the oracle attests one of three outcome ids, `settle-gain`, `settle-loss`, or `roll`; a settlement pays min(bucket cap, realized PnL) in basis points of the collateral, less a fee in basis points and a miner fee per CET, and refunds the rest; a roll carries the refunded collateral forward; silence ends in a refund CET after 576 blocks. The settlement value is the oracle's VWAP mark, accepted only inside a maximum-move band (500 bps in the demo artifacts) from the previous mark.
 
 What changes against the abstract cell: a contract cannot be netted against another on chain, since each CET pays its own contract, so netting happens only among what the operator chooses to *roll*; a settled contract is a ghost link at the CET's miner fee plus the fee in basis points; a rolled contract costs collateral-time until the next period at a declared rate; and the plan gains a per-contract decision, `settle` or `roll`, beside the transfers. The oracle's band is a constraint the fixture respects: a settlement value outside it is not attestable and the cell does not generate one. Baselines: `settle_all` (floor), `roll_when_netting_helps` (reference: roll a contract when its counterparty nets against it next period), and the exact optimum over settle-or-roll choices by enumeration on small instances (ceiling). Parameters, all from UTXO-Ref's modules and marked as such: bucket cap 500 bps, dust 546 sats, refund CSV 576 blocks, maximum oracle move 500 bps. What is still needed from UTXO-Ref before the cell can freeze: the fee in basis points and the miner fee it assumes, and whether a rolled contract's collateral is re-bucketed.
 
@@ -911,12 +916,131 @@ Family 9 reads its parameters from the specifications pinned in `data/nostr/prov
 | Public history | 1,000 packets, synced about every 15 s, kept 6 h | whitepaper §6.3 |
 | Nostr mailbox | 24 h lookback on reconnect | whitepaper §6.4 |
 
+Family 10 reads its protocol rules from the DLC specification pinned in `config/dlc.json` (dlcspecs `9cd9148`, vendored at `vendor/dlcspecs`), and its numbers from the same file, each with a source.
+
+| Rule | Value | Source |
+|---|---|---|
+| Outcome encoding | one nonce per base-2 digit; 20 digits in v0 | NumericOutcomeCompression.md (base 2 recommended); digit count [invented] |
+| Outcome above the maximum | attested as the maximum | Oracle.md |
+| Compression | `groupByIgnoringDigits`, with the endpoint and total optimizations | NumericOutcomeCompression.md |
+| Rounding | nearest multiple of the interval's modulus, ties up; modulus 1 before the first interval | NumericOutcome.md |
+| Clamp | after rounding, below 0 becomes 0 and above the total collateral becomes it | NumericOutcome.md |
+| Offerer's curve | hyperbola piece, a = 1, b = c = 0, no translation, d = notional × 10⁸ | PayoutCurve.md |
+| Funding output | 2-of-2 P2WSH | Transactions.md |
+| CET and refund weight | 498 + 4 × total output length (the same for every design; not priced in v0) | Transactions.md |
+
 ## 12. Given and invented, in one place
 
 **Taken as given.** The pinned model files and their behavior, confirmed by running the vendored suite (13 of 13 pass). The four calibration effects and their intervals. The public-topology campaign's generator parameters, warm-up and evaluation split, eight-path catalog, three-attempt budget, 120,000 sat connector, and the failure-aware and random placement rules. Cluster-level Student-t inference and the ±1 point band. The audit's requirements: canonical order, hash-bound fixtures, no fabricated weights, rejection as identity, equivalence on both sides, and the oracle as reference and not as bound. The paper's definition of liquidity duration, its two corners, and its falsifier.
 
-**Invented here.** The observation and action envelopes, the tool tables, and what each budget counter means. The ratio-of-sums normalized gain, its jackknife interval, and the headroom guard. Directional placements and placement on existing edges. The retry wallet as family 1's fixed router. The placement oracle's rule and its 72/28 split. Hiding the regime from the agent. One-shot as family 2's floor. All of family 3's generator beyond the two corner parameter sets, its funded-spend rule, its stream-hash fixtures, its probe tool, grids, ε, penalty, and band, the common volume denominator its corner runner adds, the server-tier term and its failure rule, and the zero-drift cells. The LLM adapter and its prompt. The audit-flag thresholds. The named-stream PRNG. The scorecard (§0.2), the ecash and statechain tuples (§0.3), and families 6 through 8, all specified on review (family 6 since built). For family 9, everything §10.7 lists as invented.
+**Invented here.** The observation and action envelopes, the tool tables, and what each budget counter means. The ratio-of-sums normalized gain, its jackknife interval, and the headroom guard. Directional placements and placement on existing edges. The retry wallet as family 1's fixed router. The placement oracle's rule and its 72/28 split. Hiding the regime from the agent. One-shot as family 2's floor. All of family 3's generator beyond the two corner parameter sets, its funded-spend rule, its stream-hash fixtures, its probe tool, grids, ε, penalty, and band, the common volume denominator its corner runner adds, the server-tier term and its failure rule, and the zero-drift cells. The LLM adapter and its prompt. The audit-flag thresholds. The named-stream PRNG. The scorecard (§0.2), the ecash and statechain tuples (§0.3), and families 6 through 8, all specified on review (family 6 since built). For family 9, everything §10.7 lists as invented. For family 10, everything §13.7 lists as invented.
 
 **Taken from published specifications (family 9 only).** What §10.7 lists as [spec]: the NIPs at `a79e21d`, BIP-340, and the bitchat whitepaper version 2.0, each pinned in `data/nostr/provenance.json`.
 
+**Taken from a published specification (family 10 only).** What §13.7 lists as [spec]: the DLC specification at `9cd9148`, named in `config/dlc.json`, with its two single-oracle numeric test vectors reproduced in the tests.
+
 **Named in the brief and missing from the pin.** `runCorner`, `ArkServer.aggregateSteps`, the server-tier term, server capital as a choice, the spend-recovery choice, the forecast-rule choice, and the arrival-mode distinction (§0.1). Family 3 supplies the server-tier term itself (§4.4, adopted on review) and is built without the others (§4.6).
+
+## 13. Family 10: designing a numeric DLC (built; development seeds only)
+
+Added on request on 2026-10-08, as a pure DLC component. Task ids: `dlc/<cell>`. The paper does not treat DLCs, so for this family the DLC specification, pinned by commit with its test vectors, stands where the paper stands in the first of §0.2's four conditions, as the NIPs do for family 9. The object is class D of §0.3.
+
+Every numeric DLC poses the same operator problem at setup. Both parties' collateral is locked in the funding output for the contract's life, and both must make, exchange, verify, and store one adaptor signature for every contract execution transaction (CET). How much collateral to lock decides how much of the payout curve the contract can honor. How coarsely to round the curve decides how many CETs it needs, since compression covers a run of outcomes with equal payouts in logarithmically many signatures. Both are capital and operating costs, in sats. This family scores them. It is distinct from `netting/utxoref_dlc` (§7.7), where UTXO-Ref's variant, class D′, appears as a settlement link and the decision is whether to settle or roll.
+
+### 13.1 The contract [spec, with invented parameters]
+
+- **Event.** One oracle attests the BTC/USD price at maturity as an unsigned whole number of dollars in 20 base-2 digits, one nonce per digit. A price above 2²⁰ − 1 = $1,048,575 is attested as that maximum (Oracle.md). Base 2 is the specification's recommendation; the digit count is the bench's.
+- **Payout.** The offerer holds a fixed number of dollars N. At price x it is paid d / x sats with d = N × 10⁸: the hyperbola piece of PayoutCurve.md with a = 1, b = c = 0 and no translation, the "constant/outcome" contract that piece was introduced for. Outcome 0 pays the total collateral. The accepter is paid the rest.
+- **Rounding and clamping.** Within each rounding interval a payout is rounded to the nearest multiple of the interval's modulus, ties up; before the first interval the modulus is 1. The rounded payout is then clamped to [0, total collateral] (NumericOutcome.md). The bench evaluates d / x in exact integer arithmetic, which the specification's validation, tolerant of one modulus either way, admits.
+- **CETs.** The domain splits into maximal runs of equal modified payout. Each run is covered by the digit prefixes of `groupByIgnoringDigits` (NumericOutcomeCompression.md), one adaptor signature per prefix per party.
+- **Funding.** The offerer funds its dollars at spot, ⌈d / spot⌉ sats, under every design. The accepter funds the rest of the total collateral.
+
+### 13.2 Forecast and costs [invented]
+
+The price at maturity is lognormal with zero drift: ln X ~ N(ln spot − s²/2, s²), with s = σ √(days / 365). Each integer outcome gets the density at its price, normalized over the oracle's domain. The oracle's maximum sits at least 5.5 s above spot on every fixture, so the mass it would attest as its maximum is below 10⁻⁷ and is renormalized away.
+
+A design's cost is the sum of four expected terms, in sats:
+
+| Term | Definition |
+|---|---|
+| Counterparty capital | (C − ⌈d / spot⌉) × r × days / 365, where C is the total collateral and r the cell's annual rate |
+| Expected shortfall | E[(d / X − C)⁺]: what the offerer is owed beyond the collateral when the price ends below the floor price d / C |
+| Expected tracking error | E\|modified payout(X) − min(d / X, C)\|: what rounding moves the payout away from the curve, in either direction |
+| Signing | the number of CETs × the cell's price per CET |
+
+The native value is −ln of the total. Two choices in this table are deliberate. Capital counts only the accepter's part, because the offerer's part is locked by every design alike and would only dilute the comparison; the first version charged the whole collateral and capital swamped every other term. Tracking error counts both directions, because the contract's purpose is the curve and a payout off it either way is a miss. On-chain fees are left out: every design pays for one funding transaction and one CET or refund transaction of the same weight (498 + 4 × output length, Transactions.md).
+
+### 13.3 Observation and actions
+
+The view holds the contract (digits, notional, forecast, rate, price per CET), the oracle's maximum, the offerer's funding, and three menus. **Breakpoints**, the only allowed `begin_interval` values: 0 and the prices at z ∈ {−5, −4, −3.5, …, 3.5, 4, 5} standard deviations of log price, 20 in all, each shown with the forecast's probability that the price ends below it. **Moduli**: powers of ten from 1 sat to 10⁶. **Collateral levels**: one per breakpoint at z ≤ −1, eight in all, each with its floor price and the probability of ending below it.
+
+| Tool | Arguments | Effect | Budget |
+|---|---|---|---|
+| `probe` | a design | the design's CET count and its four costs | one probe |
+| `offer` | a design | commits the design and ends the decision phase | one attempt |
+| `commit` | none | ends the decision phase; with nothing offered the episode is scored at twice the floor's cost | none |
+
+A design is `{"collateral_sats": C, "rounding_intervals": [{"begin_interval": b, "rounding_mod": m}, …]}`, with every value from its menu and `begin_interval` strictly increasing. An empty list is the specification's default, modulus 1 everywhere. Budget: 3 attempts and 8 probes [invented, as family 6]. Rejections: `malformed`, `not_integer`, `out_of_grid` (a value off its menu, or a design whose payout is constant over the whole domain, which the specification does not support), `over_budget` (no probes left), `unknown_tool`, `phase_closed`. A rejection changes nothing and still spends its attempt or probe.
+
+### 13.4 Baselines, the exact optimizer, and gates
+
+| Policy | Role | Design |
+|---|---|---|
+| `spec_default` | floor | no rounding intervals, so modulus 1 everywhere; the collateral level whose floor price is nearest half of spot, about twice the notional |
+| `uniform_tuned` | reference | the collateral level that minimizes capital plus expected shortfall, the newsvendor quantile on the menu; then the one modulus over the whole domain that costs least |
+| `two_band` | descriptive | the same collateral; regions holding under 0.1% of the forecast at the largest modulus, the rest at the one modulus that costs least |
+| `exact` | ceiling | the optimum over the menus |
+
+The ceiling is exact over the menus. For each collateral level a dynamic program runs over the regions between breakpoints, choosing one modulus per region. Its state is the run left open at the region's end, meaning its payout and where it began, which is all a later region's CET count depends on. Within a region, runs are found from the curve's inverse in time proportional to their number, and the CETs of a run come from an O(digits) count held equal to `groupByIgnoringDigits`. The optimizer takes about 0.1 s per contract. All four policies read only the observation, because nothing in this family is hidden.
+
+| Gate | Check |
+|---|---|
+| K14 | `exact` ≥ every other policy on every episode |
+| K15 | identity: the ceiling through `act` equals the optimizer run on the fixture, and the optimizer's own accounting agrees with the evaluator's |
+| K16 | `uniform_tuned` ≥ `spec_default` on every episode |
+
+### 13.5 Cells [invented]
+
+| Cell | Volatility | Days | Price per CET | What it isolates |
+|---|---:|---:|---:|---|
+| `stable_30d` | 50% | 30 | 1 sat | rounding against signing, on a server signer |
+| `stable_90d` | 70% | 90 | 1 sat | collateral sizing: a wide forecast, where capital dominates |
+| `mobile_signer` | 50% | 30 | 4 sats | rounding when signatures are dear, as on a phone |
+
+In every cell the counterparty's capital costs 5% a year, spot is uniform on $60,000 to $140,000, and the notional is log-uniform on $2,000 to $50,000 in steps of $100. A price per CET stands for the signing, verification, storage, and transmission each adaptor signature costs both parties; the specification sets no limit, and the bench's prices are invented.
+
+### 13.6 The protocol core, and what it reproduces
+
+`src/tasks/dlc/digits.ts` is the specification's compression algorithm, line for line, with two counters held equal to it on random intervals in bases 2, 3, and 10. `payout.ts` evaluates any payout function as PayoutCurve.md describes, with rounding and clamping as NumericOutcome.md describes. `contract.ts` is the bench's exact fast path, and a test holds it equal to evaluating every outcome through `payout.ts`. The checks against the specification:
+
+- **Worked examples.** [135677, 138621] in base 10 gives 20 prefixes and [2200, 4999] gives the 10 the endpoint optimization promises. The binary example, [5677, 8621] in 14 digits, gives 13. The narrative says 14 because it counts before introducing the endpoint optimization, which merges the last back grouping with the endpoint 8621.
+- **Test vectors.** `single_oracle_numerical_test.json` needs 14 adaptor signatures and `single_oracle_numerical_hyperbola_test.json` needs 56, the counts in their accept and sign messages. Both are reproduced exactly.
+- **One divergence, decided by the vectors.** PayoutCurve.md says an outcome at a piece's endpoint takes the endpoint's payout. The hyperbola vector's endpoint payouts are placeholders of 0, and the text gives 65 CETs. Its 56 come out only if the curve is evaluated at its endpoints too, which is what the reference implementation does (rust-dlc's `HyperbolaPayoutCurvePiece::evaluate`). The core follows the implementation and says why. The bench's own contract is unaffected, because its curve meets its endpoints.
+
+### 13.7 Given and invented
+
+- **[spec]:** digit decomposition and its compression, the endpoint and total optimizations, the rounding rule, the clamp, the hyperbola piece, the out-of-range attestation, the 2-of-2 funding output, and the CET and refund transaction weights, from dlcspecs at `9cd9148938c616690c79d99ec6f330e213c246c5` (2023-02-13), vendored at `vendor/dlcspecs` and named in `config/dlc.json`.
+- **[invented]:** the synthetic-dollar contract as the family's one contract, 20 digits, the forecast and its parameters, the four cost terms and their weights, the counterparty's rate, the prices per CET, the three menus, the cells, the budget, the penalty, and every baseline but `spec_default`, whose rounding is the specification's default and whose collateral is a convention.
+
+### 13.8 Development results (seeds 0 to 7)
+
+Baselines, in [results/v0-dlc-baselines-development.md](../results/v0-dlc-baselines-development.md). Gates K14 to K16 pass. Differences are in ln cost with 95% intervals over the eight seeds:
+
+| Cell | Gain, `uniform_tuned` | Gain, `two_band` | `exact` − `uniform_tuned` | `two_band` − `uniform_tuned` |
+|---|---|---|---|---|
+| `mobile_signer` | 0.94 (0.92 to 0.96) | 0.98 (0.97 to 0.99) | +0.28 (+0.17 to +0.39) | +0.19 (+0.09 to +0.29) |
+| `stable_30d` | 0.95 (0.95 to 0.96) | 0.99 (0.99 to 1.00) | +0.16 (+0.14 to +0.17) | +0.13 (+0.12 to +0.15) |
+| `stable_90d` | 0.99 (0.98 to 0.99) | 0.99 (0.99 to 1.00) | +0.02 (+0.01 to +0.02) | +0.01 (+0.00 to +0.01) |
+
+What the table says:
+
+- **The floor is the specification's defaults, and it is expensive.** Modulus 1 everywhere needs about 950,000 CETs on a 20-digit oracle, almost all of them for prices the forecast gives no weight. Every policy that rounds at all clears it by a wide margin, so normalized gains near 1 here say little. The informative contrast for an agent is against `uniform_tuned`.
+- **Flattening the tails is most of the headroom, and the rest is per-region tuning.** On `stable_30d`, flat tails close 0.13 of the 0.16 gap. On `mobile_signer`, where signatures cost four times as much, they close 0.19 of 0.28.
+- **`stable_90d` is a collateral cell.** Capital is about 282,000 of 327,000 sats, and the exact design's advantage over the reference is inside the 0.05 band. The collateral choice interacts with the encoding. On one of the eight seeds the exact design takes a lower level than the newsvendor rule: about 9,000 sats less capital against 9,300 more expected shortfall, nearly even, while clamping more of the curve into one run saves 1,200 CETs.
+
+### 13.9 What remains before family 10 freezes
+
+1. Review of the invented parameters, above all the price per CET and the counterparty's rate, which set how much the encoding matters against the collateral.
+2. An amendment to `prereg/v0.md` with the band (0.05, as family 6), gates K14 to K16, and hypotheses. Development predicts `uniform_tuned` − `spec_default` positive in all three cells, `exact` − `uniform_tuned` positive on `stable_30d` and `mobile_signer`, and equivalence on `stable_90d`. Agent runs would get one primary contrast per cell, agent − `uniform_tuned`.
+3. The confirmatory baselines.
+4. Later DLC cells, specified only. **Multiple oracles** (MultiOracle.md): k-of-n with a tolerated difference between numeric attestations trades trust in one oracle against a CET count that grows with every combination. **Renewal**: in a DLC channel, rolling a contract off-chain against closing it and opening another, which is family 8's question for DLCs. **The refund locktime**: how long after maturity to wait for a silent oracle, against collateral locked that long. **Enumerated outcomes**: one CET per outcome, no compression, where the decision is which outcomes to merge.

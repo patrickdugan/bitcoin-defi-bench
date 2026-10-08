@@ -19,6 +19,7 @@ Three rules keep this honest:
 | 6, netting | `min_cost_flow` | the exact minimum-cost plan for the observed instance | the ceiling; this is the result the family was built to check |
 | 1, placement | `failed_pairs` | the warm-up failures counted per unordered pair, sorted | the failure-aware heuristic, about 0.7 normalized; the model still has to choose the split |
 | 3, settlement | `probe_sweep` | a sequence of probes over the grid and their results, as a table | near the ceiling, bounded by the eight probes |
+| 10, DLC design | `dlc_design` | the exact optimum on the menus, as the offer action itself | the ceiling, if the model calls it and copies an offer of a few hundred characters |
 
 Each skill is a few lines on top of a baseline's own code, which is the point: the question is not whether the procedure exists but whether a model at this size will call it, read it, and act on it within the budget.
 

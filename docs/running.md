@@ -34,6 +34,14 @@ node --experimental-strip-types scripts/run_netting.ts --block confirmatory
 
 Its instances are small; both blocks run in seconds.
 
+Family 10 (designing a numeric DLC):
+
+```
+node --experimental-strip-types scripts/run_dlc.ts --block development
+```
+
+The development block takes about half a minute, most of it the exact optimizer. The confirmatory block is refused until an amendment freezes the family. Its tests read the DLC specification's test vectors from `vendor/dlcspecs` (see the README) and are skipped, with a message saying so, when that checkout is absent.
+
 Every run verifies the manifest first and recomputes the baselines in the same process.
 
 ## Rebuilding fixtures
@@ -80,3 +88,14 @@ node --experimental-strip-types scripts/run_netting_agent.ts --block development
 The same flags as the placement script, with a reply limit of 2,048 tokens by default (`--max-tokens`), since a settlement plan is long. Start the server with a 32,768-token context for this family: an episode can run to eleven exchanges, each adding a reply of up to 2,048 tokens to the conversation, and a 16,384-token window overflowed on a development seed (the server answers HTTP 400, which the adapter treats as an infrastructure failure, and the run is rerun whole with its reply log). `--skills` names the skills the agent carries, comma-separated, from `src/agents/skills.ts`, and `--max-skill-calls` caps calls per episode (default 4). The output name carries the skill set, `v0-netting-<name>-<skills>-<block>`, and the agent identifier binds each skill's name and source hash, so an agent with a skill never shares an identifier with one without. What a skill is and what it may read is in [saturation.md](saturation.md).
 
 A skill call appears in the transcript as an exchange with a `skill` field holding the call and its result; the model's next request carries the result as a user turn with the remaining call count. A reply `{"tool": "send"}` sends the latest skill result that is an action (`{"send": "<skill>"}` names one), and the exchange records the skill it sent in a `sent` field. The harness sees none of it: a skill call costs no attempt or probe, and only the action the model finally sends reaches the environment.
+
+### Family 10
+
+```
+node --experimental-strip-types scripts/run_dlc_agent.ts --block development \
+  --name <agent-name> --base-url http://127.0.0.1:8094/v1 --model <model> \
+  --model-sha256 <sha256 of the GGUF> --runtime "<output of llama-server --version>" \
+  --skills dlc_design
+```
+
+The same flags as the family 6 script, with a reply limit of 1,024 tokens by default, since a design of twenty intervals is about three hundred. `dlc_design` returns the exact optimum on the menus as the offer to send. Until the family is frozen the agent's contrasts against `uniform_tuned` are descriptive.

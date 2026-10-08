@@ -203,3 +203,47 @@ test("baselines on a development seed: ordered floor < reference ≤ exact, each
     assert.ok(rows.get("two_band")! >= rows.get("uniform_tuned")! - 1e-9, `${cell}: two_band includes the uniform designs`);
   }
 });
+
+test("the LLM path: the prompt lists every menu value, and a model that echoes dlc_design scores the ceiling", async () => {
+  const { createServer } = await import("node:http");
+  const { ChatAgent } = await import("../../agents/chat.ts");
+  const { dlcDesignSkill } = await import("../../agents/skills.ts");
+  const { dlcPrompt } = await import("./prompt.ts");
+  const fixture = dlcFixture(root, manifest, "mobile_signer", 2);
+  let planned: unknown = null;
+  const requests: Array<{ messages: Array<{ role: string; content: string }> }> = [];
+  const server = createServer((req, res) => {
+    let raw = "";
+    req.on("data", (c) => { raw += c; });
+    req.on("end", () => {
+      const body = JSON.parse(raw) as { messages: Array<{ role: string; content: string }> };
+      requests.push(body);
+      const turn = body.messages.filter((m) => m.role === "assistant").length;
+      res.setHeader("content-type", "application/json");
+      res.end(JSON.stringify({ choices: [{ message: { content: turn === 0 ? '{"skill":"dlc_design","args":{}}' : JSON.stringify(planned), reasoning_content: "" } }] }));
+    });
+  });
+  await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", resolve));
+  try {
+    const port = (server.address() as { port: number }).port;
+    const agent = new ChatAgent({
+      name: "mock", baseUrl: `http://127.0.0.1:${port}/v1`, model: "mock",
+      sampling: { temperature: 0.7, top_p: 0.8, top_k: 20, max_tokens: 1024, seed: 1 }, thinking: false,
+      identity: { model_sha256: "0".repeat(64), runtime: "mock" }, prompt: dlcPrompt(1024), skills: [dlcDesignSkill],
+      onExchange: (e) => { if (e.skill) planned = e.skill.result; },
+    });
+    const row = await runEpisode(new DlcEnv(fixture, config), agent);
+    assert.equal(row.rejections.length, 0);
+    const exact = await runEpisode(new DlcEnv(fixture, config), dlcBaselines(config.default_floor_ratio).find((a) => a.id === "exact")!);
+    assert.equal(row.value, exact.value);
+    const [system, first] = [requests[0]!.messages[0]!.content, requests[0]!.messages[1]!.content];
+    for (const c of fixture.collateral_options) assert.ok(first.includes(`${c.collateral_sats} ${c.floor_price_usd} `), `collateral ${c.collateral_sats} listed`);
+    for (const b of fixture.breakpoints) assert.ok(first.includes(`\n${b} `), `breakpoint ${b} listed`);
+    assert.ok(!/\{\w+\}/.test(system.replace(/\{"[^}]*\}/g, "")), "no template placeholder is left unfilled");
+    // The examples in the system prompt are valid designs, and expensive ones.
+    const example = JSON.parse(system.split("\n").find((l) => l.startsWith('{"tool":"offer"'))!) as { args: unknown };
+    const parsed = parseDesign(example.args, menuOf(viewOf(fixture)));
+    assert.ok("design" in parsed);
+    assert.ok(evaluateDesign(modelFor(fixture.contract), parsed.design).total_sats > 10 * exact.metrics.cost_sats!);
+  } finally { server.close(); }
+});

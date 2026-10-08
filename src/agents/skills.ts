@@ -6,6 +6,7 @@ import { pairKey } from "../harness/order.ts";
 import { sha256, type Json } from "../harness/json.ts";
 import { nonEdges } from "../tasks/placement/baselines.ts";
 import { settleOptimal, type Instance } from "../tasks/netting/plans.ts";
+import { designJson, exactDesign, menuOf, modelFor, type DlcView } from "../tasks/dlc/designs.ts";
 import type { Skill } from "./chat.ts";
 
 const bind = (skill: Omit<Skill, "sha256">): Skill => ({ ...skill, sha256: sha256(`${skill.name}\n${skill.run.toString()}`) });
@@ -51,7 +52,18 @@ export const failedPairsSkill: Skill = bind({
   },
 });
 
-export const SKILLS: { [name: string]: Skill } = { min_cost_flow: minCostFlowSkill, failed_pairs: failedPairsSkill };
+/** Family 10: the exact optimum on the menus for the observed contract, as the offer action itself. */
+export const dlcDesignSkill: Skill = bind({
+  name: "dlc_design",
+  // Worded as min_cost_flow's, the description that drew the most calls from Bonsai 8B; no JSON in it.
+  description: "Computes the cheapest design on the listed menus for the contract you were shown and returns it as the exact action to send. To use it, reply with that action unchanged.",
+  run(observation: Json): Json {
+    const view = (observation as unknown as { view: DlcView }).view;
+    return { tool: "offer", args: designJson(exactDesign(modelFor(view.contract), menuOf(view))) };
+  },
+});
+
+export const SKILLS: { [name: string]: Skill } = { min_cost_flow: minCostFlowSkill, failed_pairs: failedPairsSkill, dlc_design: dlcDesignSkill };
 
 export function skillsNamed(names: string): Skill[] {
   return names.split(",").map((n) => n.trim()).filter((n) => n !== "").map((n) => {

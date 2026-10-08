@@ -23,6 +23,9 @@ import { FIXTURE_VERSION as NETTING_VERSION, fixtureBytes as nettingBytes, fixtu
 import { loadNettingConfig } from "../src/tasks/netting/task.ts";
 import { FIXTURE_VERSION as DLC_VERSION, fixtureBytes as dlcBytes, fixturePath as dlcPath, generateFixture as generateDlc } from "../src/tasks/dlc/generate.ts";
 import { loadDlcConfig } from "../src/tasks/dlc/task.ts";
+import { FIXTURE_VERSION as PROOF_VERSION, fixtureBytes as proofBytes, fixturePath as proofPath, generateFixture as generateProof, loadCostTable } from "../src/tasks/proof_budget/generate.ts";
+import { loadProofConfig } from "../src/tasks/proof_budget/task.ts";
+import { FIXTURE_VERSION as ROUTING_VERSION, fixtureBytes as routingBytes, fixturePath as routingPath, generateFixture as generateRouting } from "../src/tasks/routing/generate.ts";
 import { NOSTR_CELLS, buildNostrFixtures, loadNostrConfig } from "../src/tasks/nostr/task.ts";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -100,6 +103,30 @@ const nostr = buildNostrFixtures(root, loadNostrConfig(root), [...SEED_BLOCKS.de
 entries.push(...nostr.entries);
 written += nostr.written;
 console.log(`nostr: ${nostr.entries.length} fixtures over ${NOSTR_CELLS.length} cells`);
+
+// Family 2: each names its family 1 fixture by hash and adds the diffuse demand stream.
+mkdirSync(join(root, "fixtures/routing"), { recursive: true });
+for (const seed of seeds) {
+  const placementEntry = entries.find((e) => e.path === fixturePath(seed))!;
+  const placement = JSON.parse(readFileSync(join(root, fixturePath(seed)), "utf8"));
+  const text = routingBytes(generateRouting(placement, placementEntry.path, placementEntry.sha256, config));
+  if (writeIfChanged(join(root, routingPath(seed)), text)) written += 1;
+  entries.push({ path: routingPath(seed), family: "routing", seed, generator: ROUTING_VERSION, sha256: sha256(text) });
+}
+console.log(`routing: ${seeds.length} fixtures`);
+
+// Family 7: the claims of one horizon per seed and cell, with the adopted prover measurement.
+const proof = loadProofConfig(root);
+const costTable = loadCostTable(root, proof);
+for (const cell of Object.keys(proof.cells).sort()) {
+  mkdirSync(join(root, "fixtures/proof_budget", cell), { recursive: true });
+  for (const seed of [...SEED_BLOCKS.development, ...SEED_BLOCKS.confirmatory]) {
+    const text = proofBytes(generateProof(seed, cell, proof.cells[cell]!, costTable));
+    if (writeIfChanged(join(root, proofPath(cell, seed)), text)) written += 1;
+    entries.push({ path: proofPath(cell, seed), family: "proof_budget", seed, generator: PROOF_VERSION, sha256: sha256(text) });
+  }
+  console.log(`proof_budget/${cell}: ${SEED_BLOCKS.development.length + SEED_BLOCKS.confirmatory.length} fixtures`);
+}
 
 const manifest = buildManifest(root, BENCH, vendoredCommit(root), entries);
 writeIfChanged(join(root, "fixtures/manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`);

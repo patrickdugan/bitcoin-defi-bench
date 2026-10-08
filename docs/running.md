@@ -34,6 +34,22 @@ node --experimental-strip-types scripts/run_netting.ts --block confirmatory
 
 Its instances are small; both blocks run in seconds.
 
+Family 2 (routing under hidden state), on family 1's fixtures:
+
+```
+node --experimental-strip-types scripts/run_routing.ts --block development
+```
+
+Nine tasks; the development block takes about ten seconds.
+
+Family 7 (proving claims within a budget), on the adopted proof-cost measurement:
+
+```
+node --experimental-strip-types scripts/run_proof_budget.ts --block development
+```
+
+The development block takes a few seconds. To re-measure the prover, run `REPS=3 bash cairo/rcap/measure.sh` in WSL (docs/tasks.md §8.5), then point `config/proof_budget.json` at the new file and its SHA-256, and rebuild the fixtures.
+
 Family 10 (designing a numeric DLC):
 
 ```

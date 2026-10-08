@@ -57,13 +57,13 @@ Rails are the paper's object classes (§2.1), with two classes added on review o
 | Operator problem | Lightning (C) | Ark (V) | Ecash mint (M) | Statechain (S) | Escrow (E) | On-chain (U) | DLC (D) | Proof layer | Coordination layer (Nostr relays, bitchat mesh) |
 |---|---|---|---|---|---|---|---|---|---|
 | Place directional capital | **F1, run** | | | | | | | | |
-| Route under hidden state | F2, specced | | | | | | | | |
+| Route under hidden state | **F2, built** §3 (development seeds) | | | | | | | | |
 | Choose the settlement object and size it | **F3, run** (channel column) | **F3, run** (VTXO column) | F3 column, specced §4.8 | F3 column, specced §4.8 | | | | | |
 | Size the server's own channels | | F4, specced | F4 applies to the mint's gateway | | | | | | |
 | Bond a service | | | | | F5, specced | | | | |
 | Net positions toward a target settlement value | links as channels, later cell | | | links as statechain transfers, later cell | | links as on-chain settlement | D′ (UTXO-Ref) as `netting/utxoref_dlc`, specced §7.7 | **F6, run** §7 | |
 | Encode a contract's payouts and size its collateral | | | | | | | **F10, built** §13 (development seeds) | | |
-| Prove claims within a budget | | | | | | RAITO gives root_n | | F7, specced §8 | |
+| Prove claims within a budget | | | | | | RAITO gives root_n | | **F7, built** §8 (development seeds) | |
 | Time funding against fee and demand | | | | | | F8, specced §9 | | | |
 | Protect the key that controls the capital | NWC budget at stake (NIP-47) | | NIP-60 wallet at stake | | | | | | **F9 `custody`, `custody_hot`, run** §10.2 |
 | Post where the audience reads | | | | | | | | | **F9 `publish`, run** §10.3 |
@@ -293,7 +293,7 @@ The Spiral repository retains the sampler and the hidden-state generator in Pyth
 
 T1 was chosen. The calibration numbers were measured on samples of this snapshot, and six summary statistics do not pin down the structure that makes placement matter. The dataset is CC BY 4.0 (Valko and Marx Gómez), so the derived 64-node samples are committed as fixtures with attribution in `config/placement.json`; the raw snapshot is not committed. The bench's GML reader reproduces the statistics Spiral recorded for the snapshot exactly (15,100 nodes, 64,212 channels, 15 components, a 15,071-node giant component, maximum degree 2,293), and `scripts/build_fixtures.ts` refuses to build if it does not. The bench's samples are new draws: 64 to 525 edges across the 40 generated fixtures, against 63 to 366 in Spiral's 37.
 
-## 3. Family 2: routing under hidden state (specified, not implemented)
+## 3. Family 2: routing under hidden state (built; development seeds only)
 
 Derives from the manuscript §9 and the audit §6–7. Task ids: `routing/<balance_model>/<regime>`.
 
@@ -331,6 +331,29 @@ The candidate list is the public eight-path catalog in canonical order. Feedback
 | `prefix_oracle_3` | First feasible among the first three. | Control. Must equal `retry_wallet` in every delivery; the audit's 54 trajectory-equality checks become a harness self-test. |
 
 **Calibration expectation.** Measured: retries +5.14 points over one-shot (3.08 to 7.20); terminal-feedback learning +0.35 beyond retries (0.15 to 0.55), inside the ±1 point band; the oracle +1.11 beyond the learner (0.64 to 1.58). The predeclared expectation is that a good agent is practically equivalent to the retry wallet. A result outside the band in either direction raises `outside_calibration` and is audited before it is reported. This family exists mainly to make that check.
+
+### 3.1 As built (2026-10-08)
+
+Code in `src/tasks/routing/`; nine tasks, `routing/<balance_model>/<regime>` for the three balance models and three regimes. Every parameter is family 1's (`config/placement.json`), and no new config was added.
+
+- **Fixtures.** Family 1's fixtures are frozen and carry only the stationary and shifted streams. Each family 2 fixture names its family 1 fixture by path and the manifest's SHA-256, and adds the diffuse stream: Spiral's `public_demand_stream` with no hotspot draws. The bench's family 1 generator takes every draw on every step, so the diffuse stream is regenerated from the same named stream with each step's uniform pair. On every step that is not a hotspot draw it equals the stationary stream, and a test holds that.
+- **Episode.** The network starts from the fixture's hidden balances with no warm-up routing and no placement. Demand i shows its candidates, the public eight-path catalog in (hop count, node sequence) order with each path's public fee, plus the demand's own tried candidates and the whole history. A rejected action (`malformed`, `not_integer`, `out_of_grid`, `unknown_tool`) spends one of the demand's three attempts and moves nothing. `skip` ends the demand. The episode's attempt budget is 3 × 220.
+- **Baselines.** `one_shot`, `retry_wallet`, `prefix_oracle_3`, and `hidden_state_oracle`, as the table above defines them, with "first" meaning first in public-fee order: (fee, hop count, node sequence), family 1's router's order. The two oracles are handed the episode's starting capacities and balances and keep their own copy of the network. Only the agent's own payments move balances, so their copy stays exact.
+
+| Gate | Passes when | Set |
+|---|---|---|
+| K21 | `retry_wallet` − `one_shot`, pooled over the nine tasks per seed: point estimate in [2.0, 8.0] and unadjusted interval above zero | before any family 2 run: Spiral's +5.14 plus or minus about three points, as family 1's K1 window |
+| K22 | `hidden_state_oracle` − `retry_wallet`, pooled: unadjusted interval above zero | before any family 2 run; Spiral's learner and filtering effects sum to about +1.46 |
+| K23 | `retry_wallet` through `act` and `prefix_oracle_3` deliver, demand by demand, what family 1's router delivers run directly on the fixture | the audit's trajectory-equality check, on every episode |
+
+### 3.2 Development results (seeds 0 to 7)
+
+In [results/v0-routing-baselines-development.md](../results/v0-routing-baselines-development.md); the block runs in about ten seconds. K21 passes at +4.08 (+0.41 to +7.74), and K23 passes on all 72 episodes. K22 fails on development: +0.72 (−0.05 to +1.49). Eight seeds give a pooled interval about twice as wide as 32 would, and the oracle's edge over retries is small by construction, since it differs only on demands whose first three candidates all fail. The gate stands as written. Per task, retries add the most under polarized balances (+5.8 to +8.2) and the least under the balanced band (+1.0 to +2.4).
+
+### 3.3 What remains
+
+1. An amendment freezing the family: the gates above, the band (§5's one point), and the agent contrast prereg/v0.md §9 already declares, agent − `retry_wallet` per task with `outside_calibration` beyond the band.
+2. An LLM path. An episode is several hundred turns, so the adapter's whole-conversation context would overflow. A prompt for this family needs a context window of the current observation alone, which the observation supports because it carries the full history.
 
 ## 4. Family 3: settlement-object selection
 
@@ -604,7 +627,7 @@ Each later cell replaces the abstract links with an object class's own: a Lightn
 
 What changes against the abstract cell: a contract cannot be netted against another on chain, since each CET pays its own contract, so netting happens only among what the operator chooses to *roll*; a settled contract is a ghost link at the CET's miner fee plus the fee in basis points; a rolled contract costs collateral-time until the next period at a declared rate; and the plan gains a per-contract decision, `settle` or `roll`, beside the transfers. The oracle's band is a constraint the fixture respects: a settlement value outside it is not attestable and the cell does not generate one. Baselines: `settle_all` (floor), `roll_when_netting_helps` (reference: roll a contract when its counterparty nets against it next period), and the exact optimum over settle-or-roll choices by enumeration on small instances (ceiling). Parameters, all from UTXO-Ref's modules and marked as such: bucket cap 500 bps, dust 546 sats, refund CSV 576 blocks, maximum oracle move 500 bps. What is still needed from UTXO-Ref before the cell can freeze: the fee in basis points and the miner fee it assumes, and whether a rolled contract's collateral is re-bucketed.
 
-## 8. Family 7: proving claims within a budget (specified, not implemented)
+## 8. Family 7: proving claims within a budget (built; development seeds only)
 
 Derives from the paper §4.2 to §4.4 and §7 item 3, and from the audit's §11.3 and the recovered project's out-of-memory failures. Task ids: `proof_budget/<cell>`.
 
@@ -635,20 +658,21 @@ A registry operator publishes proofs over batches of claims. A proof has a cost 
 }
 ```
 
-The zeros are placeholders until the cost model is measured (8.5); the family does not run on invented costs.
+That was the sketch. The view as built (§8.6) carries the measured cost table instead of a fitted model, the largest batch that fits, and the pending claims; the family does not run on invented costs.
 
 ### 8.3 Actions
 
 | Tool | Args | Cost |
 |---|---|---|
-| `prove` | `{ claims: [ids] }` | 1 attempt. Publishes a proof over the named pending claims if their batch fits under the memory ceiling; rejected whole otherwise. |
+| `prove` | `{ count }` | 1 attempt. Publishes a proof over the oldest `count` pending claims if the batch fits under the memory ceiling and the largest measured batch; rejected whole otherwise. As built, the order is the protocol's and the agent chooses when and how many (§8.6). |
 | `wait` | `{ blocks }` | 0. Advances time. |
+| `commit` | none | Ends the episode; every claim not proven is lost. |
 
 Budget: attempts are the number of proofs the operator may publish in the horizon, declared per cell; 0 probes; blocks is the horizon. [invented]
 
 ### 8.4 Scoring, baselines, expectation
 
-Native value: −ln(prover cost + staleness cost) over the horizon. Baselines: `every_arrival` (prove each claim as it arrives: floor by cost), `fixed_interval` (prove every k blocks: reference), `random_interval`, and `optimal_batching` (the exact dynamic program over batch boundaries for the realized arrivals: ceiling). A skill that implements the dynamic program should reach the ceiling, and the identity control checks it as in F6.
+Native value: −ln(prover cost + staleness cost) over the horizon. Baselines: `every_arrival` (prove each claim as it arrives: floor by cost), `fixed_interval` (prove every k blocks: reference), `random_interval`, and `optimal_batching` (the exact dynamic program over batch boundaries for the realized arrivals: ceiling). As built the ceiling is clairvoyant, so no skill computing from the observation can reach it: a skill can carry the economic-order-quantity interval or an adaptive threshold, and the identity control checks the ceiling as in F6.
 
 ### 8.5 The cost model is a measurement fixture
 
@@ -670,6 +694,38 @@ First grid, 2026-10-07 (`cairo/rcap/measurements/20261007T032704Z.json`; program
 | 128 | 340,269 | 108.0 | 14,808 | 13,524,512 |
 
 What the grid says. Steps are linear at about 2,660 per claim. Proving time has a floor near 16 s up to four claims, where the trace is padded to the prover's minimum, and then grows at under a second per claim (0.9 s per claim between 64 and 128). Peak memory is 14 to 15 GB at every size, the prover's own footprint, and the proof is 13.2 to 13.5 MB at every size. So the per-claim cost falls by a factor of about 18 between one claim and 128, and below about sixteen claims the fixed cost is most of the bill: the family's batching question has a real answer in these numbers. This grid was timed while an LLM server ran on the same machine's GPU, so the seconds are an upper bound; it is re-measured on a quiet machine before it is adopted as the hash-bound fixture.
+
+### 8.6 As built (2026-10-08)
+
+Code in `src/tasks/proof_budget/`, config in `config/proof_budget.json`. Three tasks, `proof_budget/<cell>`.
+
+- **Cost model.** Read from the measurement file the config names, checked against the SHA-256 of its text with line endings normalized, and copied into every fixture. Seconds and peak memory are interpolated linearly between measured batch sizes. A batch can always be padded with dummy claims to a larger measured size, so b claims are charged the least seconds over sizes from b up to the largest that fits. Batches beyond the largest measured size, or past the memory ceiling, are not offered.
+- **Order.** A proof covers the oldest pending claims. Fixing the order is what makes the ceiling exact over the agent's action space: a proof covering claims i to j is best published when claim j arrives, and the claims never proven are a suffix. So f(i, k) = min(forfeit everything from i, min over j of cost(j − i + 1) + staleness(i, j) + f(j + 1, k − 1)) is exact, and a test holds it equal to enumeration and checks that delaying any proof never helps.
+- **Costs.** The prover's price times each proof's seconds; staleness, s × value for each block a claim waits; and forfeiture, the whole value of every claim not proven by the horizon. The native value is −ln of the total.
+- **Episode.** The view holds the block, the pending claims (id, arrival block, value), the arrival process's parameters but not its state or its future, the cost table, the largest batch, and the prices. `budget.attempts` is the proofs left, and `budget.blocks` the blocks left. The ceiling, `optimal_batching`, is handed every claim of the horizon.
+- **Baselines.** `every_arrival` (floor): prove whatever is pending at every block that has any. `fixed_interval` (reference): prove all pending every T blocks, with T the economic order quantity √(2F / (λ s v̄)) from the one-claim cost F, the mean rate λ, and the mean value v̄, lengthened so the proofs last the horizon. `threshold` (descriptive): prove when the pending claims' accrued staleness reaches F. `random_interval` (descriptive). `optimal_batching` (ceiling).
+
+| Gate | Passes when |
+|---|---|
+| K71 | `optimal_batching` ≥ every other policy on every episode |
+| K72 | the ceiling through `act` equals its schedule's cost computed directly from the fixture |
+| K73 | `fixed_interval` proves every claim on every episode |
+
+| Cell | Arrivals | Proofs a day | What it isolates |
+|---|---|---|---|
+| `steady` | Poisson, 2 a block | 48 | batching against staleness |
+| `bursty` | Markov-modulated, 0.5 or 6 a block, mean 1.6 | 48 | timing when the rate moves: a fixed interval misreads bursts |
+| `few_proofs` | Poisson, 2 a block | 12 | a scarce proof budget, which forces large batches |
+
+In every cell the horizon is 144 blocks (one day), values are log-uniform from 2,000 to 200,000 sats, the prover costs 5 sats a second, staleness is 50 ppm of value a block, and the memory ceiling is 64 GiB [all invented].
+
+**Development results (seeds 0 to 7), on the first grid.** In [results/v0-proof-budget-baselines-development.md](../results/v0-proof-budget-baselines-development.md). K71 to K73 pass. The floor exhausts its proofs and forfeits most claims, so normalized gains near 1 say little, and the informative contrast is against `fixed_interval`. `optimal_batching` − `fixed_interval` is +0.17 (+0.15 to +0.19) on `steady`, +0.38 (+0.34 to +0.41) on `bursty`, and +0.18 (+0.14 to +0.21) on `few_proofs`. The adaptive `threshold` closes about half the bursty gap (+0.18) but forfeits badly when proofs are scarce, because it ignores the proof budget.
+
+**What remains.**
+
+1. Adopt the re-measured grid, which repeats every size three times and extends it to 512 claims, then rebuild the fixtures and rerun development. The first grid was timed beside an LLM server.
+2. An amendment freezing the family.
+3. An LLM path that works at length. `scripts/run_proof_budget_agent.ts` and its prompt exist, but an episode can run to a hundred turns or more. The adapter's whole-conversation context then overflows, so this family needs the same observation-only context window as family 2.
 
 ## 9. Family 8: timing funding against fee and demand (specified, not implemented)
 

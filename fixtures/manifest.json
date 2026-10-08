@@ -15,6 +15,7 @@
     "config/netting.json": "26936a6c7a9a89762a2e28e0152de22b81afb7731de497af4de7a7f5de5014c5",
     "config/nostr.json": "3e1eb51f130f94d3edea8b16dde26d52bd824fd7f0340f9cb49b1820037eaeaa",
     "config/placement.json": "8803d9872ba947334c0b29490f6d7a2b993fe7bdb35baabf80dfd6be1219d917",
+    "config/proof_budget.json": "829b44317cac507db31cca41a40e2718464bd0a787b43350e5dfab8246bab18c",
     "config/protocol.json": "7f0034406b80fecd66de7d42bbca1e646da30c8a36e44afb94e033c75f34dfc4",
     "config/settlement_object.json": "32814b2f968678cad1aabbff7b139df7e21065556eadd0ebc58e3ebd1f1011a5"
   },
@@ -3938,6 +3939,1126 @@
       "seed": 1031,
       "generator": "placement-fixture/v0",
       "sha256": "9235681249f291861601bd254805c35d4b528f6508e8487e45f1383a812427f0"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-0000.json",
+      "family": "proof_budget",
+      "seed": 0,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "517cfb7aa33e68f2eda25cdbbc56f583d13cf9880912bf23f0f21505db94fea0"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-0001.json",
+      "family": "proof_budget",
+      "seed": 1,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "a450f46add9b75e4207934d863c22885342e413faf73102212937151adf9f93b"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-0002.json",
+      "family": "proof_budget",
+      "seed": 2,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "20884aaf60d99379ee5f22a116ff7627e327fe311ca49d676a07da1a97ee7db8"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-0003.json",
+      "family": "proof_budget",
+      "seed": 3,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "ee8ed0318bbad68eefc9b881558437aef7fe7ff0b2892bf0a054c10840faf598"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-0004.json",
+      "family": "proof_budget",
+      "seed": 4,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "6499d46eec19512f21f42e0fbcb5bcf30ec4b8825ea86d4caef73e5f1850c27d"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-0005.json",
+      "family": "proof_budget",
+      "seed": 5,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "66777c74061ddcb09bdc95484b0842d24cb3ab6ea0be6ccb38b32035fdfa6885"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-0006.json",
+      "family": "proof_budget",
+      "seed": 6,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "e0d7475a46fbf6d871b38275edf5ed89b466d25828a7a766f783c399b67cf585"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-0007.json",
+      "family": "proof_budget",
+      "seed": 7,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "a6d2c6b059167a66a9bb6e0487e90e2a39b75888f34107c2b5fe65e697debfc0"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1000.json",
+      "family": "proof_budget",
+      "seed": 1000,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "eb103327122d094e83035604a7d7419d6e0e61526f385937bd3ffb24539a597c"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1001.json",
+      "family": "proof_budget",
+      "seed": 1001,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "93cdf2bfea34d8bad89123fc2ed89f055f5998f2416305ccd3440728a837ad7f"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1002.json",
+      "family": "proof_budget",
+      "seed": 1002,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "5e91d3e0af8f9d59bbe66753273e9cda04a556ee7e06ff811126ffddff8ae051"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1003.json",
+      "family": "proof_budget",
+      "seed": 1003,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "5db6175c642f3390e32726ff81a56057adbaafa84e58299b356834e54eb2d0f1"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1004.json",
+      "family": "proof_budget",
+      "seed": 1004,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "e7b9bce7dc5690d972404fc80852737f491ccc8275e9f0e5de4ffc0eb31bb88a"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1005.json",
+      "family": "proof_budget",
+      "seed": 1005,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "46b165870b35be801ca7126c282d6b44389a2cb4525635e6f7ad753624f0fc22"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1006.json",
+      "family": "proof_budget",
+      "seed": 1006,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "be2057fd630bdbda9e8bbb0c4d46f2e977d0ce80afbdffb32a682a65aaa30481"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1007.json",
+      "family": "proof_budget",
+      "seed": 1007,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "409a1c78adb58f996d39b4449e8a6cbe7c320b07b72fd845e51f72383f13089b"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1008.json",
+      "family": "proof_budget",
+      "seed": 1008,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "175ff92210d678c900625f14e3bd3fc008917e0cc3e83cfe04e5a2069377dd82"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1009.json",
+      "family": "proof_budget",
+      "seed": 1009,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "b92f52a6164bc49727ada7c8aaf2d4a5278f53618be8e251bd4f1b266ea277a0"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1010.json",
+      "family": "proof_budget",
+      "seed": 1010,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "a4dcedf21d5b4f8eb96708fe50a856993c16b8eb55a18acf4fc3aa22c793ede7"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1011.json",
+      "family": "proof_budget",
+      "seed": 1011,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "6f442b0fe6f6929d42accba7ab9a89ff4015625a36a2a0e357dd91f83fd87aa9"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1012.json",
+      "family": "proof_budget",
+      "seed": 1012,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "dd99869258e6f9dfbe6aaa1bc2f264fab0c7d9465656dbe03189e1c6fc512275"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1013.json",
+      "family": "proof_budget",
+      "seed": 1013,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "81a43b7e1096e578db9257141ac9a5e2c9446dcec892433dea352ef2119ff899"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1014.json",
+      "family": "proof_budget",
+      "seed": 1014,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "2f08b04b32fe131950c672009312917423a17b45b69d7f4d19bb4a274f60a2ee"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1015.json",
+      "family": "proof_budget",
+      "seed": 1015,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "dc5586f58778e7a56d494604b195a415fd9c43434d404ae1d2e971dcceb0bc9a"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1016.json",
+      "family": "proof_budget",
+      "seed": 1016,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "8e6d3d35ff7e1197d3c7bd521a119be76a4d143d3d1bec5bd7795c146ff54d6e"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1017.json",
+      "family": "proof_budget",
+      "seed": 1017,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "f88976b5948311661b874db064010a378c140c0017d3e0791e5caf0fe3473d7a"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1018.json",
+      "family": "proof_budget",
+      "seed": 1018,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "135c58e58effb4a5ac6f7d13c59d7df2082737ea298f4e71a1859e70e811b77d"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1019.json",
+      "family": "proof_budget",
+      "seed": 1019,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "56be185122a5566f14a6a2800dd4b091be52c315cf12b1dd5dfbc42a64bf98c5"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1020.json",
+      "family": "proof_budget",
+      "seed": 1020,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "c54f43ca0f64f9537a39fd156d74baed40cdba468d72d9b1869fd1816a5ba823"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1021.json",
+      "family": "proof_budget",
+      "seed": 1021,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "d075d5fdd8895735890eb08fa87b82aaf716b071483c57e55580177b81f5e296"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1022.json",
+      "family": "proof_budget",
+      "seed": 1022,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "60868de538257b8938005fbde819f7aa39df0e43ef92b12488fa6eeef5c8f440"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1023.json",
+      "family": "proof_budget",
+      "seed": 1023,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "2c26d17fc5c8c7b6c947f453a4afc777b9243b06546cef224d42d93546f59bdb"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1024.json",
+      "family": "proof_budget",
+      "seed": 1024,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "bd44c52884dcbbec97053c916e73cde827fb4003e9231f3414433b22a7896130"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1025.json",
+      "family": "proof_budget",
+      "seed": 1025,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "a1189ce61c136c9bc6ba69b0cdec05d9a8bbf45176daf317607c6018c6c2e751"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1026.json",
+      "family": "proof_budget",
+      "seed": 1026,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "07507fb911de4b2fd8fb6890865f24388e272a5f818e4a824a13d68fcbe07f45"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1027.json",
+      "family": "proof_budget",
+      "seed": 1027,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "2404df117b83442ff05ce13abfabcc36668b33001422a3b02c49533872586161"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1028.json",
+      "family": "proof_budget",
+      "seed": 1028,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "5db9cf4087e7e2cebbbfc4ed4068a88e87255592914da35e83aa1c88bf5d23b1"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1029.json",
+      "family": "proof_budget",
+      "seed": 1029,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "d5c375027580dc537c1123c7ae96a7c9d0fb401474d591ea9138d3e2049a0b71"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1030.json",
+      "family": "proof_budget",
+      "seed": 1030,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "9c3c668aad3a094b249601fd9b4c857861f75484b0780cf4785d394b20e7dbd4"
+    },
+    {
+      "path": "fixtures/proof_budget/bursty/seed-1031.json",
+      "family": "proof_budget",
+      "seed": 1031,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "387cc5129b15c28cceb9c50d1b1add72c440e535b458a97c6b6afbc93e03d351"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-0000.json",
+      "family": "proof_budget",
+      "seed": 0,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "cec4e7276d69dc29472a6709249bdd139dc0305a90f5973449dfd6f481a5aef6"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-0001.json",
+      "family": "proof_budget",
+      "seed": 1,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "e27256a56676c4c22165b11d351ced4b7a40419164c54b1253d2ada986bc2e7a"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-0002.json",
+      "family": "proof_budget",
+      "seed": 2,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "ed4c78649bbaf796156e5ba29a945be66338d89b4d362721c7efe770efdf7ce3"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-0003.json",
+      "family": "proof_budget",
+      "seed": 3,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "624bbee5e9af3ceb2ca712c8cc7cdd0afe9f4e2c0424a540bd293d70ac02c914"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-0004.json",
+      "family": "proof_budget",
+      "seed": 4,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "845f73c0799cfcba211061b201385bb0311c0b30960c45d62f0cb78de5cf95e8"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-0005.json",
+      "family": "proof_budget",
+      "seed": 5,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "c45a0febeb12a24e7f724bf100a4cc59da734bb5c06707ef476b843cc82b44d7"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-0006.json",
+      "family": "proof_budget",
+      "seed": 6,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "106056b849ed816d04cbfc4b81c5b478afff99ff12b452e56c4bedbf21a49c88"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-0007.json",
+      "family": "proof_budget",
+      "seed": 7,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "889c39e0b4cfe747ca9f5e13d4d2d7f2deab4ee803b2e83b1f91f0d31755f430"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1000.json",
+      "family": "proof_budget",
+      "seed": 1000,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "ab1bdb6316441187133b7afc5bceaa4d20ef4b4a084beec57473e924c0a50289"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1001.json",
+      "family": "proof_budget",
+      "seed": 1001,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "29d4454d70685d9d0b57dc3082138adedca7b93f2e22accb93be88c42f489e34"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1002.json",
+      "family": "proof_budget",
+      "seed": 1002,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "f7ce04a743a16c789f06398f13ffd02cb0328070e81f74f2a2eca6e837f56d49"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1003.json",
+      "family": "proof_budget",
+      "seed": 1003,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "70fdddabb8f9fd4a5f767d403a97bf50a6117d35d6721a1aadc7e82635b766ad"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1004.json",
+      "family": "proof_budget",
+      "seed": 1004,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "c7fd81f1229991774d6c405b1630906a5dc1dfa5005b028d3ead29ce855585ce"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1005.json",
+      "family": "proof_budget",
+      "seed": 1005,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "ba35e84caf4daaad68fac1b212b3a4a954223162b29afbbcb471d8d04068eb93"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1006.json",
+      "family": "proof_budget",
+      "seed": 1006,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "7a8b4058a69dfd0f060e486cbaaa43f1cdb66385e97bf15af7c43a6d424f6d60"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1007.json",
+      "family": "proof_budget",
+      "seed": 1007,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "867626dccecfb3aa86f869637235f057ae5e7aaf24b8d7cf7355f15b3c1359df"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1008.json",
+      "family": "proof_budget",
+      "seed": 1008,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "4bb834c802e582d47160ecd87f27eec5aa40576415fee34f16a36dd22ebbe1c5"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1009.json",
+      "family": "proof_budget",
+      "seed": 1009,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "4860798e5ee00d79440333448583bef8cec10f4fd5b3e0413c9d815d4d8371a3"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1010.json",
+      "family": "proof_budget",
+      "seed": 1010,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "8e2ffadbfcdcd947340de213c5e63c33fe8dae696cd9102793caaf8384a24ab8"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1011.json",
+      "family": "proof_budget",
+      "seed": 1011,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "54a008a8c70ea46ecb439aaec449c1b4e841dad6b9a5658ced695969344f88d0"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1012.json",
+      "family": "proof_budget",
+      "seed": 1012,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "41f21cebbcdbd21abb48e3ffe5b6b22376fa5135ed3a6d4156fdaa6ff0592a56"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1013.json",
+      "family": "proof_budget",
+      "seed": 1013,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "3c65f76f17d0f56f1c4aaa553652f637589722febedd8da5ed5083e4bf8bf08b"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1014.json",
+      "family": "proof_budget",
+      "seed": 1014,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "1f370255fc50c655f0b7dde52afd94a2009aee685e37ab2f08091fe716e7f099"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1015.json",
+      "family": "proof_budget",
+      "seed": 1015,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "60941ad2a25d4a2cdbaf4b1f0572eeb647383218239438dae24cd76a192ced9c"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1016.json",
+      "family": "proof_budget",
+      "seed": 1016,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "df27ee84726491e4729acb037dd1623c2994b840366fa8965ac8df7467f62e38"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1017.json",
+      "family": "proof_budget",
+      "seed": 1017,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "ada4f42997a2acb6219bfb9e3730e950f02954327b321588f5e71d522ec4552a"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1018.json",
+      "family": "proof_budget",
+      "seed": 1018,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "4901cfce175f82324e6473cee5cb21f2a7aeb6113ccd8767f1dc6e1582fa6caf"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1019.json",
+      "family": "proof_budget",
+      "seed": 1019,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "5e567197953fa5ceae4484ddfb1556a2b160d089e16677059038f0cf085a9778"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1020.json",
+      "family": "proof_budget",
+      "seed": 1020,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "a55fcfa24c65ed1515dcc13f933514a487ad8ef1baf82181fdd1c0a97e6b7a77"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1021.json",
+      "family": "proof_budget",
+      "seed": 1021,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "5e1e90030fc98226e8aab1154efe07da933f6eb08cb81f7a7080cc43b547bd25"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1022.json",
+      "family": "proof_budget",
+      "seed": 1022,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "6b3f95f06e064a9604a71f1d23976e5ce33f9723758949cde4344bdae5120edc"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1023.json",
+      "family": "proof_budget",
+      "seed": 1023,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "dbde0f3318c3e0fa7cabcdce2422968ea3e0eb961c99303043ad99be67f7457e"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1024.json",
+      "family": "proof_budget",
+      "seed": 1024,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "91501b1dfbe432ac2cdb7d752f9bf1e03fc8d6cc29e3621febee0306a1f95627"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1025.json",
+      "family": "proof_budget",
+      "seed": 1025,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "37999a68cfd2935b5732cf90764dc161aeaf9340e18c0f12dce2cee8070e070d"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1026.json",
+      "family": "proof_budget",
+      "seed": 1026,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "6fd4351557fc4bb9142dc2141e74cc5b84fc6cd00ac7ca6ce1e592a2c6f83a3f"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1027.json",
+      "family": "proof_budget",
+      "seed": 1027,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "d6c2c8983b8b33b08c73ba9a4148ffcf8b3131d645253899f94f06421ff7a963"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1028.json",
+      "family": "proof_budget",
+      "seed": 1028,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "9978f8cc06e1b552fc6bdfa6a7bce3f173c03b592f534edc93df4ecd487de45d"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1029.json",
+      "family": "proof_budget",
+      "seed": 1029,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "8e632587d097aa69d98d2de9fbec07b60806cebdce216f42ae8f6aa47d0eefbe"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1030.json",
+      "family": "proof_budget",
+      "seed": 1030,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "0444a182c437c4003c46bf1a6d44eb54cde8ce74f419e0cbe281ae5d86a3857d"
+    },
+    {
+      "path": "fixtures/proof_budget/few_proofs/seed-1031.json",
+      "family": "proof_budget",
+      "seed": 1031,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "c329b50a5344d11df6884b84cfebb0ac03046e5fcb2333e22824a4acc43224c5"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-0000.json",
+      "family": "proof_budget",
+      "seed": 0,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "c38fc6621ab3952f955125698dffedfb863695ef544106bd6bacfd701c04012b"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-0001.json",
+      "family": "proof_budget",
+      "seed": 1,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "f84450670159270e35612ee062e4960f1901970298f86d731d30a2e7ced8f81d"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-0002.json",
+      "family": "proof_budget",
+      "seed": 2,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "0f70ebebe99d8aa818f0f12eea004cab577d0fa9c26197748d2de3398ef58146"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-0003.json",
+      "family": "proof_budget",
+      "seed": 3,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "0066c4bbeb691538330f1dbe9bf527403a7fb6b1d07b42c371966691747265d7"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-0004.json",
+      "family": "proof_budget",
+      "seed": 4,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "987e6297237bf53456a8c8a190199acf5904bbde094636c0b07717061bf38ada"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-0005.json",
+      "family": "proof_budget",
+      "seed": 5,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "c4c8b31b2c520e57534f9bcf90e8a70cc63e54555d477572796b9fbe6088bfa7"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-0006.json",
+      "family": "proof_budget",
+      "seed": 6,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "4039cafed6d93150078f5e94d77cb171a2f593945ffc761584a7d983c4472e5d"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-0007.json",
+      "family": "proof_budget",
+      "seed": 7,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "da0186cfb77bb146f7c8207b429c9795bdf0619b22ee918f139519d943c53094"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1000.json",
+      "family": "proof_budget",
+      "seed": 1000,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "977c636805a3bf351d537496177c60ffcfd263f2f8ec0be8a257baf0e581610c"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1001.json",
+      "family": "proof_budget",
+      "seed": 1001,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "e6ab723de4894db7473f28193f56acb65d52c6bfc5016f7ce02c6f66293e0425"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1002.json",
+      "family": "proof_budget",
+      "seed": 1002,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "91c8f6d3ac70050c73679d30b79b9af98a456c4a45d795d2f219c834bf7c4f6e"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1003.json",
+      "family": "proof_budget",
+      "seed": 1003,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "c82bab0c0911c42a5f97c1deac0400e6ce45c5ec341b0e7480d3f5310d42252e"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1004.json",
+      "family": "proof_budget",
+      "seed": 1004,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "24340b0064066586448c5e3e0fcc92da5006e56ffd3b87f773396aa36b37c82e"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1005.json",
+      "family": "proof_budget",
+      "seed": 1005,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "8149eb2bb03143c0b411677394a8e04cb3ad8a2bb8f16e0498841b110e19aca4"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1006.json",
+      "family": "proof_budget",
+      "seed": 1006,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "f5064c890fee80db973a5baf7afe1a71e3dba5f291e9021c4a7ecc81f3cca107"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1007.json",
+      "family": "proof_budget",
+      "seed": 1007,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "9ade57d82eb0e8430396701f5bcd6f8b9dd341263917030f70e5953f29fef48b"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1008.json",
+      "family": "proof_budget",
+      "seed": 1008,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "a40d7115feb536c0a077c99badfd14f6f3c7766c239a43d5bcdc96e5c679e4e9"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1009.json",
+      "family": "proof_budget",
+      "seed": 1009,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "7fa9fad770809c7cfb3bbb330b4b462f95035946d8cc06cb6ad7a40cf4bc701b"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1010.json",
+      "family": "proof_budget",
+      "seed": 1010,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "ca3643091612ce505ba202d1a202fa6fff246d3faff4117c5f88c5a5f69fb6f4"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1011.json",
+      "family": "proof_budget",
+      "seed": 1011,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "e70537fa2bd10da4079d9fb4f79b69a7181dd066d1684c9b107101a219d844e8"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1012.json",
+      "family": "proof_budget",
+      "seed": 1012,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "8d406bc000fad217be67130c052826f225533d8c0f630ee76a6b65f35afcff5e"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1013.json",
+      "family": "proof_budget",
+      "seed": 1013,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "ae53f39d57fde1ae4367fcc651552aec9482a0e2805c3a766cb1b7b39439a0b7"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1014.json",
+      "family": "proof_budget",
+      "seed": 1014,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "9e3fc04e1c6416c0056f5583b5e2b2d1fe7ae76c580cdd64db194c7154a4f8af"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1015.json",
+      "family": "proof_budget",
+      "seed": 1015,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "c02d482421f9b70d526306443acdc24ce64d7cbf14ec18a7c1e71a8ff85b0b87"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1016.json",
+      "family": "proof_budget",
+      "seed": 1016,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "daaaad8f3f6c0d1bf316bd7c0bd914d9affe5f7bf277f59be03d61b17e5d7e29"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1017.json",
+      "family": "proof_budget",
+      "seed": 1017,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "79177e56ad56d0e257d7a3b480baa8f8e97a7e1661c10d64b9ca11d59195cb38"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1018.json",
+      "family": "proof_budget",
+      "seed": 1018,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "1e5a09e063a58767e74cbaf701c16db6692d7bee9169598722c97bf9b2d04bf0"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1019.json",
+      "family": "proof_budget",
+      "seed": 1019,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "a5c2a42da0b2533b46febe364a277a1ae67316f239795e6c5e24b40776720589"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1020.json",
+      "family": "proof_budget",
+      "seed": 1020,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "026cdea4ca371e23356bc6ab00eac181bc42b2ca8351fd50cb372ff1265fa6a7"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1021.json",
+      "family": "proof_budget",
+      "seed": 1021,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "1693521c16bfac7bb568d8f06abd67c0fec2499dd3714af8c4858d047e22e6f9"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1022.json",
+      "family": "proof_budget",
+      "seed": 1022,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "1a3b5028c55a87e1f37dc33b3871f734d8a9460bfec0d4b75d40cda5acf4bf81"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1023.json",
+      "family": "proof_budget",
+      "seed": 1023,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "025a08ebffac109175d71377e141b76befa681fbd3196d7d746751ad0c81b7b0"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1024.json",
+      "family": "proof_budget",
+      "seed": 1024,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "8ed8dbfc252d413f62a05fbbff365d461d516a18ee9853e0c0f0424cd8ab23e9"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1025.json",
+      "family": "proof_budget",
+      "seed": 1025,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "99204a8250cc229a896ac4088e6fdab9911d69d7b5a543813ae5fd91c23a6f91"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1026.json",
+      "family": "proof_budget",
+      "seed": 1026,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "da67592d2dd37d8bf48f3cb010717802628594a2c5f17938331e4ce7571ed2af"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1027.json",
+      "family": "proof_budget",
+      "seed": 1027,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "2467ab1fd7045e05091afa0e0a741fe0e5ea78eaf0457745e0549cc46196dd1b"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1028.json",
+      "family": "proof_budget",
+      "seed": 1028,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "17c5b80e38adacb456ebf8211991e9219762d85dbfde6dbbce6c88b624eb8cf3"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1029.json",
+      "family": "proof_budget",
+      "seed": 1029,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "7fe2c1c8d6df526826e84651b0a1003f1ad4193281ae4daae88f3a2bf27f1c6e"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1030.json",
+      "family": "proof_budget",
+      "seed": 1030,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "54fa5c8965d44ce82004843feb32c8cf9dd521c3b6eb078e2d311938bfb349b7"
+    },
+    {
+      "path": "fixtures/proof_budget/steady/seed-1031.json",
+      "family": "proof_budget",
+      "seed": 1031,
+      "generator": "proof-budget-fixture/v0",
+      "sha256": "33f273477dc342a70f9b3831e532413e022a22021f463b2b0e47c40a27c48319"
+    },
+    {
+      "path": "fixtures/routing/seed-0000.json",
+      "family": "routing",
+      "seed": 0,
+      "generator": "routing-fixture/v0",
+      "sha256": "157bda89a98bad542c3f8c5f0e63540242deb51783bc65debcb275c2ee6bf89e"
+    },
+    {
+      "path": "fixtures/routing/seed-0001.json",
+      "family": "routing",
+      "seed": 1,
+      "generator": "routing-fixture/v0",
+      "sha256": "9c521e3856e22771e7cfdb32458bb4d88d33742bccc9c23c0d42c545ee85504a"
+    },
+    {
+      "path": "fixtures/routing/seed-0002.json",
+      "family": "routing",
+      "seed": 2,
+      "generator": "routing-fixture/v0",
+      "sha256": "7fe6d7be3463e9e7de41970740d30b27cb2175528b2953d3d2eb445469f4c83c"
+    },
+    {
+      "path": "fixtures/routing/seed-0003.json",
+      "family": "routing",
+      "seed": 3,
+      "generator": "routing-fixture/v0",
+      "sha256": "60268b213d0f5bdf144bc419095d08afc44bb57b4ed1bbcac0122af5dbde3dac"
+    },
+    {
+      "path": "fixtures/routing/seed-0004.json",
+      "family": "routing",
+      "seed": 4,
+      "generator": "routing-fixture/v0",
+      "sha256": "8006e79f46867d894e06e09daa58167c1146e2caffea88e44cee411ea7cef82f"
+    },
+    {
+      "path": "fixtures/routing/seed-0005.json",
+      "family": "routing",
+      "seed": 5,
+      "generator": "routing-fixture/v0",
+      "sha256": "91501ec412781c72d4408a9f05419defa3022fa225ca4b9652a4f9cdda697160"
+    },
+    {
+      "path": "fixtures/routing/seed-0006.json",
+      "family": "routing",
+      "seed": 6,
+      "generator": "routing-fixture/v0",
+      "sha256": "a45ae20c432f6d6f1a31f281a95d6799d9a0398b0ac2a05b06ba5d0e5e1970b9"
+    },
+    {
+      "path": "fixtures/routing/seed-0007.json",
+      "family": "routing",
+      "seed": 7,
+      "generator": "routing-fixture/v0",
+      "sha256": "afa6f14914579e37aa8a1c05d1afb209d6538c5e6603e8cdd54938ab0389dbf0"
+    },
+    {
+      "path": "fixtures/routing/seed-1000.json",
+      "family": "routing",
+      "seed": 1000,
+      "generator": "routing-fixture/v0",
+      "sha256": "cda9483326419bec52ee2811d0c68295458a1ee3b560cb963194e2be2053f3ee"
+    },
+    {
+      "path": "fixtures/routing/seed-1001.json",
+      "family": "routing",
+      "seed": 1001,
+      "generator": "routing-fixture/v0",
+      "sha256": "01071e643858a6cd367fab4dd1f983e3f743cf49d33b24a5b7ff12c62a018e35"
+    },
+    {
+      "path": "fixtures/routing/seed-1002.json",
+      "family": "routing",
+      "seed": 1002,
+      "generator": "routing-fixture/v0",
+      "sha256": "8d89e94ddaf6c40d268a542f62a469bce35948f9ec0d05a8127576c8951322e1"
+    },
+    {
+      "path": "fixtures/routing/seed-1003.json",
+      "family": "routing",
+      "seed": 1003,
+      "generator": "routing-fixture/v0",
+      "sha256": "bea78bf6d0e75f18b56aa8b6d01ddbec4ffd5110c87bc31001966898992252ff"
+    },
+    {
+      "path": "fixtures/routing/seed-1004.json",
+      "family": "routing",
+      "seed": 1004,
+      "generator": "routing-fixture/v0",
+      "sha256": "7807582909e0cd575b301ae63bc62a4c65fdd95d819439959310b114b8bf7a16"
+    },
+    {
+      "path": "fixtures/routing/seed-1005.json",
+      "family": "routing",
+      "seed": 1005,
+      "generator": "routing-fixture/v0",
+      "sha256": "68b665ab490093957fa637449bd90a384702ed600a6ad4fb2781a2ff2b04403e"
+    },
+    {
+      "path": "fixtures/routing/seed-1006.json",
+      "family": "routing",
+      "seed": 1006,
+      "generator": "routing-fixture/v0",
+      "sha256": "f121251835dbac0fb8c9b2b4072ed1dd5c6510daebd5350cb13443dbea8ee738"
+    },
+    {
+      "path": "fixtures/routing/seed-1007.json",
+      "family": "routing",
+      "seed": 1007,
+      "generator": "routing-fixture/v0",
+      "sha256": "730521f991bdac2299db08e582fc3514c1db65dd7c8b59f2779dae2ddd357e22"
+    },
+    {
+      "path": "fixtures/routing/seed-1008.json",
+      "family": "routing",
+      "seed": 1008,
+      "generator": "routing-fixture/v0",
+      "sha256": "6bc30a5e9d9839a048074f9ccd47ae4f111183d71afa5846b925a4854254870f"
+    },
+    {
+      "path": "fixtures/routing/seed-1009.json",
+      "family": "routing",
+      "seed": 1009,
+      "generator": "routing-fixture/v0",
+      "sha256": "793733b8fd0a582c524bcbcc6b6f48062d00fa20ee0b3ecbe3c682851796227b"
+    },
+    {
+      "path": "fixtures/routing/seed-1010.json",
+      "family": "routing",
+      "seed": 1010,
+      "generator": "routing-fixture/v0",
+      "sha256": "900a4f8bf9ceda090fa6e3c133e7859c3d8e47d47913d1e02d24883d5b8976c0"
+    },
+    {
+      "path": "fixtures/routing/seed-1011.json",
+      "family": "routing",
+      "seed": 1011,
+      "generator": "routing-fixture/v0",
+      "sha256": "5490716301d9571403a3b04e67f9077d8c0d7a277ad95e4b88925ebfa74a81f4"
+    },
+    {
+      "path": "fixtures/routing/seed-1012.json",
+      "family": "routing",
+      "seed": 1012,
+      "generator": "routing-fixture/v0",
+      "sha256": "46b9350a2be5aa371170819f684ddd5871f017988f51caf42919a86ed36df335"
+    },
+    {
+      "path": "fixtures/routing/seed-1013.json",
+      "family": "routing",
+      "seed": 1013,
+      "generator": "routing-fixture/v0",
+      "sha256": "2bc6f89f1a24e37fb23740b1d2abd2df040da59ff2ac84f9b43b8c26989119b9"
+    },
+    {
+      "path": "fixtures/routing/seed-1014.json",
+      "family": "routing",
+      "seed": 1014,
+      "generator": "routing-fixture/v0",
+      "sha256": "a3570a466b6cffd11cc61dbd4e6eebdaece99d6035f69826925f200e740baa4f"
+    },
+    {
+      "path": "fixtures/routing/seed-1015.json",
+      "family": "routing",
+      "seed": 1015,
+      "generator": "routing-fixture/v0",
+      "sha256": "ad35f44b7dc98f34b2ee232ad2140292d971c0f6f470d97f3e83a1bea1d0c326"
+    },
+    {
+      "path": "fixtures/routing/seed-1016.json",
+      "family": "routing",
+      "seed": 1016,
+      "generator": "routing-fixture/v0",
+      "sha256": "f08152d401a09fd6c022ddeeec977a6624586f934108efad4cde3f96a958ec31"
+    },
+    {
+      "path": "fixtures/routing/seed-1017.json",
+      "family": "routing",
+      "seed": 1017,
+      "generator": "routing-fixture/v0",
+      "sha256": "f64a7e8eddde2c8f1ac726c8f7c62bae76bd570dcf1890f3f15da647d325c9bd"
+    },
+    {
+      "path": "fixtures/routing/seed-1018.json",
+      "family": "routing",
+      "seed": 1018,
+      "generator": "routing-fixture/v0",
+      "sha256": "3a5c87616f36448b0c227dfca031bb46694e327f5a81042c88b5d39925501388"
+    },
+    {
+      "path": "fixtures/routing/seed-1019.json",
+      "family": "routing",
+      "seed": 1019,
+      "generator": "routing-fixture/v0",
+      "sha256": "9c2c915844f94993e4a597b744cf0cb86b57418c761d765f1b2c43ddc4c3b997"
+    },
+    {
+      "path": "fixtures/routing/seed-1020.json",
+      "family": "routing",
+      "seed": 1020,
+      "generator": "routing-fixture/v0",
+      "sha256": "f2aecb38af09df184ac100eeafd93e9bc3bd34cdaa832a32f3ae61aeee88cd91"
+    },
+    {
+      "path": "fixtures/routing/seed-1021.json",
+      "family": "routing",
+      "seed": 1021,
+      "generator": "routing-fixture/v0",
+      "sha256": "fec2b791ff4c1101ec320b07429a486bf91adbaa6e2023e3ba9a48b2d54ca82a"
+    },
+    {
+      "path": "fixtures/routing/seed-1022.json",
+      "family": "routing",
+      "seed": 1022,
+      "generator": "routing-fixture/v0",
+      "sha256": "85d47485987817ef7dce7dc3ddc3e5886a7b56c014c0d50cc087e3f2aa361472"
+    },
+    {
+      "path": "fixtures/routing/seed-1023.json",
+      "family": "routing",
+      "seed": 1023,
+      "generator": "routing-fixture/v0",
+      "sha256": "b3a0192199eb4092370ea0dcdf4dae894e04eea81927d4a467c2c59e8e8deaf2"
+    },
+    {
+      "path": "fixtures/routing/seed-1024.json",
+      "family": "routing",
+      "seed": 1024,
+      "generator": "routing-fixture/v0",
+      "sha256": "c2170d5602935d4d9730e1ba018118ef36f2f231cf928a49380743a1706cbfe4"
+    },
+    {
+      "path": "fixtures/routing/seed-1025.json",
+      "family": "routing",
+      "seed": 1025,
+      "generator": "routing-fixture/v0",
+      "sha256": "d588f6543391b8d357cf9e992ab531569925b520dd02ecaa92563eb8c7f13b3f"
+    },
+    {
+      "path": "fixtures/routing/seed-1026.json",
+      "family": "routing",
+      "seed": 1026,
+      "generator": "routing-fixture/v0",
+      "sha256": "5288234f787ced8da2558dc80595ea61ec80e9e7490ebab8d78d72c629053fff"
+    },
+    {
+      "path": "fixtures/routing/seed-1027.json",
+      "family": "routing",
+      "seed": 1027,
+      "generator": "routing-fixture/v0",
+      "sha256": "33ec9a02fee237faf9141264788941df2e427fd9ea9de485c12dd463985b7dd8"
+    },
+    {
+      "path": "fixtures/routing/seed-1028.json",
+      "family": "routing",
+      "seed": 1028,
+      "generator": "routing-fixture/v0",
+      "sha256": "95196cef8c002717f2563624013fad3ad24862fec98fa588b0e6bd4c688edcb7"
+    },
+    {
+      "path": "fixtures/routing/seed-1029.json",
+      "family": "routing",
+      "seed": 1029,
+      "generator": "routing-fixture/v0",
+      "sha256": "2b957a2cecf44cb9ef917192645d35c1f86bdf2ba9c18adb810998f787c6b0d3"
+    },
+    {
+      "path": "fixtures/routing/seed-1030.json",
+      "family": "routing",
+      "seed": 1030,
+      "generator": "routing-fixture/v0",
+      "sha256": "7ffe4eda7919e5f34f557e2e4269de0c68163a552ee70ba053fcb0afeff4fc58"
+    },
+    {
+      "path": "fixtures/routing/seed-1031.json",
+      "family": "routing",
+      "seed": 1031,
+      "generator": "routing-fixture/v0",
+      "sha256": "a2a98a6fe5d22904a90dd51b8ea5afb42e4b85555bf7c46ea2bfc76380e8d844"
     },
     {
       "path": "fixtures/settlement_object/few_steady_recycling/seed-0000.json",

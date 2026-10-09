@@ -119,3 +119,26 @@ test("the LLM path: the prompt states the rules and the observed response times,
     assert.ok(!/\{\w+\}/.test(system.replace(/\{"[^}]*\}/g, "")), "no template placeholder is left unfilled");
   } finally { server.close(); }
 });
+
+test("the bond_offer skill: a model that calls it and echoes its result scores what half_rate scores", async () => {
+  const { ChatAgent } = await import("../../agents/chat.ts");
+  const { bondOfferSkill } = await import("../../agents/skills.ts");
+  const { bondingPrompt } = await import("./prompt.ts");
+  const { echoSkillServer } = await import("../../agents/echo_mock.test_helper.ts");
+  const { HalfRate } = await import("./baselines.ts");
+  const m = await echoSkillServer("bond_offer");
+  try {
+    for (const cell of Object.keys(config.cells).sort()) {
+      const f = bondingFixture(root, manifest, cell, 4);
+      const agent = new ChatAgent({
+        name: "mock", baseUrl: m.url, model: "mock",
+        sampling: { temperature: 0.7, top_p: 0.8, top_k: 20, max_tokens: 128, seed: 1 }, thinking: false,
+        identity: { model_sha256: "0".repeat(64), runtime: "mock" }, prompt: bondingPrompt(128), skills: [bondOfferSkill],
+      });
+      const row = await runEpisode(new BondingEnv(f, config), agent);
+      const ref = await runEpisode(new BondingEnv(f, config), new HalfRate());
+      assert.equal(row.rejections.length, 0);
+      assert.equal(row.value, ref.value, cell);
+    }
+  } finally { m.server.close(); }
+});

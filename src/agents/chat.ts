@@ -70,6 +70,12 @@ export interface ChatOptions {
   /** Skill calls allowed per episode; a request beyond the cap is passed to the harness as it is. Default 4. */
   maxSkillCalls?: number;
   /**
+   * Skill calls allowed before each action; a call beyond it is passed to the harness as it is, like
+   * one past the episode cap. Unset, the episode cap is the only limit. Bound into the id when set:
+   * Bonsai 8B once called a skill 227 times in one turn, echoing its result back as arguments.
+   */
+  maxSkillCallsPerTurn?: number;
+  /**
    * When set, each request carries the system prompt, the last `contextTurns` whole turns, and the
    * current turn, instead of the whole conversation. For families whose observation carries the
    * whole state and whose episodes run to hundreds of turns (families 2 and 7). Bound into the id.
@@ -162,7 +168,8 @@ export class ChatAgent implements Agent {
     const base = { adapter: ADAPTER_VERSION, model, model_sha256: identity.model_sha256, runtime: identity.runtime, sampling: { ...sampling }, thinking, prompt_sha256: prompt.sha256 };
     // Skills enter the identity only when carried, so a bare agent's identifier is unchanged by the skill loop.
     const windowed = this.options.contextTurns === undefined ? base : { ...base, context_turns: this.options.contextTurns };
-    return skills.length ? { ...windowed, skills, max_skill_calls: this.options.maxSkillCalls ?? 4, skill_protocol: "call by a skill field or a tool field naming a carried skill; result as compact json; {tool: send} or {send: name} sends a stored result that is an action" } : windowed;
+    const perTurn = this.options.maxSkillCallsPerTurn === undefined ? {} : { max_skill_calls_per_turn: this.options.maxSkillCallsPerTurn };
+    return skills.length ? { ...windowed, skills, max_skill_calls: this.options.maxSkillCalls ?? 4, ...perTurn, skill_protocol: "call by a skill field or a tool field naming a carried skill; result as compact json; {tool: send} or {send: name} sends a stored result that is an action" } : windowed;
   }
 
   reset(episode: EpisodeInfo): void {
@@ -182,7 +189,8 @@ export class ChatAgent implements Agent {
     const skills = this.options.skills ?? [];
     if (skills.length === 0) return "";
     const cap = this.options.maxSkillCalls ?? 4;
-    return `\n\nSkills. Before acting you may call a skill by replying with exactly {"skill":"<name>","args":{}} and nothing else; its result comes back in the next message. When a result is itself an action you may send it unchanged by replying {"tool":"send"}. You may call skills at most ${cap} times in this episode; a call beyond that is treated as an invalid action. The skills:\n${skills.map((s) => `- ${s.name}: ${s.description}`).join("\n")}`;
+    const perTurn = this.options.maxSkillCallsPerTurn;
+    return `\n\nSkills. Before acting you may call a skill by replying with exactly {"skill":"<name>","args":{}} and nothing else; its result comes back in the next message. When a result is itself an action you may send it unchanged by replying {"tool":"send"}. You may call skills at most ${cap} times in this episode${perTurn === undefined ? "" : `, and at most ${perTurn} ${perTurn === 1 ? "time" : "times"} before each action`}; a call beyond that is treated as an invalid action. The skills:\n${skills.map((s) => `- ${s.name}: ${s.description}`).join("\n")}`;
   }
 
   /**
@@ -223,14 +231,15 @@ export class ChatAgent implements Agent {
     this.turnStarts.push(this.messages.length);
     let user = this.options.prompt.turn(observation);
     const cap = this.options.maxSkillCalls ?? 4;
+    const perTurn = this.options.maxSkillCallsPerTurn ?? Number.POSITIVE_INFINITY;
     for (let call = 0; ; call++) {
       this.messages.push({ role: "user", content: user });
       const { reply, key, cached, replayed } = await this.complete(turn, call);
       this.messages.push({ role: "assistant", content: reply.content });
       const parsed = extractAction(reply.content);
       const name = this.skillCalled(parsed);
-      if (name === null || this.skillCalls >= cap) {
-        // An action, a sent result, or a skill call past the cap, which the harness rejects as malformed.
+      if (name === null || this.skillCalls >= cap || call >= perTurn) {
+        // An action, a sent result, or a skill call past a cap, which the harness rejects as malformed.
         const sent = this.sentResult(parsed);
         const action = sent === null ? parsed : this.results.get(sent)!;
         this.options.onExchange?.({ episode: this.episode, turn, request_sha256: key, cached, replayed, user, reply: reply.content, reasoning: reply.reasoning, action, ...(sent === null ? {} : { sent }) });

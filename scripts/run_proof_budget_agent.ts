@@ -61,6 +61,7 @@ const options: ChatOptions = {
   prompt: proofPrompt(maxTokens),
   skills,
   maxSkillCalls: Number(arg("max-skill-calls", "4")),
+  ...(arg("max-skill-calls-per-turn", "") === "" ? {} : { maxSkillCallsPerTurn: Number(arg("max-skill-calls-per-turn", "")) }),
   // The turn carries the whole state; a long episode would overflow a whole-conversation context.
   contextTurns: Number(arg("context-turns", "0")),
 };
@@ -102,7 +103,7 @@ const record = await executeRun({
   checks: proofIdentityCheck(root, manifest),
   notes: () => [
     ...(note !== "" ? [note] : []),
-    ...(skills.length ? [`The agent carried the skills ${skills.map((s) => s.name).join(", ")}, each bound into its identifier; skill calls are capped at ${options.maxSkillCalls} per episode and cost no harness budget.`] : []),
+    ...(skills.length ? [`The agent carried the skills ${skills.map((s) => s.name).join(", ")}, each bound into its identifier; skill calls are capped at ${options.maxSkillCalls} per episode${options.maxSkillCallsPerTurn === undefined ? "" : ` and ${options.maxSkillCallsPerTurn} before each action`} and cost no harness budget.`] : []),
     ...(agent.counts.replayed > 0 ? [`${agent.counts.replayed} model replies were replayed from the reply log of an earlier attempt of this run; ${agent.counts.served} came from the server in this invocation. Every episode and every baseline was executed again.`] : []),
   ],
   progress: (message) => console.error(message),

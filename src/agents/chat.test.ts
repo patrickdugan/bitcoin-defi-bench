@@ -184,6 +184,22 @@ test("skill calls are capped per episode; a call past the cap reaches the harnes
   } finally { m.server.close(); }
 });
 
+test("a per-turn cap ends a turn's skill calls: the next call reaches the harness; it is stated and bound into the id only when set", async () => {
+  const echo: Skill = { name: "echo", description: "returns its arguments", sha256: "e".repeat(64), run: (_o, args) => ({ echoed: args }) };
+  const m = await mock(() => '{"skill":"echo","args":{}}');
+  try {
+    const agent = new ChatAgent(options(m.url, { skills: [echo], maxSkillCalls: 100, maxSkillCallsPerTurn: 1 }));
+    const row = await runEpisode(new PlacementEnv(fixture, "uniform", "stationary", config), agent);
+    // Each turn: one skill call runs, the second is passed through and costs an attempt.
+    assert.deepEqual(row.rejections.map((r) => r.reason), Array(config.attempts).fill("malformed"));
+    assert.equal(m.requests.length, 2 * config.attempts);
+    assert.ok(m.requests[0]!.messages[0]!.content.includes("at most 100 times in this episode, and at most 1 time before each action"));
+    const uncapped = new ChatAgent(options(m.url, { skills: [echo], maxSkillCalls: 100 }));
+    assert.notEqual(agent.id, uncapped.id);
+    assert.ok(!("max_skill_calls_per_turn" in (uncapped.describe() as object)));
+  } finally { m.server.close(); }
+});
+
 test("an unknown skill or a failing skill answers with an error, never throws", async () => {
   const bad: Skill = { name: "bad", description: "fails", sha256: "b".repeat(64), run: () => { throw new Error("boom"); } };
   const m = await mock((turn) => (turn === 0 ? '{"skill":"nope","args":{}}' : turn === 1 ? '{"skill":"bad","args":{}}' : '{"tool":"commit"}'));

@@ -173,3 +173,27 @@ test("the LLM path: the prompt states the costs and the pending claims; a model 
     assert.ok(!fixture.claims.filter((c) => c.block > 20).some((c) => later.includes(`\n${c.id} ${c.block} ${c.value_sats}`)), "no future claim is shown");
   } finally { server.close(); }
 });
+
+test("the schedule skill (proof_step's code): a model that calls it each turn and echoes its result proves every claim", async () => {
+  const { ChatAgent } = await import("../../agents/chat.ts");
+  const { scheduleSkill } = await import("../../agents/skills.ts");
+  const { proofPrompt } = await import("./prompt.ts");
+  const { echoSkillServer } = await import("../../agents/echo_mock.test_helper.ts");
+  const { EveryArrival } = await import("./baselines.ts");
+  const m = await echoSkillServer("schedule");
+  try {
+    for (const cell of Object.keys(config.cells).sort()) {
+      const f = proofFixture(root, manifest, cell, 3);
+      const agent = new ChatAgent({
+        name: "mock", baseUrl: m.url, model: "mock",
+        sampling: { temperature: 0.7, top_p: 0.8, top_k: 20, max_tokens: 256, seed: 1 }, thinking: false,
+        identity: { model_sha256: "0".repeat(64), runtime: "mock" }, prompt: proofPrompt(256), skills: [scheduleSkill], maxSkillCalls: 400, contextTurns: 0,
+      });
+      const row = await runEpisode(new ProofEnv(f), agent);
+      const floor = await runEpisode(new ProofEnv(f), new EveryArrival());
+      assert.equal(row.rejections.length, 0, cell);
+      assert.equal(row.metrics.forfeited, 0, cell);
+      assert.ok(row.value > floor.value + 1, cell);
+    }
+  } finally { m.server.close(); }
+});

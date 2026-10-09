@@ -21,7 +21,7 @@ Three rules keep this honest:
 | 3, settlement | `probe_sweep` | a sequence of probes over the grid and their results, as a table | near the ceiling, bounded by the eight probes |
 | 10, DLC design | `dlc_design` | the exact optimum on the menus, as the offer action itself | the ceiling, if the model calls it and copies an offer of a few hundred characters |
 | 5, bonding | `bond_offer` | the `half_rate` baseline's bond, as the bond action itself | that baseline, 0.94 to 0.98 normalized on development seeds |
-| 7, proof budget | `schedule` | the next action, prove or wait, of an interval schedule keyed to the oldest pending claim, one call per turn | at least `fixed_interval`, 0.95 to 0.98 normalized on development seeds, if the model calls it on every turn and never stops early |
+| 7, proof budget | `schedule` (also `schedule_after_proof`, a second description) | the next action, prove or wait, of an interval schedule keyed to the oldest pending claim, one call per turn | at least `fixed_interval`, 0.95 to 0.98 normalized on development seeds, if the model calls it on every turn and never stops early |
 
 Each skill is a few lines on top of a baseline's own code, which is the point: the question is not whether the procedure exists but whether a model at this size will call it, read it, and act on it within the budget.
 
@@ -94,7 +94,7 @@ In families 5 and 7, as in families 1, 6, and 10, the model either copies what t
 
 ## Development results, family 7 with skills (seeds 0 to 7)
 
-A family 7 episode is up to 144 blocks, decided one turn at a time, and an agent that stops early forfeits every claim still to arrive. That makes it the bench's longest decision chain for a small model. Six runs on 2026-10-09; gains are the table's, floor `every_arrival`, ceiling `optimal_batching`. `schedule` followed exactly scores 0.950, 0.977, and 0.978.
+A family 7 episode is up to 144 blocks, decided one turn at a time, and an agent that stops early forfeits every claim still to arrive. That makes it the bench's longest decision chain for a small model. Seven runs on 2026-10-08 and 2026-10-09; gains are the table's, floor `every_arrival`, ceiling `optimal_batching`. `schedule` followed exactly scores 0.950, 0.977, and 0.978.
 
 | Run | Agent | Gain bursty / few_proofs / steady | Claims forfeited | Ended with `commit` |
 |---|---|---|---:|---:|
@@ -104,6 +104,7 @@ A family 7 episode is up to 144 blocks, decided one turn at a time, and an agent
 | `schedule`, first try | — | crashed: 227 skill calls in one turn | — | — |
 | `schedule`, one call per turn | `bbd834c1c687` | 0.44 / 0.03 / 0.04 | 54% | 20 of 24 |
 | `schedule`, one call per turn, greedy | `56c0300c61db` | **0.95** / 0.06 / 0.64 | 29% | 13 of 24, 2 at the last block |
+| the same, description naming the turn after a proof (`schedule_after_proof`) | `4defdd7582fd` | **0.95** / 0.18 / 0.74 | 12% | 10 of 24 |
 
 What each step found:
 
@@ -111,8 +112,9 @@ What each step found:
 - **The stop line.** The prompt said stopping loses "every claim not yet proven". The model read that as the pending claims, and committed as soon as a proof emptied the queue. The line now adds "including every claim still to arrive" (tasks §8.6). Bare, that halved the early stops, and the model then proved one claim at a time instead (243 of 399 proofs), the prompt's example count, until its proofs ran out. Its result stayed at the floor.
 - **A loop.** In its first try with `schedule` the model called the skill 227 times in one turn, passing the given action back as arguments, until the request outgrew the context. A cap of one call per turn ends that: a second call goes to the harness and is rejected. It did not happen again in 48 episodes.
 - **Sampling.** At temperature 0.7 the model called the skill on 371 of 375 ordinary turns. On the turn right after a proof empties the queue it called it only 110 times in 215, waited 84 times, and committed 20 times. That 9% recurs 10 to 25 times an episode, and it ended 20 of 24 episodes early. Greedy decoding removes the sampled tail: the skill was called on all 512 ordinary turns, and commits after a proof fell to 13 in 335. On `bursty` no episode stopped early, nothing was forfeited, and the gain equals the skill's, 0.95, with agent − `fixed_interval` +0.03 (−0.02 to +0.09). What is left is the argmax itself in one state: right after a proof, with few proofs left. Every `few_proofs` episode committed there, after 2 to 9 proofs. On `steady`, three episodes stopped before the last block.
+- **The turn after a proof, named.** A second description for the same code and name says to call it "also right after a proof when nothing is pending: stopping early loses every claim still to arrive". Greedy, the model then called the skill on that turn 373 times in 383 and never waited without it. The 10 commits left follow one rule: right after a proof with 2 or 3 proofs left, it stops (8 of 11 such turns, every `few_proofs` episode, at block 108 or 120); with 4 or more left it called the skill every time. Two `steady` episodes stopped at block 73 and 74 with 36 proofs left, the only exceptions. The wording was not tuned further: a description aimed at that trigger would be fitted to eight development seeds.
 
-So in family 7 the skill reaches its own level only where the model never stops early. Greedy decoding is part of the agent's identity, like any sampling setting, and is reported as a separate agent.
+So in family 7 the skill reaches its own level only where the model never stops early: on `bursty`, in both greedy runs. Elsewhere what is left is the model's rule that scarce proofs mean stop. Greedy decoding is part of the agent's identity, like any sampling setting, and is reported as a separate agent.
 
 ## Order of work
 

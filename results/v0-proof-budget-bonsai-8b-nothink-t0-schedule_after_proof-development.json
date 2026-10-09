@@ -1,0 +1,2874 @@
+{
+ "bench": "bitcoin-defi-bench/v0",
+ "block": "development",
+ "manifest_sha256": "82b3aed4e46217b1a3c7c29f3144d3e2b7e33e7d5bf3a88d1666762b19e8a1b4",
+ "prereg_sha256": "8f9b0698b32ff85a53cb30bbc8f8ca18d198e9ba3db435a5f062ab56a270d8e0",
+ "spiral_commit": "9824c30ad402cc9bca768eca27d176e0e8788db5",
+ "node": "v24.19.0",
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7
+ ],
+ "agents": [
+  {
+   "id": "every_arrival",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "random_interval",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "threshold",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "fixed_interval",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "optimal_batching",
+   "privileged": true,
+   "baseline": true
+  },
+  {
+   "id": "bonsai-8b-nothink@4defdd7582fd",
+   "privileged": false,
+   "baseline": false,
+   "details": {
+    "adapter": "chat-adapter/v0",
+    "model": "bonsai-8b",
+    "model_sha256": "284a335aa3fb2ced3b1b01fcb40b08aa783e3b70832767f0dd2e3fdfa134bd54",
+    "runtime": "llama-prism 0.2.0-dev (build 10743, commit adfffbe41), win-cuda-12.4",
+    "sampling": {
+     "temperature": 0,
+     "top_p": 0.8,
+     "top_k": 20,
+     "max_tokens": 256,
+     "seed": 20261001
+    },
+    "thinking": false,
+    "prompt_sha256": "051671a67c2c4a5ecba0100fb563e8d5f6a36a98ac69d1588ace210447862064",
+    "context_turns": 0,
+    "skills": [
+     {
+      "name": "schedule",
+      "sha256": "95e4034518faa0f065c7512b15e84998945dfc3e62eb507fa39e7401c5ea0156",
+      "description_sha256": "5afc6b17b621fbcef9997c66ef54e72213ed65d6b598313981ef2641614e4cac"
+     }
+    ],
+    "max_skill_calls": 400,
+    "max_skill_calls_per_turn": 1,
+    "skill_protocol": "call by a skill field or a tool field naming a carried skill; result as compact json; {tool: send} or {send: name} sends a stored result that is an action"
+   }
+  }
+ ],
+ "tasks": [
+  {
+   "task": "proof_budget/bursty",
+   "unit": "−ln of the horizon's cost in sats: the prover's price for each proof, staleness while claims wait, and the value of every claim not proven",
+   "band": 0.05,
+   "floor": "every_arrival",
+   "ceiling": "optimal_batching",
+   "reference": "fixed_interval",
+   "metrics": [
+    "cost_sats",
+    "prover_sats",
+    "staleness_sats",
+    "forfeit_sats",
+    "proofs",
+    "mean_batch"
+   ]
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "unit": "−ln of the horizon's cost in sats: the prover's price for each proof, staleness while claims wait, and the value of every claim not proven",
+   "band": 0.05,
+   "floor": "every_arrival",
+   "ceiling": "optimal_batching",
+   "reference": "fixed_interval",
+   "metrics": [
+    "cost_sats",
+    "prover_sats",
+    "staleness_sats",
+    "forfeit_sats",
+    "proofs",
+    "mean_batch"
+   ]
+  },
+  {
+   "task": "proof_budget/steady",
+   "unit": "−ln of the horizon's cost in sats: the prover's price for each proof, staleness while claims wait, and the value of every claim not proven",
+   "band": 0.05,
+   "floor": "every_arrival",
+   "ceiling": "optimal_batching",
+   "reference": "fixed_interval",
+   "metrics": [
+    "cost_sats",
+    "prover_sats",
+    "staleness_sats",
+    "forfeit_sats",
+    "proofs",
+    "mean_batch"
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "task": "proof_budget/bursty",
+   "seed": 0,
+   "cell": "single",
+   "agent": "every_arrival",
+   "value": -14.212974441476954,
+   "metrics": {
+    "cost_sats": 1488046.05,
+    "prover_sats": 4354.05,
+    "staleness_sats": 0,
+    "forfeit_sats": 1483692,
+    "proofs": 48,
+    "proven": 170,
+    "forfeited": 35,
+    "mean_batch": 3.5416666666666665
+   },
+   "turns": 142,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 0,
+   "cell": "single",
+   "agent": "random_interval",
+   "value": -8.287403560007178,
+   "metrics": {
+    "cost_sats": 3973.503825,
+    "prover_sats": 1998.4468749999994,
+    "staleness_sats": 1975.0569500000001,
+    "forfeit_sats": 0,
+    "proofs": 18,
+    "proven": 205,
+    "forfeited": 0,
+    "mean_batch": 11.38888888888889
+   },
+   "turns": 162,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 0,
+   "cell": "single",
+   "agent": "threshold",
+   "value": -8.024258655065347,
+   "metrics": {
+    "cost_sats": 3054.1562750000003,
+    "prover_sats": 1789.7281250000003,
+    "staleness_sats": 1264.42815,
+    "forfeit_sats": 0,
+    "proofs": 14,
+    "proven": 205,
+    "forfeited": 0,
+    "mean_batch": 14.642857142857142
+   },
+   "turns": 158,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 0,
+   "cell": "single",
+   "agent": "fixed_interval",
+   "value": -8.194513708434048,
+   "metrics": {
+    "cost_sats": 3621.0296875000004,
+    "prover_sats": 2291.4609375,
+    "staleness_sats": 1329.5687500000001,
+    "forfeit_sats": 0,
+    "proofs": 21,
+    "proven": 205,
+    "forfeited": 0,
+    "mean_batch": 9.761904761904763
+   },
+   "turns": 43,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 0,
+   "cell": "single",
+   "agent": "optimal_batching",
+   "value": -7.802270501006527,
+   "metrics": {
+    "cost_sats": 2446.1496625000004,
+    "prover_sats": 1681.0078125000002,
+    "staleness_sats": 765.1418500000001,
+    "forfeit_sats": 0,
+    "proofs": 13,
+    "proven": 205,
+    "forfeited": 0,
+    "mean_batch": 15.76923076923077
+   },
+   "turns": 27,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@4defdd7582fd",
+   "value": -8.031447690514666,
+   "metrics": {
+    "cost_sats": 3076.191825,
+    "prover_sats": 1945.6343749999999,
+    "staleness_sats": 1130.5574499999998,
+    "forfeit_sats": 0,
+    "proofs": 16,
+    "proven": 205,
+    "forfeited": 0,
+    "mean_batch": 12.8125
+   },
+   "turns": 43,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 1,
+   "cell": "single",
+   "agent": "every_arrival",
+   "value": -14.978015878236404,
+   "metrics": {
+    "cost_sats": 3197935.1,
+    "prover_sats": 4123.099999999998,
+    "staleness_sats": 0,
+    "forfeit_sats": 3193812,
+    "proofs": 48,
+    "proven": 119,
+    "forfeited": 77,
+    "mean_batch": 2.4791666666666665
+   },
+   "turns": 166,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 1,
+   "cell": "single",
+   "agent": "random_interval",
+   "value": -8.280913142274137,
+   "metrics": {
+    "cost_sats": 3947.7976375,
+    "prover_sats": 1946.1359374999997,
+    "staleness_sats": 2001.6616999999999,
+    "forfeit_sats": 0,
+    "proofs": 16,
+    "proven": 196,
+    "forfeited": 0,
+    "mean_batch": 12.25
+   },
+   "turns": 160,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 1,
+   "cell": "single",
+   "agent": "threshold",
+   "value": -7.841416531015378,
+   "metrics": {
+    "cost_sats": 2543.8056624999995,
+    "prover_sats": 1523.8515624999995,
+    "staleness_sats": 1019.9541,
+    "forfeit_sats": 0,
+    "proofs": 11,
+    "proven": 196,
+    "forfeited": 0,
+    "mean_batch": 17.818181818181817
+   },
+   "turns": 155,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 1,
+   "cell": "single",
+   "agent": "fixed_interval",
+   "value": -8.010812329212914,
+   "metrics": {
+    "cost_sats": 3013.3639625,
+    "prover_sats": 2147.8953125,
+    "staleness_sats": 865.4686500000001,
+    "forfeit_sats": 0,
+    "proofs": 19,
+    "proven": 196,
+    "forfeited": 0,
+    "mean_batch": 10.31578947368421
+   },
+   "turns": 41,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 1,
+   "cell": "single",
+   "agent": "optimal_batching",
+   "value": -7.68051989410752,
+   "metrics": {
+    "cost_sats": 2165.7454374999998,
+    "prover_sats": 1583.8171874999998,
+    "staleness_sats": 581.9282500000002,
+    "forfeit_sats": 0,
+    "proofs": 12,
+    "proven": 196,
+    "forfeited": 0,
+    "mean_batch": 16.333333333333332
+   },
+   "turns": 25,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@4defdd7582fd",
+   "value": -8.063151375917622,
+   "metrics": {
+    "cost_sats": 3175.2808875,
+    "prover_sats": 1972.3546875,
+    "staleness_sats": 1202.9261999999999,
+    "forfeit_sats": 0,
+    "proofs": 17,
+    "proven": 196,
+    "forfeited": 0,
+    "mean_batch": 11.529411764705882
+   },
+   "turns": 45,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 2,
+   "cell": "single",
+   "agent": "every_arrival",
+   "value": -14.185489946471986,
+   "metrics": {
+    "cost_sats": 1447704.775,
+    "prover_sats": 4120.774999999999,
+    "staleness_sats": 0,
+    "forfeit_sats": 1443584,
+    "proofs": 48,
+    "proven": 127,
+    "forfeited": 36,
+    "mean_batch": 2.6458333333333335
+   },
+   "turns": 167,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 2,
+   "cell": "single",
+   "agent": "random_interval",
+   "value": -8.100352695718714,
+   "metrics": {
+    "cost_sats": 3295.6302250000003,
+    "prover_sats": 1998.9843750000002,
+    "staleness_sats": 1296.64585,
+    "forfeit_sats": 0,
+    "proofs": 19,
+    "proven": 163,
+    "forfeited": 0,
+    "mean_batch": 8.578947368421053
+   },
+   "turns": 163,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 2,
+   "cell": "single",
+   "agent": "threshold",
+   "value": -7.8019113364508055,
+   "metrics": {
+    "cost_sats": 2445.2712500000002,
+    "prover_sats": 1454.575,
+    "staleness_sats": 990.6962500000001,
+    "forfeit_sats": 0,
+    "proofs": 11,
+    "proven": 163,
+    "forfeited": 0,
+    "mean_batch": 14.818181818181818
+   },
+   "turns": 155,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 2,
+   "cell": "single",
+   "agent": "fixed_interval",
+   "value": -8.0711830504304,
+   "metrics": {
+    "cost_sats": 3200.8864,
+    "prover_sats": 2205.325,
+    "staleness_sats": 995.5614,
+    "forfeit_sats": 0,
+    "proofs": 21,
+    "proven": 163,
+    "forfeited": 0,
+    "mean_batch": 7.761904761904762
+   },
+   "turns": 43,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 2,
+   "cell": "single",
+   "agent": "optimal_batching",
+   "value": -7.64872963637849,
+   "metrics": {
+    "cost_sats": 2097.9787,
+    "prover_sats": 1303.075,
+    "staleness_sats": 794.9037000000001,
+    "forfeit_sats": 0,
+    "proofs": 10,
+    "proven": 163,
+    "forfeited": 0,
+    "mean_batch": 16.3
+   },
+   "turns": 21,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 2,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@4defdd7582fd",
+   "value": -8.034118490707902,
+   "metrics": {
+    "cost_sats": 3084.4186999999997,
+    "prover_sats": 1969.3999999999996,
+    "staleness_sats": 1115.0187,
+    "forfeit_sats": 0,
+    "proofs": 18,
+    "proven": 163,
+    "forfeited": 0,
+    "mean_batch": 9.055555555555555
+   },
+   "turns": 47,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 3,
+   "cell": "single",
+   "agent": "every_arrival",
+   "value": -14.522112528018381,
+   "metrics": {
+    "cost_sats": 2027091.425,
+    "prover_sats": 4431.424999999998,
+    "staleness_sats": 0,
+    "forfeit_sats": 2022660,
+    "proofs": 48,
+    "proven": 172,
+    "forfeited": 53,
+    "mean_batch": 3.5833333333333335
+   },
+   "turns": 141,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 3,
+   "cell": "single",
+   "agent": "random_interval",
+   "value": -8.266452971460458,
+   "metrics": {
+    "cost_sats": 3891.1225625,
+    "prover_sats": 2429.0515625000003,
+    "staleness_sats": 1462.071,
+    "forfeit_sats": 0,
+    "proofs": 21,
+    "proven": 225,
+    "forfeited": 0,
+    "mean_batch": 10.714285714285714
+   },
+   "turns": 165,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 3,
+   "cell": "single",
+   "agent": "threshold",
+   "value": -8.033911590777715,
+   "metrics": {
+    "cost_sats": 3083.7805999999996,
+    "prover_sats": 1825.9499999999998,
+    "staleness_sats": 1257.8305999999998,
+    "forfeit_sats": 0,
+    "proofs": 14,
+    "proven": 225,
+    "forfeited": 0,
+    "mean_batch": 16.071428571428573
+   },
+   "turns": 158,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 3,
+   "cell": "single",
+   "agent": "fixed_interval",
+   "value": -8.326173012065325,
+   "metrics": {
+    "cost_sats": 4130.579587499999,
+    "prover_sats": 2273.1234374999995,
+    "staleness_sats": 1857.4561499999998,
+    "forfeit_sats": 0,
+    "proofs": 20,
+    "proven": 225,
+    "forfeited": 0,
+    "mean_batch": 11.25
+   },
+   "turns": 42,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 3,
+   "cell": "single",
+   "agent": "optimal_batching",
+   "value": -7.894227437065492,
+   "metrics": {
+    "cost_sats": 2681.75695,
+    "prover_sats": 1883.5749999999998,
+    "staleness_sats": 798.1819500000001,
+    "forfeit_sats": 0,
+    "proofs": 15,
+    "proven": 225,
+    "forfeited": 0,
+    "mean_batch": 15
+   },
+   "turns": 31,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 3,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@4defdd7582fd",
+   "value": -8.28907785435749,
+   "metrics": {
+    "cost_sats": 3980.1622125000004,
+    "prover_sats": 2165.7203125,
+    "staleness_sats": 1814.4419,
+    "forfeit_sats": 0,
+    "proofs": 18,
+    "proven": 225,
+    "forfeited": 0,
+    "mean_batch": 12.5
+   },
+   "turns": 44,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 4,
+   "cell": "single",
+   "agent": "every_arrival",
+   "value": -14.880765922482272,
+   "metrics": {
+    "cost_sats": 2901579.85,
+    "prover_sats": 4295.85,
+    "staleness_sats": 0,
+    "forfeit_sats": 2897284,
+    "proofs": 48,
+    "proven": 153,
+    "forfeited": 70,
+    "mean_batch": 3.1875
+   },
+   "turns": 152,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 4,
+   "cell": "single",
+   "agent": "random_interval",
+   "value": -8.387474654894318,
+   "metrics": {
+    "cost_sats": 4391.7130875,
+    "prover_sats": 2658.5234375,
+    "staleness_sats": 1733.1896500000003,
+    "forfeit_sats": 0,
+    "proofs": 24,
+    "proven": 223,
+    "forfeited": 0,
+    "mean_batch": 9.291666666666666
+   },
+   "turns": 168,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 4,
+   "cell": "single",
+   "agent": "threshold",
+   "value": -8.032355004195779,
+   "metrics": {
+    "cost_sats": 3078.9841625,
+    "prover_sats": 1800.9015625,
+    "staleness_sats": 1278.0826,
+    "forfeit_sats": 0,
+    "proofs": 14,
+    "proven": 223,
+    "forfeited": 0,
+    "mean_batch": 15.928571428571429
+   },
+   "turns": 158,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 4,
+   "cell": "single",
+   "agent": "fixed_interval",
+   "value": -8.248165580834963,
+   "metrics": {
+    "cost_sats": 3820.6107875,
+    "prover_sats": 2300.9359375,
+    "staleness_sats": 1519.6748499999997,
+    "forfeit_sats": 0,
+    "proofs": 21,
+    "proven": 223,
+    "forfeited": 0,
+    "mean_batch": 10.619047619047619
+   },
+   "turns": 43,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 4,
+   "cell": "single",
+   "agent": "optimal_batching",
+   "value": -7.848159333739557,
+   "metrics": {
+    "cost_sats": 2561.016,
+    "prover_sats": 2001.5249999999999,
+    "staleness_sats": 559.4910000000001,
+    "forfeit_sats": 0,
+    "proofs": 16,
+    "proven": 223,
+    "forfeited": 0,
+    "mean_batch": 13.9375
+   },
+   "turns": 32,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 4,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@4defdd7582fd",
+   "value": -8.239669966030403,
+   "metrics": {
+    "cost_sats": 3788.2898375,
+    "prover_sats": 2231.9734375,
+    "staleness_sats": 1556.3164000000002,
+    "forfeit_sats": 0,
+    "proofs": 19,
+    "proven": 223,
+    "forfeited": 0,
+    "mean_batch": 11.736842105263158
+   },
+   "turns": 46,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 5,
+   "cell": "single",
+   "agent": "every_arrival",
+   "value": -14.389812235524246,
+   "metrics": {
+    "cost_sats": 1775889.95,
+    "prover_sats": 3988.949999999998,
+    "staleness_sats": 0,
+    "forfeit_sats": 1771901,
+    "proofs": 48,
+    "proven": 90,
+    "forfeited": 45,
+    "mean_batch": 1.875
+   },
+   "turns": 158,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 5,
+   "cell": "single",
+   "agent": "random_interval",
+   "value": -8.066886528982849,
+   "metrics": {
+    "cost_sats": 3187.1632250000002,
+    "prover_sats": 1584.459375,
+    "staleness_sats": 1602.7038500000003,
+    "forfeit_sats": 0,
+    "proofs": 15,
+    "proven": 135,
+    "forfeited": 0,
+    "mean_batch": 9
+   },
+   "turns": 159,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 5,
+   "cell": "single",
+   "agent": "threshold",
+   "value": -7.848342135099449,
+   "metrics": {
+    "cost_sats": 2561.4842,
+    "prover_sats": 1496.725,
+    "staleness_sats": 1064.7592,
+    "forfeit_sats": 0,
+    "proofs": 12,
+    "proven": 135,
+    "forfeited": 0,
+    "mean_batch": 11.25
+   },
+   "turns": 156,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 5,
+   "cell": "single",
+   "agent": "fixed_interval",
+   "value": -7.964629320165083,
+   "metrics": {
+    "cost_sats": 2877.3624,
+    "prover_sats": 1971.375,
+    "staleness_sats": 905.9874,
+    "forfeit_sats": 0,
+    "proofs": 20,
+    "proven": 135,
+    "forfeited": 0,
+    "mean_batch": 6.75
+   },
+   "turns": 42,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 5,
+   "cell": "single",
+   "agent": "optimal_batching",
+   "value": -7.6199736429277865,
+   "metrics": {
+    "cost_sats": 2038.5083999999997,
+    "prover_sats": 1519.475,
+    "staleness_sats": 519.0333999999999,
+    "forfeit_sats": 0,
+    "proofs": 14,
+    "proven": 135,
+    "forfeited": 0,
+    "mean_batch": 9.642857142857142
+   },
+   "turns": 29,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 5,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@4defdd7582fd",
+   "value": -7.938805760987113,
+   "metrics": {
+    "cost_sats": 2804.0098500000004,
+    "prover_sats": 1908.1750000000002,
+    "staleness_sats": 895.83485,
+    "forfeit_sats": 0,
+    "proofs": 18,
+    "proven": 135,
+    "forfeited": 0,
+    "mean_batch": 7.5
+   },
+   "turns": 45,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 6,
+   "cell": "single",
+   "agent": "every_arrival",
+   "value": -14.993751861054358,
+   "metrics": {
+    "cost_sats": 3248655.775,
+    "prover_sats": 4398.774999999999,
+    "staleness_sats": 0,
+    "forfeit_sats": 3244257,
+    "proofs": 48,
+    "proven": 167,
+    "forfeited": 65,
+    "mean_batch": 3.4791666666666665
+   },
+   "turns": 139,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 6,
+   "cell": "single",
+   "agent": "random_interval",
+   "value": -8.305646362433405,
+   "metrics": {
+    "cost_sats": 4046.6569,
+    "prover_sats": 2306.3749999999995,
+    "staleness_sats": 1740.2819000000004,
+    "forfeit_sats": 0,
+    "proofs": 20,
+    "proven": 232,
+    "forfeited": 0,
+    "mean_batch": 11.6
+   },
+   "turns": 164,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 6,
+   "cell": "single",
+   "agent": "threshold",
+   "value": -8.122250057672645,
+   "metrics": {
+    "cost_sats": 3368.5917499999996,
+    "prover_sats": 1938.3999999999999,
+    "staleness_sats": 1430.1917499999997,
+    "forfeit_sats": 0,
+    "proofs": 15,
+    "proven": 232,
+    "forfeited": 0,
+    "mean_batch": 15.466666666666667
+   },
+   "turns": 159,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 6,
+   "cell": "single",
+   "agent": "fixed_interval",
+   "value": -8.218051180660455,
+   "metrics": {
+    "cost_sats": 3707.270537499999,
+    "prover_sats": 2339.048437499999,
+    "staleness_sats": 1368.2221,
+    "forfeit_sats": 0,
+    "proofs": 21,
+    "proven": 232,
+    "forfeited": 0,
+    "mean_batch": 11.047619047619047
+   },
+   "turns": 43,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 6,
+   "cell": "single",
+   "agent": "optimal_batching",
+   "value": -7.888187429721691,
+   "metrics": {
+    "cost_sats": 2665.6079375,
+    "prover_sats": 1814.9671875000001,
+    "staleness_sats": 850.64075,
+    "forfeit_sats": 0,
+    "proofs": 14,
+    "proven": 232,
+    "forfeited": 0,
+    "mean_batch": 16.571428571428573
+   },
+   "turns": 29,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 6,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@4defdd7582fd",
+   "value": -8.22524897224099,
+   "metrics": {
+    "cost_sats": 3734.0509624999995,
+    "prover_sats": 2145.3828124999995,
+    "staleness_sats": 1588.66815,
+    "forfeit_sats": 0,
+    "proofs": 18,
+    "proven": 232,
+    "forfeited": 0,
+    "mean_batch": 12.88888888888889
+   },
+   "turns": 47,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 7,
+   "cell": "single",
+   "agent": "every_arrival",
+   "value": -14.206970922518094,
+   "metrics": {
+    "cost_sats": 1479139.3,
+    "prover_sats": 4060.299999999998,
+    "staleness_sats": 0,
+    "forfeit_sats": 1475079,
+    "proofs": 48,
+    "proven": 100,
+    "forfeited": 22,
+    "mean_batch": 2.0833333333333335
+   },
+   "turns": 136,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 7,
+   "cell": "single",
+   "agent": "random_interval",
+   "value": -8.172954523995198,
+   "metrics": {
+    "cost_sats": 3543.79875,
+    "prover_sats": 2046.7749999999996,
+    "staleness_sats": 1497.0237500000003,
+    "forfeit_sats": 0,
+    "proofs": 21,
+    "proven": 122,
+    "forfeited": 0,
+    "mean_batch": 5.809523809523809
+   },
+   "turns": 165,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 7,
+   "cell": "single",
+   "agent": "threshold",
+   "value": -7.853652773112786,
+   "metrics": {
+    "cost_sats": 2575.1235000000006,
+    "prover_sats": 1521.525,
+    "staleness_sats": 1053.5985000000003,
+    "forfeit_sats": 0,
+    "proofs": 13,
+    "proven": 122,
+    "forfeited": 0,
+    "mean_batch": 9.384615384615385
+   },
+   "turns": 157,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 7,
+   "cell": "single",
+   "agent": "fixed_interval",
+   "value": -7.998020405992671,
+   "metrics": {
+    "cost_sats": 2975.0627375,
+    "prover_sats": 2023.1171874999998,
+    "staleness_sats": 951.9455500000001,
+    "forfeit_sats": 0,
+    "proofs": 21,
+    "proven": 122,
+    "forfeited": 0,
+    "mean_batch": 5.809523809523809
+   },
+   "turns": 43,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 7,
+   "cell": "single",
+   "agent": "optimal_batching",
+   "value": -7.644530680922028,
+   "metrics": {
+    "cost_sats": 2089.18785,
+    "prover_sats": 1586.5249999999999,
+    "staleness_sats": 502.66284999999993,
+    "forfeit_sats": 0,
+    "proofs": 15,
+    "proven": 122,
+    "forfeited": 0,
+    "mean_batch": 8.133333333333333
+   },
+   "turns": 31,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/bursty",
+   "seed": 7,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@4defdd7582fd",
+   "value": -7.921436275782776,
+   "metrics": {
+    "cost_sats": 2755.7261875,
+    "prover_sats": 1803.9921874999998,
+    "staleness_sats": 951.734,
+    "forfeit_sats": 0,
+    "proofs": 18,
+    "proven": 122,
+    "forfeited": 0,
+    "mean_batch": 6.777777777777778
+   },
+   "turns": 45,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 0,
+   "cell": "single",
+   "agent": "every_arrival",
+   "value": -16.119004158140662,
+   "metrics": {
+    "cost_sats": 10009089.2,
+    "prover_sats": 974.1999999999999,
+    "staleness_sats": 0,
+    "forfeit_sats": 10008115,
+    "proofs": 12,
+    "proven": 23,
+    "forfeited": 246,
+    "mean_batch": 1.9166666666666667
+   },
+   "turns": 27,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 0,
+   "cell": "single",
+   "agent": "random_interval",
+   "value": -13.735229958936417,
+   "metrics": {
+    "cost_sats": 922857.357175,
+    "prover_sats": 1715.665625,
+    "staleness_sats": 3486.6915500000005,
+    "forfeit_sats": 917655,
+    "proofs": 12,
+    "proven": 240,
+    "forfeited": 29,
+    "mean_batch": 20
+   },
+   "turns": 139,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 0,
+   "cell": "single",
+   "agent": "threshold",
+   "value": -15.253287291209768,
+   "metrics": {
+    "cost_sats": 4211322.50785,
+    "prover_sats": 1530.5249999999999,
+    "staleness_sats": 1096.98285,
+    "forfeit_sats": 4208695,
+    "proofs": 12,
+    "proven": 163,
+    "forfeited": 106,
+    "mean_batch": 13.583333333333334
+   },
+   "turns": 100,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 0,
+   "cell": "single",
+   "agent": "fixed_interval",
+   "value": -8.438255725238237,
+   "metrics": {
+    "cost_sats": 4620.48855,
+    "prover_sats": 1758.675,
+    "staleness_sats": 2861.8135500000003,
+    "forfeit_sats": 0,
+    "proofs": 12,
+    "proven": 269,
+    "forfeited": 0,
+    "mean_batch": 22.416666666666668
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 0,
+   "cell": "single",
+   "agent": "optimal_batching",
+   "value": -8.29161520426625,
+   "metrics": {
+    "cost_sats": 3990.2740999999996,
+    "prover_sats": 1755.7499999999998,
+    "staleness_sats": 2234.5240999999996,
+    "forfeit_sats": 0,
+    "proofs": 12,
+    "proven": 269,
+    "forfeited": 0,
+    "mean_batch": 22.416666666666668
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@4defdd7582fd",
+   "value": -14.381556395408206,
+   "metrics": {
+    "cost_sats": 1761288.84165,
+    "prover_sats": 1466.05,
+    "staleness_sats": 2368.7916499999997,
+    "forfeit_sats": 1757454,
+    "proofs": 10,
+    "proven": 225,
+    "forfeited": 44,
+    "mean_batch": 22.5
+   },
+   "turns": 21,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 1,
+   "cell": "single",
+   "agent": "every_arrival",
+   "value": -16.112025102406808,
+   "metrics": {
+    "cost_sats": 9939478.4,
+    "prover_sats": 979.4,
+    "staleness_sats": 0,
+    "forfeit_sats": 9938499,
+    "proofs": 12,
+    "proven": 22,
+    "forfeited": 238,
+    "mean_batch": 1.8333333333333333
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 1,
+   "cell": "single",
+   "agent": "random_interval",
+   "value": -14.66566416694835,
+   "metrics": {
+    "cost_sats": 2340006.27030625,
+    "prover_sats": 1602.26015625,
+    "staleness_sats": 3993.0101499999996,
+    "forfeit_sats": 2334411,
+    "proofs": 12,
+    "proven": 211,
+    "forfeited": 49,
+    "mean_batch": 17.583333333333332
+   },
+   "turns": 129,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 1,
+   "cell": "single",
+   "agent": "threshold",
+   "value": -15.145037579147202,
+   "metrics": {
+    "cost_sats": 3779255.457,
+    "prover_sats": 1562.7,
+    "staleness_sats": 1063.7569999999998,
+    "forfeit_sats": 3776629,
+    "proofs": 12,
+    "proven": 174,
+    "forfeited": 86,
+    "mean_batch": 14.5
+   },
+   "turns": 109,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 1,
+   "cell": "single",
+   "agent": "fixed_interval",
+   "value": -8.416094669435594,
+   "metrics": {
+    "cost_sats": 4519.2199,
+    "prover_sats": 1732.3500000000001,
+    "staleness_sats": 2786.8699,
+    "forfeit_sats": 0,
+    "proofs": 12,
+    "proven": 260,
+    "forfeited": 0,
+    "mean_batch": 21.666666666666668
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 1,
+   "cell": "single",
+   "agent": "optimal_batching",
+   "value": -8.274029990008104,
+   "metrics": {
+    "cost_sats": 3920.71765,
+    "prover_sats": 1736.15,
+    "staleness_sats": 2184.56765,
+    "forfeit_sats": 0,
+    "proofs": 12,
+    "proven": 260,
+    "forfeited": 0,
+    "mean_batch": 21.666666666666668
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@4defdd7582fd",
+   "value": -14.441903290486453,
+   "metrics": {
+    "cost_sats": 1870849.7371,
+    "prover_sats": 1439.725,
+    "staleness_sats": 2276.0121000000004,
+    "forfeit_sats": 1867134,
+    "proofs": 10,
+    "proven": 215,
+    "forfeited": 45,
+    "mean_batch": 21.5
+   },
+   "turns": 21,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 2,
+   "cell": "single",
+   "agent": "every_arrival",
+   "value": -16.25315490081433,
+   "metrics": {
+    "cost_sats": 11446046,
+    "prover_sats": 986.0000000000001,
+    "staleness_sats": 0,
+    "forfeit_sats": 11445060,
+    "proofs": 12,
+    "proven": 28,
+    "forfeited": 272,
+    "mean_batch": 2.3333333333333335
+   },
+   "turns": 25,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 2,
+   "cell": "single",
+   "agent": "random_interval",
+   "value": -8.919998071754076,
+   "metrics": {
+    "cost_sats": 7480.074806249998,
+    "prover_sats": 1865.61015625,
+    "staleness_sats": 5614.464649999998,
+    "forfeit_sats": 0,
+    "proofs": 12,
+    "proven": 300,
+    "forfeited": 0,
+    "mean_batch": 25
+   },
+   "turns": 155,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 2,
+   "cell": "single",
+   "agent": "threshold",
+   "value": -15.150053524297805,
+   "metrics": {
+    "cost_sats": 3798259.61715,
+    "prover_sats": 1580.25,
+    "staleness_sats": 1186.3671500000003,
+    "forfeit_sats": 3795493,
+    "proofs": 12,
+    "proven": 202,
+    "forfeited": 98,
+    "mean_batch": 16.833333333333332
+   },
+   "turns": 105,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 2,
+   "cell": "single",
+   "agent": "fixed_interval",
+   "value": -8.525328026243463,
+   "metrics": {
+    "cost_sats": 5040.8400625,
+    "prover_sats": 1842.5765625000001,
+    "staleness_sats": 3198.2635,
+    "forfeit_sats": 0,
+    "proofs": 12,
+    "proven": 300,
+    "forfeited": 0,
+    "mean_batch": 25
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 2,
+   "cell": "single",
+   "agent": "optimal_batching",
+   "value": -8.379795964645961,
+   "metrics": {
+    "cost_sats": 4358.119625,
+    "prover_sats": 1841.653125,
+    "staleness_sats": 2516.4665000000005,
+    "forfeit_sats": 0,
+    "proofs": 12,
+    "proven": 300,
+    "forfeited": 0,
+    "mean_batch": 25
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 2,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@4defdd7582fd",
+   "value": -14.895825104523762,
+   "metrics": {
+    "cost_sats": 2945605.935575,
+    "prover_sats": 1377.853125,
+    "staleness_sats": 2593.08245,
+    "forfeit_sats": 2941635,
+    "proofs": 9,
+    "proven": 224,
+    "forfeited": 76,
+    "mean_batch": 24.88888888888889
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 3,
+   "cell": "single",
+   "agent": "every_arrival",
+   "value": -16.19390857956171,
+   "metrics": {
+    "cost_sats": 10787607.5,
+    "prover_sats": 980.5000000000001,
+    "staleness_sats": 0,
+    "forfeit_sats": 10786627,
+    "proofs": 12,
+    "proven": 23,
+    "forfeited": 248,
+    "mean_batch": 1.9166666666666667
+   },
+   "turns": 27,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 3,
+   "cell": "single",
+   "agent": "random_interval",
+   "value": -9.044419313264806,
+   "metrics": {
+    "cost_sats": 8471.131037500001,
+    "prover_sats": 1520.0421874999997,
+    "staleness_sats": 6951.088850000001,
+    "forfeit_sats": 0,
+    "proofs": 9,
+    "proven": 271,
+    "forfeited": 0,
+    "mean_batch": 30.11111111111111
+   },
+   "turns": 153,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 3,
+   "cell": "single",
+   "agent": "threshold",
+   "value": -15.33117793737342,
+   "metrics": {
+    "cost_sats": 4552458.3302,
+    "prover_sats": 1542.725,
+    "staleness_sats": 1124.6052000000002,
+    "forfeit_sats": 4549791,
+    "proofs": 12,
+    "proven": 163,
+    "forfeited": 108,
+    "mean_batch": 13.583333333333334
+   },
+   "turns": 98,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 3,
+   "cell": "single",
+   "agent": "fixed_interval",
+   "value": -8.598153760802727,
+   "metrics": {
+    "cost_sats": 5421.6407,
+    "prover_sats": 1764.5249999999999,
+    "staleness_sats": 3657.1157000000003,
+    "forfeit_sats": 0,
+    "proofs": 12,
+    "proven": 271,
+    "forfeited": 0,
+    "mean_batch": 22.583333333333332
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 3,
+   "cell": "single",
+   "agent": "optimal_batching",
+   "value": -8.351793280580123,
+   "metrics": {
+    "cost_sats": 4237.773450000001,
+    "prover_sats": 1765.38125,
+    "staleness_sats": 2472.3922000000002,
+    "forfeit_sats": 0,
+    "proofs": 12,
+    "proven": 271,
+    "forfeited": 0,
+    "mean_batch": 22.583333333333332
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 3,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@4defdd7582fd",
+   "value": -14.939442844026152,
+   "metrics": {
+    "cost_sats": 3076929.813575,
+    "prover_sats": 1343.984375,
+    "staleness_sats": 2573.8292000000006,
+    "forfeit_sats": 3073012,
+    "proofs": 9,
+    "proven": 210,
+    "forfeited": 61,
+    "mean_batch": 23.333333333333332
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 4,
+   "cell": "single",
+   "agent": "every_arrival",
+   "value": -16.347053057019103,
+   "metrics": {
+    "cost_sats": 12572884.85,
+    "prover_sats": 1010.8500000000001,
+    "staleness_sats": 0,
+    "forfeit_sats": 12571874,
+    "proofs": 12,
+    "proven": 32,
+    "forfeited": 264,
+    "mean_batch": 2.6666666666666665
+   },
+   "turns": 25,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 4,
+   "cell": "single",
+   "agent": "random_interval",
+   "value": -14.587357803654593,
+   "metrics": {
+    "cost_sats": 2163759.5598625,
+    "prover_sats": 1718.6015625,
+    "staleness_sats": 3805.9583000000007,
+    "forfeit_sats": 2158235,
+    "proofs": 12,
+    "proven": 251,
+    "forfeited": 45,
+    "mean_batch": 20.916666666666668
+   },
+   "turns": 135,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 4,
+   "cell": "single",
+   "agent": "threshold",
+   "value": -15.590160795328991,
+   "metrics": {
+    "cost_sats": 5898217.7993,
+    "prover_sats": 1545.1499999999999,
+    "staleness_sats": 1146.6493,
+    "forfeit_sats": 5895526,
+    "proofs": 12,
+    "proven": 170,
+    "forfeited": 126,
+    "mean_batch": 14.166666666666666
+   },
+   "turns": 89,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 4,
+   "cell": "single",
+   "agent": "fixed_interval",
+   "value": -8.658443720947746,
+   "metrics": {
+    "cost_sats": 5758.56575,
+    "prover_sats": 1831.8000000000002,
+    "staleness_sats": 3926.76575,
+    "forfeit_sats": 0,
+    "proofs": 12,
+    "proven": 296,
+    "forfeited": 0,
+    "mean_batch": 24.666666666666668
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 4,
+   "cell": "single",
+   "agent": "optimal_batching",
+   "value": -8.445420411347122,
+   "metrics": {
+    "cost_sats": 4653.711775,
+    "prover_sats": 1849.196875,
+    "staleness_sats": 2804.5149,
+    "forfeit_sats": 0,
+    "proofs": 12,
+    "proven": 296,
+    "forfeited": 0,
+    "mean_batch": 24.666666666666668
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 4,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@4defdd7582fd",
+   "value": -15.023182305377489,
+   "metrics": {
+    "cost_sats": 3345685.9754,
+    "prover_sats": 1385.55,
+    "staleness_sats": 3225.4254,
+    "forfeit_sats": 3341075,
+    "proofs": 9,
+    "proven": 226,
+    "forfeited": 70,
+    "mean_batch": 25.11111111111111
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 5,
+   "cell": "single",
+   "agent": "every_arrival",
+   "value": -16.159629607173688,
+   "metrics": {
+    "cost_sats": 10424085.575,
+    "prover_sats": 998.575,
+    "staleness_sats": 0,
+    "forfeit_sats": 10423087,
+    "proofs": 12,
+    "proven": 33,
+    "forfeited": 255,
+    "mean_batch": 2.75
+   },
+   "turns": 30,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 5,
+   "cell": "single",
+   "agent": "random_interval",
+   "value": -9.271634966369685,
+   "metrics": {
+    "cost_sats": 10632.120843750004,
+    "prover_sats": 1588.5835937499999,
+    "staleness_sats": 9043.537250000005,
+    "forfeit_sats": 0,
+    "proofs": 8,
+    "proven": 288,
+    "forfeited": 0,
+    "mean_batch": 36
+   },
+   "turns": 152,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 5,
+   "cell": "single",
+   "agent": "threshold",
+   "value": -15.294701899110445,
+   "metrics": {
+    "cost_sats": 4389394.72245,
+    "prover_sats": 1533.4499999999998,
+    "staleness_sats": 1120.27245,
+    "forfeit_sats": 4386741,
+    "proofs": 12,
+    "proven": 168,
+    "forfeited": 120,
+    "mean_batch": 14
+   },
+   "turns": 105,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 5,
+   "cell": "single",
+   "agent": "fixed_interval",
+   "value": -8.528337302005005,
+   "metrics": {
+    "cost_sats": 5056.032187500001,
+    "prover_sats": 1808.0921875000001,
+    "staleness_sats": 3247.940000000001,
+    "forfeit_sats": 0,
+    "proofs": 12,
+    "proven": 288,
+    "forfeited": 0,
+    "mean_batch": 24
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 5,
+   "cell": "single",
+   "agent": "optimal_batching",
+   "value": -8.322734887361806,
+   "metrics": {
+    "cost_sats": 4116.4025249999995,
+    "prover_sats": 1819.484375,
+    "staleness_sats": 2296.91815,
+    "forfeit_sats": 0,
+    "proofs": 12,
+    "proven": 288,
+    "forfeited": 0,
+    "mean_batch": 24
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 5,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@4defdd7582fd",
+   "value": -14.505807754174198,
+   "metrics": {
+    "cost_sats": 1994308.146,
+    "prover_sats": 1483.6,
+    "staleness_sats": 2779.546,
+    "forfeit_sats": 1990045,
+    "proofs": 10,
+    "proven": 232,
+    "forfeited": 56,
+    "mean_batch": 23.2
+   },
+   "turns": 21,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 6,
+   "cell": "single",
+   "agent": "every_arrival",
+   "value": -16.169273120388418,
+   "metrics": {
+    "cost_sats": 10525096.65,
+    "prover_sats": 997.6500000000001,
+    "staleness_sats": 0,
+    "forfeit_sats": 10524099,
+    "proofs": 12,
+    "proven": 30,
+    "forfeited": 262,
+    "mean_batch": 2.5
+   },
+   "turns": 25,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 6,
+   "cell": "single",
+   "agent": "random_interval",
+   "value": -9.16696267105934,
+   "metrics": {
+    "cost_sats": 9575.496543750001,
+    "prover_sats": 1685.9898437499999,
+    "staleness_sats": 7889.506700000002,
+    "forfeit_sats": 0,
+    "proofs": 9,
+    "proven": 292,
+    "forfeited": 0,
+    "mean_batch": 32.44444444444444
+   },
+   "turns": 153,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 6,
+   "cell": "single",
+   "agent": "threshold",
+   "value": -15.322652594763776,
+   "metrics": {
+    "cost_sats": 4513812.03375,
+    "prover_sats": 1548.075,
+    "staleness_sats": 1120.9587500000002,
+    "forfeit_sats": 4511143,
+    "proofs": 12,
+    "proven": 177,
+    "forfeited": 115,
+    "mean_batch": 14.75
+   },
+   "turns": 100,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 6,
+   "cell": "single",
+   "agent": "fixed_interval",
+   "value": -8.514023573480355,
+   "metrics": {
+    "cost_sats": 4984.177000000001,
+    "prover_sats": 1820.1000000000001,
+    "staleness_sats": 3164.0770000000007,
+    "forfeit_sats": 0,
+    "proofs": 12,
+    "proven": 292,
+    "forfeited": 0,
+    "mean_batch": 24.333333333333332
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 6,
+   "cell": "single",
+   "agent": "optimal_batching",
+   "value": -8.348955206901941,
+   "metrics": {
+    "cost_sats": 4225.763387500001,
+    "prover_sats": 1819.7921875000002,
+    "staleness_sats": 2405.9712000000004,
+    "forfeit_sats": 0,
+    "proofs": 12,
+    "proven": 292,
+    "forfeited": 0,
+    "mean_batch": 24.333333333333332
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 6,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@4defdd7582fd",
+   "value": -14.970471138266564,
+   "metrics": {
+    "cost_sats": 3173898.30095,
+    "prover_sats": 1373.85,
+    "staleness_sats": 2241.45095,
+    "forfeit_sats": 3170283,
+    "proofs": 9,
+    "proven": 222,
+    "forfeited": 70,
+    "mean_batch": 24.666666666666668
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 7,
+   "cell": "single",
+   "agent": "every_arrival",
+   "value": -16.139457278068797,
+   "metrics": {
+    "cost_sats": 10215914.2,
+    "prover_sats": 974.2,
+    "staleness_sats": 0,
+    "forfeit_sats": 10214940,
+    "proofs": 12,
+    "proven": 23,
+    "forfeited": 275,
+    "mean_batch": 1.9166666666666667
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 7,
+   "cell": "single",
+   "agent": "random_interval",
+   "value": -14.677911648789575,
+   "metrics": {
+    "cost_sats": 2368841.6747125,
+    "prover_sats": 1711.0265625000002,
+    "staleness_sats": 4223.64815,
+    "forfeit_sats": 2362907,
+    "proofs": 12,
+    "proven": 233,
+    "forfeited": 65,
+    "mean_batch": 19.416666666666668
+   },
+   "turns": 126,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 7,
+   "cell": "single",
+   "agent": "threshold",
+   "value": -15.09252811182696,
+   "metrics": {
+    "cost_sats": 3585928.92145,
+    "prover_sats": 1578.1999999999998,
+    "staleness_sats": 1125.7214499999998,
+    "forfeit_sats": 3583225,
+    "proofs": 12,
+    "proven": 199,
+    "forfeited": 99,
+    "mean_batch": 16.583333333333332
+   },
+   "turns": 106,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 7,
+   "cell": "single",
+   "agent": "fixed_interval",
+   "value": -8.501638469033045,
+   "metrics": {
+    "cost_sats": 4922.8281375,
+    "prover_sats": 1837.3421874999995,
+    "staleness_sats": 3085.4859500000002,
+    "forfeit_sats": 0,
+    "proofs": 12,
+    "proven": 298,
+    "forfeited": 0,
+    "mean_batch": 24.833333333333332
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 7,
+   "cell": "single",
+   "agent": "optimal_batching",
+   "value": -8.355978299527004,
+   "metrics": {
+    "cost_sats": 4255.5457750000005,
+    "prover_sats": 1850.428125,
+    "staleness_sats": 2405.11765,
+    "forfeit_sats": 0,
+    "proofs": 12,
+    "proven": 298,
+    "forfeited": 0,
+    "mean_batch": 24.833333333333332
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/few_proofs",
+   "seed": 7,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@4defdd7582fd",
+   "value": -14.743719112711162,
+   "metrics": {
+    "cost_sats": 2529972.807725,
+    "prover_sats": 1384.934375,
+    "staleness_sats": 2491.8733500000003,
+    "forfeit_sats": 2526096,
+    "proofs": 9,
+    "proven": 226,
+    "forfeited": 72,
+    "mean_batch": 25.11111111111111
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 0,
+   "cell": "single",
+   "agent": "every_arrival",
+   "value": -15.68276375005939,
+   "metrics": {
+    "cost_sats": 6470498.75,
+    "prover_sats": 4026.7499999999977,
+    "staleness_sats": 0,
+    "forfeit_sats": 6466472,
+    "proofs": 48,
+    "proven": 120,
+    "forfeited": 158,
+    "mean_batch": 2.5
+   },
+   "turns": 105,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 0,
+   "cell": "single",
+   "agent": "random_interval",
+   "value": -8.549027831584587,
+   "metrics": {
+    "cost_sats": 5161.733912500001,
+    "prover_sats": 3264.626562500001,
+    "staleness_sats": 1897.10735,
+    "forfeit_sats": 0,
+    "proofs": 29,
+    "proven": 278,
+    "forfeited": 0,
+    "mean_batch": 9.586206896551724
+   },
+   "turns": 173,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 0,
+   "cell": "single",
+   "agent": "threshold",
+   "value": -8.366434776347305,
+   "metrics": {
+    "cost_sats": 4300.277249999999,
+    "prover_sats": 2572.325,
+    "staleness_sats": 1727.9522499999998,
+    "forfeit_sats": 0,
+    "proofs": 20,
+    "proven": 278,
+    "forfeited": 0,
+    "mean_batch": 13.9
+   },
+   "turns": 164,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 0,
+   "cell": "single",
+   "agent": "fixed_interval",
+   "value": -8.405280546250992,
+   "metrics": {
+    "cost_sats": 4470.611800000001,
+    "prover_sats": 3005.6750000000006,
+    "staleness_sats": 1464.9368,
+    "forfeit_sats": 0,
+    "proofs": 24,
+    "proven": 278,
+    "forfeited": 0,
+    "mean_batch": 11.583333333333334
+   },
+   "turns": 49,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 0,
+   "cell": "single",
+   "agent": "optimal_batching",
+   "value": -8.230354376656063,
+   "metrics": {
+    "cost_sats": 3753.16355,
+    "prover_sats": 2361.6000000000004,
+    "staleness_sats": 1391.5635499999999,
+    "forfeit_sats": 0,
+    "proofs": 18,
+    "proven": 278,
+    "forfeited": 0,
+    "mean_batch": 15.444444444444445
+   },
+   "turns": 37,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@4defdd7582fd",
+   "value": -15.517088848704079,
+   "metrics": {
+    "cost_sats": 5482593.6936,
+    "prover_sats": 1499.725,
+    "staleness_sats": 804.9686,
+    "forfeit_sats": 5480289,
+    "proofs": 12,
+    "proven": 142,
+    "forfeited": 136,
+    "mean_batch": 11.833333333333334
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 1,
+   "cell": "single",
+   "agent": "every_arrival",
+   "value": -15.856322595692223,
+   "metrics": {
+    "cost_sats": 7696856.8,
+    "prover_sats": 3947.7999999999975,
+    "staleness_sats": 0,
+    "forfeit_sats": 7692909,
+    "proofs": 48,
+    "proven": 104,
+    "forfeited": 192,
+    "mean_batch": 2.1666666666666665
+   },
+   "turns": 96,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 1,
+   "cell": "single",
+   "agent": "random_interval",
+   "value": -8.618607326848958,
+   "metrics": {
+    "cost_sats": 5533.674424999999,
+    "prover_sats": 2592.378125,
+    "staleness_sats": 2941.2962999999995,
+    "forfeit_sats": 0,
+    "proofs": 21,
+    "proven": 296,
+    "forfeited": 0,
+    "mean_batch": 14.095238095238095
+   },
+   "turns": 165,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 1,
+   "cell": "single",
+   "agent": "threshold",
+   "value": -8.421782390549783,
+   "metrics": {
+    "cost_sats": 4544.997200000001,
+    "prover_sats": 2674.9250000000006,
+    "staleness_sats": 1870.0721999999998,
+    "forfeit_sats": 0,
+    "proofs": 21,
+    "proven": 296,
+    "forfeited": 0,
+    "mean_batch": 14.095238095238095
+   },
+   "turns": 165,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 1,
+   "cell": "single",
+   "agent": "fixed_interval",
+   "value": -8.405422295325318,
+   "metrics": {
+    "cost_sats": 4471.245550000001,
+    "prover_sats": 3053.1500000000005,
+    "staleness_sats": 1418.0955500000002,
+    "forfeit_sats": 0,
+    "proofs": 24,
+    "proven": 296,
+    "forfeited": 0,
+    "mean_batch": 12.333333333333334
+   },
+   "turns": 49,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 1,
+   "cell": "single",
+   "agent": "optimal_batching",
+   "value": -8.264903564926948,
+   "metrics": {
+    "cost_sats": 3885.0983000000006,
+    "prover_sats": 2528.4000000000005,
+    "staleness_sats": 1356.6983,
+    "forfeit_sats": 0,
+    "proofs": 20,
+    "proven": 296,
+    "forfeited": 0,
+    "mean_batch": 14.8
+   },
+   "turns": 41,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@4defdd7582fd",
+   "value": -8.415067106011465,
+   "metrics": {
+    "cost_sats": 4514.578500000001,
+    "prover_sats": 3044.3750000000005,
+    "staleness_sats": 1470.2035000000005,
+    "forfeit_sats": 0,
+    "proofs": 24,
+    "proven": 296,
+    "forfeited": 0,
+    "mean_batch": 12.333333333333334
+   },
+   "turns": 53,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 2,
+   "cell": "single",
+   "agent": "every_arrival",
+   "value": -15.77323285029998,
+   "metrics": {
+    "cost_sats": 7083175.275,
+    "prover_sats": 3990.2749999999974,
+    "staleness_sats": 0,
+    "forfeit_sats": 7079185,
+    "proofs": 48,
+    "proven": 109,
+    "forfeited": 193,
+    "mean_batch": 2.2708333333333335
+   },
+   "turns": 98,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 2,
+   "cell": "single",
+   "agent": "random_interval",
+   "value": -8.636837161126918,
+   "metrics": {
+    "cost_sats": 5635.477500000001,
+    "prover_sats": 3270.7687500000006,
+    "staleness_sats": 2364.7087500000007,
+    "forfeit_sats": 0,
+    "proofs": 28,
+    "proven": 302,
+    "forfeited": 0,
+    "mean_batch": 10.785714285714286
+   },
+   "turns": 172,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 2,
+   "cell": "single",
+   "agent": "threshold",
+   "value": -8.370627783868239,
+   "metrics": {
+    "cost_sats": 4318.346200000001,
+    "prover_sats": 2560.0500000000006,
+    "staleness_sats": 1758.2962,
+    "forfeit_sats": 0,
+    "proofs": 20,
+    "proven": 302,
+    "forfeited": 0,
+    "mean_batch": 15.1
+   },
+   "turns": 164,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 2,
+   "cell": "single",
+   "agent": "fixed_interval",
+   "value": -8.42784272816881,
+   "metrics": {
+    "cost_sats": 4572.6250500000015,
+    "prover_sats": 3035.9750000000013,
+    "staleness_sats": 1536.6500500000002,
+    "forfeit_sats": 0,
+    "proofs": 24,
+    "proven": 302,
+    "forfeited": 0,
+    "mean_batch": 12.583333333333334
+   },
+   "turns": 49,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 2,
+   "cell": "single",
+   "agent": "optimal_batching",
+   "value": -8.261014424255965,
+   "metrics": {
+    "cost_sats": 3870.0179500000004,
+    "prover_sats": 2586.9500000000003,
+    "staleness_sats": 1283.0679499999999,
+    "forfeit_sats": 0,
+    "proofs": 20,
+    "proven": 302,
+    "forfeited": 0,
+    "mean_batch": 15.1
+   },
+   "turns": 41,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 2,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@4defdd7582fd",
+   "value": -8.397965953401481,
+   "metrics": {
+    "cost_sats": 4438.030400000001,
+    "prover_sats": 3036.600000000001,
+    "staleness_sats": 1401.4303999999997,
+    "forfeit_sats": 0,
+    "proofs": 24,
+    "proven": 302,
+    "forfeited": 0,
+    "mean_batch": 12.583333333333334
+   },
+   "turns": 51,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 3,
+   "cell": "single",
+   "agent": "every_arrival",
+   "value": -15.93951305951357,
+   "metrics": {
+    "cost_sats": 8364549.7,
+    "prover_sats": 4035.699999999997,
+    "staleness_sats": 0,
+    "forfeit_sats": 8360514,
+    "proofs": 48,
+    "proven": 121,
+    "forfeited": 173,
+    "mean_batch": 2.5208333333333335
+   },
+   "turns": 106,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 3,
+   "cell": "single",
+   "agent": "random_interval",
+   "value": -8.68599432659754,
+   "metrics": {
+    "cost_sats": 5919.4234125,
+    "prover_sats": 2548.0640624999996,
+    "staleness_sats": 3371.3593500000006,
+    "forfeit_sats": 0,
+    "proofs": 20,
+    "proven": 294,
+    "forfeited": 0,
+    "mean_batch": 14.7
+   },
+   "turns": 164,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 3,
+   "cell": "single",
+   "agent": "threshold",
+   "value": -8.431213492972327,
+   "metrics": {
+    "cost_sats": 4588.0643,
+    "prover_sats": 2681.5000000000005,
+    "staleness_sats": 1906.5643,
+    "forfeit_sats": 0,
+    "proofs": 21,
+    "proven": 294,
+    "forfeited": 0,
+    "mean_batch": 14
+   },
+   "turns": 165,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 3,
+   "cell": "single",
+   "agent": "fixed_interval",
+   "value": -8.476489283673464,
+   "metrics": {
+    "cost_sats": 4800.566850000001,
+    "prover_sats": 3067.9000000000015,
+    "staleness_sats": 1732.66685,
+    "forfeit_sats": 0,
+    "proofs": 24,
+    "proven": 294,
+    "forfeited": 0,
+    "mean_batch": 12.25
+   },
+   "turns": 49,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 3,
+   "cell": "single",
+   "agent": "optimal_batching",
+   "value": -8.264449895647362,
+   "metrics": {
+    "cost_sats": 3883.33615,
+    "prover_sats": 2521.8250000000003,
+    "staleness_sats": 1361.51115,
+    "forfeit_sats": 0,
+    "proofs": 20,
+    "proven": 294,
+    "forfeited": 0,
+    "mean_batch": 14.7
+   },
+   "turns": 41,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 3,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@4defdd7582fd",
+   "value": -8.485933653443228,
+   "metrics": {
+    "cost_sats": 4846.119950000001,
+    "prover_sats": 2929.775000000001,
+    "staleness_sats": 1916.34495,
+    "forfeit_sats": 0,
+    "proofs": 23,
+    "proven": 294,
+    "forfeited": 0,
+    "mean_batch": 12.782608695652174
+   },
+   "turns": 53,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 4,
+   "cell": "single",
+   "agent": "every_arrival",
+   "value": -15.942124834455804,
+   "metrics": {
+    "cost_sats": 8386424.575,
+    "prover_sats": 3973.574999999997,
+    "staleness_sats": 0,
+    "forfeit_sats": 8382451,
+    "proofs": 48,
+    "proven": 111,
+    "forfeited": 187,
+    "mean_batch": 2.3125
+   },
+   "turns": 105,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 4,
+   "cell": "single",
+   "agent": "random_interval",
+   "value": -8.628762714232412,
+   "metrics": {
+    "cost_sats": 5590.15735,
+    "prover_sats": 2899.4500000000003,
+    "staleness_sats": 2690.70735,
+    "forfeit_sats": 0,
+    "proofs": 24,
+    "proven": 298,
+    "forfeited": 0,
+    "mean_batch": 12.416666666666666
+   },
+   "turns": 168,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 4,
+   "cell": "single",
+   "agent": "threshold",
+   "value": -8.423567738662,
+   "metrics": {
+    "cost_sats": 4553.118850000001,
+    "prover_sats": 2676.7500000000005,
+    "staleness_sats": 1876.3688500000003,
+    "forfeit_sats": 0,
+    "proofs": 21,
+    "proven": 298,
+    "forfeited": 0,
+    "mean_batch": 14.19047619047619
+   },
+   "turns": 165,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 4,
+   "cell": "single",
+   "agent": "fixed_interval",
+   "value": -8.469131732176864,
+   "metrics": {
+    "cost_sats": 4765.376050000001,
+    "prover_sats": 3075.675000000001,
+    "staleness_sats": 1689.70105,
+    "forfeit_sats": 0,
+    "proofs": 24,
+    "proven": 298,
+    "forfeited": 0,
+    "mean_batch": 12.416666666666666
+   },
+   "turns": 49,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 4,
+   "cell": "single",
+   "agent": "optimal_batching",
+   "value": -8.291539981040541,
+   "metrics": {
+    "cost_sats": 3989.97395,
+    "prover_sats": 2463.8250000000003,
+    "staleness_sats": 1526.1489499999998,
+    "forfeit_sats": 0,
+    "proofs": 19,
+    "proven": 298,
+    "forfeited": 0,
+    "mean_batch": 15.68421052631579
+   },
+   "turns": 39,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 4,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@4defdd7582fd",
+   "value": -8.440552269436504,
+   "metrics": {
+    "cost_sats": 4631.1119,
+    "prover_sats": 3047.8,
+    "staleness_sats": 1583.3118999999997,
+    "forfeit_sats": 0,
+    "proofs": 24,
+    "proven": 298,
+    "forfeited": 0,
+    "mean_batch": 12.416666666666666
+   },
+   "turns": 52,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 5,
+   "cell": "single",
+   "agent": "every_arrival",
+   "value": -15.790228866989438,
+   "metrics": {
+    "cost_sats": 7204589.9,
+    "prover_sats": 3998.8999999999983,
+    "staleness_sats": 0,
+    "forfeit_sats": 7200591,
+    "proofs": 48,
+    "proven": 119,
+    "forfeited": 168,
+    "mean_batch": 2.4791666666666665
+   },
+   "turns": 104,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 5,
+   "cell": "single",
+   "agent": "random_interval",
+   "value": -8.574224560519678,
+   "metrics": {
+    "cost_sats": 5293.445100000001,
+    "prover_sats": 3606.475000000001,
+    "staleness_sats": 1686.9701000000002,
+    "forfeit_sats": 0,
+    "proofs": 32,
+    "proven": 287,
+    "forfeited": 0,
+    "mean_batch": 8.96875
+   },
+   "turns": 176,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 5,
+   "cell": "single",
+   "agent": "threshold",
+   "value": -8.43004994027705,
+   "metrics": {
+    "cost_sats": 4582.728950000001,
+    "prover_sats": 2705.475000000001,
+    "staleness_sats": 1877.25395,
+    "forfeit_sats": 0,
+    "proofs": 21,
+    "proven": 287,
+    "forfeited": 0,
+    "mean_batch": 13.666666666666666
+   },
+   "turns": 165,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 5,
+   "cell": "single",
+   "agent": "fixed_interval",
+   "value": -8.439304447296735,
+   "metrics": {
+    "cost_sats": 4625.3367,
+    "prover_sats": 3017.0000000000005,
+    "staleness_sats": 1608.3366999999998,
+    "forfeit_sats": 0,
+    "proofs": 24,
+    "proven": 287,
+    "forfeited": 0,
+    "mean_batch": 11.958333333333334
+   },
+   "turns": 49,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 5,
+   "cell": "single",
+   "agent": "optimal_batching",
+   "value": -8.293963436386594,
+   "metrics": {
+    "cost_sats": 3999.6552000000006,
+    "prover_sats": 2670.5000000000005,
+    "staleness_sats": 1329.1552000000001,
+    "forfeit_sats": 0,
+    "proofs": 22,
+    "proven": 287,
+    "forfeited": 0,
+    "mean_batch": 13.045454545454545
+   },
+   "turns": 45,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 5,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@4defdd7582fd",
+   "value": -8.460130782379444,
+   "metrics": {
+    "cost_sats": 4722.6756000000005,
+    "prover_sats": 2928.7750000000005,
+    "staleness_sats": 1793.9006,
+    "forfeit_sats": 0,
+    "proofs": 23,
+    "proven": 287,
+    "forfeited": 0,
+    "mean_batch": 12.478260869565217
+   },
+   "turns": 53,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 6,
+   "cell": "single",
+   "agent": "every_arrival",
+   "value": -15.97468445627913,
+   "metrics": {
+    "cost_sats": 8663977.375,
+    "prover_sats": 3999.3749999999977,
+    "staleness_sats": 0,
+    "forfeit_sats": 8659978,
+    "proofs": 48,
+    "proven": 113,
+    "forfeited": 201,
+    "mean_batch": 2.3541666666666665
+   },
+   "turns": 102,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 6,
+   "cell": "single",
+   "agent": "random_interval",
+   "value": -8.728122147364065,
+   "metrics": {
+    "cost_sats": 6174.123125,
+    "prover_sats": 3663.2031250000005,
+    "staleness_sats": 2510.92,
+    "forfeit_sats": 0,
+    "proofs": 32,
+    "proven": 314,
+    "forfeited": 0,
+    "mean_batch": 9.8125
+   },
+   "turns": 176,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 6,
+   "cell": "single",
+   "agent": "threshold",
+   "value": -8.397516407500001,
+   "metrics": {
+    "cost_sats": 4436.035750000001,
+    "prover_sats": 2630.8250000000003,
+    "staleness_sats": 1805.2107500000004,
+    "forfeit_sats": 0,
+    "proofs": 20,
+    "proven": 314,
+    "forfeited": 0,
+    "mean_batch": 15.7
+   },
+   "turns": 164,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 6,
+   "cell": "single",
+   "agent": "fixed_interval",
+   "value": -8.446273468313889,
+   "metrics": {
+    "cost_sats": 4657.683350000001,
+    "prover_sats": 3079.6000000000013,
+    "staleness_sats": 1578.08335,
+    "forfeit_sats": 0,
+    "proofs": 24,
+    "proven": 314,
+    "forfeited": 0,
+    "mean_batch": 13.083333333333334
+   },
+   "turns": 49,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 6,
+   "cell": "single",
+   "agent": "optimal_batching",
+   "value": -8.27337854504687,
+   "metrics": {
+    "cost_sats": 3918.16435,
+    "prover_sats": 2488.475,
+    "staleness_sats": 1429.6893499999999,
+    "forfeit_sats": 0,
+    "proofs": 19,
+    "proven": 314,
+    "forfeited": 0,
+    "mean_batch": 16.526315789473685
+   },
+   "turns": 39,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 6,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@4defdd7582fd",
+   "value": -8.4509389913429,
+   "metrics": {
+    "cost_sats": 4679.464650000002,
+    "prover_sats": 3076.175000000001,
+    "staleness_sats": 1603.2896500000002,
+    "forfeit_sats": 0,
+    "proofs": 24,
+    "proven": 314,
+    "forfeited": 0,
+    "mean_batch": 13.083333333333334
+   },
+   "turns": 51,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 7,
+   "cell": "single",
+   "agent": "every_arrival",
+   "value": -15.723665634147816,
+   "metrics": {
+    "cost_sats": 6740641.35,
+    "prover_sats": 3941.3499999999976,
+    "staleness_sats": 0,
+    "forfeit_sats": 6736700,
+    "proofs": 48,
+    "proven": 101,
+    "forfeited": 166,
+    "mean_batch": 2.1041666666666665
+   },
+   "turns": 99,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 7,
+   "cell": "single",
+   "agent": "random_interval",
+   "value": -8.624362617009535,
+   "metrics": {
+    "cost_sats": 5565.61415,
+    "prover_sats": 2757.45,
+    "staleness_sats": 2808.1641500000005,
+    "forfeit_sats": 0,
+    "proofs": 23,
+    "proven": 267,
+    "forfeited": 0,
+    "mean_batch": 11.608695652173912
+   },
+   "turns": 167,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 7,
+   "cell": "single",
+   "agent": "threshold",
+   "value": -8.311372098732775,
+   "metrics": {
+    "cost_sats": 4069.8934500000005,
+    "prover_sats": 2439.6750000000006,
+    "staleness_sats": 1630.21845,
+    "forfeit_sats": 0,
+    "proofs": 19,
+    "proven": 267,
+    "forfeited": 0,
+    "mean_batch": 14.052631578947368
+   },
+   "turns": 163,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 7,
+   "cell": "single",
+   "agent": "fixed_interval",
+   "value": -8.366887365655453,
+   "metrics": {
+    "cost_sats": 4302.223950000001,
+    "prover_sats": 2996.900000000001,
+    "staleness_sats": 1305.32395,
+    "forfeit_sats": 0,
+    "proofs": 24,
+    "proven": 267,
+    "forfeited": 0,
+    "mean_batch": 11.125
+   },
+   "turns": 49,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 7,
+   "cell": "single",
+   "agent": "optimal_batching",
+   "value": -8.19949079797285,
+   "metrics": {
+    "cost_sats": 3639.0967999999993,
+    "prover_sats": 2346.9749999999995,
+    "staleness_sats": 1292.1218000000001,
+    "forfeit_sats": 0,
+    "proofs": 18,
+    "proven": 267,
+    "forfeited": 0,
+    "mean_batch": 14.833333333333334
+   },
+   "turns": 37,
+   "rejections": []
+  },
+  {
+   "task": "proof_budget/steady",
+   "seed": 7,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@4defdd7582fd",
+   "value": -15.373546855586484,
+   "metrics": {
+    "cost_sats": 4749485.50585,
+    "prover_sats": 1519.3249999999998,
+    "staleness_sats": 763.1808500000002,
+    "forfeit_sats": 4747203,
+    "proofs": 12,
+    "proven": 139,
+    "forfeited": 128,
+    "mean_batch": 11.583333333333334
+   },
+   "turns": 27,
+   "rejections": []
+  }
+ ],
+ "checks": [
+  {
+   "id": "K72",
+   "pass": true,
+   "detail": "24 episodes compared, 0 mismatches"
+  }
+ ],
+ "notes": [
+  "The agent carried the skills schedule, each bound into its identifier; skill calls are capped at 400 per episode and 1 before each action and cost no harness budget."
+ ]
+}

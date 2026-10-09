@@ -134,7 +134,19 @@ export const scheduleSkill: Skill = bind({
   },
 });
 
-export const SKILLS: { [name: string]: Skill } = { min_cost_flow: minCostFlowSkill, failed_pairs: failedPairsSkill, dlc_design: dlcDesignSkill, bond_offer: bondOfferSkill, proof_step: proofStepSkill, schedule: scheduleSkill };
+/**
+ * `schedule`'s code and name, with a description that names the state where Bonsai 8B still stopped
+ * early under greedy decoding: the turn right after a proof has emptied the queue. Registered under
+ * its own key so that runs of either wording reproduce.
+ */
+export const scheduleAfterProofSkill: Skill = bind({
+  name: "schedule",
+  description: "Computes the next action of a sound batching schedule for the state you were shown, either proving now and how many claims or waiting and how long, and returns it as the exact action to send. Claims keep arriving until the last block, so call it at every turn, also right after a proof when nothing is pending: stopping early loses every claim still to arrive. To use it, reply with that action unchanged.",
+  run: scheduleSkill.run,
+});
+
+/** Skills by the key `--skills` names; a key differs from the skill's name only for a second wording of one skill. */
+export const SKILLS: { [name: string]: Skill } = { min_cost_flow: minCostFlowSkill, failed_pairs: failedPairsSkill, dlc_design: dlcDesignSkill, bond_offer: bondOfferSkill, proof_step: proofStepSkill, schedule: scheduleSkill, schedule_after_proof: scheduleAfterProofSkill };
 
 export function skillsNamed(names: string): Skill[] {
   return names.split(",").map((n) => n.trim()).filter((n) => n !== "").map((n) => {

@@ -26,7 +26,7 @@ Reply with exactly one JSON object and nothing else, in one of three forms. To p
 {"tool":"prove","args":{"count":1}}
 To wait, here one block:
 {"tool":"wait","args":{"blocks":1}}
-To stop now, losing every claim not yet proven:
+To stop now, losing every claim not yet proven, including every claim still to arrive:
 {"tool":"commit"}
 The numbers shown are the format only. A proof that is rejected still uses one of your proofs. Your reply is cut off after {limit} tokens.`;
 

@@ -50,6 +50,14 @@ node --experimental-strip-types scripts/run_proof_budget.ts --block development
 
 The development block takes a few seconds. To re-measure the prover, run `REPS=3 bash cairo/rcap/measure.sh` in WSL (docs/tasks.md §8.5), then point `config/proof_budget.json` at the new file and its SHA-256, and rebuild the fixtures.
 
+Family 4 (server inbound resizing), on family 3's streams:
+
+```
+node --experimental-strip-types scripts/run_server_sizing.ts --block development
+```
+
+The development block takes about a minute and a half: each of the 24 cell-and-seed pairs replays about a million holder-rounds for each of four policies. The confirmatory block is refused until the family is frozen.
+
 Family 5 (service bonding):
 
 ```

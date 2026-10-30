@@ -18,6 +18,7 @@
     "config/placement.json": "8803d9872ba947334c0b29490f6d7a2b993fe7bdb35baabf80dfd6be1219d917",
     "config/proof_budget.json": "c8b58260300dbb30e22a85cfe6e1326bc3f05265d5596f480b5d8a3f20beae14",
     "config/protocol.json": "7f0034406b80fecd66de7d42bbca1e646da30c8a36e44afb94e033c75f34dfc4",
+    "config/server_sizing.json": "8fdfda5a5d9dd1c064edac326495f0ff5862ac084e67777d1a8b444278713c28",
     "config/settlement_object.json": "32814b2f968678cad1aabbff7b139df7e21065556eadd0ebc58e3ebd1f1011a5"
   },
   "fixtures": [

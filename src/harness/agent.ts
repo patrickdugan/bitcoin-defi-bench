@@ -35,6 +35,8 @@ export const REJECT_REASONS = [
   "below_minimum", "over_budget", "out_of_grid", "phase_closed", "no_link", "unbalanced",
   // Family 9 (docs/tasks.md §10.1).
   "bad_event", "unknown_handle", "unknown_id", "duplicate", "relay_refused",
+  // Family 4 (docs/tasks.md §5.2): a resize below the position the server already holds.
+  "below_position",
 ] as const;
 export type RejectReason = (typeof REJECT_REASONS)[number];
 

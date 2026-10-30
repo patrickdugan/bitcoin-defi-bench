@@ -1,0 +1,34 @@
+{
+  "description": "Family 4: resizing the Ark server's inbound Lightning capacity. Reuses family 3's hash-bound streams without new fixtures. Every numeric choice below is invented.",
+  "capital_rate_per_block": 0.000001,
+  "decision_interval_blocks": 1008,
+  "resize_delay_blocks": 6,
+  "resize_fee_sats": 2000,
+  "lease_rate_ppm": 1000,
+  "failure_fixed_sats": 2000,
+  "failure_value_share": 0.05,
+  "static_margin": 0.25,
+  "buffer_margin": 0.25,
+  "max_inbound_pilot_multiple": 16,
+  "budget": { "attempts": 32 },
+  "cells": {
+    "drift": "many_bursty_long",
+    "balanced": "many_bursty_balanced",
+    "correlated": "many_bursty_balanced_correlated"
+  },
+  "provenance": {
+    "capital_rate_per_block": "invented: same rate as family 5, about 5% a year",
+    "decision_interval_blocks": "invented: one week, 168 protocol rounds",
+    "resize_delay_blocks": "invented: one protocol round",
+    "resize_fee_sats": "invented: a 200 vB splice at 10 sat/vB",
+    "lease_rate_ppm": "invented: charged on the increase actually put in force when a resize takes effect, including the initial capacity; the resize fee is charged at the decision",
+    "failure_fixed_sats": "invented: charged per failed receipt; dropped unfunded spends are free",
+    "failure_value_share": "invented: fraction of failed receipt value",
+    "static_margin": "invented: family 3's server-tier pilot margin",
+    "buffer_margin": "invented: margin on the largest observed interval-plus-delay rise",
+    "max_inbound_pilot_multiple": "invented: target cap of sixteen times the pilot peak, a bound on the action rather than a constraint: the oracle needs a level above the cap only if the evaluation stream peaks above sixteen times its pilot, against 3.4 at most on the development seeds, and if it ever did the oracle would throw rather than fail payments",
+    "budget": "invented: 32 rejected actions; accepted decisions advance time without spending attempts",
+    "cells": "invented: drift, balanced and correlated map to unchanged family 3 fixtures and pilot/evaluation streams",
+    "ceiling": "invented: failure_fixed_sats >= resize_fee_sats and failure_value_share >= capital_rate_per_block * horizon_blocks + lease_rate_ppm/1e6 (0.0333, rounded up, for the 32256-block horizon) make a never-failing schedule optimal, which is why the ceiling is exact. That needs the capacity to be never below the position the server holds: a resize below the position at the decision is rejected, and one that lands below the position is lifted to it. With the capacity at or above the failing path's position p_fail always, the no-failure path p_nf satisfies p_nf(t) <= p_fail(t) + the sats failed so far, so raising every later level by the cumulative failed sats gives a never-failing schedule. Its extra cost is at most capital_rate_per_block * horizon_blocks + lease_rate_ppm/1e6 per failed sat, which failure_value_share covers, plus at most one resize fee per interval with a failure, which failure_fixed_sats covers. Without the floor the claim is false: on a stream with a large standing balance and few receipts, cutting capacity below the position and failing one receipt is cheaper. The max_inbound cap is set at sixteen times the pilot peak so that neither the oracle nor the raised schedule meets it; on the development seeds the oracle's highest level is at most 0.22 of it (correlated, seed 5, whose evaluation stream peaks at 3.4 times its pilot's). src/tasks/server_sizing/server_sizing.test.ts checks the claim by enumeration on small streams, failing schedules included, with the two inequalities exactly tight"
+  }
+}

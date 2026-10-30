@@ -25,13 +25,17 @@ export function proofTaskSpecs(root: string, manifest: Manifest, config: ProofBu
   }));
 }
 
-/** Declared before any confirmatory run; descriptive until the family is frozen. */
-export function proofContrasts(config: ProofBudgetConfig): ContrastSpec[] {
-  const cells = Object.keys(config.cells).sort();
+/** The five primary contrasts of prereg/v0.md Amendment 8, P1 to P5, and its declared secondary ones. */
+export function proofContrasts(_config: ProofBudgetConfig): ContrastSpec[] {
+  const ceiling = "`optimal_batching` − `fixed_interval`, predicted positive: knowing arrivals pays";
   return [
-    ...cells.map((cell, i) => ({ id: `B${i + 1}`, label: "`fixed_interval` − `every_arrival`, predicted positive", task: taskOf(cell), a: "fixed_interval", b: "every_arrival", primary: false })),
-    ...cells.map((cell, i) => ({ id: `B${cells.length + i + 1}`, label: "`optimal_batching` − `fixed_interval`, predicted positive", task: taskOf(cell), a: "optimal_batching", b: "fixed_interval", primary: false })),
-    ...cells.map((cell, i) => ({ id: `B${2 * cells.length + i + 1}`, label: "`threshold` − `fixed_interval`, descriptive: an adaptive rule against a fixed one", task: taskOf(cell), a: "threshold", b: "fixed_interval", primary: false })),
+    { id: "P1", label: ceiling, task: taskOf("steady"), a: "optimal_batching", b: "fixed_interval", primary: true },
+    { id: "P2", label: ceiling, task: taskOf("bursty"), a: "optimal_batching", b: "fixed_interval", primary: true },
+    { id: "P3", label: ceiling, task: taskOf("few_proofs"), a: "optimal_batching", b: "fixed_interval", primary: true },
+    { id: "P4", label: "`threshold` − `fixed_interval`, predicted positive: an adaptive rule pays when the rate moves", task: taskOf("bursty"), a: "threshold", b: "fixed_interval", primary: true },
+    { id: "P5", label: "`threshold` − `fixed_interval`, predicted negative: a rule blind to the budget forfeits", task: taskOf("few_proofs"), a: "threshold", b: "fixed_interval", primary: true },
+    ...["bursty", "few_proofs", "steady"].map((cell, i) => ({ id: `S${i + 1}`, label: "`fixed_interval` − `every_arrival`, predicted positive", task: taskOf(cell), a: "fixed_interval", b: "every_arrival", primary: false })),
+    { id: "S4", label: "`threshold` − `fixed_interval`, descriptive: an adaptive rule against a fixed one", task: taskOf("steady"), a: "threshold", b: "fixed_interval", primary: false },
   ];
 }
 

@@ -23,12 +23,13 @@ export function bondingTaskSpecs(root: string, manifest: Manifest, config: Bondi
   }));
 }
 
-export function bondingContrasts(config: BondingConfig): ContrastSpec[] {
-  const cells = Object.keys(config.cells).sort();
+/** The six primary contrasts of prereg/v0.md Amendment 7, B1 to B6, and its declared secondary ones. */
+export function bondingContrasts(_config: BondingConfig): ContrastSpec[] {
+  const cells = ["fast", "slow", "strict"];
   return [
-    ...cells.map((cell, i) => ({ id: `F${i + 1}`, label: "`plug_in` − `random`, predicted positive", task: taskOf(cell), a: "plug_in", b: "random", primary: false })),
-    ...cells.map((cell, i) => ({ id: `F${cells.length + i + 1}`, label: "`oracle` − `plug_in`, predicted positive: what not knowing the response rate costs", task: taskOf(cell), a: "oracle", b: "plug_in", primary: false })),
-    ...cells.map((cell, i) => ({ id: `F${2 * cells.length + i + 1}`, label: "`half_rate` − `plug_in`, descriptive: a margin against a small sample", task: taskOf(cell), a: "half_rate", b: "plug_in", primary: false })),
+    ...cells.map((cell, i) => ({ id: `B${i + 1}`, label: "`oracle` − `plug_in`, predicted positive: what not knowing the response rate costs", task: taskOf(cell), a: "oracle", b: "plug_in", primary: true })),
+    ...cells.map((cell, i) => ({ id: `B${cells.length + i + 1}`, label: "`plug_in` − `random`, predicted positive", task: taskOf(cell), a: "plug_in", b: "random", primary: true })),
+    ...cells.map((cell, i) => ({ id: `S${i + 1}`, label: "`half_rate` − `plug_in`, descriptive: a margin against a small sample", task: taskOf(cell), a: "half_rate", b: "plug_in", primary: false })),
   ];
 }
 

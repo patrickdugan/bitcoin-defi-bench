@@ -20,6 +20,7 @@ import { loadPlacementConfig, placementFixture } from "../src/tasks/placement/ta
 import { routingBaselines } from "../src/tasks/routing/baselines.ts";
 import { routingPrompt } from "../src/tasks/routing/prompt.ts";
 import { routingContrasts, routingIdentityCheck, routingReport, routingTaskSpecs, routingTasks } from "../src/tasks/routing/report.ts";
+import { ROUTING_BAND } from "../src/tasks/routing/task.ts";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const arg = (name: string, fallback?: string): string => {
@@ -99,14 +100,23 @@ const record = await executeRun({
   progress: (message) => console.error(message),
 });
 
-/** Agent report: one contrast per task, agent − `retry_wallet`, as prereg/v0.md §9 declares for family 2. Descriptive until the family is frozen. */
+/**
+ * Agent report: one primary contrast per task, agent − `retry_wallet`, adjusted over the nine tasks,
+ * as prereg/v0.md §9 and Amendment 6 declare. A task whose adjusted interval is not inside ±1.0
+ * point is flagged `outside_calibration` and is not reported as a result until audited.
+ */
 const report: ReportSpec = {
   ...routingReport,
   title: `Bitcoin DeFi Bench v0: family 2 (routing under hidden state), ${agent.id}`,
   contrasts: [
-    ...routingTasks().map(({ task }, i) => ({ id: `A${i + 1}`, label: `\`${agent.id}\` − \`retry_wallet\``, task, a: agent.id, b: "retry_wallet", primary: false })),
+    ...routingTasks().map(({ task }, i) => ({ id: `A${i + 1}`, label: `\`${agent.id}\` − \`retry_wallet\``, task, a: agent.id, b: "retry_wallet", primary: true })),
     ...routingContrasts(),
   ],
+  flags(analysis, task, id) {
+    if (id !== agent.id) return [];
+    const d = analysis.difference(task, id, "retry_wallet", routingTasks().length);
+    return d.lo < -ROUTING_BAND || d.hi > ROUTING_BAND ? ["outside_calibration"] : [];
+  },
 };
 
 writeFileSync(join(out, `${name}.json`), `${JSON.stringify(record, null, 1)}\n`);

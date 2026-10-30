@@ -109,13 +109,13 @@ const record = await executeRun({
   progress: (message) => console.error(message),
 });
 
-/** Agent report: one contrast per cell, agent − `fixed_interval`. Descriptive until an amendment freezes family 7. */
+/** Agent report: one primary contrast per cell, agent − `fixed_interval`, as Amendment 8 provides; P1 to P5 were tested in the baseline run and appear here as secondary rows. */
 const report: ReportSpec = {
   ...proofReport(config),
   title: `Bitcoin DeFi Bench v0: family 7 (proving claims within a budget), ${agent.id}`,
   contrasts: [
-    ...Object.keys(config.cells).sort().map((cell, i) => ({ id: `A${i + 1}`, label: `\`${agent.id}\` − \`fixed_interval\``, task: `proof_budget/${cell}`, a: agent.id, b: "fixed_interval", primary: false })),
-    ...proofContrasts(config),
+    ...Object.keys(config.cells).sort().map((cell, i) => ({ id: `A${i + 1}`, label: `\`${agent.id}\` − \`fixed_interval\``, task: `proof_budget/${cell}`, a: agent.id, b: "fixed_interval", primary: true })),
+    ...proofContrasts(config).map((c) => ({ ...c, primary: false })),
   ],
 };
 

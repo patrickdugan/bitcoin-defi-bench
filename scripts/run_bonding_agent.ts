@@ -106,13 +106,13 @@ const record = await executeRun({
   progress: (message) => console.error(message),
 });
 
-/** Agent report: one contrast per cell, agent − `plug_in`. Descriptive until an amendment freezes family 5. */
+/** Agent report: one primary contrast per cell, agent − `plug_in`, as Amendment 7 provides; B1 to B6 were tested in the baseline run and appear here as secondary rows. */
 const report: ReportSpec = {
   ...bondingReport(config),
   title: `Bitcoin DeFi Bench v0: family 5 (service bonding), ${agent.id}`,
   contrasts: [
-    ...Object.keys(config.cells).sort().map((cell, i) => ({ id: `A${i + 1}`, label: `\`${agent.id}\` − \`plug_in\``, task: `bonding/${cell}`, a: agent.id, b: "plug_in", primary: false })),
-    ...bondingContrasts(config),
+    ...Object.keys(config.cells).sort().map((cell, i) => ({ id: `A${i + 1}`, label: `\`${agent.id}\` − \`plug_in\``, task: `bonding/${cell}`, a: agent.id, b: "plug_in", primary: true })),
+    ...bondingContrasts(config).map((c) => ({ ...c, primary: false })),
   ],
 };
 

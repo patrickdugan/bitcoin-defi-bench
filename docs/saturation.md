@@ -9,7 +9,7 @@ A skill is a function on the agent's side of the interface, run by the adapter w
 Three rules keep this honest:
 
 - **No privileged input.** A skill reads the observation and its own arguments. It cannot see hidden state, the regime, or the fixture; it is code the model carries, not a side channel.
-- **Identity.** The agent identifier binds the skill set (each skill's source hash), the call cap, and the call envelopes along with the model, prompt and sampling; an agent with no skills has the identifier it had before skills existed. "Bonsai with the netting skill" and "Bonsai bare" are different agents, reported as such.
+- **Identity.** The agent identifier binds the skill set (each skill's source hash), the call cap, and the call envelopes along with the model, prompt and sampling; an agent with no skills has the identifier it had before skills existed. "Bonsai with the netting skill" and "Bonsai bare" are different agents, reported as such. A skill's hash covers its own `run` source, not the bench code it imports (`eoqInterval`, `settleOptimal`, and so on), so the id alone would not notice an edit to a helper. Since 2026-10-30 every run record also carries the SHA-256 of all the bench's TypeScript (`source_sha256`, shown in each table's header), which does; records written before then lack it.
 - **The ceiling check still applies.** A skill that is the oracle's algorithm should reach the ceiling exactly; the identity control for that family says whether the plumbing lets it. A result above the ceiling is flagged as elsewhere.
 
 ## Skills, in the order they pay

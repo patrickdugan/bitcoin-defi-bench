@@ -136,3 +136,19 @@ test("a tampered fixture is refused by name; an unlisted fixture is refused; a w
   const wrongBlob: Manifest = { ...manifest, spiral: { ...manifest.spiral, model_blobs: { ...manifest.spiral.model_blobs, "model/server.ts": sha256("x").slice(0, 40) } } };
   assert.throws(() => verifyManifest(root, wrongBlob), /model file differs/);
 });
+
+test("the source hash binds every .ts file under src and scripts, the same across line endings", async () => {
+  const { sourceSha256 } = await import("./run.ts");
+  const dir = mkdtempSync(join(tmpdir(), "bench-source-"));
+  mkdirSync(join(dir, "src", "tasks"), { recursive: true });
+  mkdirSync(join(dir, "scripts"));
+  writeFileSync(join(dir, "src", "tasks", "a.ts"), "export const a = 1;\nexport const b = 2;\n");
+  writeFileSync(join(dir, "scripts", "run.ts"), "console.log(1);\n");
+  const before = sourceSha256(dir);
+  writeFileSync(join(dir, "src", "tasks", "a.ts"), "export const a = 1;\r\nexport const b = 2;\r\n");
+  writeFileSync(join(dir, "src", "notes.md"), "not code");
+  assert.equal(sourceSha256(dir), before, "CRLF and a non-.ts file change nothing");
+  writeFileSync(join(dir, "src", "tasks", "a.ts"), "export const a = 1;\nexport const b = 3;\n");
+  assert.notEqual(sourceSha256(dir), before, "an edit to a helper changes the hash");
+  assert.match(sourceSha256(root), /^[0-9a-f]{64}$/);
+});

@@ -2,7 +2,7 @@
 // through the same episode runner, in this process, on the same seeds. Nothing is cached between
 // runs: a table always comes from baselines executed alongside whatever else is in the run.
 
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { BENCH, type Agent, type Environment } from "./agent.ts";
 import { runEpisode, type EpisodeRow } from "./episode.ts";
@@ -35,6 +35,12 @@ export interface RunRecord {
   manifest_sha256: string;
   prereg_sha256: string;
   spiral_commit: string;
+  /**
+   * SHA-256 of the bench's own code when the run started (`sourceSha256`). An agent id binds a
+   * skill's `run` source but not the helpers it imports; this binds them all. Absent from records
+   * written before 2026-10-30.
+   */
+  source_sha256?: string;
   node: string;
   seeds: number[];
   agents: Array<{ id: string; privileged: boolean; baseline: boolean; details?: Json }>;
@@ -62,6 +68,28 @@ export interface RunOptions {
 
 export const PREREG_PATH = "prereg/v0.md";
 
+/** The directories whose TypeScript is the bench's code, hashed into every run record. */
+export const SOURCE_DIRS = ["src", "scripts"] as const;
+
+/**
+ * SHA-256 over every `.ts` file under SOURCE_DIRS, tests included: each file's path, relative
+ * with forward slashes and in sorted order, then the SHA-256 of its text with CRLF normalized to
+ * LF, so the hash is the same on every platform and checkout.
+ */
+export function sourceSha256(root: string): string {
+  const files: string[] = [];
+  const walk = (dir: string): void => {
+    for (const entry of readdirSync(join(root, dir), { withFileTypes: true })) {
+      const rel = `${dir}/${entry.name}`;
+      if (entry.isDirectory()) walk(rel);
+      else if (entry.isFile() && entry.name.endsWith(".ts")) files.push(rel);
+    }
+  };
+  for (const dir of SOURCE_DIRS) walk(dir);
+  files.sort();
+  return sha256(files.map((f) => `${f}\n${sha256(readFileSync(join(root, f), "utf8").replace(/\r\n/g, "\n"))}\n`).join(""));
+}
+
 export async function executeRun(options: RunOptions): Promise<RunRecord> {
   const { root, manifest } = options;
   // Refuse to score against any fixture, model file, or config whose hash does not match.
@@ -69,6 +97,8 @@ export async function executeRun(options: RunOptions): Promise<RunRecord> {
   // The preregistration in force when the run starts is the one the run is bound to. A long run
   // must not pick up an amendment appended while it was in progress.
   const preregSha256 = sha256(readFileSync(join(root, PREREG_PATH)));
+  // Likewise the code: hashed at the start, so an edit during a run cannot change what it is bound to.
+  const sourceHash = sourceSha256(root);
   const seeds = [...options.seeds].sort((a, b) => a - b);
   if (new Set(seeds).size !== seeds.length) throw new Error("seed set contains duplicates");
   const agents = [...options.baselines, ...(options.agents ?? [])];
@@ -92,6 +122,7 @@ export async function executeRun(options: RunOptions): Promise<RunRecord> {
     manifest_sha256: manifestHash(manifest),
     prereg_sha256: preregSha256,
     spiral_commit: manifest.spiral.commit,
+    source_sha256: sourceHash,
     node: process.version,
     seeds,
     agents: agents.map((a) => ({ id: a.id, privileged: a.privileged === true, baseline: baselineIds.has(a.id), ...(a.describe ? { details: a.describe() } : {}) })),

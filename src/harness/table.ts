@@ -120,6 +120,7 @@ export function renderTable(record: RunRecord, spec: ReportSpec): string {
   out.push(`| Manifest SHA-256 | \`${record.manifest_sha256}\` |`);
   out.push(`| Preregistration SHA-256 | \`${record.prereg_sha256}\` |`);
   out.push(`| Spiral commit | \`${record.spiral_commit}\` |`);
+  if (record.source_sha256) out.push(`| Source SHA-256 | \`${record.source_sha256}\` |`);
   out.push(`| Node | ${record.node} |`, "");
   out.push(`Intervals are two-sided 95% Student-t intervals over seed clusters. The normalized gain is Σ(policy − floor) / Σ(ceiling − floor) over seeds with a delete-one-cluster jackknife interval, clipped to [${f1(CLIP[0])}, ${f1(CLIP[1])}]. Each task is reported on its own; there is no composite score.`, "");
 

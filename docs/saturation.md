@@ -116,6 +116,28 @@ What each step found:
 
 So in family 7 the skill reaches its own level only where the model never stops early: on `bursty`, in both greedy runs. Elsewhere what is left is the model's rule that scarce proofs mean stop. Greedy decoding is part of the agent's identity, like any sampling setting, and is reported as a separate agent.
 
+## Confirmatory results, families 5 and 7 (seeds 1000 to 1031)
+
+Amendments 7 and 8 fixed four agents before these runs, all with thinking off: each family bare, family 5 with `bond_offer`, and family 7 with `schedule_after_proof`, greedy, with one call per turn. All four ran on 2026-10-30 against the same source (`source_sha256` `75674790917c…`), and every calibration gate passed. The agent − reference contrasts are adjusted for three comparisons. Details and intervals are in docs/tasks.md §6.1 and §8.6.
+
+| Agent | Skill called | Result reaching the harness | Normalized gain | Agent − reference, adjusted |
+|---|---|---|---|---|
+| family 5 bare (`2293827142dd`) | — | the prompt's example in 95 of 96 | −0.13 / 0.33 / 0.01 | one negative (`fast`), two inconclusive |
+| family 5 `bond_offer` (`6efb099f3322`) | 96 of 96, first turn | 77 sent by reference, 17 copied, 2 malformed then the example | 0.96 / 0.96 / 0.95 | positive on `slow` and `strict`, inconclusive on `fast` |
+| family 7 bare (`910e2b21cafc`) | — | 83% of claims forfeited; 45 early `commit`s, 24 waits to the horizon | −0.04 / −0.01 / −0.05 | all three negative |
+| family 7 `schedule_after_proof`, greedy (`4defdd7582fd`) | all 2,058 ordinary turns; 1,573 of 1,607 after a proof | 34 early `commit`s, each on a turn without a call | 0.95 / 0.18 / 0.92 | positive on `bursty`, negative on `few_proofs`, inconclusive on `steady` |
+
+Gains are for `fast` / `slow` / `strict` in family 5 and for `bursty` / `few_proofs` / `steady` in family 7. In family 5 the reference is `plug_in`; in family 7 it is `fixed_interval`.
+
+What the confirmatory block says:
+
+- **Development predicted it.** Every number the eight development seeds showed held on the 32 confirmatory seeds, unlike family 6, where development's 8 of 8 call rate fell to 24 of 32.
+- **Family 5 with the skill: the skill is the bound.** On `fast` the skill's own level is not separable from `plug_in` after adjustment: `half_rate` − `plug_in` is +0.25 (+0.03 to +0.47) before it. So the inconclusive `fast` contrast is the skill's margin, not the model's.
+- **Family 5 bare: a sound but expensive copy.** It offers the safe, expensive end of the grid. That offer is never rejected, so on `slow` the bare agent comes within 0.07 of the reference.
+- **Family 7 with the skill: one remaining failure.** The model's own stop rule. Right after a proof, with two or three proofs left, it ends the episode instead of calling the skill: in every `few_proofs` episode, at block 84 to 120, as on development seeds.
+- **Family 7 with the skill: where it does not stop, it beats the reference.** On `bursty` nothing stopped, and the agent beats `fixed_interval`, +0.03 (+0.01 to +0.05). With family 5's `slow` and `strict`, these are the first agent − reference contrasts the bench has found positive for an LLM, and in all three what beats the reference is the skill's procedure, carried through by the model.
+- **Family 7 bare: no strategy.** It has none that survives the horizon. It ends early, waits to the end, or proves one claim at a time until its proofs run out.
+
 ## Order of work
 
 1. Done (2026-10-07): the skill loop in `src/agents/chat.ts`, the skills in `src/agents/skills.ts`, a netting prompt in `src/tasks/netting/prompt.ts`, and `scripts/run_netting_agent.ts` with `--skills`. Tests cover the loop, the cap, the identity binding, error returns, and that a model which echoes `min_cost_flow` scores the ceiling.

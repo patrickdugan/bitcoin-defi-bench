@@ -57,13 +57,13 @@ Rails are the paper's object classes (§2.1), with two classes added on review o
 | Operator problem | Lightning (C) | Ark (V) | Ecash mint (M) | Statechain (S) | Escrow (E) | On-chain (U) | DLC (D) | Proof layer | Coordination layer (Nostr relays, bitchat mesh) |
 |---|---|---|---|---|---|---|---|---|---|
 | Place directional capital | **F1, run** | | | | | | | | |
-| Route under hidden state | **F2, built** §3 (development seeds) | | | | | | | | |
+| Route under hidden state | **F2, run** §3 (frozen; confirmatory baselines) | | | | | | | | |
 | Choose the settlement object and size it | **F3, run** (channel column) | **F3, run** (VTXO column) | F3 column, specced §4.8 | F3 column, specced §4.8 | | | | | |
 | Size the server's own channels | | **F4, built** as inbound resizing over the horizon, development seeds only §5.2 | F4 applies to the mint's gateway | | | | | | |
-| Bond a service | | | | | **F5, built** §6 (development seeds) | | | | |
+| Bond a service | | | | | **F5, run** §6 (frozen; confirmatory baselines and Bonsai 8B) | | | | |
 | Net positions toward a target settlement value | links as channels, later cell | | | links as statechain transfers, later cell | | links as on-chain settlement | D′ (UTXO-Ref) as `netting/utxoref_dlc`, specced §7.7 | **F6, run** §7 | |
-| Encode a contract's payouts and size its collateral | | | | | | | **F10, built** §13 (development seeds) | | |
-| Prove claims within a budget | | | | | | RAITO gives root_n | | **F7, built** §8 (development seeds) | |
+| Encode a contract's payouts and size its collateral | | | | | | | **F10, run** §13 (frozen; confirmatory baselines and Bonsai 8B) | | |
+| Prove claims within a budget | | | | | | RAITO gives root_n | | **F7, run** §8 (frozen; confirmatory baselines and Bonsai 8B) | |
 | Time funding against fee and demand | | | | | | F8, specced §9 | | | |
 | Protect the key that controls the capital | NWC budget at stake (NIP-47) | | NIP-60 wallet at stake | | | | | | **F9 `custody`, `custody_hot`, run** §10.2 |
 | Post where the audience reads | | | | | | | | | **F9 `publish`, run** §10.3 |
@@ -560,7 +560,7 @@ Contrasts `buffer_rule` − `static_pilot` and `oracle` − `buffer_rule` for ea
 
 **Development results (seeds 0 to 7).** In [results/v0-server-sizing-baselines-development.md](../results/v0-server-sizing-baselines-development.md). K41 to K43 pass. Normalized gain, floor `static_pilot`, ceiling `oracle`: `buffer_rule` 0.53 on `balanced`, 0.64 on `correlated`, 0.91 on `drift`; `random` −0.61, −0.18, and −0.42. `oracle` − `buffer_rule` is +0.25, +0.62, and +0.07 in ln cost. The static pilot margin fails receipts on `correlated`, where the pilot's peak is a poor guide to the evaluation stream's.
 
-## 6. Family 5: service bonding (frozen by Amendment 7; confirmatory baselines run)
+## 6. Family 5: service bonding (frozen by Amendment 7; confirmatory baselines and agents run)
 
 Derives from the paper §5. Task id: `bonding/<cell>`.
 
@@ -618,6 +618,21 @@ In every cell the window is 1,008 blocks, services honor 98.5% to 99.9% of 100 t
 With the `bond_offer` skill, which returns `half_rate`'s bond as the action (docs/saturation.md; [results/v0-bonding-bonsai-8b-nothink-bond_offer-development.md](../results/v0-bonding-bonsai-8b-nothink-bond_offer-development.md)), it called the skill on its first turn in all 24 episodes and offered the result in all 24: 22 sent by reference and 2 copied exactly. Every episode scored what `half_rate` scores: normalized 0.98, 0.94, and 0.96, and agent − `plug_in` +0.33, +0.42, and +0.38, with intervals still crossing zero at eight seeds. The skill's own level is now the bound; what is left above it is the margin `half_rate` pays against eight observations.
 
 **Frozen** by Amendment 7 of prereg/v0.md on 2026-10-30, which also fixes the two agents run on the confirmatory seeds.
+
+**Bonsai 8B on the confirmatory seeds (seeds 1000 to 1031),** the two agents Amendment 7 fixed, run on 2026-10-30. K51 and K52 pass in both runs. Contrasts are adjusted for three comparisons.
+
+- **Bare** (`2293827142dd`, [results/v0-bonding-bonsai-8b-nothink-confirmatory.md](../results/v0-bonding-bonsai-8b-nothink-confirmatory.md)). It offered the largest grid bond with the longest period in 95 of 96 episodes, the prompt's example again, and that offer is admitted every time. Normalized −0.13, 0.33, and 0.01 on `fast`, `slow`, and `strict`. Agent − `plug_in` is:
+  - −0.57 (−0.83 to −0.30) on `fast` (A1, negative);
+  - −0.07 (−0.37 to +0.23) on `slow` (A2, inconclusive);
+  - −0.27 (−0.60 to +0.05) on `strict` (A3, inconclusive).
+- **With `bond_offer`** (`6efb099f3322`, [results/v0-bonding-bonsai-8b-nothink-bond_offer-confirmatory.md](../results/v0-bonding-bonsai-8b-nothink-bond_offer-confirmatory.md)). It called the skill on its first turn in all 96 episodes and offered the result in 94: 77 sent by reference, 17 copied exactly. In the other two, seed 1003 of `fast` and of `strict`, its reply held the bond's arguments without the action envelope. That reply was rejected as malformed, and its second offer was the prompt's example. Normalized 0.96, 0.96, and 0.95, where `half_rate` scores 0.99, 0.96, and 0.97. Agent − `plug_in` is:
+  - +0.23 (−0.05 to +0.52) on `fast` (A1, inconclusive);
+  - +0.56 (+0.22 to +0.90) on `slow` (A2, positive);
+  - +0.48 (+0.14 to +0.82) on `strict` (A3, positive).
+
+On `fast` the bound is the skill's own. `half_rate` − `plug_in` there is +0.25 (+0.03 to +0.47) unadjusted. At the three-comparison critical value, that interval would also cross zero.
+
+Both runs reproduce development: 24 of 24 example offers bare, and 0.98, 0.94, and 0.96 normalized with the skill.
 
 ## 7. Family 6: position netting toward a target settlement value
 
@@ -695,7 +710,7 @@ Each later cell replaces the abstract links with an object class's own: a Lightn
 
 What changes against the abstract cell: a contract cannot be netted against another on chain, since each CET pays its own contract, so netting happens only among what the operator chooses to *roll*; a settled contract is a ghost link at the CET's miner fee plus the fee in basis points; a rolled contract costs collateral-time until the next period at a declared rate; and the plan gains a per-contract decision, `settle` or `roll`, beside the transfers. The oracle's band is a constraint the fixture respects: a settlement value outside it is not attestable and the cell does not generate one. Baselines: `settle_all` (floor), `roll_when_netting_helps` (reference: roll a contract when its counterparty nets against it next period), and the exact optimum over settle-or-roll choices by enumeration on small instances (ceiling). Parameters, all from UTXO-Ref's modules and marked as such: bucket cap 500 bps, dust 546 sats, refund CSV 576 blocks, maximum oracle move 500 bps. What is still needed from UTXO-Ref before the cell can freeze: the fee in basis points and the miner fee it assumes, and whether a rolled contract's collateral is re-bucketed.
 
-## 8. Family 7: proving claims within a budget (frozen by Amendment 8; confirmatory baselines run)
+## 8. Family 7: proving claims within a budget (frozen by Amendment 8; confirmatory baselines and agents run)
 
 Derives from the paper §4.2 to §4.4 and §7 item 3, and from the audit's §11.3 and the recovered project's out-of-memory failures. Task ids: `proof_budget/<cell>`.
 
@@ -812,6 +827,24 @@ In every cell the horizon is 144 blocks (one day), values are log-uniform from 2
    The prompt's stop line was reworded on 2026-10-09, after further runs showed every early stop came on the turn right after a proof emptied the queue. It said stopping loses "every claim not yet proven", which a reader can take to mean the pending claims. It now says "including every claim still to arrive", which is what the environment does. With the new line the bare model ([results/v0-proof-budget-bonsai-8b-nothink-reworded-development.md](../results/v0-proof-budget-bonsai-8b-nothink-reworded-development.md)) stopped early in 9 episodes of 24 instead of 18. It proved one claim at a time instead, the example's count, until its proofs ran out, so it stays at the floor: −0.11, −0.01, and −0.06 normalized.
 
    With the `schedule` skill, one skill call per turn, and greedy decoding ([results/v0-proof-budget-bonsai-8b-nothink-t0-schedule-development.md](../results/v0-proof-budget-bonsai-8b-nothink-t0-schedule-development.md)), it scored 0.95 on `bursty` with nothing forfeited, which is the skill's own level, and agent − `fixed_interval` +0.03 (−0.02 to +0.09). It scored 0.64 on `steady` and 0.06 on `few_proofs`, where the remaining early stops are, all on the turn after a proof. With a description that names that turn ([results/v0-proof-budget-bonsai-8b-nothink-t0-schedule_after_proof-development.md](../results/v0-proof-budget-bonsai-8b-nothink-t0-schedule_after_proof-development.md)) it scored 0.95, 0.18, and 0.74. Every `few_proofs` episode still stopped, right after a proof with 2 or 3 proofs left. The runs between, and what each changed, are in docs/saturation.md. On this evidence the turn after a proof is where the family's difficulty for a small model sits, and the vocabulary question above still stands. Whether a proof should also advance the block, which would remove that turn, is a design question for review. Today a second proof in the same block pays only when more than `max_batch` claims are pending, 512 in every cell, and no cell's arrivals come near that: at most about 80 in any 24 blocks on seed 0.
+
+   **On the confirmatory seeds (seeds 1000 to 1031),** the two agents Amendment 8 fixed, run on 2026-10-30. K71 to K73 pass in both runs. Contrasts are adjusted for three comparisons.
+
+   - **Bare** (`910e2b21cafc`, [results/v0-proof-budget-bonsai-8b-nothink-confirmatory.md](../results/v0-proof-budget-bonsai-8b-nothink-confirmatory.md)). It forfeited 83% of all claims (20,721 of 25,073) and sits at the floor: −0.04, −0.01, and −0.05 normalized on `bursty`, `few_proofs`, and `steady`. Agent − `fixed_interval` is −6.69, −7.74, and −7.82, all negative (A1 to A3).
+     - 45 of 96 episodes ended with `commit` before the last block, 42 of them on the turn right after a proof emptied the queue.
+     - 24 more ended on a single wait of 143 or 144 blocks, to the horizon.
+     - 58% of its `prove` actions asked for one claim. 348 of its 362 rejected actions asked to prove more claims than were pending.
+     - The model server dropped the connection three times during this run. Each retry replayed the logged replies (1,304 of 3,156), and the record notes it (prereg §9.1).
+   - **With `schedule_after_proof`, greedy, one call per turn** (`4defdd7582fd`, [results/v0-proof-budget-bonsai-8b-nothink-t0-schedule_after_proof-confirmatory.md](../results/v0-proof-budget-bonsai-8b-nothink-t0-schedule_after_proof-confirmatory.md)). It called the skill on all 2,058 ordinary turns and on 1,573 of the 1,607 turns right after a proof emptied the queue. Each of the 34 turns without a call was a `commit` before the last block:
+     - every `few_proofs` episode, at block 84 to 120, with 2 or 3 proofs left in 30 of 32 and with 4 and 5 left in the other two, which development had not shown;
+     - two `steady` episodes, at blocks 60 and 76, with 38 and 36 proofs left.
+
+     By cell:
+     - `bursty`: no episode stopped and nothing was forfeited. Agent − `fixed_interval` is +0.03 (+0.01 to +0.05) (A1, positive): the skill's own level, 0.95 normalized, above the reference.
+     - `few_proofs`: it forfeited 22% of claims. Agent − `fixed_interval` is −6.23 (−6.35 to −6.11) (A2, negative), 0.18 normalized.
+     - `steady`: it forfeited 3% of claims. Agent − `fixed_interval` is −0.46 (−1.26 to +0.34) (A3, inconclusive), 0.92 normalized.
+
+   Development gave 0.95, 0.18, and 0.74 for this agent, with the same stop rule. Its `steady` figure was lower only because 2 of its 8 seeds stopped early, against 2 of 32 here.
 
 ## 9. Family 8: timing funding against fee and demand (specified, not implemented)
 

@@ -293,7 +293,7 @@ The Spiral repository retains the sampler and the hidden-state generator in Pyth
 
 T1 was chosen. The calibration numbers were measured on samples of this snapshot, and six summary statistics do not pin down the structure that makes placement matter. The dataset is CC BY 4.0 (Valko and Marx Gómez), so the derived 64-node samples are committed as fixtures with attribution in `config/placement.json`; the raw snapshot is not committed. The bench's GML reader reproduces the statistics Spiral recorded for the snapshot exactly (15,100 nodes, 64,212 channels, 15 components, a 15,071-node giant component, maximum degree 2,293), and `scripts/build_fixtures.ts` refuses to build if it does not. The bench's samples are new draws: 64 to 525 edges across the 40 generated fixtures, against 63 to 366 in Spiral's 37.
 
-## 3. Family 2: routing under hidden state (built; development seeds only)
+## 3. Family 2: routing under hidden state (frozen by Amendment 6; confirmatory baselines run)
 
 Derives from the manuscript §9 and the audit §6–7. Task ids: `routing/<balance_model>/<regime>`.
 
@@ -349,6 +349,8 @@ Code in `src/tasks/routing/`; nine tasks, `routing/<balance_model>/<regime>` for
 ### 3.2 Development results (seeds 0 to 7)
 
 In [results/v0-routing-baselines-development.md](../results/v0-routing-baselines-development.md); the block runs in about ten seconds. K21 passes at +4.08 (+0.41 to +7.74), and K23 passes on all 72 episodes. K22 fails on development: +0.72 (−0.05 to +1.49). Eight seeds give a pooled interval about twice as wide as 32 would, and the oracle's edge over retries is small by construction, since it differs only on demands whose first three candidates all fail. The gate stands as written. Per task, retries add the most under polarized balances (+5.8 to +8.2) and the least under the balanced band (+1.0 to +2.4).
+
+**Confirmatory baselines (seeds 1000 to 1031).** In [results/v0-routing-baselines-confirmatory.md](../results/v0-routing-baselines-confirmatory.md). Every gate passes. K21 is +6.43 (+4.24 to +8.63), inside [2, 8] and near Spiral's +5.14. K22 is +1.34 (+0.55 to +2.12): it failed at eight development seeds and passes at 32, as the width argument above expected. K23 holds demand by demand on all 288 episodes. The family has no hypotheses beyond its gates (Amendment 6), so on this block the harness reproduces Spiral's routing effect, and an agent can be read against the retry wallet.
 
 ### 3.3 What remains
 
@@ -536,7 +538,7 @@ The missing `ArkServer.aggregateSteps` is no longer the obstacle. Family 3's per
 
 So the family as specified would score again what family 3 scores. The operator problem its specification gestures at, and family 3 does not pose, is **resizing during the horizon**: the server watches its aggregate flow, and at decision points it may lease more inbound, or release some, with a confirmation delay and a cost per resize, against failures and capital-time. That is the first family where the `blocks` budget would not be zero, as the specification anticipated. It needs decisions before it is built: the decision interval, the resize cost and delay, whether capacity can be released, and how to make the clairvoyant ceiling exact when failures change the position path, for instance by restricting it to plans that never fail. These are left for review.
 
-## 6. Family 5: service bonding (built; development seeds only)
+## 6. Family 5: service bonding (frozen by Amendment 7; confirmatory baselines run)
 
 Derives from the paper §5. Task id: `bonding/<cell>`.
 
@@ -586,6 +588,8 @@ Code in `src/tasks/bonding/`, config in `config/bonding.json`. Three tasks, `bon
 In every cell the window is 1,008 blocks, services honor 98.5% to 99.9% of 100 to 300 requests against a 95% threshold, the value at risk is 0.1 to 10 BTC, fee rates are 2 to 30 sat/vB, the bond's capital costs 10⁻⁶ a block (about 5% a year), bonds are 0.5 to 2 times the value at risk, and Δ runs from 6 to 432 blocks [all invented].
 
 **Development results (seeds 0 to 7).** In [results/v0-bonding-baselines-development.md](../results/v0-bonding-baselines-development.md). K51 and K52 pass. `plug_in` is admitted in 6, 5, and 6 of 8 seeds (`fast`, `slow`, `strict`) and `half_rate` in all 24; Spiral's rule is admitted in none. `oracle` − `plug_in` is +0.34, +0.50, and +0.41 in ln cost, almost all of it the plug-in's inadmissible offers, and `half_rate` closes all but 0.01 to 0.07 of it. Eight seeds leave every interval wide, because admission is all or nothing.
+
+**Confirmatory baselines (seeds 1000 to 1031).** In [results/v0-bonding-baselines-confirmatory.md](../results/v0-bonding-baselines-confirmatory.md). K51 and K52 pass. Adjusted for six comparisons, three of Amendment 7's hypotheses hold and three are inconclusive, with every point estimate positive. `oracle` − `plug_in` is +0.26 (−0.04 to +0.57) on `fast` (B1, inconclusive), +0.60 (+0.24 to +0.97) on `slow` (B2), and +0.52 (+0.16 to +0.88) on `strict` (B3). `plug_in` − `random` is +0.47 (+0.03 to +0.91) on `fast` (B4, the one development marked most at risk), +0.40 (−0.08 to +0.88) on `slow` (B5, inconclusive), and +0.28 (−0.22 to +0.79) on `strict` (B6, inconclusive). The plug-in is admitted in 27, 19, and 21 of 32 seeds; `half_rate` is admitted in all 96, scores 0.99, 0.96, and 0.97 normalized, and beats the plug-in by +0.25, +0.56, and +0.50. Admission is all or nothing per seed, so even 32 seeds leave the plug-in's contrasts wide.
 
 **Bonsai 8B, thinking off, on the development seeds** ([results/v0-bonding-bonsai-8b-nothink-development.md](../results/v0-bonding-bonsai-8b-nothink-development.md)). It offered the prompt's example, the largest bond with the longest period, in all 24 episodes. That example is admitted every time: it is the safe, expensive end of the grid. Agent − `plug_in` is −0.52 (−1.15 to +0.11), −0.24 (−0.90 to +0.41), and −0.35 (−0.93 to +0.23) on `fast`, `slow`, and `strict`. A copy here is never penalized as inadmissible, unlike family 10's example, so it lands nearer the reference than a copy does elsewhere.
 
@@ -669,7 +673,7 @@ Each later cell replaces the abstract links with an object class's own: a Lightn
 
 What changes against the abstract cell: a contract cannot be netted against another on chain, since each CET pays its own contract, so netting happens only among what the operator chooses to *roll*; a settled contract is a ghost link at the CET's miner fee plus the fee in basis points; a rolled contract costs collateral-time until the next period at a declared rate; and the plan gains a per-contract decision, `settle` or `roll`, beside the transfers. The oracle's band is a constraint the fixture respects: a settlement value outside it is not attestable and the cell does not generate one. Baselines: `settle_all` (floor), `roll_when_netting_helps` (reference: roll a contract when its counterparty nets against it next period), and the exact optimum over settle-or-roll choices by enumeration on small instances (ceiling). Parameters, all from UTXO-Ref's modules and marked as such: bucket cap 500 bps, dust 546 sats, refund CSV 576 blocks, maximum oracle move 500 bps. What is still needed from UTXO-Ref before the cell can freeze: the fee in basis points and the miner fee it assumes, and whether a rolled contract's collateral is re-bucketed.
 
-## 8. Family 7: proving claims within a budget (built; development seeds only)
+## 8. Family 7: proving claims within a budget (frozen by Amendment 8; confirmatory baselines run)
 
 Derives from the paper §4.2 to §4.4 and §7 item 3, and from the audit's §11.3 and the recovered project's out-of-memory failures. Task ids: `proof_budget/<cell>`.
 
@@ -774,6 +778,8 @@ Code in `src/tasks/proof_budget/`, config in `config/proof_budget.json`. Three t
 In every cell the horizon is 144 blocks (one day), values are log-uniform from 2,000 to 200,000 sats, the prover costs 5 sats a second, staleness is 50 ppm of value a block, and the memory ceiling is 64 GiB [all invented].
 
 **Development results (seeds 0 to 7).** In [results/v0-proof-budget-baselines-development.md](../results/v0-proof-budget-baselines-development.md). K71 to K73 pass. The floor exhausts its proofs and forfeits most claims, so normalized gains near 1 say little, and the informative contrast is against `fixed_interval`. `optimal_batching` − `fixed_interval` is +0.17 (+0.15 to +0.19) on `steady`, +0.38 (+0.34 to +0.41) on `bursty`, and +0.18 (+0.14 to +0.21) on `few_proofs`. The adaptive `threshold` closes about half the bursty gap (+0.18) but forfeits badly when proofs are scarce, because it ignores the proof budget.
+
+**Confirmatory baselines (seeds 1000 to 1031).** In [results/v0-proof-budget-baselines-confirmatory.md](../results/v0-proof-budget-baselines-confirmatory.md). K71 to K73 pass, and all five of Amendment 8's hypotheses hold, adjusted for five comparisons. `optimal_batching` − `fixed_interval` is +0.18 (+0.17 to +0.19) on `steady` (P1), +0.35 (+0.32 to +0.37) on `bursty` (P2), and +0.18 (+0.16 to +0.20) on `few_proofs` (P3). `threshold` − `fixed_interval` is +0.16 (+0.14 to +0.18) on `bursty` (P4) and −6.75 (−6.83 to −6.67) on `few_proofs` (P5). `fixed_interval` scores 0.95, 0.98, and 0.98 normalized on `bursty`, `few_proofs`, and `steady`; `threshold` 0.97, 0.12, and 0.98.
 
 **What remains.**
 

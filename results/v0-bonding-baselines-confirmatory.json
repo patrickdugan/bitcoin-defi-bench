@@ -1,0 +1,8768 @@
+{
+ "bench": "bitcoin-defi-bench/v0",
+ "block": "confirmatory",
+ "manifest_sha256": "82b3aed4e46217b1a3c7c29f3144d3e2b7e33e7d5bf3a88d1666762b19e8a1b4",
+ "prereg_sha256": "51e6bcf29780121bc6c31e745a134b4f5b046de76c6a2af65705a379d521ef0e",
+ "spiral_commit": "9824c30ad402cc9bca768eca27d176e0e8788db5",
+ "node": "v24.19.0",
+ "seeds": [
+  1000,
+  1001,
+  1002,
+  1003,
+  1004,
+  1005,
+  1006,
+  1007,
+  1008,
+  1009,
+  1010,
+  1011,
+  1012,
+  1013,
+  1014,
+  1015,
+  1016,
+  1017,
+  1018,
+  1019,
+  1020,
+  1021,
+  1022,
+  1023,
+  1024,
+  1025,
+  1026,
+  1027,
+  1028,
+  1029,
+  1030,
+  1031
+ ],
+ "agents": [
+  {
+   "id": "random",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "ghost_required_bond",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "plug_in",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "half_rate",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "oracle",
+   "privileged": true,
+   "baseline": true
+  }
+ ],
+ "tasks": [
+  {
+   "task": "bonding/fast",
+   "unit": "−ln of the bond's expected cost in sats (Assert fee, capital locked, bond slashed); a bond the counterparty would not admit, or none, is scored at twice the worst admissible grid cost",
+   "band": 0.05,
+   "floor": "random",
+   "ceiling": "oracle",
+   "reference": "plug_in",
+   "metrics": [
+    "cost_sats",
+    "admitted",
+    "delta_blocks",
+    "capital_sats",
+    "assert_fee_sats",
+    "slashed_sats"
+   ]
+  },
+  {
+   "task": "bonding/slow",
+   "unit": "−ln of the bond's expected cost in sats (Assert fee, capital locked, bond slashed); a bond the counterparty would not admit, or none, is scored at twice the worst admissible grid cost",
+   "band": 0.05,
+   "floor": "random",
+   "ceiling": "oracle",
+   "reference": "plug_in",
+   "metrics": [
+    "cost_sats",
+    "admitted",
+    "delta_blocks",
+    "capital_sats",
+    "assert_fee_sats",
+    "slashed_sats"
+   ]
+  },
+  {
+   "task": "bonding/strict",
+   "unit": "−ln of the bond's expected cost in sats (Assert fee, capital locked, bond slashed); a bond the counterparty would not admit, or none, is scored at twice the worst admissible grid cost",
+   "band": 0.05,
+   "floor": "random",
+   "ceiling": "oracle",
+   "reference": "plug_in",
+   "metrics": [
+    "cost_sats",
+    "admitted",
+    "delta_blocks",
+    "capital_sats",
+    "assert_fee_sats",
+    "slashed_sats"
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "task": "bonding/fast",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "random",
+   "value": -14.359950414130612,
+   "metrics": {
+    "cost_sats": 1723642.6241325783,
+    "admitted": 1,
+    "bond_over_value": 1.5,
+    "delta_blocks": 432,
+    "capital_sats": 1677736.668622953,
+    "assert_fee_sats": 45600,
+    "slashed_sats": 305.9555096253374
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -15.334143798357871,
+   "metrics": {
+    "cost_sats": 4565980.331020209,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -13.644400588494445,
+   "metrics": {
+    "cost_sats": 842728.8939260786,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 18,
+    "capital_sats": 796924.9768589375,
+    "assert_fee_sats": 45600,
+    "slashed_sats": 203.91706714102781
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -13.66085484806933,
+   "metrics": {
+    "cost_sats": 856710.0835187429,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 810906.1131875566,
+    "assert_fee_sats": 45600,
+    "slashed_sats": 203.97033118630694
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -13.638854030952691,
+   "metrics": {
+    "cost_sats": 838067.5886728659,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 792264.5980812764,
+    "assert_fee_sats": 45600,
+    "slashed_sats": 202.99059158946562
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.588831920085783,
+   "metrics": {
+    "cost_sats": 797176.9235982627,
+    "admitted": 0,
+    "bond_over_value": 0.75,
+    "delta_blocks": 72,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.588831920085783,
+   "metrics": {
+    "cost_sats": 797176.9235982627,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.880590469051052,
+   "metrics": {
+    "cost_sats": 144435.81038496405,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 139056.59407695784,
+    "assert_fee_sats": 4800,
+    "slashed_sats": 579.2163080062156
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.886238182307364,
+   "metrics": {
+    "cost_sats": 145253.85027894378,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 18,
+    "capital_sats": 139874.57060132624,
+    "assert_fee_sats": 4800,
+    "slashed_sats": 579.2796776175516
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.880590469051052,
+   "metrics": {
+    "cost_sats": 144435.81038496405,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 139056.59407695784,
+    "assert_fee_sats": 4800,
+    "slashed_sats": 579.2163080062156
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "random",
+   "value": -14.48287994835073,
+   "metrics": {
+    "cost_sats": 1949103.2409934585,
+    "admitted": 1,
+    "bond_over_value": 2,
+    "delta_blocks": 432,
+    "capital_sats": 1927486.0726212778,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 17.168372180760382
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -15.176027128910675,
+   "metrics": {
+    "cost_sats": 3898206.481986917,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -13.470588420907363,
+   "metrics": {
+    "cost_sats": 708275.4997357739,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 18,
+    "capital_sats": 686666.9158644917,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 8.58387128216535
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -13.487454012917224,
+   "metrics": {
+    "cost_sats": 720322.2878960607,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 698713.7037099766,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 8.584186084049193
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -13.464902732534885,
+   "metrics": {
+    "cost_sats": 704259.8925257496,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 682651.3199159831,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 8.572609766508112
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "random",
+   "value": -11.888675224488022,
+   "metrics": {
+    "cost_sats": 145608.27173357978,
+    "admitted": 1,
+    "bond_over_value": 1.5,
+    "delta_blocks": 12,
+    "capital_sats": 92808.26999998209,
+    "assert_fee_sats": 52800,
+    "slashed_sats": 0.0017335976857008205
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.028043565190599,
+   "metrics": {
+    "cost_sats": 454995.8446211425,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.649832738005369,
+   "metrics": {
+    "cost_sats": 114672.18115571985,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 61872.17999998807,
+    "assert_fee_sats": 52800,
+    "slashed_sats": 0.0011557317904672135
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.65300157673479,
+   "metrics": {
+    "cost_sats": 115036.13515576391,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 18,
+    "capital_sats": 62236.133999981124,
+    "assert_fee_sats": 52800,
+    "slashed_sats": 0.0011557827852915592
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.649832738005369,
+   "metrics": {
+    "cost_sats": 114672.18115571985,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 61872.17999998807,
+    "assert_fee_sats": 52800,
+    "slashed_sats": 0.0011557317904672135
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "random",
+   "value": -11.696311921746757,
+   "metrics": {
+    "cost_sats": 120127.85606278575,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 24,
+    "capital_sats": 56124.5915346973,
+    "assert_fee_sats": 28800,
+    "slashed_sats": 35203.26452808844
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.145389312924445,
+   "metrics": {
+    "cost_sats": 511646.539420646,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.693015605909487,
+   "metrics": {
+    "cost_sats": 119732.52862834932,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 18,
+    "capital_sats": 55798.492648564745,
+    "assert_fee_sats": 28800,
+    "slashed_sats": 35134.035979784574
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.701800479221912,
+   "metrics": {
+    "cost_sats": 120788.99740157343,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 56776.78900742355,
+    "assert_fee_sats": 28800,
+    "slashed_sats": 35212.208394149886
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.693015605909487,
+   "metrics": {
+    "cost_sats": 119732.52862834932,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 18,
+    "capital_sats": 55798.492648564745,
+    "assert_fee_sats": 28800,
+    "slashed_sats": 35134.035979784574
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.305464665179466,
+   "metrics": {
+    "cost_sats": 220899.8400179288,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 72,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -12.305464665179466,
+   "metrics": {
+    "cost_sats": 220899.8400179288,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.28247629252951,
+   "metrics": {
+    "cost_sats": 79417.68000447794,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 17017.679999999957,
+    "assert_fee_sats": 62400,
+    "slashed_sats": 0.000004477977391157774
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.284994070260314,
+   "metrics": {
+    "cost_sats": 79617.88800448402,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 24,
+    "capital_sats": 17217.8879999999,
+    "assert_fee_sats": 62400,
+    "slashed_sats": 0.000004484120966980602
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.28247629252951,
+   "metrics": {
+    "cost_sats": 79417.68000447794,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 17017.679999999957,
+    "assert_fee_sats": 62400,
+    "slashed_sats": 0.000004477977391157774
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "random",
+   "value": -11.967640839760175,
+   "metrics": {
+    "cost_sats": 157572.48281918006,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 288,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -11.967640839760175,
+   "metrics": {
+    "cost_sats": 157572.48281918006,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -10.6782944566352,
+   "metrics": {
+    "cost_sats": 43403.46070409739,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 19403.459999993105,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 0.0007041042876757957
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -10.688758311645213,
+   "metrics": {
+    "cost_sats": 43860.01270507423,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 19860.011999976185,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 0.0007050980503381151
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -10.6782944566352,
+   "metrics": {
+    "cost_sats": 43403.46070409739,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 19403.459999993105,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 0.0007041042876757957
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "random",
+   "value": -14.42722213666757,
+   "metrics": {
+    "cost_sats": 1843584.1392807546,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 36,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -14.42722213666757,
+   "metrics": {
+    "cost_sats": 1843584.1392807546,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -14.42722213666757,
+   "metrics": {
+    "cost_sats": 1843584.1392807546,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 6,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.773711273038378,
+   "metrics": {
+    "cost_sats": 352819.28807628155,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 312014.9399577828,
+    "assert_fee_sats": 40800,
+    "slashed_sats": 4.348118498741896
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.773711273038378,
+   "metrics": {
+    "cost_sats": 352819.28807628155,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 312014.9399577828,
+    "assert_fee_sats": 40800,
+    "slashed_sats": 4.348118498741896
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.975772330909738,
+   "metrics": {
+    "cost_sats": 431823.548357174,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 366835.52333389857,
+    "assert_fee_sats": 48000,
+    "slashed_sats": 16988.025023275404
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -14.546846997566876,
+   "metrics": {
+    "cost_sats": 2077855.6815230646,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.908933959009515,
+   "metrics": {
+    "cost_sats": 403904.5873033403,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 338925.4303190238,
+    "assert_fee_sats": 48000,
+    "slashed_sats": 16979.15698431653
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.918778818725077,
+   "metrics": {
+    "cost_sats": 407900.60916623875,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 24,
+    "capital_sats": 342912.5864716979,
+    "assert_fee_sats": 48000,
+    "slashed_sats": 16988.022694540825
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.908933959009515,
+   "metrics": {
+    "cost_sats": 403904.5873033403,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 338925.4303190238,
+    "assert_fee_sats": 48000,
+    "slashed_sats": 16979.15698431653
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.950216488344546,
+   "metrics": {
+    "cost_sats": 1144200.2603375458,
+    "admitted": 0,
+    "bond_over_value": 0.75,
+    "delta_blocks": 18,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.950216488344546,
+   "metrics": {
+    "cost_sats": 1144200.2603375458,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.32413677359509,
+   "metrics": {
+    "cost_sats": 225063.25468170864,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 188912.1341225555,
+    "assert_fee_sats": 33600,
+    "slashed_sats": 2551.1205591531357
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.329064334296582,
+   "metrics": {
+    "cost_sats": 226175.00438839215,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 18,
+    "capital_sats": 190023.36681314354,
+    "assert_fee_sats": 33600,
+    "slashed_sats": 2551.6375752486174
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.32413677359509,
+   "metrics": {
+    "cost_sats": 225063.25468170864,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 188912.1341225555,
+    "assert_fee_sats": 33600,
+    "slashed_sats": 2551.1205591531357
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.607471322275526,
+   "metrics": {
+    "cost_sats": 298782.54761207796,
+    "admitted": 1,
+    "bond_over_value": 1.25,
+    "delta_blocks": 72,
+    "capital_sats": 245306.9357403764,
+    "assert_fee_sats": 50400,
+    "slashed_sats": 3075.6118717016043
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.961584338066716,
+   "metrics": {
+    "cost_sats": 1157281.5692537734,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.380859127969531,
+   "metrics": {
+    "cost_sats": 238198.37835568757,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 185343.1562146341,
+    "assert_fee_sats": 50400,
+    "slashed_sats": 2455.2221410534617
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.38999341350486,
+   "metrics": {
+    "cost_sats": 240384.11774420677,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 24,
+    "capital_sats": 187523.63469578838,
+    "assert_fee_sats": 50400,
+    "slashed_sats": 2460.4830484183885
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.380859127969531,
+   "metrics": {
+    "cost_sats": 238198.37835568757,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 185343.1562146341,
+    "assert_fee_sats": 50400,
+    "slashed_sats": 2455.2221410534617
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.210385172402404,
+   "metrics": {
+    "cost_sats": 200864.36783959632,
+    "admitted": 1,
+    "bond_over_value": 1.5,
+    "delta_blocks": 288,
+    "capital_sats": 189236.15583785856,
+    "assert_fee_sats": 9600,
+    "slashed_sats": 2028.2120017377736
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.279892935653713,
+   "metrics": {
+    "cost_sats": 585307.6794055148,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -13.279892935653713,
+   "metrics": {
+    "cost_sats": 585307.6794055148,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 6,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.61043776413383,
+   "metrics": {
+    "cost_sats": 110242.50003853823,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 99290.86641576304,
+    "assert_fee_sats": 9600,
+    "slashed_sats": 1351.6336227751838
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.61043776413383,
+   "metrics": {
+    "cost_sats": 110242.50003853823,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 99290.86641576304,
+    "assert_fee_sats": 9600,
+    "slashed_sats": 1351.6336227751838
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.396499723391482,
+   "metrics": {
+    "cost_sats": 657697.0693624414,
+    "admitted": 1,
+    "bond_over_value": 1.25,
+    "delta_blocks": 72,
+    "capital_sats": 583395.5991193939,
+    "assert_fee_sats": 14400,
+    "slashed_sats": 59901.47024304752
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -14.812302256359743,
+   "metrics": {
+    "cost_sats": 2709574.7354660924,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -13.128546318167803,
+   "metrics": {
+    "cost_sats": 503101.0472985211,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 440790.47455686005,
+    "assert_fee_sats": 14400,
+    "slashed_sats": 47910.57274166107
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -13.138820907497543,
+   "metrics": {
+    "cost_sats": 508296.8506147501,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 24,
+    "capital_sats": 445975.6755119714,
+    "assert_fee_sats": 14400,
+    "slashed_sats": 47921.17510277871
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -13.128546318167803,
+   "metrics": {
+    "cost_sats": 503101.0472985211,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 440790.47455686005,
+    "assert_fee_sats": 14400,
+    "slashed_sats": 47910.57274166107
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.936376872886791,
+   "metrics": {
+    "cost_sats": 415142.40000014036,
+    "admitted": 0,
+    "bond_over_value": 0.75,
+    "delta_blocks": 6,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -12.936376872886791,
+   "metrics": {
+    "cost_sats": 415142.40000014036,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.396557927024498,
+   "metrics": {
+    "cost_sats": 89014.80000003507,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 65014.799999999996,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 3.507943709971246e-8
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.413597384201877,
+   "metrics": {
+    "cost_sats": 90544.56000003511,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 66544.55999999998,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 3.512677643038442e-8
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.396557927024498,
+   "metrics": {
+    "cost_sats": 89014.80000003507,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 65014.799999999996,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 3.507943709971246e-8
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.674332428834976,
+   "metrics": {
+    "cost_sats": 868334.622230529,
+    "admitted": 1,
+    "bond_over_value": 1.5,
+    "delta_blocks": 72,
+    "capital_sats": 803534.5799970387,
+    "assert_fee_sats": 64800,
+    "slashed_sats": 0.04223349022542341
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -14.909650176664597,
+   "metrics": {
+    "cost_sats": 2986611.9525741995,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -14.909650176664597,
+   "metrics": {
+    "cost_sats": 2986611.9525741995,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 6,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -13.259871062859444,
+   "metrics": {
+    "cost_sats": 573705.262155135,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 18,
+    "capital_sats": 508905.23399954615,
+    "assert_fee_sats": 64800,
+    "slashed_sats": 0.028155588841745526
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -13.254670134729173,
+   "metrics": {
+    "cost_sats": 570729.2081486401,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 505929.1799997151,
+    "assert_fee_sats": 64800,
+    "slashed_sats": 0.028148924957015684
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "random",
+   "value": -14.062817941284452,
+   "metrics": {
+    "cost_sats": 1280572.6789691215,
+    "admitted": 0,
+    "bond_over_value": 0.75,
+    "delta_blocks": 216,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -14.062817941284452,
+   "metrics": {
+    "cost_sats": 1280572.6789691215,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.429291259213763,
+   "metrics": {
+    "cost_sats": 250018.76629665747,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 214016.39997699525,
+    "assert_fee_sats": 36000,
+    "slashed_sats": 2.3663196622132054
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.434313943543422,
+   "metrics": {
+    "cost_sats": 251277.6905792795,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 18,
+    "capital_sats": 215275.31996277627,
+    "assert_fee_sats": 36000,
+    "slashed_sats": 2.3706165032370925
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.429291259213763,
+   "metrics": {
+    "cost_sats": 250018.76629665747,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 214016.39997699525,
+    "assert_fee_sats": 36000,
+    "slashed_sats": 2.3663196622132054
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.845262773445054,
+   "metrics": {
+    "cost_sats": 378989.11883140926,
+    "admitted": 1,
+    "bond_over_value": 2,
+    "delta_blocks": 36,
+    "capital_sats": 324690.21261602506,
+    "assert_fee_sats": 52800,
+    "slashed_sats": 1498.9062153841821
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.819795168426511,
+   "metrics": {
+    "cost_sats": 1004293.802529096,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.265107552756326,
+   "metrics": {
+    "cost_sats": 212162.45402153564,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 158613.05229485017,
+    "assert_fee_sats": 52800,
+    "slashed_sats": 749.4017266854568
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.269495788446138,
+   "metrics": {
+    "cost_sats": 213095.51863071544,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 18,
+    "capital_sats": 159546.06579816827,
+    "assert_fee_sats": 52800,
+    "slashed_sats": 749.4528325471513
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.265107552756326,
+   "metrics": {
+    "cost_sats": 212162.45402153564,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 158613.05229485017,
+    "assert_fee_sats": 52800,
+    "slashed_sats": 749.4017266854568
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.060644002474952,
+   "metrics": {
+    "cost_sats": 470073.3392520624,
+    "admitted": 1,
+    "bond_over_value": 2,
+    "delta_blocks": 48,
+    "capital_sats": 256740.79455682743,
+    "assert_fee_sats": 19200,
+    "slashed_sats": 194132.54469523494
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.934825310933322,
+   "metrics": {
+    "cost_sats": 1126724.502364648,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.39548234129761,
+   "metrics": {
+    "cost_sats": 241707.19662941666,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 24,
+    "capital_sats": 125455.11883865569,
+    "assert_fee_sats": 19200,
+    "slashed_sats": 97052.07779076096
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.407529407703775,
+   "metrics": {
+    "cost_sats": 244636.6696260312,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 128370.39727841371,
+    "assert_fee_sats": 19200,
+    "slashed_sats": 97066.27234761747
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.39193160118376,
+   "metrics": {
+    "cost_sats": 240850.47908132733,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 18,
+    "capital_sats": 124726.29896303015,
+    "assert_fee_sats": 19200,
+    "slashed_sats": 96924.18011829718
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.861782157962834,
+   "metrics": {
+    "cost_sats": 385301.7829215351,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 320501.7359984147,
+    "assert_fee_sats": 64800,
+    "slashed_sats": 0.04692312040985997
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -14.456250996911583,
+   "metrics": {
+    "cost_sats": 1897885.6276118143,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.842474662653618,
+   "metrics": {
+    "cost_sats": 377933.92685897124,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 313133.8799995408,
+    "assert_fee_sats": 64800,
+    "slashed_sats": 0.0468594304160341
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.852175007089684,
+   "metrics": {
+    "cost_sats": 381617.8549220507,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 24,
+    "capital_sats": 316817.8079989777,
+    "assert_fee_sats": 64800,
+    "slashed_sats": 0.04692307301105394
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.842474662653618,
+   "metrics": {
+    "cost_sats": 377933.92685897124,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 313133.8799995408,
+    "assert_fee_sats": 64800,
+    "slashed_sats": 0.0468594304160341
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "random",
+   "value": -14.458492165922424,
+   "metrics": {
+    "cost_sats": 1902143.8800158282,
+    "admitted": 0,
+    "bond_over_value": 0.75,
+    "delta_blocks": 288,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -14.458492165922424,
+   "metrics": {
+    "cost_sats": 1902143.8800158282,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.792382188375225,
+   "metrics": {
+    "cost_sats": 359468.62860627467,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 307857.13416477374,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 30011.49444150093
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.797710272522751,
+   "metrics": {
+    "cost_sats": 361389.0191660555,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 18,
+    "capital_sats": 309667.87957120436,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 30121.1395948511
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.792382188375225,
+   "metrics": {
+    "cost_sats": 359468.62860627467,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 307857.13416477374,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 30011.49444150093
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.704043766707203,
+   "metrics": {
+    "cost_sats": 44535.583004430286,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 22933.7998763504,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 1.7831280798840596
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -12.016851719430115,
+   "metrics": {
+    "cost_sats": 165520.7294500167,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -10.675017754544038,
+   "metrics": {
+    "cost_sats": 43261.47324598574,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 21659.699983321752,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 1.773262663987019
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -10.680890929759542,
+   "metrics": {
+    "cost_sats": 43516.3030559905,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 24,
+    "capital_sats": 21914.519961940492,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 1.7830940500104526
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -10.675017754544038,
+   "metrics": {
+    "cost_sats": 43261.47324598574,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 21659.699983321752,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 1.773262663987019
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.212513503395037,
+   "metrics": {
+    "cost_sats": 547169.2800171624,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 48,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.212513503395037,
+   "metrics": {
+    "cost_sats": 547169.2800171624,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.862487089161753,
+   "metrics": {
+    "cost_sats": 141844.56000429203,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 72244.55999999995,
+    "assert_fee_sats": 69600,
+    "slashed_sats": 0.000004292091495118642
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.86846123232368,
+   "metrics": {
+    "cost_sats": 142694.4960042924,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 24,
+    "capital_sats": 73094.49599999991,
+    "assert_fee_sats": 69600,
+    "slashed_sats": 0.000004292469765295315
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.862487089161753,
+   "metrics": {
+    "cost_sats": 141844.56000429203,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 72244.55999999995,
+    "assert_fee_sats": 69600,
+    "slashed_sats": 0.000004292091495118642
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.901956350848652,
+   "metrics": {
+    "cost_sats": 401096.1089840757,
+    "admitted": 1,
+    "bond_over_value": 1.5,
+    "delta_blocks": 96,
+    "capital_sats": 379377.996937181,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 118.11204689471545
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -14.125265113557692,
+   "metrics": {
+    "cost_sats": 1363090.5101291414,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.455773030590073,
+   "metrics": {
+    "cost_sats": 256728.15222331753,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 18,
+    "capital_sats": 235049.41676660592,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 78.73545671162024
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.471707826687794,
+   "metrics": {
+    "cost_sats": 260851.83071361217,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 239173.08934926923,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 78.74136434294803
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.450403871803058,
+   "metrics": {
+    "cost_sats": 255353.43185741952,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 233674.8592388365,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 78.57261858301196
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.571771206230135,
+   "metrics": {
+    "cost_sats": 288304.12923620077,
+    "admitted": 1,
+    "bond_over_value": 2,
+    "delta_blocks": 432,
+    "capital_sats": 283005.86588373035,
+    "assert_fee_sats": 4800,
+    "slashed_sats": 498.26335247040464
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.26491838679008,
+   "metrics": {
+    "cost_sats": 576608.2584724015,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.564378961185843,
+   "metrics": {
+    "cost_sats": 105280.02259590136,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 100231.31757662527,
+    "assert_fee_sats": 4800,
+    "slashed_sats": 248.7050192760901
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.569967493811498,
+   "metrics": {
+    "cost_sats": 105870.03054075454,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 18,
+    "capital_sats": 100820.91208236232,
+    "assert_fee_sats": 4800,
+    "slashed_sats": 249.1184583922222
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.564378961185843,
+   "metrics": {
+    "cost_sats": 105280.02259590136,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 100231.31757662527,
+    "assert_fee_sats": 4800,
+    "slashed_sats": 248.7050192760901
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.399111966350356,
+   "metrics": {
+    "cost_sats": 659417.3798571865,
+    "admitted": 1,
+    "bond_over_value": 1.5,
+    "delta_blocks": 96,
+    "capital_sats": 589469.7272135939,
+    "assert_fee_sats": 69600,
+    "slashed_sats": 347.65264359251074
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -14.59962042474449,
+   "metrics": {
+    "cost_sats": 2190456.2747890614,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -14.59962042474449,
+   "metrics": {
+    "cost_sats": 2190456.2747890614,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 6,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.978287336002468,
+   "metrics": {
+    "cost_sats": 432910.95362216723,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 363079.19761093543,
+    "assert_fee_sats": 69600,
+    "slashed_sats": 231.7560112317919
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.978287336002468,
+   "metrics": {
+    "cost_sats": 432910.95362216723,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 363079.19761093543,
+    "assert_fee_sats": 69600,
+    "slashed_sats": 231.7560112317919
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "random",
+   "value": -11.600194331419955,
+   "metrics": {
+    "cost_sats": 109119.00246691117,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 83427.70200925731,
+    "assert_fee_sats": 14400,
+    "slashed_sats": 11291.30045765387
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.17876036557914,
+   "metrics": {
+    "cost_sats": 529008.8104301417,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.57377657713975,
+   "metrics": {
+    "cost_sats": 106274.06732542114,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 80583.96449515098,
+    "assert_fee_sats": 14400,
+    "slashed_sats": 11290.102830270163
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.578237559345597,
+   "metrics": {
+    "cost_sats": 106749.21306909247,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 18,
+    "capital_sats": 81057.92074826476,
+    "assert_fee_sats": 14400,
+    "slashed_sats": 11291.292320827708
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.57377657713975,
+   "metrics": {
+    "cost_sats": 106274.06732542114,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 80583.96449515098,
+    "assert_fee_sats": 14400,
+    "slashed_sats": 11290.102830270163
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.6070368098832,
+   "metrics": {
+    "cost_sats": 298652.75109366945,
+    "admitted": 1,
+    "bond_over_value": 1.5,
+    "delta_blocks": 18,
+    "capital_sats": 233819.9692412334,
+    "assert_fee_sats": 45600,
+    "slashed_sats": 19232.781852435994
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.832944341609181,
+   "metrics": {
+    "cost_sats": 1017586.6390416264,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.270741894315892,
+   "metrics": {
+    "cost_sats": 213361.22372125398,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 154968.4763922771,
+    "assert_fee_sats": 45600,
+    "slashed_sats": 12792.747328976877
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.287825233295559,
+   "metrics": {
+    "cost_sats": 217037.457600245,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 158614.48868223364,
+    "assert_fee_sats": 45600,
+    "slashed_sats": 12822.96891801134
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.270741894315892,
+   "metrics": {
+    "cost_sats": 213361.22372125398,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 154968.4763922771,
+    "assert_fee_sats": 45600,
+    "slashed_sats": 12792.747328976877
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "random",
+   "value": -11.937222478779526,
+   "metrics": {
+    "cost_sats": 152851.5516586203,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 24,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -11.937222478779526,
+   "metrics": {
+    "cost_sats": 152851.5516586203,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -10.885893454103622,
+   "metrics": {
+    "cost_sats": 53417.487579710425,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 12617.399999168598,
+    "assert_fee_sats": 40800,
+    "slashed_sats": 0.08758054182831479
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -10.888668472351009,
+   "metrics": {
+    "cost_sats": 53565.927949583,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 24,
+    "capital_sats": 12765.839998113745,
+    "assert_fee_sats": 40800,
+    "slashed_sats": 0.08795146924823909
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -10.885893454103622,
+   "metrics": {
+    "cost_sats": 53417.487579710425,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 12617.399999168598,
+    "assert_fee_sats": 40800,
+    "slashed_sats": 0.08758054182831479
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.418862181149045,
+   "metrics": {
+    "cost_sats": 672570.475432159,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 656369.8907847463,
+    "assert_fee_sats": 9600,
+    "slashed_sats": 6600.5846474127575
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -15.114869002352908,
+   "metrics": {
+    "cost_sats": 3666943.36472042,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -15.114869002352908,
+   "metrics": {
+    "cost_sats": 3666943.36472042,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -13.407580294113883,
+   "metrics": {
+    "cost_sats": 665025.2535059593,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 24,
+    "capital_sats": 648825.4859901438,
+    "assert_fee_sats": 9600,
+    "slashed_sats": 6599.767515815438
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -13.40188011624186,
+   "metrics": {
+    "cost_sats": 661245.2747820539,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 18,
+    "capital_sats": 645053.2835774327,
+    "assert_fee_sats": 9600,
+    "slashed_sats": 6591.991204621167
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.920110220338467,
+   "metrics": {
+    "cost_sats": 408444.05038436665,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 334114.6990918832,
+    "assert_fee_sats": 67200,
+    "slashed_sats": 7129.351292483474
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -14.421728376639319,
+   "metrics": {
+    "cost_sats": 1833483.7005247774,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.821687008457776,
+   "metrics": {
+    "cost_sats": 370158.66182845,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 295831.54816418566,
+    "assert_fee_sats": 67200,
+    "slashed_sats": 7127.113664264339
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.831051219007115,
+   "metrics": {
+    "cost_sats": 373641.1855691972,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 24,
+    "capital_sats": 299311.8346140379,
+    "assert_fee_sats": 67200,
+    "slashed_sats": 7129.3509551592915
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.821687008457776,
+   "metrics": {
+    "cost_sats": 370158.66182845,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 295831.54816418566,
+    "assert_fee_sats": 67200,
+    "slashed_sats": 7127.113664264339
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.750532522060697,
+   "metrics": {
+    "cost_sats": 344735.4264862147,
+    "admitted": 1,
+    "bond_over_value": 1.5,
+    "delta_blocks": 48,
+    "capital_sats": 273775.5925830041,
+    "assert_fee_sats": 40800,
+    "slashed_sats": 30159.833903210576
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.961811328538758,
+   "metrics": {
+    "cost_sats": 1157544.2909599983,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.376588362813957,
+   "metrics": {
+    "cost_sats": 237183.25823404832,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 176295.58153667374,
+    "assert_fee_sats": 40800,
+    "slashed_sats": 20087.67669737457
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.381028095078557,
+   "metrics": {
+    "cost_sats": 238238.62944751265,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 18,
+    "capital_sats": 177332.49491820438,
+    "assert_fee_sats": 40800,
+    "slashed_sats": 20106.13452930826
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.376588362813957,
+   "metrics": {
+    "cost_sats": 237183.25823404832,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 176295.58153667374,
+    "assert_fee_sats": 40800,
+    "slashed_sats": 20087.67669737457
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.53301861074436,
+   "metrics": {
+    "cost_sats": 277345.3087368084,
+    "admitted": 0,
+    "bond_over_value": 0.75,
+    "delta_blocks": 288,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -12.53301861074436,
+   "metrics": {
+    "cost_sats": 277345.3087368084,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.33991572292907,
+   "metrics": {
+    "cost_sats": 84112.94204872755,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 18,
+    "capital_sats": 28803.88603577333,
+    "assert_fee_sats": 52800,
+    "slashed_sats": 2509.056012954224
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.349899057828015,
+   "metrics": {
+    "cost_sats": 84956.87534354774,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 29646.0307137991,
+    "assert_fee_sats": 52800,
+    "slashed_sats": 2510.844629748631
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/fast",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.337657572284169,
+   "metrics": {
+    "cost_sats": 83923.21664928352,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 28635.457060777488,
+    "assert_fee_sats": 52800,
+    "slashed_sats": 2487.7595885060246
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "random",
+   "value": -14.635101108129344,
+   "metrics": {
+    "cost_sats": 2269570.3720464506,
+    "admitted": 0,
+    "bond_over_value": 0.75,
+    "delta_blocks": 6,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -14.635101108129344,
+   "metrics": {
+    "cost_sats": 2269570.3720464506,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -14.635101108129344,
+   "metrics": {
+    "cost_sats": 2269570.3720464506,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -13.044215040740742,
+   "metrics": {
+    "cost_sats": 462413.615291208,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 443920.064505709,
+    "assert_fee_sats": 12000,
+    "slashed_sats": 6493.55078549904
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -13.003363434253174,
+   "metrics": {
+    "cost_sats": 443903.9256164002,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 425423.6720271144,
+    "assert_fee_sats": 12000,
+    "slashed_sats": 6480.253589285827
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "random",
+   "value": -14.388294654703673,
+   "metrics": {
+    "cost_sats": 1773196.9374213957,
+    "admitted": 1,
+    "bond_over_value": 1.25,
+    "delta_blocks": 432,
+    "capital_sats": 1693944.6466888948,
+    "assert_fee_sats": 28800,
+    "slashed_sats": 50452.290732500885
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -15.545336146542596,
+   "metrics": {
+    "cost_sats": 5639670.199748467,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -15.545336146542596,
+   "metrics": {
+    "cost_sats": 5639670.199748467,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -13.91807635314131,
+   "metrics": {
+    "cost_sats": 1108010.2012389125,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 1038962.3651381927,
+    "assert_fee_sats": 28800,
+    "slashed_sats": 40247.83610071995
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -13.91807635314131,
+   "metrics": {
+    "cost_sats": 1108010.2012389125,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 1038962.3651381927,
+    "assert_fee_sats": 28800,
+    "slashed_sats": 40247.83610071995
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.961603480300287,
+   "metrics": {
+    "cost_sats": 425748.2466694665,
+    "admitted": 0,
+    "bond_over_value": 1.25,
+    "delta_blocks": 18,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -12.961603480300287,
+   "metrics": {
+    "cost_sats": 425748.2466694665,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.961603480300287,
+   "metrics": {
+    "cost_sats": 425748.2466694665,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.639023216802492,
+   "metrics": {
+    "cost_sats": 113439.30518627261,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 36073.106871862,
+    "assert_fee_sats": 36000,
+    "slashed_sats": 41366.19831441062
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.630645963866279,
+   "metrics": {
+    "cost_sats": 112492.96483444303,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 35289.826345139416,
+    "assert_fee_sats": 36000,
+    "slashed_sats": 41203.138489303616
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "random",
+   "value": -14.517577294097391,
+   "metrics": {
+    "cost_sats": 2017918.9066884401,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -14.517577294097391,
+   "metrics": {
+    "cost_sats": 2017918.9066884401,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.945228298240472,
+   "metrics": {
+    "cost_sats": 418833.3127865423,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 385467.05466851924,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 11766.25811802307
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -13.054292923588545,
+   "metrics": {
+    "cost_sats": 467097.3268402861,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 288,
+    "capital_sats": 433648.9027410319,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 11848.424099254209
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.945228298240472,
+   "metrics": {
+    "cost_sats": 418833.3127865423,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 385467.05466851924,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 11766.25811802307
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.36469825688118,
+   "metrics": {
+    "cost_sats": 637110.4158907153,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 36,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.36469825688118,
+   "metrics": {
+    "cost_sats": 637110.4158907153,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -13.36469825688118,
+   "metrics": {
+    "cost_sats": 637110.4158907153,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.018303169163154,
+   "metrics": {
+    "cost_sats": 165761.1489047584,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 66224.24689203722,
+    "assert_fee_sats": 57600,
+    "slashed_sats": 41936.902012721155
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.018303169163154,
+   "metrics": {
+    "cost_sats": 165761.1489047584,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 66224.24689203722,
+    "assert_fee_sats": 57600,
+    "slashed_sats": 41936.902012721155
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.34743754093771,
+   "metrics": {
+    "cost_sats": 230368.9748431134,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 24,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -12.34743754093771,
+   "metrics": {
+    "cost_sats": 230368.9748431134,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.298029234403339,
+   "metrics": {
+    "cost_sats": 80662.51388679627,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 22919.021576564344,
+    "assert_fee_sats": 57600,
+    "slashed_sats": 143.49231023191285
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.33292981365337,
+   "metrics": {
+    "cost_sats": 83527.3843744658,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 288,
+    "capital_sats": 25783.880912228684,
+    "assert_fee_sats": 57600,
+    "slashed_sats": 143.50346223710685
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.280094992827957,
+   "metrics": {
+    "cost_sats": 79228.78770063947,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 21486.591889861553,
+    "assert_fee_sats": 57600,
+    "slashed_sats": 142.1958107779174
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "random",
+   "value": -11.678006135378702,
+   "metrics": {
+    "cost_sats": 117948.82646737076,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 79516.87837544129,
+    "assert_fee_sats": 33600,
+    "slashed_sats": 4831.948091929471
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.143568959790718,
+   "metrics": {
+    "cost_sats": 510716.00924297085,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -13.143568959790718,
+   "metrics": {
+    "cost_sats": 510716.00924297085,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.693056944415334,
+   "metrics": {
+    "cost_sats": 119737.47829448935,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 81283.8100643403,
+    "assert_fee_sats": 33600,
+    "slashed_sats": 4853.66823014905
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.678006135378702,
+   "metrics": {
+    "cost_sats": 117948.82646737076,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 79516.87837544129,
+    "assert_fee_sats": 33600,
+    "slashed_sats": 4831.948091929471
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "random",
+   "value": -11.29690175416981,
+   "metrics": {
+    "cost_sats": 80571.61974710379,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 13371.26395907765,
+    "assert_fee_sats": 67200,
+    "slashed_sats": 0.3557880261341776
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -12.212341724157437,
+   "metrics": {
+    "cost_sats": 201257.75408579822,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.317433930094515,
+   "metrics": {
+    "cost_sats": 82243.03055094679,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 288,
+    "capital_sats": 15042.67190751298,
+    "assert_fee_sats": 67200,
+    "slashed_sats": 0.35864343381050534
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.337552969680743,
+   "metrics": {
+    "cost_sats": 83914.43852144956,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 432,
+    "capital_sats": 16714.07985586576,
+    "assert_fee_sats": 67200,
+    "slashed_sats": 0.35866558380151026
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.29690175416981,
+   "metrics": {
+    "cost_sats": 80571.61974710379,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 13371.26395907765,
+    "assert_fee_sats": 67200,
+    "slashed_sats": 0.3557880261341776
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.799258044933543,
+   "metrics": {
+    "cost_sats": 983878.8464558038,
+    "admitted": 0,
+    "bond_over_value": 1.25,
+    "delta_blocks": 24,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.799258044933543,
+   "metrics": {
+    "cost_sats": 983878.8464558038,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.328093849843174,
+   "metrics": {
+    "cost_sats": 225955.611538778,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 149816.6565208846,
+    "assert_fee_sats": 60000,
+    "slashed_sats": 16138.955017893415
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.371683053583736,
+   "metrics": {
+    "cost_sats": 236022.649906767,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 159803.32973932324,
+    "assert_fee_sats": 60000,
+    "slashed_sats": 16219.320167443759
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.328093849843174,
+   "metrics": {
+    "cost_sats": 225955.611538778,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 149816.6565208846,
+    "assert_fee_sats": 60000,
+    "slashed_sats": 16138.955017893415
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.333404289550824,
+   "metrics": {
+    "cost_sats": 617481.4395050436,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 216,
+    "capital_sats": 560881.092520523,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 35000.34698452054
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -14.853174888168336,
+   "metrics": {
+    "cost_sats": 2822616.6088095475,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -14.853174888168336,
+   "metrics": {
+    "cost_sats": 2822616.6088095475,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -13.240114606540988,
+   "metrics": {
+    "cost_sats": 562482.1091171799,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 505896.25239268003,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 34985.85672449986
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -13.220208412907121,
+   "metrics": {
+    "cost_sats": 551395.9391388311,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 494899.28335714265,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 34896.65578168852
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.684127812986473,
+   "metrics": {
+    "cost_sats": 322586.89248413907,
+    "admitted": 0,
+    "bond_over_value": 1.25,
+    "delta_blocks": 18,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -12.684127812986473,
+   "metrics": {
+    "cost_sats": 322586.89248413907,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.684127812986473,
+   "metrics": {
+    "cost_sats": 322586.89248413907,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.622541568589275,
+   "metrics": {
+    "cost_sats": 111584.96175934996,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 216,
+    "capital_sats": 15107.038091394434,
+    "assert_fee_sats": 67200,
+    "slashed_sats": 29277.92366795552
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.614264497652524,
+   "metrics": {
+    "cost_sats": 110665.17692872931,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 14220.161503405041,
+    "assert_fee_sats": 67200,
+    "slashed_sats": 29245.015425324265
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.571522107965512,
+   "metrics": {
+    "cost_sats": 288232.3221218094,
+    "admitted": 0,
+    "bond_over_value": 0.75,
+    "delta_blocks": 288,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -12.571522107965512,
+   "metrics": {
+    "cost_sats": 288232.3221218094,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.43219824881111,
+   "metrics": {
+    "cost_sats": 92244.52852956062,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 32244.527999957427,
+    "assert_fee_sats": 60000,
+    "slashed_sats": 0.0005296031945909945
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.469489312040118,
+   "metrics": {
+    "cost_sats": 95749.36853056654,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 216,
+    "capital_sats": 35749.36799989376,
+    "assert_fee_sats": 60000,
+    "slashed_sats": 0.0005306727815234391
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.424570209294673,
+   "metrics": {
+    "cost_sats": 91543.56052551068,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 31543.559999970104,
+    "assert_fee_sats": 60000,
+    "slashed_sats": 0.0005255405676211155
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "random",
+   "value": -11.108728463946465,
+   "metrics": {
+    "cost_sats": 66751.26076481128,
+    "admitted": 1,
+    "bond_over_value": 1.5,
+    "delta_blocks": 216,
+    "capital_sats": 42751.2599998452,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 0.0007649660680866936
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -12.112429886022461,
+   "metrics": {
+    "cost_sats": 182121.60203905628,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -10.802587373966755,
+   "metrics": {
+    "cost_sats": 49147.800507655185,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 25147.799999970208,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 0.0005076849780263464
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -10.836130269197172,
+   "metrics": {
+    "cost_sats": 50824.32050990139,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 26824.31999993352,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 0.0005099678689027506
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -10.802587373966755,
+   "metrics": {
+    "cost_sats": 49147.800507655185,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 25147.799999970208,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 0.0005076849780263464
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.53978323195507,
+   "metrics": {
+    "cost_sats": 759019.8675231943,
+    "admitted": 1,
+    "bond_over_value": 2,
+    "delta_blocks": 144,
+    "capital_sats": 735019.7759883051,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 0.09153488923360524
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -14.449729913559906,
+   "metrics": {
+    "cost_sats": 1885549.6230145127,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.837868278909578,
+   "metrics": {
+    "cost_sats": 376197.0216591542,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 352196.9759963481,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 0.04566280615486123
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.934778316878733,
+   "metrics": {
+    "cost_sats": 414479.3017634612,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 216,
+    "capital_sats": 390479.2559908571,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 0.04577260409889032
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.837868278909578,
+   "metrics": {
+    "cost_sats": 376197.0216591542,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 352196.9759963481,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 0.04566280615486123
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.787517098057343,
+   "metrics": {
+    "cost_sats": 972394.7263324615,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.787517098057343,
+   "metrics": {
+    "cost_sats": 972394.7263324615,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.343040851272226,
+   "metrics": {
+    "cost_sats": 229358.33731001313,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 155367.60869640872,
+    "assert_fee_sats": 67200,
+    "slashed_sats": 6790.728613604423
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.414313361979627,
+   "metrics": {
+    "cost_sats": 246301.9156970768,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 216,
+    "capital_sats": 172254.62809870238,
+    "assert_fee_sats": 67200,
+    "slashed_sats": 6847.287598374422
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.343040851272226,
+   "metrics": {
+    "cost_sats": 229358.33731001313,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 155367.60869640872,
+    "assert_fee_sats": 67200,
+    "slashed_sats": 6790.728613604423
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.21125358886232,
+   "metrics": {
+    "cost_sats": 201038.87752541335,
+    "admitted": 1,
+    "bond_over_value": 2,
+    "delta_blocks": 288,
+    "capital_sats": 161031.38700786914,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 16007.490517544215
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -12.989651929464436,
+   "metrics": {
+    "cost_sats": 437858.8729073862,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.51876874132624,
+   "metrics": {
+    "cost_sats": 100586.03815959487,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 68588.65414149701,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 7997.384018097851
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.590319729501676,
+   "metrics": {
+    "cost_sats": 108046.7982630138,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 216,
+    "capital_sats": 76043.0537735836,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 8003.744489430196
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.50351042882825,
+   "metrics": {
+    "cost_sats": 99062.91465415542,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 67097.7738181433,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 7965.140836012132
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.089572200851846,
+   "metrics": {
+    "cost_sats": 178005.940239934,
+    "admitted": 0,
+    "bond_over_value": 1.5,
+    "delta_blocks": 96,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -12.089572200851846,
+   "metrics": {
+    "cost_sats": 178005.940239934,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.162113942597584,
+   "metrics": {
+    "cost_sats": 70411.64515481243,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 288,
+    "capital_sats": 15208.559210290203,
+    "assert_fee_sats": 55200,
+    "slashed_sats": 3.085944522227314
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.185829920286766,
+   "metrics": {
+    "cost_sats": 72101.4850599835,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 432,
+    "capital_sats": 16898.398765874197,
+    "assert_fee_sats": 55200,
+    "slashed_sats": 3.0862941093021865
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.150041603929257,
+   "metrics": {
+    "cost_sats": 69566.7222874702,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 216,
+    "capital_sats": 14363.63943240748,
+    "assert_fee_sats": 55200,
+    "slashed_sats": 3.082855062723898
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "random",
+   "value": -14.229604114701738,
+   "metrics": {
+    "cost_sats": 1512998.671482556,
+    "admitted": 0,
+    "bond_over_value": 1.25,
+    "delta_blocks": 24,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -14.229604114701738,
+   "metrics": {
+    "cost_sats": 1512998.671482556,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.630206961820384,
+   "metrics": {
+    "cost_sats": 305653.37022658833,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 269559.0839008027,
+    "assert_fee_sats": 19200,
+    "slashed_sats": 16894.28632578564
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.722222556369154,
+   "metrics": {
+    "cost_sats": 335112.828759479,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 216,
+    "capital_sats": 298857.0803703562,
+    "assert_fee_sats": 19200,
+    "slashed_sats": 17055.74838912278
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.630206961820384,
+   "metrics": {
+    "cost_sats": 305653.37022658833,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 269559.0839008027,
+    "assert_fee_sats": 19200,
+    "slashed_sats": 16894.28632578564
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "random",
+   "value": -14.565728309203182,
+   "metrics": {
+    "cost_sats": 2117461.0461821193,
+    "admitted": 0,
+    "bond_over_value": 2,
+    "delta_blocks": 12,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -14.565728309203182,
+   "metrics": {
+    "cost_sats": 2117461.0461821193,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -13.152450276600163,
+   "metrics": {
+    "cost_sats": 515272.04175734887,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 216,
+    "capital_sats": 155002.54438546498,
+    "assert_fee_sats": 26400,
+    "slashed_sats": 333869.4973718839
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -13.204063654941333,
+   "metrics": {
+    "cost_sats": 542565.2615455298,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 432,
+    "capital_sats": 182295.6845579188,
+    "assert_fee_sats": 26400,
+    "slashed_sats": 333869.576987611
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -13.112123193257807,
+   "metrics": {
+    "cost_sats": 494906.03401487804,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 136807.0880738739,
+    "assert_fee_sats": 26400,
+    "slashed_sats": 331698.94594100415
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.219757778632443,
+   "metrics": {
+    "cost_sats": 202755.8406333815,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 432,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -12.219757778632443,
+   "metrics": {
+    "cost_sats": 202755.8406333815,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.318262078045477,
+   "metrics": {
+    "cost_sats": 82311.16815829421,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 12711.167999980327,
+    "assert_fee_sats": 69600,
+    "slashed_sats": 0.0001583138741105368
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.327867561693203,
+   "metrics": {
+    "cost_sats": 83105.61615837726,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 216,
+    "capital_sats": 13505.615999968924,
+    "assert_fee_sats": 69600,
+    "slashed_sats": 0.0001584083437257074
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.311806777763223,
+   "metrics": {
+    "cost_sats": 81781.536157238,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 12181.535999987913,
+    "assert_fee_sats": 69600,
+    "slashed_sats": 0.00015725009772856618
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.03641740534512,
+   "metrics": {
+    "cost_sats": 168791.14569338178,
+    "admitted": 0,
+    "bond_over_value": 0.75,
+    "delta_blocks": 72,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -12.03641740534512,
+   "metrics": {
+    "cost_sats": 168791.14569338178,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.066610774013272,
+   "metrics": {
+    "cost_sats": 63998.23437132913,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 13598.207996825691,
+    "assert_fee_sats": 50400,
+    "slashed_sats": 0.026374503440659624
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.092823921320463,
+   "metrics": {
+    "cost_sats": 65698.01042702336,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 288,
+    "capital_sats": 15297.983993020543,
+    "assert_fee_sats": 50400,
+    "slashed_sats": 0.02643400280146148
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.066610774013272,
+   "metrics": {
+    "cost_sats": 63998.23437132913,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 13598.207996825691,
+    "assert_fee_sats": 50400,
+    "slashed_sats": 0.026374503440659624
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.124646848299106,
+   "metrics": {
+    "cost_sats": 501143.04000000027,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.124646848299106,
+   "metrics": {
+    "cost_sats": 501143.04000000027,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.674266869457467,
+   "metrics": {
+    "cost_sats": 117508.60800000007,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 88708.608,
+    "assert_fee_sats": 28800,
+    "slashed_sats": 7.137343707043638e-11
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.720369590690568,
+   "metrics": {
+    "cost_sats": 123052.89600000007,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 216,
+    "capital_sats": 94252.896,
+    "assert_fee_sats": 28800,
+    "slashed_sats": 7.15151560110088e-11
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.674266869457467,
+   "metrics": {
+    "cost_sats": 117508.60800000007,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 88708.608,
+    "assert_fee_sats": 28800,
+    "slashed_sats": 7.137343707043638e-11
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "random",
+   "value": -11.444432576518004,
+   "metrics": {
+    "cost_sats": 93380.01008439405,
+    "admitted": 1,
+    "bond_over_value": 1.25,
+    "delta_blocks": 216,
+    "capital_sats": 33380.00999998286,
+    "assert_fee_sats": 60000,
+    "slashed_sats": 0.00008441118550425897
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -12.411727844249098,
+   "metrics": {
+    "cost_sats": 245665.92027000262,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.33334845925562,
+   "metrics": {
+    "cost_sats": 83562.36006730056,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 23562.35999999601,
+    "assert_fee_sats": 60000,
+    "slashed_sats": 0.00006730454894031099
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.351972180592833,
+   "metrics": {
+    "cost_sats": 85133.18406751941,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 25133.18399999115,
+    "assert_fee_sats": 60000,
+    "slashed_sats": 0.00006752826240977428
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.33334845925562,
+   "metrics": {
+    "cost_sats": 83562.36006730056,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 23562.35999999601,
+    "assert_fee_sats": 60000,
+    "slashed_sats": 0.00006730454894031099
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.279528900126063,
+   "metrics": {
+    "cost_sats": 215244.2911799231,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 12,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -12.279528900126063,
+   "metrics": {
+    "cost_sats": 215244.2911799231,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.147291146077523,
+   "metrics": {
+    "cost_sats": 69375.64484561907,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 23773.535830910303,
+    "assert_fee_sats": 45600,
+    "slashed_sats": 2.1090147087716287
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.183861925543228,
+   "metrics": {
+    "cost_sats": 71959.72924948082,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 216,
+    "capital_sats": 26357.61557733942,
+    "assert_fee_sats": 45600,
+    "slashed_sats": 2.1136721414000563
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.147291146077523,
+   "metrics": {
+    "cost_sats": 69375.64484561907,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 23773.535830910303,
+    "assert_fee_sats": 45600,
+    "slashed_sats": 2.1090147087716287
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.733746117966259,
+   "metrics": {
+    "cost_sats": 921488.9990827818,
+    "admitted": 1,
+    "bond_over_value": 2,
+    "delta_blocks": 432,
+    "capital_sats": 860888.2176177283,
+    "assert_fee_sats": 36000,
+    "slashed_sats": 24600.781465053526
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -14.426893298526204,
+   "metrics": {
+    "cost_sats": 1842977.9981655637,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -14.426893298526204,
+   "metrics": {
+    "cost_sats": 1842977.9981655637,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.934051471303132,
+   "metrics": {
+    "cost_sats": 414178.1487759131,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 216,
+    "capital_sats": 365879.3976546144,
+    "assert_fee_sats": 36000,
+    "slashed_sats": 12298.751121298712
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.880611944392252,
+   "metrics": {
+    "cost_sats": 392625.67042790295,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 344357.82655338105,
+    "assert_fee_sats": 36000,
+    "slashed_sats": 12267.843874521894
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.344448504662598,
+   "metrics": {
+    "cost_sats": 624338.8349232711,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 216,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.344448504662598,
+   "metrics": {
+    "cost_sats": 624338.8349232711,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.970296383238837,
+   "metrics": {
+    "cost_sats": 157991.47948405048,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 102772.22179838072,
+    "assert_fee_sats": 55200,
+    "slashed_sats": 19.257685669744298
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.048472083076643,
+   "metrics": {
+    "cost_sats": 170838.18195110638,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 288,
+    "capital_sats": 115618.74700483761,
+    "assert_fee_sats": 55200,
+    "slashed_sats": 19.434946268780276
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.970296383238837,
+   "metrics": {
+    "cost_sats": 157991.47948405048,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 102772.22179838072,
+    "assert_fee_sats": 55200,
+    "slashed_sats": 19.257685669744298
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "random",
+   "value": -14.962552124921766,
+   "metrics": {
+    "cost_sats": 3148863.414578992,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 24,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -14.962552124921766,
+   "metrics": {
+    "cost_sats": 3148863.414578992,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -14.962552124921766,
+   "metrics": {
+    "cost_sats": 3148863.414578992,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -13.415332134095127,
+   "metrics": {
+    "cost_sats": 670200.4556086692,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 602456.7667414063,
+    "assert_fee_sats": 67200,
+    "slashed_sats": 543.6888672629045
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -13.415332134095127,
+   "metrics": {
+    "cost_sats": 670200.4556086692,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 602456.7667414063,
+    "assert_fee_sats": 67200,
+    "slashed_sats": 543.6888672629045
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.319488631096569,
+   "metrics": {
+    "cost_sats": 224019.55611171815,
+    "admitted": 1,
+    "bond_over_value": 1.25,
+    "delta_blocks": 288,
+    "capital_sats": 168816.9592977726,
+    "assert_fee_sats": 55200,
+    "slashed_sats": 2.596813945535432
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.473930238177523,
+   "metrics": {
+    "cost_sats": 710646.3863613033,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -13.473930238177523,
+   "metrics": {
+    "cost_sats": 710646.3863613033,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.073967051453094,
+   "metrics": {
+    "cost_sats": 175249.69270925346,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 120047.61573736313,
+    "assert_fee_sats": 55200,
+    "slashed_sats": 2.076971890350983
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.045009722121138,
+   "metrics": {
+    "cost_sats": 170247.7013186401,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 115045.63183695659,
+    "assert_fee_sats": 55200,
+    "slashed_sats": 2.0694816834867833
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "random",
+   "value": -14.812466768657863,
+   "metrics": {
+    "cost_sats": 2710020.530501134,
+    "admitted": 0,
+    "bond_over_value": 1.5,
+    "delta_blocks": 48,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -14.812466768657863,
+   "metrics": {
+    "cost_sats": 2710020.530501134,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -13.223945853538776,
+   "metrics": {
+    "cost_sats": 553460.6046048506,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 498260.59199898585,
+    "assert_fee_sats": 55200,
+    "slashed_sats": 0.012605864768681556
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -13.31730391988056,
+   "metrics": {
+    "cost_sats": 607619.3646280023,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 216,
+    "capital_sats": 552419.3519974705,
+    "assert_fee_sats": 55200,
+    "slashed_sats": 0.012630531851775609
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -13.204180852342668,
+   "metrics": {
+    "cost_sats": 542628.8525105133,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 487428.8399992875,
+    "assert_fee_sats": 55200,
+    "slashed_sats": 0.012511225810577746
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.820892709650499,
+   "metrics": {
+    "cost_sats": 1005396.6614842439,
+    "admitted": 0,
+    "bond_over_value": 1.5,
+    "delta_blocks": 72,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.820892709650499,
+   "metrics": {
+    "cost_sats": 1005396.6614842439,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -13.820892709650499,
+   "metrics": {
+    "cost_sats": 1005396.6614842439,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.466089879048901,
+   "metrics": {
+    "cost_sats": 259390.48750546022,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 288,
+    "capital_sats": 197627.88575576586,
+    "assert_fee_sats": 60000,
+    "slashed_sats": 1762.6017496943518
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.422833155304362,
+   "metrics": {
+    "cost_sats": 248409.32169860767,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 216,
+    "capital_sats": 186648.66061835876,
+    "assert_fee_sats": 60000,
+    "slashed_sats": 1760.6610802489172
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.803160966147445,
+   "metrics": {
+    "cost_sats": 363364.2182009804,
+    "admitted": 1,
+    "bond_over_value": 1.5,
+    "delta_blocks": 288,
+    "capital_sats": 315353.7331891969,
+    "assert_fee_sats": 48000,
+    "slashed_sats": 10.48501178348774
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.845466745820557,
+   "metrics": {
+    "cost_sats": 1030409.3885203489,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -13.845466745820557,
+   "metrics": {
+    "cost_sats": 1030409.3885203489,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.366843957876558,
+   "metrics": {
+    "cost_sats": 234883.27271582754,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 186876.28713260905,
+    "assert_fee_sats": 48000,
+    "slashed_sats": 6.985583218498352
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.333131254331285,
+   "metrics": {
+    "cost_sats": 227096.7130323545,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 179089.77546722093,
+    "assert_fee_sats": 48000,
+    "slashed_sats": 6.937565133588787
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "random",
+   "value": -14.407245689439259,
+   "metrics": {
+    "cost_sats": 1807121.2896662909,
+    "admitted": 0,
+    "bond_over_value": 0.75,
+    "delta_blocks": 72,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -14.407245689439259,
+   "metrics": {
+    "cost_sats": 1807121.2896662909,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -14.407245689439259,
+   "metrics": {
+    "cost_sats": 1807121.2896662909,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.776586666842565,
+   "metrics": {
+    "cost_sats": 353835.24240562314,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 329835.2399998593,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 0.002405763832267338
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/slow",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.776586666842565,
+   "metrics": {
+    "cost_sats": 353835.24240562314,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 329835.2399998593,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 0.002405763832267338
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.2042789177212,
+   "metrics": {
+    "cost_sats": 199641.5759918621,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 24,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -12.2042789177212,
+   "metrics": {
+    "cost_sats": 199641.5759918621,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -10.722625628688398,
+   "metrics": {
+    "cost_sats": 45370.87365451022,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 31620.127122680882,
+    "assert_fee_sats": 12000,
+    "slashed_sats": 1750.746531829338
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -10.76803929557548,
+   "metrics": {
+    "cost_sats": 47478.83423083883,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 33728.017064305895,
+    "assert_fee_sats": 12000,
+    "slashed_sats": 1750.8171665329342
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1000,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -10.722625628688398,
+   "metrics": {
+    "cost_sats": 45370.87365451022,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 31620.127122680882,
+    "assert_fee_sats": 12000,
+    "slashed_sats": 1750.746531829338
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.52207718839272,
+   "metrics": {
+    "cost_sats": 274327.2973535823,
+    "admitted": 0,
+    "bond_over_value": 0.75,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -12.52207718839272,
+   "metrics": {
+    "cost_sats": 274327.2973535823,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.52207718839272,
+   "metrics": {
+    "cost_sats": 274327.2973535823,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 18,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -10.90252836382188,
+   "metrics": {
+    "cost_sats": 54313.514665507864,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 47107.367801576176,
+    "assert_fee_sats": 7200,
+    "slashed_sats": 6.1468639316896985
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1001,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -10.892509024891766,
+   "metrics": {
+    "cost_sats": 53772.046261019124,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 24,
+    "capital_sats": 46565.903875327655,
+    "assert_fee_sats": 7200,
+    "slashed_sats": 6.1423856914671955
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.89386137638737,
+   "metrics": {
+    "cost_sats": 1081502.002952962,
+    "admitted": 1,
+    "bond_over_value": 1.5,
+    "delta_blocks": 36,
+    "capital_sats": 446276.7055120675,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 613625.2974408945
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -15.015708760316738,
+   "metrics": {
+    "cost_sats": 3320775.0429394194,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -13.50313778899704,
+   "metrics": {
+    "cost_sats": 731708.7190805526,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 300932.7858395945,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 409175.9332409581
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -13.521641746618746,
+   "metrics": {
+    "cost_sats": 745374.269676968,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 314592.7131457863,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 409181.5565311817
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1002,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -13.498332848424033,
+   "metrics": {
+    "cost_sats": 728201.3353019746,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 297517.8036747116,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 409083.531627263
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.800859838372654,
+   "metrics": {
+    "cost_sats": 362529.03200972313,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 24,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -12.800859838372654,
+   "metrics": {
+    "cost_sats": 362529.03200972313,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.465338716969065,
+   "metrics": {
+    "cost_sats": 95352.77529181511,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 49718.59056808247,
+    "assert_fee_sats": 45600,
+    "slashed_sats": 34.18472373264391
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.488763066060425,
+   "metrics": {
+    "cost_sats": 97612.71748962812,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 51978.52492687955,
+    "assert_fee_sats": 45600,
+    "slashed_sats": 34.1925627485565
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1003,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.465338716969065,
+   "metrics": {
+    "cost_sats": 95352.77529181511,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 49718.59056808247,
+    "assert_fee_sats": 45600,
+    "slashed_sats": 34.18472373264391
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "random",
+   "value": -11.629821711398298,
+   "metrics": {
+    "cost_sats": 112400.2804334683,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 98000.27999997133,
+    "assert_fee_sats": 14400,
+    "slashed_sats": 0.00043349697130320644
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.220339385697816,
+   "metrics": {
+    "cost_sats": 551468.1617332521,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -13.220339385697816,
+   "metrics": {
+    "cost_sats": 551468.1617332521,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.629821711398298,
+   "metrics": {
+    "cost_sats": 112400.2804334683,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 98000.27999997133,
+    "assert_fee_sats": 14400,
+    "slashed_sats": 0.00043349697130320644
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1004,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.61025629673083,
+   "metrics": {
+    "cost_sats": 110222.49643341219,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 95822.49599998174,
+    "assert_fee_sats": 14400,
+    "slashed_sats": 0.00043343045990848386
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "random",
+   "value": -10.854360480974488,
+   "metrics": {
+    "cost_sats": 51759.35568516306,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 14087.994290065268,
+    "assert_fee_sats": 36000,
+    "slashed_sats": 1671.3613950977874
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -11.93285848055886,
+   "metrics": {
+    "cost_sats": 152185.96113340821,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -10.842445792228348,
+   "metrics": {
+    "cost_sats": 51146.31839890553,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 13475.54651222178,
+    "assert_fee_sats": 36000,
+    "slashed_sats": 1670.7718866837536
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -10.854360480974488,
+   "metrics": {
+    "cost_sats": 51759.35568516306,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 14087.994290065268,
+    "assert_fee_sats": 36000,
+    "slashed_sats": 1671.3613950977874
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1005,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -10.842445792228348,
+   "metrics": {
+    "cost_sats": 51146.31839890553,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 13475.54651222178,
+    "assert_fee_sats": 36000,
+    "slashed_sats": 1670.7718866837536
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "random",
+   "value": -11.785818386021004,
+   "metrics": {
+    "cost_sats": 131375.95612993944,
+    "admitted": 1,
+    "bond_over_value": 1.25,
+    "delta_blocks": 72,
+    "capital_sats": 77137.38844264943,
+    "assert_fee_sats": 50400,
+    "slashed_sats": 3838.5676872900003
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -12.999514828253968,
+   "metrics": {
+    "cost_sats": 442198.79759283504,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.642281279369229,
+   "metrics": {
+    "cost_sats": 113809.50027200478,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 60338.648454612514,
+    "assert_fee_sats": 50400,
+    "slashed_sats": 3070.8518173922703
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.666093037750668,
+   "metrics": {
+    "cost_sats": 116552.02720520238,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 63081.17305361992,
+    "assert_fee_sats": 50400,
+    "slashed_sats": 3070.8541515824595
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1006,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.63623795167254,
+   "metrics": {
+    "cost_sats": 113123.78625109037,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 59653.01730462526,
+    "assert_fee_sats": 50400,
+    "slashed_sats": 3070.768946465111
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.876785759243145,
+   "metrics": {
+    "cost_sats": 1063191.4655811028,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 1036525.7869486567,
+    "assert_fee_sats": 26400,
+    "slashed_sats": 265.67863244602404
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -15.471162248106449,
+   "metrics": {
+    "cost_sats": 5236491.380262627,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -13.780936871108837,
+   "metrics": {
+    "cost_sats": 966017.154297411,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 939351.5196417933,
+    "assert_fee_sats": 26400,
+    "slashed_sats": 265.6346556176022
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -13.813917911079542,
+   "metrics": {
+    "cost_sats": 998408.6207042881,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 971742.9420775183,
+    "assert_fee_sats": 26400,
+    "slashed_sats": 265.67862676980945
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1007,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -13.780936871108837,
+   "metrics": {
+    "cost_sats": 966017.154297411,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 939351.5196417933,
+    "assert_fee_sats": 26400,
+    "slashed_sats": 265.6346556176022
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "random",
+   "value": -11.914672011239485,
+   "metrics": {
+    "cost_sats": 149443.25151754016,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 136342.2229895688,
+    "assert_fee_sats": 12000,
+    "slashed_sats": 1101.0285279713637
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.556852966966138,
+   "metrics": {
+    "cost_sats": 772087.347445584,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.904250490653187,
+   "metrics": {
+    "cost_sats": 147893.9128503087,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 134792.8922018932,
+    "assert_fee_sats": 12000,
+    "slashed_sats": 1101.0206484154787
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.93519467813121,
+   "metrics": {
+    "cost_sats": 152541.9132316744,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 139440.88456488115,
+    "assert_fee_sats": 12000,
+    "slashed_sats": 1101.028666793261
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1008,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.893716161974828,
+   "metrics": {
+    "cost_sats": 146344.1270710909,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 24,
+    "capital_sats": 133243.56141310578,
+    "assert_fee_sats": 12000,
+    "slashed_sats": 1100.565657985103
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.84555353204784,
+   "metrics": {
+    "cost_sats": 1030498.8177442905,
+    "admitted": 0,
+    "bond_over_value": 0.75,
+    "delta_blocks": 288,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.84555353204784,
+   "metrics": {
+    "cost_sats": 1030498.8177442905,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.368272890172577,
+   "metrics": {
+    "cost_sats": 235219.14492217725,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 168016.6798438084,
+    "assert_fee_sats": 67200,
+    "slashed_sats": 2.4650783688497913
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.414793719705722,
+   "metrics": {
+    "cost_sats": 246420.257146073,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 179217.7916662969,
+    "assert_fee_sats": 67200,
+    "slashed_sats": 2.4654797761119474
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1009,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.368272890172577,
+   "metrics": {
+    "cost_sats": 235219.14492217725,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 168016.6798438084,
+    "assert_fee_sats": 67200,
+    "slashed_sats": 2.4650783688497913
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "random",
+   "value": -14.017479090976659,
+   "metrics": {
+    "cost_sats": 1223809.4979071475,
+    "admitted": 0,
+    "bond_over_value": 1.25,
+    "delta_blocks": 12,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -14.017479090976659,
+   "metrics": {
+    "cost_sats": 1223809.4979071475,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.47455801315724,
+   "metrics": {
+    "cost_sats": 261596.36760250144,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 199193.11189600514,
+    "assert_fee_sats": 62400,
+    "slashed_sats": 3.255706496305748
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.500476186897375,
+   "metrics": {
+    "cost_sats": 268465.09564889385,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 206061.83977879432,
+    "assert_fee_sats": 62400,
+    "slashed_sats": 3.255870099557792
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1010,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.47455801315724,
+   "metrics": {
+    "cost_sats": 261596.36760250144,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 199193.11189600514,
+    "assert_fee_sats": 62400,
+    "slashed_sats": 3.255706496305748
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "random",
+   "value": -11.030421974158976,
+   "metrics": {
+    "cost_sats": 61723.621075544565,
+    "admitted": 1,
+    "bond_over_value": 1.5,
+    "delta_blocks": 288,
+    "capital_sats": 29587.34737077095,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 8136.273704773613
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -11.966294595781797,
+   "metrics": {
+    "cost_sats": 157360.4945390162,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.966294595781797,
+   "metrics": {
+    "cost_sats": 157360.4945390162,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -10.74133375605905,
+   "metrics": {
+    "cost_sats": 46227.6672503763,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 16803.507690050174,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 5424.159560326124
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1011,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -10.733392041181535,
+   "metrics": {
+    "cost_sats": 45861.99425489524,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 16438.333866841538,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 5423.660388053702
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "random",
+   "value": -15.017455508092011,
+   "metrics": {
+    "cost_sats": 3326580.668363362,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -15.017455508092011,
+   "metrics": {
+    "cost_sats": 3326580.668363362,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -13.42913837108466,
+   "metrics": {
+    "cost_sats": 679517.5710856253,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 499730.9858041402,
+    "assert_fee_sats": 28800,
+    "slashed_sats": 150986.58528148505
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -13.476990424603592,
+   "metrics": {
+    "cost_sats": 712824.4276931088,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 533036.1706592208,
+    "assert_fee_sats": 28800,
+    "slashed_sats": 150988.25703388805
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1012,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -13.412549880843734,
+   "metrics": {
+    "cost_sats": 668338.379796392,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 488629.2570780296,
+    "assert_fee_sats": 28800,
+    "slashed_sats": 150909.1227183625
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.280370984805563,
+   "metrics": {
+    "cost_sats": 215425.62143687584,
+    "admitted": 1,
+    "bond_over_value": 2,
+    "delta_blocks": 48,
+    "capital_sats": 145825.15197984801,
+    "assert_fee_sats": 69600,
+    "slashed_sats": 0.4694570278343114
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.193578122650099,
+   "metrics": {
+    "cost_sats": 536905.8985443559,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -13.193578122650099,
+   "metrics": {
+    "cost_sats": 536905.8985443559,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 24,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.867187174428611,
+   "metrics": {
+    "cost_sats": 142512.81071843795,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 72912.57598992401,
+    "assert_fee_sats": 69600,
+    "slashed_sats": 0.2347285139171557
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1013,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.86135633002745,
+   "metrics": {
+    "cost_sats": 141684.25862062315,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 72084.02399274043,
+    "assert_fee_sats": 69600,
+    "slashed_sats": 0.23462788272675972
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.09132549996754,
+   "metrics": {
+    "cost_sats": 178318.31165778977,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -12.09132549996754,
+   "metrics": {
+    "cost_sats": 178318.31165778977,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.09132549996754,
+   "metrics": {
+    "cost_sats": 178318.31165778977,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 18,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -10.73955080735032,
+   "metrics": {
+    "cost_sats": 46145.319123802336,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 24345.029627010423,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 200.2894967919143
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1014,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -10.73955080735032,
+   "metrics": {
+    "cost_sats": 46145.319123802336,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 24345.029627010423,
+    "assert_fee_sats": 21600,
+    "slashed_sats": 200.2894967919143
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "random",
+   "value": -14.300981876512383,
+   "metrics": {
+    "cost_sats": 1624940.6930776893,
+    "admitted": 0,
+    "bond_over_value": 0.75,
+    "delta_blocks": 96,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -14.300981876512383,
+   "metrics": {
+    "cost_sats": 1624940.6930776893,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.613688133274023,
+   "metrics": {
+    "cost_sats": 300645.80800804123,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 291026.4834097621,
+    "assert_fee_sats": 9600,
+    "slashed_sats": 19.324598279162092
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.646522650104936,
+   "metrics": {
+    "cost_sats": 310681.22022026405,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 301061.87871354324,
+    "assert_fee_sats": 9600,
+    "slashed_sats": 19.34150672078986
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1015,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.613688133274023,
+   "metrics": {
+    "cost_sats": 300645.80800804123,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 291026.4834097621,
+    "assert_fee_sats": 9600,
+    "slashed_sats": 19.324598279162092
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "random",
+   "value": -11.838178510574812,
+   "metrics": {
+    "cost_sats": 138438.0913167243,
+    "admitted": 0,
+    "bond_over_value": 1.5,
+    "delta_blocks": 6,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -11.838178510574812,
+   "metrics": {
+    "cost_sats": 138438.0913167243,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -10.543988480130162,
+   "metrics": {
+    "cost_sats": 37948.6223377839,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 16506.61403088675,
+    "assert_fee_sats": 19200,
+    "slashed_sats": 2242.0083068971517
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -10.558890550339445,
+   "metrics": {
+    "cost_sats": 38518.370038629386,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 17075.7292982193,
+    "assert_fee_sats": 19200,
+    "slashed_sats": 2242.640740410086
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1016,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -10.543988480130162,
+   "metrics": {
+    "cost_sats": 37948.6223377839,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 16506.61403088675,
+    "assert_fee_sats": 19200,
+    "slashed_sats": 2242.0083068971517
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.4637729744635,
+   "metrics": {
+    "cost_sats": 258790.2001683222,
+    "admitted": 1,
+    "bond_over_value": 1.25,
+    "delta_blocks": 432,
+    "capital_sats": 227590.19999992795,
+    "assert_fee_sats": 31200,
+    "slashed_sats": 0.00016839424633929685
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.580659541620461,
+   "metrics": {
+    "cost_sats": 790688.640538631,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.002745913413285,
+   "metrics": {
+    "cost_sats": 163202.31613470145,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 132002.31599999568,
+    "assert_fee_sats": 31200,
+    "slashed_sats": 0.00013470576296634583
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.030254615693002,
+   "metrics": {
+    "cost_sats": 167754.12013470626,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 136554.11999999086,
+    "assert_fee_sats": 31200,
+    "slashed_sats": 0.00013471539654692037
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1017,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.002745913413285,
+   "metrics": {
+    "cost_sats": 163202.31613470145,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 132002.31599999568,
+    "assert_fee_sats": 31200,
+    "slashed_sats": 0.00013470576296634583
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "random",
+   "value": -14.075336930051215,
+   "metrics": {
+    "cost_sats": 1296704.9229493586,
+    "admitted": 1,
+    "bond_over_value": 2,
+    "delta_blocks": 216,
+    "capital_sats": 1287099.6468878405,
+    "assert_fee_sats": 9600,
+    "slashed_sats": 5.276061518174545
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -14.929891304336136,
+   "metrics": {
+    "cost_sats": 3047680.307619458,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -13.244266082315617,
+   "metrics": {
+    "cost_sats": 564822.0938009529,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 555219.4558871089,
+    "assert_fee_sats": 9600,
+    "slashed_sats": 2.6379138439761776
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -13.287978390131327,
+   "metrics": {
+    "cost_sats": 590059.3417912388,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 580456.7037604839,
+    "assert_fee_sats": 9600,
+    "slashed_sats": 2.6380307549009223
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1018,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -13.2330327807356,
+   "metrics": {
+    "cost_sats": 558512.7804381185,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 548910.1439187593,
+    "assert_fee_sats": 9600,
+    "slashed_sats": 2.63651935921656
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.601773151987,
+   "metrics": {
+    "cost_sats": 807560.4177208871,
+    "admitted": 0,
+    "bond_over_value": 2,
+    "delta_blocks": 6,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.601773151987,
+   "metrics": {
+    "cost_sats": 807560.4177208871,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.022029951082558,
+   "metrics": {
+    "cost_sats": 166380.05710905953,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 24,
+    "capital_sats": 132313.74238492947,
+    "assert_fee_sats": 33600,
+    "slashed_sats": 466.31472413007043
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.040356017774068,
+   "metrics": {
+    "cost_sats": 169457.25951870205,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 135390.79519014203,
+    "assert_fee_sats": 33600,
+    "slashed_sats": 466.4643285600129
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1019,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.022029951082558,
+   "metrics": {
+    "cost_sats": 166380.05710905953,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 24,
+    "capital_sats": 132313.74238492947,
+    "assert_fee_sats": 33600,
+    "slashed_sats": 466.31472413007043
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.873705463717062,
+   "metrics": {
+    "cost_sats": 1059921.5603889357,
+    "admitted": 0,
+    "bond_over_value": 0.75,
+    "delta_blocks": 96,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.873705463717062,
+   "metrics": {
+    "cost_sats": 1059921.5603889357,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -12.367136106999048,
+   "metrics": {
+    "cost_sats": 234951.90368258904,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 167747.83186752052,
+    "assert_fee_sats": 67200,
+    "slashed_sats": 4.071815068504218
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.391457470569769,
+   "metrics": {
+    "cost_sats": 240736.31156309697,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 173532.23972093425,
+    "assert_fee_sats": 67200,
+    "slashed_sats": 4.071842162719612
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1020,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.35889572796781,
+   "metrics": {
+    "cost_sats": 233023.76614485195,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 24,
+    "capital_sats": 165819.6959163787,
+    "assert_fee_sats": 67200,
+    "slashed_sats": 4.070228473267116
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.862627599260486,
+   "metrics": {
+    "cost_sats": 1048244.6898174023,
+    "admitted": 1,
+    "bond_over_value": 1.5,
+    "delta_blocks": 216,
+    "capital_sats": 966991.025090603,
+    "assert_fee_sats": 33600,
+    "slashed_sats": 47653.66472679918
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -14.987358134878768,
+   "metrics": {
+    "cost_sats": 3227951.020335523,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -14.987358134878768,
+   "metrics": {
+    "cost_sats": 3227951.020335523,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -13.360105263454006,
+   "metrics": {
+    "cost_sats": 634190.8817710954,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 568822.0421440374,
+    "assert_fee_sats": 33600,
+    "slashed_sats": 31768.839627058005
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1021,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -13.339951358342564,
+   "metrics": {
+    "cost_sats": 621537.3957916151,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 556182.2685259506,
+    "assert_fee_sats": 33600,
+    "slashed_sats": 31755.1272656645
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "random",
+   "value": -14.862704643641859,
+   "metrics": {
+    "cost_sats": 2849644.0327136754,
+    "admitted": 1,
+    "bond_over_value": 2,
+    "delta_blocks": 432,
+    "capital_sats": 797037.0287701389,
+    "assert_fee_sats": 28800,
+    "slashed_sats": 2023807.0039435364
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -15.555851824201804,
+   "metrics": {
+    "cost_sats": 5699288.065427351,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -14.103087405863217,
+   "metrics": {
+    "cost_sats": 1333193.0413107616,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 292520.26920577796,
+    "assert_fee_sats": 28800,
+    "slashed_sats": 1011872.7721049836
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -14.112999548401111,
+   "metrics": {
+    "cost_sats": 1346473.5511855632,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 305770.04996172886,
+    "assert_fee_sats": 28800,
+    "slashed_sats": 1011903.5012238342
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1022,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -14.100293795923744,
+   "metrics": {
+    "cost_sats": 1329473.817428536,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 289207.8224057471,
+    "assert_fee_sats": 28800,
+    "slashed_sats": 1011465.995022789
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "random",
+   "value": -14.367826474841571,
+   "metrics": {
+    "cost_sats": 1737271.739500537,
+    "admitted": 1,
+    "bond_over_value": 2,
+    "delta_blocks": 216,
+    "capital_sats": 813806.6816566264,
+    "assert_fee_sats": 38400,
+    "slashed_sats": 885065.0578439106
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -15.140315937210454,
+   "metrics": {
+    "cost_sats": 3761453.226896086,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -13.62681844232828,
+   "metrics": {
+    "cost_sats": 828041.4084549998,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 347130.47661766765,
+    "assert_fee_sats": 38400,
+    "slashed_sats": 442510.93183733214
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -13.641178096363328,
+   "metrics": {
+    "cost_sats": 840017.5776407281,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 359085.0495124756,
+    "assert_fee_sats": 38400,
+    "slashed_sats": 442532.5281282525
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1023,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -13.62681844232828,
+   "metrics": {
+    "cost_sats": 828041.4084549998,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 347130.47661766765,
+    "assert_fee_sats": 38400,
+    "slashed_sats": 442510.93183733214
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "random",
+   "value": -15.015684617925036,
+   "metrics": {
+    "cost_sats": 3320694.8724553366,
+    "admitted": 0,
+    "bond_over_value": 0.75,
+    "delta_blocks": 6,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -15.015684617925036,
+   "metrics": {
+    "cost_sats": 3320694.8724553366,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -15.015684617925036,
+   "metrics": {
+    "cost_sats": 3320694.8724553366,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -13.378943935793925,
+   "metrics": {
+    "cost_sats": 646251.4417783465,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 576631.4753534573,
+    "assert_fee_sats": 69600,
+    "slashed_sats": 19.966424889247573
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1024,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -13.368634973646389,
+   "metrics": {
+    "cost_sats": 639623.4825164296,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 24,
+    "capital_sats": 570003.5275930271,
+    "assert_fee_sats": 69600,
+    "slashed_sats": 19.954923402501876
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "random",
+   "value": -11.622788111888713,
+   "metrics": {
+    "cost_sats": 111612.47567553625,
+    "admitted": 1,
+    "bond_over_value": 1.5,
+    "delta_blocks": 96,
+    "capital_sats": 87610.67983488817,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 1.7958406480790063
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -12.773479679468743,
+   "metrics": {
+    "cost_sats": 352737.58685902343,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.28814153362401,
+   "metrics": {
+    "cost_sats": 79868.87717247588,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 55867.679947392346,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 1.1972250835458975
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.319441646690095,
+   "metrics": {
+    "cost_sats": 82408.31711702415,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 58407.119889925445,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 1.1972270987193376
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1025,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.280160994791999,
+   "metrics": {
+    "cost_sats": 79234.01712881066,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 55232.81996175889,
+    "assert_fee_sats": 24000,
+    "slashed_sats": 1.1971670517777044
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.90135152228947,
+   "metrics": {
+    "cost_sats": 1089633.0240014498,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 144,
+    "capital_sats": 1039233.0239999999,
+    "assert_fee_sats": 50400,
+    "slashed_sats": 0.0000014500336610112138
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -15.482644595646724,
+   "metrics": {
+    "cost_sats": 5296965.120005798,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -15.482644595646724,
+   "metrics": {
+    "cost_sats": 5296965.120005798,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -13.860800936452023,
+   "metrics": {
+    "cost_sats": 1046331.64800145,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 995931.6479999999,
+    "assert_fee_sats": 50400,
+    "slashed_sats": 0.000001450019429313572
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1026,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -13.839891863568482,
+   "metrics": {
+    "cost_sats": 1024680.9600014497,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 974280.96,
+    "assert_fee_sats": 50400,
+    "slashed_sats": 0.0000014497710236807814
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.960623113027435,
+   "metrics": {
+    "cost_sats": 1156169.6956978699,
+    "admitted": 1,
+    "bond_over_value": 1.5,
+    "delta_blocks": 96,
+    "capital_sats": 988865.0677437652,
+    "assert_fee_sats": 55200,
+    "slashed_sats": 112104.6279541047
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -15.163267892966694,
+   "metrics": {
+    "cost_sats": 3848784.3107810128,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -15.163267892966694,
+   "metrics": {
+    "cost_sats": 3848784.3107810128,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -13.532291533645614,
+   "metrics": {
+    "cost_sats": 753354.7667740594,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 623419.0426791918,
+    "assert_fee_sats": 55200,
+    "slashed_sats": 74735.72409486763
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1027,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -13.522686896751845,
+   "metrics": {
+    "cost_sats": 746153.7049366105,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 24,
+    "capital_sats": 616254.1754239784,
+    "assert_fee_sats": 55200,
+    "slashed_sats": 74699.52951263222
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "random",
+   "value": -11.567552809759533,
+   "metrics": {
+    "cost_sats": 105614.69626629172,
+    "admitted": 1,
+    "bond_over_value": 2,
+    "delta_blocks": 96,
+    "capital_sats": 36014.68799924354,
+    "assert_fee_sats": 69600,
+    "slashed_sats": 0.008267048178482485
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -12.359443206259476,
+   "metrics": {
+    "cost_sats": 233151.37652702798,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -11.371643199021749,
+   "metrics": {
+    "cost_sats": 86824.42013331388,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 17224.41599982018,
+    "assert_fee_sats": 69600,
+    "slashed_sats": 0.004133493701263022
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -11.380620156204987,
+   "metrics": {
+    "cost_sats": 87607.34813314586,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 96,
+    "capital_sats": 18007.34399962177,
+    "assert_fee_sats": 69600,
+    "slashed_sats": 0.004133524089241242
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1028,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -11.369386311433178,
+   "metrics": {
+    "cost_sats": 86628.6881327724,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 17028.683999869776,
+    "assert_fee_sats": 69600,
+    "slashed_sats": 0.004132902627091714
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "random",
+   "value": -14.004353531313937,
+   "metrics": {
+    "cost_sats": 1207851.2727514403,
+    "admitted": 1,
+    "bond_over_value": 1.25,
+    "delta_blocks": 288,
+    "capital_sats": 355549.79600596975,
+    "assert_fee_sats": 31200,
+    "slashed_sats": 821101.4767454707
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -15.190189281320984,
+   "metrics": {
+    "cost_sats": 3953806.2532441253,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -13.729175714220988,
+   "metrics": {
+    "cost_sats": 917287.0319676956,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 229261.3826817682,
+    "assert_fee_sats": 31200,
+    "slashed_sats": 656825.6492859273
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -13.737792443020881,
+   "metrics": {
+    "cost_sats": 925225.1969451872,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 72,
+    "capital_sats": 237144.0191399457,
+    "assert_fee_sats": 31200,
+    "slashed_sats": 656881.1778052414
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1029,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -13.729175714220988,
+   "metrics": {
+    "cost_sats": 917287.0319676956,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 229261.3826817682,
+    "assert_fee_sats": 31200,
+    "slashed_sats": 656825.6492859273
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "random",
+   "value": -13.826493372535213,
+   "metrics": {
+    "cost_sats": 1011043.3470816993,
+    "admitted": 0,
+    "bond_over_value": 1.5,
+    "delta_blocks": 6,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.826493372535213,
+   "metrics": {
+    "cost_sats": 1011043.3470816993,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -13.826493372535213,
+   "metrics": {
+    "cost_sats": 1011043.3470816993,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 24,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.334169902667918,
+   "metrics": {
+    "cost_sats": 227332.7091928944,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 48,
+    "capital_sats": 155736.36939751863,
+    "assert_fee_sats": 62400,
+    "slashed_sats": 9196.33979537577
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1030,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.326346993857918,
+   "metrics": {
+    "cost_sats": 225561.24417813602,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 153966.7437481539,
+    "assert_fee_sats": 62400,
+    "slashed_sats": 9194.500429982128
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "random",
+   "value": -12.1494689553241,
+   "metrics": {
+    "cost_sats": 188993.69908739126,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 60490.34772617284,
+    "assert_fee_sats": 62400,
+    "slashed_sats": 66103.3513612184
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "ghost_required_bond",
+   "value": -13.490963085077839,
+   "metrics": {
+    "cost_sats": 722854.3908509087,
+    "admitted": 0,
+    "bond_over_value": 0.5,
+    "delta_blocks": 144,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "plug_in",
+   "value": -13.490963085077839,
+   "metrics": {
+    "cost_sats": 722854.3908509087,
+    "admitted": 0,
+    "bond_over_value": 1,
+    "delta_blocks": 12,
+    "capital_sats": 0,
+    "assert_fee_sats": 0,
+    "slashed_sats": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "half_rate",
+   "value": -12.1494689553241,
+   "metrics": {
+    "cost_sats": 188993.69908739126,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 36,
+    "capital_sats": 60490.34772617284,
+    "assert_fee_sats": 62400,
+    "slashed_sats": 66103.3513612184
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "bonding/strict",
+   "seed": 1031,
+   "cell": "single",
+   "agent": "oracle",
+   "value": -12.145611335191361,
+   "metrics": {
+    "cost_sats": 188266.03761198462,
+    "admitted": 1,
+    "bond_over_value": 1,
+    "delta_blocks": 24,
+    "capital_sats": 59795.82488925698,
+    "assert_fee_sats": 62400,
+    "slashed_sats": 66070.21272272764
+   },
+   "turns": 1,
+   "rejections": []
+  }
+ ],
+ "checks": [
+  {
+   "id": "K52",
+   "pass": true,
+   "detail": "96 episodes compared, 0 mismatches"
+  }
+ ]
+}

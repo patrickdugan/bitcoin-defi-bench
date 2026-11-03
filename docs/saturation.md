@@ -138,6 +138,23 @@ What the confirmatory block says:
 - **Family 7 with the skill: where it does not stop, it beats the reference.** On `bursty` nothing stopped, and the agent beats `fixed_interval`, +0.03 (+0.01 to +0.05). With family 5's `slow` and `strict`, these are the first agent − reference contrasts the bench has found positive for an LLM, and in all three what beats the reference is the skill's procedure, carried through by the model.
 - **Family 7 bare: no strategy.** It has none that survives the horizon. It ends early, waits to the end, or proves one claim at a time until its proofs run out.
 
+## Development results, families 4 and 9 (seeds 0 to 7)
+
+On 2026-11-03 bare Bonsai 8B was run for the first time on family 4 (inbound resizing) and on family 9's seven cells. No skill is written for either family yet. Both show the patterns of the other families, at their worst.
+
+- **Copying the example.** In family 4 the model resized to the prompt's 100,000-sat format example in 9 of 24 episodes. In family 9's `publish` cell it filtered on the placeholders `"<hex pubkey>"` and `"..."`.
+- **Stopping early.** Every family 4 episode ended with `commit` within four of 32 decisions. That fixes the capacity to the horizon, so failed receipts dominate the cost, and the agent is clipped at −1.00 in all three cells. As in family 7, the model reads `commit` as "done".
+- **A signer that signs everything.** In `custody` it approved 5.6 of 6 hostile requests an episode, and the key was compromised in 6 of 8 episodes. In `custody_hot` it answered nothing at all.
+- **Long JSON.** In `private`, a rumor reply missing its final closing brace accounts for most of 71 malformed rejections. That is the same slip family 6's long plans showed.
+
+Details are in docs/tasks.md §5.2 and §10.9. The skills that would match these failures:
+
+- for family 4, `buffer_rule`'s next target as the action;
+- for `custody`, the policy's verdict per request;
+- for the mesh cells, the router's next send.
+
+Each would return a short action the model can send by reference. Family 5 and family 7's `bursty` cell show that this carries a skill's level through.
+
 ## Order of work
 
 1. Done (2026-10-07): the skill loop in `src/agents/chat.ts`, the skills in `src/agents/skills.ts`, a netting prompt in `src/tasks/netting/prompt.ts`, and `scripts/run_netting_agent.ts` with `--skills`. Tests cover the loop, the cap, the identity binding, error returns, and that a model which echoes `min_cost_flow` scores the ceiling.

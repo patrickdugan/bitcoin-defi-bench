@@ -1,0 +1,1399 @@
+{
+ "bench": "bitcoin-defi-bench/v0",
+ "block": "development",
+ "manifest_sha256": "11632cdfa8d436649acbc2094952a70b6ba275b60e9d39d721c77379be369009",
+ "prereg_sha256": "d9085f0b1a3e1d8b5a94fd48ea361dfdfc08661a873538e98f6e46c393b9e198",
+ "spiral_commit": "9824c30ad402cc9bca768eca27d176e0e8788db5",
+ "source_sha256": "75674790917c5a5784819629a9363408ef1a9dee729b5a7e1a394acbf8a86075",
+ "node": "v24.19.0",
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7
+ ],
+ "agents": [
+  {
+   "id": "idle",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "plaintext_mention",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "random",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "legacy_everywhere",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "nip17",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "bonsai-8b-nothink@e06836fa3df2",
+   "privileged": false,
+   "baseline": false,
+   "details": {
+    "adapter": "chat-adapter/v0",
+    "model": "bonsai-8b",
+    "model_sha256": "284a335aa3fb2ced3b1b01fcb40b08aa783e3b70832767f0dd2e3fdfa134bd54",
+    "runtime": "llama-prism 0.2.0-dev (build 10743, commit adfffbe41), win-cuda-12.4",
+    "sampling": {
+     "temperature": 0.7,
+     "top_p": 0.8,
+     "top_k": 20,
+     "max_tokens": 1024,
+     "seed": 20261001
+    },
+    "thinking": false,
+    "prompt_sha256": "07b456445076481b435ee5443d94eebd18738e29406c9f7f31dcc93cedd3c23b"
+   }
+  }
+ ],
+ "tasks": [
+  {
+   "task": "nostr/private",
+   "unit": "sats: messages each recipient's client opened, NIP-04 discounted, minus messages exposed in the clear",
+   "band": 500,
+   "floor": "idle",
+   "ceiling": "nip17",
+   "reference": "legacy_everywhere",
+   "metrics": [
+    "nip17_delivered",
+    "nip04_delivered",
+    "exposed"
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "task": "nostr/private",
+   "seed": 0,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 0,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -34282,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 0,
+   "cell": "single",
+   "agent": "random",
+   "value": -7437,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 2,
+    "exposed": 2,
+    "relay_writes": 8
+   },
+   "turns": 23,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 0,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 22977,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 7,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 0,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 29947,
+   "metrics": {
+    "nip17_delivered": 6,
+    "nip04_delivered": 1,
+    "exposed": 0,
+    "relay_writes": 7
+   },
+   "turns": 31,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e06836fa3df2",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 72,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "malformed"
+    },
+    {
+     "turn": 1,
+     "reason": "malformed"
+    },
+    {
+     "turn": 2,
+     "reason": "malformed"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    },
+    {
+     "turn": 4,
+     "reason": "malformed"
+    },
+    {
+     "turn": 5,
+     "reason": "malformed"
+    },
+    {
+     "turn": 6,
+     "reason": "malformed"
+    },
+    {
+     "turn": 7,
+     "reason": "malformed"
+    },
+    {
+     "turn": 8,
+     "reason": "malformed"
+    },
+    {
+     "turn": 9,
+     "reason": "malformed"
+    },
+    {
+     "turn": 10,
+     "reason": "malformed"
+    },
+    {
+     "turn": 11,
+     "reason": "malformed"
+    },
+    {
+     "turn": 12,
+     "reason": "malformed"
+    },
+    {
+     "turn": 13,
+     "reason": "malformed"
+    },
+    {
+     "turn": 14,
+     "reason": "malformed"
+    },
+    {
+     "turn": 15,
+     "reason": "malformed"
+    },
+    {
+     "turn": 16,
+     "reason": "malformed"
+    },
+    {
+     "turn": 17,
+     "reason": "malformed"
+    },
+    {
+     "turn": 18,
+     "reason": "malformed"
+    },
+    {
+     "turn": 19,
+     "reason": "malformed"
+    },
+    {
+     "turn": 20,
+     "reason": "malformed"
+    },
+    {
+     "turn": 21,
+     "reason": "malformed"
+    },
+    {
+     "turn": 22,
+     "reason": "malformed"
+    },
+    {
+     "turn": 23,
+     "reason": "malformed"
+    },
+    {
+     "turn": 24,
+     "reason": "malformed"
+    },
+    {
+     "turn": 25,
+     "reason": "malformed"
+    },
+    {
+     "turn": 26,
+     "reason": "malformed"
+    },
+    {
+     "turn": 27,
+     "reason": "malformed"
+    },
+    {
+     "turn": 28,
+     "reason": "malformed"
+    },
+    {
+     "turn": 29,
+     "reason": "malformed"
+    },
+    {
+     "turn": 30,
+     "reason": "malformed"
+    },
+    {
+     "turn": 31,
+     "reason": "malformed"
+    },
+    {
+     "turn": 32,
+     "reason": "malformed"
+    },
+    {
+     "turn": 33,
+     "reason": "malformed"
+    },
+    {
+     "turn": 34,
+     "reason": "malformed"
+    },
+    {
+     "turn": 35,
+     "reason": "malformed"
+    },
+    {
+     "turn": 36,
+     "reason": "malformed"
+    },
+    {
+     "turn": 37,
+     "reason": "malformed"
+    },
+    {
+     "turn": 38,
+     "reason": "malformed"
+    },
+    {
+     "turn": 39,
+     "reason": "malformed"
+    },
+    {
+     "turn": 40,
+     "reason": "malformed"
+    },
+    {
+     "turn": 41,
+     "reason": "malformed"
+    },
+    {
+     "turn": 42,
+     "reason": "malformed"
+    },
+    {
+     "turn": 43,
+     "reason": "malformed"
+    },
+    {
+     "turn": 44,
+     "reason": "malformed"
+    },
+    {
+     "turn": 45,
+     "reason": "malformed"
+    },
+    {
+     "turn": 46,
+     "reason": "malformed"
+    },
+    {
+     "turn": 47,
+     "reason": "malformed"
+    },
+    {
+     "turn": 48,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 49,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 50,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 51,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 52,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 53,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 54,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 55,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 56,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 57,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 58,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 59,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 60,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 61,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 62,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 63,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 64,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 65,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 66,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 67,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 68,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 69,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 70,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 71,
+     "reason": "over_budget"
+    }
+   ]
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -46611,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1,
+   "cell": "single",
+   "agent": "random",
+   "value": 8637,
+   "metrics": {
+    "nip17_delivered": 1,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 31,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 25922,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 6,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 30233,
+   "metrics": {
+    "nip17_delivered": 3,
+    "nip04_delivered": 3,
+    "exposed": 0,
+    "relay_writes": 6
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e06836fa3df2",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 25,
+   "rejections": [
+    {
+     "turn": 0,
+     "reason": "unknown_handle"
+    },
+    {
+     "turn": 3,
+     "reason": "malformed"
+    },
+    {
+     "turn": 4,
+     "reason": "malformed"
+    },
+    {
+     "turn": 5,
+     "reason": "malformed"
+    },
+    {
+     "turn": 6,
+     "reason": "malformed"
+    },
+    {
+     "turn": 7,
+     "reason": "malformed"
+    },
+    {
+     "turn": 8,
+     "reason": "malformed"
+    },
+    {
+     "turn": 9,
+     "reason": "malformed"
+    },
+    {
+     "turn": 10,
+     "reason": "malformed"
+    },
+    {
+     "turn": 11,
+     "reason": "malformed"
+    },
+    {
+     "turn": 12,
+     "reason": "malformed"
+    },
+    {
+     "turn": 13,
+     "reason": "malformed"
+    },
+    {
+     "turn": 14,
+     "reason": "malformed"
+    },
+    {
+     "turn": 15,
+     "reason": "malformed"
+    },
+    {
+     "turn": 16,
+     "reason": "malformed"
+    },
+    {
+     "turn": 17,
+     "reason": "malformed"
+    },
+    {
+     "turn": 18,
+     "reason": "malformed"
+    },
+    {
+     "turn": 19,
+     "reason": "malformed"
+    },
+    {
+     "turn": 20,
+     "reason": "malformed"
+    },
+    {
+     "turn": 21,
+     "reason": "malformed"
+    },
+    {
+     "turn": 22,
+     "reason": "malformed"
+    },
+    {
+     "turn": 23,
+     "reason": "malformed"
+    },
+    {
+     "turn": 24,
+     "reason": "malformed"
+    }
+   ]
+  },
+  {
+   "task": "nostr/private",
+   "seed": 2,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 2,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -41904,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 21,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 2,
+   "cell": "single",
+   "agent": "random",
+   "value": -4127,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 3,
+    "exposed": 2,
+    "relay_writes": 8
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 2,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 21913,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 6,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 21,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 2,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 27503,
+   "metrics": {
+    "nip17_delivered": 4,
+    "nip04_delivered": 2,
+    "exposed": 0,
+    "relay_writes": 6
+   },
+   "turns": 28,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 2,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e06836fa3df2",
+   "value": 4407,
+   "metrics": {
+    "nip17_delivered": 1,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 12
+   },
+   "turns": 17,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 3,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 3,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -57249,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 21,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 3,
+   "cell": "single",
+   "agent": "random",
+   "value": 17713,
+   "metrics": {
+    "nip17_delivered": 3,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 31,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 3,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 29691,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 6,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 21,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 3,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 37719,
+   "metrics": {
+    "nip17_delivered": 5,
+    "nip04_delivered": 1,
+    "exposed": 0,
+    "relay_writes": 6
+   },
+   "turns": 29,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 3,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e06836fa3df2",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 14
+   },
+   "turns": 15,
+   "rejections": [
+    {
+     "turn": 13,
+     "reason": "over_budget"
+    }
+   ]
+  },
+  {
+   "task": "nostr/private",
+   "seed": 4,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 4,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -50183,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 21,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 4,
+   "cell": "single",
+   "agent": "random",
+   "value": -9287,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 1,
+    "exposed": 2,
+    "relay_writes": 8
+   },
+   "turns": 25,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 4,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 37637,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 8,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 21,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 4,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 45500,
+   "metrics": {
+    "nip17_delivered": 5,
+    "nip04_delivered": 3,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 35,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 4,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e06836fa3df2",
+   "value": 4140,
+   "metrics": {
+    "nip17_delivered": 1,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 14
+   },
+   "turns": 14,
+   "rejections": [
+    {
+     "turn": 5,
+     "reason": "unknown_id"
+    }
+   ]
+  },
+  {
+   "task": "nostr/private",
+   "seed": 5,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 5,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -50804,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 21,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 5,
+   "cell": "single",
+   "agent": "random",
+   "value": -20988,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 1,
+    "exposed": 5,
+    "relay_writes": 8
+   },
+   "turns": 25,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 5,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 29445,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 6,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 21,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 5,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 31244,
+   "metrics": {
+    "nip17_delivered": 1,
+    "nip04_delivered": 5,
+    "exposed": 0,
+    "relay_writes": 6
+   },
+   "turns": 25,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 5,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e06836fa3df2",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 72,
+   "rejections": [
+    {
+     "turn": 36,
+     "reason": "malformed"
+    },
+    {
+     "turn": 49,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 50,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 51,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 52,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 53,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 54,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 55,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 56,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 57,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 58,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 59,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 60,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 61,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 62,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 63,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 64,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 65,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 66,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 67,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 68,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 69,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 70,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 71,
+     "reason": "over_budget"
+    }
+   ]
+  },
+  {
+   "task": "nostr/private",
+   "seed": 6,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 6,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -41527,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 6,
+   "cell": "single",
+   "agent": "random",
+   "value": -16199,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 1,
+    "exposed": 5,
+    "relay_writes": 8
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 6,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 29091,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 7,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 6,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 37042,
+   "metrics": {
+    "nip17_delivered": 5,
+    "nip04_delivered": 2,
+    "exposed": 0,
+    "relay_writes": 7
+   },
+   "turns": 29,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 6,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e06836fa3df2",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 72,
+   "rejections": [
+    {
+     "turn": 48,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 49,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 50,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 51,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 52,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 53,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 54,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 55,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 56,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 57,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 58,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 59,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 60,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 61,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 62,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 63,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 64,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 65,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 66,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 67,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 68,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 69,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 70,
+     "reason": "over_budget"
+    },
+    {
+     "turn": 71,
+     "reason": "over_budget"
+    }
+   ]
+  },
+  {
+   "task": "nostr/private",
+   "seed": 7,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 7,
+   "cell": "single",
+   "agent": "plaintext_mention",
+   "value": -35264,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 8,
+    "relay_writes": 8
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 7,
+   "cell": "single",
+   "agent": "random",
+   "value": 2842,
+   "metrics": {
+    "nip17_delivered": 1,
+    "nip04_delivered": 1,
+    "exposed": 2,
+    "relay_writes": 8
+   },
+   "turns": 28,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 7,
+   "cell": "single",
+   "agent": "legacy_everywhere",
+   "value": 20135,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 6,
+    "exposed": 0,
+    "relay_writes": 8
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 7,
+   "cell": "single",
+   "agent": "nip17",
+   "value": 22399,
+   "metrics": {
+    "nip17_delivered": 4,
+    "nip04_delivered": 2,
+    "exposed": 0,
+    "relay_writes": 6
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "nostr/private",
+   "seed": 7,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@e06836fa3df2",
+   "value": 0,
+   "metrics": {
+    "nip17_delivered": 0,
+    "nip04_delivered": 0,
+    "exposed": 0,
+    "relay_writes": 24
+   },
+   "turns": 15,
+   "rejections": []
+  }
+ ],
+ "checks": [
+  {
+   "id": "K92",
+   "pass": true,
+   "detail": "8 episodes compared, 0 mismatches"
+  }
+ ],
+ "notes": [
+  "180 model replies were replayed from the reply log of an earlier attempt of this run; 122 came from the server in this invocation. Every episode and every baseline was executed again."
+ ]
+}

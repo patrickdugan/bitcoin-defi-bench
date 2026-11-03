@@ -1,0 +1,882 @@
+{
+ "bench": "bitcoin-defi-bench/v0",
+ "block": "development",
+ "manifest_sha256": "11632cdfa8d436649acbc2094952a70b6ba275b60e9d39d721c77379be369009",
+ "prereg_sha256": "d9085f0b1a3e1d8b5a94fd48ea361dfdfc08661a873538e98f6e46c393b9e198",
+ "spiral_commit": "9824c30ad402cc9bca768eca27d176e0e8788db5",
+ "source_sha256": "c365495da442f3209685b6554a0a2552e3af77829a7985a67f7e4b3f07f3f1e0",
+ "node": "v24.19.0",
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7
+ ],
+ "agents": [
+  {
+   "id": "idle",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "approve_all",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "random",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "kinds_only",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "policy",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "bonsai-8b-nothink-trm-complex@b7f36b872379",
+   "privileged": false,
+   "baseline": false,
+   "details": {
+    "complex": "trm-complex/v0",
+    "proposer": {
+     "adapter": "chat-adapter/v0",
+     "model": "bonsai-8b",
+     "model_sha256": "284a335aa3fb2ced3b1b01fcb40b08aa783e3b70832767f0dd2e3fdfa134bd54",
+     "runtime": "llama-prism 0.2.0-dev (build 10743, commit adfffbe41), win-cuda-12.4",
+     "sampling": {
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "max_tokens": 1024,
+      "seed": 20261001
+     },
+     "thinking": false,
+     "prompt_sha256": "1d7d9a7887eaf42abf1dc8137e4387c5b7cc8ebeedac98ce99467d1f1b38058a"
+    },
+    "proposer_id": "bonsai-8b-nothink@d8325f53f685",
+    "package": {
+     "name": "nostr_custody",
+     "sha256": "6803ddb9350bbbe5c611cd1079edb24186a9a5a1a597d7a48db11a7eb4129419"
+    },
+    "skill": {
+     "name": "custody_policy",
+     "sha256": "d6a4ac5d8419b12b1bb4d6a3343b8107e187658363edabfb8790fe9d2b85de89"
+    },
+    "gate": {
+     "sha256": "39d7f8a2d34fb787db4414f21e62536d942b3ddcf817bc23f9048306526bd9a1",
+     "menu": [
+      "commit",
+      "reference"
+     ],
+     "constant": "reference",
+     "models": 0
+    }
+   }
+  }
+ ],
+ "tasks": [
+  {
+   "task": "nostr/custody",
+   "unit": "sats: legitimate requests approved, minus losses from hostile ones; a key export costs the stake",
+   "band": 500,
+   "floor": "idle",
+   "ceiling": "policy",
+   "reference": "kinds_only",
+   "metrics": [
+    "legit_approved",
+    "hostile_approved",
+    "compromised"
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "task": "nostr/custody",
+   "seed": 0,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_approved": 0,
+    "legit_rejected": 10,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 0,
+   "cell": "single",
+   "agent": "approve_all",
+   "value": -199800,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 6,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 0,
+   "cell": "single",
+   "agent": "random",
+   "value": -204500,
+   "metrics": {
+    "legit_approved": 7,
+    "legit_rejected": 3,
+    "hostile_approved": 2,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 0,
+   "cell": "single",
+   "agent": "kinds_only",
+   "value": -199800,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 3,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 0,
+   "cell": "single",
+   "agent": "policy",
+   "value": 7200,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink-trm-complex@b7f36b872379",
+   "value": 7200,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 1,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_approved": 0,
+    "legit_rejected": 10,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 1,
+   "cell": "single",
+   "agent": "approve_all",
+   "value": -231900,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 6,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 1,
+   "cell": "single",
+   "agent": "random",
+   "value": -197600,
+   "metrics": {
+    "legit_approved": 4,
+    "legit_rejected": 6,
+    "hostile_approved": 1,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 1,
+   "cell": "single",
+   "agent": "kinds_only",
+   "value": 3400,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 1,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 1,
+   "cell": "single",
+   "agent": "policy",
+   "value": 8400,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink-trm-complex@b7f36b872379",
+   "value": 8400,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 2,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_approved": 0,
+    "legit_rejected": 10,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 2,
+   "cell": "single",
+   "agent": "approve_all",
+   "value": -268673,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 6,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 2,
+   "cell": "single",
+   "agent": "random",
+   "value": -263521,
+   "metrics": {
+    "legit_approved": 3,
+    "legit_rejected": 7,
+    "hostile_approved": 2,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 2,
+   "cell": "single",
+   "agent": "kinds_only",
+   "value": -268673,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 4,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 2,
+   "cell": "single",
+   "agent": "policy",
+   "value": 6000,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 2,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink-trm-complex@b7f36b872379",
+   "value": 6000,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 3,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_approved": 0,
+    "legit_rejected": 10,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 3,
+   "cell": "single",
+   "agent": "approve_all",
+   "value": -197600,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 6,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 3,
+   "cell": "single",
+   "agent": "random",
+   "value": -197600,
+   "metrics": {
+    "legit_approved": 8,
+    "legit_rejected": 2,
+    "hostile_approved": 3,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 3,
+   "cell": "single",
+   "agent": "kinds_only",
+   "value": -197600,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 4,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 3,
+   "cell": "single",
+   "agent": "policy",
+   "value": 11000,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 3,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink-trm-complex@b7f36b872379",
+   "value": 11000,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 4,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_approved": 0,
+    "legit_rejected": 10,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 4,
+   "cell": "single",
+   "agent": "approve_all",
+   "value": -227600,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 6,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 4,
+   "cell": "single",
+   "agent": "random",
+   "value": -210000,
+   "metrics": {
+    "legit_approved": 2,
+    "legit_rejected": 8,
+    "hostile_approved": 4,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 4,
+   "cell": "single",
+   "agent": "kinds_only",
+   "value": -200000,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 3,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 4,
+   "cell": "single",
+   "agent": "policy",
+   "value": 6200,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 4,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink-trm-complex@b7f36b872379",
+   "value": 6200,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 5,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_approved": 0,
+    "legit_rejected": 10,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 5,
+   "cell": "single",
+   "agent": "approve_all",
+   "value": -312980,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 6,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 5,
+   "cell": "single",
+   "agent": "random",
+   "value": -217300,
+   "metrics": {
+    "legit_approved": 6,
+    "legit_rejected": 4,
+    "hostile_approved": 3,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 5,
+   "cell": "single",
+   "agent": "kinds_only",
+   "value": -262980,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 3,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 5,
+   "cell": "single",
+   "agent": "policy",
+   "value": 11100,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 5,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink-trm-complex@b7f36b872379",
+   "value": 11100,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 6,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_approved": 0,
+    "legit_rejected": 10,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 6,
+   "cell": "single",
+   "agent": "approve_all",
+   "value": -110914,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 6,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 6,
+   "cell": "single",
+   "agent": "random",
+   "value": -102214,
+   "metrics": {
+    "legit_approved": 4,
+    "legit_rejected": 6,
+    "hostile_approved": 5,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 6,
+   "cell": "single",
+   "agent": "kinds_only",
+   "value": -35914,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 2,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 6,
+   "cell": "single",
+   "agent": "policy",
+   "value": 10900,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 6,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink-trm-complex@b7f36b872379",
+   "value": 10900,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 7,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "legit_approved": 0,
+    "legit_rejected": 10,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 7,
+   "cell": "single",
+   "agent": "approve_all",
+   "value": -205000,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 6,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 7,
+   "cell": "single",
+   "agent": "random",
+   "value": -200000,
+   "metrics": {
+    "legit_approved": 5,
+    "legit_rejected": 5,
+    "hostile_approved": 4,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 7,
+   "cell": "single",
+   "agent": "kinds_only",
+   "value": -205000,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 3,
+    "compromised": 1,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 7,
+   "cell": "single",
+   "agent": "policy",
+   "value": 10500,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/custody",
+   "seed": 7,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink-trm-complex@b7f36b872379",
+   "value": 10500,
+   "metrics": {
+    "legit_approved": 10,
+    "legit_rejected": 0,
+    "hostile_approved": 0,
+    "compromised": 0,
+    "inspected": 0
+   },
+   "turns": 16,
+   "rejections": []
+  }
+ ],
+ "checks": [
+  {
+   "id": "K92",
+   "pass": true,
+   "detail": "8 episodes compared, 0 mismatches"
+  }
+ ],
+ "notes": [
+  "A TRM complex: the proposer `bonsai-8b-nothink@d8325f53f685` proposes each action; the package `nostr_custody` (SHA-256 6803ddb9350b) checks it against the cell's public rules, repairs a proposal that breaks one with the skill `custody_policy`, and sends a legal proposal that differs from the skill's action only if the gate (SHA-256 39d7f8a2d34f, the constant rule reference) says commit. Turns by stage: agree 17, gate 11, repair 100, veto 0 of 128; the gate sent the proposal on 0."
+ ]
+}

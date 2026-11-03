@@ -215,6 +215,22 @@ The family 4 cells are listed as `balanced` / `correlated` / `drift`. The custod
 
 Amendment 11 fixes these five agents for the confirmatory seeds.
 
+## Confirmatory results, family 9 skill agents (seeds 1000 to 1031)
+
+The five agents Amendment 11 fixed were run on 2026-11-04. Nothing is flagged for audit. In the table, **calls** are turns with a skill call and **copied** are calls whose result was sent as the action. The contrast is Amendment 5's, agent − the cell's reference, in sats.
+
+| Cell | Agent | Calls | Copied | Agent − reference | Normalized | TRM complex, same skill |
+|---|---|---:|---:|---|---|---|
+| `publish` | `9a50b6012cdd` | 64 of 563 | 27 | −13,559 (−14,549 to −12,570), negative | 0.03 (−0.03 to 0.08) | 0.86 |
+| `private` | `bf72a2ef7045` | not completed | | | | 1.00 |
+| `counterparty` | `7022487f091f` | 54 of 530 | 54 | +4,503 (−5,551 to +14,556), inconclusive | 0.12 (−0.02 to 0.27) | 0.67 |
+| `mesh_outage` | `e94ca1ac779a` | 153 of 662 | 72 | −11,343 (−13,705 to −8,982), negative | 0.13 (0.00 to 0.26) | 0.79 |
+| `mesh_partial` | `71bc752498cf` | 231 of 641 | 125 | −8,512 (−11,003 to −6,020), negative | 0.28 (0.13 to 0.43) | 0.79 |
+
+- **`private` did not complete.** On seed 1002 the request for turn 20 was 42,486 tokens, past the 40,960-token context, and the run stopped under Amendment 10's rule. Seeds 1000 and 1001 had run 24 turns each ([note and partial logs](../results/v0-nostr-private-bonsai-8b-nothink-nip17_plan.not-completed.md)).
+- **The development failures repeat.** In `publish`, 380 of 563 actions were `fetch` requests cut off at the 1,024-token reply cap. In `counterparty`, on turns without a call the model waited (102), bid the prompt's example of 25,000 sats (60), and paid the offer `"<offer id>"` (30). In the mesh cells it copied about half of its calls. It transmitted more than `bitchat_router` (197 and 233 an episode, against 166 and 159) and delivered fewer messages (2.1 and 3.3, against 5.8 and 5.7).
+- **The same skill, two ways.** Given the skill as a tool, the model reached 0.03 to 0.28 of the ceiling. In the TRM complex, where the skill repairs the model's proposal and a constant gate prefers it, the same skill reached 0.67 to 1.00 (docs/trm_complex.md). As a tool, the skill was called on 10% to 36% of turns, and 42% to 100% of the calls were copied. In the complex, the skill's action is sent whenever the proposal differs from it, so the score is the skill's.
+
 The TRM complex (docs/trm_complex.md) uses the same skills a different way. The model proposes, the cell's rules check the proposal, and the skill repairs it. On the development seeds it played each skill's baseline exactly in every cell but `custody_hot`.
 
 ## Order of work

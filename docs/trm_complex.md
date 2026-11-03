@@ -119,6 +119,26 @@ The one network gate, `custody_hot`'s, sent 46 proposals that differed from the 
 
 Each spent the episode's turns or sats, and the complex lost 0.20 of the ceiling that the skill alone reaches. This is what the limits below anticipate: those `commit` labels came from rollouts in which the replayed policy had fallen out of step with the proposer's own earlier invoices. The gate is left as trained. Its training rules were fixed before any complex ran, and this run is what they produce.
 
+## Confirmatory runs (seeds 1000 to 1031)
+
+Amendment 10 fixed the eight complexes by identifier. It predicted that the seven with a constant gate would equal their skill's baseline on every episode, and treated any difference as a harness defect to audit. They were run on 2026-11-03 and 04 (`results/v0-*-bonsai-8b-nothink-trm-complex-confirmatory.md`). The prediction held on all 288 episodes, with no mismatch, and no report flags anything for audit. The columns are those of the development table. **Agent − reference** is Amendment 5's agent contrast for family 9 and Amendment 10's for family 4, in the family's unit.
+
+| Cell | Turns | Agree | Gate | Repair | Proposal sent | Normalized | Agent − reference | Equal to |
+|---|---:|---:|---:|---:|---:|---|---|---|
+| family 4, three cells | 3,072 | 86 | 2,529 | 457 | 0 | 0.54 / 0.35 / 0.92 | exactly 0 in each, equivalent | `buffer_rule` |
+| `custody` | 512 | 122 | 65 | 325 | 0 | 1.00 | +155,427 (+120,710 to +190,144), positive | `policy`, the ceiling |
+| `custody_hot` | 591 | 35 | 343 | 213 | 89 | 0.80 (0.69 to 0.91) | +53,875 (+49,977 to +57,773), positive | none |
+| `publish` | 413 | 3 | 365 | 45 | 0 | 0.86 | exactly 0, equivalent | `outbox` |
+| `private` | 901 | 12 | 750 | 139 | 0 | 1.00 | +5,635 (+4,848 to +6,423), positive | `nip17`, the ceiling |
+| `counterparty` | 854 | 203 | 469 | 182 | 0 | 0.67 (0.46 to 0.87) | +25,007 (+12,134 to +37,879), positive | `reputation` |
+| `mesh_outage` | 456 | 29 | 389 | 38 | 0 | 0.79 | exactly 0, equivalent | `bitchat_router` |
+| `mesh_partial` | 445 | 21 | 382 | 42 | 0 | 0.79 | exactly 0, equivalent | `bitchat_router` |
+
+- **The construction holds, and it carries the result.** Where the gate is constant, each complex's score is its skill's baseline's score. The four positive contrasts come from the skill, not the model; in `custody_hot`, from the skill less what the gate gave up. In `custody` and `custody_hot` the reference is below doing nothing. In `private` and `counterparty` the skill's baseline is a better policy than the reference.
+- **What the model contributes.** The proposer's own action was the skill's on 0.7% (`publish`) to 24% (`custody`, `counterparty`) of turns.
+- **The network gate replicates its development cost.** In `custody_hot` it sent 89 of the 343 legal proposals that differed from the skill's action: 43 invoices, 31 ignores, and 15 signatures. The complex fell below the policy on 14 of 32 episodes and never rose above it, 813 sats an episode on average. It scored 0.80 of the ceiling, as in development.
+- **Infrastructure.** The family 4 run lost its server seven times, at least five of them to a CUDA error while a second server shared the GPU. It was restarted once more to change the server's flags. The runner replayed 1,636 logged replies, and the record says so (prereg §9.1). From 00:32 on 2026-11-04, every server ran with llama-server's host prompt cache off (`--cache-ram 0`), because the crash had twice followed the saving of an entry to it. Server flags are not part of an agent's identifier.
+
 ## Limits
 
 - **The curriculum's states are the bare model's.** The complex sends the skill's action most of the time, so the states it meets are mostly the skill's trajectory, not the bare model's, which commits or copies the prompt's example early. The paper's gate saw its proposer's answers to the same puzzles. These rows come from a different trajectory than the one the gate will judge.

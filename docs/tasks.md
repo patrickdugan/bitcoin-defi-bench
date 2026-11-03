@@ -578,6 +578,19 @@ Code in `src/tasks/server_sizing/`, config in `config/server_sizing.json`. Three
 
 Contrasts `buffer_rule` − `static_pilot` and `oracle` − `buffer_rule` for each cell were declared as descriptive before the development table. Amendment 10 of `prereg/v0.md` (2026-11-03) froze the family with them as its hypotheses S1 to S6, predicted positive and adjusted over the six, and gave an agent one primary contrast per cell against `buffer_rule`, adjusted over the three.
 
+**Confirmatory results (seeds 1000 to 1031)**, in [results/v0-server-sizing-baselines-confirmatory.md](../results/v0-server-sizing-baselines-confirmatory.md), run on 2026-11-03. K41 to K43 pass: 384 comparisons with no violation, 96 oracle episodes equal to their dynamic program, none with a failure. All six hypotheses hold on the adjusted interval.
+
+| Hypothesis | Cell | Contrast | Adjusted, ln cost | Verdict |
+|---|---|---|---|---|
+| S1 | `balanced` | `buffer_rule` − `static_pilot` | +0.28 (+0.24 to +0.32) | positive |
+| S2 | `balanced` | `oracle` − `buffer_rule` | +0.24 (+0.23 to +0.25) | positive |
+| S3 | `correlated` | `buffer_rule` − `static_pilot` | +0.43 (+0.06 to +0.79) | positive |
+| S4 | `correlated` | `oracle` − `buffer_rule` | +0.78 (+0.66 to +0.90) | positive |
+| S5 | `drift` | `buffer_rule` − `static_pilot` | +0.73 (+0.72 to +0.74) | positive |
+| S6 | `drift` | `oracle` − `buffer_rule` | +0.07 (+0.06 to +0.07) | positive |
+
+`buffer_rule`'s normalized gain is 0.54 on `balanced`, 0.35 on `correlated`, and 0.92 on `drift`. On `correlated` it fell from 0.64 on the development seeds, and the oracle's lead over it grew from +0.62 to +0.78. That is the cell where the pilot's peak is the poorest guide: the static margin failed 381 receipts an episode there, and no other cell's floor failed any.
+
 **Development results (seeds 0 to 7).** In [results/v0-server-sizing-baselines-development.md](../results/v0-server-sizing-baselines-development.md). K41 to K43 pass. Normalized gain, floor `static_pilot`, ceiling `oracle`: `buffer_rule` 0.53 on `balanced`, 0.64 on `correlated`, 0.91 on `drift`; `random` −0.61, −0.18, and −0.42. `oracle` − `buffer_rule` is +0.25, +0.62, and +0.07 in ln cost. The static pilot margin fails receipts on `correlated`, where the pilot's peak is a poor guide to the evaluation stream's.
 
 **Bonsai 8B, thinking off, on the development seeds** (`bonsai-8b-nothink@b7e945ef3ef0`, [results/v0-server-sizing-bonsai-8b-nothink-development.md](../results/v0-server-sizing-bonsai-8b-nothink-development.md), 2026-11-03). Every episode ended with `commit` within four of its 32 decisions, so whatever capacity was then in force held to the horizon. The episodes split four ways:

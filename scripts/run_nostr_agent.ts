@@ -1,4 +1,4 @@
-// Run an LLM agent on one family 9 cell alongside that cell's baselines.
+// Run an LLM agent on one family 9 cell alongside that cell's baselines (docs/saturation.md for skills).
 //
 //   node --experimental-strip-types scripts/run_nostr_agent.ts --cell custody --block development \
 //     --name bonsai-8b-nothink --base-url http://127.0.0.1:8094/v1 --model bonsai-8b \
@@ -12,6 +12,7 @@ import { appendFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileS
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { ChatAgent, type ChatOptions, type Exchange, type Reply } from "../src/agents/chat.ts";
+import { skillsNamed } from "../src/agents/skills.ts";
 import { readManifest } from "../src/harness/manifest.ts";
 import { executeRun, type SeedBlock } from "../src/harness/run.ts";
 import { SEED_BLOCKS, requireFrozen } from "../src/harness/seeds.ts";
@@ -42,7 +43,8 @@ if (block === "confirmatory") requireFrozen(root, "nostr");
 
 const out = join(root, "results");
 mkdirSync(out, { recursive: true });
-const name = arg("out", `v0-nostr-${cell.replace(/_/g, "-")}-${arg("name")}-${block}`);
+const skills = skillsNamed(arg("skills", ""));
+const name = arg("out", `v0-nostr-${cell.replace(/_/g, "-")}-${arg("name")}${skills.length ? `-${skills.map((s) => s.name).join("+")}` : ""}-${block}`);
 const transcript: Exchange[] = [];
 const maxTokens = Number(arg("max-tokens", "1024"));
 const options: ChatOptions = {
@@ -56,6 +58,9 @@ const options: ChatOptions = {
   thinking: arg("thinking", "false") === "true",
   identity: { model_sha256: arg("model-sha256"), runtime: arg("runtime") },
   prompt: nostrPrompt(cell, maxTokens),
+  skills,
+  maxSkillCalls: Number(arg("max-skill-calls", "4")),
+  ...(arg("max-skill-calls-per-turn", "") === "" ? {} : { maxSkillCallsPerTurn: Number(arg("max-skill-calls-per-turn", "")) }),
 };
 const agentId = new ChatAgent(options).id;
 
@@ -79,7 +84,8 @@ const agent = new ChatAgent({
   onExchange: (exchange) => {
     transcript.push(exchange);
     const source = exchange.replayed ? " (replayed)" : exchange.cached ? " (cached)" : "";
-    console.error(`  ${exchange.episode.task} seed ${exchange.episode.seed} turn ${exchange.turn}${source}: ${exchange.reply.replace(/\s+/g, " ").slice(0, 140)}`);
+    const kind = exchange.skill ? ` skill ${exchange.skill.name}` : exchange.sent ? ` sent ${exchange.sent}` : "";
+    console.error(`  ${exchange.episode.task} seed ${exchange.episode.seed} turn ${exchange.turn}${source}${kind}: ${exchange.reply.replace(/\s+/g, " ").slice(0, 140)}`);
   },
 });
 
@@ -94,6 +100,7 @@ const record = await executeRun({
   checks: nostrIdentityCheck(root, manifest, config, cell),
   notes: () => [
     ...(note !== "" ? [note] : []),
+    ...(skills.length ? [`The agent carried the skills ${skills.map((s) => s.name).join(", ")}, each bound into its identifier; skill calls are capped at ${options.maxSkillCalls} per episode${options.maxSkillCallsPerTurn === undefined ? "" : ` and ${options.maxSkillCallsPerTurn} before each action`} and cost no harness budget.`] : []),
     ...(agent.counts.replayed > 0 ? [`${agent.counts.replayed} model replies were replayed from the reply log of an earlier attempt of this run; ${agent.counts.served} came from the server in this invocation. Every episode and every baseline was executed again.`] : []),
   ],
   progress: (message) => console.error(message),

@@ -42,14 +42,18 @@ export interface Sampling {
   seed: number;
 }
 
-/** A procedure the model may call before it acts. Pure in the observation and its arguments. */
+/**
+ * A procedure the model may call before it acts. Pure in what the agent has received and the call's
+ * arguments: the current observation, and the observations of the episode so far (`history`, oldest
+ * first, ending with the current one), for skills whose procedure carries state from turn to turn.
+ */
 export interface Skill {
   name: string;
   /** One or two sentences the model sees, saying what the skill returns and what to do with it. */
   description: string;
   /** SHA-256 binding the skill's source into the agent id. */
   sha256: string;
-  run(observation: Json, args: Json): Json;
+  run(observation: Json, args: Json, history: readonly Json[]): Json;
 }
 
 export interface ChatOptions {
@@ -149,6 +153,8 @@ export class ChatAgent implements Agent {
   private skillCalls = 0;
   /** The latest result of each skill called in this episode, for a reply that sends one. */
   private results = new Map<string, Json>();
+  /** Every observation of this episode, oldest first, for skills that need the episode so far. */
+  private history: Json[] = [];
 
   constructor(options: ChatOptions) {
     const url = new URL(options.baseUrl);
@@ -169,7 +175,7 @@ export class ChatAgent implements Agent {
     // Skills enter the identity only when carried, so a bare agent's identifier is unchanged by the skill loop.
     const windowed = this.options.contextTurns === undefined ? base : { ...base, context_turns: this.options.contextTurns };
     const perTurn = this.options.maxSkillCallsPerTurn === undefined ? {} : { max_skill_calls_per_turn: this.options.maxSkillCallsPerTurn };
-    return skills.length ? { ...windowed, skills, max_skill_calls: this.options.maxSkillCalls ?? 4, ...perTurn, skill_protocol: "call by a skill field or a tool field naming a carried skill; result as compact json; {tool: send} or {send: name} sends a stored result that is an action" } : windowed;
+    return skills.length ? { ...windowed, skills, max_skill_calls: this.options.maxSkillCalls ?? 4, ...perTurn, skill_protocol: "call by a skill field or a tool field naming a carried skill; a reply that does not parse but opens with that envelope is a call with no arguments, kept in the conversation as the bare envelope; result as compact json; {tool: send} or {send: name} sends a stored result that is an action" } : windowed;
   }
 
   reset(episode: EpisodeInfo): void {
@@ -207,12 +213,30 @@ export class ChatAgent implements Agent {
   }
 
   /**
+   * A call whose arguments never closed: a reply that opens with the skill or tool field naming a
+   * carried skill and whose first JSON object is not that call. On family 9's `publish` and `private`
+   * cells Bonsai 8B wrote the observation's relay and follower lists into the arguments of a skill
+   * that takes none, and the 1,024-token cap cut the reply off. The skill runs with no arguments; the
+   * reply is kept in full in the transcript and as the bare envelope in the conversation, so a cut-off
+   * call does not fill the context. Actions get no such reading: a cut-off action stays malformed.
+   */
+  private cutOffCall(reply: string, parsed: Json): { field: "skill" | "tool"; name: string } | null {
+    const skills = this.options.skills ?? [];
+    if (skills.length === 0 || this.skillCalled(parsed) !== null) return null;
+    const m = /^\s*(?:```[a-z]*\s*)?\{\s*"(skill|tool)"\s*:\s*"([^"\\]+)"/.exec(reply);
+    if (!m || !skills.some((s) => s.name === m[2])) return null;
+    return { field: m[1] as "skill" | "tool", name: m[2]! };
+  }
+
+  /**
    * The skill whose stored result a reply sends as its action: {"tool": "send"} or {"send": name}. A
    * name that matches a stored result is used; otherwise the latest stored result that is an action.
    * The form takes no name because a small model wrote the action's name where the skill's went.
    */
-  private sentResult(parsed: Json): string | null {
+  private sentResult(parsed: Json, tools: readonly string[]): string | null {
     if (!isObject(parsed) || !("send" in parsed || parsed.tool === "send")) return null;
+    // Where the environment has its own send tool (the bitchat mesh), a send with arguments is that tool's action.
+    if (parsed.tool === "send" && tools.includes("send") && isObject(parsed.args) && Object.keys(parsed.args).length > 0) return null;
     if (typeof parsed.send === "string" && this.results.has(parsed.send)) return parsed.send;
     for (const [name, result] of [...this.results].reverse()) if (isObject(result) && typeof result.tool === "string") return name;
     return null;
@@ -222,12 +246,13 @@ export class ChatAgent implements Agent {
   private runSkill(name: string, args: Json, observation: Json): Json {
     const skill = (this.options.skills ?? []).find((s) => s.name === name);
     if (!skill) return { error: `unknown skill ${name}` };
-    try { return skill.run(observation, args); } catch (e) { return { error: String((e as Error).message ?? e) }; }
+    try { return skill.run(observation, args, this.history); } catch (e) { return { error: String((e as Error).message ?? e) }; }
   }
 
   async act(observation: Json): Promise<Json> {
     const turn = (observation as { episode: { turn: number } }).episode.turn;
-    if (turn === 0) { this.messages = [{ role: "system", content: this.options.prompt.system(observation) + this.skillsText() }]; this.turnStarts = []; }
+    if (turn === 0) { this.messages = [{ role: "system", content: this.options.prompt.system(observation) + this.skillsText() }]; this.turnStarts = []; this.history = []; }
+    this.history.push(observation);
     this.turnStarts.push(this.messages.length);
     let user = this.options.prompt.turn(observation);
     const cap = this.options.maxSkillCalls ?? 4;
@@ -237,16 +262,19 @@ export class ChatAgent implements Agent {
       const { reply, key, cached, replayed } = await this.complete(turn, call);
       this.messages.push({ role: "assistant", content: reply.content });
       const parsed = extractAction(reply.content);
-      const name = this.skillCalled(parsed);
+      const cutOff = this.cutOffCall(reply.content, parsed);
+      const name = cutOff?.name ?? this.skillCalled(parsed);
       if (name === null || this.skillCalls >= cap || call >= perTurn) {
         // An action, a sent result, or a skill call past a cap, which the harness rejects as malformed.
-        const sent = this.sentResult(parsed);
+        const tools = isObject(observation) && Array.isArray(observation.tools) ? (observation.tools as string[]) : [];
+        const sent = this.sentResult(parsed, tools);
         const action = sent === null ? parsed : this.results.get(sent)!;
         this.options.onExchange?.({ episode: this.episode, turn, request_sha256: key, cached, replayed, user, reply: reply.content, reasoning: reply.reasoning, action, ...(sent === null ? {} : { sent }) });
         return action;
       }
       this.skillCalls += 1;
-      const args = ((parsed as { args?: Json }).args ?? {}) as Json;
+      if (cutOff) this.messages[this.messages.length - 1] = { role: "assistant", content: JSON.stringify({ [cutOff.field]: cutOff.name, args: {} }) };
+      const args = (cutOff ? {} : ((parsed as { args?: Json }).args ?? {})) as Json;
       const result = this.runSkill(name, args, observation);
       this.results.set(name, result);
       this.options.onExchange?.({ episode: this.episode, turn, request_sha256: key, cached, replayed, user, reply: reply.content, reasoning: reply.reasoning, action: parsed, skill: { name, args, result } });

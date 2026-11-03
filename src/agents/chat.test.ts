@@ -248,6 +248,32 @@ test("a reply naming a carried skill as its tool is a skill call; without the sk
   } finally { m.server.close(); }
 });
 
+test("a call cut off inside its arguments runs the skill with none and enters the conversation as the bare envelope; a cut-off action stays malformed", async () => {
+  const echo: Skill = { name: "echo", description: "returns its arguments", sha256: "e".repeat(64), run: (_o, args) => ({ echoed: args }) };
+  // The shape Bonsai 8B wrote on family 9's private cell: the call opens, its arguments copy the observation, and the cap cuts it off.
+  const cutOff = '{"tool": "echo", "args": {"relays": [{"url": "wss://relay-01.sim", "write": "open"}, {"url": "wss://relay-02.sim", "wr';
+  const m = await mock((turn) => (turn === 0 ? cutOff : '{"tool":"commit"}'));
+  try {
+    const seen: Array<{ reply: string; args?: unknown }> = [];
+    const agent = new ChatAgent(options(m.url, { skills: [echo], onExchange: (e) => seen.push({ reply: e.reply, args: e.skill?.args }) }));
+    const row = await runEpisode(new PlacementEnv(fixture, "uniform", "stationary", config), agent);
+    assert.equal(row.rejections.length, 0);
+    assert.deepEqual(seen.map((s) => s.args), [{}, undefined]);
+    assert.equal(seen[0]!.reply, cutOff, "the transcript keeps the reply as written");
+    const second = m.requests[1]!.messages;
+    assert.equal(second.at(-2)!.content, '{"tool":"echo","args":{}}');
+    assert.ok(second.at(-1)!.content.includes('"echoed":{}'));
+    // A cut-off reply naming no carried skill, or from an agent without skills, is an action, and malformed.
+    const other = await mock(() => '{"tool": "commit", "args": {"x": [1, 2');
+    try {
+      const a = await runEpisode(new PlacementEnv(fixture, "uniform", "stationary", config), new ChatAgent(options(other.url, { skills: [echo] })));
+      assert.ok(a.rejections.length > 0 && a.rejections.every((r) => r.reason === "malformed"));
+    } finally { other.server.close(); }
+    const bare = await runEpisode(new PlacementEnv(fixture, "uniform", "stationary", config), new ChatAgent(options(m.url)));
+    assert.ok(bare.rejections.length > 0 && bare.rejections.every((r) => r.reason === "malformed"));
+  } finally { m.server.close(); }
+});
+
 test("a reply {tool: send} sends the skill's stored result as the action; before any result it passes through", async () => {
   const nconfig = loadNettingConfig(root);
   const nfixture = nettingFixture(root, readManifest(root), "tight_links", 1);

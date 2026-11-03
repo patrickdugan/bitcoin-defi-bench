@@ -1,6 +1,7 @@
-// A mock model server that calls one skill, then echoes the skill's result, on every turn.
+// A mock model server that calls one skill, then echoes the skill's result, on every turn. With
+// `send: "reference"` it answers a result with {"tool":"send"} instead of copying it.
 import { createServer, type Server } from "node:http";
-export async function echoSkillServer(skill: string): Promise<{ server: Server; url: string; calls: () => number }> {
+export async function echoSkillServer(skill: string, send: "copy" | "reference" = "copy"): Promise<{ server: Server; url: string; calls: () => number }> {
   let calls = 0;
   const server = createServer((req, res) => {
     let raw = "";
@@ -10,7 +11,7 @@ export async function echoSkillServer(skill: string): Promise<{ server: Server; 
       calls += 1;
       const lastUser = body.messages[body.messages.length - 1]!.content;
       let reply = JSON.stringify({ skill, args: {} });
-      if (lastUser.startsWith("Result of skill")) reply = lastUser.split("\n")[1]!;
+      if (lastUser.startsWith("Result of skill")) reply = send === "copy" ? lastUser.split("\n")[1]! : '{"tool":"send"}';
       res.setHeader("content-type", "application/json");
       res.end(JSON.stringify({ choices: [{ message: { content: reply, reasoning_content: "" } }] }));
     });

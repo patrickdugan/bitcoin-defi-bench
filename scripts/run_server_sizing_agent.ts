@@ -6,7 +6,7 @@
 //
 // Same discipline as the family 6 agent script: a reply log for reruns after an infrastructure
 // failure, every reply and skill call in the transcript, and a confirmatory block refused unless
-// the family is frozen (family 4 is not yet). An episode is many turns: one per sizing decision.
+// the family is frozen (Amendment 10). An episode is many turns: one per sizing decision.
 
 import { appendFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -19,7 +19,7 @@ import { SEED_BLOCKS, requireFrozen } from "../src/harness/seeds.ts";
 import { renderTable, type ReportSpec } from "../src/harness/table.ts";
 import { serverSizingBaselines } from "../src/tasks/server_sizing/baselines.ts";
 import { serverSizingPrompt } from "../src/tasks/server_sizing/prompt.ts";
-import { serverSizingContrasts, serverSizingIdentityCheck, serverSizingReport, serverSizingTaskSpecs } from "../src/tasks/server_sizing/report.ts";
+import { serverSizingAgentContrasts, serverSizingContrasts, serverSizingIdentityCheck, serverSizingReport, serverSizingTaskSpecs } from "../src/tasks/server_sizing/report.ts";
 import { loadServerSizingConfig } from "../src/tasks/server_sizing/task.ts";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -109,14 +109,11 @@ const record = await executeRun({
   progress: (message) => console.error(message),
 });
 
-/** All agent and baseline contrasts are descriptive until family 4 is frozen. */
+/** Agent report, as Amendment 10 declares: agent − `buffer_rule` per cell, primary; the baseline contrasts secondary. */
 const report: ReportSpec = {
   ...serverSizingReport(config),
   title: `Bitcoin DeFi Bench v0: family 4 (server inbound resizing), ${agent.id}`,
-  contrasts: [
-    ...Object.keys(config.cells).sort().map((cell, i) => ({ id: `A${i + 1}`, label: `\`${agent.id}\` − \`buffer_rule\``, task: `server_sizing/${cell}`, a: agent.id, b: "buffer_rule", primary: false })),
-    ...serverSizingContrasts(config).map((c) => ({ ...c, primary: false })),
-  ],
+  contrasts: [...serverSizingAgentContrasts(config, agent.id), ...serverSizingContrasts(config).map((c) => ({ ...c, primary: false }))],
 };
 
 writeFileSync(join(out, `${name}.json`), `${JSON.stringify(record, null, 1)}\n`);

@@ -1,5 +1,6 @@
-// Family 4 report: task specs, contrasts, gates, and the identity control. Not preregistered:
-// every contrast is declared and descriptive until an amendment freezes the family.
+// Family 4 report: task specs, contrasts, gates, and the identity control. Frozen by Amendment 10 of
+// prereg/v0.md: the six baseline contrasts are its hypotheses, and an agent has one primary contrast
+// per cell against `buffer_rule`.
 
 import type { EpisodeRow } from "../../harness/episode.ts";
 import type { Manifest } from "../../harness/manifest.ts";
@@ -24,12 +25,17 @@ export function serverSizingTaskSpecs(root: string, manifest: Manifest, config: 
   }));
 }
 
-/** Two descriptive contrasts per cell. None is primary: the family is not frozen. */
+/** Amendment 10's hypotheses S1 to S6: two per cell, both predicted positive, adjusted over the six. */
 export function serverSizingContrasts(config: ServerSizingConfig): ContrastSpec[] {
   return Object.keys(config.cells).sort().flatMap((cell, i) => [
-    { id: `S${2 * i + 1}`, label: "`buffer_rule` − `static_pilot`, descriptive: resizing against a fixed margin", task: taskOf(cell), a: "buffer_rule", b: "static_pilot", primary: false },
-    { id: `S${2 * i + 2}`, label: "`oracle` − `buffer_rule`, descriptive: knowing the stream against a buffer rule", task: taskOf(cell), a: "oracle", b: "buffer_rule", primary: false },
+    { id: `S${2 * i + 1}`, label: "`buffer_rule` − `static_pilot`, predicted positive: resizing against a fixed margin", task: taskOf(cell), a: "buffer_rule", b: "static_pilot", primary: true },
+    { id: `S${2 * i + 2}`, label: "`oracle` − `buffer_rule`, predicted positive: knowing the stream against a buffer rule", task: taskOf(cell), a: "oracle", b: "buffer_rule", primary: true },
   ]);
+}
+
+/** An agent's primary contrasts: agent − `buffer_rule` per cell, adjusted over the three. Its report shows the baseline contrasts as secondary. */
+export function serverSizingAgentContrasts(config: ServerSizingConfig, agent: string): ContrastSpec[] {
+  return Object.keys(config.cells).sort().map((cell, i) => ({ id: `A${i + 1}`, label: `\`${agent}\` − \`buffer_rule\``, task: taskOf(cell), a: agent, b: "buffer_rule", primary: true }));
 }
 
 export function serverSizingGates(_analysis: Analysis, record: RunRecord): Gate[] {

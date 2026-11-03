@@ -1,6 +1,7 @@
-// Skills a model may call through the chat adapter (docs/saturation.md). Each is pure in the
-// observation and its arguments, reads nothing hidden, and is a few lines on top of a baseline's
-// own code. The source of each `run` is hashed into the agent id.
+// Skills a model may call through the chat adapter (docs/saturation.md). Each is pure in what the
+// agent has received (the observation, and for a procedure that carries state from turn to turn the
+// episode's observations so far) and its arguments, reads nothing hidden, and is a few lines on top
+// of a baseline's own code. The source of each `run` is hashed into the agent id.
 
 import { pairKey } from "../harness/order.ts";
 import { sha256, type Json } from "../harness/json.ts";
@@ -12,6 +13,14 @@ import type { BondingView } from "../tasks/bonding/env.ts";
 import { catchProbability } from "../tasks/bonding/model.ts";
 import { eoqInterval } from "../tasks/proof_budget/baselines.ts";
 import type { ProofView } from "../tasks/proof_budget/env.ts";
+import { BufferRule } from "../tasks/server_sizing/baselines.ts";
+import { Policy } from "../tasks/nostr/custody.ts";
+import { HotPolicy } from "../tasks/nostr/custody_hot.ts";
+import { Outbox } from "../tasks/nostr/publish.ts";
+import { Nip17 } from "../tasks/nostr/private.ts";
+import { Reputation } from "../tasks/nostr/counterparty.ts";
+import { BitchatRouter } from "../tasks/nostr/mesh.ts";
+import type { Agent } from "../harness/agent.ts";
 import type { Skill } from "./chat.ts";
 
 const bind = (skill: Omit<Skill, "sha256">): Skill => ({ ...skill, sha256: sha256(`${skill.name}\n${skill.run.toString()}`) });
@@ -145,8 +154,96 @@ export const scheduleAfterProofSkill: Skill = bind({
   run: scheduleSkill.run,
 });
 
+/**
+ * Family 4: the next decision of `buffer_rule`, the reference, as the action itself. Its margin is
+ * written here, not read from config/server_sizing.json, so that the agent id binds it; a test holds
+ * it equal to the config's. The description says to call it at every decision, because bare Bonsai
+ * 8B committed within four of 32 decisions on every development episode (docs/tasks.md §5.2).
+ */
+export const capacityPlanSkill: Skill = bind({
+  name: "capacity_plan",
+  description: "Computes the next decision of a sound sizing rule for the state you were shown, a resize to a target or a hold, and returns it as the exact action to send. Payments keep arriving until the horizon, so call it at every decision: committing early fixes the capacity until the end. To use it, reply with that action unchanged.",
+  run(observation: Json): Json {
+    return new BufferRule({ static_margin: 0.25, buffer_margin: 0.25 }).act(observation) as Json;
+  },
+});
+
+/**
+ * A stateful reference policy's next action: a fresh copy, reset for the episode and replayed over
+ * every observation the agent has received in it. Followed at every turn, the skill is the policy;
+ * a turn where the model sends something else can put the replayed plan out of step with the episode.
+ */
+export function replayPolicy(policy: Agent, history: readonly Json[]): Json {
+  const first = history[0] as { task: string; episode: { seed: number; cell: string } } | undefined;
+  if (!first) throw new Error("no observation yet");
+  policy.reset?.({ task: first.task, seed: first.episode.seed, cell: first.episode.cell });
+  let action: Json = null;
+  for (const o of history) {
+    const next = policy.act(JSON.parse(JSON.stringify(o)) as Json);
+    if (next instanceof Promise) throw new Error("a replayed policy must act synchronously");
+    action = next;
+  }
+  return action;
+}
+
+/** Family 9, `custody`: the stated policy's decision on the next pending request, the cell's exact ceiling. */
+export const custodyPolicySkill: Skill = bind({
+  name: "custody_policy",
+  description: "Checks the next pending request against the operator's stated policy and returns the decision, approve or reject, as the exact action to send; when no request is pending it returns the commit. Call it once for each request. To use it, reply with that action unchanged.",
+  run(observation: Json): Json {
+    return new Policy().act(observation);
+  },
+});
+
+/** Family 9, `custody_hot`: the stated policy on the next pending message, the cell's exact ceiling. An attachment takes two turns. */
+export const inboxPolicySkill: Skill = bind({
+  name: "inbox_policy",
+  description: "Applies the bot's stated policy to the next pending message and returns the next action as the exact action to send: a reply, an ignore, or the invoice or signature a reply needs first; when nothing is pending it returns the commit. Call it at every turn. To use it, reply with that action unchanged.",
+  run(_observation: Json, _args: Json, history: readonly Json[]): Json {
+    return replayPolicy(new HotPolicy(), history);
+  },
+});
+
+/** Family 9, `publish`: the next step of `outbox`, the reference, NIP-65 as written. */
+export const outboxPlanSkill: Skill = bind({
+  name: "outbox_plan",
+  description: "Computes the next step of the NIP-65 outbox procedure for the episode so far (look up relay lists, sign, authenticate, publish) and returns it as the exact action to send, and the commit when it is done. Call it at every turn. To use it, reply with that action unchanged.",
+  run(_observation: Json, _args: Json, history: readonly Json[]): Json {
+    return replayPolicy(new Outbox(), history);
+  },
+});
+
+/** Family 9, `private`: the next step of `nip17`, the cell's exact ceiling. */
+export const nip17PlanSkill: Skill = bind({
+  name: "nip17_plan",
+  description: "Computes the next step of private delivery for the episode so far (look up each recipient's relay lists, then rumor, seal, wrap, and publish, or NIP-04 for a recipient that reads only that) and returns it as the exact action to send, and the commit when every message is sent. Call it at every turn. To use it, reply with that action unchanged.",
+  run(_observation: Json, _args: Json, history: readonly Json[]): Json {
+    return replayPolicy(new Nip17(), history);
+  },
+});
+
+/** Family 9, `counterparty`: the next step of `reputation`, the best baseline that sees no hidden state (0.67 normalized on the confirmatory seeds). */
+export const buyerPlanSkill: Skill = bind({
+  name: "buyer_plan",
+  description: "Computes the next step of a careful buyer for the episode so far (fetch each provider's record, post the request, pay the verified provider with the best value for money, wait for the result) and returns it as the exact action to send. Call it at every turn. To use it, reply with that action unchanged.",
+  run(_observation: Json, _args: Json, history: readonly Json[]): Json {
+    return replayPolicy(new Reputation(), history);
+  },
+});
+
+/** Family 9, both mesh cells: the next step of `bitchat_router`, the reference, the whitepaper's router. */
+export const meshRouterSkill: Skill = bind({
+  name: "mesh_router",
+  description: "Computes the next step of bitchat's router for the episode so far (check who is reachable, send each message over the mesh, Nostr, or couriers, send again when a recipient comes in reach, otherwise wait) and returns it as the exact action to send. Call it at every turn. To use it, reply with that action unchanged.",
+  run(_observation: Json, _args: Json, history: readonly Json[]): Json {
+    return replayPolicy(new BitchatRouter(), history);
+  },
+});
+
 /** Skills by the key `--skills` names; a key differs from the skill's name only for a second wording of one skill. */
-export const SKILLS: { [name: string]: Skill } = { min_cost_flow: minCostFlowSkill, failed_pairs: failedPairsSkill, dlc_design: dlcDesignSkill, bond_offer: bondOfferSkill, proof_step: proofStepSkill, schedule: scheduleSkill, schedule_after_proof: scheduleAfterProofSkill };
+export const SKILLS: { [name: string]: Skill } = { min_cost_flow: minCostFlowSkill, failed_pairs: failedPairsSkill, dlc_design: dlcDesignSkill, bond_offer: bondOfferSkill, proof_step: proofStepSkill, schedule: scheduleSkill, schedule_after_proof: scheduleAfterProofSkill,
+  capacity_plan: capacityPlanSkill, custody_policy: custodyPolicySkill, inbox_policy: inboxPolicySkill, outbox_plan: outboxPlanSkill,
+  nip17_plan: nip17PlanSkill, buyer_plan: buyerPlanSkill, mesh_router: meshRouterSkill };
 
 export function skillsNamed(names: string): Skill[] {
   return names.split(",").map((n) => n.trim()).filter((n) => n !== "").map((n) => {

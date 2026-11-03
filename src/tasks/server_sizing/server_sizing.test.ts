@@ -14,7 +14,7 @@ import { serverEnvelope, serverTierCapacity } from "../settlement_object/corner.
 import { BufferRule, Oracle, RandomSizing, StaticPilot, serverSizingBaselines } from "./baselines.ts";
 import { ServerSizingEnv, type SizingInput, type SizingView } from "./env.ts";
 import { intervalSummaries, optimalSchedule, positionPath, requiredLevels, type SizingParams } from "./plan.ts";
-import { serverSizingContrasts, serverSizingGates, serverSizingIdentityCheck, serverSizingTaskSpecs } from "./report.ts";
+import { serverSizingAgentContrasts, serverSizingContrasts, serverSizingGates, serverSizingIdentityCheck, serverSizingTaskSpecs } from "./report.ts";
 import { loadServerSizingConfig, sizingInput } from "./task.ts";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "../../..");
@@ -582,7 +582,7 @@ test("the gates fail when they should", () => {
   assert.equal(gates([]).K41, false);
 });
 
-test("the report: roles, band, metrics, and descriptive contrasts only", () => {
+test("the report: roles, band, metrics, Amendment 10's six hypotheses, and one agent contrast per cell", () => {
   const specs = serverSizingTaskSpecs(root, manifest, config);
   assert.deepEqual(specs.map((t) => t.task), ["server_sizing/balanced", "server_sizing/correlated", "server_sizing/drift"]);
   for (const t of specs) {
@@ -594,11 +594,13 @@ test("the report: roles, band, metrics, and descriptive contrasts only", () => {
   }
   const contrasts = serverSizingContrasts(config);
   assert.equal(contrasts.length, 6);
-  assert.ok(contrasts.every((c) => c.primary === false), "nothing is frozen, so nothing is primary");
+  assert.ok(contrasts.every((c) => c.primary === true), "the frozen family's hypotheses are primary");
   for (const t of specs) {
     assert.deepEqual(contrasts.filter((c) => c.task === t.task).map((c) => [c.a, c.b]), [["buffer_rule", "static_pilot"], ["oracle", "buffer_rule"]]);
   }
   assert.equal(new Set(contrasts.map((c) => c.id)).size, 6);
+  const agent = serverSizingAgentContrasts(config, "x@0");
+  assert.deepEqual(agent.map((c) => [c.id, c.task, c.a, c.b, c.primary]), specs.map((t, i) => [`A${i + 1}`, t.task, "x@0", "buffer_rule", true]));
 });
 
 test("the config states the ceiling's conditions, marks every number invented, reuses family 3's cells, and is bound by the manifest", () => {

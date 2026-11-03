@@ -524,7 +524,7 @@ Parameters to be sourced: the lifetime rule (the decrement per transfer and the 
 
 **Baselines for the two columns.** `always_ecash` at margin 0.25 and `always_statechain` at the median grid denomination join `always_channel` and `always_vtxo`; `grid_search` covers the enlarged grid. Hypotheses for the columns are written only when the parameters above have sources, as an amendment.
 
-## 5. Family 4: server capital sizing, redesigned as inbound resizing (built; not frozen)
+## 5. Family 4: server capital sizing, redesigned as inbound resizing (built; frozen by Amendment 10)
 
 Derives from the paper §3.2 and §3.4. Task id: `server_sizing/<cell>`.
 
@@ -576,7 +576,7 @@ Code in `src/tasks/server_sizing/`, config in `config/server_sizing.json`. Three
 | K42 | the oracle through `act` equals its DP value computed directly from the fixture |
 | K43 | the oracle never fails a payment |
 
-Contrasts `buffer_rule` − `static_pilot` and `oracle` − `buffer_rule` for each cell are declared and descriptive (`primary: false`); nothing is frozen, and both runners refuse the confirmatory seeds until a preregistration amendment lists `server_sizing`.
+Contrasts `buffer_rule` − `static_pilot` and `oracle` − `buffer_rule` for each cell were declared as descriptive before the development table. Amendment 10 of `prereg/v0.md` (2026-11-03) froze the family with them as its hypotheses S1 to S6, predicted positive and adjusted over the six, and gave an agent one primary contrast per cell against `buffer_rule`, adjusted over the three.
 
 **Development results (seeds 0 to 7).** In [results/v0-server-sizing-baselines-development.md](../results/v0-server-sizing-baselines-development.md). K41 to K43 pass. Normalized gain, floor `static_pilot`, ceiling `oracle`: `buffer_rule` 0.53 on `balanced`, 0.64 on `correlated`, 0.91 on `drift`; `random` −0.61, −0.18, and −0.42. `oracle` − `buffer_rule` is +0.25, +0.62, and +0.07 in ln cost. The static pilot margin fails receipts on `correlated`, where the pilot's peak is a poor guide to the evaluation stream's.
 
@@ -590,6 +590,8 @@ Contrasts `buffer_rule` − `static_pilot` and `oracle` − `buffer_rule` for ea
 | 1 | Sized to about the first interval's maximum. |
 
 Failures dominate its cost: about 15,000 to 17,000 failed receipts an episode. It is clipped at −1.00 normalized in all three cells, and agent − `buffer_rule` is −4.23, −2.80, and −3.52 ln units on `balanced`, `drift`, and `correlated`. As in family 7, the model takes `commit` to mean "done" after one decision. Here it is the action that fixes the capacity for the rest of the horizon.
+
+With `capacity_plan` it called the skill on 30% of decisions and halved the bare agent's shortfall in two cells (docs/saturation.md). As the TRM complex it played `buffer_rule` exactly (docs/trm_complex.md). Amendment 10 fixes both for the confirmatory seeds.
 
 ## 6. Family 5: service bonding (frozen by Amendment 7; confirmatory baselines and agents run)
 
@@ -1126,11 +1128,11 @@ Two baselines did worse than on the development seeds, which is descriptive and 
 
 The `private` run first stopped on a request of 16,420 tokens against the server's 16,384. The runner keeps the whole episode in context, and the cell allows 72 turns. That is not an attempt the harness can reject, so the cell was rerun alone on a 40,960-token server, replaying the 180 replies already logged. The context size is not part of the agent's identity.
 
-A confirmatory agent run on this family needs one of two things first: a context window that holds the longest episode, or a rule in the amendment for a request that outgrows it.
+Amendment 10 gives the rule for a confirmatory run: a request longer than the 40,960-token context stops the run, which is reported as not completed. With the skills (docs/saturation.md) and as the TRM complex (docs/trm_complex.md), the cells were run on the development seeds the same day.
 
 ### 10.10 What remains
 
-1. Agent runs: `scripts/run_nostr_agent.ts --cell <cell>` with the prompts of `src/tasks/nostr/prompt.ts`, reported against each cell's reference as Amendment 5 provides. Bonsai 8B bare has been run on the development seeds only (§10.9); no agent is fixed for the confirmatory seeds.
+1. Agent runs: `scripts/run_nostr_agent.ts --cell <cell>` with the prompts of `src/tasks/nostr/prompt.ts`, reported against each cell's reference as Amendment 5 provides. Bonsai 8B bare has been run on the development seeds only (§10.9). Amendment 10 fixes the TRM complex for every cell and the skill agents for `custody` and `custody_hot` on the confirmatory seeds; the other cells' skill agents wait for their development runs.
 2. Not built, each for a later amendment: NIP-49 exports computed rather than classified (they need scrypt and XChaCha20-Poly1305; Node's crypto has no XChaCha20, so HChaCha20 would be written); signed feedback and result events in `counterparty`; bitchat's public broadcast and gossip sync; source routing on the mesh.
 
 ## 11. Protocol parameters

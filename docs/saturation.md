@@ -84,7 +84,7 @@ Bare Bonsai 8B, no skills, thinking off.
 - **Family 5, service bonding.** It offered the prompt's example, the largest bond with the longest period, in 24 of 24 episodes. That offer is always admitted, so it costs a lot but is never penalized. Agent − `plug_in` is −0.24 to −0.52 in ln cost, with every interval crossing zero at eight seeds (docs/tasks.md §6.1).
 - **Family 7, proving within a budget.** It forfeited 98% of the claims and sits at the floor, about 7.8 ln units below `fixed_interval`. Eighteen of 24 episodes ended with `commit` after a few proofs of one to four claims (docs/tasks.md §8.6).
 
-- **Family 2, routing** (seeds 0 and 1 only). It delivered within −2.3 to +1.4 points of the retry wallet in each task, trying candidate 0, the prompt's example index and the shortest path, first on 97% of payments, then other candidates, never skipping (docs/tasks.md §3.3). Here copying the example is close to a sound policy, because trying alternatives is most of what routing gains.
+- **Family 2, routing** (seeds 0 and 1 only). It delivered within −2.3 to +1.4 points of the retry wallet in each task. It tried candidate 0 first on 97% of payments: the prompt's example index and the shortest path. After a failure it mostly tried that same candidate again, and it never skipped (docs/tasks.md §3.3). Two seeds could not separate that from the retry wallet; the confirmatory run below does.
 
 In families 5 and 7, as in families 1, 6, and 10, the model either copies what the prompt shows or ends early. The two sections below are what skills did about it.
 
@@ -137,6 +137,16 @@ What the confirmatory block says:
 - **Family 7 with the skill: one remaining failure.** The model's own stop rule. Right after a proof, with two or three proofs left, it ends the episode instead of calling the skill: in every `few_proofs` episode, at block 84 to 120, as on development seeds.
 - **Family 7 with the skill: where it does not stop, it beats the reference.** On `bursty` nothing stopped, and the agent beats `fixed_interval`, +0.03 (+0.01 to +0.05). With family 5's `slow` and `strict`, these are the first agent − reference contrasts the bench has found positive for an LLM, and in all three what beats the reference is the skill's procedure, carried through by the model.
 - **Family 7 bare: no strategy.** It has none that survives the horizon. It ends early, waits to the end, or proves one claim at a time until its proofs run out.
+
+## Confirmatory result, family 2 (seeds 1000 to 1031)
+
+Amendment 9 fixed bare Bonsai 8B (`e6b9a351f65d`, thinking off, the development prompt) before this run. The run ended on 2026-11-03. The calibration gates passed. No adjusted agent − `retry_wallet` interval fell inside the ±1.0 band, so all nine rows were audited as prereg §9 requires. The audit found no harness defect ([audit note](../results/v0-routing-bonsai-8b-nothink-confirmatory.audit.md)).
+
+- **Result.** Agent − `retry_wallet` is negative on five tasks and inconclusive on four, between −0.82 and −5.20 points. The normalized gain is 0.10 to 0.66. On the family the bench calibrates its harness against, the bare model is equivalent to the reference on no task and below it on five.
+- **First try.** It copies the example. Candidate 0 is its first try on 93% of payments. That is the shortest path, and in eight of nine tasks it delivers more often than `one_shot`'s cheapest path.
+- **Retries.** It does not retry with a different candidate. Of 3,530 scored payments with more than one candidate that took a second attempt, 2,527 never had another candidate tried. A repeated attempt cannot succeed, and trying other candidates is the whole of the retry wallet's lead.
+
+The skill that matches this failure is the retry wallet's next candidate. It would read the observation, take the public-fee order, skip what was already tried, and return the attempt as an action the model sends by reference. Followed exactly, it is `retry_wallet`. The test is whether the model calls it after a failure.
 
 ## Development results, families 4 and 9 (seeds 0 to 7)
 

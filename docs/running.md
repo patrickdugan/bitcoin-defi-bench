@@ -108,7 +108,7 @@ node --experimental-strip-types scripts/run_placement_agent.ts --block developme
 
 Add `--seeds 0,1` to run a subset of the development block. The confirmatory block cannot be subset. `--skills failed_pairs` gives the agent that skill (see the family 6 section below for how skills work and are named).
 
-The run writes three files under `results/`: the table, the run record, and a transcript with every prompt turn, reply, and parsed action. The agent identifier printed in the table is the name followed by a hash of the model file hash, the runtime, the sampling parameters, and the prompt hash, so two runs with the same identifier used the same everything.
+The run writes three files under `results/`: the table, the run record, and a transcript with every prompt turn, reply, and parsed action. The agent identifier printed in the table is the name followed by a hash of the model file hash, the runtime, the sampling parameters, and the prompt hash, so two runs with the same identifier used the same everything. A transcript over GitHub's 100 MB file limit is committed as `.transcript.jsonl.gz`, written with `gzip -9 -n`, which decompresses to the bytes the run wrote; the family 2 confirmatory one is 389 MB uncompressed.
 
 The adapter posts over plain `node:http` with a one-hour timeout per request, and logs each reply to `results/<name>.replies.jsonl` as it arrives. If a run dies of an infrastructure failure, running the same command again replays the logged replies for identical requests and asks the server only for the rest; the harness still executes every episode and every baseline, and the table says how many replies were replayed. The log is removed when a run completes.
 
@@ -147,7 +147,7 @@ node --experimental-strip-types scripts/run_nostr_agent.ts --cell custody --bloc
   --model-sha256 <sha256 of the GGUF> --runtime "<output of llama-server --version>"
 ```
 
-One cell per invocation (`--cell`), with the same flags as the placement script and a reply limit of 1,024 tokens. The prompts (`src/tasks/nostr/prompt.ts`) show the whole observation on the first turn and only the last result and a status line afterwards (about 100 to 250 characters), because a mesh episode can run to more than a hundred turns. No model has been run on the family yet, so the context a long episode needs has not been measured; start the server with 32,768 tokens. Events and ciphertexts come back as handles (`h3`) that the model passes on instead of copying. The first turn is longest in `custody`, about 8,800 characters. The agent's primary contrast is against the cell's reference and is descriptive until the family is frozen.
+One cell per invocation (`--cell`), with the same flags as the placement script and a reply limit of 1,024 tokens. The prompts (`src/tasks/nostr/prompt.ts`) show the whole observation on the first turn and only the last result and a status line afterwards (about 100 to 250 characters), because a mesh episode can run to more than a hundred turns. On development seeds a 72-turn `private` episode outgrew a 16,384-token context (the server answers HTTP 400, an infrastructure failure), and the cell was rerun from its reply log on a 40,960-token server, the base model's maximum; start the server with that. Events and ciphertexts come back as handles (`h3`) that the model passes on instead of copying. The first turn is longest in `custody`, about 8,800 characters. The agent's primary contrast is against the cell's reference and is descriptive until the family is frozen.
 
 ### Families 2 and 7: long episodes
 
@@ -161,4 +161,6 @@ node --experimental-strip-types scripts/run_proof_budget_agent.ts --block develo
 ```
 
 An episode of family 2 is several hundred turns, one per attempt or skip, and one of family 7 can be a hundred or more. Both scripts therefore set the adapter's `contextTurns` to 0 (`--context-turns` changes it): each request carries the system prompt and the current turn, and the turn carries the whole state, the routing history included. The setting is bound into the agent identifier, and an agent run without it keeps the identifier it always had.
+
+A family 2 agent run whose rows are flagged `outside_calibration` is audited with `scripts/audit_routing_agent.ts --record <run record> --transcript <transcript, .jsonl or .jsonl.gz>`, which runs prereg §9's checks in order and exits non-zero if any fails.
 

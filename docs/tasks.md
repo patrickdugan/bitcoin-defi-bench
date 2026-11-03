@@ -57,7 +57,7 @@ Rails are the paper's object classes (§2.1), with two classes added on review o
 | Operator problem | Lightning (C) | Ark (V) | Ecash mint (M) | Statechain (S) | Escrow (E) | On-chain (U) | DLC (D) | Proof layer | Coordination layer (Nostr relays, bitchat mesh) |
 |---|---|---|---|---|---|---|---|---|---|
 | Place directional capital | **F1, run** | | | | | | | | |
-| Route under hidden state | **F2, run** §3 (frozen; confirmatory baselines) | | | | | | | | |
+| Route under hidden state | **F2, run** §3 (frozen; confirmatory baselines and Bonsai 8B) | | | | | | | | |
 | Choose the settlement object and size it | **F3, run** (channel column) | **F3, run** (VTXO column) | F3 column, specced §4.8 | F3 column, specced §4.8 | | | | | |
 | Size the server's own channels | | **F4, built** as inbound resizing over the horizon, development seeds only §5.2 | F4 applies to the mint's gateway | | | | | | |
 | Bond a service | | | | | **F5, run** §6 (frozen; confirmatory baselines and Bonsai 8B) | | | | |
@@ -293,7 +293,7 @@ The Spiral repository retains the sampler and the hidden-state generator in Pyth
 
 T1 was chosen. The calibration numbers were measured on samples of this snapshot, and six summary statistics do not pin down the structure that makes placement matter. The dataset is CC BY 4.0 (Valko and Marx Gómez), so the derived 64-node samples are committed as fixtures with attribution in `config/placement.json`; the raw snapshot is not committed. The bench's GML reader reproduces the statistics Spiral recorded for the snapshot exactly (15,100 nodes, 64,212 channels, 15 components, a 15,071-node giant component, maximum degree 2,293), and `scripts/build_fixtures.ts` refuses to build if it does not. The bench's samples are new draws: 64 to 525 edges across the 40 generated fixtures, against 63 to 366 in Spiral's 37.
 
-## 3. Family 2: routing under hidden state (frozen by Amendment 6; confirmatory baselines run)
+## 3. Family 2: routing under hidden state (frozen by Amendment 6; confirmatory baselines and Bonsai 8B run)
 
 Derives from the manuscript §9 and the audit §6–7. Task ids: `routing/<balance_model>/<regime>`.
 
@@ -357,7 +357,27 @@ In [results/v0-routing-baselines-development.md](../results/v0-routing-baselines
 1. Frozen by Amendment 6 of prereg/v0.md on 2026-10-30: the gates above, the band (§5's one point), and the agent contrast §9 already declares, agent − `retry_wallet` per task, adjusted over the nine tasks, flagged `outside_calibration` when its adjusted interval is not inside the band. `scripts/run_routing_agent.ts` applies that flag.
 2. LLM runs. The path is built: `src/tasks/routing/prompt.ts` shows the current payment, its candidates, and the whole history raw, and `scripts/run_routing_agent.ts` runs it with the adapter's context window set to the current turn alone (`contextTurns: 0`), because an episode is several hundred turns. The turn puts the append-only history first and the current payment last, so a server with prompt caching reprocesses only the end. That roughly tripled Bonsai's rate, to about two replies a second. A confirmatory run is about 9 × 32 × 300 requests.
 
-   Bonsai 8B with thinking off, on development seeds 0 and 1 only ([results/v0-routing-bonsai-8b-nothink-development.md](../results/v0-routing-bonsai-8b-nothink-development.md)). The run needed five attempts, because the model server was lost four times on a GPU shared with other jobs; the reply log carried it through. Agent − `retry_wallet` per task runs from −2.27 to +1.36 points. Two seeds give no usable interval, and the calibration gates K21 and K22 fail on width alone, so the table flags the agent's rows, as it should. The model tries candidate 0 first on 97% of payments: the shortest path in catalog order, also the index in the prompt's example, and the cheapest only 79% of the time. It then moves to other candidates and never skips. That is a retry wallet in catalog order, and it delivers about what the fee-ordered one does. That fits Spiral's finding that most deployable routing gain comes from trying alternatives. It made more failed attempts than the retry wallet and 110 attempts with an index past the end of the list.
+   Bonsai 8B with thinking off, on development seeds 0 and 1 only ([results/v0-routing-bonsai-8b-nothink-development.md](../results/v0-routing-bonsai-8b-nothink-development.md)). The run needed five attempts, because the model server was lost four times on a GPU shared with other jobs; the reply log carried it through. Agent − `retry_wallet` per task runs from −2.27 to +1.36 points. Two seeds give no usable interval, and the calibration gates K21 and K22 fail on width alone, so the table flags the agent's rows, as it should. The model tries candidate 0 first on 97% of payments. That is the shortest path in catalog order and the index in the prompt's example, and it is the cheapest path only 79% of the time. It never skips. An earlier version of this paragraph said the model then moves to other candidates. That was wrong. The confirmatory audit found that the model repeats the candidate that failed, and the development transcript shows the same. Of the 289 payments (110 to 218) whose first try failed, 222 never had another candidate tried, and 25 were delivered by a retry. Two seeds could not separate that from the retry wallet. 108 of its 110 indices past the end of the list were on payments with a single candidate.
+
+   Bonsai 8B with thinking off, on the confirmatory seeds: [results/v0-routing-bonsai-8b-nothink-confirmatory.md](../results/v0-routing-bonsai-8b-nothink-confirmatory.md).
+   - **Agent.** `bonsai-8b-nothink@e6b9a351f65d`, fixed by Amendment 9 before the run, with the development prompt unchanged.
+   - **Gates.** K21 to K23 pass, as on the baseline run.
+   - **Primary contrast.** Agent − `retry_wallet`, adjusted over the nine tasks:
+     - negative on five tasks, from −0.82 (−1.33 to −0.32) on `balanced_band/diffuse` to −5.20 (−8.83 to −1.57) on `polarized/stationary`;
+     - inconclusive on four, with point estimates from −1.16 to −3.92, each interval reaching below −1.
+   - **Normalized gain.** 0.10 to 0.66.
+   - **Audit.** No interval lies inside the ±1.0 band, so every row was flagged `outside_calibration` and audited as §9 orders: [results/v0-routing-bonsai-8b-nothink-confirmatory.audit.md](../results/v0-routing-bonsai-8b-nothink-confirmatory.audit.md), from `scripts/audit_routing_agent.ts`. Every check passed:
+     - the identity controls, including a retry wallet scripted from the request text through the chat adapter, equal to `retry_wallet` in all 288 episodes;
+     - every turn re-rendered from public fields, byte for byte;
+     - the logged actions replayed to the recorded rows, with each rejection charged one attempt;
+     - candidates in catalog order.
+
+     So the nine numbers are results: the bare model is equivalent to the retry wallet on no task and below it on five.
+   - **Why.**
+     - Its first try, candidate 0 on 93% of payments, delivers 82.6% of payments 110 to 218. That is above `one_shot`'s score in eight tasks.
+     - After a failure it does not retry well. On 2,527 of the 3,530 scored payments with more than one candidate that took a second attempt, it never tried another candidate. A repeat cannot succeed, because balances do not move between attempts. The retry wallet's whole lead over `one_shot` comes from those other candidates.
+   - **Infrastructure.** The run needed four invocations. The model server aborted twice (exception 0xc0000409 in `ucrtbase.dll`), and the supervisor was replaced once. The last invocation replayed 6,471 logged replies and ran everything again.
+   - **Transcript.** It is 389 MB, so it is committed gzipped.
 
 ## 4. Family 3: settlement-object selection
 

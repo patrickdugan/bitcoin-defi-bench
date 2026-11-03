@@ -198,6 +198,23 @@ The family 4 cells are listed as `balanced` / `correlated` / `drift`. The custod
 - **The custody cells.** The skill was never called in `custody`, and once in `custody_hot`. The first turn is long there, about 8,800 characters, and family 6 showed the call rate falling with the first turn's length.
 - **Temperature 0.** It called the skill no more often in any of the three, and less often in family 4: 8% of decisions against 30%. Its family 4 episodes ran longer, 849 decisions against 366, mostly at the format example. So the agents the preregistration fixes sample at 0.7. These temperature-0 runs predate the cut-off rule and keep their earlier identifiers.
 
+**With the skills, the other five family 9 cells** (2026-11-03 to 04, at 0.7, under the cut-off protocol from the start):
+
+| Cell | Agent | Calls | Followed | Agent − reference, sats | Bare agent − reference |
+|---|---|---:|---:|---|---|
+| `publish`, `outbox_plan` | `9a50b6012cdd` | 18 of 139 | 10 | −11,788 | −12,988 |
+| `private`, `nip17_plan` | `bf72a2ef7045` | not completed | | | −26,033 |
+| `counterparty`, `buyer_plan` | `7022487f091f` | 24 of 117 | 24 | +11,933, inconclusive | +9,679, inconclusive |
+| `mesh_outage`, `mesh_router` | `e94ca1ac779a` | 31 of 159 | 16 | −15,852 | −16,172 |
+| `mesh_partial`, `mesh_router` | `71bc752498cf` | 54 of 163 | 24 | −14,883 | −18,024 |
+
+- **Long arguments.** In `publish`, 120 of 139 actions were `fetch` requests that listed authors' keys until the reply reached the 1,024-token cap, and were rejected as malformed. In `private` the `fetch` requests were complete, 481 tokens each, but every request carries the whole episode. On seed 1, after 15 of them in a row, the request for turn 16 was 41,025 tokens. The run stopped there under Amendment 10's rule. The bare agent's `private` run had finished within the context.
+- **The format example again.** In `counterparty`, on turns without a call, the model bid the prompt's example, 25,000 sats, 27 times, and paid the offer `"<offer id>"` 8 times.
+- **Flooding.** In the mesh cells the model followed the router on about half its calls. Otherwise it sent over the mesh again and again: 229 and 198 transmissions an episode, against the oracle's 24 and 22.
+- **No clear change.** In each completed cell the skill agent's interval overlaps the bare agent's. The largest shift is `mesh_partial`'s, about 3,100 sats toward the reference. The agent stays below the reference in `publish` and both mesh cells, and is inconclusive in `counterparty`, as the bare agent was.
+
+Amendment 11 fixes these five agents for the confirmatory seeds.
+
 The TRM complex (docs/trm_complex.md) uses the same skills a different way. The model proposes, the cell's rules check the proposal, and the skill repairs it. On the development seeds it played each skill's baseline exactly in every cell but `custody_hot`.
 
 ## Order of work

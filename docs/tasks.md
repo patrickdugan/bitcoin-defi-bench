@@ -1145,7 +1145,7 @@ Amendment 10 gives the rule for a confirmatory run: a request longer than the 40
 
 ### 10.10 What remains
 
-1. Agent runs: `scripts/run_nostr_agent.ts --cell <cell>` with the prompts of `src/tasks/nostr/prompt.ts`, reported against each cell's reference as Amendment 5 provides. Bonsai 8B bare has been run on the development seeds only (§10.9). Amendment 10 fixes the TRM complex for every cell and the skill agents for `custody` and `custody_hot` on the confirmatory seeds; the other cells' skill agents wait for their development runs.
+1. Agent runs: `scripts/run_nostr_agent.ts --cell <cell>` with the prompts of `src/tasks/nostr/prompt.ts`, reported against each cell's reference as Amendment 5 provides. Bonsai 8B bare has been run on the development seeds only (§10.9). Amendment 10 fixes the TRM complex for every cell and the skill agents for `custody` and `custody_hot` on the confirmatory seeds, and Amendment 11 fixes the skill agents for the other five cells. On the development seeds the `private` skill agent outgrew the 40,960-token context on seed 1 and did not complete (docs/saturation.md).
 2. Not built, each for a later amendment: NIP-49 exports computed rather than classified (they need scrypt and XChaCha20-Poly1305; Node's crypto has no XChaCha20, so HChaCha20 would be written); signed feedback and result events in `counterparty`; bitchat's public broadcast and gossip sync; source routing on the mesh.
 
 ## 11. Protocol parameters

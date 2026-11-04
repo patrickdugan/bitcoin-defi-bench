@@ -67,7 +67,7 @@ const num = (x: number, unit: string): string => {
 const interval = (v: Interval, unit: string): string => (v.lo === v.hi ? `exactly ${num(v.mean, unit)}` : `${num(v.mean, unit)} (${num(v.lo, unit)} to ${num(v.hi, unit)})`);
 const gain = (run: Run, r: Row): string => {
   const g = normalizedGain(means(run, r.task, run.agent), means(run, r.task, r.floor), means(run, r.task, r.ceiling));
-  const f = (x: number): string => (Number(x.toFixed(2)) < 0 ? `−${Math.abs(x).toFixed(2)}` : x.toFixed(2));
+  const f = (x: number): string => { const r = Number(x.toFixed(2)); return r < 0 ? `−${Math.abs(r).toFixed(2)}` : Math.abs(r).toFixed(2); };
   return g.defined ? `${f(g.gain)} (${f(g.lo)} to ${f(g.hi)})${g.clipped ? ", clipped" : ""}` : "undefined";
 };
 const cellOf = (r: Row, arm: Arm, f: (run: Run) => string): string => { const run = load(r, arm); return typeof run === "string" ? run : f(run); };

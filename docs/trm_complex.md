@@ -174,9 +174,69 @@ On the development seeds, on 2026-11-04 (`results/v0-*-bonsai-8b-nothink-<skill>
 - **`private` completed.** The skill agent on its own outgrew the context on seed 1. As the combo's proposer, on the same 40,960-token context, it completed all 8 episodes, every action of which was the skill's.
 - **`counterparty` is the one cell where the gate changed the result.** It sent the model's proposal 3 times, each a `request` on turn 1 where the skill would have fetched another provider's record. On seeds 2 and 7 the complex then reached the ceiling where `reputation` did not. On seed 0 `reputation` was already at the ceiling. On average the complex was 1,762 sats above `reputation` (−965 to +4,488). These are the seeds the gate was trained and validated on, against the skill agent's trajectories.
 
+### The 2×2 on the confirmatory seeds
+
+Amendment 12 fixed the eight combos and the eight bare agents. They were run on 2026-11-04 (`results/v0-*-bonsai-8b-nothink-<skill>-trm-complex-confirmatory.md`, `results/v0-*-bonsai-8b-nothink-confirmatory.md`). Every calibration gate passed, and no report flags anything for audit.
+
+**The predictions held.**
+
+- The seven combos with a constant gate each equalled their skill's baseline on every episode, 288 of 288. In `custody_hot` that baseline is `policy`, the exact ceiling.
+- Combo − complex is exactly 0 on every episode in family 4, `custody`, `publish`, `private`, and the two mesh cells, 256 episodes.
+- In `custody_hot` it is 0 on 18 episodes and positive on 14, and never negative. The combo's constant gate recovers the 813 sats an episode that the complex's network gate gave up.
+
+The columns are those of the development tables. **Proposal sent** counts the gate's `commit` choices.
+
+| Cell | Turns | Skill calls | Agree | Gate | Repair | Proposal sent | Normalized | Agent − reference | Equal to |
+|---|---:|---:|---:|---:|---:|---:|---|---|---|
+| family 4, three cells | 3,072 | 889 | 890 | 1,232 | 950 | 0 | 0.54 / 0.35 / 0.92 | exactly 0 in each, equivalent | `buffer_rule`, 96 of 96 |
+| `custody` | 512 | 0 | 25 | 174 | 313 | 0 | 1.00 | +155,427 (+120,710 to +190,144), positive | `policy`, 32 of 32 |
+| `custody_hot` | 527 | 1 | 2 | 266 | 259 | 0 | 1.00 | +54,688 (+50,858 to +58,517), positive | `policy`, 32 of 32 |
+| `publish` | 413 | 88 | 39 | 233 | 141 | 0 | 0.86 | exactly 0, equivalent | `outbox`, 32 of 32 |
+| `private` | 901 | 38 | 33 | 676 | 192 | 0 | 1.00 | +5,635 (+4,848 to +6,423), positive | `nip17`, 32 of 32 |
+| `counterparty` | 876 | 44 | 244 | 468 | 164 | 184 | 0.51 (0.28 to 0.74) | +19,187 (+7,236 to +31,138), positive | `reputation` on 18 of 32 |
+| `mesh_outage` | 456 | 70 | 53 | 351 | 52 | 0 | 0.79 | exactly 0, equivalent | `bitchat_router`, 32 of 32 |
+| `mesh_partial` | 445 | 93 | 80 | 320 | 45 | 0 | 0.79 | exactly 0, equivalent | `bitchat_router`, 32 of 32 |
+
+The four arms side by side, as normalized gain ([results/v0-skill-trm-factorial-confirmatory.md](../results/v0-skill-trm-factorial-confirmatory.md) has the intervals and the contrasts, all descriptive and paired by seed):
+
+| Cell | Bare | Skill as tool | TRM complex | Combo |
+|---|---|---|---|---|
+| family 4, three cells | −1.00 / −1.00 / −1.00, clipped | −1.00 / −0.83 / −0.65 | 0.54 / 0.35 / 0.92 | 0.54 / 0.35 / 0.92 |
+| `custody` | −1.00, clipped | −1.00, clipped | 1.00 | 1.00 |
+| `custody_hot` | −1.00, clipped | −1.00, clipped | 0.80 | 1.00 |
+| `publish` | −0.01 | 0.03 | 0.86 | 0.86 |
+| `private` | 0.00 | not completed | 1.00 | 1.00 |
+| `counterparty` | 0.07 | 0.12 | 0.67 | 0.51 |
+| `mesh_outage` | −0.14 | 0.13 | 0.79 | 0.79 |
+| `mesh_partial` | −0.15 | 0.28 | 0.79 | 0.79 |
+
+- **The complex is the large factor, and its source is the skill.**
+  - Complex − bare is positive in all ten rows.
+  - Combo − skill as tool is positive in eight of the nine rows where both arms completed. In `custody_hot` it is inconclusive: +16,597 (−1,104 to +34,298).
+  - Where the gate is constant, both complexes score the skill's baseline. This factor is the skill's action, sent by construction.
+- **The tool is a small factor, and it vanishes inside the complex.**
+  - Skill as tool − bare is positive in family 4's three cells and the two mesh cells, and inconclusive in `custody`, `custody_hot`, `publish`, and `counterparty`. In `private` there is no contrast, because the skill agent did not complete.
+  - Combo − complex is exactly 0 in eight rows. It is positive in `custody_hot`, +813 (+352 to +1,273), where the two gates differ, and inconclusive in `counterparty`, −5,820 (−12,782 to +1,142).
+- **Inside the complex, the tool changes who chose the action, not the action.**
+  - In family 4 the combo's proposal was the skill's action on 25% to 33% of turns, against 1% to 4% for the bare proposer. 889 of its 890 agreeing turns followed a skill call whose result the model sent by reference. The other was a `hold` that the skill also chose (seed 1016, `balanced`, turn 22).
+  - In the custody cells the combo's proposer agreed less often than the bare proposer: 4.9% of turns against 23.8% in `custody`, and 0.4% against 5.9% in `custody_hot`.
+- **`counterparty`: the one learned gate cost the combo 5,820 sats an episode.** Its networks had beaten the constant on 10 validation rows, 6 right against 5. On these seeds the gate sent 184 proposals that differed from the skill's action, against 3 on the development seeds.
+  - **15 `request`s on turn 1**, where the skill would have fetched another provider's record, as on the development seeds. In the 11 episodes where this was the only commit, the combo was above `reputation` in 3, below it in 1 by 705 sats, and equal in 7: +24,433 sats in all.
+  - **169 `wait`s where the skill would have paid an offer**, in 10 episodes. In each, from turn 22 or 23 the model proposed `wait` on every turn and the gate sent it, until the episode ended. In one episode, seed 1016, a repair sent the payment on turn 39. No result arrived in any of the 10.
+    - In 7 of them `reputation` got a result, and the combo finished 31,894 to 50,000 sats below it.
+    - In the other 3, `reputation` paid a third time and still got no result. The combo, which had paid once, finished 16,015 to 25,707 sats above it.
+    - Net, −210,671 sats.
+  - Against the constant rule, which would have played `reputation` as the complex did, the gate's choices lost 5,820 sats an episode (inconclusive). The normalized gain fell from 0.67 to 0.51.
+- **Infrastructure.**
+  - The family 4 combo lost its server twice to CUDA errors while the second server shared the GPU: a failed matrix multiply at 11:39 and an out-of-memory error at 11:53. The runner replayed 502 logged replies, and the record says so (prereg §9.1).
+  - No other run was restarted.
+  - Every server ran with `--cache-ram 0`.
+  - The bare `private` agent completed all 32 episodes on the 40,960-token context.
+
 ## Limits
 
 - **The curriculum's states are the bare model's.** The complex sends the skill's action most of the time, so the states it meets are mostly the skill's trajectory, not the bare model's, which commits or copies the prompt's example early. The paper's gate saw its proposer's answers to the same puzzles. These rows come from a different trajectory than the one the gate will judge.
 - **The labels follow the skill after one deviation.** A replayed skill can fall out of step after the proposer's own earlier actions. All 8 `commit` labels in `custody_hot` are of that kind: the policy, replayed over a trajectory where the model had made invoices of its own, attaches one of them, and a fresh invoice scores higher. The labels record what the rollout scored, not what an exact policy would have.
+- **The gate meets states its curriculum never reached.** The `turn` atom is one of the gate's inputs. The curriculum comes from the proposer's development episodes, and confirmatory episodes can run longer. No episode of the `counterparty` skill agent on the development seeds went past turn 18. The combo's episodes on the confirmatory seeds ran to turn 41, and every one of its gate's 169 `wait` commits came on turn 22 or later.
 - **Repair is the skill, not a learned repair.** Stage 5, a network that writes the repair where the operators stop, is not built: in these cells the skill is a complete repair.
 - **The complex's floor is near the skill by construction.** When the gate always chooses the skill's action, the complex sends the skill's action on every turn where the proposal differs, so its result is the skill's apart from the turns where the proposal agrees. Where the skill is the cell's exact ceiling (`custody`, `custody_hot`, `private`), it is that ceiling. What a run measures is how often the proposer's own action is what is sent, and whether the gate's choices add anything beyond the skill. The paper's reading on Campsite was the same: the model's share of the best arm was a constant.

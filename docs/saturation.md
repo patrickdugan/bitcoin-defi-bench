@@ -249,6 +249,34 @@ All eight skill agents were run on 2026-11-04: the three Amendment 10 fixed, the
 - **The development failures repeat.** In `publish`, 380 of 563 actions were `fetch` requests cut off at the 1,024-token reply cap. In `counterparty`, on turns without a call the model waited (102), bid the prompt's example of 25,000 sats (60), and paid the offer `"<offer id>"` (30). In the mesh cells it copied about half of its calls. It transmitted more than `bitchat_router` (197 and 233 an episode, against 166 and 159) and delivered fewer messages (2.1 and 3.3, against 5.8 and 5.7).
 - **The same skill, two ways.** Given the skill as a tool, the model reached 0.03 to 0.28 of the ceiling. In the TRM complex, where the skill repairs the model's proposal and a constant gate prefers it, the same skill reached 0.67 to 1.00 (docs/trm_complex.md). As a tool, the skill was called on 10% to 36% of turns, and 42% to 100% of the calls were copied. In the complex, the skill's action is sent whenever the proposal differs from it, so the score is the skill's.
 
+## Confirmatory results, bare agents of families 4 and 9 (seeds 1000 to 1031)
+
+Amendment 12 fixed the eight bare agents, and they were run on 2026-11-04 alongside the combo complexes (docs/trm_complex.md). Every gate passed, nothing is flagged, and all eight completed. `private` ran on the 40,960-token context. The contrast is Amendment 10's: in family 4 agent − `buffer_rule` in ln cost, adjusted over the three cells, and in family 9 agent − the cell's reference in sats.
+
+| Cell | Agent | Agent − reference | Normalized | Skill as tool, normalized |
+|---|---|---|---|---|
+| family 4, `balanced` | `b7e945ef3ef0` | −4.75 (−5.01 to −4.49), negative | −1.00, clipped | −1.00, clipped |
+| family 4, `correlated` | | −2.82 (−3.61 to −2.03), negative | −1.00, clipped | −0.83 |
+| family 4, `drift` | | −2.93 (−3.50 to −2.37), negative | −1.00, clipped | −0.65 |
+| `custody` | `d8325f53f685` | −83,649 (−121,276 to −46,023), negative | −1.00, clipped | −1.00, clipped |
+| `custody_hot` | `fd6b50014da9` | +31,844 (+10,139 to +53,548), positive | −1.00 (−1.00 to 0.77), clipped | −1.00, clipped |
+| `publish` | `22aa09bf32c9` | −14,083 (−14,802 to −13,365), negative | −0.01 | 0.03 |
+| `private` | `e06836fa3df2` | −26,035 (−28,205 to −23,864), negative | 0.00 | not completed |
+| `counterparty` | `6332fdb1e664` | +2,520 (−7,930 to +12,969), inconclusive | 0.07 | 0.12 |
+| `mesh_outage` | `8d6935055857` | −15,990 (−17,954 to −14,027), negative | −0.14 | 0.13 |
+| `mesh_partial` | `24f957258215` | −15,693 (−17,306 to −14,080), negative | −0.15 | 0.28 |
+
+- **The development failures repeat.**
+  - **Family 4**: 201 decisions in 96 episodes; there was no resize in 35 episodes and failed payments in 87.
+  - **`custody`**: the key was compromised in all 32 episodes.
+  - **`custody_hot`**: it earned exactly 0 in 27 of 32 episodes and leaked the key in 3.
+  - **`publish`**: it reached no follower and no mention in any episode. 150 of its actions named unknown handles, and 106 were over budget.
+  - **`private`**: one NIP-17 message was delivered in 32 episodes. 232 actions were over budget and 136 malformed.
+  - **`counterparty`**: it got a result in 6 of 32 episodes and paid an impostor in 6.
+  - **The mesh cells**: it delivered 28 and 22 of 192 messages, with 246 and 221 transmissions an episode.
+- **The tool helps where it is called.** Skill as tool − bare, paired by seed, is positive in family 4's three cells (+2.26, +1.38, +1.68 ln) and in both mesh cells (+4,647 and +7,181 sats). It is inconclusive in `custody`, `custody_hot`, `publish`, and `counterparty`, where the skill was called on 0% to 11% of turns.
+- **The complex helps everywhere.** In the TRM complex the same skill is sent whenever the proposal differs from it. Complex − bare is positive in all ten rows, and the complex reaches 0.35 to 1.00 of the ceiling. The full 2×2 is in [results/v0-skill-trm-factorial-confirmatory.md](../results/v0-skill-trm-factorial-confirmatory.md) and docs/trm_complex.md.
+
 ## Order of work
 
 1. Done (2026-10-07): the skill loop in `src/agents/chat.ts`, the skills in `src/agents/skills.ts`, a netting prompt in `src/tasks/netting/prompt.ts`, and `scripts/run_netting_agent.ts` with `--skills`. Tests cover the loop, the cap, the identity binding, error returns, and that a model which echoes `min_cost_flow` scores the ceiling.

@@ -139,6 +139,41 @@ Amendment 10 fixed the eight complexes by identifier. It predicted that the seve
 - **The network gate replicates its development cost.** In `custody_hot` it sent 89 of the 343 legal proposals that differed from the skill's action: 43 invoices, 31 ignores, and 15 signatures. The complex fell below the policy on 14 of 32 episodes and never rose above it, 813 sats an episode on average. It scored 0.80 of the ceiling, as in development.
 - **Infrastructure.** The family 4 run lost its server seven times, at least five of them to a CUDA error while a second server shared the GPU. It was restarted once more to change the server's flags. The runner replayed 1,636 logged replies, and the record says so (prereg §9.1). From 00:32 on 2026-11-04, every server ran with llama-server's host prompt cache off (`--cache-ram 0`), because the crash had twice followed the saving of an entry to it. Server flags are not part of an agent's identifier.
 
+## The combo: a proposer that carries the skill
+
+The combo is the complex with one change: its proposer is the cell's skill agent (docs/saturation.md) instead of the bare one. The model may call the skill through the chat adapter before it proposes, and may send the result by reference as its proposal. Everything after the proposal is unchanged: the same package, the same repair, and a gate. Built with the bare proposer and the combo's proposer, the four arms make a 2×2 of skill as a tool × complex. `scripts/factorial_table.ts` puts them side by side (`results/v0-skill-trm-factorial-<block>.md`). Prereg Amendment 12 fixes the combos and the bare agents for the confirmatory seeds.
+
+Each combo has its own gate, `<package>.skill-proposer.json`, trained by the rules above on the skill agent's development transcripts (`scripts/train_complex_gate.ts --curriculum skill`). `private`'s skill agent outgrew the context on the development seeds, so its curriculum is empty and its gate is the constant rule.
+
+| Package | Turns | Illegal | Agreeing | Rows | `commit` rows | Mean margin | Validation, networks / constant | Gate |
+|---|---:|---:|---:|---:|---:|---:|---|---|
+| `server_sizing` | 366 | 125 | 116 | 125 | 20 | −0.38 ln | 0.84 / 0.92 | constant `reference` |
+| `nostr_custody` | 197 | 43 | 65 | 89 | 0 | 0 | — | constant `reference` |
+| `nostr_custody_hot` | 96 | 54 | 1 | 41 | 0 | −683 sats | — | constant `reference` |
+| `nostr_publish` | 139 | 122 | 10 | 7 | 1 | −1,386 sats | — | constant `reference` |
+| `nostr_private` | 0 | | | 0 | | | — | constant `reference` |
+| `nostr_counterparty` | 117 | 37 | 33 | 47 | 7 | −2,515 sats | 0.60 / 0.50 | five networks |
+| `nostr_mesh` | 322 | 43 | 50 | 229 | 11 | −874 sats | 0.946 / 0.946 | constant `reference` |
+
+`custody_hot`'s gate is now constant: all 41 of its rows are labelled `reference`. `counterparty`'s networks beat the constant on 10 validation rows, 6 right against 5.
+
+On the development seeds, on 2026-11-04 (`results/v0-*-bonsai-8b-nothink-<skill>-trm-complex-development.md`):
+
+| Cell | Turns | Skill calls | Agree | Gate | Repair | Proposal sent | Equal to |
+|---|---:|---:|---:|---:|---:|---:|---|
+| family 4, three cells | 768 | 243 | 243 | 274 | 251 | 0 | `buffer_rule`, 24 of 24 episodes |
+| `custody` | 128 | 1 | 1 | 60 | 67 | 0 | `policy`, 8 of 8 |
+| `custody_hot` | 133 | 1 | 2 | 62 | 69 | 0 | `policy`, 8 of 8 |
+| `publish` | 106 | 17 | 10 | 54 | 42 | 0 | `outbox`, 8 of 8 |
+| `private` | 229 | 8 | 11 | 191 | 27 | 0 | `nip17`, 8 of 8 |
+| `counterparty` | 162 | 11 | 51 | 84 | 27 | 3 | `reputation` on 6 of 8, `oracle` on seeds 2 and 7 |
+| `mesh_outage` | 103 | 20 | 20 | 76 | 7 | 0 | `bitchat_router`, 8 of 8 |
+| `mesh_partial` | 96 | 15 | 25 | 66 | 5 | 0 | `bitchat_router`, 8 of 8 |
+
+- **The skill call is the agreement.** In family 4, every one of the 243 agreeing turns followed a skill call whose result the model sent by reference, and no other turn agreed. The model's own proposal was sent on 31.6% of turns, against 2.7% (21 of 768) with the bare proposer. The action is the skill's either way; what changed is that the model chose it. In the family 9 cells, agreement and skill calls overlap only in part: in `mesh_partial`, 9 of the 25 agreeing turns followed a skill call.
+- **`private` completed.** The skill agent on its own outgrew the context on seed 1. As the combo's proposer, on the same 40,960-token context, it completed all 8 episodes, every action of which was the skill's.
+- **`counterparty` is the one cell where the gate changed the result.** It sent the model's proposal 3 times, each a `request` on turn 1 where the skill would have fetched another provider's record. On seeds 2 and 7 the complex then reached the ceiling where `reputation` did not. On seed 0 `reputation` was already at the ceiling. On average the complex was 1,762 sats above `reputation` (−965 to +4,488). These are the seeds the gate was trained and validated on, against the skill agent's trajectories.
+
 ## Limits
 
 - **The curriculum's states are the bare model's.** The complex sends the skill's action most of the time, so the states it meets are mostly the skill's trajectory, not the bare model's, which commits or copies the prompt's example early. The paper's gate saw its proposer's answers to the same puzzles. These rows come from a different trajectory than the one the gate will judge.

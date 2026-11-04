@@ -1,0 +1,846 @@
+{
+ "bench": "bitcoin-defi-bench/v0",
+ "block": "development",
+ "manifest_sha256": "11632cdfa8d436649acbc2094952a70b6ba275b60e9d39d721c77379be369009",
+ "prereg_sha256": "d06aee74d878e0a3cc31faf22ebfb3687bd7b4e86943eaa61a1ebf04143aa4f7",
+ "spiral_commit": "9824c30ad402cc9bca768eca27d176e0e8788db5",
+ "source_sha256": "c143b3ae550b2bcfd1a9e133c9f43313b96130c79890babdcd146c1ba1ab809a",
+ "node": "v24.19.0",
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7
+ ],
+ "agents": [
+  {
+   "id": "idle",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "random",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "popular",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "outbox",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "max_reach",
+   "privileged": true,
+   "baseline": true
+  },
+  {
+   "id": "bonsai-8b-nothink-trm-complex@59d458a1623f",
+   "privileged": false,
+   "baseline": false,
+   "details": {
+    "complex": "trm-complex/v0",
+    "proposer": {
+     "adapter": "chat-adapter/v0",
+     "model": "bonsai-8b",
+     "model_sha256": "284a335aa3fb2ced3b1b01fcb40b08aa783e3b70832767f0dd2e3fdfa134bd54",
+     "runtime": "llama-prism 0.2.0-dev (build 10743, commit adfffbe41), win-cuda-12.4",
+     "sampling": {
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "max_tokens": 1024,
+      "seed": 20261001
+     },
+     "thinking": false,
+     "prompt_sha256": "8a6a180e9eacf2993f645a3f85ac5d8b7df6b90d2a526fed170203d963f49a20",
+     "skills": [
+      {
+       "name": "outbox_plan",
+       "sha256": "68e07806acb0251c451ec8628df96912f8019e357e6c84ccf9e6ccd089ffa2e5",
+       "description_sha256": "140be69415d7acbe3637970bf49f7aca18d97f026ac9695af6e44e670f039f5d"
+      }
+     ],
+     "max_skill_calls": 400,
+     "max_skill_calls_per_turn": 1,
+     "skill_protocol": "call by a skill field or a tool field naming a carried skill; a reply that does not parse but opens with that envelope is a call with no arguments, kept in the conversation as the bare envelope; result as compact json; {tool: send} or {send: name} sends a stored result that is an action"
+    },
+    "proposer_id": "bonsai-8b-nothink@9a50b6012cdd",
+    "package": {
+     "name": "nostr_publish",
+     "sha256": "eaf8544ab5248cead155ade2e4828249986f0e7072705454169447bc004cb0fd"
+    },
+    "skill": {
+     "name": "outbox_plan",
+     "sha256": "68e07806acb0251c451ec8628df96912f8019e357e6c84ccf9e6ccd089ffa2e5"
+    },
+    "gate": {
+     "sha256": "f182bc2a0b83fe0108c84a349b6c9c92ed9d9740acfc6b16382880fd9e02b34a",
+     "menu": [
+      "commit",
+      "reference"
+     ],
+     "constant": "reference",
+     "models": 0
+    }
+   }
+  }
+ ],
+ "tasks": [
+  {
+   "task": "nostr/publish",
+   "unit": "sats: readers reached, at a value per follower and per mention, minus relay fees",
+   "band": 500,
+   "floor": "idle",
+   "ceiling": "max_reach",
+   "reference": "outbox",
+   "metrics": [
+    "followers_reached",
+    "mentions_reached",
+    "fees_sats",
+    "relay_writes"
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "task": "nostr/publish",
+   "seed": 0,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "followers_reached": 0,
+    "mentions_reached": 0,
+    "fees_sats": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 0,
+   "cell": "single",
+   "agent": "random",
+   "value": 3100,
+   "metrics": {
+    "followers_reached": 21,
+    "mentions_reached": 1,
+    "fees_sats": 0,
+    "relay_writes": 16
+   },
+   "turns": 9,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 0,
+   "cell": "single",
+   "agent": "popular",
+   "value": 13800,
+   "metrics": {
+    "followers_reached": 108,
+    "mentions_reached": 3,
+    "fees_sats": 0,
+    "relay_writes": 13
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 0,
+   "cell": "single",
+   "agent": "outbox",
+   "value": 14900,
+   "metrics": {
+    "followers_reached": 109,
+    "mentions_reached": 4,
+    "fees_sats": 0,
+    "relay_writes": 16
+   },
+   "turns": 15,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 0,
+   "cell": "single",
+   "agent": "max_reach",
+   "value": 15700,
+   "metrics": {
+    "followers_reached": 117,
+    "mentions_reached": 4,
+    "fees_sats": 0,
+    "relay_writes": 15
+   },
+   "turns": 23,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink-trm-complex@59d458a1623f",
+   "value": 14900,
+   "metrics": {
+    "followers_reached": 109,
+    "mentions_reached": 4,
+    "fees_sats": 0,
+    "relay_writes": 16
+   },
+   "turns": 15,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 1,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "followers_reached": 0,
+    "mentions_reached": 0,
+    "fees_sats": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 1,
+   "cell": "single",
+   "agent": "random",
+   "value": 4100,
+   "metrics": {
+    "followers_reached": 31,
+    "mentions_reached": 1,
+    "fees_sats": 0,
+    "relay_writes": 16
+   },
+   "turns": 9,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 1,
+   "cell": "single",
+   "agent": "popular",
+   "value": 12500,
+   "metrics": {
+    "followers_reached": 105,
+    "mentions_reached": 2,
+    "fees_sats": 0,
+    "relay_writes": 13
+   },
+   "turns": 9,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 1,
+   "cell": "single",
+   "agent": "outbox",
+   "value": 12200,
+   "metrics": {
+    "followers_reached": 102,
+    "mentions_reached": 2,
+    "fees_sats": 0,
+    "relay_writes": 16
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 1,
+   "cell": "single",
+   "agent": "max_reach",
+   "value": 14000,
+   "metrics": {
+    "followers_reached": 120,
+    "mentions_reached": 2,
+    "fees_sats": 0,
+    "relay_writes": 17
+   },
+   "turns": 23,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink-trm-complex@59d458a1623f",
+   "value": 12200,
+   "metrics": {
+    "followers_reached": 102,
+    "mentions_reached": 2,
+    "fees_sats": 0,
+    "relay_writes": 16
+   },
+   "turns": 12,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 2,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "followers_reached": 0,
+    "mentions_reached": 0,
+    "fees_sats": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 2,
+   "cell": "single",
+   "agent": "random",
+   "value": 4700,
+   "metrics": {
+    "followers_reached": 27,
+    "mentions_reached": 2,
+    "fees_sats": 0,
+    "relay_writes": 16
+   },
+   "turns": 9,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 2,
+   "cell": "single",
+   "agent": "popular",
+   "value": 14800,
+   "metrics": {
+    "followers_reached": 108,
+    "mentions_reached": 4,
+    "fees_sats": 0,
+    "relay_writes": 13
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 2,
+   "cell": "single",
+   "agent": "outbox",
+   "value": 11600,
+   "metrics": {
+    "followers_reached": 96,
+    "mentions_reached": 2,
+    "fees_sats": 0,
+    "relay_writes": 16
+   },
+   "turns": 14,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 2,
+   "cell": "single",
+   "agent": "max_reach",
+   "value": 18000,
+   "metrics": {
+    "followers_reached": 120,
+    "mentions_reached": 6,
+    "fees_sats": 0,
+    "relay_writes": 18
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 2,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink-trm-complex@59d458a1623f",
+   "value": 11600,
+   "metrics": {
+    "followers_reached": 96,
+    "mentions_reached": 2,
+    "fees_sats": 0,
+    "relay_writes": 16
+   },
+   "turns": 14,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 3,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "followers_reached": 0,
+    "mentions_reached": 0,
+    "fees_sats": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 3,
+   "cell": "single",
+   "agent": "random",
+   "value": 400,
+   "metrics": {
+    "followers_reached": 4,
+    "mentions_reached": 0,
+    "fees_sats": 0,
+    "relay_writes": 16
+   },
+   "turns": 9,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 3,
+   "cell": "single",
+   "agent": "popular",
+   "value": 13800,
+   "metrics": {
+    "followers_reached": 108,
+    "mentions_reached": 3,
+    "fees_sats": 0,
+    "relay_writes": 13
+   },
+   "turns": 11,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 3,
+   "cell": "single",
+   "agent": "outbox",
+   "value": 12700,
+   "metrics": {
+    "followers_reached": 107,
+    "mentions_reached": 2,
+    "fees_sats": 0,
+    "relay_writes": 15
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 3,
+   "cell": "single",
+   "agent": "max_reach",
+   "value": 15000,
+   "metrics": {
+    "followers_reached": 120,
+    "mentions_reached": 3,
+    "fees_sats": 0,
+    "relay_writes": 14
+   },
+   "turns": 22,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 3,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink-trm-complex@59d458a1623f",
+   "value": 12700,
+   "metrics": {
+    "followers_reached": 107,
+    "mentions_reached": 2,
+    "fees_sats": 0,
+    "relay_writes": 15
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 4,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "followers_reached": 0,
+    "mentions_reached": 0,
+    "fees_sats": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 4,
+   "cell": "single",
+   "agent": "random",
+   "value": 3400,
+   "metrics": {
+    "followers_reached": 24,
+    "mentions_reached": 1,
+    "fees_sats": 0,
+    "relay_writes": 16
+   },
+   "turns": 9,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 4,
+   "cell": "single",
+   "agent": "popular",
+   "value": 15700,
+   "metrics": {
+    "followers_reached": 117,
+    "mentions_reached": 4,
+    "fees_sats": 0,
+    "relay_writes": 13
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 4,
+   "cell": "single",
+   "agent": "outbox",
+   "value": 14700,
+   "metrics": {
+    "followers_reached": 107,
+    "mentions_reached": 4,
+    "fees_sats": 0,
+    "relay_writes": 17
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 4,
+   "cell": "single",
+   "agent": "max_reach",
+   "value": 16000,
+   "metrics": {
+    "followers_reached": 120,
+    "mentions_reached": 4,
+    "fees_sats": 0,
+    "relay_writes": 14
+   },
+   "turns": 21,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 4,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink-trm-complex@59d458a1623f",
+   "value": 14700,
+   "metrics": {
+    "followers_reached": 107,
+    "mentions_reached": 4,
+    "fees_sats": 0,
+    "relay_writes": 17
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 5,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "followers_reached": 0,
+    "mentions_reached": 0,
+    "fees_sats": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 5,
+   "cell": "single",
+   "agent": "random",
+   "value": 2900,
+   "metrics": {
+    "followers_reached": 19,
+    "mentions_reached": 1,
+    "fees_sats": 0,
+    "relay_writes": 16
+   },
+   "turns": 9,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 5,
+   "cell": "single",
+   "agent": "popular",
+   "value": 13500,
+   "metrics": {
+    "followers_reached": 105,
+    "mentions_reached": 3,
+    "fees_sats": 0,
+    "relay_writes": 13
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 5,
+   "cell": "single",
+   "agent": "outbox",
+   "value": 13500,
+   "metrics": {
+    "followers_reached": 105,
+    "mentions_reached": 3,
+    "fees_sats": 0,
+    "relay_writes": 18
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 5,
+   "cell": "single",
+   "agent": "max_reach",
+   "value": 15000,
+   "metrics": {
+    "followers_reached": 120,
+    "mentions_reached": 3,
+    "fees_sats": 0,
+    "relay_writes": 20
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 5,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink-trm-complex@59d458a1623f",
+   "value": 13500,
+   "metrics": {
+    "followers_reached": 105,
+    "mentions_reached": 3,
+    "fees_sats": 0,
+    "relay_writes": 18
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 6,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "followers_reached": 0,
+    "mentions_reached": 0,
+    "fees_sats": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 6,
+   "cell": "single",
+   "agent": "random",
+   "value": 2200,
+   "metrics": {
+    "followers_reached": 12,
+    "mentions_reached": 1,
+    "fees_sats": 0,
+    "relay_writes": 16
+   },
+   "turns": 9,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 6,
+   "cell": "single",
+   "agent": "popular",
+   "value": 10700,
+   "metrics": {
+    "followers_reached": 57,
+    "mentions_reached": 5,
+    "fees_sats": 0,
+    "relay_writes": 13
+   },
+   "turns": 9,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 6,
+   "cell": "single",
+   "agent": "outbox",
+   "value": 15000,
+   "metrics": {
+    "followers_reached": 110,
+    "mentions_reached": 4,
+    "fees_sats": 0,
+    "relay_writes": 18
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 6,
+   "cell": "single",
+   "agent": "max_reach",
+   "value": 19000,
+   "metrics": {
+    "followers_reached": 120,
+    "mentions_reached": 7,
+    "fees_sats": 0,
+    "relay_writes": 14
+   },
+   "turns": 19,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 6,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink-trm-complex@59d458a1623f",
+   "value": 15000,
+   "metrics": {
+    "followers_reached": 110,
+    "mentions_reached": 4,
+    "fees_sats": 0,
+    "relay_writes": 18
+   },
+   "turns": 13,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 7,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "followers_reached": 0,
+    "mentions_reached": 0,
+    "fees_sats": 0,
+    "relay_writes": 0
+   },
+   "turns": 1,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 7,
+   "cell": "single",
+   "agent": "random",
+   "value": 5500,
+   "metrics": {
+    "followers_reached": 55,
+    "mentions_reached": 0,
+    "fees_sats": 0,
+    "relay_writes": 16
+   },
+   "turns": 9,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 7,
+   "cell": "single",
+   "agent": "popular",
+   "value": 10500,
+   "metrics": {
+    "followers_reached": 105,
+    "mentions_reached": 0,
+    "fees_sats": 0,
+    "relay_writes": 13
+   },
+   "turns": 9,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 7,
+   "cell": "single",
+   "agent": "outbox",
+   "value": 9300,
+   "metrics": {
+    "followers_reached": 93,
+    "mentions_reached": 0,
+    "fees_sats": 0,
+    "relay_writes": 11
+   },
+   "turns": 10,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 7,
+   "cell": "single",
+   "agent": "max_reach",
+   "value": 12000,
+   "metrics": {
+    "followers_reached": 120,
+    "mentions_reached": 0,
+    "fees_sats": 0,
+    "relay_writes": 17
+   },
+   "turns": 22,
+   "rejections": []
+  },
+  {
+   "task": "nostr/publish",
+   "seed": 7,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink-trm-complex@59d458a1623f",
+   "value": 9300,
+   "metrics": {
+    "followers_reached": 93,
+    "mentions_reached": 0,
+    "fees_sats": 0,
+    "relay_writes": 11
+   },
+   "turns": 10,
+   "rejections": []
+  }
+ ],
+ "checks": [
+  {
+   "id": "K92",
+   "pass": true,
+   "detail": "not applicable: this cell's ceiling is a reference, not an exact optimum"
+  }
+ ],
+ "notes": [
+  "A TRM complex: the proposer `bonsai-8b-nothink@9a50b6012cdd` proposes each action; the package `nostr_publish` (SHA-256 eaf8544ab524) checks it against the cell's public rules, repairs a proposal that breaks one with the skill `outbox_plan`, and sends a legal proposal that differs from the skill's action only if the gate (SHA-256 f182bc2a0b83, the constant rule reference) says commit. Turns by stage: agree 10, gate 54, repair 42, veto 0 of 106; the gate sent the proposal on 0.",
+  "The proposer carried the skill outbox_plan, capped at 400 calls per episode and 1 before each proposal, and called it 17 times. The gate file is `nostr_publish.skill-proposer.json`."
+ ]
+}

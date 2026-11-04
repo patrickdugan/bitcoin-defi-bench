@@ -14,6 +14,10 @@ import { SEED_BLOCKS } from "../harness/seeds.ts";
 import { loadNostrConfig, nostrBaselines, nostrEpisodes, type NostrCell } from "../tasks/nostr/task.ts";
 import { serverSizingBaselines } from "../tasks/server_sizing/baselines.ts";
 import { loadServerSizingConfig, serverSizingEpisodes } from "../tasks/server_sizing/task.ts";
+import { ChatAgent } from "./chat.ts";
+import { echoSkillServer } from "./echo_mock.test_helper.ts";
+import { nostrPrompt } from "../tasks/nostr/prompt.ts";
+import { serverSizingPrompt } from "../tasks/server_sizing/prompt.ts";
 import { COMMON_ATOMS, COMMON_RULES, Gate, TrmComplex, compilePackage, verify, type ComplexRecord, type GateJson, type PackageCode } from "./complex.ts";
 import { loadPackage } from "./complex/packages.ts";
 import { SKILLS } from "./skills.ts";
@@ -103,6 +107,30 @@ test("a complex whose proposer is the skill agrees on every turn and plays the b
       assert.equal((await runEpisode(c.envs(seed)[0]!, agent)).value, (await runEpisode(c.envs(seed)[0]!, c.reference())).value, `${c.file} seed ${seed}`);
     }
     assert.ok(records.every((r) => r.stage === "agree"), c.file);
+  }
+});
+
+test("the combo: a proposer that carries the skill through the chat adapter and sends each result by reference agrees on every turn and plays the baseline exactly", async () => {
+  for (const [file, cell, skill] of [["server_sizing", null, "capacity_plan"], ["nostr_counterparty", "counterparty", "buyer_plan"]] as Array<[string, NostrCell | null, string]>) {
+    const c = CASES.find((x) => x.file === file)!;
+    const pkg = loadPackage(file);
+    const { server, url } = await echoSkillServer(skill, "reference");
+    try {
+      const options = {
+        name: "echo", baseUrl: url, model: "mock", sampling: { temperature: 0, top_p: 1, top_k: 1, max_tokens: 256, seed: 0 }, thinking: false,
+        identity: { model_sha256: "0".repeat(64), runtime: "mock" }, prompt: cell === null ? serverSizingPrompt(256) : nostrPrompt(cell, 1024), ...(cell === null ? { contextTurns: 0 } : {}),
+      };
+      const records: ComplexRecord[] = [];
+      const gate = constantGate(file, "reference");
+      const agent = new TrmComplex({ name: "combo", proposer: new ChatAgent({ ...options, skills: [SKILLS[skill]!], maxSkillCalls: 1000, maxSkillCallsPerTurn: 1 }), pkg, gate, onRecord: (r) => records.push(r) });
+      assert.notEqual(agent.id, new TrmComplex({ name: "combo", proposer: new ChatAgent(options), pkg, gate }).id, "the proposer's skill is bound into the complex's id");
+      for (const seed of SEED_BLOCKS.development.slice(0, 2)) {
+        assert.equal((await runEpisode(c.envs(seed)[0]!, agent)).value, (await runEpisode(c.envs(seed)[0]!, c.reference())).value, `${file} seed ${seed}`);
+      }
+      assert.ok(records.length > 0 && records.every((r) => r.stage === "agree"), file);
+    } finally {
+      server.close();
+    }
   }
 });
 

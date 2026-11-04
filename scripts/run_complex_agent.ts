@@ -4,9 +4,12 @@
 //     --name bonsai-8b-nothink --base-url http://127.0.0.1:8094/v1 --model bonsai-8b \
 //     --model-sha256 <sha256 of the GGUF> --runtime "<llama-server --version>"
 //   ... --family nostr --cell custody ...
+//   ... --skills custody_policy --max-skill-calls 400 --max-skill-calls-per-turn 1 --gate nostr_custody.skill-proposer
 //
-// The proposer is the bare agent the family's own agent script builds from the same flags, so its
-// identifier is that agent's. The complex's identifier binds it, the package text, the skill, and
+// The proposer is the agent the family's own agent script builds from the same flags, so its
+// identifier is that agent's: bare by default, or carrying a skill with --skills (the combo, in which
+// the model may call the skill through the adapter before it proposes). --gate names the gate file
+// under src/agents/complex/gates/, by default the package's own. The complex's identifier binds it, the package text, the skill, and
 // the gate file. Same discipline as the agent scripts: a reply log for reruns after an infrastructure
 // failure, every reply in the transcript, and a confirmatory block refused unless the family is
 // frozen. Each turn's typed record (atoms, verdict, stage, what was sent) goes to `<name>.records.jsonl`.
@@ -15,6 +18,7 @@ import { appendFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileS
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { ChatAgent, type ChatOptions, type Exchange, type Reply } from "../src/agents/chat.ts";
+import { skillsNamed } from "../src/agents/skills.ts";
 import { Gate, TrmComplex, type ComplexRecord, type GateJson } from "../src/agents/complex.ts";
 import { loadPackage, packageFileFor } from "../src/agents/complex/packages.ts";
 import type { Agent } from "../src/harness/agent.ts";
@@ -56,9 +60,10 @@ if (block === "confirmatory") requireFrozen(root, family);
 const out = join(root, "results");
 mkdirSync(out, { recursive: true });
 const prefix = family === "server_sizing" ? "v0-server-sizing" : `v0-nostr-${cell!.replace(/_/g, "-")}`;
-const name = arg("out", `${prefix}-${arg("name")}-trm-complex-${block}`);
+const skills = skillsNamed(arg("skills", ""));
+const name = arg("out", `${prefix}-${arg("name")}${skills.length ? `-${skills.map((s) => s.name).join("+")}` : ""}-trm-complex-${block}`);
 
-// The proposer: exactly the options of the family's bare agent script.
+// The proposer: exactly the options of the family's agent script, with or without its skills.
 const maxTokens = Number(arg("max-tokens", family === "server_sizing" ? "256" : "1024"));
 const options: ChatOptions = {
   name: arg("name"),
@@ -71,12 +76,16 @@ const options: ChatOptions = {
   thinking: arg("thinking", "false") === "true",
   identity: { model_sha256: arg("model-sha256"), runtime: arg("runtime") },
   prompt: family === "server_sizing" ? serverSizingPrompt(maxTokens) : nostrPrompt(cell!, maxTokens),
+  skills,
+  maxSkillCalls: Number(arg("max-skill-calls", "4")),
+  ...(arg("max-skill-calls-per-turn", "") === "" ? {} : { maxSkillCallsPerTurn: Number(arg("max-skill-calls-per-turn", "")) }),
   ...(family === "server_sizing" ? { contextTurns: Number(arg("context-turns", "0")) } : {}),
 };
 
 const pkgFile = packageFileFor(family, cell);
 const pkg = loadPackage(pkgFile);
-const gate = new Gate(JSON.parse(readFileSync(join(root, "src", "agents", "complex", "gates", `${pkgFile}.json`), "utf8")) as GateJson);
+const gateFile = arg("gate", pkgFile);
+const gate = new Gate(JSON.parse(readFileSync(join(root, "src", "agents", "complex", "gates", `${gateFile}.json`), "utf8")) as GateJson);
 const complexName = `${arg("name")}-trm-complex`;
 const complexId = new TrmComplex({ name: complexName, proposer: new ChatAgent(options), pkg, gate }).id;
 
@@ -140,6 +149,7 @@ const record = await executeRun({
     return [
       ...(note !== "" ? [note] : []),
       `A TRM complex: the proposer \`${proposer.id}\` proposes each action; the package \`${pkg.name}\` (SHA-256 ${pkg.sha256.slice(0, 12)}) checks it against the cell's public rules, repairs a proposal that breaks one with the skill \`${pkg.skill}\`, and sends a legal proposal that differs from the skill's action only if the gate (SHA-256 ${gate.sha256.slice(0, 12)}${gate.file.constant !== null ? `, the constant rule ${gate.file.constant}` : `, ${gate.file.models.length} networks`}) says commit. Turns by stage: ${(["agree", "gate", "repair", "veto"] as const).map((s) => `${s} ${agent.counts[s]}`).join(", ")} of ${total}; the gate sent the proposal on ${records.filter((r) => r.stage === "gate" && r.choice === "commit").length}.`,
+      ...(skills.length ? [`The proposer carried the skill ${skills.map((s) => s.name).join(", ")}, capped at ${options.maxSkillCalls} calls per episode${options.maxSkillCallsPerTurn === undefined ? "" : ` and ${options.maxSkillCallsPerTurn} before each proposal`}, and called it ${transcript.filter((x) => x.skill).length} times. The gate file is \`${gateFile}.json\`.`] : []),
       ...(proposer.counts.replayed > 0 ? [`${proposer.counts.replayed} model replies were replayed from the reply log of an earlier attempt of this run; ${proposer.counts.served} came from the server in this invocation. Every episode and every baseline was executed again.`] : []),
     ];
   },

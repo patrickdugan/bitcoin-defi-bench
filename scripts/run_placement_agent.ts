@@ -12,6 +12,7 @@ import { appendFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileS
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { ChatAgent, type ChatOptions, type Exchange, type Reply } from "../src/agents/chat.ts";
+import { withPersona } from "../src/agents/persona.ts";
 import { skillsNamed } from "../src/agents/skills.ts";
 import { readManifest } from "../src/harness/manifest.ts";
 import { executeRun, type SeedBlock } from "../src/harness/run.ts";
@@ -44,7 +45,7 @@ if (block === "confirmatory") requireFrozen(root, "placement");
 const out = join(root, "results");
 mkdirSync(out, { recursive: true });
 const skills = skillsNamed(arg("skills", ""));
-const name = arg("out", `v0-placement-${arg("name")}${skills.length ? `-${skills.map((s) => s.name).join("+")}` : ""}-${block}`);
+const name = arg("out", `v0-placement-${arg("name")}${arg("persona", "false") === "true" ? "-persona" : ""}${skills.length ? `-${skills.map((s) => s.name).join("+")}` : ""}-${block}`);
 
 const transcript: Exchange[] = [];
 // A valid action needs a few dozen tokens per placement; 512 holds about twenty placements.
@@ -59,7 +60,7 @@ const options: ChatOptions = {
   },
   thinking: arg("thinking", "false") === "true",
   identity: { model_sha256: arg("model-sha256"), runtime: arg("runtime") },
-  prompt: placementPrompt(maxTokens),
+  prompt: arg("persona", "false") === "true" ? withPersona(placementPrompt(maxTokens)) : placementPrompt(maxTokens),
   skills,
   maxSkillCalls: Number(arg("max-skill-calls", "4")),
 };

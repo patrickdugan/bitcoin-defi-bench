@@ -69,6 +69,7 @@ Rails are the paper's object classes (§2.1), with two classes added on review o
 | Post where the audience reads | | | | | | | | | **F9 `publish`, run** §10.3 |
 | Deliver private messages | | | | | | | | | **F9 `private`, run** §10.4 |
 | Buy a service from a counterparty | pays over NWC (NIP-47) | | pays by nutzap (NIP-61) | | | | | | **F9 `counterparty`, run** §10.5 |
+| Swap with a counterparty without trusting it | a submarine swap pays over an HTLC too | | | | | **F11 `calm`, `spiky`, built**, development seeds only §14 | | | the swap is run as BitAgent's DAG v3 workflow (F11) |
 | Deliver when the internet is down | | | | | | | | | **F9 `mesh_outage`, `mesh_partial`, run** §10.6 |
 
 Reading the table:
@@ -79,6 +80,7 @@ Reading the table:
 - **The proof layer is not a rail.** Shinigami and RAITO (Bitcoin Script and Bitcoin consensus in Cairo, proven with Stwo) are the verifier the paper's §4.4 says Bitcoin lacks. F7 is the operator's problem that creates: what to prove and when, against a measured prover cost.
 - **Attributes are reported, never scored.** The tuple fields that liquidity duration cannot price, above all the counterparty set Γ (a channel peer, a co-signing server, a custodial mint or federation, a statechain entity, a BitVM committee) and the exit X, appear beside each column as attributes. A table that let a custodial object win on capital-time without saying it is custodial would be misleading.
 - **The coordination layer is not a rail either.** Nostr relays and the bitchat Bluetooth mesh carry no value. They carry what moves it: the signed request, the invoice, the quote, the payment confirmation, and the key that signs them. F9 poses the operator problems that layer creates. Its native unit is still sats: the stake a key controls, the value of a message delivered before its deadline, and the price of a service. Its five rows are five tasks, reported separately like every other row.
+- **F11 is a contract between parties who do not trust each other.** Two BIP 199 hashed time-locked contracts make a swap with a payout desk atomic: the customer's claim of the payout reveals the preimage that lets the desk take the payment. Its operator problem is the customer's: whether to fund, how deep to wait, what to bid, and when to stop and let the refund run. Every action goes through BitAgent's DAG v3 workflow, so the family also measures whether an agent can drive a deterministic host that admits only allowed moves.
 
 Kept off the scorecard: coalition, covert-channel, and Sybil tasks (by charter; the registry's nullifier property is asserted in tests, not posed as a task); prover throughput as a score (it is a measurement and an input to F7); Liquid, which was reviewed and set aside; any live relay or radio (F9's relays and mesh are in-process simulators); NIP-04 except as the legacy path of F9's private cell; and bitchat's app-specific Nostr envelope, which its whitepaper says is not NIP-17, NIP-44, or NIP-59 compatible (F9 sends NIP-17 over relays and models the mesh's delivery rules, not its ciphers).
 
@@ -1344,3 +1346,123 @@ The skill-carrying agent's whole advantage over the bare one is those 18 episode
 ### 13.10 What remains
 
 The later DLC cells, specified only: multiple oracles (MultiOracle.md), renewal in a DLC channel, the refund locktime as a choice, and enumerated-outcome contracts. Each needs its own amendment.
+
+## 14. Family 11: swap with a payout desk through HTLCs, as a BitAgent DAG workflow (built; development seeds only)
+
+Added on request on 2026-11-13: "make the interactive swap part of a deterministic bitagent workflow and add it to BitcoinDeFi Bench". The swap is the fix that In-and-Out-Burger's trust section proposes for its customer (Spiral `in-and-out-burger/README.md`, commit `ed21a6d`). There, the customer pays the desk first and trusts it for one order. Here, the customer locks the payment in a hashed time-locked contract. The desk locks its payout in a second one, and the customer's claim of the payout reveals the preimage that lets the desk take the payment. Every action runs through BitAgent's DAG v3 workflow, so a model proposes each move and a deterministic host admits it only along an allowed edge. The code is in `src/tasks/swap/`, the parameters in `config/swap.json`.
+
+### 14.1 The swap [spec, with invented parameters]
+
+| Element | Value |
+|---|---|
+| Contracts | Two BIP 199 HTLCs: `OP_IF OP_SHA256 <digest> OP_EQUALVERIFY OP_DUP OP_HASH160 <claimer> OP_ELSE <locktime> OP_CHECKLOCKTIMEVERIFY OP_DROP OP_DUP OP_HASH160 <refunder> OP_ENDIF OP_EQUALVERIFY OP_CHECKSIG`, each paid to P2WSH (BIP 141) and spent under BIP 143 signatures [spec] |
+| In-HTLC | The customer funds A sats, A from 500,000 to 2,000,000 in steps of 10,000. The desk claims it with the preimage; the customer refunds it after the in-timeout, 36 blocks after the start height. The quote is good only at the start height, and funding confirms in the next block [invented] |
+| Payout HTLC | A prompt desk locks A − 0.5% one block after the funding confirms. The customer claims it with the preimage; the desk refunds it after its locktime, promised 12 blocks after the lock confirms [invented] |
+| Claim | Reveals the preimage. From the next block the desk takes the in-HTLC, outbidding any refund. If the claim has not confirmed by the payout's locktime, the desk refunds the payout and the customer has lost both legs |
+| Armed refund | Once the in-HTLC is funded, the host broadcasts its refund at the in-timeout, bidding twice that block's clearing rate, unless a refund is already out or the preimage is. This is what the deterministic host guarantees [invented] |
+| Fees | Each block has a clearing rate; a transaction bidding at least that rate confirms in that block. Rates follow a lognormal walk from a log-uniform base of 2 to 40 sat/vB. A replacement must bid more than the transaction it replaces, and only the confirmed version pays. Sizes: claim 141 vB and refund 133 vB, measured; funding 153 vB, computed [invented, sizes measured] |
+| Value of a swap | 1.5% of A, three times the desk's fee: what fresh coins or a moved balance are worth to the customer [invented] |
+
+### 14.2 The workflow [ported]
+
+BitAgent's DAG v3 (`patrickdugan/BitAgent` commit `1cfe7e0`, `apps/bitagent-launch-kernel/src/bench/dag.ts`), unchanged in `src/tasks/swap/dag.ts` except that `host.request_clarification` is not offered: there is no principal to answer it inside an episode. Each state-changing action is one pass: `market.observe` → `host.inspect_evidence {action}` → `host.validate_arguments {fee_rate}` → `host.simulate_action` → `host.display_exact_effects_and_fees` → `wallet.request_approval` → `host.execute_approved` → `host.verify_effect` → `host.reconcile_ledger` → `host.persist_verified_state`, with `host.hold_for_review {blocks}`, `host.refresh_evidence`, `host.resume_persisted_state`, and `incident.revoke_and_freeze` on BitAgent's edges. The observation's `tools` field lists only the tools the host admits from the current node.
+
+The host validates arguments and feasibility and never judges wisdom. Its checks:
+
+- `fee_rate` is a whole number from 1 to 5,000.
+- The quote has not expired.
+- There is a confirmed, unspent payout to claim.
+- A refund is final.
+- A replacement bids more than what it replaces.
+
+A simulation, a display, and an approval are good only in the block they were made in. An execute after a block has passed is refused as `stale`, and so is an approval of an old display. It admits a claim of a short payout, a claim at one confirmation, and a stale bid. The simulated principal approves whatever is displayed: the family measures the agent's choices, not the principal's.
+
+### 14.3 Desks and fee spikes [invented]
+
+| Desk | Share | Behaviour |
+|---|---|---|
+| `honest` | 45% | locks as quoted |
+| `slow` | 15% | locks 3 to 9 blocks after the funding confirms instead of 1 |
+| `short_change` | 10% | locks 0.2% to 4% of A less than quoted |
+| `double_spend` | 10% | its lock confirms, then a reorganization one or two blocks later replaces it with a double-spend, and any claim built on it |
+| `short_timeout` | 10% | sets its refund height 0 or 1 block after its lock confirms instead of 12; at 0 no claim can win, at 1 only a claim broadcast at once with a bid that clears the next block can |
+| `absent` | 10% | never locks |
+
+The desk's behaviour is hidden. Cell `calm` has no spike. Cell `spiky` has, with probability 0.8, a spike of 4× to 15× lasting 3 to 8 blocks, starting 2 to 10 blocks after the lock confirms. A spike can therefore cover a prompt desk's refund height.
+
+### 14.4 Scoring, baselines, gates
+
+Scoring, in sats: the customer's wallet change at the horizon, six blocks after the in-timeout, plus the swap's value if the claim confirmed and stood. Not funding scores 0. Budget: 8 attempts (rejections), 240 steps (every admitted move but a hold), and the blocks to the horizon. The phase ends at an incident, when a budget runs out, or once the swap settles.
+
+Baselines, all driving the same DAG (`src/tasks/swap/baselines.ts`):
+
+| Baseline | Role | What it does |
+|---|---|---|
+| `idle` | floor | Observes and freezes; never funds. |
+| `trusting` | | Funds, then claims at the first confirmation, bidding the current estimate; checks nothing and never re-bids. |
+| `no_depth` | | `workflow` with a one-confirmation claim. |
+| `estimate_fee` | | `workflow` bidding the estimate without re-bidding. |
+| `workflow` | reference | The deterministic workflow. It funds only if the round trip pays at the current rate plus a quarter, and waits for three confirmations of the payout. It decodes the payout's script and checks the digest, the claim key, a block of slack before the locktime, and that claiming beats letting the armed refund run at the amount locked. It bids 1.25× the estimate and re-bids each block it waits, at 1.5× the last bid and at 4× the estimate within three blocks of the locktime. Otherwise it freezes, and the armed refund returns the payment. |
+| `oracle` | ceiling, exact, privileged | Funds only if a claim can complete and pay. It claims at the block before the cheapest block in the window, bidding exactly that block's rate. |
+
+The `swap_workflow` skill returns `workflow`'s next action for the episode so far. A model that calls it at every turn and sends its result plays `workflow` exactly (tested).
+
+Gates:
+
+- K111: `idle` earns exactly 0 on every episode.
+- K112: identity, `oracle` through the DAG earns exactly `ceilingOf` computed on the fixture.
+- K113: `oracle` is at least every other policy on every episode.
+
+### 14.5 The protocol core, and what it reproduces
+
+`src/tasks/swap/script.ts` builds and strictly parses the HTLC. It also computes P2WSH outputs and bech32 and bech32m addresses, serializes transactions, computes BIP 143 sighashes, and signs ECDSA with RFC 6979 nonces, low-S and strict DER. No dependency besides `node:crypto` and the bench's own secp256k1. Its tests reproduce:
+
+- the BIP 173 P2WSH and P2WPKH addresses and three BIP 350 vectors;
+- BIP 143's native P2WPKH example: the hashes, the sighash, and the published signature byte for byte.
+
+Signatures also verify under `node:crypto`.
+
+`scripts/swap_regtest.ts` runs the script against Bitcoin Core 31.1 on regtest; the record is `results/v0-swap-htlc-regtest.json`:
+
+- Core's `decodescript` gives the same P2WSH address.
+- A claim with the right preimage is accepted, and confirms at the 141 vB the code predicts.
+- A wrong preimage, or the claim branch signed by the desk's key, is refused with `OP_EQUALVERIFY` failing.
+- The refund is refused as non-final before its locktime, then accepted at 133 vB.
+
+### 14.6 Development results (seeds 0 to 7)
+
+Baselines, in [results/v0-swap-baselines-development.md](../results/v0-swap-baselines-development.md). Gates K111 to K113 pass. Means in sats over the eight seeds:
+
+| Policy | `calm` | `spiky` |
+|---|---:|---:|
+| `trusting` | −363,101 | −122,172 |
+| `no_depth` | −224,722 | −123,173 |
+| `estimate_fee` | −2,143 | +2,921 |
+| `workflow` | −2,337 | +2,762 |
+| `oracle` | +2,143 | +6,780 |
+
+What the table says:
+
+- **Revealing the preimage at the wrong moment is the whole risk, and it costs the payment.**
+  - `trusting` lost the in-payment on both `double_spend` desks and on the `short_timeout` desk whose refund height left no room (`calm` seed 4).
+  - `no_depth` lost it on the reorganized locks.
+  - `workflow` never broadcast the preimage when it could not win: on those desks it froze, and the armed refund cost it only fees.
+- **The ceiling is small and mostly unknowable.** It is the oracle's: on `absent`, `double_spend`, and losing `short_change` desks it does not fund. No policy without the desk's type can do that, which is why `calm`'s eight seeds, six of them absent or traps, leave the oracle's lead over `idle` inside its interval, and no normalized gain is defined there.
+- **Fee headroom costs about 200 sats an episode on these seeds and paid off on none of them.** No claim at the bare estimate got stuck on seeds 0 to 7.
+
+On seeds 8 to 39, run in memory from the generator outside the manifest and not a reported result, `estimate_fee` lost the payment on stuck claims: −6.9 million sats in `calm` and −2.4 million in `spiky`, against `workflow`'s +104,000 and +25,000 and the oracle's +192,000 and +198,000.
+
+Bonsai 8B with thinking off, on the same seeds, bare and with the `swap_workflow` skill. Both tables pass K111 to K113. The server ran with `-c 16384` and `--cache-ram 0`, and each request carried the system prompt and the last 12 turns.
+
+| Agent | Mean, `calm` | Mean, `spiky` | What it did |
+|---|---:|---:|---|
+| bare, [`eba1c86695cb`](../results/v0-swap-bonsai-8b-nothink-development.md) | 0 | −481 | Let the quote expire without funding in 15 of 16 episodes. Once (`spiky` seed 1, an honest desk) it funded, then held 42 blocks straight to the horizon, past the payout. The armed refund returned the payment, for 3,851 sats in fees. |
+| with `swap_workflow`, [`9159079e0210`](../results/v0-swap-bonsai-8b-nothink-swap_workflow-development.md) | −3,093 | −1,053 | Called the skill 30 times in 438 turns and sent its result 14 times. It funded 5 of 16 swaps and claimed none. It ended 9 episodes by spending its 8 attempts on moves the host refused (`unknown_node`, `duplicate`, `stale`), and one by running out its 240 steps without funding. |
+
+Neither agent ever finished a pass to `host.persist_verified_state`. Neither broadcast the preimage or lost a payment: every swap it funded came back through the armed refund, at the cost of fees. That is the deterministic host doing its job. An agent that cannot drive the workflow loses fees, not the payment.
+
+### 14.7 What remains
+
+- An amendment to freeze the family and fix its contrasts before a confirmatory run.
+- A cell whose desks the customer can screen: a public record of past swaps, as family 9's `counterparty` has, would make the funding decision informative.
+- The desk's side: choosing the payout locktime against the customer's in-timeout, the leg In-and-Out-Burger's BitVM refill would reimburse.

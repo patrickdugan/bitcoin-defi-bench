@@ -1,0 +1,2484 @@
+{
+ "bench": "bitcoin-defi-bench/v0",
+ "block": "development",
+ "manifest_sha256": "18c3b2cafe75447a07242c50aa3eae21103325f375a480bf3a581cb572a087db",
+ "prereg_sha256": "6774244ff727f1de6c7264ff7d6ed8dcc716feb58ab705fcb87ee90941ab7f5e",
+ "spiral_commit": "9824c30ad402cc9bca768eca27d176e0e8788db5",
+ "source_sha256": "4aa7291f79bc2f13cd6d5590f536f02d65a7ebafb27eaa99b35870c40a1374b7",
+ "node": "v24.19.0",
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7
+ ],
+ "agents": [
+  {
+   "id": "idle",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "trusting",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "no_depth",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "estimate_fee",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "workflow",
+   "privileged": false,
+   "baseline": true
+  },
+  {
+   "id": "oracle",
+   "privileged": true,
+   "baseline": true
+  },
+  {
+   "id": "bonsai-8b-nothink@eba1c86695cb",
+   "privileged": false,
+   "baseline": false,
+   "details": {
+    "adapter": "chat-adapter/v0",
+    "model": "bonsai-8b",
+    "model_sha256": "284a335aa3fb2ced3b1b01fcb40b08aa783e3b70832767f0dd2e3fdfa134bd54",
+    "runtime": "llama-prism 0.2.0-dev (build 10743, commit adfffbe41), win-cuda-12.4",
+    "sampling": {
+     "temperature": 0.7,
+     "top_p": 0.8,
+     "top_k": 20,
+     "max_tokens": 256,
+     "seed": 20261001
+    },
+    "thinking": false,
+    "prompt_sha256": "6ea04fff7548bfd61bed244e486ed46effe6f951e9612ee9964da101ff26d8d4",
+    "context_turns": 12
+   }
+  }
+ ],
+ "tasks": [
+  {
+   "task": "swap/calm",
+   "unit": "sats: the customer's wallet change at the horizon, plus the swap's value if it completed; doing nothing scores 0",
+   "band": 750,
+   "floor": "idle",
+   "ceiling": "oracle",
+   "reference": "workflow",
+   "metrics": [
+    "funded",
+    "completed",
+    "refunded",
+    "lost",
+    "fees_sats",
+    "revealed"
+   ]
+  },
+  {
+   "task": "swap/spiky",
+   "unit": "sats: the customer's wallet change at the horizon, plus the swap's value if it completed; doing nothing scores 0",
+   "band": 750,
+   "floor": "idle",
+   "ceiling": "oracle",
+   "reference": "workflow",
+   "metrics": [
+    "funded",
+    "completed",
+    "refunded",
+    "lost",
+    "fees_sats",
+    "revealed"
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "task": "swap/calm",
+   "seed": 0,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 0,
+   "cell": "single",
+   "agent": "trusting",
+   "value": 4108,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 5292,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 0,
+   "cell": "single",
+   "agent": "no_depth",
+   "value": 3403,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 5997,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 0,
+   "cell": "single",
+   "agent": "estimate_fee",
+   "value": 3967,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 5433,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 30,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 0,
+   "cell": "single",
+   "agent": "workflow",
+   "value": 3262,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 6138,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 30,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 0,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 4108,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 5292,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@eba1c86695cb",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 0
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 1,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 1,
+   "cell": "single",
+   "agent": "trusting",
+   "value": -1869,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 1869,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 84,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 1,
+   "cell": "single",
+   "agent": "no_depth",
+   "value": -1869,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 1869,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 84,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 1,
+   "cell": "single",
+   "agent": "estimate_fee",
+   "value": -1869,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 1869,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 84,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 1,
+   "cell": "single",
+   "agent": "workflow",
+   "value": -1869,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 1869,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 84,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 1,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@eba1c86695cb",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 0
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 2,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 2,
+   "cell": "single",
+   "agent": "trusting",
+   "value": -878,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 878,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 84,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 2,
+   "cell": "single",
+   "agent": "no_depth",
+   "value": -878,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 878,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 84,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 2,
+   "cell": "single",
+   "agent": "estimate_fee",
+   "value": -878,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 878,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 84,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 2,
+   "cell": "single",
+   "agent": "workflow",
+   "value": -878,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 878,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 84,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 2,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 2,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@eba1c86695cb",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 0
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 3,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 3,
+   "cell": "single",
+   "agent": "trusting",
+   "value": 5250,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 6750,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 3,
+   "cell": "single",
+   "agent": "no_depth",
+   "value": -14538,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 14538,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 3,
+   "cell": "single",
+   "agent": "estimate_fee",
+   "value": -14538,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 14538,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 3,
+   "cell": "single",
+   "agent": "workflow",
+   "value": -14538,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 14538,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 3,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 5391,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 6609,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 3,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@eba1c86695cb",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 0
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 4,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 4,
+   "cell": "single",
+   "agent": "trusting",
+   "value": -1131989,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 1,
+    "fees_sats": 1989,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 4,
+   "cell": "single",
+   "agent": "no_depth",
+   "value": -3053,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 3053,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 4,
+   "cell": "single",
+   "agent": "estimate_fee",
+   "value": -3053,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 3053,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 4,
+   "cell": "single",
+   "agent": "workflow",
+   "value": -3053,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 3053,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 4,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 4,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@eba1c86695cb",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 0
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 5,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 5,
+   "cell": "single",
+   "agent": "trusting",
+   "value": -1782295,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 1,
+    "fees_sats": 2295,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 5,
+   "cell": "single",
+   "agent": "no_depth",
+   "value": -1782295,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 1,
+    "fees_sats": 2295,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 5,
+   "cell": "single",
+   "agent": "estimate_fee",
+   "value": -5753,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 5753,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 5,
+   "cell": "single",
+   "agent": "workflow",
+   "value": -5753,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 5753,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 5,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 5,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@eba1c86695cb",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 0
+   },
+   "turns": 6,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 6,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 6,
+   "cell": "single",
+   "agent": "trusting",
+   "value": 4540,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 10560,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 6,
+   "cell": "single",
+   "agent": "no_depth",
+   "value": 3130,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 11970,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 6,
+   "cell": "single",
+   "agent": "estimate_fee",
+   "value": 6655,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 8445,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 30,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 6,
+   "cell": "single",
+   "agent": "workflow",
+   "value": 5809,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 9291,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 30,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 6,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 7642,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 7458,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 6,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@eba1c86695cb",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 0
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 7,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 7,
+   "cell": "single",
+   "agent": "trusting",
+   "value": -1676,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 1676,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 84,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 7,
+   "cell": "single",
+   "agent": "no_depth",
+   "value": -1676,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 1676,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 84,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 7,
+   "cell": "single",
+   "agent": "estimate_fee",
+   "value": -1676,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 1676,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 84,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 7,
+   "cell": "single",
+   "agent": "workflow",
+   "value": -1676,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 1676,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 84,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 7,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/calm",
+   "seed": 7,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@eba1c86695cb",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 0
+   },
+   "turns": 6,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 0,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 0,
+   "cell": "single",
+   "agent": "trusting",
+   "value": -4190,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 4190,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 84,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 0,
+   "cell": "single",
+   "agent": "no_depth",
+   "value": -4190,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 4190,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 84,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 0,
+   "cell": "single",
+   "agent": "estimate_fee",
+   "value": -4190,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 4190,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 84,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 0,
+   "cell": "single",
+   "agent": "workflow",
+   "value": -4190,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 4190,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 84,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 0,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 0,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@eba1c86695cb",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 0
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 1,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 1,
+   "cell": "single",
+   "agent": "trusting",
+   "value": 14219,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 3681,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 1,
+   "cell": "single",
+   "agent": "no_depth",
+   "value": 13796,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 4104,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 1,
+   "cell": "single",
+   "agent": "estimate_fee",
+   "value": 14783,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 3117,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 30,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 1,
+   "cell": "single",
+   "agent": "workflow",
+   "value": 14501,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 3399,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 30,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 1,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 14924,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 2976,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 1,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@eba1c86695cb",
+   "value": -3851,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 3851,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 0,
+    "incident": 0
+   },
+   "turns": 13,
+   "rejections": [
+    {
+     "turn": 8,
+     "reason": "duplicate"
+    },
+    {
+     "turn": 10,
+     "reason": "duplicate"
+    },
+    {
+     "turn": 11,
+     "reason": "unknown_node"
+    }
+   ]
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 2,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 2,
+   "cell": "single",
+   "agent": "trusting",
+   "value": -7399,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 13299,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 2,
+   "cell": "single",
+   "agent": "no_depth",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 2,
+   "cell": "single",
+   "agent": "estimate_fee",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 2,
+   "cell": "single",
+   "agent": "workflow",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 2,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 2,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@eba1c86695cb",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 0
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 3,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 3,
+   "cell": "single",
+   "agent": "trusting",
+   "value": -1010612,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 1,
+    "fees_sats": 612,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 3,
+   "cell": "single",
+   "agent": "no_depth",
+   "value": -1010612,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 1,
+    "fees_sats": 612,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 3,
+   "cell": "single",
+   "agent": "estimate_fee",
+   "value": -3272,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 3272,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 3,
+   "cell": "single",
+   "agent": "workflow",
+   "value": -3272,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 3272,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 18,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 3,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 3,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@eba1c86695cb",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 0
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 4,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 4,
+   "cell": "single",
+   "agent": "trusting",
+   "value": 17518,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 882,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 4,
+   "cell": "single",
+   "agent": "no_depth",
+   "value": -1257,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 1257,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 4,
+   "cell": "single",
+   "agent": "estimate_fee",
+   "value": -1257,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 1257,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 4,
+   "cell": "single",
+   "agent": "workflow",
+   "value": -1257,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 1257,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 4,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 17518,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 882,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 4,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@eba1c86695cb",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 0
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 5,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 5,
+   "cell": "single",
+   "agent": "trusting",
+   "value": 15672,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 2928,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 5,
+   "cell": "single",
+   "agent": "no_depth",
+   "value": 15249,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 3351,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 5,
+   "cell": "single",
+   "agent": "estimate_fee",
+   "value": 15390,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 3210,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 30,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 5,
+   "cell": "single",
+   "agent": "workflow",
+   "value": 14826,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 3774,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 30,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 5,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 15954,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 2646,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 5,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@eba1c86695cb",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 0
+   },
+   "turns": 6,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 6,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 6,
+   "cell": "single",
+   "agent": "trusting",
+   "value": -8146,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 2787,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 6,
+   "cell": "single",
+   "agent": "no_depth",
+   "value": -3505,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 3505,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 16,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 6,
+   "cell": "single",
+   "agent": "estimate_fee",
+   "value": -3505,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 3505,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 6,
+   "cell": "single",
+   "agent": "workflow",
+   "value": -3505,
+   "metrics": {
+    "funded": 1,
+    "completed": 0,
+    "refunded": 1,
+    "lost": 0,
+    "fees_sats": 3505,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 1,
+    "passes": 1,
+    "incident": 1
+   },
+   "turns": 20,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 6,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 6,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@eba1c86695cb",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 0
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 7,
+   "cell": "single",
+   "agent": "idle",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 1
+   },
+   "turns": 2,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 7,
+   "cell": "single",
+   "agent": "trusting",
+   "value": 5560,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 2940,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 7,
+   "cell": "single",
+   "agent": "no_depth",
+   "value": 5137,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 3363,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 26,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 7,
+   "cell": "single",
+   "agent": "estimate_fee",
+   "value": 5419,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 3081,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 30,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 7,
+   "cell": "single",
+   "agent": "workflow",
+   "value": 4996,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 3504,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 30,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 7,
+   "cell": "single",
+   "agent": "oracle",
+   "value": 5842,
+   "metrics": {
+    "funded": 1,
+    "completed": 1,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 2658,
+    "claim_broadcasts": 1,
+    "revealed": 1,
+    "host_refund": 0,
+    "passes": 2,
+    "incident": 0
+   },
+   "turns": 24,
+   "rejections": []
+  },
+  {
+   "task": "swap/spiky",
+   "seed": 7,
+   "cell": "single",
+   "agent": "bonsai-8b-nothink@eba1c86695cb",
+   "value": 0,
+   "metrics": {
+    "funded": 0,
+    "completed": 0,
+    "refunded": 0,
+    "lost": 0,
+    "fees_sats": 0,
+    "claim_broadcasts": 0,
+    "revealed": 0,
+    "host_refund": 0,
+    "passes": 0,
+    "incident": 0
+   },
+   "turns": 2,
+   "rejections": []
+  }
+ ],
+ "checks": [
+  {
+   "id": "K112",
+   "pass": true,
+   "detail": "16 episodes compared, 0 mismatches"
+  }
+ ],
+ "notes": [
+  "llama-server ran with -c 16384 and --cache-ram 0 (host prompt cache off).",
+  "Each request carried the system prompt, the last 12 turns, and the current turn."
+ ]
+}

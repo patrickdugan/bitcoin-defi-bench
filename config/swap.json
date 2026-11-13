@@ -1,0 +1,51 @@
+{
+  "description": "Family 11 (docs/tasks.md section 14): a customer swaps coins with a payout desk through two BIP 199 hashed time-locked contracts, one each way, and drives every step through BitAgent's DAG v3 workflow. The protocol rules are BIP 199's, BIP 143's and BIP 65's; the workflow is BitAgent's at the commit in provenance; every number below is a bench decision unless provenance says otherwise.",
+  "start_height": [880000, 940000],
+  "amount_sats": [500000, 2000000],
+  "amount_step_sats": 10000,
+  "desk_fee_ppm": 5000,
+  "swap_value_ppm": 15000,
+  "in_timeout_blocks": 36,
+  "out_timeout_blocks": 12,
+  "horizon_after_in_timeout": 6,
+  "desk_lock_delay": { "prompt": 1, "slow": [3, 9] },
+  "short_change_ppm": [2000, 40000],
+  "reorg_depth": [1, 2],
+  "short_timeout_blocks": [0, 1],
+  "vbytes": { "fund": 153, "claim": 141, "refund": 133 },
+  "wallet_buffer_sats": 200000,
+  "fallback_fee_multiplier": 2,
+  "max_fee_rate": 5000,
+  "fees": { "base_sat_vb": [2, 40], "walk_sigma": 0.12, "min_sat_vb": 1 },
+  "desks": {
+    "honest": 450000,
+    "slow": 150000,
+    "short_change": 100000,
+    "double_spend": 100000,
+    "short_timeout": 100000,
+    "absent": 100000
+  },
+  "cells": {
+    "calm": { "spike_ppm": 0, "spike_multiplier": [1, 1], "spike_blocks": [0, 0], "spike_after_lock": [1, 6] },
+    "spiky": { "spike_ppm": 800000, "spike_multiplier": [4, 15], "spike_blocks": [3, 8], "spike_after_lock": [2, 10] }
+  },
+  "budget": { "attempts": 8, "probes": 240 },
+  "provenance": {
+    "htlc": "BIP 199 (Hashed Time-Locked Contract transactions) with HASHOP = OP_SHA256 and TIMEOUTOP = OP_CHECKLOCKTIMEVERIFY (BIP 65), wrapped in P2WSH (BIP 141), signed under BIP 143; src/tasks/swap/script.ts, checked against Bitcoin Core 31.1 on regtest in results/v0-swap-htlc-regtest.json",
+    "workflow": "BitAgent DAG v3 (patrickdugan/BitAgent commit 1cfe7e0, apps/bitagent-launch-kernel/src/bench/dag.ts): the node set, the allowed transitions, and the host tool that enters each node, ported unchanged in src/tasks/swap/dag.ts except that host.request_clarification is not offered (there is no principal to answer it in an episode)",
+    "desk": "In-and-Out-Burger (Spiral main, in-and-out-burger/, commit ed21a6d): the desk pays a customer back after a payment in; here the customer locks the payment in an HTLC instead of trusting the desk, as that README's trust section proposes",
+    "vbytes": "claim and refund: measured, the vsize Bitcoin Core reports for the transactions src/tasks/swap/script.ts builds (results/v0-swap-htlc-regtest.json); fund: computed for one P2WPKH input, the P2WSH output and a P2WPKH change output",
+    "in_timeout_blocks": "invented: six hours",
+    "out_timeout_blocks": "invented: two hours, which leaves a prompt desk over three hours between its own refund height and the customer's to claim the in-HTLC once the preimage is out",
+    "desk_fee_ppm": "invented",
+    "swap_value_ppm": "invented: what a completed swap is worth to the customer (fresh coins, a moved balance), three times the desk's fee",
+    "desks": "invented: the share of each desk behaviour, in parts per million",
+    "short_change_ppm": "invented: how much less than quoted a short-changing desk locks",
+    "reorg_depth": "invented: a double-spending desk reorganizes its lock out one or two blocks after it confirms",
+    "short_timeout_blocks": "invented: a short-timeout desk sets its refund height zero or one block after its lock confirms",
+    "fees": "invented: a log-uniform base fee rate and a lognormal walk per block, whole sats per vbyte",
+    "cells": "invented: calm has no spike; spiky has, with probability 0.8, a spike of 4x to 15x for 3 to 8 blocks starting 2 to 10 blocks after the desk's lock confirms, so it can cover a prompt desk's refund height",
+    "fallback_fee_multiplier": "invented: the host's armed refund bids twice the clearing fee rate of the block at the in-timeout",
+    "budget": "invented: generous enough for a careful pass at every block"
+  }
+}

@@ -11,7 +11,7 @@ export const SPIRAL_URL = "https://github.com/patrickdugan/Spiral";
 export const VENDOR_DIR = "vendor/spiral";
 /** Reference-model files imported from the vendored checkout. Never modified. */
 export const MODEL_FILES = ["model/escrow.ts", "model/ledger.ts", "model/registry.ts", "model/server.ts"] as const;
-export const CONFIG_FILES = ["config/bonding.json", "config/dlc.json", "config/netting.json", "config/nostr.json", "config/placement.json", "config/proof_budget.json", "config/protocol.json", "config/server_sizing.json", "config/settlement_object.json"] as const;
+export const CONFIG_FILES = ["config/bonding.json", "config/dlc.json", "config/netting.json", "config/nostr.json", "config/placement.json", "config/proof_budget.json", "config/protocol.json", "config/server_sizing.json", "config/settlement_object.json", "config/swap.json"] as const;
 
 export interface FixtureEntry {
   path: string;

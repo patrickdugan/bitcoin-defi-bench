@@ -29,6 +29,7 @@ import { FIXTURE_VERSION as BONDING_VERSION, fixtureBytes as bondingBytes, fixtu
 import { loadBondingConfig } from "../src/tasks/bonding/task.ts";
 import { FIXTURE_VERSION as ROUTING_VERSION, fixtureBytes as routingBytes, fixturePath as routingPath, generateFixture as generateRouting } from "../src/tasks/routing/generate.ts";
 import { NOSTR_CELLS, buildNostrFixtures, loadNostrConfig } from "../src/tasks/nostr/task.ts";
+import { buildSwapFixtures, loadSwapConfig, swapCells } from "../src/tasks/swap/task.ts";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -105,6 +106,13 @@ const nostr = buildNostrFixtures(root, loadNostrConfig(root), [...SEED_BLOCKS.de
 entries.push(...nostr.entries);
 written += nostr.written;
 console.log(`nostr: ${nostr.entries.length} fixtures over ${NOSTR_CELLS.length} cells`);
+
+// Family 11: one swap per seed and cell, with the desk's hidden behaviour and every block's fee rate.
+const swapConfig = loadSwapConfig(root);
+const swap = buildSwapFixtures(root, swapConfig, [...SEED_BLOCKS.development, ...SEED_BLOCKS.confirmatory]);
+entries.push(...swap.entries);
+written += swap.written;
+console.log(`swap: ${swap.entries.length} fixtures over ${swapCells(swapConfig).length} cells`);
 
 // Family 2: each names its family 1 fixture by hash and adds the diffuse demand stream.
 mkdirSync(join(root, "fixtures/routing"), { recursive: true });

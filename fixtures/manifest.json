@@ -19,7 +19,8 @@
     "config/proof_budget.json": "c8b58260300dbb30e22a85cfe6e1326bc3f05265d5596f480b5d8a3f20beae14",
     "config/protocol.json": "7f0034406b80fecd66de7d42bbca1e646da30c8a36e44afb94e033c75f34dfc4",
     "config/server_sizing.json": "8fdfda5a5d9dd1c064edac326495f0ff5862ac084e67777d1a8b444278713c28",
-    "config/settlement_object.json": "32814b2f968678cad1aabbff7b139df7e21065556eadd0ebc58e3ebd1f1011a5"
+    "config/settlement_object.json": "32814b2f968678cad1aabbff7b139df7e21065556eadd0ebc58e3ebd1f1011a5",
+    "config/swap.json": "21f08216ee7ecbef714fc7f61a9ab440d858b36431c69740f211f95988b8f00a"
   },
   "fixtures": [
     {
@@ -7021,6 +7022,566 @@
       "seed": 1031,
       "generator": "settlement-fixture/v0",
       "sha256": "40d50a39599d63a1e9ad1c71f0dc1d2ba122826d782f9b8f8e950c38245d0f0f"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-0000.json",
+      "family": "swap",
+      "seed": 0,
+      "generator": "swap-fixture/v0",
+      "sha256": "d02c3bde9b3263afc93b63cf585fd8f03683904451d3f3f2b94fe7e70d127012"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-0001.json",
+      "family": "swap",
+      "seed": 1,
+      "generator": "swap-fixture/v0",
+      "sha256": "9ab922d48d80bfe5886cf472a6190d265efcabd7c43ff149c45b8bf5e0e95c06"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-0002.json",
+      "family": "swap",
+      "seed": 2,
+      "generator": "swap-fixture/v0",
+      "sha256": "90b19c9611336e7d7fc04b24efa5a7c1298022c07f279f7fe9bc3a30ac46c6df"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-0003.json",
+      "family": "swap",
+      "seed": 3,
+      "generator": "swap-fixture/v0",
+      "sha256": "01576456aefa2499608e02a10a4093bf300a1c7dc28584587835b9da1c0652be"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-0004.json",
+      "family": "swap",
+      "seed": 4,
+      "generator": "swap-fixture/v0",
+      "sha256": "6043d95c3b74c70d1d6aea9b2cad3c373ac3e3bc29876ec63dff1a890f988f6c"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-0005.json",
+      "family": "swap",
+      "seed": 5,
+      "generator": "swap-fixture/v0",
+      "sha256": "a9aea09000899602357a36c5adbc23a5c08a20f8e05bb542f508147d9e5ee716"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-0006.json",
+      "family": "swap",
+      "seed": 6,
+      "generator": "swap-fixture/v0",
+      "sha256": "8d159e374df74481f7dc7dc15609509604096ee6ce638e63d82efb699edb71ac"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-0007.json",
+      "family": "swap",
+      "seed": 7,
+      "generator": "swap-fixture/v0",
+      "sha256": "52a30b69fd5b9375593a921669fb8876b89eee8e0e0080e086244aaf88962db6"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1000.json",
+      "family": "swap",
+      "seed": 1000,
+      "generator": "swap-fixture/v0",
+      "sha256": "ac92ac616baf49b87c39cc6d25a63cf078594489c5edd3e2cdc234c74065f846"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1001.json",
+      "family": "swap",
+      "seed": 1001,
+      "generator": "swap-fixture/v0",
+      "sha256": "0580b22f11713f9891c86034f931dea977df51f27f083fe5b274b5dc1ead3cd6"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1002.json",
+      "family": "swap",
+      "seed": 1002,
+      "generator": "swap-fixture/v0",
+      "sha256": "5a3755011bbbe7dec47bfb79d466102487ab85a7c4d68dd73272127f426304f6"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1003.json",
+      "family": "swap",
+      "seed": 1003,
+      "generator": "swap-fixture/v0",
+      "sha256": "45ebe267eef21f6d675249002be519625e35138173e29b712e4630c2adf3af22"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1004.json",
+      "family": "swap",
+      "seed": 1004,
+      "generator": "swap-fixture/v0",
+      "sha256": "8011fb9877cb691e186f559d082d00f433ba7d0ba89ea70fa6da1167be9950bc"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1005.json",
+      "family": "swap",
+      "seed": 1005,
+      "generator": "swap-fixture/v0",
+      "sha256": "a37a66f5ff7e0b82ebea5cb24b5596e2319ef6f871128cedd6fb55180255fd9b"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1006.json",
+      "family": "swap",
+      "seed": 1006,
+      "generator": "swap-fixture/v0",
+      "sha256": "7942a2c53a2fd6d21ba326abc51e54cb41495e7170dc058302af21ebfd5230bf"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1007.json",
+      "family": "swap",
+      "seed": 1007,
+      "generator": "swap-fixture/v0",
+      "sha256": "37bc8353e4e30af0fab507eab117c52289457d2f335c469eb03446f34a8512e7"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1008.json",
+      "family": "swap",
+      "seed": 1008,
+      "generator": "swap-fixture/v0",
+      "sha256": "aad7b1e30230e65ab83f0bfb73593d3191fe4a8c2ac3eb837be2ab9c87f90300"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1009.json",
+      "family": "swap",
+      "seed": 1009,
+      "generator": "swap-fixture/v0",
+      "sha256": "761d5b5f447898e3ef5e4471fb4775588e3d6165b4bb3f4ecf56f07cda26325c"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1010.json",
+      "family": "swap",
+      "seed": 1010,
+      "generator": "swap-fixture/v0",
+      "sha256": "30b1c413e604d59e2dde65a03c208ecca4a1d59ec8aca6ebe921e2a1d5a6a90e"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1011.json",
+      "family": "swap",
+      "seed": 1011,
+      "generator": "swap-fixture/v0",
+      "sha256": "5342c54be1b9ddadd800e27ebdbc44a8cbcbf2e25e6b304b218c0e26c8d23579"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1012.json",
+      "family": "swap",
+      "seed": 1012,
+      "generator": "swap-fixture/v0",
+      "sha256": "b4f939e121bcda9078ce8ac9b24706ef32d2279ef02fc728a675284055a29fe9"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1013.json",
+      "family": "swap",
+      "seed": 1013,
+      "generator": "swap-fixture/v0",
+      "sha256": "bfb158d29e85e66503cbc5906cde2a97d43179d43674208c4a568c8ca257acd9"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1014.json",
+      "family": "swap",
+      "seed": 1014,
+      "generator": "swap-fixture/v0",
+      "sha256": "153d3940c5fe133bfb1aa40bf33e07bfcec6a2054c5345e09d039fff8ca5426b"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1015.json",
+      "family": "swap",
+      "seed": 1015,
+      "generator": "swap-fixture/v0",
+      "sha256": "27a20d0791e997bcc8150ab4cf44ec0ac4ee8f3ef060460d63af2883967d481e"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1016.json",
+      "family": "swap",
+      "seed": 1016,
+      "generator": "swap-fixture/v0",
+      "sha256": "e22e89be0b8d1c03f2bb172b854693ce64f6bf22b025d6bf7817271dde8bb2fb"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1017.json",
+      "family": "swap",
+      "seed": 1017,
+      "generator": "swap-fixture/v0",
+      "sha256": "49e31c795ab9ba4243eade2c2e3bd1fff7831df502fbdb5cab276b15ea7f08df"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1018.json",
+      "family": "swap",
+      "seed": 1018,
+      "generator": "swap-fixture/v0",
+      "sha256": "723760075da08715aa4e41661c9c19db08c0002f4fe544214704dec714252080"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1019.json",
+      "family": "swap",
+      "seed": 1019,
+      "generator": "swap-fixture/v0",
+      "sha256": "ea0da43c40612b60d4e17077a37293e5b7758f15b35ba91324002e1940bb2ac6"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1020.json",
+      "family": "swap",
+      "seed": 1020,
+      "generator": "swap-fixture/v0",
+      "sha256": "5a74b9b799744b1b869ce67aef2665b9abbab4b71c497496eae67671128c11a2"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1021.json",
+      "family": "swap",
+      "seed": 1021,
+      "generator": "swap-fixture/v0",
+      "sha256": "0fb2ee28b420b93818638006e9a16b62385ece5f2e28e08cd43ea56be738c8b9"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1022.json",
+      "family": "swap",
+      "seed": 1022,
+      "generator": "swap-fixture/v0",
+      "sha256": "492607edf2f1a64fb7177c83954ce6998536a8bb60435bbd2734e9e597caf4bc"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1023.json",
+      "family": "swap",
+      "seed": 1023,
+      "generator": "swap-fixture/v0",
+      "sha256": "22a88f3cba24450097df079ddaf904f781cc91baf20da79819e65d446bd3d3d0"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1024.json",
+      "family": "swap",
+      "seed": 1024,
+      "generator": "swap-fixture/v0",
+      "sha256": "5166ea218eb5ba28effa68d3e2c78929381d58aeab3b0b584bc57e365bd2ecb2"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1025.json",
+      "family": "swap",
+      "seed": 1025,
+      "generator": "swap-fixture/v0",
+      "sha256": "d4e22fd8c09944c711ce72a7cf90024e695cfc3531afda16e9c3852f761764b7"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1026.json",
+      "family": "swap",
+      "seed": 1026,
+      "generator": "swap-fixture/v0",
+      "sha256": "21fccd1e49102f826a774e68f0f47a5a29e6a7114234b6dbfc26f39e5435087c"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1027.json",
+      "family": "swap",
+      "seed": 1027,
+      "generator": "swap-fixture/v0",
+      "sha256": "b30ecdb44247302af0eebd83cdc0c637e9b8f2bf6b4ff73f672af5e24811d9c7"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1028.json",
+      "family": "swap",
+      "seed": 1028,
+      "generator": "swap-fixture/v0",
+      "sha256": "6ff9278bb91e15d3bbb9d442af2b37c7b38b8a728ecf6e9d7e2108ae5e794053"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1029.json",
+      "family": "swap",
+      "seed": 1029,
+      "generator": "swap-fixture/v0",
+      "sha256": "61e146807e84fcff88dcf48e631c1bbcb61cab618fe59a667c03431c9d6172a6"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1030.json",
+      "family": "swap",
+      "seed": 1030,
+      "generator": "swap-fixture/v0",
+      "sha256": "59b903bd78cd6367d4ec3215c06c30a91667b7c6e9d7f7afa1c78e7fb40a6f1f"
+    },
+    {
+      "path": "fixtures/swap/calm/seed-1031.json",
+      "family": "swap",
+      "seed": 1031,
+      "generator": "swap-fixture/v0",
+      "sha256": "c0a080a37ba1f4c4771197015f9ad71ec092aab651358653ff8c7771ca7600b6"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-0000.json",
+      "family": "swap",
+      "seed": 0,
+      "generator": "swap-fixture/v0",
+      "sha256": "611db2637f9bcdfa85fe1418237954b1e90a4ab14fe9be86aac5e3e4f07dfd11"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-0001.json",
+      "family": "swap",
+      "seed": 1,
+      "generator": "swap-fixture/v0",
+      "sha256": "2288b6d46634e018fb46f43debeb668a2be0663a7416864912d9470cbd017098"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-0002.json",
+      "family": "swap",
+      "seed": 2,
+      "generator": "swap-fixture/v0",
+      "sha256": "a6d3190bfcb56844a976e143fc413e92ca7fe415c744623e03e020edaf47c5cc"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-0003.json",
+      "family": "swap",
+      "seed": 3,
+      "generator": "swap-fixture/v0",
+      "sha256": "2c47f61ee7d9d92cf71f5a3439af038d04c0df31234d0ef149a00948837e26f5"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-0004.json",
+      "family": "swap",
+      "seed": 4,
+      "generator": "swap-fixture/v0",
+      "sha256": "79d5988e3a4063db6d8319e3a309c9e57ff8ebd32045c9fa01d2de0958433575"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-0005.json",
+      "family": "swap",
+      "seed": 5,
+      "generator": "swap-fixture/v0",
+      "sha256": "ccede46d72f136492f4818f4132ba10d3220bd8e7719743012fefe81c9834226"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-0006.json",
+      "family": "swap",
+      "seed": 6,
+      "generator": "swap-fixture/v0",
+      "sha256": "bf65a32eb80ca28157b87cb32d34d015df08cfc1087e3bf007ee67e54bd1caad"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-0007.json",
+      "family": "swap",
+      "seed": 7,
+      "generator": "swap-fixture/v0",
+      "sha256": "77e6bd2aa28d4e7fecf5771e3744f609b81c3eab3d469cd08af635565a9d9c56"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1000.json",
+      "family": "swap",
+      "seed": 1000,
+      "generator": "swap-fixture/v0",
+      "sha256": "a157c944be69d8188937950875d833b5e2d1e4e436a78646814a8ab6e7e44a1f"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1001.json",
+      "family": "swap",
+      "seed": 1001,
+      "generator": "swap-fixture/v0",
+      "sha256": "a1b654c277a7afb8eb90c9e2c6ef73eb1b7adfbdd69f6590815bba150a07f394"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1002.json",
+      "family": "swap",
+      "seed": 1002,
+      "generator": "swap-fixture/v0",
+      "sha256": "cf1ac7cd476688d9c5388740f7512ccee3e430e52b390fd3fa4e92e4e60df474"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1003.json",
+      "family": "swap",
+      "seed": 1003,
+      "generator": "swap-fixture/v0",
+      "sha256": "b3de4344e9ba7d03c5b4e5ff081b442b9cf11d5072255a0cd0f2b02f4adc332f"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1004.json",
+      "family": "swap",
+      "seed": 1004,
+      "generator": "swap-fixture/v0",
+      "sha256": "549edf86ffc66902ecc563e79252ff01c6c751e6f305b043da838a5bc0eac2de"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1005.json",
+      "family": "swap",
+      "seed": 1005,
+      "generator": "swap-fixture/v0",
+      "sha256": "6ec40be622b46e6a6a29221e7a939900ade96b3708b1ad14ea2318a9372cb632"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1006.json",
+      "family": "swap",
+      "seed": 1006,
+      "generator": "swap-fixture/v0",
+      "sha256": "02aeeba2f154da5b46bcc0660095989a438d4816d15ff055d89744581f448705"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1007.json",
+      "family": "swap",
+      "seed": 1007,
+      "generator": "swap-fixture/v0",
+      "sha256": "f4a6e49509159ef172cbd2c6fe0072c2854c4ce43bb304d4fd3ca8448b2f87bd"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1008.json",
+      "family": "swap",
+      "seed": 1008,
+      "generator": "swap-fixture/v0",
+      "sha256": "2dce4977dd1e1ddd75615e30ad232227eb5bd402d42342732538afc84e2937c9"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1009.json",
+      "family": "swap",
+      "seed": 1009,
+      "generator": "swap-fixture/v0",
+      "sha256": "6577a0231c40322df4e7921fc6cb3cd1d0c634fc43a28797dc63b47d0a9d9c7b"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1010.json",
+      "family": "swap",
+      "seed": 1010,
+      "generator": "swap-fixture/v0",
+      "sha256": "59a512fcb8e6679c359e78ed698d7d8ac19fac144576ffe861fbdd51899d2937"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1011.json",
+      "family": "swap",
+      "seed": 1011,
+      "generator": "swap-fixture/v0",
+      "sha256": "8c756cacfdc517b5e956a7649dd285dd718626010b0a078334683331211e7ca9"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1012.json",
+      "family": "swap",
+      "seed": 1012,
+      "generator": "swap-fixture/v0",
+      "sha256": "b19dc316c87b3575a70c1f21c8c514429a903683d1408663e62726ebd2b33f06"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1013.json",
+      "family": "swap",
+      "seed": 1013,
+      "generator": "swap-fixture/v0",
+      "sha256": "471cf39d5fb0e815f505c997b73f44bea4d7c2c3e16853f4ca3f362705b19e54"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1014.json",
+      "family": "swap",
+      "seed": 1014,
+      "generator": "swap-fixture/v0",
+      "sha256": "9d6c65f868b3dfdf8326af6a3ebf3bc9c4d197f1c37b23d4951986edea88304e"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1015.json",
+      "family": "swap",
+      "seed": 1015,
+      "generator": "swap-fixture/v0",
+      "sha256": "67bb0b47281513ece2718a9540d19cd20cfefcf6c1be0c3043fabf2ed081c6b6"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1016.json",
+      "family": "swap",
+      "seed": 1016,
+      "generator": "swap-fixture/v0",
+      "sha256": "f28bf6e8f948549545f2bb017c79ea14ee454cece91fcbfc76e7e14cb6658901"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1017.json",
+      "family": "swap",
+      "seed": 1017,
+      "generator": "swap-fixture/v0",
+      "sha256": "0ef562cfbff2f2dff602faa1115e7108613cfb96d5d1c4a4c86e77c10806a5d4"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1018.json",
+      "family": "swap",
+      "seed": 1018,
+      "generator": "swap-fixture/v0",
+      "sha256": "54ac59b382addf0eb818323df2ccfae83f44e1c2b1fe709053ae8fb46f1160fe"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1019.json",
+      "family": "swap",
+      "seed": 1019,
+      "generator": "swap-fixture/v0",
+      "sha256": "8dc925d2f892c62df715d5b174ce18b04bdc9a6a935f423d3d2913f6b0b010ae"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1020.json",
+      "family": "swap",
+      "seed": 1020,
+      "generator": "swap-fixture/v0",
+      "sha256": "cf0bee4d8e8f2791382907cf484095e98cb68061a8fefb32c1304a930f3e3b1c"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1021.json",
+      "family": "swap",
+      "seed": 1021,
+      "generator": "swap-fixture/v0",
+      "sha256": "8ff309e5ec210f9831c41db73d19b337bd2064f89636d6bb5ba8ddf1b988249e"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1022.json",
+      "family": "swap",
+      "seed": 1022,
+      "generator": "swap-fixture/v0",
+      "sha256": "e32621c7abacf506bdc9edafc39f0eee66016ed922e7a3f4e25c3966a2e1a59b"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1023.json",
+      "family": "swap",
+      "seed": 1023,
+      "generator": "swap-fixture/v0",
+      "sha256": "effdb3e76286d49eb4ff23cda8607d0925ae66de4e72a2d4575c884113ad1854"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1024.json",
+      "family": "swap",
+      "seed": 1024,
+      "generator": "swap-fixture/v0",
+      "sha256": "4b51f2adb81925f0e2009022caee60479353f9432dd0692968827c10d2032f4f"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1025.json",
+      "family": "swap",
+      "seed": 1025,
+      "generator": "swap-fixture/v0",
+      "sha256": "99f8193743ab3dfc045537644c2fedde6e4e7218f9d4e670e7ac692d899f812c"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1026.json",
+      "family": "swap",
+      "seed": 1026,
+      "generator": "swap-fixture/v0",
+      "sha256": "824011a0845009d14c74b612832074f647784db15b7ebacc918b930681ba4b99"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1027.json",
+      "family": "swap",
+      "seed": 1027,
+      "generator": "swap-fixture/v0",
+      "sha256": "5c08af86e2efcf8c0d15083908c3d7b0ecc0efd88b29fcd6baf180b8e7fea5e0"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1028.json",
+      "family": "swap",
+      "seed": 1028,
+      "generator": "swap-fixture/v0",
+      "sha256": "0510effb49e1e06aebc30fde1fc09860c6e610f579e74c90c71126b14ee1c2d8"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1029.json",
+      "family": "swap",
+      "seed": 1029,
+      "generator": "swap-fixture/v0",
+      "sha256": "360343c87ad533e808bd3f1a9e73feecb3eb0e63b679cb9e0a325678480c2749"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1030.json",
+      "family": "swap",
+      "seed": 1030,
+      "generator": "swap-fixture/v0",
+      "sha256": "a2def5c147eeaa1ba6a7e72b6946d69ed94702e3ef013d06f0acefcfcfb1315e"
+    },
+    {
+      "path": "fixtures/swap/spiky/seed-1031.json",
+      "family": "swap",
+      "seed": 1031,
+      "generator": "swap-fixture/v0",
+      "sha256": "545eff415b0ef204ccdad01dc6fd9a876e31b690143acd0c53c004275d56b3c4"
     }
   ]
 }

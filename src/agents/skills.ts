@@ -20,6 +20,7 @@ import { Outbox } from "../tasks/nostr/publish.ts";
 import { Nip17 } from "../tasks/nostr/private.ts";
 import { Reputation } from "../tasks/nostr/counterparty.ts";
 import { BitchatRouter } from "../tasks/nostr/mesh.ts";
+import { Careful, WORKFLOW } from "../tasks/swap/baselines.ts";
 import type { Agent } from "../harness/agent.ts";
 import type { Skill } from "./chat.ts";
 
@@ -240,10 +241,19 @@ export const meshRouterSkill: Skill = bind({
   },
 });
 
+/** Family 11: the next step of `workflow`, the reference, the deterministic swap workflow. */
+export const swapWorkflowSkill: Skill = bind({
+  name: "swap_workflow",
+  description: "Computes the next step of the deterministic swap workflow for the episode so far (fund when the round trip pays, wait for three confirmations of the payout, check its script, amount, and time left, claim with a fee margin and re-bid, otherwise freeze and let the armed refund run) and returns it as the exact action to send. Call it at every turn. To use it, reply with that action unchanged.",
+  run(_observation: Json, _args: Json, history: readonly Json[]): Json {
+    return replayPolicy(new Careful("workflow", WORKFLOW), history);
+  },
+});
+
 /** Skills by the key `--skills` names; a key differs from the skill's name only for a second wording of one skill. */
 export const SKILLS: { [name: string]: Skill } = { min_cost_flow: minCostFlowSkill, failed_pairs: failedPairsSkill, dlc_design: dlcDesignSkill, bond_offer: bondOfferSkill, proof_step: proofStepSkill, schedule: scheduleSkill, schedule_after_proof: scheduleAfterProofSkill,
   capacity_plan: capacityPlanSkill, custody_policy: custodyPolicySkill, inbox_policy: inboxPolicySkill, outbox_plan: outboxPlanSkill,
-  nip17_plan: nip17PlanSkill, buyer_plan: buyerPlanSkill, mesh_router: meshRouterSkill };
+  nip17_plan: nip17PlanSkill, buyer_plan: buyerPlanSkill, mesh_router: meshRouterSkill, swap_workflow: swapWorkflowSkill };
 
 export function skillsNamed(names: string): Skill[] {
   return names.split(",").map((n) => n.trim()).filter((n) => n !== "").map((n) => {

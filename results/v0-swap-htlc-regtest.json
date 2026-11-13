@@ -1,0 +1,50 @@
+{
+  "core_subversion": "/Satoshi:31.1.0/",
+  "chain": "regtest",
+  "locktime": 111,
+  "tip_at_end": 112,
+  "script_hex": "63a8202e8cc2524f3caed4d5cbd94fed359d2ecb37e08d85a54ddcb9f114e458e12bed8876a91475cb9dd9ee019bdf8e0589ef035139dee081e27d67016fb17576a914e22f79dee14893f6854c834ab48855f10888e3586888ac",
+  "address": "bcrt1q08mtefwr82vyxvusdrcd779gnm3sq6fu7u89pu46vqw8lt5xd4ksak4zwn",
+  "core_decodescript_address": "bcrt1q08mtefwr82vyxvusdrcd779gnm3sq6fu7u89pu46vqw8lt5xd4ksak4zwn",
+  "cases": [
+    {
+      "case": "claim_right_preimage_customer_key",
+      "expected": "accepted",
+      "accepted": true,
+      "reject_reason": null,
+      "txid": "31e9fef02cee927d3e27c139cc33ad7cd95cd3d41c4272ea142a9592d88a8f16",
+      "vsize_core": 141,
+      "vsize_ours": 141,
+      "confirmed": true
+    },
+    {
+      "case": "claim_wrong_preimage",
+      "expected": "rejected",
+      "accepted": false,
+      "reject_reason": "mempool-script-verify-flag-failed (Script failed an OP_EQUALVERIFY operation)"
+    },
+    {
+      "case": "claim_branch_signed_by_desk_key",
+      "expected": "rejected",
+      "accepted": false,
+      "reject_reason": "mempool-script-verify-flag-failed (Script failed an OP_EQUALVERIFY operation)"
+    },
+    {
+      "case": "refund_before_locktime",
+      "expected": "rejected",
+      "accepted": false,
+      "reject_reason": "non-final"
+    },
+    {
+      "case": "refund_after_locktime",
+      "expected": "accepted",
+      "accepted": true,
+      "reject_reason": null,
+      "txid": "25715ed5613b26b4aa0a29d7768b61b69d8d1e7a3e3b3c8dee2c6a5bff7dc054",
+      "vsize_core": 133,
+      "vsize_ours": 133,
+      "confirmed": true
+    }
+  ],
+  "all_as_expected": true
+}

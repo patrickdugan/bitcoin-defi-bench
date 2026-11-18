@@ -1,0 +1,20 @@
+name: Chitraverse applied-math research
+on:
+  pull_request:
+    paths:
+      - 'research/chitraverse_001/**'
+      - '.github/workflows/chitraverse-research.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-math:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify standalone exact-math probes
+        working-directory: research/chitraverse_001
+        run: python3 -m unittest discover -s . -p 'test_*.py' -v

@@ -1,0 +1,81 @@
+{
+  "review_date": "2026-11-19",
+  "repository": "ln-markets/sdk-python",
+  "source_commit": "236b2739a05494295561655861b75648fcf98abc",
+  "license": {
+    "path": "LICENSE",
+    "sha": "dc12b2dfeea90e7e70ae021405822433392ec057"
+  },
+  "sources": [
+    {
+      "local": "rest_base.py",
+      "path": "src/lnmarkets_sdk/rest/v3/_internal/__init__.py",
+      "sha": "2ddb348f418c58a0096380deede03a4a365fe8db",
+      "sha256": "61117c690fd5a51153c5c0c177dbeb2e98040f786c298af4e31efdf83ea5f11a",
+      "local_git_blob_sha": "2ddb348f418c58a0096380deede03a4a365fe8db",
+      "git_blob_matches": true,
+      "source_url": "https://github.com/ln-markets/sdk-python/blob/236b2739a05494295561655861b75648fcf98abc/src/lnmarkets_sdk/rest/v3/_internal/__init__.py"
+    },
+    {
+      "local": "rest_models.py",
+      "path": "src/lnmarkets_sdk/rest/v3/_internal/models.py",
+      "sha": "517b6af2a34cf1f677ed6ffa5b362e3d8b751501",
+      "sha256": "3a6471d7024c405933d5e6953f7ef024cc5eadc54691a3417cd2e3dc4ef5d43f",
+      "local_git_blob_sha": "517b6af2a34cf1f677ed6ffa5b362e3d8b751501",
+      "git_blob_matches": true,
+      "source_url": "https://github.com/ln-markets/sdk-python/blob/236b2739a05494295561655861b75648fcf98abc/src/lnmarkets_sdk/rest/v3/_internal/models.py"
+    },
+    {
+      "local": "rest_utils.py",
+      "path": "src/lnmarkets_sdk/rest/v3/_internal/utils.py",
+      "sha": "b591176769417cc0e6085e7a1a8f1aed33823d35",
+      "sha256": "cf8aa523af3c147a84a32e1e79b513ad875bd3503f01f8c28cadf9763c9a07e9",
+      "local_git_blob_sha": "b591176769417cc0e6085e7a1a8f1aed33823d35",
+      "git_blob_matches": true,
+      "source_url": "https://github.com/ln-markets/sdk-python/blob/236b2739a05494295561655861b75648fcf98abc/src/lnmarkets_sdk/rest/v3/_internal/utils.py"
+    },
+    {
+      "local": "stream_base.py",
+      "path": "src/lnmarkets_sdk/stream/v1/_internal/__init__.py",
+      "sha": "db574dd352809a9a8d58a8abbc77d4cd51713ab6",
+      "sha256": "83f3666b3d17de0c499a7d648be343ad676d8d1d1ee00f70af80d5ede5d759d0",
+      "local_git_blob_sha": "db574dd352809a9a8d58a8abbc77d4cd51713ab6",
+      "git_blob_matches": true,
+      "source_url": "https://github.com/ln-markets/sdk-python/blob/236b2739a05494295561655861b75648fcf98abc/src/lnmarkets_sdk/stream/v1/_internal/__init__.py"
+    },
+    {
+      "local": "stream_models.py",
+      "path": "src/lnmarkets_sdk/stream/v1/_internal/models.py",
+      "sha": "5f2848caabad5c19ff29e4ce994d25b7614cc079",
+      "sha256": "1906e47ccbaca5c0aa1ef2c099a959a48614d508a79f9494e094b46bf8f0b379",
+      "local_git_blob_sha": "5f2848caabad5c19ff29e4ce994d25b7614cc079",
+      "git_blob_matches": true,
+      "source_url": "https://github.com/ln-markets/sdk-python/blob/236b2739a05494295561655861b75648fcf98abc/src/lnmarkets_sdk/stream/v1/_internal/models.py"
+    },
+    {
+      "local": "stream_utils.py",
+      "path": "src/lnmarkets_sdk/stream/v1/_internal/utils.py",
+      "sha": "2b752e76cac7c1ab08c761639b35c61311a5a299",
+      "sha256": "e4b7ffa8592dc663c1df4a32987792a7e0bd059da9b73d85782d7812453d177b",
+      "local_git_blob_sha": "2b752e76cac7c1ab08c761639b35c61311a5a299",
+      "git_blob_matches": true,
+      "source_url": "https://github.com/ln-markets/sdk-python/blob/236b2739a05494295561655861b75648fcf98abc/src/lnmarkets_sdk/stream/v1/_internal/utils.py"
+    }
+  ],
+  "existing_issues_checked": {
+    "date": "2026-11-19",
+    "open_issue_count": 0,
+    "open_pull_request_count": 0,
+    "relevant_closed_pull_requests": [
+      11,
+      16,
+      37
+    ]
+  },
+  "runtime": {
+    "python": "3.12.14",
+    "httpx": "0.28.1",
+    "pydantic": "2.13.4",
+    "websockets": "16.0"
+  }
+}

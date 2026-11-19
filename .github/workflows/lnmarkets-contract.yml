@@ -1,0 +1,57 @@
+name: LN Markets offline contracts
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/lnmarkets-contract.yml'
+      - 'src/tasks/lnmarkets_execution/**'
+      - 'research/lnmarkets_sdk_conformance/**'
+      - 'docs/ln-markets-architecture-review.md'
+  push:
+    branches:
+      - 'research/ln-markets-contracts-20261119'
+    paths:
+      - '.github/workflows/lnmarkets-contract.yml'
+      - 'src/tasks/lnmarkets_execution/**'
+      - 'research/lnmarkets_sdk_conformance/**'
+      - 'docs/ln-markets-architecture-review.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lnmarkets-contract-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  execution-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+      - name: Check synthetic execution and recovery contracts
+        run: node --experimental-strip-types --test src/tasks/lnmarkets_execution/contract.test.ts
+
+  pinned-sdk-observations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Install probe dependencies
+        run: python -m pip install -r research/lnmarkets_sdk_conformance/requirements.txt
+      - name: Verify pinned source and reproduce recorded observations
+        run: |
+          python research/lnmarkets_sdk_conformance/verify_source.py
+          python research/lnmarkets_sdk_conformance/reproduce.py > "$RUNNER_TEMP/lnmarkets-observed.json"
+          diff -u research/lnmarkets_sdk_conformance/observed-results.json "$RUNNER_TEMP/lnmarkets-observed.json"

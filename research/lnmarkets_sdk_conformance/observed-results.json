@@ -1,0 +1,59 @@
+{
+  "source_commit": "236b2739a05494295561655861b75648fcf98abc",
+  "signing": [
+    {
+      "method": "POST",
+      "params": {
+        "instrument": "inverse_perp",
+        "pair": "btc_usd",
+        "type": "market",
+        "side": "buy",
+        "margin": 1000,
+        "leverage": 1,
+        "label": "cafe"
+      },
+      "wire_data": "{\"instrument\":\"inverse_perp\",\"pair\":\"btc_usd\",\"type\":\"market\",\"side\":\"buy\",\"margin\":1000,\"leverage\":1,\"label\":\"cafe\"}",
+      "signature_matches_wire": true
+    },
+    {
+      "method": "POST",
+      "params": {
+        "instrument": "inverse_perp",
+        "pair": "btc_usd",
+        "type": "market",
+        "side": "buy",
+        "margin": 1000,
+        "leverage": 1,
+        "label": "café"
+      },
+      "wire_data": "{\"instrument\":\"inverse_perp\",\"pair\":\"btc_usd\",\"type\":\"market\",\"side\":\"buy\",\"margin\":1000,\"leverage\":1,\"label\":\"café\"}",
+      "signature_matches_wire": false
+    },
+    {
+      "method": "GET",
+      "params": {
+        "clientId": "alpha-1"
+      },
+      "wire_data": "?clientId=alpha-1",
+      "signature_matches_wire": true
+    },
+    {
+      "method": "GET",
+      "params": {
+        "clientId": "TrueAlpha"
+      },
+      "wire_data": "?clientId=TrueAlpha",
+      "signature_matches_wire": false
+    }
+  ],
+  "stream_callback": {
+    "sent_rpc_methods": [
+      "ping"
+    ],
+    "callback_results": [],
+    "callback_errors": [
+      "StreamRequestTimeoutError"
+    ],
+    "timeout_ms": 50
+  }
+}

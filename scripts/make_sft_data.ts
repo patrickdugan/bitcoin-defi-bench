@@ -16,23 +16,9 @@
 import { createHash } from "node:crypto";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import type { Environment } from "../src/harness/agent.ts";
 import type { Json } from "../src/harness/json.ts";
 import { observationOf } from "../src/harness/episode.ts";
-import type { PromptRenderer, Skill } from "../src/agents/chat.ts";
-import { bondOfferSkill, dlcDesignSkill, minCostFlowSkill } from "../src/agents/skills.ts";
-import { BondingEnv } from "../src/tasks/bonding/env.ts";
-import { generateFixture as generateBonding } from "../src/tasks/bonding/generate.ts";
-import { bondingPrompt } from "../src/tasks/bonding/prompt.ts";
-import { loadBondingConfig } from "../src/tasks/bonding/task.ts";
-import { DlcEnv } from "../src/tasks/dlc/env.ts";
-import { generateFixture as generateDlc } from "../src/tasks/dlc/generate.ts";
-import { dlcPrompt } from "../src/tasks/dlc/prompt.ts";
-import { loadDlcConfig } from "../src/tasks/dlc/task.ts";
-import { NettingEnv } from "../src/tasks/netting/env.ts";
-import { generateFixture as generateNetting } from "../src/tasks/netting/generate.ts";
-import { nettingPrompt } from "../src/tasks/netting/prompt.ts";
-import { loadNettingConfig } from "../src/tasks/netting/task.ts";
+import { sftFamilies } from "./sft_families.ts";
 
 const root = join(import.meta.dirname, "..");
 const arg = (name: string, fallback?: string): string => {
@@ -53,26 +39,7 @@ const splits = { train: block(arg("train", "5000:400")), val: block(arg("val", "
 const overlap = splits.train.filter((s) => splits.val.includes(s));
 if (overlap.length) throw new Error(`train and val seeds overlap: ${overlap.join(",")}`);
 
-interface Family {
-  id: string;
-  cells: string[];
-  prompt: PromptRenderer;
-  teacher: Skill;
-  env(seed: number, cell: string): Environment;
-}
-
-const bonding = loadBondingConfig(root);
-const dlc = loadDlcConfig(root);
-const netting = loadNettingConfig(root);
-// Reply-token limits as the 27B dry run and the agent scripts' flags use them; the prompt states the limit.
-const families: Family[] = [
-  { id: "bonding", cells: Object.keys(bonding.cells).sort(), prompt: bondingPrompt(768), teacher: bondOfferSkill,
-    env: (seed, cell) => new BondingEnv(generateBonding(seed, cell, bonding.cells[cell]!, bonding), bonding) },
-  { id: "dlc", cells: Object.keys(dlc.cells).sort(), prompt: dlcPrompt(768), teacher: dlcDesignSkill,
-    env: (seed, cell) => new DlcEnv(generateDlc(seed, cell, dlc.cells[cell]!, dlc), dlc) },
-  { id: "netting", cells: Object.keys(netting.cells).sort(), prompt: nettingPrompt(1024), teacher: minCostFlowSkill,
-    env: (seed, cell) => new NettingEnv(generateNetting(seed, cell, netting.cells[cell]!, netting.market), netting) },
-];
+const families = sftFamilies(root);
 
 mkdirSync(out, { recursive: true });
 const manifest: { [k: string]: Json } = {};

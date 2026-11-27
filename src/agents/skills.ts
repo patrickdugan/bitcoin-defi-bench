@@ -22,6 +22,7 @@ import { Reputation } from "../tasks/nostr/counterparty.ts";
 import { BitchatRouter } from "../tasks/nostr/mesh.ts";
 import { LARGEST_FIRST, Watcher } from "../tasks/bitvm3/baselines.ts";
 import { Careful, WORKFLOW } from "../tasks/swap/baselines.ts";
+import { Desk, PROOF_GROVE } from "../tasks/cashu/baselines.ts";
 import type { Agent } from "../harness/agent.ts";
 import type { Skill } from "./chat.ts";
 
@@ -264,11 +265,20 @@ export const swapWorkflowSkill: Skill = bind({
   },
 });
 
+/** Family 14: the next step of `proof_grove`, the reference, Proof Grove's desk. It reads only the current observation. */
+export const cashuDeskSkill: Skill = bind({
+  name: "cashu_desk",
+  description: "Computes the next step of Proof Grove's desk for the state you were shown (verify each deposit's proof and chain, check each token's keyset, DLEQ and spent state, refuse what fails, move the float out of a mint whose reserve is short, dispatch a withdrawal within its fee limit, refresh or exit each VTXO at its margin, otherwise wait) and returns it as the exact action to send. Call it at every turn. To use it, reply with that action unchanged.",
+  run(observation: Json): Json {
+    return new Desk("proof_grove", PROOF_GROVE).act(observation);
+  },
+});
+
 /** Skills by the key `--skills` names; a key differs from the skill's name only for a second wording of one skill. */
 export const SKILLS: { [name: string]: Skill } = { min_cost_flow: minCostFlowSkill, failed_pairs: failedPairsSkill, dlc_design: dlcDesignSkill, bond_offer: bondOfferSkill, proof_step: proofStepSkill, schedule: scheduleSkill, schedule_after_proof: scheduleAfterProofSkill,
   bitvm3_watch: bitvm3WatchSkill,
   capacity_plan: capacityPlanSkill, custody_policy: custodyPolicySkill, inbox_policy: inboxPolicySkill, outbox_plan: outboxPlanSkill,
-  nip17_plan: nip17PlanSkill, buyer_plan: buyerPlanSkill, mesh_router: meshRouterSkill, swap_workflow: swapWorkflowSkill };
+  nip17_plan: nip17PlanSkill, buyer_plan: buyerPlanSkill, mesh_router: meshRouterSkill, swap_workflow: swapWorkflowSkill, cashu_desk: cashuDeskSkill };
 
 export function skillsNamed(names: string): Skill[] {
   return names.split(",").map((n) => n.trim()).filter((n) => n !== "").map((n) => {

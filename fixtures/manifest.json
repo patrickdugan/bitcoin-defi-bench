@@ -21,7 +21,8 @@
     "config/protocol.json": "7f0034406b80fecd66de7d42bbca1e646da30c8a36e44afb94e033c75f34dfc4",
     "config/server_sizing.json": "8fdfda5a5d9dd1c064edac326495f0ff5862ac084e67777d1a8b444278713c28",
     "config/settlement_object.json": "32814b2f968678cad1aabbff7b139df7e21065556eadd0ebc58e3ebd1f1011a5",
-    "config/swap.json": "21f08216ee7ecbef714fc7f61a9ab440d858b36431c69740f211f95988b8f00a"
+    "config/swap.json": "21f08216ee7ecbef714fc7f61a9ab440d858b36431c69740f211f95988b8f00a",
+    "config/cashu.json": "e24294d46d89de07c4efe9f3492a620fb29bfd17a9c8be9c1149379582a2f2fa"
   },
   "fixtures": [
     {
@@ -1703,6 +1704,846 @@
       "seed": 1031,
       "generator": "bonding-fixture/v0",
       "sha256": "c947d1d0539dac856d93041639d257851fb1b784ad7b467566a71e1c1106756e"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-0000.json",
+      "family": "cashu",
+      "seed": 0,
+      "generator": "cashu-fixture/v0",
+      "sha256": "6334730a047833281673d46b6ad365d8af4d758a8511cdbdfaca5f3bb97de80b"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-0001.json",
+      "family": "cashu",
+      "seed": 1,
+      "generator": "cashu-fixture/v0",
+      "sha256": "29a72f21ee4d782838075a69ec9e49a20e112f42bc3bd0ae0f4cd06cdb9503f7"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-0002.json",
+      "family": "cashu",
+      "seed": 2,
+      "generator": "cashu-fixture/v0",
+      "sha256": "ce2ce18346fc4093698dbd07a79f0bb2e686ff36183adb9b594e037ae6b812d1"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-0003.json",
+      "family": "cashu",
+      "seed": 3,
+      "generator": "cashu-fixture/v0",
+      "sha256": "59fc668a02d6b53daa8d5d512911b41d46f368a374a300ca861ea88b497ef0e7"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-0004.json",
+      "family": "cashu",
+      "seed": 4,
+      "generator": "cashu-fixture/v0",
+      "sha256": "a34525e92b50294e8c1c5ae85aa9cfa7c29a64ede3f707f2d17fd70ee8032a53"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-0005.json",
+      "family": "cashu",
+      "seed": 5,
+      "generator": "cashu-fixture/v0",
+      "sha256": "de28393692c1e738e61bf4ea0216b5811baea4746455866ee76167a237aae1c3"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-0006.json",
+      "family": "cashu",
+      "seed": 6,
+      "generator": "cashu-fixture/v0",
+      "sha256": "1e4d4b263bfed31f4eefefe1d909c14b96c9add180928887f9ac489e24408a26"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-0007.json",
+      "family": "cashu",
+      "seed": 7,
+      "generator": "cashu-fixture/v0",
+      "sha256": "3a905e19f9dc356247d167a831a5a26507d00c5fd1cf48838a56fa62ad7cf321"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1000.json",
+      "family": "cashu",
+      "seed": 1000,
+      "generator": "cashu-fixture/v0",
+      "sha256": "0325da86e1548f4346c5114541f317da62d8b6c8cd9f09b25080408f8dd3c63a"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1001.json",
+      "family": "cashu",
+      "seed": 1001,
+      "generator": "cashu-fixture/v0",
+      "sha256": "f85ab0cc39d01d43a5bd75b0dcc0bc9bac754044aa9cbb3c365a5acecc01fe1e"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1002.json",
+      "family": "cashu",
+      "seed": 1002,
+      "generator": "cashu-fixture/v0",
+      "sha256": "f4c88837404543f70a4f25be4b11a0732248f957df2d1dac4f3819b1f99ab5ea"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1003.json",
+      "family": "cashu",
+      "seed": 1003,
+      "generator": "cashu-fixture/v0",
+      "sha256": "a2e9b026a2e16a67ecdd9c4b5e27dfe92de9a6fdac3148214a6035efd56894f5"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1004.json",
+      "family": "cashu",
+      "seed": 1004,
+      "generator": "cashu-fixture/v0",
+      "sha256": "1a74f53fc719a2a2cddaebf3ea2ebdf09100f7f971e9f5cfda49c75f47ea7d0f"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1005.json",
+      "family": "cashu",
+      "seed": 1005,
+      "generator": "cashu-fixture/v0",
+      "sha256": "1d92a05201bbe11afab73fe46c045cb92860b2eb57bfd874d5f36f60236c9aa3"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1006.json",
+      "family": "cashu",
+      "seed": 1006,
+      "generator": "cashu-fixture/v0",
+      "sha256": "2b7b63b15401b735a8a228869a4a86ec4829b868e58772f2f01ff73fa097f9c1"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1007.json",
+      "family": "cashu",
+      "seed": 1007,
+      "generator": "cashu-fixture/v0",
+      "sha256": "c82a51883909e8384fda395eb526bb97c262a76bd9619bb49b001ba7d4eca6fe"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1008.json",
+      "family": "cashu",
+      "seed": 1008,
+      "generator": "cashu-fixture/v0",
+      "sha256": "0f11a4714339be6b9e17c182d2ec294f4c215ed7e4311178f033666dc39aa001"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1009.json",
+      "family": "cashu",
+      "seed": 1009,
+      "generator": "cashu-fixture/v0",
+      "sha256": "d1a80488791eb446495ea12ca54522cb7d966793a2fa3236694834a3a957dafe"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1010.json",
+      "family": "cashu",
+      "seed": 1010,
+      "generator": "cashu-fixture/v0",
+      "sha256": "2b19d7f979deca6ab1d223c97a0ea33984f1b53a4211b30c15c5de2c967cbc0a"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1011.json",
+      "family": "cashu",
+      "seed": 1011,
+      "generator": "cashu-fixture/v0",
+      "sha256": "bd99e5cf16d503a129efd73e6d3d9339bfbcf01f962ade3efaccd696ad798fab"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1012.json",
+      "family": "cashu",
+      "seed": 1012,
+      "generator": "cashu-fixture/v0",
+      "sha256": "9ec2c1de0226de9e848da61e9b853026c26f55dda799f30493d2c9354f4c0fba"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1013.json",
+      "family": "cashu",
+      "seed": 1013,
+      "generator": "cashu-fixture/v0",
+      "sha256": "8e9ee36d78549778e767ad7aedbd50a150ba0ce80896608989856f24ae505c3d"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1014.json",
+      "family": "cashu",
+      "seed": 1014,
+      "generator": "cashu-fixture/v0",
+      "sha256": "ec214d766a56ed8049ef956f59b3e6c4c98cfe17156fc1b02377caf5495ce9d8"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1015.json",
+      "family": "cashu",
+      "seed": 1015,
+      "generator": "cashu-fixture/v0",
+      "sha256": "501355cd85558ebbf7cba1b81bae2fdaffe5e955d48899432b506a10a377f891"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1016.json",
+      "family": "cashu",
+      "seed": 1016,
+      "generator": "cashu-fixture/v0",
+      "sha256": "fe395d9bf4205fb8bb81fca10687cc91e46da643f6edbae0222a19613202d7bf"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1017.json",
+      "family": "cashu",
+      "seed": 1017,
+      "generator": "cashu-fixture/v0",
+      "sha256": "724309461b1ff978a0e6cd6db839acfe7b1c616c39461adebbd9f1161afdae9f"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1018.json",
+      "family": "cashu",
+      "seed": 1018,
+      "generator": "cashu-fixture/v0",
+      "sha256": "af00b8cbb8839ee376fab54b5160d414b3c11530d1ff6fed22dee9b50ac6b630"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1019.json",
+      "family": "cashu",
+      "seed": 1019,
+      "generator": "cashu-fixture/v0",
+      "sha256": "b17970b860878e9ec31897ac8e24609a2e45310a295857530668f3fe99b77308"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1020.json",
+      "family": "cashu",
+      "seed": 1020,
+      "generator": "cashu-fixture/v0",
+      "sha256": "0f1a6fbb6a7aa77e7bfa20f2691ffc85de30200c4add1a01fcd2b8280f90a279"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1021.json",
+      "family": "cashu",
+      "seed": 1021,
+      "generator": "cashu-fixture/v0",
+      "sha256": "bc9186074b462a481ac4b6ba8d2d9f474aa23c5a91d4d870b8a7a261abc6be48"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1022.json",
+      "family": "cashu",
+      "seed": 1022,
+      "generator": "cashu-fixture/v0",
+      "sha256": "3c01e5177987884897c23a5dbba65c330fdf24d4338f0dd9b6d0f6e6031e5b2d"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1023.json",
+      "family": "cashu",
+      "seed": 1023,
+      "generator": "cashu-fixture/v0",
+      "sha256": "d1e0351cd0d1dc580db6716dc1fa8cd240d1a6edf2286db8d2ca419863c4d294"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1024.json",
+      "family": "cashu",
+      "seed": 1024,
+      "generator": "cashu-fixture/v0",
+      "sha256": "4509008d8a40574943a6d40e9078765f99484b771047205d78e85596ac979a28"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1025.json",
+      "family": "cashu",
+      "seed": 1025,
+      "generator": "cashu-fixture/v0",
+      "sha256": "27de330e71faa9e57b23f8f94936c8fc4249f18ce39939b93f81a87e9b1a8a7a"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1026.json",
+      "family": "cashu",
+      "seed": 1026,
+      "generator": "cashu-fixture/v0",
+      "sha256": "d1d9a7c94087a3f30dc05aa8fb47d5059411e8c4f88713b72061a5406066e215"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1027.json",
+      "family": "cashu",
+      "seed": 1027,
+      "generator": "cashu-fixture/v0",
+      "sha256": "c3d04e6461ac6937c220f03f9a7999a7c53ac15cbd99a1e7278bee19178b5efd"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1028.json",
+      "family": "cashu",
+      "seed": 1028,
+      "generator": "cashu-fixture/v0",
+      "sha256": "ead8deebde93b21805b51cefe7ea38790d6948d2b501450089b331273253c56f"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1029.json",
+      "family": "cashu",
+      "seed": 1029,
+      "generator": "cashu-fixture/v0",
+      "sha256": "75944ff6f66003174ef037e58e4011afa3c565653f3d2f7fbab7d872f7af0898"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1030.json",
+      "family": "cashu",
+      "seed": 1030,
+      "generator": "cashu-fixture/v0",
+      "sha256": "97bbc7d3df3c03afdd296cc732cd6337ef7c25dc214549e044ce62f1c6f43845"
+    },
+    {
+      "path": "fixtures/cashu/desk/seed-1031.json",
+      "family": "cashu",
+      "seed": 1031,
+      "generator": "cashu-fixture/v0",
+      "sha256": "267604179a1b1eeaf15b63de4b40da1800398e1f48a2c0d047da577c9db8ff66"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-0000.json",
+      "family": "cashu",
+      "seed": 0,
+      "generator": "cashu-fixture/v0",
+      "sha256": "43b78921b87a26cb57f3aae4d26427fdfe4e63475b45d1e9dea5b3173ca7281a"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-0001.json",
+      "family": "cashu",
+      "seed": 1,
+      "generator": "cashu-fixture/v0",
+      "sha256": "149493bbdd296d6b7bb05f2d1d40529f17059f1a6f0462188fc6d2ef7d7714c6"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-0002.json",
+      "family": "cashu",
+      "seed": 2,
+      "generator": "cashu-fixture/v0",
+      "sha256": "8309303c7da6a7f5716ead5aa3a3ee4e9452b38363e7225645c85c2b27bee832"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-0003.json",
+      "family": "cashu",
+      "seed": 3,
+      "generator": "cashu-fixture/v0",
+      "sha256": "c45f28c45f947669e542dd4fad029acb9b960461f9440360a5cd92fb72191f6e"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-0004.json",
+      "family": "cashu",
+      "seed": 4,
+      "generator": "cashu-fixture/v0",
+      "sha256": "43244e7e5c0dfb6e65a75abda7cfacd0f82ed77dae6e0389a9a62f2c659aa054"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-0005.json",
+      "family": "cashu",
+      "seed": 5,
+      "generator": "cashu-fixture/v0",
+      "sha256": "44567b3a2366ad0b710748e851d18dff9a4970f2bbae034670fc0e414fefa647"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-0006.json",
+      "family": "cashu",
+      "seed": 6,
+      "generator": "cashu-fixture/v0",
+      "sha256": "753c46256516b33a25e024a3abca3bc2c3bc4b361f8551250941a91b3974b335"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-0007.json",
+      "family": "cashu",
+      "seed": 7,
+      "generator": "cashu-fixture/v0",
+      "sha256": "b1912699903d04ee4d7038860e4b980f9cdb540596b65a0183b34c32c531869b"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1000.json",
+      "family": "cashu",
+      "seed": 1000,
+      "generator": "cashu-fixture/v0",
+      "sha256": "246703bed0b3c6fed13273cf37a7bbf930d1405bdd45a1d7346639a62a9cac33"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1001.json",
+      "family": "cashu",
+      "seed": 1001,
+      "generator": "cashu-fixture/v0",
+      "sha256": "92baecacfe75dceffe67bdf4b5a61f234b2e791c63c0927da5b28938dd016f14"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1002.json",
+      "family": "cashu",
+      "seed": 1002,
+      "generator": "cashu-fixture/v0",
+      "sha256": "331c27ea58faf5aa2a99ea145dd83e9694dfea1f4724bc3674c60a48a4dddeb7"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1003.json",
+      "family": "cashu",
+      "seed": 1003,
+      "generator": "cashu-fixture/v0",
+      "sha256": "c6d8e9fbee278c482d650992c0ff9da56e0e6becafa54355a2dd8075a04c7a65"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1004.json",
+      "family": "cashu",
+      "seed": 1004,
+      "generator": "cashu-fixture/v0",
+      "sha256": "4db856dffcab7e5d96a30ef00d33d23cf71c05d6c45024736906dc01af26e2b8"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1005.json",
+      "family": "cashu",
+      "seed": 1005,
+      "generator": "cashu-fixture/v0",
+      "sha256": "bc3ad8bdbd239a2603e597601d8690c15f6d27d57523b98bc7ab7003110bdfb9"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1006.json",
+      "family": "cashu",
+      "seed": 1006,
+      "generator": "cashu-fixture/v0",
+      "sha256": "793ecdf17aa1aa6846939e4d5eb8ebbc2a4ccb48f0325cb52739249149278f35"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1007.json",
+      "family": "cashu",
+      "seed": 1007,
+      "generator": "cashu-fixture/v0",
+      "sha256": "6d2697a45616e07547573a0583c02a1bb09ef40fee78394642e0b51e3b7ae3cd"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1008.json",
+      "family": "cashu",
+      "seed": 1008,
+      "generator": "cashu-fixture/v0",
+      "sha256": "bc224b4141e19510c058a7655c3dfdd93022523b8d6457f09d634ee5032aaf71"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1009.json",
+      "family": "cashu",
+      "seed": 1009,
+      "generator": "cashu-fixture/v0",
+      "sha256": "a5be03d6208ab35ce6b1a9cb2d417aab818f82ce52a97a8bc6c873887f796fe4"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1010.json",
+      "family": "cashu",
+      "seed": 1010,
+      "generator": "cashu-fixture/v0",
+      "sha256": "484fa31c96a992ec4e8e9590f725fb35fbba1f05ccd00cbe117c392022a18657"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1011.json",
+      "family": "cashu",
+      "seed": 1011,
+      "generator": "cashu-fixture/v0",
+      "sha256": "27c2eb6d7df1d31ae7ad0dd54722d4af19b5d2416ee6505c04f4a3604c70a81f"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1012.json",
+      "family": "cashu",
+      "seed": 1012,
+      "generator": "cashu-fixture/v0",
+      "sha256": "d1d8ea8ba673ca997c03e7fddaac9926fcc80f22ecce81566700997471e3eb47"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1013.json",
+      "family": "cashu",
+      "seed": 1013,
+      "generator": "cashu-fixture/v0",
+      "sha256": "221e0eac7a1c071ae983d66eb65d99ac38b2fb660202403b068d00649923a864"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1014.json",
+      "family": "cashu",
+      "seed": 1014,
+      "generator": "cashu-fixture/v0",
+      "sha256": "c557b1ed8d637282e4f38185add231995639ad39288ad7869fa75101d277d149"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1015.json",
+      "family": "cashu",
+      "seed": 1015,
+      "generator": "cashu-fixture/v0",
+      "sha256": "c26b9d93a43826ece0cb0b141c8799ef062ba78a8df380b358b4f66fdbabc936"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1016.json",
+      "family": "cashu",
+      "seed": 1016,
+      "generator": "cashu-fixture/v0",
+      "sha256": "a244503f029e46d4a9a80496ac60cf40fdde0ea4196e3ef3036c3ec66a3a1da0"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1017.json",
+      "family": "cashu",
+      "seed": 1017,
+      "generator": "cashu-fixture/v0",
+      "sha256": "97e0c00f6de556a53b9de0f3cca68b1e7b8a995bd42b88bbebd8053366edf6b8"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1018.json",
+      "family": "cashu",
+      "seed": 1018,
+      "generator": "cashu-fixture/v0",
+      "sha256": "df4f7fbde4d14234f742afe712a1a03c1e4ab0525806f8573303a1c4a394e58f"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1019.json",
+      "family": "cashu",
+      "seed": 1019,
+      "generator": "cashu-fixture/v0",
+      "sha256": "359c660ae6cfae8a8d8b1762cd061161545d9f8d59d0009fe73d5ff70338d875"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1020.json",
+      "family": "cashu",
+      "seed": 1020,
+      "generator": "cashu-fixture/v0",
+      "sha256": "1b6d614d9ee0895358071fbbb6f7cc6af13956c10a3eda39ee42d81f5980eeec"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1021.json",
+      "family": "cashu",
+      "seed": 1021,
+      "generator": "cashu-fixture/v0",
+      "sha256": "94f60aea598133dcef69027a1147c536ec3967bc74b66a65424e5e44237ca208"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1022.json",
+      "family": "cashu",
+      "seed": 1022,
+      "generator": "cashu-fixture/v0",
+      "sha256": "42ba33800667e6fdd57be0b7fe1ff1992ef746c4284be57c1d5d8781ecf4a930"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1023.json",
+      "family": "cashu",
+      "seed": 1023,
+      "generator": "cashu-fixture/v0",
+      "sha256": "74b291b077b7d105e5d5b614c1a04ca768454cce44d9cd6a601b5981dbc5adcd"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1024.json",
+      "family": "cashu",
+      "seed": 1024,
+      "generator": "cashu-fixture/v0",
+      "sha256": "d71e1c378ea3c1fa0d9243a386858e68e8ec714ec645c582579091d2da3eff5b"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1025.json",
+      "family": "cashu",
+      "seed": 1025,
+      "generator": "cashu-fixture/v0",
+      "sha256": "3370cfe1f6f4c46a9099431207599de88d8bb501f31ee693176ce2a87d16f247"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1026.json",
+      "family": "cashu",
+      "seed": 1026,
+      "generator": "cashu-fixture/v0",
+      "sha256": "a36821a9a365c3e34b269059d5d4de2ad8c670faafe9bdadcd6b5eaa990f504b"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1027.json",
+      "family": "cashu",
+      "seed": 1027,
+      "generator": "cashu-fixture/v0",
+      "sha256": "f365525ae248b13f1f0ea4e32a9beffe92873230bade8f94a462d442ea2135bd"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1028.json",
+      "family": "cashu",
+      "seed": 1028,
+      "generator": "cashu-fixture/v0",
+      "sha256": "a97378f93d580a99f0c846992e02fa51b976581b6d9d4975f850a5c3f19a9443"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1029.json",
+      "family": "cashu",
+      "seed": 1029,
+      "generator": "cashu-fixture/v0",
+      "sha256": "b0efbe105438cc89238f5b0821866b67c942bf1accbb1a372cc7b761f7c7ddc2"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1030.json",
+      "family": "cashu",
+      "seed": 1030,
+      "generator": "cashu-fixture/v0",
+      "sha256": "436783d8c8eb8b49cd4082f7ce8715be79dcb56c4466af646202e96b8925b310"
+    },
+    {
+      "path": "fixtures/cashu/operator_outage/seed-1031.json",
+      "family": "cashu",
+      "seed": 1031,
+      "generator": "cashu-fixture/v0",
+      "sha256": "4ae3bf24b6c06790d79cfc4315bf9c712e7b5eeac29d326173d7c9d43d380aee"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-0000.json",
+      "family": "cashu",
+      "seed": 0,
+      "generator": "cashu-fixture/v0",
+      "sha256": "8ef6dfe74a5d888815f2fbc1674e7febb75620d1efbab9c8ec00dfc600353d34"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-0001.json",
+      "family": "cashu",
+      "seed": 1,
+      "generator": "cashu-fixture/v0",
+      "sha256": "c6a95d2982d6bae01b014c35b9ace2bd0752c75ae3a5c7031df69e98a3821c31"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-0002.json",
+      "family": "cashu",
+      "seed": 2,
+      "generator": "cashu-fixture/v0",
+      "sha256": "d430eaa697e1cff8da369917248a6ccfe2f0c9752fecf68a30b764105ce5c2a6"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-0003.json",
+      "family": "cashu",
+      "seed": 3,
+      "generator": "cashu-fixture/v0",
+      "sha256": "a64ccf3500aa62456be8aec4e2a8413fd0fcaf776428a0a94c0342449a45bebe"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-0004.json",
+      "family": "cashu",
+      "seed": 4,
+      "generator": "cashu-fixture/v0",
+      "sha256": "578c33c954b22d595e672791c4159488eaea6a090b33d824c444d8232b4d7aa6"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-0005.json",
+      "family": "cashu",
+      "seed": 5,
+      "generator": "cashu-fixture/v0",
+      "sha256": "36200d480941ed61a2c20ca8d472d953685943c8f9d6e2f08bd73020e346e0da"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-0006.json",
+      "family": "cashu",
+      "seed": 6,
+      "generator": "cashu-fixture/v0",
+      "sha256": "aa716007fb3d62cfb50d460e96274cd05901dbe170ef8508eb1a1808c4cf2f40"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-0007.json",
+      "family": "cashu",
+      "seed": 7,
+      "generator": "cashu-fixture/v0",
+      "sha256": "66951075a3b6454da42c69ffbeff84b6605a873b0ad984d5e0fdce43c913db4f"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1000.json",
+      "family": "cashu",
+      "seed": 1000,
+      "generator": "cashu-fixture/v0",
+      "sha256": "63d82917eec162518e3017be387270fc024e3c495a77d6795478e10cde3469d5"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1001.json",
+      "family": "cashu",
+      "seed": 1001,
+      "generator": "cashu-fixture/v0",
+      "sha256": "3c2fb17c455131a1eac097c3bb156f14fc508c468e56c0e8eb612d713fa89d9b"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1002.json",
+      "family": "cashu",
+      "seed": 1002,
+      "generator": "cashu-fixture/v0",
+      "sha256": "6492c1a1996bf7ee84a166276426dba17b1f5acccf3d8caee0e25d8246bd8c01"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1003.json",
+      "family": "cashu",
+      "seed": 1003,
+      "generator": "cashu-fixture/v0",
+      "sha256": "cdae62cf1ac1915c899b0804d7704a4be50e9d8d3bf8af946488d4104dc3275d"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1004.json",
+      "family": "cashu",
+      "seed": 1004,
+      "generator": "cashu-fixture/v0",
+      "sha256": "56a63601ce3167e1dcd9a45cfc4e7d74db008fa746d171eab6910afdd265e9d5"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1005.json",
+      "family": "cashu",
+      "seed": 1005,
+      "generator": "cashu-fixture/v0",
+      "sha256": "83af9c2f8664395c6ca67a696f2624d0626ecf6db9697cf2755de97523bf77a0"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1006.json",
+      "family": "cashu",
+      "seed": 1006,
+      "generator": "cashu-fixture/v0",
+      "sha256": "0933b0b2f22bd62456d6b69eeeb9b118440b9041fb1f312d538407645393ff40"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1007.json",
+      "family": "cashu",
+      "seed": 1007,
+      "generator": "cashu-fixture/v0",
+      "sha256": "6d2a7fc47240f27d02e68b827d1751f2f3c1086cfaf1f1ddd856445fd33fe5d4"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1008.json",
+      "family": "cashu",
+      "seed": 1008,
+      "generator": "cashu-fixture/v0",
+      "sha256": "f7200f2c06ee383e629295ec0643e85019551b715446aefb8658666d84be638a"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1009.json",
+      "family": "cashu",
+      "seed": 1009,
+      "generator": "cashu-fixture/v0",
+      "sha256": "89a0e55cf205e8dfecddb4ff674a944ba80fe5b9d13085304b5ca0bd6ff40ad1"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1010.json",
+      "family": "cashu",
+      "seed": 1010,
+      "generator": "cashu-fixture/v0",
+      "sha256": "f9a7e8b8466d6deb58cc96ac4458048f7e1b730f19cd07f874a9d7198f87740a"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1011.json",
+      "family": "cashu",
+      "seed": 1011,
+      "generator": "cashu-fixture/v0",
+      "sha256": "e9696a7fa2e4bf01f4d41a88415ca76f4770f19b5b56184f40eec1590d06e802"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1012.json",
+      "family": "cashu",
+      "seed": 1012,
+      "generator": "cashu-fixture/v0",
+      "sha256": "481759ab6195d8ec3c7a1dfb44523bd2b23fa3da09cdfd2585f6661bd1d1ba59"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1013.json",
+      "family": "cashu",
+      "seed": 1013,
+      "generator": "cashu-fixture/v0",
+      "sha256": "7e8b1b2e85488d1beac0c1e97cbb3b58c0463726ec656968d264bf0a11edc3b2"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1014.json",
+      "family": "cashu",
+      "seed": 1014,
+      "generator": "cashu-fixture/v0",
+      "sha256": "df84cabf23e9a93361d100140c20acd6504346e841229c9a1e8cb9bd3e013fec"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1015.json",
+      "family": "cashu",
+      "seed": 1015,
+      "generator": "cashu-fixture/v0",
+      "sha256": "f98e0378d9ba90ef1deecc9e84abf8b996b02c6f2b759edca66e426f90ce1d64"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1016.json",
+      "family": "cashu",
+      "seed": 1016,
+      "generator": "cashu-fixture/v0",
+      "sha256": "9ac203fae90c9c9687f79412f15add7ba0de3e6fcdebad0e186c29e0c33febe1"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1017.json",
+      "family": "cashu",
+      "seed": 1017,
+      "generator": "cashu-fixture/v0",
+      "sha256": "835dd0b81879640993278e75276fff693235bf6913bfdf9827446f6a4b47179d"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1018.json",
+      "family": "cashu",
+      "seed": 1018,
+      "generator": "cashu-fixture/v0",
+      "sha256": "62ddd69f65594b0613698d4e8b80ee20dadef7e94c0aa6c3f6ec1d670448a194"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1019.json",
+      "family": "cashu",
+      "seed": 1019,
+      "generator": "cashu-fixture/v0",
+      "sha256": "97cff0ade5c642427ff8ace4c47b2599b5bd69c2df8ad3d75b3572cf0382afea"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1020.json",
+      "family": "cashu",
+      "seed": 1020,
+      "generator": "cashu-fixture/v0",
+      "sha256": "e6efe776ad9824fa823a1a2d218ebdd2a6ff54061699ded1afba70cd24357011"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1021.json",
+      "family": "cashu",
+      "seed": 1021,
+      "generator": "cashu-fixture/v0",
+      "sha256": "a1ae6f6d7fd04e77d2b2d5810d7f18f150a259c056f32fa7bbe36a82f42780e0"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1022.json",
+      "family": "cashu",
+      "seed": 1022,
+      "generator": "cashu-fixture/v0",
+      "sha256": "27b169f44b65d0cde788920335cf65a3f20f318447783218674951649e13f889"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1023.json",
+      "family": "cashu",
+      "seed": 1023,
+      "generator": "cashu-fixture/v0",
+      "sha256": "477934e357dd8dd03975e7e0bddd59ea83f2410191a09210e912a949ea6332cd"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1024.json",
+      "family": "cashu",
+      "seed": 1024,
+      "generator": "cashu-fixture/v0",
+      "sha256": "bb57d25537a85dd3d42d9d745a281fc11214f6e53dce7271c421c24074017932"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1025.json",
+      "family": "cashu",
+      "seed": 1025,
+      "generator": "cashu-fixture/v0",
+      "sha256": "07a090a829194088182216d26e9a8819ed8deac23a077a6bb2e3fd5078c40690"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1026.json",
+      "family": "cashu",
+      "seed": 1026,
+      "generator": "cashu-fixture/v0",
+      "sha256": "c9fba67202cc903604b58f7fb3a0be84d23958dc7db45360eb0cb2eb1b76e489"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1027.json",
+      "family": "cashu",
+      "seed": 1027,
+      "generator": "cashu-fixture/v0",
+      "sha256": "7782177369c2d4ab54f6eb10accf777102f42d8a0bae332b74e8ceefd6e7a8b6"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1028.json",
+      "family": "cashu",
+      "seed": 1028,
+      "generator": "cashu-fixture/v0",
+      "sha256": "709ec767d2cf1ea29196449fc84ff482ea8fc0c64f6dcd787c00096d9f6ebda2"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1029.json",
+      "family": "cashu",
+      "seed": 1029,
+      "generator": "cashu-fixture/v0",
+      "sha256": "b0e462944b6c70b4792170ed1a38c18089b04dff301934d5d5ef6f0a016d56aa"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1030.json",
+      "family": "cashu",
+      "seed": 1030,
+      "generator": "cashu-fixture/v0",
+      "sha256": "ba4f5369a305061af0f3eef51a1943ed861a8fdb3b2b5c636fb3f06931cf8c74"
+    },
+    {
+      "path": "fixtures/cashu/reserve_shortfall/seed-1031.json",
+      "family": "cashu",
+      "seed": 1031,
+      "generator": "cashu-fixture/v0",
+      "sha256": "7ada712a8fda1c8355758111ea4d3694575aaeb27c48aefac19a309d1b985c64"
     },
     {
       "path": "fixtures/dlc/mobile_signer/seed-0000.json",

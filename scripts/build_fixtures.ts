@@ -31,6 +31,7 @@ import { FIXTURE_VERSION as ROUTING_VERSION, fixtureBytes as routingBytes, fixtu
 import { NOSTR_CELLS, buildNostrFixtures, loadNostrConfig } from "../src/tasks/nostr/task.ts";
 import { bitvm3Cells, buildBitvm3Fixtures, loadBitvm3Config } from "../src/tasks/bitvm3/task.ts";
 import { buildSwapFixtures, loadSwapConfig, swapCells } from "../src/tasks/swap/task.ts";
+import { buildCashuFixtures, cashuCells, loadCashuConfig } from "../src/tasks/cashu/task.ts";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -122,6 +123,13 @@ const swap = buildSwapFixtures(root, swapConfig, [...SEED_BLOCKS.development, ..
 entries.push(...swap.entries);
 written += swap.written;
 console.log(`swap: ${swap.entries.length} fixtures over ${swapCells(swapConfig).length} cells`);
+
+// Family 14: one desk episode per seed and cell, with every event's hidden truth and real Cashu proofs.
+const cashuConfig = loadCashuConfig(root);
+const cashu = buildCashuFixtures(root, cashuConfig, [...SEED_BLOCKS.development, ...SEED_BLOCKS.confirmatory]);
+entries.push(...cashu.entries);
+written += cashu.written;
+console.log(`cashu: ${cashu.entries.length} fixtures over ${cashuCells(cashuConfig).length} cells`);
 
 // Family 2: each names its family 1 fixture by hash and adds the diffuse demand stream.
 mkdirSync(join(root, "fixtures/routing"), { recursive: true });

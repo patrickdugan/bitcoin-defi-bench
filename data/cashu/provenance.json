@@ -1,0 +1,67 @@
+{
+  "purpose": "Published Cashu test vectors for family 14's protocol core (src/tasks/cashu/nut.ts), and the Proof Grove and Ark Cash sources family 14 cites, each pinned by commit and SHA-256 where one was readable.",
+  "accessed": "2026-11-27",
+  "vectors": {
+    "file": "data/cashu/nut-vectors.json",
+    "sha256": "83cb7d2c24b861e28e10fd7e247da609e6ca3dcdea8871de312d4062c756f891",
+    "repository": "https://github.com/cashubtc/nuts",
+    "commit": "95c53296185b0c2c5f6b686c5c99a9d46b768048",
+    "sources": {
+      "nut00_hash_to_curve": "https://github.com/cashubtc/nuts/blob/95c53296185b0c2c5f6b686c5c99a9d46b768048/tests/00-tests.md (hash_to_curve; three messages, hex-decoded to 32 bytes)",
+      "nut00_blinded_messages": "https://github.com/cashubtc/nuts/blob/95c53296185b0c2c5f6b686c5c99a9d46b768048/tests/00-tests.md (blinded messages; x hex-decoded)",
+      "nut00_blinded_signatures": "https://github.com/cashubtc/nuts/blob/95c53296185b0c2c5f6b686c5c99a9d46b768048/tests/00-tests.md (blinded signatures)",
+      "nut12_hash_e": "https://github.com/cashubtc/nuts/blob/95c53296185b0c2c5f6b686c5c99a9d46b768048/tests/12-tests.md (hash_e)",
+      "nut12_deterministic_nonce": "https://github.com/cashubtc/nuts/blob/95c53296185b0c2c5f6b686c5c99a9d46b768048/tests/12-tests.md (deterministic nonce)",
+      "nut12_blind_signature_dleq": "https://github.com/cashubtc/nuts/blob/95c53296185b0c2c5f6b686c5c99a9d46b768048/tests/12-tests.md (DLEQ verification on BlindSignature)",
+      "nut12_proof_dleq": "https://github.com/cashubtc/nuts/blob/95c53296185b0c2c5f6b686c5c99a9d46b768048/tests/12-tests.md (DLEQ verification on Proof)",
+      "nut02_keyset_id_v1": "https://github.com/cashubtc/nuts/blob/95c53296185b0c2c5f6b686c5c99a9d46b768048/tests/02-tests.md (keyset id, version 1)"
+    },
+    "derived": "Transcribed from the rendered test files at that commit, fetched 2026-11-27; the upstream files' own SHA-256 were not recorded, so the pin is the commit plus the SHA-256 of this transcription. Every value in the file is reproduced by src/tasks/cashu/nut.test.ts.",
+    "license": "the cashubtc/nuts repository is MIT licensed"
+  },
+  "specifications": {
+    "repository": "https://github.com/cashubtc/nuts",
+    "commit": "95c53296185b0c2c5f6b686c5c99a9d46b768048",
+    "files": ["00.md", "02.md", "03.md", "07.md", "12.md"],
+    "note": "Cited, not copied: NUT-00 (BDHKE, hash_to_curve, proofs), NUT-02 (keysets, active and inactive, the version 1 id), NUT-03 (swap), NUT-07 (token state check, by Y), NUT-12 (offline DLEQ). The SHA-256 of these files was not recorded."
+  },
+  "proof_grove": {
+    "repository": "https://github.com/patrickdugan/Spiral",
+    "commit": "ad235c4af20f2bbf4616ba9c445ffe5d8ff75b7c",
+    "note": "Each file is pinned by this commit and its own SHA-256. The commit that last touched each file was not read: the bench's build ran in an isolated worktree whose guard refuses git against another repository.",
+    "files": {
+      "proof-grove/README.md": "0fe3bcdcf527602c1442995766b9e58581d5a6fee4f00baeb045674c0b63bcc0",
+      "proof-grove/docs/verification.md": "fbf394b699e07061c243fbf15f2f6b05afd3c7a93f78ac56a1d7b6dfdafae9d0",
+      "proof-grove/docs/hosting.md": "e0364bd8d5fa0868493a20417ff9d6baae4a404be2fdea55294da214e4b6318b",
+      "proof-grove/docs/cashu-ark-withdrawal.md": "1a4c042e8598ad0ab726bf734098ddb9d68b10c208770beb08160605dce0c6c4",
+      "proof-grove/docs/ark-recovery.md": "cd9f3de0810410ecf37c497bb224f8d6718c749089e39a7063c02775b6840f33",
+      "proof-grove/docs/ark-integration.json": "5edb62283605e0203188d8020b6a0537a0ed669a7cac0b378740a50e78c8e2ae",
+      "proof-grove/docs/ark-exit-integration.json": "54fd59ae5332ef60dedadb3aec10fa13f391e15870337c7228ae648b4e018a23",
+      "proof-grove/docs/cashu-ark-integration.json": "aa9f4cbd76620bb801b6a19ce1fa999a92c975e8ae18a22dfa895375acff5c5b",
+      "proof-grove/proofdesk/domain.py": "7b010820a98d886f415a555b5b5e61714079fe1755ea0bb4042d9585acd1df94",
+      "proof-grove/proofdesk/demo.py": "7b8afe4ae729cfc38b9be3661fc78596fecd3bb7fcd0e49354a68b84ec1f422f",
+      "proof-grove/proofdesk/ark.py": "e9eba6ee138776e00d3ff98330eb7a14048bafe714e165d1a7ca1007017642eb",
+      "proof-grove/proofdesk/exits.py": "681b4e42a43f09ffb278054afb7bb28a8b9eff6674bac16a8591972b0bbd0942",
+      "proof-grove/proofdesk/cashu.py": "873a4a676ce847aabd20cf9dd0819efca0b35605219ec3f3555470060fd88676",
+      "proof-grove/tests/test_ark.py": "2977ffe3b943d10632c3da9ca0b44bb32b4f66e2be1b2b80d5e357170e1af7e4",
+      "proof-grove/fixtures/provenance.json": "2e5ef13480c0ae9b77e705dbe0f58e650d3ba77c641ee74cd918f0fa89453438",
+      "proof-grove/wallet/client.mjs": "9b37038d70636c709231853e5158e92c9975e6f3bd95f43f628633918ad1e699",
+      "proof-grove/wallet/ark-payments.mjs": "8419b2abf29cb42793d8acaa1756fadc945cdc7566ce295d6e11d06a6837f670",
+      "proof-grove/integrations/bark-processor/README.md": "671ad4e11616541876fcb73622112411f0c652a9f2d40af3c6e7a06dadf63d2b"
+    }
+  },
+  "ark_cash": {
+    "status": "Spiral working tree, untracked, 2026-10-08 design note",
+    "files": {
+      "paper/ark_cash_design.md": "50bda7d6d4982907be1906cba04b5affe4be50a972e59a28b58df423b08f3368",
+      "model/ark_cash.ts": "dce6c8cbc07f8d5080d6b2a7dd8da9b99b7145087e64d78c12a69bc8848c111c"
+    }
+  },
+  "cashu_reserves": {
+    "repository": "https://github.com/patrickdugan/Spiral",
+    "ref": "origin/research/cashu-capital-bound-20261124",
+    "commit": "a77fd823c5c4bde78c522b785fd15743e4c85f81",
+    "file": "paper/tex/cashu_reserves.tex",
+    "status": "not read: `git show` against the Spiral repository was refused by the isolated worktree's guard, and no checkout of that branch is on disk. No parameter of family 14 is taken from it; the reserve bound the family uses is Ark Cash's outstanding <= A_n."
+  }
+}

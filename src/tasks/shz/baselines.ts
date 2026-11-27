@@ -34,7 +34,7 @@ export interface ShzView {
 
 interface Obs { view: ShzView; last: { accepted: boolean; result: Json } | null; }
 
-/** Why the client may not trade on this step's packet under the pinned policy, or null. */
+/** The fault that bars trading on this slot's packet under the pinned policy, or null. */
 export const faultOf = (v: ShzView): string | null =>
   packetFault(v.packet, { ...v.federation, members: v.federation.members.length, keys: v.federation.members }, v.clock.now_ms);
 

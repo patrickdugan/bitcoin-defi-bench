@@ -158,7 +158,7 @@ export function liquidationMark(f: Pick<ShzFixture, "lot_usd">, config: ShzConfi
   return hi;
 }
 
-/** The client's pinned policy: why a packet may not be traded on, or null when it may. */
+/** The client's pinned policy: the fault that bars trading on a packet, or null when there is none. */
 export function packetFault(p: Packet | null, fed: FederationPolicy & { keys: string[] }, nowMs: number): string | null {
   if (p === null) return "no packet";
   if (p.status !== "VALID" || p.price_usd === null) return "HOLD";

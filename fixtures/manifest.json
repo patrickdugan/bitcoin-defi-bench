@@ -22,7 +22,7 @@
     "config/protocol.json": "7f0034406b80fecd66de7d42bbca1e646da30c8a36e44afb94e033c75f34dfc4",
     "config/server_sizing.json": "8fdfda5a5d9dd1c064edac326495f0ff5862ac084e67777d1a8b444278713c28",
     "config/settlement_object.json": "32814b2f968678cad1aabbff7b139df7e21065556eadd0ebc58e3ebd1f1011a5",
-    "config/shz.json": "9b7dfad7b9636386b120705ec6a4da3824e1eca302c681b2c6d1b3df1829af18",
+    "config/shz.json": "cb47623464844c574a4c14f64d46ce9555f8b5d56403abcbfdd03518e62f5cf6",
     "config/swap.json": "21f08216ee7ecbef714fc7f61a9ab440d858b36431c69740f211f95988b8f00a"
   },
   "fixtures": [

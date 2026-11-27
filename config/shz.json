@@ -59,7 +59,7 @@
     "lightning": "given: Spiral's channel defaults, 1,000 msat base and 100 ppm per hop (config/placement.json new_channel_policy); invented: the holder reaches the venue through one routing hop. SHZ's own lanes are direct channels with no routing fee (docs/SHZ_LDK_SETTLEMENT.md 07959f8)",
     "capital_ppm_per_step": "given as an assumption: 10% a year, the middle of the latency study's Lightning liquidity cost of capital [0.05, 0.1, 0.2] (research/latency_value/results/shz_economics.json 939077c on research/price-of-200ms-20261125); 0.10 x 4 / 8760 = 46 ppm a step",
     "steps": "invented: four days in steps of four hours",
-    "slots": "given: packets every 200 ms (CADENCE_US, crates/shz-oracle/src/hft_packets.rs dbc42f5); invented: the agent may read the next slot's packet twice a step (refresh), so three slots a step, at the step's mark",
+    "slots": "given: packets every 200 ms (CADENCE_US, crates/shz-oracle/src/hft_packets.rs dbc42f5); invented: the agent reads the next slot's packet with refresh, at most twice a step, so three slots a step, at the step's mark",
     "start_price_usd": "invented",
     "target_usd": "invented: the dollar value to hold, 4,000 to 16,000 USD in steps of 800, eight lots at the start",
     "target_lots": "invented: Lightning income and payments move the balance by one or two lots at 15% of steps, inside 4 to 10 lots",

@@ -20,6 +20,11 @@
 // sends that skill's result, unchanged, as the action, so the model decides and the skill carries
 // the bytes. The agent id binds every skill's name and source hash and this protocol, so an agent
 // with a skill is a different agent.
+//
+// Backends (docs/ironclaw.md): by default the adapter posts the conversation to an OpenAI-compatible
+// /chat/completions endpoint. A Backend replaces that transport and nothing else: the skill loop,
+// the cache, the reply log, and the transcript are the same, and the backend's description is bound
+// into the id. An agent without one keeps the id it had before backends existed.
 
 import { request } from "node:http";
 import type { Agent, EpisodeInfo } from "../harness/agent.ts";
@@ -85,9 +90,30 @@ export interface ChatOptions {
    * whole state and whose episodes run to hundreds of turns (families 2 and 7). Bound into the id.
    */
   contextTurns?: number;
+  /** Unset, the conversation is posted to baseUrl/chat/completions. */
+  backend?: Backend;
 }
 
-export interface Reply { content: string; reasoning: string; }
+export interface Reply {
+  content: string;
+  reasoning: string;
+  /** A backend's handle on the conversation after this reply (IronClaw's response id), kept in the reply log. */
+  thread?: string;
+}
+
+export interface Message { role: "system" | "user" | "assistant"; content: string; }
+
+/** A transport other than an OpenAI-compatible chat endpoint. */
+export interface Backend {
+  /** What the backend adds to the agent id. */
+  describe(): Json;
+  /** The request the cache and the reply log key on, for the conversation the adapter holds. */
+  body(messages: readonly Message[]): object;
+  /** Send it and return the reply. A transport failure throws. */
+  post(body: object, messages: readonly Message[]): Promise<Reply>;
+  /** Called with every reply, served, cached, or replayed, and the messages it answered. */
+  observe?(messages: readonly Message[], reply: Reply): void;
+}
 
 export interface Exchange {
   episode: EpisodeInfo;
@@ -105,8 +131,6 @@ export interface Exchange {
   /** Present when the reply sent a skill's stored result as the action; `action` is that result. */
   sent?: string;
 }
-
-interface Message { role: "system" | "user" | "assistant"; content: string; }
 
 /** The first JSON object in a reply, or the reply itself when there is none. */
 export function extractAction(reply: string): Json {
@@ -161,6 +185,7 @@ export class ChatAgent implements Agent {
     if (url.protocol !== "http:" || !["127.0.0.1", "localhost", "[::1]"].includes(url.hostname)) {
       throw new Error(`chat adapter accepts http loopback endpoints only, got ${url.protocol}//${url.hostname}`);
     }
+    if (options.backend && options.contextTurns !== undefined) throw new Error("a backend holds the whole conversation; contextTurns does not apply to it");
     this.options = options;
     this.endpoint = `${options.baseUrl.replace(/\/+$/, "")}/chat/completions`;
     this.id = `${options.name}@${sha256(canonical(this.describe())).slice(0, 12)}`;
@@ -175,7 +200,8 @@ export class ChatAgent implements Agent {
     // Skills enter the identity only when carried, so a bare agent's identifier is unchanged by the skill loop.
     const windowed = this.options.contextTurns === undefined ? base : { ...base, context_turns: this.options.contextTurns };
     const perTurn = this.options.maxSkillCallsPerTurn === undefined ? {} : { max_skill_calls_per_turn: this.options.maxSkillCallsPerTurn };
-    return skills.length ? { ...windowed, skills, max_skill_calls: this.options.maxSkillCalls ?? 4, ...perTurn, skill_protocol: "call by a skill field or a tool field naming a carried skill; a reply that does not parse but opens with that envelope is a call with no arguments, kept in the conversation as the bare envelope; result as compact json; {tool: send} or {send: name} sends a stored result that is an action" } : windowed;
+    const backed = this.options.backend ? { ...windowed, backend: this.options.backend.describe() } : windowed;
+    return skills.length ? { ...backed, skills, max_skill_calls: this.options.maxSkillCalls ?? 4, ...perTurn, skill_protocol: "call by a skill field or a tool field naming a carried skill; a reply that does not parse but opens with that envelope is a call with no arguments, kept in the conversation as the bare envelope; result as compact json; {tool: send} or {send: name} sends a stored result that is an action" } : backed;
   }
 
   reset(episode: EpisodeInfo): void {
@@ -294,10 +320,11 @@ export class ChatAgent implements Agent {
 
   /** One completion over the conversation so far, from the cache, the replay log, or the server. */
   private async complete(turn: number, call: number): Promise<{ reply: Reply; key: string; cached: boolean; replayed: boolean }> {
-    const { sampling } = this.options;
-    const body = {
+    const { sampling, backend } = this.options;
+    const messages = this.window();
+    const body = backend ? backend.body(messages) : {
       model: this.options.model,
-      messages: this.window().map((m) => ({ ...m })),
+      messages: messages.map((m) => ({ ...m })),
       temperature: sampling.temperature, top_p: sampling.top_p, top_k: sampling.top_k,
       max_tokens: sampling.max_tokens, seed: this.requestSeed(turn, call),
       chat_template_kwargs: { enable_thinking: this.options.thinking },
@@ -308,7 +335,7 @@ export class ChatAgent implements Agent {
     const cached = reply !== undefined;
     const replayed = this.fromReplay.has(key);
     if (!reply) {
-      reply = await this.post(body);
+      reply = backend ? await backend.post(body, messages) : await this.post(body);
       this.cache.set(key, reply);
       this.counts.served += 1;
       this.options.onReply?.(key, reply);
@@ -317,6 +344,7 @@ export class ChatAgent implements Agent {
       this.fromReplay.delete(key);
       this.counts.replayed += 1;
     }
+    backend?.observe?.(messages, reply);
     return { reply, key, cached, replayed };
   }
 

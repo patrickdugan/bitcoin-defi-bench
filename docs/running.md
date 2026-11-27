@@ -149,6 +149,10 @@ node --experimental-strip-types scripts/run_nostr_agent.ts --cell custody --bloc
 
 One cell per invocation (`--cell`), with the same flags as the placement script and a reply limit of 1,024 tokens. The prompts (`src/tasks/nostr/prompt.ts`) show the whole observation on the first turn and only the last result and a status line afterwards (about 100 to 250 characters), because a mesh episode can run to more than a hundred turns. On development seeds a 72-turn `private` episode outgrew a 16,384-token context (the server answers HTTP 400, an infrastructure failure), and the cell was rerun from its reply log on a 40,960-token server, the base model's maximum; start the server with that. Events and ciphertexts come back as handles (`h3`) that the model passes on instead of copying. The first turn is longest in `custody`, about 8,800 characters. The agent's primary contrast is against the cell's reference. `--skills` gives the agent a cell's skill as in the other scripts (`custody_policy`, `inbox_policy`, `outbox_plan`, `nip17_plan`, `buyer_plan`, `mesh_router`; [saturation.md](saturation.md)); these are called once a turn, so run them with `--max-skill-calls 400 --max-skill-calls-per-turn 1`, as family 4's `capacity_plan` is.
 
+### IronClaw
+
+Every agent script takes `--backend ironclaw` with `--base-url` pointing at IronClaw's loopback address and `--ironclaw-version`. The agent under test is then NEAR AI's IronClaw runtime with the model behind its provider, reached through IronClaw's Responses API. The skill flags work unchanged. [ironclaw.md](ironclaw.md) has the protocol, the id, and the setup.
+
 ### Families 2 and 7: long episodes
 
 ```

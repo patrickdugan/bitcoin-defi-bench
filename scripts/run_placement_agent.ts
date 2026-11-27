@@ -12,6 +12,7 @@ import { appendFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileS
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { ChatAgent, type ChatOptions, type Exchange, type Reply } from "../src/agents/chat.ts";
+import { backendOptions, loggedReply } from "../src/agents/backend_args.ts";
 import { withPersona } from "../src/agents/persona.ts";
 import { skillsNamed } from "../src/agents/skills.ts";
 import { readManifest } from "../src/harness/manifest.ts";
@@ -64,6 +65,7 @@ const options: ChatOptions = {
   skills,
   maxSkillCalls: Number(arg("max-skill-calls", "4")),
 };
+Object.assign(options, backendOptions(arg, options));
 const agentId = new ChatAgent(options).id;
 
 // Reply log. Every reply is appended as it arrives. If the run dies of an infrastructure failure,
@@ -77,7 +79,7 @@ if (existsSync(replyLog)) {
   if ((JSON.parse(header!) as { agent: string }).agent !== agentId) throw new Error(`${replyLog} belongs to a different agent; remove it to start over`);
   for (const line of entries) {
     const e = JSON.parse(line) as { request_sha256: string } & Reply;
-    replay.set(e.request_sha256, { content: e.content, reasoning: e.reasoning });
+    replay.set(e.request_sha256, loggedReply(e));
   }
 } else {
   writeFileSync(replyLog, `${JSON.stringify({ agent: agentId })}\n`);

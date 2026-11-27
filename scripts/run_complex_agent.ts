@@ -18,6 +18,7 @@ import { appendFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileS
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { ChatAgent, type ChatOptions, type Exchange, type Reply } from "../src/agents/chat.ts";
+import { backendOptions, loggedReply } from "../src/agents/backend_args.ts";
 import { skillsNamed } from "../src/agents/skills.ts";
 import { Gate, TrmComplex, type ComplexRecord, type GateJson } from "../src/agents/complex.ts";
 import { loadPackage, packageFileFor } from "../src/agents/complex/packages.ts";
@@ -87,6 +88,7 @@ const pkg = loadPackage(pkgFile);
 const gateFile = arg("gate", pkgFile);
 const gate = new Gate(JSON.parse(readFileSync(join(root, "src", "agents", "complex", "gates", `${gateFile}.json`), "utf8")) as GateJson);
 const complexName = `${arg("name")}-trm-complex`;
+Object.assign(options, backendOptions(arg, options));
 const complexId = new TrmComplex({ name: complexName, proposer: new ChatAgent(options), pkg, gate }).id;
 
 const replyLog = join(out, `${name}.replies.jsonl`);
@@ -96,7 +98,7 @@ if (existsSync(replyLog)) {
   if ((JSON.parse(header!) as { agent: string }).agent !== complexId) throw new Error(`${replyLog} belongs to a different agent; remove it to start over`);
   for (const line of entries) {
     const e = JSON.parse(line) as { request_sha256: string } & Reply;
-    replay.set(e.request_sha256, { content: e.content, reasoning: e.reasoning });
+    replay.set(e.request_sha256, loggedReply(e));
   }
 } else {
   writeFileSync(replyLog, `${JSON.stringify({ agent: complexId })}\n`);

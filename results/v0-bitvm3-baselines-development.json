@@ -4,7 +4,7 @@
  "manifest_sha256": "b3011f2ce0014d0151271ee0d5b31b08991d2c84d5291363a64ba413e4e82571",
  "prereg_sha256": "6774244ff727f1de6c7264ff7d6ed8dcc716feb58ab705fcb87ee90941ab7f5e",
  "spiral_commit": "9824c30ad402cc9bca768eca27d176e0e8788db5",
- "source_sha256": "b593b798199f19adfa5a3e2383162b6af87477b15f11ab2320f39f8d1858b52f",
+ "source_sha256": "8b44b0a3cd1be82026788b6adad22dfa028973bcc1fef364aeff828fe822d3f5",
  "node": "v24.19.0",
  "seeds": [
   0,

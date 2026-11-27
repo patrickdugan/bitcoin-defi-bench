@@ -15,6 +15,7 @@ import { appendFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileS
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { ChatAgent, type ChatOptions, type Exchange, type Reply } from "../src/agents/chat.ts";
+import { backendOptions, loggedReply } from "../src/agents/backend_args.ts";
 import { skillsNamed } from "../src/agents/skills.ts";
 import { readManifest } from "../src/harness/manifest.ts";
 import { executeRun, type SeedBlock } from "../src/harness/run.ts";
@@ -66,6 +67,7 @@ const options: ChatOptions = {
   maxSkillCalls: Number(arg("max-skill-calls", "100")),
   ...(contextTurns > 0 ? { contextTurns } : {}),
 };
+Object.assign(options, backendOptions(arg, options));
 const agentId = new ChatAgent(options).id;
 
 const replyLog = join(out, `${name}.replies.jsonl`);
@@ -75,7 +77,7 @@ if (existsSync(replyLog)) {
   if ((JSON.parse(header!) as { agent: string }).agent !== agentId) throw new Error(`${replyLog} belongs to a different agent; remove it to start over`);
   for (const line of entries) {
     const e = JSON.parse(line) as { request_sha256: string } & Reply;
-    replay.set(e.request_sha256, { content: e.content, reasoning: e.reasoning });
+    replay.set(e.request_sha256, loggedReply(e));
   }
 } else {
   writeFileSync(replyLog, `${JSON.stringify({ agent: agentId })}\n`);
@@ -105,7 +107,7 @@ const record = await executeRun({
   notes: () => [
     ...(note !== "" ? [note] : []),
     ...(skills.length ? [`The agent carried the skills ${skills.map((s) => s.name).join(", ")}, each bound into its identifier; skill calls are capped at ${options.maxSkillCalls} per episode and cost no harness budget.`] : []),
-    ...(contextTurns > 0 ? [`Each request carried the system prompt, the last ${contextTurns} turns, and the current turn.`] : []),
+    ...(options.contextTurns !== undefined ? [`Each request carried the system prompt, the last ${contextTurns} turns, and the current turn.`] : []),
     ...(agent.counts.replayed > 0 ? [`${agent.counts.replayed} model replies were replayed from the reply log of an earlier attempt of this run; ${agent.counts.served} came from the server in this invocation. Every episode and every baseline was executed again.`] : []),
   ],
   progress: (message) => console.error(message),

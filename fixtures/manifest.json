@@ -13,6 +13,7 @@
   "config": {
     "config/bitvm3.json": "b2470474c392eda81b4c151f6831976f3d20adb3576bc2188e56a8a090c17ff8",
     "config/bonding.json": "92d1759da820c44d9ff091be20d8a8deb5b2c832dfbda0af124a032f008bdc40",
+    "config/cashu.json": "e24294d46d89de07c4efe9f3492a620fb29bfd17a9c8be9c1149379582a2f2fa",
     "config/dlc.json": "ecdb43d159baf0c2b951384ecfabcf5f9cb59c612463c29ed271ab3f8b3f1cde",
     "config/netting.json": "26936a6c7a9a89762a2e28e0152de22b81afb7731de497af4de7a7f5de5014c5",
     "config/nostr.json": "3e1eb51f130f94d3edea8b16dde26d52bd824fd7f0340f9cb49b1820037eaeaa",
@@ -21,8 +22,8 @@
     "config/protocol.json": "7f0034406b80fecd66de7d42bbca1e646da30c8a36e44afb94e033c75f34dfc4",
     "config/server_sizing.json": "8fdfda5a5d9dd1c064edac326495f0ff5862ac084e67777d1a8b444278713c28",
     "config/settlement_object.json": "32814b2f968678cad1aabbff7b139df7e21065556eadd0ebc58e3ebd1f1011a5",
-    "config/swap.json": "21f08216ee7ecbef714fc7f61a9ab440d858b36431c69740f211f95988b8f00a",
-    "config/cashu.json": "e24294d46d89de07c4efe9f3492a620fb29bfd17a9c8be9c1149379582a2f2fa"
+    "config/shz.json": "9b7dfad7b9636386b120705ec6a4da3824e1eca302c681b2c6d1b3df1829af18",
+    "config/swap.json": "21f08216ee7ecbef714fc7f61a9ab440d858b36431c69740f211f95988b8f00a"
   },
   "fixtures": [
     {
@@ -8704,6 +8705,846 @@
       "seed": 1031,
       "generator": "settlement-fixture/v0",
       "sha256": "40d50a39599d63a1e9ad1c71f0dc1d2ba122826d782f9b8f8e950c38245d0f0f"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-0000.json",
+      "family": "shz",
+      "seed": 0,
+      "generator": "shz-fixture/v0",
+      "sha256": "0b1ffe27d7b8600e86c1f6a3946b2dec551cd2c231f92d18e157b3b38eb52816"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-0001.json",
+      "family": "shz",
+      "seed": 1,
+      "generator": "shz-fixture/v0",
+      "sha256": "a191b08a5f3b1941e38ef8973877092a3be92bd54e4d00ebbeac20fb521fc599"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-0002.json",
+      "family": "shz",
+      "seed": 2,
+      "generator": "shz-fixture/v0",
+      "sha256": "260b5861eeb96dd41c0dadaf021fbf0e961a74923d1c52de60ad2d66665be656"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-0003.json",
+      "family": "shz",
+      "seed": 3,
+      "generator": "shz-fixture/v0",
+      "sha256": "848315bceb67d0570ec180d1ecb640f7686f36c04681f26c7803e9f40ea22498"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-0004.json",
+      "family": "shz",
+      "seed": 4,
+      "generator": "shz-fixture/v0",
+      "sha256": "dd62579dec2ab43a352281b26089baa65f1f076780617217672e90c5c10c3b43"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-0005.json",
+      "family": "shz",
+      "seed": 5,
+      "generator": "shz-fixture/v0",
+      "sha256": "9be3974e3bf60832bb7da44e5b33fa473d441eaf62c6fc5a4fa25ac9a0cb99e7"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-0006.json",
+      "family": "shz",
+      "seed": 6,
+      "generator": "shz-fixture/v0",
+      "sha256": "ae5f11ced808379f691ed0befedd61f599e449396ef19620f569e0c7221c887a"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-0007.json",
+      "family": "shz",
+      "seed": 7,
+      "generator": "shz-fixture/v0",
+      "sha256": "a1e43529c503f9febad57a78f0207bf5d306306d86c2d4c624f906fbebafb3bc"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1000.json",
+      "family": "shz",
+      "seed": 1000,
+      "generator": "shz-fixture/v0",
+      "sha256": "3e9e59843b2893ebc8b35218429318164c2719e902277ab0b358f5138b6ae72c"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1001.json",
+      "family": "shz",
+      "seed": 1001,
+      "generator": "shz-fixture/v0",
+      "sha256": "2efe283c29fc49e6c02909d381c0d086978769847b803986af593e1ee94d5967"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1002.json",
+      "family": "shz",
+      "seed": 1002,
+      "generator": "shz-fixture/v0",
+      "sha256": "5f8b283c40b0b7443843f198eff487668d3583d7a1f6d9b7dfc449d9c915a898"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1003.json",
+      "family": "shz",
+      "seed": 1003,
+      "generator": "shz-fixture/v0",
+      "sha256": "0432dfe6fde6ef345cb66e60f1b43b46f392a1907a747657b3fb8b2899c3c914"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1004.json",
+      "family": "shz",
+      "seed": 1004,
+      "generator": "shz-fixture/v0",
+      "sha256": "327f9999703dd28c8f360faef79e2f5197a1a0145b70e929e38f43ee0430f672"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1005.json",
+      "family": "shz",
+      "seed": 1005,
+      "generator": "shz-fixture/v0",
+      "sha256": "c89de382023426bcfd1a36456b5c24e32ae92db3fcdf113fb084c57214155cb7"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1006.json",
+      "family": "shz",
+      "seed": 1006,
+      "generator": "shz-fixture/v0",
+      "sha256": "8620b2d9f753e1d9b98e196a5952663e9840230367e4e6f081e5f5a3cf227ff2"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1007.json",
+      "family": "shz",
+      "seed": 1007,
+      "generator": "shz-fixture/v0",
+      "sha256": "570e031b88d182bfbd9f5968a350bb2c89b5f4984d142b66fc7bddb1233bf959"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1008.json",
+      "family": "shz",
+      "seed": 1008,
+      "generator": "shz-fixture/v0",
+      "sha256": "50aac6aa93a2d4dc0c4929261432806815c601e0a94abd710047cae7ce95276a"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1009.json",
+      "family": "shz",
+      "seed": 1009,
+      "generator": "shz-fixture/v0",
+      "sha256": "35716da15efcd60798b651fe7475408110c0a89228ed813441ea344f26fce532"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1010.json",
+      "family": "shz",
+      "seed": 1010,
+      "generator": "shz-fixture/v0",
+      "sha256": "9d87caca95ad29e3dd591ea1af838cc8392c16110deed8e3bf27e07a620cfad3"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1011.json",
+      "family": "shz",
+      "seed": 1011,
+      "generator": "shz-fixture/v0",
+      "sha256": "bc7fa8b64b7cc85a81cd6d1b795f3bca4fc5cdd97c8f82a7220f6962cda20b3f"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1012.json",
+      "family": "shz",
+      "seed": 1012,
+      "generator": "shz-fixture/v0",
+      "sha256": "f9a602544534716ed82efac33048dc9f9bbcbf126ac869ca5b1507617f2352da"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1013.json",
+      "family": "shz",
+      "seed": 1013,
+      "generator": "shz-fixture/v0",
+      "sha256": "cefc85fb7788bfa3332ccb14f7ac138409b03599774830fd243e1ef0ed398362"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1014.json",
+      "family": "shz",
+      "seed": 1014,
+      "generator": "shz-fixture/v0",
+      "sha256": "e8a33558fc2347f20ad699d9618e19ec75fd2efb1443c968034e52a397ba2079"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1015.json",
+      "family": "shz",
+      "seed": 1015,
+      "generator": "shz-fixture/v0",
+      "sha256": "1c61f1eed0cb988d472d78df9fb53294153872d6d3a1c236f6f3d0f89dfbc986"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1016.json",
+      "family": "shz",
+      "seed": 1016,
+      "generator": "shz-fixture/v0",
+      "sha256": "3c01f66360a1c2deb65b048bb1579edf2d1c5128bc660eaf89e4bac1310f71cf"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1017.json",
+      "family": "shz",
+      "seed": 1017,
+      "generator": "shz-fixture/v0",
+      "sha256": "bc57a467d185119916cd940b2860670577b87d1c93753571628901186a534d59"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1018.json",
+      "family": "shz",
+      "seed": 1018,
+      "generator": "shz-fixture/v0",
+      "sha256": "c6647b906ca516cc84cfb6625518d3eb126ca603d5810552126cbcdebc41f31f"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1019.json",
+      "family": "shz",
+      "seed": 1019,
+      "generator": "shz-fixture/v0",
+      "sha256": "a6b90ee26623f6e2bb21024f4181340dd07daf29eefb7aac35e866cc6c144760"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1020.json",
+      "family": "shz",
+      "seed": 1020,
+      "generator": "shz-fixture/v0",
+      "sha256": "7b3ebf05da01ae7fb749aeced26523c01a36a8d060e97de394e7027f7624bace"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1021.json",
+      "family": "shz",
+      "seed": 1021,
+      "generator": "shz-fixture/v0",
+      "sha256": "de1a8485f9d56d8585b64add5fca62c953ee655648c78102481afc09859d492f"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1022.json",
+      "family": "shz",
+      "seed": 1022,
+      "generator": "shz-fixture/v0",
+      "sha256": "a0283f907245aefaf7299abb18c04ff581f0bd7e4eb50a7e5405829bc9552513"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1023.json",
+      "family": "shz",
+      "seed": 1023,
+      "generator": "shz-fixture/v0",
+      "sha256": "fdf3772d37eea5ca668fccd0f98242f8b67f7abede29ca1dfda3de87612212a8"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1024.json",
+      "family": "shz",
+      "seed": 1024,
+      "generator": "shz-fixture/v0",
+      "sha256": "50c77c5cc99063284bbf053802715be9f7a4c93d352ea7d03c6b9ce62ecf4238"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1025.json",
+      "family": "shz",
+      "seed": 1025,
+      "generator": "shz-fixture/v0",
+      "sha256": "68bc3852f6a7e0423a027b8a0d331a073cd5691f4694a9218f62ab35c937dc81"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1026.json",
+      "family": "shz",
+      "seed": 1026,
+      "generator": "shz-fixture/v0",
+      "sha256": "7e7fc956d6e2c5ca7b51caec3d9b3343f26e811344ba46c2d00d43c71c0335ea"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1027.json",
+      "family": "shz",
+      "seed": 1027,
+      "generator": "shz-fixture/v0",
+      "sha256": "9d4f0f1ae292324b623e53d7cfc25a51d50178f0c85acc9288cb8c5cafd459f6"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1028.json",
+      "family": "shz",
+      "seed": 1028,
+      "generator": "shz-fixture/v0",
+      "sha256": "36c1f8e44547136a83d45228a3cc7feb761736cf815e1cff2adb5dceb1035ab3"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1029.json",
+      "family": "shz",
+      "seed": 1029,
+      "generator": "shz-fixture/v0",
+      "sha256": "5d5ef85730007d2839954ca1a6966e560b08d7a0f6503e9a57aa27732f3b48b7"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1030.json",
+      "family": "shz",
+      "seed": 1030,
+      "generator": "shz-fixture/v0",
+      "sha256": "c2cd069afcf2914173b4066094b2e5dff42a227edac04a56af999e446d53d52a"
+    },
+    {
+      "path": "fixtures/shz/bad_marks/seed-1031.json",
+      "family": "shz",
+      "seed": 1031,
+      "generator": "shz-fixture/v0",
+      "sha256": "d847dd738e2a550178b176086bce068e2a20dde4c90935d2f5fb025e0e4a52c8"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-0000.json",
+      "family": "shz",
+      "seed": 0,
+      "generator": "shz-fixture/v0",
+      "sha256": "311c296216eb518662c465b205e5a419053b8a489c0636667f03a9eb27683e00"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-0001.json",
+      "family": "shz",
+      "seed": 1,
+      "generator": "shz-fixture/v0",
+      "sha256": "6ada91653428ed6d0d2299764f2d7556aa745a0c55d654eb9639e2aaa8e98f10"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-0002.json",
+      "family": "shz",
+      "seed": 2,
+      "generator": "shz-fixture/v0",
+      "sha256": "ec202965a5819e36f27faf0dd14af94571388e8f224a1b56c9ac3f355c719969"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-0003.json",
+      "family": "shz",
+      "seed": 3,
+      "generator": "shz-fixture/v0",
+      "sha256": "b8ada27d26921427678f14c339cbc07396bb94d696ae3eac885920aeb8406686"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-0004.json",
+      "family": "shz",
+      "seed": 4,
+      "generator": "shz-fixture/v0",
+      "sha256": "1d4ce03319e87341767496ab54a0996d999bbf78aad77d44e512b319565976ef"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-0005.json",
+      "family": "shz",
+      "seed": 5,
+      "generator": "shz-fixture/v0",
+      "sha256": "0d22bb61f40c57b3a5b799bb584fb7ee4a89e7aa267b4a6fa0897939cc678a50"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-0006.json",
+      "family": "shz",
+      "seed": 6,
+      "generator": "shz-fixture/v0",
+      "sha256": "c08b0755595738c3e143beb799839e2ac95b072364aa40530f913343a76b9fec"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-0007.json",
+      "family": "shz",
+      "seed": 7,
+      "generator": "shz-fixture/v0",
+      "sha256": "52ba43c58638ce3f810ed9df72985917457d96b09154064cdbdf67435d7d927d"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1000.json",
+      "family": "shz",
+      "seed": 1000,
+      "generator": "shz-fixture/v0",
+      "sha256": "ae14d90a29df9e66aec7d3f28e5dd55d27e3ad6b53c3c2685b9bd898b13a43ab"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1001.json",
+      "family": "shz",
+      "seed": 1001,
+      "generator": "shz-fixture/v0",
+      "sha256": "66776dad04c86edbaedc20bc77b98b2fec67b722103d40143dcec3d085d324a9"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1002.json",
+      "family": "shz",
+      "seed": 1002,
+      "generator": "shz-fixture/v0",
+      "sha256": "6c5d1af9401a0f957882fe64191f135f0165514db8c0bdf0d6ee92260c28e6a5"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1003.json",
+      "family": "shz",
+      "seed": 1003,
+      "generator": "shz-fixture/v0",
+      "sha256": "55e462f0b5ca41f73e9f34fd45102193744dee9dd15682256deb20db95f1f4f6"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1004.json",
+      "family": "shz",
+      "seed": 1004,
+      "generator": "shz-fixture/v0",
+      "sha256": "f2041bc2337a9b609c5aa79d6c48e412d94c7218953b001f49a611ac5bc8262c"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1005.json",
+      "family": "shz",
+      "seed": 1005,
+      "generator": "shz-fixture/v0",
+      "sha256": "8f202dccba08ec748e56d987868b2b7cb1b37332a4f2e4f0ef2546a5f17c7b79"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1006.json",
+      "family": "shz",
+      "seed": 1006,
+      "generator": "shz-fixture/v0",
+      "sha256": "50c2360402100ecb78e9893cc32a7a55334436595f154c461f942a887ec376f9"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1007.json",
+      "family": "shz",
+      "seed": 1007,
+      "generator": "shz-fixture/v0",
+      "sha256": "16ff12ee3229e3e2cd8188bad7358d49869eecb5762268a9bd3b6a6b2dcb9879"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1008.json",
+      "family": "shz",
+      "seed": 1008,
+      "generator": "shz-fixture/v0",
+      "sha256": "08795c6da6af8e03d0e142d6a4e1d0f27c75a48471515ae1f6f0d04f05f3c0e5"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1009.json",
+      "family": "shz",
+      "seed": 1009,
+      "generator": "shz-fixture/v0",
+      "sha256": "75677665b325ecfcae197963740fb79282730fa4f7e3da17016493fabfa612a5"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1010.json",
+      "family": "shz",
+      "seed": 1010,
+      "generator": "shz-fixture/v0",
+      "sha256": "ba125f5c974bbe29dc921f7171ba35066815f16561c4a3a3f55f37a4a86dc48a"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1011.json",
+      "family": "shz",
+      "seed": 1011,
+      "generator": "shz-fixture/v0",
+      "sha256": "620ed7f1627a2e05d2942cb28eb7ff7959e6c586c3c702536431081cb0cd4b79"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1012.json",
+      "family": "shz",
+      "seed": 1012,
+      "generator": "shz-fixture/v0",
+      "sha256": "65703797380ec8da274a011e4b993ab99bea81f1fe67b0568ef4556b25120d04"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1013.json",
+      "family": "shz",
+      "seed": 1013,
+      "generator": "shz-fixture/v0",
+      "sha256": "331884bbac6482df18751ae9886f6d0c4b788df52cdb20360ef5d3e901e8c8ef"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1014.json",
+      "family": "shz",
+      "seed": 1014,
+      "generator": "shz-fixture/v0",
+      "sha256": "e5ebc4270acfd9d7bc8ade56e0c12007aac5f0c57bd1c1d91828fdfe46573abb"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1015.json",
+      "family": "shz",
+      "seed": 1015,
+      "generator": "shz-fixture/v0",
+      "sha256": "1ecaab7e97e01139dbe44286b8cbdd855e49762cab9ae1712254af59d3cf1eb3"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1016.json",
+      "family": "shz",
+      "seed": 1016,
+      "generator": "shz-fixture/v0",
+      "sha256": "bf98e3bd5fdeee0187b4d2f9a5316828c8d4f8a269bb981027ad40f5e8a71552"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1017.json",
+      "family": "shz",
+      "seed": 1017,
+      "generator": "shz-fixture/v0",
+      "sha256": "39e683dbe1015d8752a2482d7c8816c420ab92f9b57809cd7498f1cbbd54c3c3"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1018.json",
+      "family": "shz",
+      "seed": 1018,
+      "generator": "shz-fixture/v0",
+      "sha256": "1e2ba92f6f06f230ef0ea65641badccacc95128963a1b8ec9a16657941a7975f"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1019.json",
+      "family": "shz",
+      "seed": 1019,
+      "generator": "shz-fixture/v0",
+      "sha256": "f00ce9e21dd962b4fd535be2ef9d5035a2df66da583c6ec63c1b991b477f7082"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1020.json",
+      "family": "shz",
+      "seed": 1020,
+      "generator": "shz-fixture/v0",
+      "sha256": "354ea2a1da457c4ba930a8b2f7fbb9e601c3e16fbe0b764a2c94b33eb14c60df"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1021.json",
+      "family": "shz",
+      "seed": 1021,
+      "generator": "shz-fixture/v0",
+      "sha256": "4ad584a2287b21cd19419da8635fe551599964079369a309085b6213243eee70"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1022.json",
+      "family": "shz",
+      "seed": 1022,
+      "generator": "shz-fixture/v0",
+      "sha256": "a37b4a3f77ae0b313ded1a2f9c3522672516bd18851f17f81f155d8a8aab97e0"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1023.json",
+      "family": "shz",
+      "seed": 1023,
+      "generator": "shz-fixture/v0",
+      "sha256": "f9869c0c0917a1d11ec3ea8657599a10d50e1091eef371a75c13fc7e0bf85fc8"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1024.json",
+      "family": "shz",
+      "seed": 1024,
+      "generator": "shz-fixture/v0",
+      "sha256": "6d25f9445b86a156c04c2f4571aa48ae778e80078d14ddfb9b74b906505e2069"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1025.json",
+      "family": "shz",
+      "seed": 1025,
+      "generator": "shz-fixture/v0",
+      "sha256": "0dd60d66d395572a9ab0c56b268babb4b75777182e46adc03fc25b98d8dffc28"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1026.json",
+      "family": "shz",
+      "seed": 1026,
+      "generator": "shz-fixture/v0",
+      "sha256": "98f09518ace88f04a8e0999b65823cb6c724616c54365d6400a79a2a3bcf2690"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1027.json",
+      "family": "shz",
+      "seed": 1027,
+      "generator": "shz-fixture/v0",
+      "sha256": "981bb3b38c406da7cf0f4940f3b5d6dab87ff362eb164582d1b09adb300e5a1e"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1028.json",
+      "family": "shz",
+      "seed": 1028,
+      "generator": "shz-fixture/v0",
+      "sha256": "1c1efece6f30a0865a7b348fcd1c43e49f288e0c2b2ad9570ecb32ce157d9b78"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1029.json",
+      "family": "shz",
+      "seed": 1029,
+      "generator": "shz-fixture/v0",
+      "sha256": "59b9867050e6d40f66db2f6b5128f37a49a81739b684de094d6c7a5a66e22cb2"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1030.json",
+      "family": "shz",
+      "seed": 1030,
+      "generator": "shz-fixture/v0",
+      "sha256": "e1672a55b4609be21dbff6efab7747af9c9f521f927c86a83c8dfeac88129c6c"
+    },
+    {
+      "path": "fixtures/shz/calm/seed-1031.json",
+      "family": "shz",
+      "seed": 1031,
+      "generator": "shz-fixture/v0",
+      "sha256": "38ec28de446c54fbd25e07d7f61fd0f0b20d6cabf3c6ff9d327304bd8a45bf90"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-0000.json",
+      "family": "shz",
+      "seed": 0,
+      "generator": "shz-fixture/v0",
+      "sha256": "ce09d9719e172496d7a2b674b45a6dedbbfde03106c9c3f7fb6d703e11d5f4c8"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-0001.json",
+      "family": "shz",
+      "seed": 1,
+      "generator": "shz-fixture/v0",
+      "sha256": "b67a42a580ba324771559ff9947d37ed2c41367867991f5e98b4c6c27c9163a3"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-0002.json",
+      "family": "shz",
+      "seed": 2,
+      "generator": "shz-fixture/v0",
+      "sha256": "5289ea23eb6f29e0795bb6a3883484b77197f39b5b86b228c7c5d3de3383c696"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-0003.json",
+      "family": "shz",
+      "seed": 3,
+      "generator": "shz-fixture/v0",
+      "sha256": "59e043b143c74c28e6dd1716e778ba302b9bd2bcfdf4e7b96dfc8b7039860da0"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-0004.json",
+      "family": "shz",
+      "seed": 4,
+      "generator": "shz-fixture/v0",
+      "sha256": "11190e68edcc10963a6a137789aec8bbb8d68d9c01405eb7f45b78516d24b2f9"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-0005.json",
+      "family": "shz",
+      "seed": 5,
+      "generator": "shz-fixture/v0",
+      "sha256": "c441635533958031405aa15bf43049cb8e858938a91327cdd00d3aca2975afdf"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-0006.json",
+      "family": "shz",
+      "seed": 6,
+      "generator": "shz-fixture/v0",
+      "sha256": "37bd5b509bc9fb36479837edc455cbcf244eb9482f124fd411ede44fe6e932cb"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-0007.json",
+      "family": "shz",
+      "seed": 7,
+      "generator": "shz-fixture/v0",
+      "sha256": "6fb06b2aa868761495d7f63521a0ed6ef154e289c29a2f13b7732a1c4d7f839c"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1000.json",
+      "family": "shz",
+      "seed": 1000,
+      "generator": "shz-fixture/v0",
+      "sha256": "b07d97cd9b212a05eb2e2c722fb7306d5cf1509f590d97410c1d34ef0786fd68"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1001.json",
+      "family": "shz",
+      "seed": 1001,
+      "generator": "shz-fixture/v0",
+      "sha256": "88a9f67acbdbd8dd544240e31779ee2281bfd31bfdc54844e6fd930301e439e1"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1002.json",
+      "family": "shz",
+      "seed": 1002,
+      "generator": "shz-fixture/v0",
+      "sha256": "06d72d12ee4c0f56bdbf631944d3b3acb94122dd72351b99dec3093779dede57"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1003.json",
+      "family": "shz",
+      "seed": 1003,
+      "generator": "shz-fixture/v0",
+      "sha256": "765fced782dc7a1269781a4b9bfd7402b50dc32967b9c99c42db747315b39527"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1004.json",
+      "family": "shz",
+      "seed": 1004,
+      "generator": "shz-fixture/v0",
+      "sha256": "00180f855e239e52a74e374525c4ac47e75b4ae75bdf5a5db32d06a43dfc16b6"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1005.json",
+      "family": "shz",
+      "seed": 1005,
+      "generator": "shz-fixture/v0",
+      "sha256": "b15c01deced85c37ce117dc7fb20f1ec92ecf6995a706b05eb4f7732518bb7d3"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1006.json",
+      "family": "shz",
+      "seed": 1006,
+      "generator": "shz-fixture/v0",
+      "sha256": "56996fb163fc759b3dbf9e1ebe6ad9ff1a3ca8f2582270a9f62ae1eb546a5009"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1007.json",
+      "family": "shz",
+      "seed": 1007,
+      "generator": "shz-fixture/v0",
+      "sha256": "15e1b74dd67bb2a41fccde77e05097a985807588cdc0ef6a5c76706ad196ba8a"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1008.json",
+      "family": "shz",
+      "seed": 1008,
+      "generator": "shz-fixture/v0",
+      "sha256": "48ada31afd24f55e76568e7db4a7c96735a13cd13c222c4327af2a763f3a2cfd"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1009.json",
+      "family": "shz",
+      "seed": 1009,
+      "generator": "shz-fixture/v0",
+      "sha256": "5c65684f989c127042d9c4aa2eca7ca7843f494d9847b9583d918c71372f00d2"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1010.json",
+      "family": "shz",
+      "seed": 1010,
+      "generator": "shz-fixture/v0",
+      "sha256": "654adc12ede97274e3240797f9f8ef4364041dd94edf9be3ef6c5cb74ad9f57b"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1011.json",
+      "family": "shz",
+      "seed": 1011,
+      "generator": "shz-fixture/v0",
+      "sha256": "6cfc8572f9ff7c6afc5aea17ea0cbea031dccdbfe491d4de80bbc16c35fa25a7"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1012.json",
+      "family": "shz",
+      "seed": 1012,
+      "generator": "shz-fixture/v0",
+      "sha256": "2b95d0d574d604bb90a36dd6f12fda0cbd6749ff14a052c4640f28fad6fd98ca"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1013.json",
+      "family": "shz",
+      "seed": 1013,
+      "generator": "shz-fixture/v0",
+      "sha256": "b6fc4b8d3ec285476fd3a5f557fd4f708f0e774a1c93e9c4d56185b3b4497e16"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1014.json",
+      "family": "shz",
+      "seed": 1014,
+      "generator": "shz-fixture/v0",
+      "sha256": "19834f0c9deb6c273f8b4485782c1f18c1f971d767e47e5edcdbcc69c38640b5"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1015.json",
+      "family": "shz",
+      "seed": 1015,
+      "generator": "shz-fixture/v0",
+      "sha256": "facae01e83d1cceab5b20e8ce2003f8a0ab7cd27303d7e434b43777a6f99975e"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1016.json",
+      "family": "shz",
+      "seed": 1016,
+      "generator": "shz-fixture/v0",
+      "sha256": "30b2ea7f3ba44e911f20fdcdedf8816f50a356a08c5e5d70ca5d1626668b21d3"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1017.json",
+      "family": "shz",
+      "seed": 1017,
+      "generator": "shz-fixture/v0",
+      "sha256": "47d8a9edc5d7a2c20dfba8a2ad0013ac63453bb426533c99ea036c042eac231e"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1018.json",
+      "family": "shz",
+      "seed": 1018,
+      "generator": "shz-fixture/v0",
+      "sha256": "502f1ada3cab2c22c7e860f3b47e6654800f5b02f429d53f69d9c1210e6615cc"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1019.json",
+      "family": "shz",
+      "seed": 1019,
+      "generator": "shz-fixture/v0",
+      "sha256": "e984e57bf2e384d892fcf8b303b3f1c85e066e6605902f8b679402575e11e2a4"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1020.json",
+      "family": "shz",
+      "seed": 1020,
+      "generator": "shz-fixture/v0",
+      "sha256": "3bcaa9274f884a009db49ec57ad978b4de7de9588f1b972dc919de0becfb2905"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1021.json",
+      "family": "shz",
+      "seed": 1021,
+      "generator": "shz-fixture/v0",
+      "sha256": "dbe25ce81ce531700ffe4dd13ab032db3f14b03a0b96ce2d56979ab8e5b14ad4"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1022.json",
+      "family": "shz",
+      "seed": 1022,
+      "generator": "shz-fixture/v0",
+      "sha256": "84f67db3a57b8cfb78f8b45d4fae4eecfeaf2af6b58fb4971f8259f8e16c3aba"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1023.json",
+      "family": "shz",
+      "seed": 1023,
+      "generator": "shz-fixture/v0",
+      "sha256": "1cba660c062e90eee9adb610d2b9400bdcaf1efdc38b92928299b21f7efb4370"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1024.json",
+      "family": "shz",
+      "seed": 1024,
+      "generator": "shz-fixture/v0",
+      "sha256": "8529193a2c9b8f6d2027992c03f0e364e4cf59363db581014913de6a86f76276"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1025.json",
+      "family": "shz",
+      "seed": 1025,
+      "generator": "shz-fixture/v0",
+      "sha256": "d219dc8de3d0ecf9c6204a8f97bddfc4d824e43444631503916ae86054021bf8"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1026.json",
+      "family": "shz",
+      "seed": 1026,
+      "generator": "shz-fixture/v0",
+      "sha256": "cbfb4bf77c14b32b3e16c57fc1c7d271b2aebd7a3675bde25e8ceefe61786246"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1027.json",
+      "family": "shz",
+      "seed": 1027,
+      "generator": "shz-fixture/v0",
+      "sha256": "c6556232e7292538f39d961d523dafb8381ff1c1ef3dcce82d8847e31ee21140"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1028.json",
+      "family": "shz",
+      "seed": 1028,
+      "generator": "shz-fixture/v0",
+      "sha256": "23fdfcf53d96253d96501eb9c43a1c350fbce23976b64a6d2e4d96f47b8f529e"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1029.json",
+      "family": "shz",
+      "seed": 1029,
+      "generator": "shz-fixture/v0",
+      "sha256": "1da2be227d37ac7ca4f2addf1d8c6575e0ea4783d41da7cc940004b40f013ddc"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1030.json",
+      "family": "shz",
+      "seed": 1030,
+      "generator": "shz-fixture/v0",
+      "sha256": "8291f9471a27be46cdfb935f66c26e383888fdc1b62eee4ca0571fe4f8fbe7a3"
+    },
+    {
+      "path": "fixtures/shz/volatile/seed-1031.json",
+      "family": "shz",
+      "seed": 1031,
+      "generator": "shz-fixture/v0",
+      "sha256": "3da89f538ae46df1bf0377d4f8673eedf55fc8b97cead4f9274ee118ef07be12"
     },
     {
       "path": "fixtures/swap/calm/seed-0000.json",

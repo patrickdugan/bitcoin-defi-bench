@@ -1,0 +1,71 @@
+{
+  "description": "Family 13 (docs/tasks.md section 16): a holder of sats, a Lightning node operator, hedges the dollar value of its balance with a short inverse perpetual on the SatsHedgeZero venue for 24 steps of four hours. It posts margin over Lightning, chooses the free or the paid latency tier for each take, and must refuse to trade on a mark packet that fails the federation's policy. Every number below is a bench decision unless provenance says otherwise.",
+  "steps": 24,
+  "step_ms": 14400000,
+  "origin_ms": 1800000000000,
+  "receive_delay_ms": 206,
+  "slots_per_step": 3,
+  "slot_ms": 200,
+  "start_price_usd": [80000, 120000],
+  "target_usd": [4000, 16000],
+  "target_step_usd": 800,
+  "full_hedge_lots": 8,
+  "target_lots": [4, 10],
+  "max_lots": 12,
+  "margin_unit_divisor": 16,
+  "max_margin_units": 24,
+  "max_leverage": 10,
+  "maintenance_bps": 500,
+  "liquidation_discount_bps": 200,
+  "ladder": { "first_offset_bps": 15, "step_bps": 10, "levels": 4, "lots_per_level": 4 },
+  "tiers": {
+    "standard": { "taker_ppm": 0, "delay_ms": 200 },
+    "premium": { "taker_ppm": 200, "delay_ms": 0 }
+  },
+  "lightning": { "base_fee_msat": 1000, "fee_ppm": 100 },
+  "capital_ppm_per_step": 46,
+  "federation": {
+    "members": 5,
+    "quorum": 4,
+    "max_packet_age_ms": 1000,
+    "max_source_age_ms": 1000,
+    "max_future_ms": 100,
+    "max_source_skew_ms": 500,
+    "max_dispersion_bps": 50
+  },
+  "lead_move": {
+    "survival": [[0, 1000000], [0.157, 200000], [0.8, 20000], [1.72, 2000], [3.16, 200]],
+    "tail_bps_per_decade": 1.44,
+    "max_bps": 8
+  },
+  "flows": { "probability_ppm": 150000, "two_lot_ppm": 250000 },
+  "packets": { "four_signer_ppm": 200000, "timeout_ppm": 300000, "replay_max_steps": 6 },
+  "cells": {
+    "calm": { "sigma_bps": 50, "jump_ppm": 0, "jump_bps": [0, 0], "jump_up_ppm": 700000, "hold_start_ppm": 0, "hold_steps": [1, 1], "bad_ppm": 0, "bad_deviation_bps": [30, 300] },
+    "volatile": { "sigma_bps": 150, "jump_ppm": 100000, "jump_bps": [400, 1400], "jump_up_ppm": 700000, "hold_start_ppm": 0, "hold_steps": [1, 1], "bad_ppm": 0, "bad_deviation_bps": [30, 300] },
+    "bad_marks": { "sigma_bps": 100, "jump_ppm": 40000, "jump_bps": [300, 900], "jump_up_ppm": 700000, "hold_start_ppm": 100000, "hold_steps": [1, 3], "bad_ppm": 250000, "bad_deviation_bps": [30, 300] }
+  },
+  "budget": { "attempts": 8, "probes": 160 },
+  "provenance": {
+    "venue": "SatsHedgeZero, local clone D:/shz/SatsHedgeZero at b94a22c. Commits below are each file's last commit.",
+    "federation": "given: 5 members, QUORUM 4 BIP340 signatures per packet, MAX_SOURCE_AGE_US 1 s, MAX_SOURCE_SKEW_US 500 ms, dispersion 50 bps (crates/shz-oracle/src/hft_packets.rs dbc42f5; docs/SHZ_HFT_04_ORACLE_FEDERATION.md 0aeb0f0, which says 3 of 5 is not enough for a packet); future-dated tolerance 100 ms (docs/SHZ_HFT_06_ORACLE_RELAY.md 46f8530); max_packet_age_ms: given, 'Freshness max 1 second' (SHZ_HFT_04_ORACLE_FEDERATION.md). The signatures are data (member index and key), not real BIP340 or FROST.",
+    "receive_delay_ms": "given: standard-tier client receive minus boundary, p50 206.4 ms (docs/SHZ_HFT_06_ORACLE_RELAY.md 46f8530, trusted relay bench)",
+    "tiers": "given: Standard taker 0 ppm with a 200 ms feed lag, Premium taker 200 ppm with none (crates/shz-dex/src/routing/tiered.rs 685e5d7, TariffSchedule::default_candidate and the default lags); the Intermediate tier is not offered",
+    "lead_move": "calibrated: the signed price move over the standard tier's 200 ms lag. survival[i] = [x bps, parts per million of steps with |move| > x], twice the latency study's BTC premium gross-saving quantiles for a $1k momentum taker (q0.9 0.157, q0.99 0.80, q0.999 1.72, q0.9999 3.16 bp; research/latency_value/results/analysis_BTC.json afb8bc4 on research/price-of-200ms-20261125), log-linear between points, the last decade's slope beyond, capped at 8 bp; the sign is a fair coin [generator invented]",
+    "ladder": "given: the venue market maker's ladder at mark -/+ (15 + 10 k) bps (ops/venue-mm/mm.py 71b0a5e, plan_quotes defaults); invented: four levels of four lots each (the testnet maker quotes 5 USD a level) and a fresh ladder every step",
+    "max_leverage": "given: leverage_bps from 1,000 to 100,000 (crates/shz-venue/src/core.rs 52c92ae), so initial margin is a tenth of the notional",
+    "maintenance_bps": "given: MAINTENANCE_BPS 500 and the margin ratio of crates/shz-venue/src/risk.rs f785f47 (clamped value over notional in sats at the mark)",
+    "liquidation_discount_bps": "given: MAX_DISCOUNT_BPS 200 and the whole position as the tranche (crates/shz-venue/src/risk.rs f785f47; docs/SHZ_LIQUIDATION_DRILL.md 603e834); invented: the close executes at the full discount at the settlement that finds the breach",
+    "lightning": "given: Spiral's channel defaults, 1,000 msat base and 100 ppm per hop (config/placement.json new_channel_policy); invented: the holder reaches the venue through one routing hop. SHZ's own lanes are direct channels with no routing fee (docs/SHZ_LDK_SETTLEMENT.md 07959f8)",
+    "capital_ppm_per_step": "given as an assumption: 10% a year, the middle of the latency study's Lightning liquidity cost of capital [0.05, 0.1, 0.2] (research/latency_value/results/shz_economics.json 939077c on research/price-of-200ms-20261125); 0.10 x 4 / 8760 = 46 ppm a step",
+    "steps": "invented: four days in steps of four hours",
+    "slots": "given: packets every 200 ms (CADENCE_US, crates/shz-oracle/src/hft_packets.rs dbc42f5); invented: the agent may read the next slot's packet twice a step (refresh), so three slots a step, at the step's mark",
+    "start_price_usd": "invented",
+    "target_usd": "invented: the dollar value to hold, 4,000 to 16,000 USD in steps of 800, eight lots at the start",
+    "target_lots": "invented: Lightning income and payments move the balance by one or two lots at 15% of steps, inside 4 to 10 lots",
+    "margin_unit_divisor": "invented: margin moves in sixteenths of the starting balance, up to 24 of them",
+    "cells": "invented: lognormal steps of sigma_bps; jumps of jump_bps with probability jump_ppm, upward with probability jump_up_ppm; federation HOLD runs (no verified mark for anyone) starting with probability hold_start_ppm; bad packets on the agent's feed with probability bad_ppm at steps with a verified mark",
+    "packets": "invented: a genuine packet has four signers 20% of the time; 30% of HOLD steps have no packet at all (quorum timeout, as SHZ_HFT_06_ORACLE_RELAY.md describes); a replay is of a packet at most six steps old",
+    "budget": "invented: two refreshes and three moves a step for every step, with room to spare"
+  }
+}

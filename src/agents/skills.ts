@@ -23,6 +23,7 @@ import { BitchatRouter } from "../tasks/nostr/mesh.ts";
 import { LARGEST_FIRST, Watcher } from "../tasks/bitvm3/baselines.ts";
 import { Careful, WORKFLOW } from "../tasks/swap/baselines.ts";
 import { Desk, PROOF_GROVE } from "../tasks/cashu/baselines.ts";
+import { HEDGER, Hedger } from "../tasks/shz/baselines.ts";
 import type { Agent } from "../harness/agent.ts";
 import type { Skill } from "./chat.ts";
 
@@ -274,11 +275,20 @@ export const cashuDeskSkill: Skill = bind({
   },
 });
 
+/** Family 13: the next step of `hedger`, the reference, on the SatsHedgeZero venue. */
+export const shzHedgeSkill: Skill = bind({
+  name: "shz_hedge",
+  description: "Computes the next step of a sound hedging procedure for the episode so far (check the packet against the pinned policy and read the next slot when it fails, keep the short at the target on the free tier, keep margin to survive a 20% rise, top up and withdraw in whole units) and returns it as the exact action to send. Call it at every turn. To use it, reply with that action unchanged.",
+  run(_observation: Json, _args: Json, history: readonly Json[]): Json {
+    return replayPolicy(new Hedger("hedger", HEDGER), history);
+  },
+});
+
 /** Skills by the key `--skills` names; a key differs from the skill's name only for a second wording of one skill. */
 export const SKILLS: { [name: string]: Skill } = { min_cost_flow: minCostFlowSkill, failed_pairs: failedPairsSkill, dlc_design: dlcDesignSkill, bond_offer: bondOfferSkill, proof_step: proofStepSkill, schedule: scheduleSkill, schedule_after_proof: scheduleAfterProofSkill,
   bitvm3_watch: bitvm3WatchSkill,
   capacity_plan: capacityPlanSkill, custody_policy: custodyPolicySkill, inbox_policy: inboxPolicySkill, outbox_plan: outboxPlanSkill,
-  nip17_plan: nip17PlanSkill, buyer_plan: buyerPlanSkill, mesh_router: meshRouterSkill, swap_workflow: swapWorkflowSkill, cashu_desk: cashuDeskSkill };
+  nip17_plan: nip17PlanSkill, buyer_plan: buyerPlanSkill, mesh_router: meshRouterSkill, swap_workflow: swapWorkflowSkill, cashu_desk: cashuDeskSkill, shz_hedge: shzHedgeSkill };
 
 export function skillsNamed(names: string): Skill[] {
   return names.split(",").map((n) => n.trim()).filter((n) => n !== "").map((n) => {

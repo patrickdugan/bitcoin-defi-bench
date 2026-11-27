@@ -71,6 +71,7 @@ Rails are the paper's object classes (§2.1), with two classes added on review o
 | Deliver private messages | | | | | | | | | **F9 `private`, run** §10.4 |
 | Buy a service from a counterparty | pays over NWC (NIP-47) | | pays by nutzap (NIP-61) | | | | | | **F9 `counterparty`, run** §10.5 |
 | Swap with a counterparty without trusting it | a submarine swap pays over an HTLC too | | | | | **F11 `calm`, `spiky`, built**, development seeds only §14 | | | the swap is run as BitAgent's DAG v3 workflow (F11) |
+| Keep users' value safe and liquid across ecash and Ark | | **F14 `operator_outage`, built**: refresh or exit the desk's VTXOs through a server outage, development seeds only §17 | **F14 `desk`, `reserve_shortfall`, built**: admit deposits on proof, take tokens on DLEQ and NUT-07, move the float out of a mint whose reserve is short, development seeds only §17 | | | | | | |
 | Deliver when the internet is down | | | | | | | | | **F9 `mesh_outage`, `mesh_partial`, run** §10.6 |
 
 Reading the table:
@@ -83,6 +84,7 @@ Reading the table:
 - **Attributes are reported, never scored.** The tuple fields that liquidity duration cannot price, above all the counterparty set Γ (a channel peer, a co-signing server, a custodial mint or federation, a statechain entity, a BitVM committee) and the exit X, appear beside each column as attributes. A table that let a custodial object win on capital-time without saying it is custodial would be misleading.
 - **The coordination layer is not a rail either.** Nostr relays and the bitchat Bluetooth mesh carry no value. They carry what moves it: the signed request, the invoice, the quote, the payment confirmation, and the key that signs them. F9 poses the operator problems that layer creates. Its native unit is still sats: the stake a key controls, the value of a message delivered before its deadline, and the price of a service. Its five rows are five tasks, reported separately like every other row.
 - **F11 is a contract between parties who do not trust each other.** Two BIP 199 hashed time-locked contracts make a swap with a payout desk atomic: the customer's claim of the payout reveals the preimage that lets the desk take the payment. Its operator problem is the customer's: whether to fund, how deep to wait, what to bid, and when to stop and let the refund run. Every action goes through BitAgent's DAG v3 workflow, so the family also measures whether an agent can drive a deterministic host that admits only allowed moves.
+- **F14 is the ecash holder's side, backed by Ark.** F3's ecash column (§4.8) asks which object to settle in; F14 asks how to run a desk that already holds ecash and VTXOs. Its operator is Proof Grove's: admit a deposit only on a verified proof, take a Cashu token only after its DLEQ and its spent state check out, keep each VTXO alive by a refresh while the Ark server answers or by a unilateral exit when it does not, and move the float out when the mint's published reserve falls below what it owes. The tokens' signatures and DLEQs are real, made with the NUT-00 and NUT-12 core the family tests against the published vectors.
 
 Kept off the scorecard: coalition, covert-channel, and Sybil tasks (by charter; the registry's nullifier property is asserted in tests, not posed as a task); prover throughput as a score (it is a measurement and an input to F7); Liquid, which was reviewed and set aside; any live relay or radio (F9's relays and mesh are in-process simulators); NIP-04 except as the legacy path of F9's private cell; and bitchat's app-specific Nostr envelope, which its whitepaper says is not NIP-17, NIP-44, or NIP-59 compatible (F9 sends NIP-17 over relays and models the mesh's delivery rules, not its ciphers).
 
@@ -1587,3 +1589,183 @@ What the table says:
 - The claimant's side, not built: proving the payment (about 5 GPU hours for M16; 19,702 s for the testnet4 proof, `results/testnet4-bitvm3/prover-result.json`) and claiming before the vault's 144-block reclaim. At those numbers the proof takes about 33 of the reclaim's 144 blocks, so the decision has slack and the cell would have no headroom, and choosing when to prove is family 7's problem. It needs a shared prover queue or a proof that can fail before it earns a cell.
 - Evaluation latency as a random draw per evaluation, between the runs measured on one machine, instead of one figure per cell.
 - The attacks the cells leave out, from BitVMArena's catalog: input labels withheld (T2), which no watcher can answer; a miner censoring the disprove; a desk-presigned disprove that any label holder can broadcast; a claimant bond; and more than one watcher.
+
+## 17. Family 14: a Cashu desk backed by Ark (built; development seeds only)
+
+Added on request on 2026-11-27. The operator is Proof Grove's (Spiral `proof-grove/`, commit `ad235c4`): a local Ark and Cashu proof desk that admits a deposit only on evidence, issues Cashu ecash against it, withdraws Cashu into Ark through a Bark/CDK processor, and plans VTXO refresh and exit. Here the agent runs that desk for 288 blocks and keeps users' value safe and liquid across Cashu and Ark. Ark Cash (Spiral working tree, untracked, 2026-10-08 design note: `paper/ark_cash_design.md`, `model/ark_cash.ts`) supplies the mint's public reserve leaf A_n and the rule that supply moves only when backed. The code is in `src/tasks/cashu/`, the parameters in `config/cashu.json`, and the sources and vectors in `data/cashu/provenance.json`. Family 3's ecash column (§4.8) asks a different question, which object to settle in, and is not duplicated here.
+
+### 17.1 The simulator
+
+An episode is one desk over 288 blocks from a start height between 880,000 and 940,000. The desk holds a float of Cashu at its mint, 1 to 2 million sats, and some VTXOs. Each block, any of three events can arrive.
+
+| Event | What the agent sees | What is hidden |
+|---|---|---|
+| Deposit | the intent (amount, rail, deposit script, beneficiary) and Proof Grove's evidence: kind, outpoint, value, script, block hash and height, confirmations, proof tip, statement and proof hashes | whether the pinned verifier accepts the proof; the active chain's block at the payment's height; what the payment delivers |
+| Token | a Cashu token in payment: proofs with amount, keyset id, secret, C, and the NUT-12 DLEQ (e, s, r) | whether its proofs are already spent |
+| Withdrawal | the amount, a deadline 6 blocks out, and the processor's quote in this block | |
+
+The mint lists one active and one inactive keyset, each with keys 2^0 to 2^20 and a NUT-02 version 1 id. Every 6 blocks (Ark Cash's round) it publishes its reserve leaf A_n and its outstanding liabilities. The Ark server can be offline for a stretch, and the on-chain fee rate walks from block to block.
+
+Deposits come in seven kinds. Each is one of Proof Grove's eight deterministic cases (`proofdesk/demo.py`) or a forged proof, which its verification record shows the pinned verifier refusing [shares invented].
+
+| Kind | Share | What gives it away |
+|---|---:|---|
+| `genuine` (Cashu or Ark rail) | 40% | nothing; it pays |
+| `forged_proof` | 10% | `proof.verify` returns invalid |
+| `operator_report` | 10% | the evidence is the mint's report that it was paid, with no proof; half of these describe a real payment, and nothing visible says which |
+| `wrong_amount` | 10% | the value is 5% to 50% below the intent's amount |
+| `wrong_script` | 10% | the payment's script is not the intent's |
+| `reused_script` | 10% | one payment, two recipients: the intent reuses an earlier intent's script and claims that intent's payment |
+| `reorged` | 10% | `chain.check` reports another block at the payment's height |
+
+A deposit must be decided in its arrival block, so every check is fresh. Proof Grove's stale-observation case maps onto deciding on the submitter's evidence without a fresh check, which the reorganized deposits punish.
+
+Tokens come in five kinds [shares invented]. Every proof is made by `nut.ts` from seeded keys: blinded with a seeded r, signed, given a DLEQ with NUT-12's deterministic nonce, and unblinded.
+
+| Kind | Share | What it is |
+|---|---:|---|
+| `genuine` | 45% | proofs under the active keyset |
+| `inactive_keyset` | 10% | proofs under the inactive keyset, which the mint still redeems (NUT-02) |
+| `forged` | 15% | names the active keyset but is signed with another key; its DLEQ verifies against that key, not the mint's |
+| `unknown_keyset` | 15% | a keyset the mint does not list |
+| `spent` | 15% | genuine, but the payer already redeemed it |
+
+NUT-07 names a proof by Y = hash_to_curve(secret) and reports UNSPENT for a Y the mint has never seen. A state check alone therefore passes a forgery and a token from another keyset. Only the offline DLEQ check against the mint's listed key catches them.
+
+The host executes what it is told and never judges. Its defaults run in every block the agent leaves and after it stops:
+
+- A deposit or token not decided in its block is refused.
+- The outbox dispatches a withdrawal at its deadline, at that block's quote (Proof Grove's durable prepared outbox).
+- The watcher exits a VTXO at the last block its runway allows, bidding twice that block's fee rate (Proof Grove's independent exit watcher; the multiplier is invented).
+- When the mint halts, the float the desk still holds is lost.
+
+### 17.2 Observation and actions
+
+The view holds the block, the fee rate, whether the Ark server answers, the float, the mint's status, keysets and latest report, the desk's stated policy and fee rules, the intents registered so far, the outpoints already claimed, the pending items in full, the results of this block's checks, the VTXOs, and the alerts since the agent last acted.
+
+| Tool | Cost | Effect |
+|---|---|---|
+| `proof.verify {deposit}` | 1 probe | the pinned M16 PAY1 verifier's answer, simulated from the fixture |
+| `chain.check {deposit}` | 1 probe | the desk's own node: the active block at the payment's height, and the tip |
+| `mint.check_state {token}` | 1 probe | NUT-07: SPENT or UNSPENT for each proof's Y |
+| `deposit.admit`, `deposit.refuse {deposit}` | 1 attempt | admitting issues the intent's amount less the desk's fee |
+| `token.accept`, `token.refuse {token}` | 1 attempt | accepting hands over the goods; the mint's swap answer comes back after |
+| `withdrawal.dispatch {withdrawal}` | 1 attempt | pays this block's quote |
+| `ark.refresh {vtxos}` | 1 attempt | only while the server is online; Proof Grove's refresh fee |
+| `ark.exit {vtxos}` | 1 attempt | 765 vB at this block's rate per VTXO; needs more than 24 blocks before expiry |
+| `mint.move_out {amount_sats}` | 1 attempt | moves float into the desk's Ark wallet for 150 sats plus 4,000 ppm |
+| `wait {blocks}` | the blocks waited | stops early at the next alert: an arrival, the server going down or up, the reserve falling below or returning above the outstanding, a halt, a watcher exit, an outbox dispatch |
+| `end` | | stops; the defaults run to the horizon |
+
+A rejected action is the identity on state and costs one attempt. Budgets [invented]: `desk` 48 attempts and 32 probes, `operator_outage` 16 and 4, `reserve_shortfall` 40 and 16. The probes cover the reference's checks (two per deposit, one per token) with room to spare, not every check twice.
+
+### 17.3 Scoring
+
+Value, in sats, is the desk's profit and loss over the horizon:
+
+- An admitted deposit earns what the payment delivers minus the intent's amount less the desk's 0.5% fee: the fee if it pays, the fee less the shortfall on a short payment, and minus the amount less the fee otherwise.
+- An accepted token earns the 2% margin if it is good, and loses the goods' cost, its amount less the margin, if not. A token is good if it is genuine under a listed keyset, unspent, and the mint is running.
+- Every withdrawal, refresh, exit, and move-out fee is subtracted.
+- The float held when the mint halts is subtracted.
+
+Principal that only changes form scores 0: a refreshed VTXO, an exited coin, float moved into Ark. The host's defaults alone score `idle`'s value. That value loses no principal except the float a halting mint takes.
+
+Fees [refresh and exit given or fitted, the rest invented]:
+
+| Fee | Rule |
+|---|---|
+| Refresh | Proof Grove's `refresh_fee` (`proofdesk/ark.py`), ported: 150 sats per request plus the ceiling of Σ amount × ppm / 10^6, the ppm by blocks left to expiry: 2,000 under 73, 4,000 from 73, 8,000 from 145. 150 and 4,000 together reproduce both recorded refreshes exactly. |
+| Exit | 765 vB × the block's rate per VTXO: the recorded exit's 3,180 sats of CPFP and 645-sat claim at the 5 sat/vB of the recovery guide's example. Runway exit_delta + 6 × waves + 6 = 6 + 12 + 6 = 24 blocks, Proof Grove's formula and the demo's exit budget. |
+| Move-out | one melt (recorded at 0 sats) plus one refresh of the new VTXO: 150 + 4,000 ppm, 190 sats on 10,000 as recorded |
+| Withdrawal | the processor's quote: 0 in 70% of blocks, as recorded, else 1,000 to 10,000 ppm |
+
+### 17.4 Cells [invented]
+
+| Cell | Events | Hidden risk |
+|---|---|---|
+| `desk` | 8 deposits, 8 tokens, 4 withdrawals | which deposits pay and which tokens are good |
+| `operator_outage` | 3 VTXOs of 100,000 to 1,000,000 sats expiring 60 to 250 blocks in | with probability 0.8, one outage of 12 to 144 blocks starting 10 to 200 blocks in |
+| `reserve_shortfall` | 10 tokens and the float | with probability 0.8, a public shortfall from a round 2 to 24 rounds in, the reserve at 60% to 95% of the outstanding; then with probability 0.5 the mint halts 6 to 120 blocks later, and otherwise it restores its reserve |
+
+### 17.5 Baselines and gates
+
+All baselines but the oracle decide from the current observation alone (`src/tasks/cashu/baselines.ts`).
+
+| Baseline | Role | What it does |
+|---|---|---|
+| `idle` | floor | Ends at once and leaves everything to the defaults. |
+| `accept_all` | | Admits every deposit and accepts every token unchecked, even after a halt; otherwise `proof_grove`. |
+| `no_dleq` | | `proof_grove`, but trusts the mint's reports: a token passes on NUT-07 state alone, and a mint's report that a deposit was paid counts as evidence. |
+| `late_refresh` | | `proof_grove`, but refreshes at 72 blocks left and exits at 48: the cheapest refresh tier, with a shorter margin against an outage. |
+| `proof_grove` | reference | Proof Grove's `decide()`: refuses an operator report, a reused script, a stale tip, too few confirmations, a wrong script, a wrong amount, and a claimed outpoint; then verifies the proof and checks the chain. Takes a token only as Proof Grove's wallet does (`wallet/client.mjs`): a listed keyset, a key for every amount, every DLEQ valid, the amounts summing, and NUT-07 reporting every proof UNSPENT. While the reserve is below the outstanding, it moves the whole float out and refuses tokens. Dispatches a withdrawal when its quote is within the 0-sat fee limit, else leaves it to the outbox. Refreshes every VTXO with 144 blocks or fewer left while the server is online, and exits at 72 while it is not (`plan_vtxo`'s margins). |
+| `oracle` | ceiling, exact, privileged | Admits exactly the deposits that pay and accepts exactly the good tokens. Dispatches each withdrawal at its cheapest quote. Carries the VTXOs by a dynamic program over blocks and the set not yet refreshed, since refreshes in one block share a base fee, with each unrefreshed VTXO exited at its cheapest block. If the mint halts, it moves the float out once, in the block before. |
+
+`idle` is a safe floor. Under it no VTXO expires, because the watcher exits each one at the last safe block; it pays twice the exit rate for that. It admits and accepts nothing. The one principal it loses is the float when the mint halts, and that is the risk `reserve_shortfall` measures, not harm done by an action. The watcher's doubled exit makes the floor expensive in `operator_outage`, so any refresh captures most of the gain there; the headroom above the reference is what separates policies.
+
+The `cashu_desk` skill returns `proof_grove`'s next action for the current observation. A model that calls it at every turn and sends its result plays `proof_grove` exactly (tested through the chat adapter against a mock server).
+
+Gates:
+
+- K141: `idle` earns exactly the defaults computed from the fixture, and admits and accepts nothing.
+- K142: identity, `oracle` through `act` earns exactly `ceilingOf` computed on the fixture.
+- K143: `oracle` is at least every other policy on every episode.
+- K144: `proof_grove` admits no deposit that fails to pay and accepts no bad token.
+
+### 17.6 The protocol core, and what it reproduces
+
+`src/tasks/cashu/nut.ts` implements NUT-00 hash_to_curve and the blind Diffie-Hellman exchange (blind, sign, unblind, the mint's check), NUT-12 DLEQ proofs with the deterministic nonce, prove and verify on a blind signature and on a proof, NUT-02 version 1 keyset ids, and the NUT-07 Y. Curve arithmetic is family 9's (`src/tasks/nostr/secp256k1.ts`), imported. No dependency besides `node:crypto`.
+
+Its tests reproduce every vector in `data/cashu/nut-vectors.json`, transcribed from `cashubtc/nuts` at commit `95c53296`:
+
+- NUT-00: the three hash_to_curve messages, the two blinded messages B_, and the two blinded signatures C_;
+- NUT-12: hash_e, the deterministic nonce's e and s, the DLEQ on a blind signature, and the DLEQ on a proof, each also failing when tampered;
+- NUT-02: the version 1 keyset id `00456a94ab4e1c46`.
+
+The family's tests also check that every genuine and inactive-keyset fixture proof verifies under the mint's listed key and every forged one does not. The refresh fee port reproduces Proof Grove's own `refresh_fee` test (`tests/test_ark.py`).
+
+### 17.7 Given and invented
+
+- **Given**, from Proof Grove at Spiral `ad235c4`, each file pinned by SHA-256 in `data/cashu/provenance.json`:
+  - the admission rules and their order (`proofdesk/domain.py`), with `min_confirmations` 6 and `max_tip_lag` 12;
+  - the eight deterministic cases (`proofdesk/demo.py`) and the verifier refusing forged proofs (`docs/verification.md`);
+  - the wallet's token checks (`wallet/client.mjs`);
+  - the refresh fee formula (`proofdesk/ark.py`);
+  - the exit runway formula (`proofdesk/exits.py`), its two waves, and the 24-block exit budget (`proofdesk/demo.py`);
+  - the planner margins 144 and 72 (`plan_vtxo`);
+  - the recorded refresh fees, the 0-sat melt, the exit's CPFP and claim fees, and the 0-sat withdrawal fee limit (`docs/*.json`, `docs/cashu-ark-withdrawal.md`).
+- **Given** from Ark Cash (Spiral working tree, untracked, 2026-10-08 design note): the comparator outstanding ≤ A_n, the 6-block round, and keys per power-of-two denomination.
+- **Spec**: the NUTs at `cashubtc/nuts` commit `95c53296`.
+- **Fitted**: the refresh fee's 150-sat base and 4,000 ppm, from the two recorded refreshes; the exit's 765 vB, at the guide's example rate.
+- **Invented**: the fee tiers 2,000 and 8,000 ppm and their thresholds; exit_delta 6 (chosen so the runway equals the demo's 24 blocks); the watcher's 2× bid; the desk fee and token margin; every share, amount, range, and probability in §17.1 and §17.4; the quote path; the fee walk; the budgets; the 250-sat band.
+- **Not read**: `paper/tex/cashu_reserves.tex` on `origin/research/cashu-capital-bound-20261124` (`a77fd823`). The isolated build was refused git access to the Spiral repository, and no checkout of that branch is on disk. No parameter comes from it.
+
+### 17.8 Development results (seeds 0 to 7)
+
+Baselines, in [results/v0-cashu-baselines-development.md](../results/v0-cashu-baselines-development.md). Gates K141 to K144 pass. Means in sats over the eight seeds, with the normalized gain against `idle` and `oracle`:
+
+| Policy | `desk` | `operator_outage` | `reserve_shortfall` |
+|---|---:|---:|---:|
+| `idle` | −632 (0) | −58,523 (0) | −1,221,250 (0) |
+| `accept_all` | −485,129 (−1.00, clipped) | −9,578 (0.89) | −321,598 (0.74) |
+| `no_dleq` | −121,480 (−1.00, clipped) | −9,578 (0.89) | −45,282 (0.96) |
+| `late_refresh` | +6,493 (0.96) | −4,112 (0.99) | −4,640 (1.00) |
+| `proof_grove` | +6,493 (0.96) | −9,578 (0.89) | −4,640 (1.00) |
+| `oracle` | +6,828 (1) | −3,356 (1) | −2,317 (1) |
+
+What the table says:
+
+- **One bad intake costs more than a desk earns in an episode.** Over the eight `desk` seeds, `accept_all` admitted 32 deposits that did not pay and accepted 22 bad tokens. `no_dleq` admitted 3 operator reports that described no payment and accepted 10 tokens the mint's state check passed: forgeries and tokens from keysets the mint does not list. `proof_grove` admitted and accepted nothing bad, with 15.4 checks an episode out of 32.
+- **The reference's headroom in `desk` is what no check can see.** The oracle's 334 sats an episode over `proof_grove` are all fees on operator reports that did describe real payments: 5 of them, 2,675 sats over the eight seeds. Every withdrawal's window held a zero quote, so both sent every withdrawal for nothing.
+- **The fixed margins pay for an outage they cannot foresee.** The server went offline on 6 of the 8 `operator_outage` seeds. Refreshing at 144 blocks paid mostly the 4,000 ppm tier and still met outages that forced exits: 45,260 sats of refresh fees and 31,365 of exit fees in all. Refreshing at 72 paid 26,010 and 6,885. The oracle exited nothing: it refreshed every VTXO in an online block, at the cheapest tier the outage left open.
+- **In `reserve_shortfall` the move-out is the whole score.** The mint halted on 6 of the 8 seeds, and `idle` lost 9.77 million sats of float in all. Every policy that moved the float out when the reserve fell below the outstanding kept it for about 0.4% of it in fees, so the normalized gains bunch near 1. The token checks show in the native contrasts: `proof_grove` beats `no_dleq` by 40,642 sats an episode and `accept_all` by 316,958.
+
+Smoke check of the reference against the ceiling: `proof_grove` sits between `idle` and `oracle` in every cell (tested), at 0.96, 0.89, and 1.00 of the gain.
+
+### 17.9 What remains
+
+- An amendment to freeze the family and fix its contrasts before a confirmatory run.
+- An LLM run: `scripts/run_cashu_agent.ts` is written, bare and with `cashu_desk`, and has not been run.
+- Off-books issuance, Ark Cash's silent dilution: the comparator stays true while honored hidden coupons exceed the reserve, and the first signal is a genuine coupon refused for `reserve_short`. A desk that checks each blinded message against the published issuance log catches it at the edge.
+- Withdrawals and a halting mint in one cell, where dispatching early saves users' value.
+- The recipient's side of a Cashu-to-Ark withdrawal: an arkoor VTXO carries the sender's counterparty risk until it is refreshed or exited.
+- The reserve bounds in `cashu_reserves.tex`, once that file is read.

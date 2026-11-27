@@ -64,6 +64,7 @@ Rails are the paper's object classes (§2.1), with two classes added on review o
 | Net positions toward a target settlement value | links as channels, later cell | | | links as statechain transfers, later cell | | links as on-chain settlement | D′ (UTXO-Ref) as `netting/utxoref_dlc`, specced §7.7 | **F6, run** §7 | |
 | Encode a contract's payouts and size its collateral | | | | | | | **F10, run** §13 (frozen; confirmatory baselines and Bonsai 8B) | | |
 | Prove claims within a budget | | | | | | RAITO gives root_n | | **F7, run** §8 (frozen; confirmatory baselines and Bonsai 8B) | |
+| Guard a vault against false claims inside the dispute window | | | | | | the vault is a set of on-chain UTXOs, each under a presigned BitVM3 graph | | **F12 `watch`, `fee_spike`, `reorg`, built**, development seeds only §15 | |
 | Time funding against fee and demand | | | | | | F8, specced §9 | | | |
 | Protect the key that controls the capital | NWC budget at stake (NIP-47) | | NIP-60 wallet at stake | | | | | | **F9 `custody`, `custody_hot`, run** §10.2 |
 | Post where the audience reads | | | | | | | | | **F9 `publish`, run** §10.3 |
@@ -78,6 +79,7 @@ Reading the table:
 - **F6 is rail-agnostic in v0.** Its settlement links carry abstract costs and capacities. Rail-specific cells come later and take their link costs from the object table: a Lightning link is a channel with a directional balance, a statechain link moves whole coins, an on-chain link is a ghost link at on-chain cost.
 - **F10 is the DLC as specified, not a settlement link.** Its operator problem is the one every numeric DLC poses at setup: how coarsely to round the payout curve, which sets how many adaptor signatures both parties make and exchange, and how much collateral to lock, which sets how much of the curve the contract can pay. UTXO-Ref's variant, class D′, enters F6 as a cell instead, because there the decision is whether to settle or roll.
 - **The proof layer is not a rail.** Shinigami and RAITO (Bitcoin Script and Bitcoin consensus in Cairo, proven with Stwo) are the verifier the paper's §4.4 says Bitcoin lacks. F7 is the operator's problem that creates: what to prove and when, against a measured prover cost.
+- **F12 is the proof layer seen from the vault.** A BitVM3 graph pays a claim six blocks after it confirms unless someone spends the claim's output with the reject label of a garbled verifier, and that label comes only from evaluating a 785-million-gate circuit, which took 4 minutes to an hour on the machines measured. Its operator problem is the watcher's: which claims to evaluate on one machine, given a cheap check that catches only some fraud, and what to bid so that the disprove confirms before the payout.
 - **Attributes are reported, never scored.** The tuple fields that liquidity duration cannot price, above all the counterparty set Γ (a channel peer, a co-signing server, a custodial mint or federation, a statechain entity, a BitVM committee) and the exit X, appear beside each column as attributes. A table that let a custodial object win on capital-time without saying it is custodial would be misleading.
 - **The coordination layer is not a rail either.** Nostr relays and the bitchat Bluetooth mesh carry no value. They carry what moves it: the signed request, the invoice, the quote, the payment confirmation, and the key that signs them. F9 poses the operator problems that layer creates. Its native unit is still sats: the stake a key controls, the value of a message delivered before its deadline, and the price of a service. Its five rows are five tasks, reported separately like every other row.
 - **F11 is a contract between parties who do not trust each other.** Two BIP 199 hashed time-locked contracts make a swap with a payout desk atomic: the customer's claim of the payout reveals the preimage that lets the desk take the payment. Its operator problem is the customer's: whether to fund, how deep to wait, what to bid, and when to stop and let the refund run. Every action goes through BitAgent's DAG v3 workflow, so the family also measures whether an agent can drive a deterministic host that admits only allowed moves.
@@ -1466,3 +1468,122 @@ Neither agent ever finished a pass to `host.persist_verified_state`. Neither bro
 - An amendment to freeze the family and fix its contrasts before a confirmatory run.
 - A cell whose desks the customer can screen: a public record of past swaps, as family 9's `counterparty` has, would make the funding decision informative.
 - The desk's side: choosing the payout locktime against the customer's in-timeout, the leg In-and-Out-Burger's BitVM refill would reimburse.
+
+## 15. Family 12: the BitVM3 claim graph over a Nova payment proof (built; development seeds only)
+
+Added on request on 2026-11-27. In-and-Out-Burger's desk pays out of a BitVM3 vault to a sender who proved a payment with the M16 proof: a Nova proof of the header chain, verified inside SP1, plus an SPV payment under its tip, wrapped under BLAKE3 (Spiral `in-and-out-burger/README.md`, main `ad235c4`, last changed in `03be853`). The graph is presigned per claim, and a garbled copy of the M14 final verifier decides each claim: Bitcoin pays the claimant six blocks after the claim unless someone spends the claim's output with the circuit's reject label. The family poses the watcher's problem, a committee member's or the depositor's: claims arrive in bursts, some are false, and the label that stops a false one comes only from a long evaluation on one machine. Task ids `bitvm3/<cell>`. The code is in `src/tasks/bitvm3/`, the parameters in `config/bitvm3.json`.
+
+Family 7 (§8) asks when to prove. This family takes the proof as made and asks who checks it, in time, before a vault pays on it.
+
+### 15.1 The claim graph [given, with invented parameters]
+
+| Element | Value |
+|---|---|
+| Vault | One graph per claim, so a vault is a set of fixed-size UTXOs. Each is `NUMS + {claim: <D> CHECKSIGVERIFY <C> CHECKSIG, reclaim: <144> CSV DROP <D> CHECKSIG}` (`iob/bitvm3.py`, last changed in `76071a0`) [given]. Sizes 100,000, 250,000, 500,000 or 1,000,000 sats, drawn uniformly [invented] |
+| Claim | Spends a vault UTXO into the claim output K and `OP_RETURN "IOB3" ‖ claim_id`. It is 208 vB, presigned at 2 sat/vB, so K is the UTXO less 416 sats (testnet4 `results/testnet4-bitvm3/summary.json` and `graph-honest.json`, last changed in `33ec5db`) [given] |
+| Payout | K's leaf `<6> CSV DROP <D> CHECKSIG`, presigned to P′, 128 vB. Bitcoin Core 31.1 refused it at 3 and 5 confirmations of the claim as `non-BIP68-final` and accepted it at 6 (`results/bitvm3-regtest.json`) [given]. The claimant broadcasts it as soon as it is final and sees it through [invented] |
+| Disprove | K's leaf `SHA256 <H(reject)> EQUALVERIFY <W> CHECKSIG`, 138 vB, with an output above 330 sats. The watcher signs it at broadcast, so it chooses the fee [given]. It must confirm in a block at most 5 after the claim's, before the payout is final |
+| Verdict | Evaluating the garbled M14 verifier (785,442,492 non-free gates, 8,635,080 input bits; garbled-snark-verifier `nova-bitvm3/m14/README.md`, last changed in `024f5b4`) on a claim's input labels yields the accept label for a valid proof, which opens nothing, and the reject label otherwise [given] |
+| Evaluation latency | 3 blocks on one machine, one evaluation at a time, 2,000 sats each [latency invented within a measured range; cost invented]. `m14-claim evaluate` took 237–279 s on a 16 GB hosted runner, 627–1,330 s on the laptop while swapping (BitVMArena `corpus/docs/BITVM3.md` at `57a038d`), 348–401 s on the laptop in the testnet4 run (`results/testnet4-bitvm3/m14-eval-*.json`), and 3,607 s at 17.6 GB peak in a selftest under load (`results/m14-claim-selftest.json`, last changed in `d48f42d`). That is 0.4 to 6.0 blocks of 600 s. The bench takes the slowest swapping run, 1,330 s, in whole blocks |
+| Native check | The 1,099,069-byte final proof verifies natively in 0.012 s (`nova-bitvm3/m13/README.md`, last changed in `03c56e6`) [given]. The check costs a step and nothing else |
+| Claim classes | 50% honest; 25% `wrong_statement`, a valid proof of another statement, which the native check fails, as the desk's proven replay refused one with `statement_digest_mismatch`; 25% `invalid_proof`, a proof that verifies natively handed over with input labels that encode another, invalid one, as testnet4's `tampered-proof` instance flipped input bit 8,635,040. Only the garbled evaluation sees the second kind. Both evaluate to reject [classes given by the testnet4 demonstration; shares invented] |
+| Fees | Family 11's model, unchanged: a log-uniform base of 2 to 40 sat/vB and a lognormal walk per block (§14.1) [invented in family 11] |
+
+A false claim costs the claimant nothing: the vault pays the claim fee (BitVMArena finding 4). Every claim arrives within 24 blocks of the vault, far inside the 144-block reclaim, so the depositor's reclaim never preempts one.
+
+### 15.2 Simulator
+
+Each block has a clearing fee rate, and a transaction bidding at least that rate confirms in that block. Within block t the rules apply in this order (`src/tasks/bitvm3/world.ts`):
+
+1. A reorganization at t replaces blocks `from_height` to t − 1 with blocks that hold none of the bench's transactions. A claim confirmed in them confirms again at t, and a disprove or payout confirmed in them goes back to the mempool.
+2. A claim first confirms, and the watcher sees it and its input labels.
+3. A claim output confirmed at c and still unspent is paid to P′ at t ≥ c + 6.
+4. A pending disprove confirms if it was broadcast before t, its claim is confirmed at or before t, t ≤ c + 5, and it bids at least t's clearing rate.
+5. An evaluation started at s ends at s + 3 with its verdict.
+
+So an evaluation started in the claim's own block leaves two blocks for its disprove to confirm, one started a block later leaves one, and one started later than that is too late. The machine runs one evaluation at a time, so each burst of claims gets about one.
+
+### 15.3 Observation and actions
+
+The view holds the height and horizon, the current block's clearing rate as the fee estimate, the window, the disprove's size, dust and the fee grid's top, the class shares as a prior, the evaluator (busy, which claim, when it is ready, its latency and cost), and every visible claim: its id, UTXO and K, its block on the current chain, its confirmations, whether a reorganization moved it, the last height a disprove can confirm in and the payout's height, its status (`open`, `paid_out`, `disproved`), its check, its evaluation, and its disprove (bid, broadcast height, confirmation).
+
+| Tool | Args | Cost and rules |
+|---|---|---|
+| `check` | `{claim}` | 1 step. Returns the native check, `pass` or `fail` |
+| `evaluate` | `{claim}` | 1 step and 2,000 sats. Refused as `busy` while the machine runs, and as `duplicate` for a claim already evaluated |
+| `disprove` | `{claim, fee_rate}` | 1 step. Broadcasts or replaces the disprove. Refused as `no_label` without the reject label, `phase_closed` once K is spent, `out_of_grid` outside 1 to 5,000 sat/vB, `over_budget` when the output would fall below dust, and `below_minimum` for a replacement that does not bid more |
+| `wait` | `{blocks}` | The blocks it waits |
+| `stop` | none | Ends the watch; pending disproves still confirm if they can |
+
+The host never judges wisdom: evaluating an honest claim, or a claim whose window has passed, is admitted. Budget: 8 attempts (rejections), 200 steps, and the blocks to the horizon, 32 after the start [invented]. Two rejection reasons were added to the closed list, `busy` and `no_label`.
+
+### 15.4 Cells [invented]
+
+| Cell | Fees | Chain | What it isolates |
+|---|---|---|---|
+| `watch` | family 11's walk | no reorganization | the queue: which claim of each burst to evaluate |
+| `fee_spike` | two spike slots, each with probability 0.8 a spike of family 11's shape (4× to 15× for 3 to 8 blocks), starting 1 to 4 blocks after a burst | no reorganization | what to bid when the window is short and fees jump inside it |
+| `reorg` | family 11's walk | each burst's block, with probability 0.5, replaced; its claims confirm again 1 or 2 blocks later | a window that restarts, and a confirmed disprove that a reorganization can undo |
+
+In every cell 4 to 6 bursts of 1 to 3 claims arrive at distinct heights in the 24 blocks after the start, so 4 to 18 claims an episode. The `reorg` shape is testnet4's: a claim mined in 161,710 was mined again in 161,712, which restarts every relative timelock counted from it (BitVMArena `corpus/docs/TESTNET4.md` at `57a038d`).
+
+### 15.5 Scoring, baselines, gates
+
+Scoring, in sats: the sats the watcher returns to the vault, each disproved claim's output less its disprove fee, less 2,000 for every evaluation started. Letting every claim pay out scores 0. Equivalence band ±10,000, a tenth of the smallest vault UTXO [invented].
+
+Baselines (`src/tasks/bitvm3/baselines.ts`). The three watchers share one disprove rule: bid 1.25× the estimate, re-bid each block the disprove waits at 1.5× the last bid, bid 4× the estimate in the last block that can still confirm it, and never let the output fall below dust.
+
+| Baseline | Role | What it does |
+|---|---|---|
+| `idle` | floor | Stops at once. |
+| `cheap_only` | | Checks every claim and evaluates only those that fail, earliest window first. It catches wrong statements and never an invalid proof. |
+| `evaluate_all` | | Does not check. Evaluates every claim in arrival order while its window allows. |
+| `largest_first` | reference | Checks every claim, then evaluates the claim with the largest expected recovery: its output, less the disprove at the first bid, times the probability it is fraudulent given its check (1 after a fail, 1/3 after a pass, 1/2 unchecked), less the evaluation's cost. |
+| `oracle` | ceiling, exact, privileged | Knows every class, reorganization and clearing rate, and follows the schedule below. |
+
+The ceiling. Only a fraud claim's evaluation can return anything, one evaluation runs at a time, and a disprove pays at least the clearing rate of the final-chain block it confirms in. So no policy earns more than the best non-overlapping schedule of fraud evaluations, each worth its output less the cheapest disprove that can confirm after its verdict and inside its window, in a block a reorganization did not replace, less its cost. V(t, S) = max(V(t + 1, S), max over fraud claims i ∉ S of gain(i, t) + V(t + 3, S ∪ {i})), with V = 0 past the horizon. A later start never gains more, so each claim's starts are an interval and the memo keys on the claims still startable. The oracle follows the schedule through the host, broadcasting each disprove at its verdict and bidding exactly the cheapest rate in its window. A test holds the memoized recurrence equal to the plain one on small instances, and a random watcher never beat it on 72 episodes.
+
+The `bitvm3_watch` skill returns `largest_first`'s next action from the observation. A model that calls it at every turn and sends its result plays `largest_first` exactly (tested on every development episode).
+
+Gates:
+
+- K121: `idle` earns exactly 0 on every episode.
+- K122: identity, `oracle` through the host earns exactly `ceilingOf` computed on the fixture.
+- K123: `oracle` is at least every other policy on every episode.
+- K124: on every cell `largest_first` earns less than `oracle` over all seeds, so the reference does not reach the ceiling.
+
+### 15.6 Given and invented
+
+- **[given]:** the graph's leaves, the 6-block window and 144-block reclaim, the presigned 2 sat/vB fee, the claim, payout and disprove sizes, the 330-sat dust floor, Core's verdicts on the payout's timelock, the two fraud classes, the circuit's size, the native check's speed, the measured evaluation times, and testnet4's reorganization shape, from the files and commits cited above.
+- **[invented]:** the evaluation latency in blocks (a choice within the measured range), its cost, the vault sizes, the class shares, the arrival process, the cells' spike and reorganization rates, the claimant seeing its payout through, the budget, the band, and every baseline. The fee model is family 11's.
+
+### 15.7 Development results (seeds 0 to 7)
+
+Baselines, in [results/v0-bitvm3-baselines-development.md](../results/v0-bitvm3-baselines-development.md). Gates K121 to K124 pass. Means in sats over the eight seeds, with the normalized gain:
+
+| Policy | `watch` | `fee_spike` | `reorg` |
+|---|---:|---:|---:|
+| `cheap_only` | 742,365 (0.49) | 1,092,766 (0.54) | 888,181 (0.53) |
+| `evaluate_all` | 1,056,003 (0.70) | 1,249,180 (0.62) | 912,361 (0.55) |
+| `largest_first` | 1,322,976 (0.87) | 1,700,989 (0.84) | 1,293,558 (0.78) |
+| `oracle` | 1,513,785 | 2,025,878 | 1,667,403 |
+
+`oracle` − `largest_first` is +190,809 (+67,262 to +314,356) on `watch`, +324,890 (+3,531 to +646,248) on `fee_spike`, and +373,845 (−5,052 to +752,742) on `reorg`. On seeds 0 to 39, run in memory from the generator outside the manifest and not a reported result, `largest_first` reaches 0.68, 0.76 and 0.78 of the ceiling.
+
+What the table says:
+
+- **The native check is half the job.** It flags every wrong statement and no invalid proof. `cheap_only` disproved 15, 18 and 21 of the 37, 42 and 45 fraud claims and reached about half the ceiling.
+- **The queue binds.** At three blocks an evaluation, each burst gets about one. `evaluate_all` spent 15 to 19 of its 34 to 38 evaluations on honest claims, in arrival order, while fraud claims behind them ran out of window.
+- **What separates the reference from the ceiling is knowing which passing claim is false.** A claim that passes the check is fraudulent one time in three, so `largest_first` evaluates the largest passing claim of a burst even when a smaller one is the fraud. It evaluated 12 to 17 honest claims; the oracle evaluated none and disproved 24 to 29 fraud claims to the reference's 17 to 24.
+- **In a spike the reference overpays.** On `fee_spike` it paid 915,354 sats of disprove fees for 21 disproves, the oracle 182,574 for 25, by confirming in the cheapest block of each window instead of the first.
+- **A reorganization helps whoever knows it is coming.** A restarted window gives a claim more time. The oracle schedules around it; the reference sees it only once the claim has moved. At five blocks of latency (below) the restarts are all that is left, and only the oracle uses them.
+
+**The window against the latency.** The same eight seeds, run in memory with the latency changed and not a reported result: at one block, the laptop's testnet4 speed, the reference reaches 0.97 to 0.98 of the ceiling, because a window then has room for four evaluations; at two blocks, 0.87 to 0.90. From five blocks no claim can be disproved in `watch` or `fee_spike`, so the ceiling is 0, and only a reorganization's restart leaves the oracle anything in `reorg`. At the selftest's 3,607 s, 7 blocks, the ceiling is 0 in every cell: on that machine a 6-block window protects nothing. This is BitVMArena's finding 2 in the bench's terms: the window has to fit the slowest honest watcher.
+
+### 15.8 What remains
+
+- An amendment to freeze the family and fix its contrasts before a confirmatory run.
+- LLM runs. `scripts/run_bitvm3_agent.ts` is written and has not been run.
+- The claimant's side, not built: proving the payment (about 5 GPU hours for M16; 19,702 s for the testnet4 proof, `results/testnet4-bitvm3/prover-result.json`) and claiming before the vault's 144-block reclaim. At those numbers the proof takes about 33 of the reclaim's 144 blocks, so the decision has slack and the cell would have no headroom, and choosing when to prove is family 7's problem. It needs a shared prover queue or a proof that can fail before it earns a cell.
+- Evaluation latency as a random draw per evaluation, between the runs measured on one machine, instead of one figure per cell.
+- The attacks the cells leave out, from BitVMArena's catalog: input labels withheld (T2), which no watcher can answer; a miner censoring the disprove; a desk-presigned disprove that any label holder can broadcast; a claimant bond; and more than one watcher.

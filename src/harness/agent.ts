@@ -37,6 +37,9 @@ export const REJECT_REASONS = [
   "bad_event", "unknown_handle", "unknown_id", "duplicate", "relay_refused",
   // Family 4 (docs/tasks.md §5.2): a resize below the position the server already holds.
   "below_position",
+  // Family 12 (docs/tasks.md §15): the watcher's one evaluator is running, and a disprove without
+  // the reject label its leaf hashes.
+  "busy", "no_label",
   // Family 11 (docs/tasks.md §14): an approval or simulation from an earlier block, and a refund
   // broadcast before its locktime.
   "stale", "not_final",

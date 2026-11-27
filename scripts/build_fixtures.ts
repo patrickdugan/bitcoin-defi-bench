@@ -29,6 +29,7 @@ import { FIXTURE_VERSION as BONDING_VERSION, fixtureBytes as bondingBytes, fixtu
 import { loadBondingConfig } from "../src/tasks/bonding/task.ts";
 import { FIXTURE_VERSION as ROUTING_VERSION, fixtureBytes as routingBytes, fixturePath as routingPath, generateFixture as generateRouting } from "../src/tasks/routing/generate.ts";
 import { NOSTR_CELLS, buildNostrFixtures, loadNostrConfig } from "../src/tasks/nostr/task.ts";
+import { bitvm3Cells, buildBitvm3Fixtures, loadBitvm3Config } from "../src/tasks/bitvm3/task.ts";
 import { buildSwapFixtures, loadSwapConfig, swapCells } from "../src/tasks/swap/task.ts";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -106,6 +107,14 @@ const nostr = buildNostrFixtures(root, loadNostrConfig(root), [...SEED_BLOCKS.de
 entries.push(...nostr.entries);
 written += nostr.written;
 console.log(`nostr: ${nostr.entries.length} fixtures over ${NOSTR_CELLS.length} cells`);
+
+// Family 12: the claims against one vault per seed and cell, with their hidden classes, the chain's
+// reorganizations, and every block's fee rate.
+const bitvm3Config = loadBitvm3Config(root);
+const bitvm3 = buildBitvm3Fixtures(root, bitvm3Config, [...SEED_BLOCKS.development, ...SEED_BLOCKS.confirmatory]);
+entries.push(...bitvm3.entries);
+written += bitvm3.written;
+console.log(`bitvm3: ${bitvm3.entries.length} fixtures over ${bitvm3Cells(bitvm3Config).length} cells`);
 
 // Family 11: one swap per seed and cell, with the desk's hidden behaviour and every block's fee rate.
 const swapConfig = loadSwapConfig(root);

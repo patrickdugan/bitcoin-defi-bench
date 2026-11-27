@@ -20,6 +20,7 @@ import { Outbox } from "../tasks/nostr/publish.ts";
 import { Nip17 } from "../tasks/nostr/private.ts";
 import { Reputation } from "../tasks/nostr/counterparty.ts";
 import { BitchatRouter } from "../tasks/nostr/mesh.ts";
+import { LARGEST_FIRST, Watcher } from "../tasks/bitvm3/baselines.ts";
 import { Careful, WORKFLOW } from "../tasks/swap/baselines.ts";
 import type { Agent } from "../harness/agent.ts";
 import type { Skill } from "./chat.ts";
@@ -241,6 +242,19 @@ export const meshRouterSkill: Skill = bind({
   },
 });
 
+/**
+ * Family 12: the next action of `largest_first`, the reference watcher. It reads only the
+ * observation, so no replay is needed: check each new claim's proof natively, broadcast or re-bid a
+ * disprove for each reject verdict, start the evaluation with the largest expected recovery.
+ */
+export const bitvm3WatchSkill: Skill = bind({
+  name: "bitvm3_watch",
+  description: "Computes the next action of a sound vault watcher for the state you were shown (check each new claim's proof natively, broadcast or re-bid a disprove for each claim that evaluated to reject, start the garbled evaluation with the largest expected recovery, otherwise wait a block) and returns it as the exact action to send. Call it at every turn. To use it, reply with that action unchanged.",
+  run(observation: Json): Json {
+    return new Watcher("largest_first", LARGEST_FIRST).act(observation);
+  },
+});
+
 /** Family 11: the next step of `workflow`, the reference, the deterministic swap workflow. */
 export const swapWorkflowSkill: Skill = bind({
   name: "swap_workflow",
@@ -252,6 +266,7 @@ export const swapWorkflowSkill: Skill = bind({
 
 /** Skills by the key `--skills` names; a key differs from the skill's name only for a second wording of one skill. */
 export const SKILLS: { [name: string]: Skill } = { min_cost_flow: minCostFlowSkill, failed_pairs: failedPairsSkill, dlc_design: dlcDesignSkill, bond_offer: bondOfferSkill, proof_step: proofStepSkill, schedule: scheduleSkill, schedule_after_proof: scheduleAfterProofSkill,
+  bitvm3_watch: bitvm3WatchSkill,
   capacity_plan: capacityPlanSkill, custody_policy: custodyPolicySkill, inbox_policy: inboxPolicySkill, outbox_plan: outboxPlanSkill,
   nip17_plan: nip17PlanSkill, buyer_plan: buyerPlanSkill, mesh_router: meshRouterSkill, swap_workflow: swapWorkflowSkill };
 

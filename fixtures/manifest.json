@@ -11,7 +11,7 @@
     }
   },
   "config": {
-    "config/bitvm3.json": "b2470474c392eda81b4c151f6831976f3d20adb3576bc2188e56a8a090c17ff8",
+    "config/bitvm3.json": "d03e2588a7fd4095615bdfe71eed05cef04d8e02d31d5f4ae43182cd206e25ef",
     "config/bonding.json": "92d1759da820c44d9ff091be20d8a8deb5b2c832dfbda0af124a032f008bdc40",
     "config/cashu.json": "e24294d46d89de07c4efe9f3492a620fb29bfd17a9c8be9c1149379582a2f2fa",
     "config/dlc.json": "ecdb43d159baf0c2b951384ecfabcf5f9cb59c612463c29ed271ab3f8b3f1cde",

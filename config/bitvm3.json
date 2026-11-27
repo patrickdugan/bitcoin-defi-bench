@@ -23,7 +23,7 @@
   },
   "budget": { "attempts": 8, "probes": 200 },
   "provenance": {
-    "graph": "given: Spiral main ad235c4, in-and-out-burger/iob/bitvm3.py (last changed in 76071a0): vault V = NUMS + {claim: <D> CHECKSIGVERIFY <C> CHECKSIG, reclaim: <144> CSV DROP <D> CHECKSIG}; claim K = NUMS + {payout: <6> CSV DROP <D> CHECKSIG -> P', disprove: SHA256 <H(reject)> EQUALVERIFY <W> CHECKSIG} + OP_RETURN IOB3 || claim_id. One graph per claim, so a vault is a set of fixed-size UTXOs (in-and-out-burger/README.md, last changed in 03be853)",
+    "graph": "given: Spiral ad235c4 (branch feat/ark-zk-proofs), in-and-out-burger/iob/bitvm3.py (last changed in 76071a0): vault V = NUMS + {claim: <D> CHECKSIGVERIFY <C> CHECKSIG, reclaim: <144> CSV DROP <D> CHECKSIG}; claim K = NUMS + {payout: <6> CSV DROP <D> CHECKSIG -> P', disprove: SHA256 <H(reject)> EQUALVERIFY <W> CHECKSIG} + OP_RETURN IOB3 || claim_id. One graph per claim, so a vault is a set of fixed-size UTXOs (in-and-out-burger/README.md, last changed in 03be853)",
     "window_blocks": "given: WINDOW_BLOCKS = 6 in iob/bitvm3.py; Bitcoin Core 31.1 refused the payout at 3 and 5 confirmations as non-BIP68-final and accepted it at 6 (in-and-out-burger/results/bitvm3-regtest.json)",
     "reclaim_blocks": "given: RECLAIM_BLOCKS = 144 in iob/bitvm3.py. Every claim here arrives within 24 blocks of the vault, so the reclaim never preempts a claim",
     "presigned_fee_sat_vb": "given: FEE_SAT_VB = 2 in iob/bitvm3.py; the claim and the payout are presigned at it",

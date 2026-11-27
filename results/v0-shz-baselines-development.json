@@ -1,10 +1,10 @@
 {
  "bench": "bitcoin-defi-bench/v0",
  "block": "development",
- "manifest_sha256": "2cd7f158abdb185427312c05aeba2c55e796910d20d2fcebe51d5413092bb94a",
+ "manifest_sha256": "d9afae50891451556418e7476e9c6aecec816c75c02cc7c0c6de26f770e8c6d9",
  "prereg_sha256": "6774244ff727f1de6c7264ff7d6ed8dcc716feb58ab705fcb87ee90941ab7f5e",
  "spiral_commit": "9824c30ad402cc9bca768eca27d176e0e8788db5",
- "source_sha256": "fe0189f32c1b27708de4a2a72718adc580c4f14ecc2678855559d447984ab54d",
+ "source_sha256": "93abda227b93dac0ffad074c48f9e57a9ff2eb9f025d1d4110cd3e0e581f4cbc",
  "node": "v24.19.0",
  "seeds": [
   0,

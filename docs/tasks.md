@@ -71,6 +71,7 @@ Rails are the paper's object classes (§2.1), with two classes added on review o
 | Deliver private messages | | | | | | | | | **F9 `private`, run** §10.4 |
 | Buy a service from a counterparty | pays over NWC (NIP-47) | | pays by nutzap (NIP-61) | | | | | | **F9 `counterparty`, run** §10.5 |
 | Swap with a counterparty without trusting it | a submarine swap pays over an HTLC too | | | | | **F11 `calm`, `spiky`, built**, development seeds only §14 | | | the swap is run as BitAgent's DAG v3 workflow (F11) |
+| Hedge the dollar value of a sats balance | **F13 `calm`, `volatile`, `bad_marks`, built**, development seeds only §16 | | | | | | | | |
 | Keep users' value safe and liquid across ecash and Ark | | **F14 `operator_outage`, built**: refresh or exit the desk's VTXOs through a server outage, development seeds only §17 | **F14 `desk`, `reserve_shortfall`, built**: admit deposits on proof, take tokens on DLEQ and NUT-07, move the float out of a mint whose reserve is short, development seeds only §17 | | | | | | |
 | Deliver when the internet is down | | | | | | | | | **F9 `mesh_outage`, `mesh_partial`, run** §10.6 |
 
@@ -84,6 +85,7 @@ Reading the table:
 - **Attributes are reported, never scored.** The tuple fields that liquidity duration cannot price, above all the counterparty set Γ (a channel peer, a co-signing server, a custodial mint or federation, a statechain entity, a BitVM committee) and the exit X, appear beside each column as attributes. A table that let a custodial object win on capital-time without saying it is custodial would be misleading.
 - **The coordination layer is not a rail either.** Nostr relays and the bitchat Bluetooth mesh carry no value. They carry what moves it: the signed request, the invoice, the quote, the payment confirmation, and the key that signs them. F9 poses the operator problems that layer creates. Its native unit is still sats: the stake a key controls, the value of a message delivered before its deadline, and the price of a service. Its five rows are five tasks, reported separately like every other row.
 - **F11 is a contract between parties who do not trust each other.** Two BIP 199 hashed time-locked contracts make a swap with a payout desk atomic: the customer's claim of the payout reveals the preimage that lets the desk take the payment. Its operator problem is the customer's: whether to fund, how deep to wait, what to bid, and when to stop and let the refund run. Every action goes through BitAgent's DAG v3 workflow, so the family also measures whether an agent can drive a deterministic host that admits only allowed moves.
+- **F13 is a hedge settled over Lightning.** A Lightning node operator shorts SatsHedgeZero's inverse perpetual to hold its balance's dollar value at a target. Its operator problem is running that hedge: how much margin to post, which latency tier to pay for, and which of the oracle federation's mark packets to trust. The venue settles over Lightning, so every margin move and every settlement pays a routing fee.
 - **F14 is the ecash holder's side, backed by Ark.** F3's ecash column (§4.8) asks which object to settle in; F14 asks how to run a desk that already holds ecash and VTXOs. Its operator is Proof Grove's: admit a deposit only on a verified proof, take a Cashu token only after its DLEQ and its spent state check out, keep each VTXO alive by a refresh while the Ark server answers or by a unilateral exit when it does not, and move the float out when the mint's published reserve falls below what it owes. The tokens' signatures and DLEQs are real, made with the NUT-00 and NUT-12 core the family tests against the published vectors.
 
 Kept off the scorecard: coalition, covert-channel, and Sybil tasks (by charter; the registry's nullifier property is asserted in tests, not posed as a task); prover throughput as a score (it is a measurement and an input to F7); Liquid, which was reviewed and set aside; any live relay or radio (F9's relays and mesh are in-process simulators); NIP-04 except as the legacy path of F9's private cell; and bitchat's app-specific Nostr envelope, which its whitepaper says is not NIP-17, NIP-44, or NIP-59 compatible (F9 sends NIP-17 over relays and models the mesh's delivery rules, not its ciphers).
@@ -1589,6 +1591,152 @@ What the table says:
 - The claimant's side, not built: proving the payment (about 5 GPU hours for M16; 19,702 s for the testnet4 proof, `results/testnet4-bitvm3/prover-result.json`) and claiming before the vault's 144-block reclaim. At those numbers the proof takes about 33 of the reclaim's 144 blocks, so the decision has slack and the cell would have no headroom, and choosing when to prove is family 7's problem. It needs a shared prover queue or a proof that can fail before it earns a cell.
 - Evaluation latency as a random draw per evaluation, between the runs measured on one machine, instead of one figure per cell.
 - The attacks the cells leave out, from BitVMArena's catalog: input labels withheld (T2), which no watcher can answer; a miner censoring the disprove; a desk-presigned disprove that any label holder can broadcast; a claimant bond; and more than one watcher.
+
+## 16. Family 13: hedging on the SatsHedgeZero Lightning venue (built; development seeds only)
+
+Added on request on 2026-11-27. SatsHedgeZero is a derivatives venue that settles over Lightning (local clone `D:/shz/SatsHedgeZero` at `b94a22c`; each citation below names the file's last commit). A holder of sats, a Lightning node operator, wants the dollar value of its balance to stay at a target. It shorts the venue's inverse perpetual. A short of Q dollars gains Q × 10⁸ × (1/p_new − 1/p_old) sats as the price falls and loses as much as it rises, so a short equal to the target in dollars holds the balance's dollar value still with no rebalancing. The family scores the work around that hedge: posting and topping up margin over Lightning, choosing the free or the paid latency tier for each take, refusing a mark packet that fails the federation's policy, and surviving the jumps that trigger liquidation. The code is in `src/tasks/shz/`, the parameters in `config/shz.json`. Nothing contacts the venue, its relay, or Lightning: the family is a simulator.
+
+### 16.1 The venue [given, with invented parameters]
+
+| Element | Value |
+|---|---|
+| Position | A short of whole lots, each an eighth of the starting target, from 0 to 12 lots. The target starts at 8 lots, 4,000 to 16,000 USD in steps of 800 [invented] |
+| Valuation | An inverse lot of q dollars is worth floor(q × 10⁸ / p) sats at price p, and its notional is that rounded up (`crates/shz-venue/src/risk.rs` `lot_value_v3` and `notional_sats`, `f785f47`) [given] |
+| Settlement | At each step with a verified mark the venue marks the short to the mark and settles the interval since the last settlement over Lightning. SHZ settles each batch's realized net per account (`docs/SHZ_LDK_SETTLEMENT.md`, `07959f8`). A mark-to-market every step is the bench's simplification: it keeps the state to lots and margin [invented] |
+| Margin | Posted in whole units of a sixteenth of the starting balance, up to 24 units. Adding to the short, or withdrawing, needs a tenth of the notional at the last settled mark, since leverage runs from 0.1x to 10x (`crates/shz-venue/src/core.rs`, `52c92ae`) [given]. The margin bounds a settlement's loss, as the DLC clamp does (`risk.rs`) [given] |
+| Liquidation | At a settlement where margin plus the interval's PnL is below 500 bps of the notional at the mark (`MAINTENANCE_BPS`), the whole short closes at 200 bps worse than the mark (`MAX_DISCOUNT_BPS`, with the whole position as the tranche: `risk.rs`; `docs/SHZ_LIQUIDATION_DRILL.md`, `603e834`) [given]. At or past bankruptcy the account loses exactly its margin and the short closes. The SHZ venue never signs for an account: the account's client runs the auction. Here the host closes the short at the cap at the settlement that finds the breach [invented] |
+| Takes | Against a maker's ladder at the reference price ∓ (15 + 10k) bps (`ops/venue-mm/mm.py` `plan_quotes`, `71b0a5e`) [given], four levels of four lots, fresh every step [invented]. One take a step |
+| Tiers | Standard: 0 ppm taker fee, fills at the mark 200 ms after the packet's boundary. Premium: 200 ppm taker fee, fills at the boundary's mark (`crates/shz-dex/src/routing/tiered.rs` `TariffSchedule::default_candidate` and the default lags, `685e5d7`) [given]. The 200 ms move is drawn for every slot from the latency study (§16.7) [calibrated]. The Intermediate tier is not offered |
+| Lightning | Every payment (a margin transfer, a settlement, a take's cost) pays one routing hop, 1,000 msat plus 100 ppm: Spiral's channel defaults (`config/placement.json`) [given]. SHZ's own lanes are direct channels with no routing fee (`SHZ_LDK_SETTLEMENT.md`); the holder here reaches the venue through one hop [invented] |
+| Capital | Posted margin costs 46 ppm a step: 10% a year, the middle of the latency study's cost of capital for Lightning liquidity (`research/latency_value/results/shz_economics.json`, `939077c`) [given, as the study's assumption] |
+| Maturity | After 24 steps of four hours the short settles at the attested price with no fee (`DLC_SETTLEMENT_FEE_SATS = 0`, `docs/SHZ_HFT_06_ROUTER_LN.md`, `6204fff`) [given], and the margin comes home over Lightning. The horizon is invented |
+| Balance flows | At 15% of steps with a verified mark, Lightning income or payments move the target by one or two lots, inside 4 to 10 lots [invented] |
+
+### 16.2 Marks and the client's policy [given]
+
+The federation signs a mark packet every 200 ms (`CADENCE_US`, `crates/shz-oracle/src/hft_packets.rs`, `dbc42f5`). A step has three of these slots, and `refresh` reads the next one. The client's pinned policy comes from `hft_packets.rs`, `docs/SHZ_HFT_04_ORACLE_FEDERATION.md` (`0aeb0f0`), and `docs/SHZ_HFT_06_ORACLE_RELAY.md` (`46f8530`):
+
+- status VALID, with a price;
+- the boundary at most 1 s before now ("Freshness max 1 second") and not after it;
+- at least 4 signatures from distinct members of 5 (`QUORUM = 4`), each by its member's pinned key;
+- every source timestamp at most 1 s before the boundary (`MAX_SOURCE_AGE_US`) and at most 100 ms after it;
+- the sources' timestamps within 500 ms of each other (`MAX_SOURCE_SKEW_US`);
+- the sources' prices within 50 bps of each other.
+
+The request named a 3-of-5 FROST federation for marks. In the source, 3 of 5 FROST signers attest a DLC's maturity price (`crates/shz-oracle/src/lib.rs`, its tests). A mark packet needs 4 of 5 BIP340 signatures, and HFT-04 says 3 of 5 is not enough for a packet: the quorums' intersection can be the one Byzantine signer. Here a packet with 3 signatures is one of the bad kinds. Signatures are data, a member index and a key, not real BIP340 or FROST.
+
+What the agent's relay shows at a slot [invented, each kind drawn from the source]:
+
+| Kind | What it is | The policy rejects it for |
+|---|---|---|
+| `genuine` | the federation's packet for the slot | nothing |
+| `hold` | a certified HOLD for the whole step; the venue has no mark either | its status |
+| `timeout` | no packet: the quorum timed out | no packet |
+| `forged` | a price 30 to 300 bps off the mark, one signature by a key that is not its member's | the key |
+| `under_signed` | the same deviation, 3 member signatures | the quorum |
+| `stale_source` | one source stuck at the previous step, midpointed with the fresh one by a relay that widened its bounds | the source's age and the skew |
+| `replayed` | a genuine packet from up to six steps earlier | freshness |
+
+`stale_source` stands for gate G-SRC-3: under Chainlink's whole-second timestamps the collator's 120 s replay HOLDs 244 of 600 slots on skew and 88 on staleness, and the relay doc records that the bound is not to be widened silently. A take is bound to the packet shown. On `hold` or `timeout` the venue refuses it. On a bad kind, whoever served the packet fills the take only when the packet's price is worse for the taker than the mark, at a ladder around that price. A take on a bad packet is therefore never better than one on a genuine packet, and a client that refuses one loses at most a wait.
+
+### 16.3 Observation and actions
+
+The observation shows the step and slot, the clock, the packet, the federation's pinned keys and bounds, the target, the account (lots, margin, the margin unit, the mark at which the next settlement closes the short, the last settlement), what the step has used, the venue's terms, and the costs so far. Marks, HOLD steps, 200 ms moves, and packet kinds are hidden.
+
+| Tool | Args | Effect |
+|---|---|---|
+| `refresh` | none | the next slot's packet, at most twice a step |
+| `deposit`, `withdraw` | `{sats}` | margin over Lightning in whole units, one transfer a step |
+| `take` | `{side, lots, tier}` | `sell` adds to the short, `buy` reduces it; one take a step |
+| `wait` | none | ends the step: the capital charge, then the next settlement |
+| `commit` | none | holds everything as it is to maturity |
+
+Budget: 8 attempts (rejections), 160 moves (every admitted tool but `wait`), and the steps left. Rejections use the common reasons (`malformed`, `unknown_tool`, `not_integer`, `out_of_grid`, `below_minimum`, `over_budget`, `duplicate`, `phase_closed`).
+
+### 16.4 Scoring
+
+In sats, higher is better: minus the tracking error, minus execution against the mark, taker fees, Lightning fees, capital, and penalties. The tracking error is measured at each settlement as the absolute difference between the short's sats change (its PnL, or minus the margin at bankruptcy) and the change in the sats the target dollar value needs, floor(target × 10⁸ / p_new) − floor(target × 10⁸ / p_old). It is summed over settlements without netting. It bounds the final gap from the target from above, and a lucky path cannot net it out. Every term is a whole number of sats.
+
+Floor: `idle`, the unhedged holder. It scores exactly minus its tracking error, so a do-nothing agent's normalized gain is exactly 0. Band: ±1,000 sats [invented].
+
+### 16.5 Cells [invented]
+
+| Cell | Step volatility | Jumps | Federation HOLD | Bad packets |
+|---|---|---|---|---|
+| `calm` | 50 bps | none | none | none |
+| `volatile` | 150 bps | at 10% of steps, 4% to 14%, upward 70% of the time | none | none |
+| `bad_marks` | 100 bps | at 4% of steps, 3% to 9%, upward 70% of the time | runs of 1 to 3 steps, starting at 10% of steps | 25% of slots with a verified mark |
+
+Start prices run from 80,000 to 120,000 USD. The generator is a lognormal walk with jumps. No measured price series is used, and the study's Lighter order books stay on the machine that holds them.
+
+### 16.6 Baselines, the exact ceiling, and gates
+
+| Baseline | Role | What it does |
+|---|---|---|
+| `idle` | floor | Never trades. |
+| `naive` | | At the first packet that says VALID, unverified, posts the minimum margin and sells the target on the free tier. Once filled it holds to maturity. |
+| `thin_margin` | | `hedger` with only the initial margin. |
+| `unverified` | | `hedger` trading on any packet that says VALID. |
+| `premium_always` | | `hedger` with every take on the paid tier. |
+| `hedger` | reference | Checks each packet against the policy and reads the next slot when one fails. Keeps the short at the target on the free tier. Keeps margin to survive a 20% rise between settlements: it tops up below that and withdraws above it plus two units, and withdraws only on a verified packet. |
+| `oracle` | ceiling, exact, privileged | The dynamic program below. |
+
+The ceiling is a dynamic program over lots (0 to 12) and margin units (0 to 24) at every step. A move is the step's resulting lots and margin, with the take's tier and slot. A sell or a withdrawal needs the resulting margin to cover the initial margin at the last settled mark, and a take on a bad packet is a move only where it fills. The program is exact over the moves the host admits. A test enumerates every sequence of refreshes, transfers and takes in either order, and waits, through the host itself, on 6 small instances (3 steps, 2 slots, 2 lots, 3 margin units, one cell with HOLDs and bad packets at high rates), and finds none above it.
+
+The `shz_hedge` skill returns `hedger`'s next action for the episode so far. A mock model that calls it at every turn and sends its result scores `hedger`'s value with no rejection (tested on 9 development episodes).
+
+Gates:
+
+- K131: `idle` earns exactly minus its tracking error computed from the fixture.
+- K132: identity, `oracle` through `act` earns exactly the dynamic program's value computed from the fixture.
+- K133: `oracle` is at least every other policy on every episode.
+
+### 16.7 The latency study, and what it sets
+
+The latency study (`C:\Users\patri\wt\shz-200ms\research\latency_value\`, branch `research/price-of-200ms-20261125`; `docs/LEDGER.md` at `4ec8c51`) measured on public Lighter data:
+
+- the paid tier was the ex-post winner in 0.022% of covered time on BTC, interval 0.017% to 0.028% (`results/analysis_BTC.json`, `afb8bc4`);
+- no causal policy beat free-only execution out of sample, held-out days included;
+- the revenue-maximizing latency fee was 0.37 to 1.28 bp in every market.
+
+The relay's measured lead of premium over standard is about 200 ms: p50 197.7 ms on the trusted relay, 194.2 ms federated over loopback, and 201.2 ms on Linux CI (`SHZ_HFT_06_ORACLE_RELAY.md`).
+
+The family takes the size of the 200 ms move from the study. Twice the study's quantiles of the premium's gross saving for a $1k taker (0.157, 0.80, 1.72, and 3.16 bp at the 0.9 to 0.9999 quantiles) give the survival of the move's size, log-linear between points; the sign is a fair coin. Under that table the saving exceeds the 2 bp premium fee for 0.064% of takes on one side, against the study's 0.058% of decisions. The fee is the candidate tariff's 200 ppm, not the study's revenue-maximizing one.
+
+### 16.8 Given and invented
+
+Given, each with its source above: the federation's quorum and its age, skew, dispersion, and freshness bounds; the packet cadence; the standard tier's receive delay (p50 206.4 ms, shown in the clock); the tariff and the tier lags; the maker's ladder offsets; the leverage range; the maintenance ratio and the margin-ratio formula; the liquidation discount cap and the whole-position tranche; Spiral's routing fee defaults; the zero DLC settlement fee; the 10% cost of capital, which is the study's assumption. Calibrated: the 200 ms move. Invented: the horizon and step length, the per-step mark-to-market, the lot and margin grids, the ladder's depth, the one routing hop, the liquidation at the cap, the price generator and its cells, the HOLD and bad-packet rates and kinds, the balance flows, the band, and the budget.
+
+### 16.9 Development results (seeds 0 to 7)
+
+Baselines, in [results/v0-shz-baselines-development.md](../results/v0-shz-baselines-development.md). Gates K131 to K133 pass: the 24 `idle` and 24 `oracle` episodes equal their direct values, and none of 168 episodes has a policy above the oracle. No action was rejected. Means in sats, with the normalized gain in brackets:
+
+| Policy | `calm` | `volatile` | `bad_marks` |
+|---|---:|---:|---:|
+| `idle` | −897,861 (0) | −4,086,697 (0) | −2,443,172 (0) |
+| `naive` | −136,220 (0.87) | −1,229,177 (0.70) | −773,118 (0.70) |
+| `thin_margin` | −25,546 (0.999) | −229,740 (0.95) | −88,446 (0.98) |
+| `unverified` | −27,030 (0.998) | −32,166 (0.999) | −79,021 (0.98) |
+| `premium_always` | −29,509 (0.995) | −35,260 (0.999) | −47,297 (0.998) |
+| `hedger` | −27,030 (0.998) | −32,166 (0.999) | −44,608 (0.999) |
+| `oracle` | −24,898 (1) | −30,102 (1) | −42,475 (1) |
+
+What the table says:
+
+- **Any hedge is worth far more than it costs.** Unhedged, the balance's dollar value drifts by 0.9 to 4.1 million sats of tracking error an episode. A full hedge costs 27,000 to 45,000 sats, most of it the ladder's spread. The normalized gain therefore sits near 1 for every policy that hedges and keeps hedging, and the differences between those policies are in sats.
+- **The paid tier never paid.** `hedger` − `premium_always` is +2,479, +3,094, and +2,689 sats, each interval above zero: the 200 ppm fee on every take. Over every genuine slot of these fixtures a one-lot paid take was cheaper ex post in 3 of 3,130 cases, and the oracle, which sees every 200 ms move, never took on the paid tier. The study's finding holds inside the bench's calibration.
+- **Checking the packet pays in `bad_marks`.** `unverified` was filled on a bad packet 0.5 times an episode and paid 71,440 sats in execution, against `hedger`'s 25,025. `hedger` − `unverified` is +34,413 (−23,318 to +92,144). In the other cells the two are the same policy.
+- **The margin buffer pays in jumps and costs capital without them.** `thin_margin` was liquidated 0.75 times an episode in `volatile`, for 180,362 sats of penalties, and `hedger` − `thin_margin` is +197,574 (−40,281 to +435,430). In `calm` the buffer's capital left `hedger` 1,484 sats behind it.
+- **Hedging once is not enough.** `naive` ignores the balance flows and keeps the minimum margin. Its tracking error runs from 117,000 to 1.1 million sats, and it was liquidated on 3 of 8 `volatile` episodes.
+- **The reference sits close to the ceiling.** `oracle` − `hedger` is +2,133, +2,064, and +2,133 sats, from posting margin only ahead of jumps and from choosing the cheapest slot. `hedger` equals the oracle on no episode.
+
+### 16.10 What remains
+
+- An amendment to freeze the family and fix its contrasts before a confirmatory run.
+- An agent run. `scripts/run_shz_agent.ts` is written and has not been run.
+- The Intermediate tier (50 ppm, 100 ms), and the study's revenue-maximizing fee as a cell.
+- Settlement of realized PnL per batch, as SHZ does, in place of the per-step mark-to-market. That puts entry prices in the state.
+- A cell where the holder's node has a direct lane to the venue and pays no routing fee.
 
 ## 17. Family 14: a Cashu desk backed by Ark (built; development seeds only)
 

@@ -11,6 +11,7 @@
     }
   },
   "config": {
+    "config/bitvm3.json": "b2470474c392eda81b4c151f6831976f3d20adb3576bc2188e56a8a090c17ff8",
     "config/bonding.json": "92d1759da820c44d9ff091be20d8a8deb5b2c832dfbda0af124a032f008bdc40",
     "config/dlc.json": "ecdb43d159baf0c2b951384ecfabcf5f9cb59c612463c29ed271ab3f8b3f1cde",
     "config/netting.json": "26936a6c7a9a89762a2e28e0152de22b81afb7731de497af4de7a7f5de5014c5",
@@ -23,6 +24,846 @@
     "config/swap.json": "21f08216ee7ecbef714fc7f61a9ab440d858b36431c69740f211f95988b8f00a"
   },
   "fixtures": [
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-0000.json",
+      "family": "bitvm3",
+      "seed": 0,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "71c445e53a7898d3270fc2ffa22d17ee247aca88fa64dc907cef9a83445c698d"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-0001.json",
+      "family": "bitvm3",
+      "seed": 1,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "c8ab5341308c5ebf5b3fbf9758fe9b28a941e85323c956e38415e4dc85bcc5f6"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-0002.json",
+      "family": "bitvm3",
+      "seed": 2,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "52147bd404a472ff4b32d31d4e91f3c707197a7c6b520c7d091bfbdb1f6ce419"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-0003.json",
+      "family": "bitvm3",
+      "seed": 3,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "500da8d04c7daf515e775198cbe06c9a1f8b6a837a5461b523eb5642f628f9cc"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-0004.json",
+      "family": "bitvm3",
+      "seed": 4,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "235bf1a57833d42e85e0ce8d4663b0d6882b68c34e5ff0fbe81f753f93a5415a"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-0005.json",
+      "family": "bitvm3",
+      "seed": 5,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "b4af79ae576fe0d96b729994990429ed5afecae3fb4977326cb168e1b7f98abf"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-0006.json",
+      "family": "bitvm3",
+      "seed": 6,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "25a4cab70a59876ba3f63a1227bca1221b1999eece9984557fce1d3b47d48f96"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-0007.json",
+      "family": "bitvm3",
+      "seed": 7,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "43fceee1d755c8fa57a554495acb8c9ec695005d6a567a15e6b09e98a0e23a4d"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1000.json",
+      "family": "bitvm3",
+      "seed": 1000,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "497b68450c15691eb7841cb7800b7d2322db37a0d03f745e5cfc104263d2e45a"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1001.json",
+      "family": "bitvm3",
+      "seed": 1001,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "c361e9d3b09ec6526a1d2c0aae44c225e02e9a5ab50126bebbefbc66606d1608"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1002.json",
+      "family": "bitvm3",
+      "seed": 1002,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "4d33295959e89a327b4d29b1bf60c57103b558a629789df533c5b68333ad67f3"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1003.json",
+      "family": "bitvm3",
+      "seed": 1003,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "7a2de4a4a525044946231600bac7f16abba39f7a904bf2eb6d00dd09e4a2b3a9"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1004.json",
+      "family": "bitvm3",
+      "seed": 1004,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "dcd296901d9f8a25855c2f257430dbc1f2522a22f709dff68c0cc54a3f8ea354"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1005.json",
+      "family": "bitvm3",
+      "seed": 1005,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "b13c449e24a64118348c12700f198750776f34d58ab7616b7babaa7c7c0d7069"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1006.json",
+      "family": "bitvm3",
+      "seed": 1006,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "ebd08c20bb2d0cb903b45a0aaf776911179ca42173b9c7da2734730c20e170c2"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1007.json",
+      "family": "bitvm3",
+      "seed": 1007,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "f644b6654e95f4a3444d66695891a30671f45af9e99e782c51756018b65d872b"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1008.json",
+      "family": "bitvm3",
+      "seed": 1008,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "41d4d7b5279090aece98e5f25ce9a458fb44b177b4eeefc54334e6444db96d74"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1009.json",
+      "family": "bitvm3",
+      "seed": 1009,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "40749413536739075bade21e3fe67cb201839ddcc08d201aa2c30ede1153aa2d"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1010.json",
+      "family": "bitvm3",
+      "seed": 1010,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "ef3f8ff8625cc5b52202a2bedc207805c542e454ea072172a5f17a2acb742adf"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1011.json",
+      "family": "bitvm3",
+      "seed": 1011,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "abe8bfd26a95c0eeffcec6383c462b52d0271321c4c82ff2f423ae971cff2371"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1012.json",
+      "family": "bitvm3",
+      "seed": 1012,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "705414b301981938c0ee180444aeb6fa290c1e792cbe4a71f3d4b2c601255c58"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1013.json",
+      "family": "bitvm3",
+      "seed": 1013,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "91c92e577ded368619b02d91c7ee322cf35ce66c0848685ad91b6182a9f2f79c"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1014.json",
+      "family": "bitvm3",
+      "seed": 1014,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "edcf32862edcd383e573e93837e2c3c1520a33ceb6d7c1811c79fccccd608d86"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1015.json",
+      "family": "bitvm3",
+      "seed": 1015,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "ea9769e52912a8ec93eb277dfecf64a72a765e8a8c3a6352f800446e53acbf6c"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1016.json",
+      "family": "bitvm3",
+      "seed": 1016,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "8b7a94e7ec721f4a6b3359fc2720ff8ecbe08ee77e2a099176f06445aec07018"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1017.json",
+      "family": "bitvm3",
+      "seed": 1017,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "f15388d0058511b4380995700a6980e20823b2d317f296a91a597696dcd898ec"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1018.json",
+      "family": "bitvm3",
+      "seed": 1018,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "5e62fb032623e5101247716cc61d4a6ccdd31f32104bea4b92ab92c4690f07e6"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1019.json",
+      "family": "bitvm3",
+      "seed": 1019,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "cc8d5e20fde9092e9fba9b88c390609da4ed93e8ce8c0ec57b506f3da395fa86"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1020.json",
+      "family": "bitvm3",
+      "seed": 1020,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "e8b7d623eda00aaee664a93ac6b0b84400ae8c9d5adc044236a45942d743cf63"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1021.json",
+      "family": "bitvm3",
+      "seed": 1021,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "4e12ef37536e9301091ec0fa3c0be1e24a5972e32ab47d08423813ba03b954ee"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1022.json",
+      "family": "bitvm3",
+      "seed": 1022,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "0f23ee830786ba31e7e4f8f38aea4dffec33ea1e17733144ef6f654c84ffec4a"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1023.json",
+      "family": "bitvm3",
+      "seed": 1023,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "0626347c02bd9345e0d9df327ed649399e2c30f4a4d6f37832c7d67a79798e9e"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1024.json",
+      "family": "bitvm3",
+      "seed": 1024,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "46fce64cd48fec94d0b3006360d8ebc68567c1bd1eab353ab1ad5148cdf3f2d1"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1025.json",
+      "family": "bitvm3",
+      "seed": 1025,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "e671eca16304a7831fd2b8f87c61447fa9f9453641520f808664cbe5891eb41a"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1026.json",
+      "family": "bitvm3",
+      "seed": 1026,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "e33e07aa532b83fbd48cd99ec70aa3480f7e72216c7e354d30c1b35b668c0493"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1027.json",
+      "family": "bitvm3",
+      "seed": 1027,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "c8f418b6ff500677ea8e2868efe324580a0de836f6d9b02868c88737e2e61940"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1028.json",
+      "family": "bitvm3",
+      "seed": 1028,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "33fa1edb9dc8905efb88f87ac6bd4680a1f30ec6f04c2556244953a279346eb7"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1029.json",
+      "family": "bitvm3",
+      "seed": 1029,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "17fd1339d0bca105a499244a8ae01dc3c20a6a36df49212e150f363d1ffa092a"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1030.json",
+      "family": "bitvm3",
+      "seed": 1030,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "b7556bab00a17689bdd40de87b3cbedabe4aacfdd3e4f3102b078ac4c74d9922"
+    },
+    {
+      "path": "fixtures/bitvm3/fee_spike/seed-1031.json",
+      "family": "bitvm3",
+      "seed": 1031,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "f6601eb8daa0778b409fb66bd6bf4a2306f45283c7031c84321aaeecb1e8588d"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-0000.json",
+      "family": "bitvm3",
+      "seed": 0,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "ce38dfabec296b7af35c2ee18441bbed992edbcd76811ec875bc5a6216ffc1da"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-0001.json",
+      "family": "bitvm3",
+      "seed": 1,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "222fa9f311e31aaab119de109461ec3b538c6b08e862b492da6b3d477a8b7b9c"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-0002.json",
+      "family": "bitvm3",
+      "seed": 2,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "680626fb95540b0a2d7a1b5910c572fa96367e52a0877c4ef19c9160b53f874e"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-0003.json",
+      "family": "bitvm3",
+      "seed": 3,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "19b6265403f2417b3632f50a2528e29255fed2bc9029bc05b0201a9688db1678"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-0004.json",
+      "family": "bitvm3",
+      "seed": 4,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "abb6387c98b2459be0cf7b7812e522fc48415ced0bc1d556b1bf40a2ca65c113"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-0005.json",
+      "family": "bitvm3",
+      "seed": 5,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "afe9926b7f382c5782e501173baf057416ab8234231d1257176f318ccbe8b17e"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-0006.json",
+      "family": "bitvm3",
+      "seed": 6,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "613e099830d4326be9c5046f1af95f17dadbe599b2f1c493c632171dc7ad0526"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-0007.json",
+      "family": "bitvm3",
+      "seed": 7,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "e5ac198ef5c45438a33373bea0793f22651c955211a1223793659d367f44f236"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1000.json",
+      "family": "bitvm3",
+      "seed": 1000,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "7671666c541833311c4b471f946a60219185243e5e6f3b3359d9eff202cfe188"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1001.json",
+      "family": "bitvm3",
+      "seed": 1001,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "b2c7ce7e3e23e5cee446328367dc07fce1c83a3fddd48f819b7206c7812a956f"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1002.json",
+      "family": "bitvm3",
+      "seed": 1002,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "7b656f76d7738f25f1d6798bab4deb6d5809fbc5c641d80a86e882068fea0b87"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1003.json",
+      "family": "bitvm3",
+      "seed": 1003,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "c4c281f82642f163143bdf17abb8b377e59dc0ba7674bae6f711b0fa3a028529"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1004.json",
+      "family": "bitvm3",
+      "seed": 1004,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "d5bc5abf1f04054637266c1c1428b7e541706943c81ba4b7edf5999daca570fd"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1005.json",
+      "family": "bitvm3",
+      "seed": 1005,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "423b26a5d0790525d0c8863fcd1ce0b6eeb50a811db98d964ab800a5ad3185fa"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1006.json",
+      "family": "bitvm3",
+      "seed": 1006,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "0dae70f17fe23e6d101d244ac41042683608d6e27f17e585928c6ee01be79f9b"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1007.json",
+      "family": "bitvm3",
+      "seed": 1007,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "005eacee016261177bfcc9249c27f205ed1479e901b7ae1d2049cb1f5c52125e"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1008.json",
+      "family": "bitvm3",
+      "seed": 1008,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "b3b74a7ea8471d8d34679ca84f49dbc1232c839fc1bbb73246995856a7762fb4"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1009.json",
+      "family": "bitvm3",
+      "seed": 1009,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "849662a785575ce1c70d861806ba66a876f01bf37f28f2b4bbbc121dd9c1617a"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1010.json",
+      "family": "bitvm3",
+      "seed": 1010,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "f63c486dfabf3bdf3c8d3423da7d08ed443feb7f2a389ff8f8c896c34e78519e"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1011.json",
+      "family": "bitvm3",
+      "seed": 1011,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "e61bf3acfcb0a74de9163dc12b14933fb17077018358cd12129cc078fa251423"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1012.json",
+      "family": "bitvm3",
+      "seed": 1012,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "1e78414fe3a51ddb6f349990daefbacb61d0f0ab92da3811cda8a4944c41d9f4"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1013.json",
+      "family": "bitvm3",
+      "seed": 1013,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "e7fe2939644dfb89a745bb35f88a48450f07fb8558c62525198e62da1f64ac5c"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1014.json",
+      "family": "bitvm3",
+      "seed": 1014,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "aa8d93dcf7921bdbae1ceddc204a0574ca40474d1b6a6359ce955b347869e817"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1015.json",
+      "family": "bitvm3",
+      "seed": 1015,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "d752c007e1fc6dd3d2ba661c589e5a6d2685681ee0d943224f08de8ad61f0e7c"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1016.json",
+      "family": "bitvm3",
+      "seed": 1016,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "4e8fb35cb41cdbd9f065e89b816c7e3e3d3a6d5477ad37eef5d99ca46dc56c96"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1017.json",
+      "family": "bitvm3",
+      "seed": 1017,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "6359a7185aaf21f2b10ac66034c58f43aef43257e50a6f956f72ca3055d409fd"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1018.json",
+      "family": "bitvm3",
+      "seed": 1018,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "7b7d6b8666d56ce91b36768307442161b8b7f994cff23275f5e79357b35890d4"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1019.json",
+      "family": "bitvm3",
+      "seed": 1019,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "6809aaeb429e3c7c5585301a642c72395dee87ce255ab15b04ebe26cd93f6af3"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1020.json",
+      "family": "bitvm3",
+      "seed": 1020,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "568285599af19a197a7382fd94d0e1e26d074a642ef353da8089b5f6f28b044b"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1021.json",
+      "family": "bitvm3",
+      "seed": 1021,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "a989aa7f6a7fe6910758f124c8189fcb3eb62c6cb95ab10abe3b599e6e8ccab2"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1022.json",
+      "family": "bitvm3",
+      "seed": 1022,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "7a7503dfb5a4439558b32100800e29399bfba6cb47381cb41c5a01adde378f8d"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1023.json",
+      "family": "bitvm3",
+      "seed": 1023,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "4cef8a651b6a64a3f6f01da93457b8e6f1b0b1497d9a12f1b46d2a966fa9edc6"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1024.json",
+      "family": "bitvm3",
+      "seed": 1024,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "3e456ba45d82fa039614fc3a9c40e777c4f1efea13e4b1be68abfda9be985978"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1025.json",
+      "family": "bitvm3",
+      "seed": 1025,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "ccf6f9b0cf33751b81e36948060593577b249d4cd685d8cfa241a8605054fbed"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1026.json",
+      "family": "bitvm3",
+      "seed": 1026,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "a359d860a3d6db89e334955c4fb154913abaccf02f57b8ee104f2dddf56db666"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1027.json",
+      "family": "bitvm3",
+      "seed": 1027,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "b0f6adb603ed9f947d16c732473f602a7e19937fe69d68a7a7e04ae4d3285a5e"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1028.json",
+      "family": "bitvm3",
+      "seed": 1028,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "31156441951810853e270c0f6fae65b3f8e7a597803f254d51b85bc9b334877b"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1029.json",
+      "family": "bitvm3",
+      "seed": 1029,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "bf8cfd4dc57b60718a1da28b29c4b916d068ee8b828f75d8b40b5e8523591955"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1030.json",
+      "family": "bitvm3",
+      "seed": 1030,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "33fa7c1eaa38e6f4771a975d5c12691d1464c6ef250d4a09db598aaabd7254c1"
+    },
+    {
+      "path": "fixtures/bitvm3/reorg/seed-1031.json",
+      "family": "bitvm3",
+      "seed": 1031,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "c4d170fca8cbaeb8a4f38beee666f56af4e12bed21157db4353e4228164364f6"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-0000.json",
+      "family": "bitvm3",
+      "seed": 0,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "e8388ce9e3499e55a848f423f41d9026a4759fc4d4e0942bbc4fa352d324c419"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-0001.json",
+      "family": "bitvm3",
+      "seed": 1,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "ff73288b49a007e69adab02838270bcf51c998e8e00efe97c63436a74340bc27"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-0002.json",
+      "family": "bitvm3",
+      "seed": 2,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "b0f6818f13c90599c3aabdfb0285ddd5076d0c8a76c4befaf5f0f33245112351"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-0003.json",
+      "family": "bitvm3",
+      "seed": 3,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "a4d91f31f9944650aa0ff65662651bd0613f4fcc51a8b7656152b896ff992842"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-0004.json",
+      "family": "bitvm3",
+      "seed": 4,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "d903c0cc87165daeb5d9ef3dcb97f1bee3235c23744b7b6896674e692b6fcb5b"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-0005.json",
+      "family": "bitvm3",
+      "seed": 5,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "8cfe7bef0010781f7603b3221590bcd7a84300fe179af7c7252bad8155d6c6db"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-0006.json",
+      "family": "bitvm3",
+      "seed": 6,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "26d52f6bef284b89b9549a9112d995387524bda6d09aca363b6b8f50c2159de5"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-0007.json",
+      "family": "bitvm3",
+      "seed": 7,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "721dc5deeaadf11894a070c451f5d25e9d5213174a366423f9d2c495fdb99e7e"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1000.json",
+      "family": "bitvm3",
+      "seed": 1000,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "4be56abaad39f935f037031b843dae0996c1b81c3e6e19662c110418bdb6c4a5"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1001.json",
+      "family": "bitvm3",
+      "seed": 1001,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "4474ae2c657bda0e17c0dc75b87275c1a3bc690913b8737cc81231a67b96af59"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1002.json",
+      "family": "bitvm3",
+      "seed": 1002,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "40b04344ba753ac299287d5ef1778bab25d125f718d9cb1a2201eaf81ec14cbb"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1003.json",
+      "family": "bitvm3",
+      "seed": 1003,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "57ebc073032694688a05af5dcd48b89e777e2b32826cef7b804e1727c013a324"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1004.json",
+      "family": "bitvm3",
+      "seed": 1004,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "81f63292d1f2b77665e5231267dd9f90f318dfbce4334866b713b94bcbef9206"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1005.json",
+      "family": "bitvm3",
+      "seed": 1005,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "e05d7b84f091053ba063ff83cd08d47487ec0974e6018a2ae1a1120ffb5afa7d"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1006.json",
+      "family": "bitvm3",
+      "seed": 1006,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "b338a415ae91affa14b1a9f3622ec1de06f6552e33c79deaca54486c12197a44"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1007.json",
+      "family": "bitvm3",
+      "seed": 1007,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "5e626f5c82dfe8368e7871d6ecbb1f0e8b4b166d6acc70720f35f520d7f21cb8"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1008.json",
+      "family": "bitvm3",
+      "seed": 1008,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "58db670f8e98d7c02f4983cfc35c329cdc4d5d60416c3399674abd5b64c38c73"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1009.json",
+      "family": "bitvm3",
+      "seed": 1009,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "b86716c33053ce0759aa580f37d1c377a8d121ade1bb0a1aa000f9c9d13f7a0f"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1010.json",
+      "family": "bitvm3",
+      "seed": 1010,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "9beabfef8ca76c92fa6249732ae53f78190e3bc1142a47b0384e28e87bfcc8b7"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1011.json",
+      "family": "bitvm3",
+      "seed": 1011,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "5db57f1cbdd6517ed80ef06aafab320c2a198b8ec7f4923aa84e23b7bd62dd85"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1012.json",
+      "family": "bitvm3",
+      "seed": 1012,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "0db7d9caa6cd479fd11bf81524f1c094d902a7503ec097e5aa8b9e29d08f54bf"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1013.json",
+      "family": "bitvm3",
+      "seed": 1013,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "11101af9b71e47beab9627d7445f50c08271b61d1b3a5eb7c72a2a332d2daa28"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1014.json",
+      "family": "bitvm3",
+      "seed": 1014,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "68c77c6502a865967f75838b302282b31a9ecfb0958cab38f73031de567f59c9"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1015.json",
+      "family": "bitvm3",
+      "seed": 1015,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "9a3b31bca87a599e1908470fbb7c99c6f416de1baed7a3e6d6beda2ddea22afe"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1016.json",
+      "family": "bitvm3",
+      "seed": 1016,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "a4d8bd985ee23f06b15a6d81a87541e137bcd8665a349e94fa52d3fc66c26476"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1017.json",
+      "family": "bitvm3",
+      "seed": 1017,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "10857ba2af18b9bd3e652aa552fef4d67fea4eb61410938d184ef8a7508ac68c"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1018.json",
+      "family": "bitvm3",
+      "seed": 1018,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "b99222106a93c97ec7e3142b574908f1a610abe1481dc9fdb616421e0d0c9beb"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1019.json",
+      "family": "bitvm3",
+      "seed": 1019,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "fe66efee67906f9d38f02c4be066b858dd94defa4b6c846d829e8c9154c19b42"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1020.json",
+      "family": "bitvm3",
+      "seed": 1020,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "263c114513152694aee28c871c526eddf6569164d3d0fcab4b67047490182233"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1021.json",
+      "family": "bitvm3",
+      "seed": 1021,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "bfe4671ec521b7df1cacb14e78d7afcff797f05f0fee9f6d4caea0669e5f459a"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1022.json",
+      "family": "bitvm3",
+      "seed": 1022,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "41d600ff03f316ed7493eb26d375ed195b8213b90941afc3d56b771e85a68688"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1023.json",
+      "family": "bitvm3",
+      "seed": 1023,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "7cff243ddfd88d5abfd4a4e1c5b9b19351f1d5a1b03d37af752aa412dd60f33e"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1024.json",
+      "family": "bitvm3",
+      "seed": 1024,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "205a096f5df0f1164acec6a6126b082bafeaa4327287233f8a1109571e2d46b9"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1025.json",
+      "family": "bitvm3",
+      "seed": 1025,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "115db416d6c342661f7c76be986e9059129f65581b371c8e3bf27ca57fbe946a"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1026.json",
+      "family": "bitvm3",
+      "seed": 1026,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "f2598626518ec513dd603e25bcb22075d95b8544360bad739c525387d4125004"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1027.json",
+      "family": "bitvm3",
+      "seed": 1027,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "724ca9e505422ac3c6336e1594d9e1228ea8aeeeb564fe120132ec931848121a"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1028.json",
+      "family": "bitvm3",
+      "seed": 1028,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "bd999eac7ed0b4d972e04b68f6ef5dd8f40a0c745632f6a40351d19ce7d71c93"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1029.json",
+      "family": "bitvm3",
+      "seed": 1029,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "874bc8aa199f5984d58623d7c0dde27c5901b7324fc2521e0197192094d7087a"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1030.json",
+      "family": "bitvm3",
+      "seed": 1030,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "b06bda614016837c407677f6e0d4eb710c0ee7cb30105094f239e00b6c379201"
+    },
+    {
+      "path": "fixtures/bitvm3/watch/seed-1031.json",
+      "family": "bitvm3",
+      "seed": 1031,
+      "generator": "bitvm3-fixture/v0",
+      "sha256": "8fb094d6e9eb066730d769b4fdcb95f4398b8547a6e42d7ca91d94c402e0fd04"
+    },
     {
       "path": "fixtures/bonding/fast/seed-0000.json",
       "family": "bonding",
